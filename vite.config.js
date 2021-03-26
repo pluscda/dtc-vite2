@@ -1,5 +1,6 @@
 import path from "path";
 import vue from "@vitejs/plugin-vue";
+import icons from 'vite-plugin-icons'
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { viteMockServe } from "vite-plugin-mock";
 // 导入插件
@@ -19,7 +20,7 @@ export default {
       dirs: path.resolve(__dirname, "src/directives"),
     },
   },
-  plugins: [vue(), vueJsx(), viteMockServe({ supportTs: false }), vueI18n({
+  plugins: [vue(), vueJsx(), icons(),viteMockServe({ supportTs: false }), vueI18n({
     // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
     // compositionOnly: false,
 
