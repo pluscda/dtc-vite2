@@ -1,8 +1,9 @@
 import path from "path";
 import vue from "@vitejs/plugin-vue";
-import icons from 'vite-plugin-icons'
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { viteMockServe } from "vite-plugin-mock";
+import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
+import Components from 'vite-plugin-components'
 // 导入插件
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 
@@ -20,7 +21,15 @@ export default {
       dirs: path.resolve(__dirname, "src/directives"),
     },
   },
-  plugins: [vue(), vueJsx(), icons(),viteMockServe({ supportTs: false }), vueI18n({
+  plugins: [
+    vue(), 
+    vueJsx(),
+    Components({
+      customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
+    }),
+    ViteIcons(),
+    ,viteMockServe({ supportTs: false }), 
+    vueI18n({
     // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
     // compositionOnly: false,
 
