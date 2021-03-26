@@ -46,7 +46,11 @@ export const routes = [
       },
     ],
   },
-
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import( '/@/views/DtcLogin.vue')
+  },
   {
     path: "/users",
     component: Layout,

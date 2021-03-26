@@ -13,6 +13,9 @@ import router from "/@/router";
 // store
 import store from "/@/store";
 
+//partical js
+import Particles from "particles.vue3";
+
 // i18n
 import { createI18n } from "vue-i18n";
 import messages from "@intlify/vite-plugin-vue-i18n/messages";
@@ -22,4 +25,4 @@ const i18n = createI18n({
   messages,
 });
 
-createApp(App).use(element3).use(router).use(store).use(i18n).mount("#app");
+createApp(App).use(Particles).use(element3).use(router).use(store).use(i18n).mount("#app");

@@ -1,19 +1,13 @@
 <template>
-  <div>
-    <HelloWorld msg="hello vue3 + vite"></HelloWorld>
-    <router-link to="/home/1">detail1</router-link>
-    <router-link to="/home/2">detail2</router-link>
-    <i-carbon-accessibility />
-    <i-mdi-account-box style="font-size: 2em; color: red" />
-    <i-uim:google-play></i-uim:google-play>
-
-    <i-uim:behance></i-uim:behance>
-    <router-view></router-view>
-  </div>
+  <section>
+    <h1>Home</h1>
+  </section>
 </template>
 
-<script setup>
-import HelloWorld from "/@/components/HelloWorld.vue";
+<script>
+export default {
+  components: {},
+};
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
