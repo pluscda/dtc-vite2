@@ -28,7 +28,7 @@ export default {
       customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
     }),
     ViteIcons(),
-    ,viteMockServe({ supportTs: false }), 
+    viteMockServe({ supportTs: false }), 
     vueI18n({
     include: path.resolve(__dirname, './src/locales/**')
   })],
