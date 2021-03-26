@@ -4,6 +4,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
+    "serve": "cross-env NODE_ENV=development vite",
     "build": "vite build"
   },
   "dependencies": {
