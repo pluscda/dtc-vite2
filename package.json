@@ -1,6 +1,6 @@
 {
-  "name": "vite2-in-action",
-  "version": "0.0.0",
+  "name": "dtc-vite2",
+  "version": "1.0.0",
   "license": "ISC",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
@@ -8,6 +8,9 @@
     "build": "vite build"
   },
   "dependencies": {
+    "particles.vue3": "^1.7.1",
+    "dayjs": "^1.10.4",
+    "ramda": "^0.27.1",
     "axios": "^0.21.1",
     "element3": "0.0.39",
     "js-yaml": "^4.0.0",
