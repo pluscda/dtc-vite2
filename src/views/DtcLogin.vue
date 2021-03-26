@@ -1,35 +1,22 @@
 <template>
   <div id="dtc-login">
     <ParticalLogin></ParticalLogin>
-    <div class="container">
-      <div class="d-flex justify-content-center h-100">
-        <div class="card">
-          <div class="card-header">
-            <h3>掛號門診登入</h3>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="input-group form-group mb-4">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i style="height: 28px; display: block; line-height: 28px" class="fas fa-user"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="使用者名稱" />
-              </div>
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i style="height: 28px; display: block; line-height: 28px" class="fas fa-key"></i></span>
-                </div>
-                <input type="password" class="form-control" placeholder="密碼" />
-              </div>
-
-              <div class="form-group mt-4">
-                <input type="submit" value="登入" @click="$router.push('/')" class="btn float-right login_btn" />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="login-panel">
+      <h3 class="text-2xl text-white mb-11">掛號門診登入</h3>
+      <el-input placeholder="使用者名稱" v-model="input1" class="">
+        <template #prepend>
+          <i-ri:user-shared-fill />
+        </template>
+      </el-input>
+      <div class="mb-6"></div>
+      <el-input placeholder="使用者密碼" v-model="input1" class="">
+        <template #prepend>
+          <i-ri:lock-password-fill />
+        </template>
+      </el-input>
+      <div class="mb-10"></div>
+      <el-button type="warning" class="max-w-md" round @click="$router.push('/')">登入</el-button>
+    </section>
   </div>
 </template>
 
@@ -126,5 +113,25 @@ input:focus {
 
 .links a {
   margin-left: 4px;
+}
+</style>
+
+<style lang="scss" scoped>
+.login-panel {
+  height: 370px;
+  width: 400px;
+  border-radius: 20px !important;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 99999;
+}
+
+::v-deep .el-input-group__append,
+::v-deep .el-input-group__prepend {
+  background-color: #ffc107;
+  color: black;
 }
 </style>
