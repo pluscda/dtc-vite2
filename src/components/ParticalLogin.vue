@@ -1,6 +1,6 @@
 <template>
   <div id="dtc-particales">
-    <Particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded" url="http://foo.bar/particles.json" />
+    <Particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded" url="https://foo.bar/particles.json" />
     <Particles
       id="tsparticles"
       :particlesInit="particlesInit"
