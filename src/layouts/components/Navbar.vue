@@ -12,7 +12,14 @@
           <el-dropdown-item>報告-3</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div>線上諮詢<i class="el-icon-arrow-down el-icon--right"></i></div>
+      <el-dropdown>
+        <span class="text-white">線上諮詢<i class="el-icon-arrow-down el-icon--right"></i> </span>
+        <el-dropdown-menu>
+          <el-dropdown-item>諮詢-1</el-dropdown-item>
+          <el-dropdown-item>諮詢-2</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+
       <div>歷史報告</div>
       <div>所得明細</div>
     </section>
