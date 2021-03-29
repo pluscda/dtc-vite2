@@ -39,7 +39,7 @@ export default {
     },
   },
   build:{
-    assetsDir: "./"
+    assetsDir: "./" // at publish root folder, when running prod mode
   },
   plugins: [
     vue(), 
