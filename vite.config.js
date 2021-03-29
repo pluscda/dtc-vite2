@@ -11,7 +11,7 @@ export default {
   resolve: {
     alias: {
       "/@": path.resolve(__dirname, "src"),
-      comps: path.resolve(__dirname, "src/components"),
+      cps: path.resolve(__dirname, "src/components"),
       styles: path.resolve(__dirname, "src/styles"),
       plugins: path.resolve(__dirname, "src/plugins"),
       views: path.resolve(__dirname, "src/views"),

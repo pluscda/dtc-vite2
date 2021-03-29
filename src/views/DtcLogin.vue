@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ParticalLogin from "/@/components/ParticalLogin.vue";
+import ParticalLogin from "cps/ParticalLogin.vue";
 export default {
   components: {
     ParticalLogin,
