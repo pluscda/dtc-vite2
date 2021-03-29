@@ -1,8 +1,7 @@
 //https://www.mdeditor.tw/pl/gc7t/zh-hk
 import axios from "axios";
 const service = axios.create({
-  //baseURL: "/",
-  //baseURL: 'https://dtchealth.datacom.com.tw/',
+  baseURL: import.meta.env.VITE_BASE_API,
   timeout: 720 * 1000, // Timeout
 });
 // 發起請求之前的攔截器

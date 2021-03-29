@@ -1,5 +1,5 @@
 import path from "path";
-import dayjs from "dayjs";
+//import dayjs from "dayjs";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { viteMockServe } from "vite-plugin-mock";
@@ -50,7 +50,7 @@ export default {
       customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
     }),
     ViteIcons(),
-    viteMockServe({ supportTs: false,localEnabled: (process.env.NODE_ENV === 'development' ? true: false)}), 
+    viteMockServe({ supportTs: false}), 
     vueI18n({
       include: path.resolve(__dirname, './src/locales/**')
   })],
