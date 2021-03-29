@@ -7,46 +7,21 @@
       </router-link>
     </div>
 
-    <el-table
-      v-loading="loading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%"
-    >
+    <el-table v-loading="loading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" prop="id"></el-table-column>
-      <el-table-column align="center" label="账户名" prop="name">
-      </el-table-column>
-      <el-table-column align="center" label="年龄" prop="age">
-      </el-table-column>
+      <el-table-column align="center" label="账户名" prop="name"> </el-table-column>
+      <el-table-column align="center" label="年龄" prop="age"> </el-table-column>
       <!-- 操作列 -->
       <el-table-column label="操作" align="center">
         <template v-slot="scope">
-          <el-button
-            type="primary"
-            icon="el-icon-edit"
-            @click="handleEdit(scope)"
-            >更新</el-button
-          >
-          <el-button
-            type="danger"
-            icon="el-icon-remove"
-            @click="handleDelete(scope)"
-            >删除</el-button
-          >
+          <el-button type="primary" icon="el-icon-edit" @click="handleEdit(scope)">更新</el-button>
+          <el-button type="danger" icon="el-icon-remove" @click="handleDelete(scope)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 分页 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </div>
 </template>
 
@@ -54,7 +29,7 @@
 import { toRefs } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
-import Pagination from "comps/Pagination.vue";
+import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
 
 export default {

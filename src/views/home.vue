@@ -1,13 +1,9 @@
 <template>
-  <section>
-    <h1>Home</h1>
-  </section>
+  <div>Home</div>
 </template>
 
 <script>
-export default {
-  components: {},
-};
+export default {};
 </script>
 
 <style lang="scss" scoped></style>

@@ -4,10 +4,12 @@
   "license": "ISC",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
-    "serve": "cross-env NODE_ENV=development vite",
-    "build": "vite build"
+    "serve": "cross-env NODE_ENV=dtcdev vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^4.6.2",
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "element3": "0.0.39",
@@ -29,8 +31,11 @@
     "@vitejs/plugin-vue": "^1.1.4",
     "@vitejs/plugin-vue-jsx": "^1.1.0",
     "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.2.5",
     "cross-env": "^7.0.3",
+    "postcss": "^8.2.8",
     "sass": "^1.32.8",
+    "tailwindcss": "^2.0.4",
     "vite": "^2.0.1",
     "vite-plugin-components": "^0.8.3",
     "vite-plugin-icons": "^0.4.0",

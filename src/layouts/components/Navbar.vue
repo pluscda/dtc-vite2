@@ -1,92 +1,42 @@
 <template>
-  <div class="navbar">
-    <!-- 面包屑 -->
-    <breadcrumb class="breadcrumb-container"></breadcrumb>
-
-    <!-- 右侧下拉菜单 -->
-    <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
-          <img src="/src/assets/logo.png" class="user-avatar" />
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item> 首页 </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/57code/vite2-in-action/">
-            <el-dropdown-item>我的Github</el-dropdown-item>
-          </a>
+  <nav class="text-blue-200 bg-blue-800 dtc-nav-bar">
+    <i class="pt-2 text-5xl"><i-uim:apple-alt></i-uim:apple-alt></i>
+    <div class="pt-5 text-lg">掛號門診 DTC</div>
+    <section class="flex gap-8 cursor-pointer">
+      <div>首頁</div>
+      <el-dropdown class="max-h-10">
+        <span class="text-blue-200">診斷報告<i class="el-icon-arrow-down el-icon--right"></i> </span>
+        <el-dropdown-menu>
+          <el-dropdown-item>報告-1</el-dropdown-item>
+          <el-dropdown-item>報告-2</el-dropdown-item>
+          <el-dropdown-item>報告-3</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-    </div>
-  </div>
+      <el-dropdown class="max-h-10">
+        <span class="text-blue-200">線上諮詢<i class="el-icon-arrow-down el-icon--right"></i> </span>
+        <el-dropdown-menu>
+          <el-dropdown-item>諮詢-1</el-dropdown-item>
+          <el-dropdown-item>諮詢-2</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+
+      <div>歷史報告</div>
+      <div>所得明細</div>
+    </section>
+    <div></div>
+  </nav>
 </template>
-<script setup>
-import Breadcrumb from "./Breadcrumb.vue";
-</script>
+
+<script setup></script>
+
 <style lang="scss" scoped>
-.navbar {
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
-  .breadcrumb-container {
-    float: left;
-  }
-
-  .right-menu {
-    float: right;
-    height: 100%;
-    line-height: 50px;
-
-    &:focus {
-      outline: none;
-    }
-
-    .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
-      height: 100%;
-      font-size: 18px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
-        cursor: pointer;
-        transition: background 0.3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, 0.025);
-        }
-      }
-    }
-
-    .avatar-container {
-      margin-right: 30px;
-
-      .avatar-wrapper {
-        margin-top: 5px;
-        position: relative;
-
-        .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
-        }
-      }
-    }
-  }
+.dtc-nav-bar {
+  width: 100vw;
+  height: 70px;
+  display: grid;
+  padding: 0 1rem;
+  line-height: 70px;
+  font-size: 1rem;
+  grid-template-columns: max-content 160px 1fr max-content;
 }
 </style>
