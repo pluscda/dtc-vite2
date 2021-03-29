@@ -33,8 +33,9 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div>
-        <b-button variant="success" size="sm" @click="edit(item)">查詢</b-button>
+      <div class="flex space-x-1">
+        <el-button type="primary" size="mini">查詢</el-button>
+        <el-button type="info" size="mini">查詢2</el-button>
       </div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
