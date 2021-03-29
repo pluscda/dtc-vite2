@@ -5,7 +5,6 @@
       v-model:current-page="currentPage"
       v-model:page-size="pageSize"
       :layout="layout"
-      :page-sizes="pageSizes"
       :total="total"
       v-bind="$attrs"
       @size-change="handleSizeChange"
@@ -38,7 +37,7 @@ export default {
     },
     layout: {
       type: String,
-      default: "total, sizes, prev, pager, next, jumper",
+      default: "prev, pager, next",
     },
     background: {
       type: Boolean,
