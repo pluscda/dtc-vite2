@@ -16,10 +16,10 @@ module.exports = [
     url: "/dtc/getUsers",
     type: "get",
     response: (config) => {
-      // 从查询参数中获取分页、过滤关键词等参数
+      // 從查詢參數中獲取分頁、過濾關鍵詞等參數
       const { page = 1, limit = 5 } = config.query;
 
-      // 分页
+      // 分頁
       const data = mockList.filter(
         (item, index) => index < limit * page && index >= limit * (page - 1)
       );
