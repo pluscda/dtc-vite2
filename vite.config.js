@@ -6,7 +6,24 @@ import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
 // 导入插件
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
-
+const server =  {
+    proxy: {
+      // string shorthand
+      '/foo': 'http://localhost:4567/foo',
+      // with options
+      '/api': {
+        target: 'http://jsonplaceholder.typicode.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      // with RegEx
+      '^/fallback/.*': {
+        target: 'http://jsonplaceholder.typicode.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/fallback/, '')
+      }
+    }
+  }
 export default {
   resolve: {
     alias: {
@@ -31,7 +48,7 @@ export default {
       customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
     }),
     ViteIcons(),
-    viteMockServe({ supportTs: false }), 
+    viteMockServe({ supportTs: false,localEnabled: (process.env.NODE_ENV === 'development' ? true: false)}), 
     vueI18n({
     include: path.resolve(__dirname, './src/locales/**')
   })],
