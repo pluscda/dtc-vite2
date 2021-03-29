@@ -9,7 +9,7 @@ export function useList() {
     total: 0,
     listQuery: {
       page: 1,
-      limit: 5,
+      limit: 10,
     },
   });
 
