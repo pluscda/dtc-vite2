@@ -6,33 +6,34 @@
         <el-button type="success" icon="el-icon-edit">创建用户</el-button>
       </router-link>
     </div>
-    <header class="grid m-0 text-center border-white">
-      <div class="w-32 boder border-r-0 text-sm">操作</div>
+    <header class="dtc-grid-header dtc-headers dtc-template-columns">
+      <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
-          <i class="fas fa-sort"></i>
+          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
         </span>
         <span v-show="item.sortDesc === false">
-          <i class="fas fa-sort-up"></i>
+          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
         </span>
         <span v-show="item.sortDesc">
-          <i class="fas fa-sort-down"></i>
+          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
         </span>
       </div>
     </header>
-    <el-table v-loading="loading" :data="list" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" prop="id"></el-table-column>
-      <el-table-column align="center" label="账户名" prop="name"> </el-table-column>
-      <el-table-column align="center" label="年龄" prop="age"> </el-table-column>
-      <!-- 操作列 -->
-      <el-table-column label="操作" align="center">
-        <template v-slot="scope">
-          <el-button type="primary" icon="el-icon-edit" @click="handleEdit(scope)">更新</el-button>
-          <el-button type="danger" icon="el-icon-remove" @click="handleDelete(scope)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <main
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black"
+      v-for="(item, i) in list"
+      :key="i"
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+    >
+      <div>
+        <b-button variant="success" size="sm" @click="edit(item)">查詢</b-button>
+      </div>
+      <div>{{ item.Seq || "暫無資料" }}</div>
+      <div>{{ item.ScheduleTime || "暫無資料" }}</div>
+      <div>{{ item.Seq || "暫無資料" }}</div>
+    </main>
 
     <!-- 分页 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -95,5 +96,11 @@ export default {
 .btn-container {
   text-align: left;
   padding: 0px 10px 20px 0px;
+}
+</style>
+
+<style lang="scss" scoped>
+.dtc-template-columns {
+  grid-template-columns: 180px repeat(2, 160px) 1fr;
 }
 </style>

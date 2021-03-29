@@ -1,3 +1,12 @@
+.dtc-search-filters {
+  position: relative;
+  display: grid;
+  max-height: 40px;
+  margin-bottom: 12px;
+  grid-template-columns: repeat(34, max-content);
+  grid-gap: 1rem;
+}
+
 .dtc-list-header {
   background: #646b74;
   height: 42px;
@@ -38,14 +47,19 @@
   > div {
     background: var(--gray);
     color: white;
+    span{
+      display:inline-block;
+      transform: translateY(4px);
+    }
   }
 }
 
-.dtc-search {
-  position: relative;
-  display: grid;
-  max-height: 40px;
-  margin-bottom: 12px;
-  grid-template-columns: repeat(34, max-content);
-  grid-gap: 1rem;
+.dtc-grid-body {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+  }
+  > div {
+    line-height: 24px;
+  }
 }
+
