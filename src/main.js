@@ -7,8 +7,9 @@ import "styles/index.scss";
 import element3 from "plugins/element3";
 // router
 import router from "/@/router";
-
 import Particles from "particles.vue3";
+import DtxInputGroup from "cps/DtxInputGroup.vue";
+
 
 // i18n; not use it now
 import { createI18n } from "vue-i18n";
@@ -19,4 +20,4 @@ const i18n = createI18n({
   messages,
 });
 
-createApp(App).use(element3).use(Particles).use(router).mount("#app");
+createApp(App).use(element3).use(Particles).use(router).use(DtxInputGroup).mount("#app");

@@ -8,9 +8,11 @@
       <el-input placeholder="請輸入檢查狀態" v-model="input1">
         <template #prepend>檢查狀態</template>
       </el-input>
-      <el-input placeholder="請輸入體檢時間" type="date">
-        <template #prepend>體檢時間</template>
-      </el-input>
+      <DtxInputGroup prepend="Name">
+        <el-select v-model="value" placeholder="请选择" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"> </el-option>
+        </el-select>
+      </DtxInputGroup>
 
       <el-button type="primary" size="small"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</el-button>
       <el-button type="info" size="small"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</el-button>
@@ -67,6 +69,34 @@ export default {
   name: "UserList",
   components: {
     Pagination,
+  },
+  data() {
+    return {
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕",
+        },
+        {
+          value: "选项2",
+          label: "双皮奶",
+          disabled: true,
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎",
+        },
+        {
+          value: "选项4",
+          label: "龙须面",
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭",
+        },
+      ],
+      value: "",
+    };
   },
   setup() {
     // 玩家列表數據
