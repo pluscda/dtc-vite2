@@ -2,7 +2,7 @@
 import axios from "axios";
 const service = axios.create({
   //baseURL: "/",
-  baseURL: 'https://dtchealth.datacom.com.tw/',
+  //baseURL: 'https://dtchealth.datacom.com.tw/',
   timeout: 720 * 1000, // Timeout
 });
 // 發起請求之前的攔截器
