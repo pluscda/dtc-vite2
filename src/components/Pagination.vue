@@ -9,7 +9,7 @@
       v-bind="$attrs"
       @current-change="handleCurrentChange"
     />
-    <el-select v-model="pageSize" placeholder="请选择" size="small">
+    <el-select v-model="pageSize">
       <el-option v-for="item in [10, 20, 50]" :key="item" :label="item + ' 條/頁'" :value="item"> </el-option>
     </el-select>
     <div class="pt-1">共 {{ total }} 筆</div>
