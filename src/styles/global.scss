@@ -21,6 +21,10 @@
   grid-template-columns: repeat(34, max-content);
   grid-gap: 1rem;
 }
+.el-input-group__append, .el-input-group__prepend{
+  background: #757575 !important;
+  color:white !important;
+}
 
 .dtc-grid-header {
   display: grid;
