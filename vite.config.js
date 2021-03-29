@@ -1,11 +1,12 @@
 import path from "path";
-import dayjs from "dayjs";
+//import dayjs from "dayjs";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { viteMockServe } from "vite-plugin-mock";
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
+// need to be included for server proxy if server did not support cros
 const server =  {
     proxy: {
       // string shorthand
@@ -36,6 +37,7 @@ export default {
       utils: path.resolve(__dirname, "src/utils"),
       apis: path.resolve(__dirname, "src/apis"),
       dirs: path.resolve(__dirname, "src/directives"),
+      hooks: path.resolve(__dirname, "src/hooks"),
     },
   },
   build:{
@@ -48,7 +50,7 @@ export default {
       customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
     }),
     ViteIcons(),
-    viteMockServe({ supportTs: false,localEnabled: (process.env.NODE_ENV === 'development' ? true: false)}), 
+    viteMockServe({ supportTs: false}), 
     vueI18n({
       include: path.resolve(__dirname, './src/locales/**')
   })],

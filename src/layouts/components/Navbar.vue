@@ -7,7 +7,7 @@
       <el-dropdown class="max-h-10">
         <span class="text-blue-200">診斷報告<i class="el-icon-arrow-down el-icon--right"></i> </span>
         <el-dropdown-menu>
-          <el-dropdown-item>報告-1</el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/users')">報告-1</el-dropdown-item>
           <el-dropdown-item>報告-2</el-dropdown-item>
           <el-dropdown-item>報告-3</el-dropdown-item>
         </el-dropdown-menu>
