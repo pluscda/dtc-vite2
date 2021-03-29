@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "serve": "cross-env NODE_ENV=development vite",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^0.21.1",

@@ -21,6 +21,9 @@ export default {
       dirs: path.resolve(__dirname, "src/directives"),
     },
   },
+  build:{
+    assetsDir: "./"
+  },
   plugins: [
     vue(), 
     vueJsx(),

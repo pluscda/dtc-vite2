@@ -1,14 +1,16 @@
 //https://www.mdeditor.tw/pl/gc7t/zh-hk
 import axios from "axios";
 const service = axios.create({
-  baseURL: "/",
+  //baseURL: "/",
+  baseURL: 'https://dtchealth.datacom.com.tw/',
   timeout: 720 * 1000, // Timeout
 });
 // 發起請求之前的攔截器
 service.interceptors.request.use(
   config => {
     // 如果有token 就攜帶tokon
-    config.headers.Authorization = "Bearer " + sessionStorage.token;
+    if(sessionStorage.token)
+       config.headers.Authorization = "Bearer " + sessionStorage.token;
     return config;
   },
   error => Promise.reject(error)

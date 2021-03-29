@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section>
     <NavBar></NavBar>
-  </div>
+  </section>
 </template>
 
 <script setup>
