@@ -21,7 +21,7 @@ module.exports = [
 
       // 分頁
       const data = mockList.filter(
-        (item, index) => index < limit * page && index >= limit * (page - 1)
+        (_, index) => index < limit * page && index >= limit * (page - 1)
       );
 
       return {
