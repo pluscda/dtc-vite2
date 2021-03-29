@@ -37,6 +37,7 @@ export default {
       utils: path.resolve(__dirname, "src/utils"),
       apis: path.resolve(__dirname, "src/apis"),
       dirs: path.resolve(__dirname, "src/directives"),
+      hooks: path.resolve(__dirname, "src/hooks"),
     },
   },
   build:{
