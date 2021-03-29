@@ -12,7 +12,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="身份證號">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" />
+        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
 
       <el-button type="primary" size="small"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</el-button>
@@ -73,6 +73,7 @@ export default {
   },
   data() {
     return {
+      input1: "2323",
       options: [
         {
           value: "選項1",
