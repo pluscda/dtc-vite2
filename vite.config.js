@@ -4,7 +4,6 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import { viteMockServe } from "vite-plugin-mock";
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
-// 导入插件
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 const server =  {
     proxy: {
@@ -23,7 +22,7 @@ const server =  {
         rewrite: (path) => path.replace(/^\/fallback/, '')
       }
     }
-  }
+}
 export default {
   resolve: {
     alias: {
@@ -50,6 +49,6 @@ export default {
     ViteIcons(),
     viteMockServe({ supportTs: false,localEnabled: (process.env.NODE_ENV === 'development' ? true: false)}), 
     vueI18n({
-    include: path.resolve(__dirname, './src/locales/**')
+      include: path.resolve(__dirname, './src/locales/**')
   })],
 };
