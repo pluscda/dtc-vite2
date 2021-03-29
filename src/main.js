@@ -12,7 +12,7 @@ import store from "/@/store";
 //partical js
 import Particles from "particles.vue3";
 
-// i18n
+// i18n; not use it now
 import { createI18n } from "vue-i18n";
 import messages from "@intlify/vite-plugin-vue-i18n/messages";
 const i18n = createI18n({
