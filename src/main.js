@@ -7,9 +7,7 @@ import "styles/index.scss";
 import element3 from "plugins/element3";
 // router
 import router from "/@/router";
-// store
-import store from "/@/store";
-//partical js
+
 import Particles from "particles.vue3";
 
 // i18n; not use it now
@@ -21,4 +19,4 @@ const i18n = createI18n({
   messages,
 });
 
-createApp(App).use(element3).use(Particles).use(router).use(store).mount("#app");
+createApp(App).use(element3).use(Particles).use(router).mount("#app");
