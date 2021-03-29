@@ -8,9 +8,10 @@
       <el-input placeholder="請輸入檢查狀態" v-model="input1">
         <template #prepend>檢查狀態</template>
       </el-input>
-      <el-input placeholder="請輸入體檢時間" v-model="input1">
+      <el-input placeholder="請輸入體檢時間" type="date">
         <template #prepend>體檢時間</template>
       </el-input>
+
       <el-button type="primary" size="small"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</el-button>
       <el-button type="info" size="small"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</el-button>
     </div>

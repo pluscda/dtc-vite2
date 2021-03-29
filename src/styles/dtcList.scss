@@ -12,10 +12,11 @@
 .dtc-search-filters {
   position: relative;
   display: grid;
-  max-height: 40px;
+  max-height: 40px !important;
   margin-bottom: 12px;
   grid-template-columns: repeat(34, max-content);
   grid-gap: 0.4rem;
+  
 }
 
 .dtc-grid-header {
