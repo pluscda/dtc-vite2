@@ -1,4 +1,4 @@
-const mockList = [
+let mockList = [
   { id: 1, name: "tom", age: 18 },
   { id: 2, name: "jerry", age: 18 },
   { id: 3, name: "mike", age: 18 },
@@ -8,6 +8,9 @@ const mockList = [
   { id: 7, name: "peter", age: 18 },
   { id: 8, name: "james", age: 18 },
 ];
+
+const listdata = require("./MOCK_DATA.json")
+mockList = listdata;
 
 module.exports = [
   {
