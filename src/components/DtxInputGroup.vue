@@ -1,6 +1,6 @@
 <template>
   <div class="flex relative">
-    <div class="grid -mr-px max-content">
+    <div class="grid max-content">
       <span class="flex px-3 items-center bg-gray-500 text-white rounded rounded-r-none text-sm">{{ prepend }}</span>
     </div>
     <slot></slot>
