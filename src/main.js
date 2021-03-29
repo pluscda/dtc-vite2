@@ -1,8 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-//tailwind css
-import "styles/tailwind.css"
-// 全局样式
+
+// 全局 CSS
 import "styles/index.scss";
 // element3
 import element3 from "plugins/element3";
