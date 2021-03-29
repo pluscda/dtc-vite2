@@ -7,7 +7,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="Name">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"> </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
 
