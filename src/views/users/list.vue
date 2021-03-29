@@ -36,9 +36,9 @@
       <div>
         <b-button variant="success" size="sm" @click="edit(item)">查詢</b-button>
       </div>
-      <div>{{ item.Seq || "暫無資料" }}</div>
-      <div>{{ item.ScheduleTime || "暫無資料" }}</div>
-      <div>{{ item.Seq || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
     </main>
 
     <!-- 分頁 -->
