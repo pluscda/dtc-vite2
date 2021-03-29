@@ -32,4 +32,4 @@ const i18n = createI18n({
   messages,
 });
 
-createApp(App).use(element3).use(Particles).use(router).use(store).use(i18n).mount("#app");
+createApp(App).use(element3).use(Particles).use(router).use(store).mount("#app");
