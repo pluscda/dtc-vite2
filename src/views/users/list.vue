@@ -2,16 +2,17 @@
   <div class="app-container">
     <header class="dtc-page-header">役男清冊查詢</header>
     <div class="dtc-search-filters ml-1">
-      <el-input placeholder="搜尋身份證字號" v-model="input1">
-        <template #prepend>身份證號</template>
-      </el-input>
-      <el-input placeholder="請輸入檢查狀態" v-model="input1">
-        <template #prepend>檢查狀態</template>
-      </el-input>
+      <DtxInputGroup prepend="檢查狀態">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
       <DtxInputGroup prepend="Name">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"> </el-option>
         </el-select>
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="身份證號">
+        <el-input placeholder="搜尋身份證字號" v-model="input1" />
       </DtxInputGroup>
 
       <el-button type="primary" size="small"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</el-button>

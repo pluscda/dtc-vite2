@@ -1,7 +1,7 @@
 <template>
   <div class="flex relative">
-    <div class="flex -mr-px">
-      <span class="flex px-4 items-center bg-gray-500 text-white rounded rounded-r-none text-sm">{{ prepend }}</span>
+    <div class="grid -mr-px max-content">
+      <span class="flex px-3 items-center bg-gray-500 text-white rounded rounded-r-none text-sm">{{ prepend }}</span>
     </div>
     <slot></slot>
   </div>
@@ -13,4 +13,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.max-content {
+  grid-template-columns: max-content;
+}
+</style>
