@@ -6,6 +6,7 @@ import { viteMockServe } from "vite-plugin-mock";
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
+// need to be included for server proxy if server did not support cros
 const server =  {
     proxy: {
       // string shorthand
