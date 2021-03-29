@@ -1,13 +1,8 @@
-.dtc-search-filters {
-  position: relative;
-  display: grid;
-  max-height: 40px;
-  margin-bottom: 12px;
-  grid-template-columns: repeat(34, max-content);
-  grid-gap: 1rem;
+.dtc-nav-bar{
+    max-height: 70px;
 }
 
-.dtc-list-header {
+.dtc-page-header {
   background: #646b74;
   height: 42px;
   color: white;
@@ -18,8 +13,13 @@
   text-align: left;
 }
 
-.dtc-nav-bar{
-    max-height: 70px;
+.dtc-search-filters {
+  position: relative;
+  display: grid;
+  max-height: 40px;
+  margin-bottom: 12px;
+  grid-template-columns: repeat(34, max-content);
+  grid-gap: 1rem;
 }
 
 .dtc-grid-header {

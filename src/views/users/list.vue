@@ -1,11 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="btn-container">
-      <!-- 新增按钮 -->
-      <router-link to="/users/create">
-        <el-button type="success" icon="el-icon-edit">创建用户</el-button>
-      </router-link>
-    </div>
+    <header class="dtc-page-header">役男清冊查詢</header>
     <header class="dtc-grid-header dtc-headers dtc-template-columns">
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
