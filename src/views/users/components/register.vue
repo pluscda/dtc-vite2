@@ -5,6 +5,10 @@
       <div></div>
       <el-button type="danger"><i-mdi:check class="inline"></i-mdi:check>現場取號</el-button>
       <el-button type="success">預約掛號</el-button>
+      <footer class="absolute inset-0 justify-end flex items-center space-x-2">
+        <button class="dtc-warning-btn__xs">進行查詢</button>
+        <button class="dtc-danger-btn__xs">清除查詢</button>
+      </footer>
     </header>
     <main class="grid gap-1 grid-cols-2">
       <DtxInputGroup prepend="掛號日期">
