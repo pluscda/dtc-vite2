@@ -2,6 +2,13 @@
    @apply bg-primay text-white rounded px-4 py-2 text-sm;
 }
 
+.dtc-primay-btn__xs{
+   @apply bg-primay text-white rounded px-4 py-2 text-xs;
+}
 .dtc-info-btn{
    @apply bg-info text-white rounded px-4 py-2 text-sm;
+}
+
+.dtc-info-btn__xs{
+   @apply bg-info text-white rounded px-4 py-2 text-xs;
 }
