@@ -1,5 +1,5 @@
 .dtc-page-header {
-  background: #646b74;
+  @apply bg-title;
   height: 42px;
   color: white;
   font-size: 20px;
@@ -60,10 +60,3 @@
   }
 }
 
-.dtc-primay-btn{
-   @apply bg-primay text-white rounded px-4 py-2 text-sm;
-}
-
-.dtc-info-btn{
-   @apply bg-info text-white rounded px-4 py-2 text-sm;
-}
