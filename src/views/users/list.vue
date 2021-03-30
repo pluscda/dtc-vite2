@@ -1,48 +1,109 @@
 <template>
   <div class="app-container">
-    <div class="btn-container">
-      <!-- 新增按钮 -->
-      <router-link to="/users/create">
-        <el-button type="success" icon="el-icon-edit">创建用户</el-button>
-      </router-link>
+    <header class="dtc-page-header">役男清冊查詢</header>
+    <div class="dtc-search-filters ml-1">
+      <DtxInputGroup prepend="檢查狀態">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="Name">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="身份證號">
+        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
+      <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button>
     </div>
+    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
+      <div>操作</div>
+      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+        {{ item.name }}
+        <span v-show="item.sortDesc === null">
+          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
+        </span>
+        <span v-show="item.sortDesc === false">
+          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
+        </span>
+        <span v-show="item.sortDesc">
+          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
+        </span>
+      </div>
+    </header>
+    <main
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1"
+      v-for="(item, i) in list"
+      :key="i"
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+    >
+      <div class="flex space-x-1">
+        <button class="dtc-primay-btn__xs">查詢1</button>
+        <button class="dtc-info-btn__xs">查詢2</button>
+        <!-- <el-button type="primary" size="mini">查詢1</el-button>
+        <el-button type="info" size="mini">查詢2</el-button> -->
+      </div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+    </main>
 
-    <el-table v-loading="loading" :data="list" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" prop="id"></el-table-column>
-      <el-table-column align="center" label="账户名" prop="name"> </el-table-column>
-      <el-table-column align="center" label="年龄" prop="age"> </el-table-column>
-      <!-- 操作列 -->
-      <el-table-column label="操作" align="center">
-        <template v-slot="scope">
-          <el-button type="primary" icon="el-icon-edit" @click="handleEdit(scope)">更新</el-button>
-          <el-button type="danger" icon="el-icon-remove" @click="handleDelete(scope)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <!-- 分页 -->
+    <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </div>
 </template>
 
 <script>
-import { toRefs } from "vue";
+import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
+
+let headers = [
+  { name: "ID", key: "id", sortDesc: null },
+  { name: "建立者", key: "name", sortDesc: null },
+  { name: "年齡", key: "age", sortDesc: null },
+];
 
 export default {
   name: "UserList",
   components: {
     Pagination,
   },
+  data() {
+    return {
+      input1: "2323",
+      options: [
+        {
+          value: "選項1",
+          label: "黃金糕",
+        },
+
+        {
+          value: "選項3",
+          label: "蚵仔煎",
+        },
+        {
+          value: "選項4",
+          label: "龍鬚麵",
+        },
+        {
+          value: "選項5",
+          label: "北京烤鴨",
+        },
+      ],
+      value: "",
+    };
+  },
   setup() {
-    // 玩家列表数据
+    // 玩家列表數據
     const router = useRouter();
+    headers = ref(headers);
     const { state, getList, delItem } = useList();
 
-    // 用户更新
+    // 用戶更新
     function handleEdit({ row }) {
       router.push({
         name: "userEdit",
@@ -50,12 +111,12 @@ export default {
       });
     }
 
-    // 删除玩家
+    // 刪除玩家
     function handleDelete({ row }) {
       delItem(row.id).then(() => {
-        // todo:删除这一行，或者重新获取数据
-        // 通知用户
-        Message.success("删除成功！");
+        // todo:刪除這一行，或者重新獲取數據
+        // 通知用戶
+        Message.success("刪除成功！");
       });
     }
 
@@ -64,6 +125,7 @@ export default {
       getList,
       handleEdit,
       handleDelete,
+      headers,
     };
   },
 };
@@ -73,5 +135,11 @@ export default {
 .btn-container {
   text-align: left;
   padding: 0px 10px 20px 0px;
+}
+</style>
+
+<style lang="scss" scoped>
+.dtc-template-columns {
+  grid-template-columns: 180px repeat(2, 160px) 1fr;
 }
 </style>

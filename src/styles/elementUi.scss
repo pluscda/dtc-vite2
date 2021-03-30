@@ -1,0 +1,38 @@
+.el-button{
+   font-size:14px !important;
+   max-height: 40px !important;
+}
+.el-button--primary{
+  background: #1f7cd3 !important;
+  border-color: #1f7cd3 !important;;
+  color: white !important;
+ 
+}
+.el-button--info{
+  background: #0f579b !important;
+  border-color: #0f579b !important;
+  color: white !important;
+  
+}
+
+
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+  background: #1f7cd3 !important;
+  border-color: #1f7cd3 !important;;
+  color: white !important;
+}
+
+.el-input-group__append, .el-input-group__prepend{
+  background: #757575 !important;
+  color:white !important;
+}
+
+.el-input__inner{
+  line-height: unset  !important;
+}
+
+.bg-gray-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(209, 213, 219, var(--tw-bg-opacity))  !important;
+}
+

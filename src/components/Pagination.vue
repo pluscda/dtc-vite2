@@ -1,16 +1,18 @@
 <template>
-  <div :class="{ hidden: hidden }" class="pagination-container">
+  <div :class="{ hidden: hidden }" class="pagination-container bg-white py-10">
     <el-pagination
       :background="background"
       v-model:current-page="currentPage"
       v-model:page-size="pageSize"
       :layout="layout"
-      :page-sizes="pageSizes"
       :total="total"
       v-bind="$attrs"
-      @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
+    <el-select v-model="pageSize" size="small">
+      <el-option v-for="item in [10, 20, 50]" :key="item" :label="item + ' 條/頁'" :value="item"> </el-option>
+    </el-select>
+    <div class="pt-2">共 {{ total }} 筆</div>
   </div>
 </template>
 
@@ -33,12 +35,12 @@ export default {
     pageSizes: {
       type: Array,
       default() {
-        return [10, 20, 30, 50];
+        return [10, 20, 50];
       },
     },
     layout: {
       type: String,
-      default: "total, sizes, prev, pager, next, jumper",
+      default: "prev, pager, next",
     },
     background: {
       type: Boolean,
@@ -69,11 +71,14 @@ export default {
     },
   },
   methods: {
-    handleSizeChange(val) {
-      this.$emit("pagination", { page: this.currentPage, limit: val });
-    },
     handleCurrentChange(val) {
       this.$emit("pagination", { page: val, limit: this.pageSize });
+    },
+  },
+  watch: {
+    pageSize(val) {
+      this.currentPage = 1;
+      this.$emit("pagination", { page: 1, limit: val });
     },
   },
 };
@@ -81,8 +86,12 @@ export default {
 
 <style scoped>
 .pagination-container {
-  background: #fff;
-  padding: 32px 16px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: max-content 100px max-content;
+  gap: 1rem;
+  width: 100vw;
+  font-family: Arial, Helvetica, sans-serif, "Microsoft JhengHei" !important;
 }
 .pagination-container.hidden {
   display: none;
