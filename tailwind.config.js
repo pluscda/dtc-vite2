@@ -9,6 +9,8 @@ module.exports = {
       current: 'currentColor',
       primay:"#1f7cd3",
       info:"#0f579b",
+      title:"#646b74",
+      bsGray:"#6c757d",
       ...colors,
     },
     extend: {
