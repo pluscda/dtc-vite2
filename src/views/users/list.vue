@@ -55,9 +55,9 @@
         <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">是</el-checkbox>
       </DtxInputGroup>
     </div>
-    <section class="md:flex space-x-1 mb-2">
-      <Regsiter class="md:w-1/2"></Regsiter>
-      <Pay class="mt-2 md:w-1/2 md:mt-0"></Pay>
+    <section class="lg:flex space-x-1 mb-2">
+      <Regsiter class="lg:w-1/2"></Regsiter>
+      <Pay class="mt-2 lg:w-1/2 md:mt-0"></Pay>
     </section>
 
     <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
