@@ -5,9 +5,9 @@
       <div></div>
       <el-button type="danger"><i-mdi:check class="inline"></i-mdi:check>現場取號</el-button>
       <el-button type="success">預約掛號</el-button>
-      <footer class="absolute inset-0 justify-end flex items-center space-x-2">
-        <button class="dtc-warning-btn__xs">進行查詢</button>
-        <button class="dtc-danger-btn__xs">清除查詢</button>
+      <footer class="absolute inset-0 justify-end flex items-center space-x-1">
+        <button class="dtc-warning-btn__xs relative"><i-eva:search-fill class="absolute left-1 top:1"></i-eva:search-fill>&nbsp; 進行查詢</button>
+        <button class="dtc-danger-btn__xs"><i-fluent:eraser-20-regular class="absolute left-1 top:1"></i-fluent:eraser-20-regular>&nbsp;&nbsp;清除查詢</button>
       </footer>
     </header>
     <main class="grid gap-1 grid-cols-2">
