@@ -14,11 +14,10 @@
       <DtxInputGroup prepend="身份證號">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
-
-      <el-button type="primary" size="small"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</el-button>
-      <el-button type="info" size="small"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</el-button>
+      <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
+      <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button>
     </div>
-    <header class="dtc-grid-header dtc-headers dtc-template-columns ml-1">
+    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}

@@ -40,7 +40,7 @@
   }
 }
 
-.dtc-headers {
+.dtc-grid-header__divs {
   > div {
     background: var(--gray);
     color: white;
@@ -58,4 +58,12 @@
   > div {
     line-height: 24px;
   }
+}
+
+.dtc-primay-btn{
+   @apply bg-primay text-white rounded px-4 py-2 text-sm;
+}
+
+.dtc-info-btn{
+   @apply bg-info text-white rounded px-4 py-2 text-sm;
 }
