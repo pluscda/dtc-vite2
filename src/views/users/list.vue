@@ -55,9 +55,9 @@
         <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">掛號後取卡</el-checkbox>
       </DtxInputGroup>
     </div>
-    <section class="lg:flex space-x-1 mb-2">
-      <Regsiter class="lg:w-1/2"></Regsiter>
-      <Pay class="mt-2 lg:w-1/2 lg:mt-0"></Pay>
+    <section class="space-x-1 mb-2 xl:flex">
+      <Regsiter class="xl:w-1/2"></Regsiter>
+      <Pay class="mt-2 xl:w-1/2 xl:mt-0"></Pay>
     </section>
     <InqueryList></InqueryList>
   </div>
