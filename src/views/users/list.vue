@@ -1,21 +1,42 @@
 <template>
   <div class="app-container">
     <header class="dtc-page-header">病患基本資料 / 就醫身份</header>
-    <div class="dtc-search-filters ml-1">
-      <DtxInputGroup prepend="檢查狀態">
+    <div class="dtc-autoflow-grid ml-1">
+      <DtxInputGroup prepend="身份證號">
+        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="病患姓名">
+        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="出生日期">
+        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="病歷號碼">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="手機號碼">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="就診身份">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="折扣身份">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="Name">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-
       <DtxInputGroup prepend="身份證號">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
-      <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
-      <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button>
+      <!-- <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
+      <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button> -->
     </div>
     <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
       <div>操作</div>
@@ -74,24 +95,24 @@ export default {
   },
   data() {
     return {
-      input1: "2323",
+      input1: "J120092876",
       options: [
         {
           value: "選項1",
-          label: "黃金糕",
+          label: "牙科就診",
         },
 
         {
           value: "選項3",
-          label: "蚵仔煎",
+          label: "身心障礙",
         },
         {
           value: "選項4",
-          label: "龍鬚麵",
+          label: "發展遲緩兒童",
         },
         {
           value: "選項5",
-          label: "北京烤鴨",
+          label: "失能老人",
         },
       ],
       value: "",
@@ -141,5 +162,10 @@ export default {
 <style lang="scss" scoped>
 .dtc-template-columns {
   grid-template-columns: 180px repeat(2, 160px) 1fr;
+}
+
+.dtc-autoflow-grid {
+  @apply grid gap-1 m-3;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
 }
 </style>
