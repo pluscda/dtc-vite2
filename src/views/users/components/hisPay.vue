@@ -1,29 +1,26 @@
 <template>
-  <div class="pl-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white py-1">
-      <div class="transform -translate-y-1">掛號作業</div>
-      <div></div>
-      <el-button type="danger"><i-mdi:check class="inline"></i-mdi:check>現場取號</el-button>
-      <el-button type="success">預約掛號</el-button>
+  <div>
+    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+      <div>應付金額</div>
     </header>
     <main class="grid gap-1 grid-cols-2">
-      <DtxInputGroup prepend="掛號日期">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="掛號費用">
+        <el-input v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="看診科別">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="部分攤額">
+        <el-input v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="項次科別">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="欠卡押金">
+        <el-input v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="看診醫師">
+      <DtxInputGroup prepend="優免金額">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="看診時段">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="累積應繳">
+        <el-input v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="調閱病歷">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="預收金額">
+        <el-input v-model="input1" />
       </DtxInputGroup>
     </main>
   </div>
@@ -31,7 +28,6 @@
 
 <script>
 import DtxInputGroup from "cps/DtxInputGroup.vue";
-
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -40,10 +36,8 @@ let headers = [
 ];
 
 export default {
-  name: "regsiter",
-  components: {
-    DtxInputGroup,
-  },
+  name: "payhis",
+  components: { DtxInputGroup },
   data() {
     return {
       input1: "J120092876",
@@ -86,16 +80,11 @@ export default {
 
 .dtc-autoflow-grid {
   grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
+  @apply bg-info;
 }
 .dtc-page-header-grid {
   grid-template-columns: max-content 1rem max-content max-content;
   overflow: hidden;
-  @apply bg-primay;
-}
-.dtc-page-header {
-  button {
-    transform: scale(0.9);
-    font-size: 16px;
-  }
+  @apply bg-info;
 }
 </style>

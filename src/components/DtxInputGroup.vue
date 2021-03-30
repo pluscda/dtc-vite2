@@ -16,5 +16,6 @@ export default {
 <style lang="scss" scoped>
 .max-content {
   grid-template-columns: max-content;
+  max-height: 40px;
 }
 </style>

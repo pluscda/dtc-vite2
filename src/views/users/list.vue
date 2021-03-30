@@ -54,11 +54,12 @@
       <DtxInputGroup prepend="掛號後取卡">
         <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">是</el-checkbox>
       </DtxInputGroup>
-
-      <!-- <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
-      <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button> -->
     </div>
-    <Regsiter></Regsiter>
+    <section class="md:flex space-x-1 mb-2">
+      <Regsiter class="md:w-1/2"></Regsiter>
+      <Pay class="mt-2 md:w-1/2 md:mt-0"></Pay>
+    </section>
+
     <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
@@ -103,7 +104,7 @@ import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
 import Regsiter from "./components/register.vue";
-
+import Pay from "./components/hisPay.vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -115,6 +116,7 @@ export default {
   components: {
     Pagination,
     Regsiter,
+    Pay,
   },
   data() {
     return {
