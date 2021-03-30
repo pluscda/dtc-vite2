@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <header class="dtc-page-header">役男清冊查詢</header>
+    <header class="dtc-page-header">病患基本資料 / 就醫身份</header>
     <div class="dtc-search-filters ml-1">
       <DtxInputGroup prepend="檢查狀態">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />

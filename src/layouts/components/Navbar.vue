@@ -1,5 +1,5 @@
 <template>
-  <nav class="text-blue-200 bg-blue-800 dtc-nav-bar">
+  <nav class="text-blue-200 bg-gradient-to-r from-blue-900 to-blue-700 dtc-nav-bar">
     <i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group>
     <div class="pt-5 text-lg transform -translate-x-7">基本醫療服務</div>
     <section class="flex gap-8 cursor-pointer">
