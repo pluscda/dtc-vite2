@@ -1,7 +1,7 @@
 <template>
-  <div class="app-container">
+  <div>
     <header class="dtc-page-header">病患基本資料 / 就醫身份</header>
-    <div class="dtc-autoflow-grid ml-1">
+    <div class="dtc-autoflow-grid ml-1 grid gap-1 mb-3">
       <DtxInputGroup prepend="身份證號">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
@@ -58,6 +58,7 @@
       <!-- <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
       <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button> -->
     </div>
+    <Regsiter></Regsiter>
     <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
@@ -101,6 +102,7 @@ import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
+import Regsiter from "./components/register.vue";
 
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
@@ -112,6 +114,7 @@ export default {
   name: "UserList",
   components: {
     Pagination,
+    Regsiter,
   },
   data() {
     return {
@@ -185,7 +188,6 @@ export default {
 }
 
 .dtc-autoflow-grid {
-  @apply grid gap-1 m-3;
   grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
 }
 </style>
