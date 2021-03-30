@@ -51,8 +51,8 @@
       <DtxInputGroup prepend="健保卡序">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="掛號後取卡">
-        <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">是</el-checkbox>
+      <DtxInputGroup prepend="掛號取卡">
+        <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">掛號後取卡</el-checkbox>
       </DtxInputGroup>
     </div>
     <section class="lg:flex space-x-1 mb-2">
