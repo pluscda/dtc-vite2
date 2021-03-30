@@ -1,5 +1,5 @@
 <template>
-  <div class="flex relative">
+  <div class="flex relative my-flex">
     <div class="grid max-content">
       <span class="flex px-3 items-center bg-gray-500 text-white rounded rounded-r-none text-sm">{{ prepend }}</span>
     </div>
@@ -17,5 +17,12 @@ export default {
 .max-content {
   grid-template-columns: max-content;
   max-height: 40px;
+}
+.my-flex {
+  flex-basis: 100%;
+}
+
+:deep(.el-select) {
+  width: 100%;
 }
 </style>

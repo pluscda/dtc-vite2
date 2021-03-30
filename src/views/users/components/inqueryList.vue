@@ -1,33 +1,10 @@
 <template>
-  <div class="pr-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
-      <div>應付金額</div>
-    </header>
-    <main class="grid gap-1 grid-cols-2">
-      <DtxInputGroup prepend="掛號費用">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="部分攤額">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="欠卡押金">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="優免金額">
-        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="累積應繳">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="預收金額">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-    </main>
-  </div>
+  <div></div>
 </template>
 
 <script>
 import DtxInputGroup from "cps/DtxInputGroup.vue";
+//查閱清單
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },

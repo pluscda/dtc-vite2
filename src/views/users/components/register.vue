@@ -15,16 +15,24 @@
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="看診科別">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
-        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="調閱病歷">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
