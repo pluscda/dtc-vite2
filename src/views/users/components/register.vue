@@ -1,6 +1,6 @@
 <template>
   <div class="pl-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white py-1">
+    <header class="dtc-page-header dtc-page-header-grid grid text-white py-1 relative">
       <div class="transform -translate-y-1">掛號作業</div>
       <div></div>
       <el-button type="danger"><i-mdi:check class="inline"></i-mdi:check>現場取號</el-button>
@@ -72,13 +72,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.btn-container {
-  text-align: left;
-  padding: 0px 10px 20px 0px;
-}
-</style>
-
 <style lang="scss" scoped>
 .dtc-template-columns {
   grid-template-columns: 180px repeat(2, 160px) 1fr;
@@ -88,7 +81,7 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
 }
 .dtc-page-header-grid {
-  grid-template-columns: max-content 1rem max-content max-content;
+  grid-template-columns: max-content 0.2rem max-content max-content;
   overflow: hidden;
   @apply bg-primay;
 }
