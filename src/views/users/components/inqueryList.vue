@@ -6,10 +6,17 @@
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 //查閱清單
 let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
+  { name: "掛號日期", key: "id", sortDesc: null },
+  { name: "看診時段", key: "name", sortDesc: null },
+  { name: "診間號碼", key: "name", sortDesc: null },
+  { name: "診間名稱", key: "age", sortDesc: null },
+  { name: "診間別名", key: "age", sortDesc: null },
+  { name: "科別", key: "age", sortDesc: null },
+  { name: "醫師代號", key: "age", sortDesc: null },
+  { name: "醫師姓名", key: "age", sortDesc: null },
+  { name: "掛號人數", key: "age", sortDesc: null },
+  { name: "已看診數", key: "age", sortDesc: null },
+  { name: "待看診數", key: "age", sortDesc: null },
 ];
 
 export default {
