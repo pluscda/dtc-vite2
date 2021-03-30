@@ -57,43 +57,9 @@
     </div>
     <section class="lg:flex space-x-1 mb-2">
       <Regsiter class="lg:w-1/2"></Regsiter>
-      <Pay class="mt-2 lg:w-1/2 md:mt-0"></Pay>
+      <Pay class="mt-2 lg:w-1/2 lg:mt-0"></Pay>
     </section>
-
-    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
-      <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
-        {{ item.name }}
-        <span v-show="item.sortDesc === null">
-          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-        </span>
-        <span v-show="item.sortDesc === false">
-          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-        </span>
-        <span v-show="item.sortDesc">
-          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
-      </div>
-    </header>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1"
-      v-for="(item, i) in list"
-      :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
-    >
-      <div class="flex space-x-1">
-        <button class="dtc-primay-btn__xs">查詢1</button>
-        <button class="dtc-info-btn__xs">查詢2</button>
-        <!-- <el-button type="primary" size="mini">查詢1</el-button>
-        <el-button type="info" size="mini">查詢2</el-button> -->
-      </div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-    </main>
-
-    <!-- 分頁 -->
-    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
+    <InqueryList></InqueryList>
   </div>
 </template>
 
@@ -105,6 +71,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
 import Regsiter from "./components/register.vue";
 import Pay from "./components/hisPay.vue";
+import InqueryList from "./components/inqueryList.vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -112,11 +79,11 @@ let headers = [
 ];
 
 export default {
-  name: "UserList",
+  name: "UserList2",
   components: {
-    Pagination,
     Regsiter,
     Pay,
+    InqueryList,
   },
   data() {
     return {

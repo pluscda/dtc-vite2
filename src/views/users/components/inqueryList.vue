@@ -1,9 +1,54 @@
 <template>
-  <div></div>
+  <section>
+    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
+      <div>查閱清單</div>
+      <div>序號</div>
+      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+        {{ item.name }}
+        <span v-show="item.sortDesc === null">
+          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
+        </span>
+        <span v-show="item.sortDesc === false">
+          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
+        </span>
+        <span v-show="item.sortDesc">
+          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
+        </span>
+      </div>
+    </header>
+    <main
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1"
+      v-for="(item, i) in list"
+      :key="i"
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+    >
+      <div></div>
+      <div>{{ i + 1 }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+    </main>
+
+    <!-- 分頁 -->
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
+  </section>
 </template>
 
 <script>
+import { toRefs, ref } from "vue";
+import { useRouter } from "vue-router";
+import { Message } from "element3";
+import Pagination from "cps/Pagination.vue";
 import DtxInputGroup from "cps/DtxInputGroup.vue";
+import { useList } from "../model/userModel";
 //查閱清單
 let headers = [
   { name: "掛號日期", key: "id", sortDesc: null },
@@ -20,55 +65,53 @@ let headers = [
 ];
 
 export default {
-  name: "payhis",
+  name: "inquerylist",
   components: { DtxInputGroup },
   data() {
     return {
       input1: "J120092876",
-      options: [
-        {
-          value: "選項1",
-          label: "牙科就診",
-        },
-
-        {
-          value: "選項3",
-          label: "身心障礙",
-        },
-        {
-          value: "選項4",
-          label: "發展遲緩兒童",
-        },
-        {
-          value: "選項5",
-          label: "失能老人",
-        },
-      ],
       value: "",
+    };
+  },
+  components: {
+    Pagination,
+  },
+  setup() {
+    // 玩家列表數據
+    const router = useRouter();
+    headers = ref(headers);
+    const { state, getList, delItem } = useList();
+
+    // 用戶更新
+    function handleEdit({ row }) {
+      router.push({
+        name: "userEdit",
+        params: { id: row.id },
+      });
+    }
+
+    // 刪除玩家
+    function handleDelete({ row }) {
+      delItem(row.id).then(() => {
+        // todo:刪除這一行，或者重新獲取數據
+        // 通知用戶
+        Message.success("刪除成功！");
+      });
+    }
+
+    return {
+      ...toRefs(state),
+      getList,
+      handleEdit,
+      handleDelete,
+      headers,
     };
   },
 };
 </script>
 
-<style scoped>
-.btn-container {
-  text-align: left;
-  padding: 0px 10px 20px 0px;
-}
-</style>
-
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 180px repeat(2, 160px) 1fr;
-}
-
-.dtc-autoflow-grid {
-  grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
-  @apply bg-info;
-}
-.dtc-page-header-grid {
-  grid-template-columns: max-content 1rem max-content max-content;
-  overflow: hidden;
-  @apply bg-info;
+  grid-template-columns: 90px 80px repeat(10, 100px) 1fr;
 }
 </style>
