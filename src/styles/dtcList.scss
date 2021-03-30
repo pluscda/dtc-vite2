@@ -1,12 +1,5 @@
 .dtc-page-header {
-  @apply bg-title;
-  height: 42px;
-  color: white;
-  font-size: 20px;
-  padding-left: 10px;
-  line-height: 42px;
-  margin-bottom: 12px;
-  text-align: left;
+  @apply bg-title h-10 text-white text-lg pl-3 leading-10 mb-3 text-left;
 }
 
 .dtc-search-filters {
@@ -42,7 +35,7 @@
 
 .dtc-grid-header__divs {
   > div {
-    background: var(--gray);
+    @apply bg-bsGray;
     color: white;
     span{
       display:inline-block;

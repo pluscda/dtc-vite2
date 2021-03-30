@@ -1,14 +1,14 @@
 .dtc-primay-btn{
-   @apply bg-primay text-white rounded px-4 py-2 text-sm;
+   @apply bg-primay text-white rounded px-4 py-2 text-sm hover:bg-gray-500;
 }
 
 .dtc-primay-btn__xs{
-   @apply bg-primay text-white rounded px-4 py-2 text-xs;
+   @apply bg-primay text-white rounded px-4 py-2 text-xs hover:bg-gray-500;;
 }
 .dtc-info-btn{
-   @apply bg-info text-white rounded px-4 py-2 text-sm;
+   @apply bg-info text-white rounded px-4 py-2 text-sm hover:bg-gray-500;;
 }
 
 .dtc-info-btn__xs{
-   @apply bg-info text-white rounded px-4 py-2 text-xs;
+   @apply bg-info text-white rounded px-4 py-2 text-xs hover:bg-gray-500;;
 }
