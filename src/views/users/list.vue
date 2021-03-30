@@ -17,6 +17,12 @@
       <DtxInputGroup prepend="手機號碼">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
+      <DtxInputGroup prepend="病患性別">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+
       <DtxInputGroup prepend="就診身份">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
@@ -27,14 +33,28 @@
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="Name">
+      <DtxInputGroup prepend="部分負擔">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="身份證號">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="就醫類別">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
+      <DtxInputGroup prepend="預防保健">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="健保卡序">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="掛號後取卡">
+        <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">是</el-checkbox>
+      </DtxInputGroup>
+
       <!-- <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
       <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button> -->
     </div>
