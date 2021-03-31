@@ -1,7 +1,71 @@
 <template>
-  <div class="pr-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
-      <div>應付金額</div>
+  <div class="p-3">
+    <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
+      <div>初診病患基本資料卡</div>
+    </header>
+    <main class="grid gap-1">
+      <DtxInputGroup prepend="掛號費用">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="部分攤額">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="欠卡押金">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="優免金額">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="累積應繳">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="預收金額">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="掛號費用">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="部分攤額">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="欠卡押金">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="優免金額">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="累積應繳">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="預收金額">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+    </main>
+    <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
+      <div>病患健康自評表 (病患填寫)</div>
+    </header>
+    <main class="grid gap-1 grid-cols-2">
+      <DtxInputGroup prepend="掛號費用">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="部分攤額">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="欠卡押金">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="優免金額">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="累積應繳">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="預收金額">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
+    </main>
+    <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
+      <div>健康追蹤項目 (專業人員填寫)</div>
     </header>
     <main class="grid gap-1 grid-cols-2">
       <DtxInputGroup prepend="掛號費用">
@@ -27,6 +91,7 @@
 </template>
 
 <script>
+//健康追蹤項目專業人員
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
@@ -86,5 +151,9 @@ export default {
   grid-template-columns: max-content 1rem max-content max-content;
   overflow: hidden;
   @apply bg-info;
+}
+
+main {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
 }
 </style>
