@@ -20,7 +20,7 @@
       <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
     </header>
     <div class="dtc-autoflow-grid ml-1 grid gap-1 mb-3">
-      <DtxInputGroup prepend="身份證號" append="kg">
+      <DtxInputGroup prepend="身份證號">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
