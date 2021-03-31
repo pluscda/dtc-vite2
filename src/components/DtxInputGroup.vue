@@ -1,6 +1,6 @@
 <template>
   <div class="flex relative my-flex">
-    <div class="grid max-content">
+    <div class="grid max-content" :style="labelWidth ? `grid-template-columns: ${labelWidth} !important;` : ''">
       <span class="flex px-3 items-center bg-gray-500 text-white rounded rounded-r-none text-sm">{{ prepend }}</span>
     </div>
     <slot></slot>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props: ["prepend", "append"],
+  props: ["prepend", "append", "labelWidth"],
 };
 </script>
 
@@ -21,6 +21,7 @@ export default {
   grid-template-columns: max-content;
   max-height: 40px;
 }
+
 .my-flex {
   flex-basis: 100%;
 }
