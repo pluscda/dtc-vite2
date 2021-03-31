@@ -25,9 +25,9 @@
       <div class="bg-gray-500 text-white">疾病史</div>
     </nav> -->
     <nav>
-      <van-tabs type="card" class="max-w-4xl m-auto pt-2">
-        <van-tab title="初診單"></van-tab>
-        <van-tab title="基本資料"></van-tab>
+      <van-tabs type="card" class="max-w-4xl m-auto pt-2" v-model:active="activeTab">
+        <van-tab title="初診單" @click="cps = FirstVisit"></van-tab>
+        <van-tab title="基本資料" @click="cps = BasicInfo"></van-tab>
         <van-tab title="疾病史"></van-tab>
       </van-tabs>
     </nav>
@@ -41,6 +41,7 @@ import { useRouter } from "vue-router";
 import { Message } from "element3";
 import { useList } from "./model/userModel";
 import FirstVisit from "./components/firstVisit.vue";
+import BasicInfo from "./components/basicInfo.vue";
 //初診單基本資料疾病史
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
@@ -48,68 +49,23 @@ let headers = [
   { name: "年齡", key: "age", sortDesc: null },
 ];
 
+const CPS = [FirstVisit, BasicInfo];
 export default {
   name: "editUser",
   components: {
     FirstVisit,
+    BasicInfo,
   },
   data() {
     return {
-      takeCard: true,
       cps: FirstVisit,
-      input1: "J120092876",
-      options: [
-        {
-          value: "選項1",
-          label: "牙科就診",
-        },
-
-        {
-          value: "選項3",
-          label: "身心障礙",
-        },
-        {
-          value: "選項4",
-          label: "發展遲緩兒童",
-        },
-        {
-          value: "選項5",
-          label: "失能老人",
-        },
-      ],
-      value: "",
+      activeTab: 0,
     };
   },
-  setup() {
-    // 玩家列表數據
-    const router = useRouter();
-    headers = ref(headers);
-    const { state, getList, delItem } = useList();
-
-    // 用戶更新
-    function handleEdit({ row }) {
-      router.push({
-        name: "userEdit",
-        params: { id: row.id },
-      });
-    }
-
-    // 刪除玩家
-    function handleDelete({ row }) {
-      delItem(row.id).then(() => {
-        // todo:刪除這一行，或者重新獲取數據
-        // 通知用戶
-        Message.success("刪除成功！");
-      });
-    }
-
-    return {
-      ...toRefs(state),
-      getList,
-      handleEdit,
-      handleDelete,
-      headers,
-    };
+  watch: {
+    activeTab(v) {
+      this.cps = CPS[v];
+    },
   },
 };
 </script>
