@@ -5,7 +5,7 @@
     </header>
     <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
       <div>操作</div>
-      <div>序號</div>
+
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -27,7 +27,7 @@
       @click.stop="toggleDetail(item)"
     >
       <div><van-switch v-model="item.review" size="small" @click.stop="" /></div>
-      <div>{{ i + 1 }}</div>
+
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
@@ -68,7 +68,6 @@ let headers = [
   { name: "醫師姓名", key: "age", sortDesc: null },
   { name: "診間", key: "age", sortDesc: null },
 ];
-alert(headers.length);
 
 export default {
   name: "inquerylist",
@@ -126,7 +125,7 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 160px 60px repeat(11, 120px) 1fr;
+  grid-template-columns: 160px repeat(11, 120px) 1fr;
 }
 </style>
 6

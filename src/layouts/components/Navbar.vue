@@ -4,14 +4,14 @@
     <div class="pt-5 text-lg transform -translate-x-7">基本醫療服務</div>
     <section class="flex gap-8 cursor-pointer">
       <div>首頁</div>
-      <el-dropdown class="max-h-10">
+      <el-dropdown class="max-h-10" :show-timeout="100">
         <span class="text-blue-200">門急診掛號<i class="el-icon-arrow-down el-icon--right"></i> </span>
         <el-dropdown-menu>
           <el-dropdown-item @click="$router.push('/users')">掛號</el-dropdown-item>
           <el-dropdown-item @click="$router.replace('/register')">掛號總覽清單</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <el-dropdown class="max-h-10">
+      <el-dropdown class="max-h-10" :show-timeout="100">
         <span class="text-blue-200">線上諮詢<i class="el-icon-arrow-down el-icon--right"></i> </span>
         <el-dropdown-menu>
           <el-dropdown-item>諮詢-1</el-dropdown-item>
