@@ -77,7 +77,7 @@
     </div>
     <section class="space-x-1 mb-2 flex flex-col-reverse xl:flex xl:flex-row">
       <Regsiter class="xl:w-1/2"></Regsiter>
-      <Pay class="mt-2 xl:w-1/2 xl:mt-0"></Pay>
+      <Pay class="mt-2 mb-2 xl:w-1/2 xl:mt-0 x:mb-0"></Pay>
     </section>
     <InqueryList></InqueryList>
   </div>
