@@ -11,7 +11,7 @@
         <span class="ml-2 inline-block transform -translate-y-0.5 text-base text-white-600" @click="takeCard = !takeCard">複診</span>
       </div>
       <div class="ml-6 -mt-1.5">
-        <van-button type="danger" round size="small" @click="$router.push('edit/1')">編輯個人資料 / 初診單</van-button>
+        <van-button type="success" round size="small" @click="$router.push('edit/1')">編輯個人資料 / 初診單</van-button>
       </div>
       <div></div>
       <div class="-mt-1"><van-button type="success" round size="small">補卡取號</van-button></div>
