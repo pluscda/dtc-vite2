@@ -28,7 +28,7 @@
     >
       <div class="flex flex-none space-x-2">
         <van-button type="primary" size="mini" round>編輯</van-button>
-        <van-button type="danger" size="mini" round>刪除掛號</van-button>
+        <van-button type="danger" size="mini" round>取消掛號</van-button>
       </div>
 
       <div>{{ item.id || "暫無資料" }}</div>
