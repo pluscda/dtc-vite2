@@ -22,6 +22,7 @@
 
 .dtc-tabs{
   position: relative;
+  @apply cursor-pointer  flex flex-none space-x-0.5;
   > * {
     background: transparent linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%) 0% 0% no-repeat padding-box;
     color:black;
