@@ -19,22 +19,17 @@
       <div class="-mt-1"><van-button type="warning" round size="small">清除/重整</van-button></div>
       <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
     </header>
-    <nav>
-      <van-tabs type="card" class="max-w-4xl m-auto pt-2" v-model:active="activeTab">
-        <van-tab title="初診單" @click="cps = FirstVisit"></van-tab>
-        <van-tab title="基本資料" @click="cps = BasicInfo"></van-tab>
-        <van-tab title="疾病史"></van-tab>
-      </van-tabs>
+    <nav class="flex flex-none cursor-pointer dtc-tabs space-x-0.5 m-3">
+      <div @click="activeTab = 0" :class="!activeTab ? 'active' : ''">初診單</div>
+      <div @click="activeTab = 1" :class="1 == activeTab ? 'active' : ''">基本資料</div>
+      <div @click="activeTab = 2" :class="2 == activeTab ? 'active' : ''">疾病史</div>
     </nav>
+
     <component :is="cps" class="mx-4 pt-2"></component>
   </div>
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
-import { useRouter } from "vue-router";
-import { Message } from "element3";
-import { useList } from "./model/userModel";
 import FirstVisit from "./components/firstVisit.vue";
 import BasicInfo from "./components/basicInfo.vue";
 import SickHistory from "./components/sickHistory.vue";

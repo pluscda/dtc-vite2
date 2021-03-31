@@ -19,3 +19,25 @@
 .dtc-warning-btn__xs{
    @apply bg-yellow-500 text-black rounded px-4 py-2 text-sm hover:bg-yellow-600;;
 }
+
+.dtc-tabs{
+  position: relative;
+  > * {
+    background: transparent linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%) 0% 0% no-repeat padding-box;
+    color:black;
+    height:45px;
+    line-height: 45px;
+    font-weight: bold;
+    @apply px-3;
+  }
+  .active{
+    background: transparent linear-gradient(180deg, #CED5FF 0%, #ABB8FF 100%) 0% 0% no-repeat padding-box;
+  }
+  &::after{
+    content:'';
+    @apply absolute inset-y-full;
+    width:98vw;
+    background: transparent linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%) 0% 0% no-repeat padding-box;
+    height: 6px;
+  }
+}
