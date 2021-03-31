@@ -64,35 +64,99 @@
           </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥物過敏史" labelWidth="94">
-        <el-input v-model="input1" />
+      <DtxInputGroup
+        prepend="藥物過敏史"
+        labelWidth="94"
+        style="
+          grid-column: span 2;
+          display: grid;
+          grid-template-columns: 94px 80px 1fr;
+          grid-column-gap: 5px;
+        "
+      >
+        <el-select v-model="medicalHistory.whether" class="border-l-0">
+          <el-option
+            v-for="item in medicalHistoryOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+        <el-input v-model="medicalHistory.medicalName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="國籍" labelWidth="94">
-        <el-input v-model="input1" />
+        <el-input v-model="citizenship" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="通訊地址" labelWidth="94">
-        <el-input v-model="input1" />
+      <DtxInputGroup
+        prepend="通訊地址"
+        labelWidth="94"
+        style="
+          grid-column: span 4;
+          display: grid;
+          grid-template-columns: 94px 94px 1fr;
+          grid-column-gap: 5px;
+        "
+      >
+        <el-input v-model="address.postalCode" placeholder="郵遞區號" />
+        <el-input v-model="address.completeAddress" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂閱健康報" labelWidth="94">
-        <el-input v-model="input1" />
+        <el-radio
+          v-model="healthReport"
+          label="願意"
+          style="margin: 13px 5px 0px 2px"
+          >願意</el-radio
+        >
+        <el-radio v-model="healthReport" label="不願意" style="margin-top: 13px"
+          >不願意</el-radio
+        >
       </DtxInputGroup>
-      <DtxInputGroup prepend="是否同意收到本院簡訊">
-        <el-input v-model="input1" />
+      <DtxInputGroup
+        prepend="是否同意收到本院簡訊"
+        style="
+          grid-column: span 2;
+          display: grid;
+          grid-template-columns: 154px 100px 100px;
+          grid-column-gap: 5px;
+        "
+      >
+        <el-radio
+          v-model="recieveText"
+          label="願意"
+          style="margin: 13px 5px 0px 50px"
+          >願意</el-radio
+        >
+        <el-radio
+          v-model="recieveText"
+          label="不願意"
+          style="margin-top: 13px; margin-left: 5px"
+          >不願意</el-radio
+        >
       </DtxInputGroup>
-      <DtxInputGroup prepend="電子信箱" labelWidth="94">
-        <el-input v-model="input1" />
+      <DtxInputGroup
+        prepend="電子信箱"
+        labelWidth="94"
+        style="
+          grid-column: span 2;
+          display: grid;
+          grid-template-columns: 94px 1fr;
+          grid-column-gap: 5px;
+        "
+      >
+        <el-input v-model="email" />
       </DtxInputGroup>
       <DtxInputGroup prepend="緊急聯絡人" labelWidth="94">
-        <el-input v-model="input1" />
+        <el-input v-model="emergencyContact" />
       </DtxInputGroup>
       <DtxInputGroup prepend="與病患關係" labelWidth="94">
-        <el-input v-model="input1" />
+        <el-input v-model="relationship" />
       </DtxInputGroup>
       <DtxInputGroup prepend="連絡電話" labelWidth="94">
-        <el-input v-model="input1" />
+        <el-input v-model="contactNumber" />
       </DtxInputGroup>
       <DtxInputGroup prepend="行動電話" labelWidth="94">
-        <el-input v-model="input1" />
+        <el-input v-model="secondMobileNumber" />
       </DtxInputGroup>
     </main>
     <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
@@ -266,6 +330,32 @@ export default {
           label: "O",
         },
       ],
+      medicalHistoryOptions: [
+        {
+          value: "y",
+          label: "是",
+        },
+        {
+          value: "n",
+          label: "否",
+        },
+      ],
+      medicalHistory: {
+        whether: "y",
+        medicalName: "",
+      },
+      citizenship: "",
+      address: {
+        postalCode: "",
+        completeAddress: "",
+      },
+      healthReport: "願意",
+      recieveText: "願意",
+      email: "",
+      emergencyContact: "",
+      relationship: "",
+      contactNumber: "",
+      secondMobileNumber: "",
     };
   },
 };
