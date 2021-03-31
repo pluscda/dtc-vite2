@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-1">
+  <div class="pl-1 pr-1">
     <header class="dtc-page-header dtc-page-header-grid grid text-white py-1 relative">
       <div class="transform -translate-y-1">掛號作業</div>
 
