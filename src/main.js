@@ -8,6 +8,10 @@ import DtxInputGroup from "cps/DtxInputGroup.vue";
 import Vant from 'vant';
 import 'vant/lib/index.css';
 
+import { Locale } from 'vant';
+import zhTw from 'vant/es/locale/lang/zh-TW';
+Locale.use('zh-TW', zhTw);
+
 createApp(App).use(element3).use(Particles).use(router).use(Vant).use(DtxInputGroup).mount("#app");
 
 
