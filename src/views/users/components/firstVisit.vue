@@ -4,22 +4,22 @@
       <div>初診病患基本資料卡</div>
     </header>
     <main class="grid gap-1">
-      <DtxInputGroup prepend="病歷號碼" labelWidth="94">
+      <DtxInputGroup prepend="病歷號碼" labelWidth="104">
         <el-input v-model="medicalNumber" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="初診日期" labelWidth="94">
+      <DtxInputGroup prepend="初診日期" labelWidth="104">
         <input v-model="firstCheckedDate" type="date" class="date-style" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="姓名" labelWidth="94">
+      <DtxInputGroup prepend="姓名" labelWidth="104">
         <el-input v-model="name" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="身分證號" labelWidth="94">
+      <DtxInputGroup prepend="身分證號" labelWidth="104">
         <el-input v-model="idNumber" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期" labelWidth="94">
+      <DtxInputGroup prepend="出生日期" labelWidth="104">
         <input v-model="birthday" type="date" class="date-style" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="性別" labelWidth="94">
+      <DtxInputGroup prepend="性別" labelWidth="104">
         <el-select v-model="gender" class="border-l-0">
           <el-option
             v-for="item in genderOptions"
@@ -30,16 +30,16 @@
           </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="手機號碼" labelWidth="94">
+      <DtxInputGroup prepend="手機號碼" labelWidth="104">
         <el-input v-model="mobilePhone" />
       </DtxInputGroup>
       <DtxInputGroup
         prepend="電話號碼"
-        labelWidth="94"
+        labelWidth="104"
         style="
           grid-column: span 3;
           display: grid;
-          grid-template-columns: 94px 80px 1fr 1fr;
+          grid-template-columns: 104px 80px 1fr 1fr;
           grid-column-gap: 5px;
         "
       >
@@ -47,13 +47,13 @@
         <el-input v-model="telPhone.number" placeholder="號碼" />
         <el-input v-model="telPhone.ext" placeholder="分機" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="職業" labelWidth="94">
+      <DtxInputGroup prepend="職業" labelWidth="104">
         <el-input v-model="occupation" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="婚姻狀況" labelWidth="94">
+      <DtxInputGroup prepend="婚姻狀況" labelWidth="104">
         <el-input v-model="marriage" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="血型" labelWidth="94">
+      <DtxInputGroup prepend="血型" labelWidth="104">
         <el-select v-model="bloodType" class="border-l-0">
           <el-option
             v-for="item in bloodTypeOptions"
@@ -66,11 +66,11 @@
       </DtxInputGroup>
       <DtxInputGroup
         prepend="藥物過敏史"
-        labelWidth="94"
+        labelWidth="104"
         style="
           grid-column: span 2;
           display: grid;
-          grid-template-columns: 94px 80px 1fr;
+          grid-template-columns: 104px 80px 1fr;
           grid-column-gap: 5px;
         "
       >
@@ -85,23 +85,23 @@
         </el-select>
         <el-input v-model="medicalHistory.medicalName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="國籍" labelWidth="94">
+      <DtxInputGroup prepend="國籍" labelWidth="104">
         <el-input v-model="citizenship" />
       </DtxInputGroup>
       <DtxInputGroup
         prepend="通訊地址"
-        labelWidth="94"
+        labelWidth="104"
         style="
           grid-column: span 4;
           display: grid;
-          grid-template-columns: 94px 94px 1fr;
+          grid-template-columns: 104px 104px 1fr;
           grid-column-gap: 5px;
         "
       >
         <el-input v-model="address.postalCode" placeholder="郵遞區號" />
         <el-input v-model="address.completeAddress" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="訂閱健康報" labelWidth="94">
+      <DtxInputGroup prepend="訂閱健康報" labelWidth="104">
         <el-radio
           v-model="healthReport"
           label="願意"
@@ -136,26 +136,26 @@
       </DtxInputGroup>
       <DtxInputGroup
         prepend="電子信箱"
-        labelWidth="94"
+        labelWidth="104"
         style="
           grid-column: span 2;
           display: grid;
-          grid-template-columns: 94px 1fr;
+          grid-template-columns: 104px 1fr;
           grid-column-gap: 5px;
         "
       >
         <el-input v-model="email" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="緊急聯絡人" labelWidth="94">
+      <DtxInputGroup prepend="緊急聯絡人" labelWidth="104">
         <el-input v-model="emergencyContact" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="與病患關係" labelWidth="94">
+      <DtxInputGroup prepend="與病患關係" labelWidth="104">
         <el-input v-model="relationship" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="連絡電話" labelWidth="94">
+      <DtxInputGroup prepend="連絡電話" labelWidth="104">
         <el-input v-model="contactNumber" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="行動電話" labelWidth="94">
+      <DtxInputGroup prepend="行動電話" labelWidth="104">
         <el-input v-model="secondMobileNumber" />
       </DtxInputGroup>
     </main>
@@ -174,32 +174,32 @@
           padding: 5px;
         "
       >
-        <DtxInputGroup prepend="身高" append="cm" labelWidth="94">
+        <DtxInputGroup prepend="身高" append="cm" labelWidth="104">
           <el-input v-model="height" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="體重" append="kg" labelWidth="94">
+        <DtxInputGroup prepend="體重" append="kg" labelWidth="104">
           <el-input v-model="weight" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="BMI" labelWidth="94">
+        <DtxInputGroup prepend="BMI" labelWidth="104">
           <el-input v-model="BMINumber" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="腰圍" labelWidth="94" append="cm">
+        <DtxInputGroup prepend="腰圍" labelWidth="104" append="cm">
           <el-input v-model="waist" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="血壓" labelWidth="94" append="mmHg">
+        <DtxInputGroup prepend="血壓" labelWidth="104" append="mmHg">
           <el-input v-model="bloodPressure" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="脈搏" labelWidth="94" append="次/分">
+        <DtxInputGroup prepend="脈搏" labelWidth="104" append="次/分">
           <el-input v-model="pulse" />
         </DtxInputGroup>
       </div>
       <DtxInputGroup
         prepend="體重"
-        labelWidth="94"
+        labelWidth="104"
         style="
           grid-column: span 5;
           display: grid;
-          grid-template-columns: 94px 120px 94px 94px 94px 140px;
+          grid-template-columns: 104px 120px 104px 104px 104px 140px;
           grid-gap: 5px;
           background: #f9f9f9;
           border: 1px solid #d7dce1;
@@ -239,7 +239,7 @@
           padding: 5px;
         "
       >
-        <DtxInputGroup prepend="菸" labelWidth="94">
+        <DtxInputGroup prepend="菸" labelWidth="104">
           <el-select v-model="smoke" class="border-l-0">
             <el-option
               v-for="item in smokeOptions"
@@ -250,16 +250,16 @@
             </el-option>
           </el-select>
         </DtxInputGroup>
-        <DtxInputGroup prepend="量" labelWidth="94" append="支/天">
+        <DtxInputGroup prepend="量" labelWidth="104" append="支/天">
           <el-input v-model="smokeNumber" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="頻率" labelWidth="94" append="天/周">
+        <DtxInputGroup prepend="頻率" labelWidth="104" append="天/周">
           <el-input v-model="smokeFrequency" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="已戒菸" labelWidth="94" append="年">
+        <DtxInputGroup prepend="已戒菸" labelWidth="104" append="年">
           <el-input v-model="quitSmokingDays" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="接觸二手菸" labelWidth="94">
+        <DtxInputGroup prepend="接觸二手菸" labelWidth="104">
           <el-select v-model="exposureSecondHandSmoke" class="border-l-0">
             <el-option
               v-for="item in yesNoOptions"
@@ -274,11 +274,11 @@
 
       <DtxInputGroup
         prepend="檳榔"
-        labelWidth="94"
+        labelWidth="104"
         style="
           grid-column: span 5;
           display: grid;
-          grid-template-columns: 94px 86px;
+          grid-template-columns: 104px 86px;
           background: #f9f9f9;
           border: 1px solid #d7dce1;
           padding: 5px;
@@ -305,7 +305,7 @@
           padding: 5px;
         "
       >
-        <DtxInputGroup prepend="酒" labelWidth="94">
+        <DtxInputGroup prepend="酒" labelWidth="104">
           <el-select v-model="liqueur" class="border-l-0">
             <el-option
               v-for="item in yesNoOptions"
@@ -316,13 +316,13 @@
             </el-option>
           </el-select>
         </DtxInputGroup>
-        <DtxInputGroup prepend="量" labelWidth="94" append="ml/天">
+        <DtxInputGroup prepend="量" labelWidth="104" append="ml/天">
           <el-input v-model="liqueurNumber" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="頻率" labelWidth="94" append="天/周">
+        <DtxInputGroup prepend="頻率" labelWidth="104" append="天/周">
           <el-input v-model="liqueurFrequency" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="喝酒種類" labelWidth="94">
+        <DtxInputGroup prepend="喝酒種類" labelWidth="104">
           <el-input v-model="liqueurTypes" />
         </DtxInputGroup>
       </div>
@@ -337,7 +337,7 @@
           padding: 5px;
         "
       >
-        <DtxInputGroup prepend="運動" labelWidth="94">
+        <DtxInputGroup prepend="運動" labelWidth="104">
           <el-select v-model="exercise" class="border-l-0">
             <el-option
               v-for="item in yesNoOptions"
@@ -348,10 +348,10 @@
             </el-option>
           </el-select>
         </DtxInputGroup>
-        <DtxInputGroup prepend="運動時間約" labelWidth="94" append="分鐘/天">
+        <DtxInputGroup prepend="運動時間約" labelWidth="104" append="分鐘/天">
           <el-input v-model="exerciseTime" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="頻率" labelWidth="94" append="天/周">
+        <DtxInputGroup prepend="頻率" labelWidth="104" append="天/周">
           <el-input v-model="exerciseFrequency" />
         </DtxInputGroup>
       </div>
@@ -360,13 +360,152 @@
       <div>健康追蹤項目 (專業人員填寫)</div>
     </header>
     <main class="grid gap-1 grid-cols-2">
-      <DtxInputGroup prepend="醫師">
-        <div>123</div>
-        <div>456</div>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="衛教師">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
+      <div
+        class="flex relative my-flex"
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 104px 1fr;
+          grid-template-rows: 240px;
+          grid-gap: 5px;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <div class="grid max-content">
+          <span
+            class="flex dtc-label px-3 items-center rounded rounded-r-none text-sm"
+            >醫師</span
+          >
+        </div>
+        <div class="question-for-doctor">
+          <div class="grid" style="grid-template-columns: 130px 1fr">
+            <div class="mr-1 w-28 text-right">健康促進需求:</div>
+            <div>
+              <el-radio
+                v-model="doctorQA1"
+                label="無"
+                style="margin-right: 10px"
+                >無</el-radio
+              >
+              <el-radio v-model="doctorQA1" label="有"
+                >有，但尚無須轉介(提供手冊-成人預防、銀髮族、疾病飲食)</el-radio
+              >
+            </div>
+          </div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
+            <div class="mr-1 w-28 text-right">戒菸門診:</div>
+            <div>
+              <el-checkbox-group v-model="doctorQA2">
+                <el-checkbox label="照會"></el-checkbox>
+                <el-checkbox label="預約就診日期"></el-checkbox>
+              </el-checkbox-group>
+            </div>
+          </div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
+            <div class="mr-1 w-28 text-right">轉介營養諮詢:</div>
+            <div>
+              <el-checkbox-group v-model="doctorQA3">
+                <el-checkbox label="照會"></el-checkbox>
+                <el-checkbox label="預約就診日期"></el-checkbox>
+              </el-checkbox-group>
+            </div>
+          </div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 470px 1fr">
+            <div class="mr-1 w-28 text-right">未轉介原因:</div>
+            <div>
+              <el-checkbox-group v-model="doctorQA3">
+                <el-checkbox label="病人無意願"></el-checkbox>
+                <el-checkbox label="醫院離家太遠"></el-checkbox>
+                <el-checkbox label="時間無法配合"></el-checkbox>
+                <el-checkbox label="其他"></el-checkbox>
+              </el-checkbox-group>
+            </div>
+            <el-input v-model="medicalNumber" />
+          </div>
+          <div class="mt-2">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
+          <div
+            class="mt-4 text-right flex flex-row pr-10"
+            style="justify-content: flex-end"
+          >
+            <div class="mr-3">醫師:</div>
+            <div style="color: #888">請蓋章</div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex relative my-flex"
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 104px 1fr;
+          grid-template-rows: 240px;
+          grid-gap: 5px;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <div class="grid max-content">
+          <span
+            class="flex dtc-label px-3 items-center rounded rounded-r-none text-sm"
+            >衛教師</span
+          >
+        </div>
+        <div class="question-for-doctor">
+          <div class="grid" style="grid-template-columns: 130px 1fr">
+            <div class="mr-1 w-28 text-right">健康促進需求:</div>
+            <div>
+              <el-radio
+                v-model="doctorQA1"
+                label="無"
+                style="margin-right: 10px"
+                >無</el-radio
+              >
+              <el-radio v-model="doctorQA1" label="有"
+                >有，但尚無須轉介(提供手冊-成人預防、銀髮族、疾病飲食)</el-radio
+              >
+            </div>
+          </div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
+            <div class="mr-1 w-28 text-right">戒菸門診:</div>
+            <div>
+              <el-checkbox-group v-model="doctorQA2">
+                <el-checkbox label="照會"></el-checkbox>
+                <el-checkbox label="預約就診日期"></el-checkbox>
+              </el-checkbox-group>
+            </div>
+          </div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
+            <div class="mr-1 w-28 text-right">轉介營養諮詢:</div>
+            <div>
+              <el-checkbox-group v-model="doctorQA3">
+                <el-checkbox label="照會"></el-checkbox>
+                <el-checkbox label="預約就診日期"></el-checkbox>
+              </el-checkbox-group>
+            </div>
+          </div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 470px 1fr">
+            <div class="mr-1 w-28 text-right">未轉介原因:</div>
+            <div>
+              <el-checkbox-group v-model="doctorQA3">
+                <el-checkbox label="病人無意願"></el-checkbox>
+                <el-checkbox label="醫院離家太遠"></el-checkbox>
+                <el-checkbox label="時間無法配合"></el-checkbox>
+                <el-checkbox label="其他"></el-checkbox>
+              </el-checkbox-group>
+            </div>
+            <el-input v-model="medicalNumber" />
+          </div>
+          <div class="mt-2">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
+          <div
+            class="mt-4 text-right flex flex-row pr-10"
+            style="justify-content: flex-end"
+          >
+            <div class="mr-3">衛教師:</div>
+            <div style="color: #888">請蓋章</div>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
@@ -546,6 +685,9 @@ export default {
       exercise: "y",
       exerciseTime: "",
       exerciseFrequency: "",
+      doctorQA1: "",
+      doctorQA2: [],
+      doctorQA3: [],
     };
   },
 };
@@ -576,10 +718,25 @@ export default {
 main {
   grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
 }
+
 .date-style {
   border: 1px solid #dcdfe6;
   width: 140px;
   font-size: 10px;
   padding-left: 5px;
+}
+.question-for-doctor {
+  display: flex;
+  // height: 300px;
+  padding: 15px;
+  text-align: left;
+  // 修改以下值試試看 row | row-reverse | column | column-reverse;
+  flex-direction: column;
+}
+.dtc-label {
+  background: transparent
+    linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0%
+    no-repeat padding-box;
+  color: black;
 }
 </style>
