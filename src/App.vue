@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { gstate, actions, mutations } from "/@/store/global";
+import { global, actions, mutations } from "/@/store/global";
 
 export default {
   name: "App",
   provide: {
-    gstate,
+    global,
     actions,
     mutations,
   },

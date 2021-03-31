@@ -5,7 +5,7 @@ const init = {
   count:999,
 };
 
-export let gstate = reactive({...init});
+export let global = reactive({...init});
 export const actions = {
   async sayHi() {
     return await axios.get('http://www.google.com');
