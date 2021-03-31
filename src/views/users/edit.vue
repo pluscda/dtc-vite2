@@ -19,6 +19,11 @@
       <div class="-mt-1"><van-button type="warning" round size="small">清除/重整</van-button></div>
       <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
     </header>
+    <nav class="grid nav__grid ml-1 rounded-lg bg-gray-500 cursor-pointer">
+      <div class="bg-blue-500 text-white">初診單</div>
+      <div class="bg-gray-500 text-white">基本資料</div>
+      <div class="bg-gray-500 text-white">疾病史</div>
+    </nav>
   </div>
 </template>
 
@@ -26,11 +31,8 @@
 import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
-import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
-import Regsiter from "./components/register.vue";
-import Pay from "./components/hisPay.vue";
-import InqueryList from "./components/inqueryList.vue";
+//初診單基本資料疾病史
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -38,12 +40,8 @@ let headers = [
 ];
 
 export default {
-  name: "UserList2",
-  components: {
-    Regsiter,
-    Pay,
-    InqueryList,
-  },
+  name: "editUser",
+  components: {},
   data() {
     return {
       takeCard: true,
@@ -104,14 +102,18 @@ export default {
 };
 </script>
 
-<style scoped>
-.btn-container {
-  text-align: left;
-  padding: 0px 10px 20px 0px;
-}
-</style>
-
 <style lang="scss" scoped>
+.nav__grid {
+  width: calc(120px * 3 + 2px);
+  grid-template-columns: repeat(3, 120px);
+  > div {
+    border-right: 1px solid white;
+    @apply rounded-lg;
+  }
+  > div:last-child {
+    border: none;
+  }
+}
 .dtc-template-columns {
   grid-template-columns: 180px repeat(2, 160px) 1fr;
 }
