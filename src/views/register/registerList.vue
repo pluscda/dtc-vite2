@@ -3,9 +3,22 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>掛號總覽清單</div>
     </header>
-    <nav class="mb-2 ml-1">
+    <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="掛號日期">
         <Calendar class="h-10" v-model="value" placeholder="輸入日期" />
+      </DtxInputGroup>
+      <div class="mx-1 pt-2">至</div>
+      <Calendar class="h-10" v-model="value" placeholder="輸入日期" />
+      <DtxInputGroup prepend="身分證號">
+        <el-input placeholder="搜尋身份證字號" v-model="input2" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="醫師姓名">
+        <el-input placeholder="搜尋醫師姓名" v-model="input2" />
+      </DtxInputGroup>
+    </nav>
+    <nav class="mb-2 ml-1 dtc-search-filters">
+      <DtxInputGroup prepend="病歷號碼">
+        <el-input placeholder="搜尋病歷號碼" v-model="input2" />
       </DtxInputGroup>
     </nav>
 
