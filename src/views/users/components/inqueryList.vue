@@ -17,12 +17,13 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1"
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 cursor-pointer"
       v-for="(item, i) in list"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      @click.stop="toggleDetail(item)"
     >
-      <div><van-switch v-model="item.review" size="small" /></div>
+      <div><van-switch v-model="item.review" size="small" @click.stop="" /></div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -114,6 +115,12 @@ export default {
       });
     }
 
+    const toggleDetail = (item) => {
+      const review = item.review;
+      state.list.forEach((s) => (s.review = false));
+      item.review = !review;
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -121,6 +128,7 @@ export default {
       handleDelete,
       headers,
       subHeaders,
+      toggleDetail,
     };
   },
 };
