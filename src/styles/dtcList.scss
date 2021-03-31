@@ -35,8 +35,8 @@
 
 .dtc-grid-header__divs {
   > div {
-    @apply bg-bsGray;
-    color: white;
+    background: transparent linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0% no-repeat padding-box !important;
+    color: black;
     span{
       display:inline-block;
       transform: translateY(4px);
