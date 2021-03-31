@@ -8,7 +8,7 @@
         <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
       </DtxInputGroup>
       <div class="mx-1 pt-2">至</div>
-      <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
       <DtxInputGroup prepend="身分證號">
         <el-input placeholder="搜尋身份證字號" v-model="input2" />
       </DtxInputGroup>
