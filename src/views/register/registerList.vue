@@ -4,7 +4,7 @@
       <div>掛號總覽清單</div>
     </header>
     <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
-      <div>ddd</div>
+      <div>操作</div>
       <div>序號</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -53,22 +53,9 @@ import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 import { useList } from "../users/model/userModel";
-//查閱清單
+//身分證號
 let headers = [
-  { name: "掛號日期", key: "id", sortDesc: null },
-  { name: "看診時段", key: "name", sortDesc: null },
-  { name: "診間號碼", key: "name", sortDesc: null },
-  { name: "診間名稱", key: "age", sortDesc: null },
-  { name: "診間別名", key: "age", sortDesc: null },
-  { name: "科別", key: "age", sortDesc: null },
-  { name: "醫師代號", key: "age", sortDesc: null },
-  { name: "醫師姓名", key: "age", sortDesc: null },
-  { name: "掛號人數", key: "age", sortDesc: null },
-  { name: "已看診數", key: "age", sortDesc: null },
-  { name: "待看診數", key: "age", sortDesc: null },
-];
-
-let subHeaders = [
+  { name: "掛號清單", key: "id", sortDesc: null },
   { name: "掛號/預約日期", key: "name", sortDesc: null },
   { name: "看診時段", key: "name", sortDesc: null },
   { name: "看診號", key: "age", sortDesc: null },
@@ -76,11 +63,12 @@ let subHeaders = [
   { name: "就醫類別", key: "age", sortDesc: null },
   { name: "科別", key: "age", sortDesc: null },
   { name: "病歷號碼", key: "age", sortDesc: null },
-  { name: "病患姓名", key: "age", sortDesc: null },
+  { name: "病換姓名", key: "age", sortDesc: null },
   { name: "身分證號", key: "age", sortDesc: null },
   { name: "醫師姓名", key: "age", sortDesc: null },
   { name: "診間", key: "age", sortDesc: null },
 ];
+alert(headers.length);
 
 export default {
   name: "inquerylist",
@@ -98,7 +86,7 @@ export default {
     // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
-    subHeaders = ref(subHeaders);
+
     const { state, getList, delItem } = useList();
 
     // 用戶更新
@@ -130,7 +118,6 @@ export default {
       handleEdit,
       handleDelete,
       headers,
-      subHeaders,
       toggleDetail,
     };
   },
@@ -139,6 +126,7 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 65px 60px repeat(10, 95px) 1fr;
+  grid-template-columns: 160px 60px repeat(11, 120px) 1fr;
 }
 </style>
+6
