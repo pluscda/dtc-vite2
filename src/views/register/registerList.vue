@@ -5,7 +5,7 @@
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="掛號日期">
-        <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
       </DtxInputGroup>
       <div class="mx-1 pt-2">至</div>
       <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
@@ -100,6 +100,18 @@ export default {
     return {
       input1: "J120092876",
       value: "",
+      zh: {
+        firstDayOfWeek: 0,
+        dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+        dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
+        dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+        monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
+        today: "今天",
+        clear: "清空",
+        dateFormat: "mm/dd/yy",
+        weekHeader: "周",
+      },
     };
   },
   components: {
