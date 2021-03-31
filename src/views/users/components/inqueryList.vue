@@ -22,7 +22,7 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div><van-switch v-model="checked" size="small" /></div>
+      <div><van-switch v-model="item.review" size="small" /></div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
