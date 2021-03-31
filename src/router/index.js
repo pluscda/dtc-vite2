@@ -47,6 +47,20 @@ export const routes = [
     ],
   },
   {
+    path: "/register",
+    redirect: "/register/list",
+    component: Layout,
+    meta: { title: "掛號總覽清單", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "list",
+        component: () => import("/@/views/register/registerList.vue"),
+        name: "regsiterlist",
+        meta: { title: "清單", icon: "el-icon-s-home" },
+      },
+    ],
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import( '/@/views/DtcLogin.vue')
