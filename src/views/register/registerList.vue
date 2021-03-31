@@ -26,7 +26,10 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
       @click.stop="toggleDetail(item)"
     >
-      <div><van-switch v-model="item.review" size="small" @click.stop="" /></div>
+      <div class="flex flex-none space-x-1">
+        <van-button type="primary" size="mini" round>編輯</van-button>
+        <van-button type="danger" size="mini" round>刪除掛號</van-button>
+      </div>
 
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -38,6 +41,7 @@
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
     </main>
 
@@ -125,7 +129,7 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 160px repeat(11, 120px) 1fr;
+  grid-template-columns: 140px repeat(11, 120px) 1fr;
 }
 </style>
 6
