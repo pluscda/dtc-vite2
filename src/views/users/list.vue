@@ -52,7 +52,9 @@
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="掛號取卡">
-        <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">掛號後取卡</el-checkbox>
+        <van-switch v-model="takeCard" size="small" class="ml-2 h-9 mt-3" />
+        <span class="ml-2 mt-2 text-sm text-gray-600">掛號後取卡</span>
+        <!-- <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
     <section class="space-x-1 mb-2 flex flex-col-reverse xl:flex xl:flex-row">
@@ -87,6 +89,7 @@ export default {
   },
   data() {
     return {
+      takeCard: true,
       input1: "J120092876",
       options: [
         {
