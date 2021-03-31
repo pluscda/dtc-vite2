@@ -42,6 +42,7 @@ import { Message } from "element3";
 import { useList } from "./model/userModel";
 import FirstVisit from "./components/firstVisit.vue";
 import BasicInfo from "./components/basicInfo.vue";
+import SickHistory from "./components/sickHistory.vue";
 //初診單基本資料疾病史
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
@@ -49,12 +50,13 @@ let headers = [
   { name: "年齡", key: "age", sortDesc: null },
 ];
 
-const CPS = [FirstVisit, BasicInfo];
+const CPS = [FirstVisit, BasicInfo, SickHistory];
 export default {
   name: "editUser",
   components: {
     FirstVisit,
     BasicInfo,
+    SickHistory,
   },
   data() {
     return {
