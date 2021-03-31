@@ -3,10 +3,6 @@
     <header class="dtc-page-header dtc-page-header-grid grid text-white py-1 relative">
       <div class="transform -translate-y-1">掛號作業</div>
 
-      <van-tabs v-model:active="active" type="card" class="mt-2 z-50">
-        <van-tab title="現場取號"></van-tab>
-        <van-tab title="預約掛號"></van-tab>
-      </van-tabs>
       <footer class="absolute inset-0 justify-end flex items-center space-x-1 mr-2">
         <button class="dtc-warning-btn__xs relative"><i-eva:search-fill class="absolute left-1 top:1"></i-eva:search-fill>&nbsp; 進行查詢</button>
         <button class="dtc-danger-btn__xs"><i-fluent:eraser-20-regular class="absolute left-1 top:1"></i-fluent:eraser-20-regular>&nbsp;&nbsp;清除查詢</button>

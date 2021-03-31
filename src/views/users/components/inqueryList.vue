@@ -64,6 +64,20 @@ let headers = [
   { name: "待看診數", key: "age", sortDesc: null },
 ];
 
+let subHeaders = [
+  { name: "掛號/預約日期", key: "name", sortDesc: null },
+  { name: "看診時段", key: "name", sortDesc: null },
+  { name: "看診號", key: "age", sortDesc: null },
+  { name: "看診狀態", key: "age", sortDesc: null },
+  { name: "就醫類別", key: "age", sortDesc: null },
+  { name: "科別", key: "age", sortDesc: null },
+  { name: "病歷號碼", key: "age", sortDesc: null },
+  { name: "病患姓名", key: "age", sortDesc: null },
+  { name: "身分證號", key: "age", sortDesc: null },
+  { name: "醫師姓名", key: "age", sortDesc: null },
+  { name: "診間", key: "age", sortDesc: null },
+];
+
 export default {
   name: "inquerylist",
   components: { DtxInputGroup },
@@ -80,6 +94,7 @@ export default {
     // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
+    subHeaders = ref(subHeaders);
     const { state, getList, delItem } = useList();
 
     // 用戶更新
@@ -105,6 +120,7 @@ export default {
       handleEdit,
       handleDelete,
       headers,
+      subHeaders,
     };
   },
 };
