@@ -26,7 +26,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
       @click.stop="toggleDetail(item)"
     >
-      <div class="flex flex-none space-x-1">
+      <div class="flex flex-none space-x-2">
         <van-button type="primary" size="mini" round>編輯</van-button>
         <van-button type="danger" size="mini" round>刪除掛號</van-button>
       </div>
