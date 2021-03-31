@@ -1,13 +1,9 @@
 <template>
-  <detail :is-edit="true"></detail>
+  <h1 class="text-black text-xl">abc</h1>
 </template>
 
 <script>
-import Detail from "./components/detail.vue";
-
 export default {
-  components: {
-    Detail,
-  },
+  components: {},
 };
 </script>
