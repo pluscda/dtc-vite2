@@ -1,6 +1,24 @@
 <template>
   <div>
-    <header class="dtc-page-header">病患基本資料 / 就醫身份</header>
+    <header class="dtc-page-header grid dtc-page-header__grid pr-2">
+      <div>病患基本資料 / 就醫身份</div>
+      <div class="ml-4">
+        <van-switch v-model="takeCard" size="small" class="ml-2 h-9 mt-3" />
+        <span class="ml-2 inline-block transform -translate-y-0.5 text-base text-white-600" @click="takeCard = !takeCard">初診</span>
+      </div>
+      <div class="ml-2">
+        <van-switch v-model="takeCard2" size="small" class="ml-2 h-9 mt-3" />
+        <span class="ml-2 inline-block transform -translate-y-0.5 text-base text-white-600" @click="takeCard = !takeCard">複診</span>
+      </div>
+      <div class="ml-6 -mt-1.5">
+        <van-button type="danger" round size="small">編輯個人資料 / 初診單</van-button>
+      </div>
+      <div></div>
+      <div class="-mt-1"><van-button type="success" round size="small">補卡取號</van-button></div>
+      <div class="-mt-1"><van-button type="default" round size="small">讀取健保卡</van-button></div>
+      <div class="-mt-1"><van-button type="warning" round size="small">清除/重整</van-button></div>
+      <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
+    </header>
     <div class="dtc-autoflow-grid ml-1 grid gap-1 mb-3">
       <DtxInputGroup prepend="身份證號">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
@@ -161,5 +179,9 @@ export default {
 
 .dtc-autoflow-grid {
   grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
+}
+.dtc-page-header__grid {
+  grid-template-columns: max-content max-content max-content max-content 1fr repeat(4, max-content);
+  gap: 1rem;
 }
 </style>
