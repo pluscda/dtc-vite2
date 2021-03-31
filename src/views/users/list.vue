@@ -20,7 +20,7 @@
       <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
     </header>
     <div class="dtc-autoflow-grid ml-1 grid gap-1 mb-3">
-      <DtxInputGroup prepend="身份證號">
+      <DtxInputGroup prepend="身份證號" append="kg">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
@@ -176,7 +176,7 @@ export default {
 }
 
 .dtc-autoflow-grid {
-  grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
 }
 .dtc-page-header__grid {
   grid-template-columns: max-content max-content max-content max-content 1fr repeat(4, max-content);
