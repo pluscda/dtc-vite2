@@ -3,7 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>掛號總覽清單</div>
     </header>
-    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
+    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
 
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
@@ -20,7 +20,7 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 cursor-pointer"
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 cursor-pointer mx-1"
       v-for="(item, i) in list"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
@@ -129,7 +129,7 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 140px repeat(11, 120px) 1fr;
+  grid-template-columns: 140px 88px 120px repeat(8, 120px) 120px 1fr;
 }
 </style>
 6
