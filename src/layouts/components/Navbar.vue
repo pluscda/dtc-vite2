@@ -1,7 +1,7 @@
 <template>
   <nav class="text-blue-200 bg-gradient-to-r from-blue-900 to-blue-700 dtc-nav-bar">
     <i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group>
-    <div class="pt-5 text-xl transform -translate-x-4" @click="$router.push('/home')">基本醫療服務</div>
+    <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">基本醫療服務</div>
     <section class="flex gap-8 cursor-pointer">
       <div @click="$router.push('/home')">首頁</div>
       <el-dropdown class="max-h-10" :show-timeout="100">
