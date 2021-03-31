@@ -132,12 +132,10 @@ export default {
     };
   },
   setup() {
-    // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
     const { state, getList, delItem } = useList();
 
-    // 用戶更新
     function handleEdit({ row }) {
       router.push({
         name: "userEdit",
