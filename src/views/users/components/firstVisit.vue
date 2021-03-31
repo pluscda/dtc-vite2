@@ -163,87 +163,208 @@
       <div>病患健康自評表 (病患填寫)</div>
     </header>
     <main class="grid gap-1 grid-cols-2">
-      <DtxInputGroup prepend="身高" append="cm">
-        <el-input v-model="input1" placeholder="cm" />
+      <div
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: repeat(6, 180px);
+          grid-gap: 5px;
+          background: #f9f9f9;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <DtxInputGroup prepend="身高" append="cm" labelWidth="94">
+          <el-input v-model="height" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="體重" append="kg" labelWidth="94">
+          <el-input v-model="weight" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="BMI" labelWidth="94">
+          <el-input v-model="BMINumber" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="腰圍" labelWidth="94" append="cm">
+          <el-input v-model="waist" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="血壓" labelWidth="94" append="mmHg">
+          <el-input v-model="bloodPressure" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="脈搏" labelWidth="94" append="次/分">
+          <el-input v-model="pulse" />
+        </DtxInputGroup>
+      </div>
+      <DtxInputGroup
+        prepend="體重"
+        labelWidth="94"
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 94px 120px 94px 94px 94px 140px;
+          grid-gap: 5px;
+          background: #f9f9f9;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <el-select v-model="weightGain.answer1" class="border-l-0">
+          <el-option
+            v-for="item in weightGainOptions1"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+        <el-select v-model="weightGain.answer2" class="border-l-0">
+          <el-option
+            v-for="item in weightGainOptions2"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+        <el-input v-model="weightGain.answer3" />
+        <div style="padding-top: 8px">kg，期間:</div>
+        <el-input v-model="weightGain.answer4" placeholder="請輸入日期" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="體重">
-        <el-input v-model="input1" />
+      <div
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 180px repeat(4, 200px);
+          grid-gap: 5px;
+          background: #f9f9f9;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <DtxInputGroup prepend="菸" labelWidth="94">
+          <el-select v-model="smoke" class="border-l-0">
+            <el-option
+              v-for="item in smokeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </DtxInputGroup>
+        <DtxInputGroup prepend="量" labelWidth="94" append="支/天">
+          <el-input v-model="smokeNumber" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="頻率" labelWidth="94" append="天/周">
+          <el-input v-model="smokeFrequency" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="已戒菸" labelWidth="94" append="年">
+          <el-input v-model="quitSmokingDays" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="接觸二手菸" labelWidth="94">
+          <el-select v-model="exposureSecondHandSmoke" class="border-l-0">
+            <el-option
+              v-for="item in yesNoOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </DtxInputGroup>
+      </div>
+
+      <DtxInputGroup
+        prepend="檳榔"
+        labelWidth="94"
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 94px 86px;
+          background: #f9f9f9;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <el-select v-model="betelNut" class="border-l-0">
+          <el-option
+            v-for="item in yesNoOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="BMI">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="腰圍">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="血壓">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="脈搏">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="體重">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="菸">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="量">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="頻率">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="已戒菸">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="接觸二手菸">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="檳榔">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="酒">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="量">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="頻率">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="喝酒種類">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="運動">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="運動時間約">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="頻率">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
+      <div
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 180px repeat(3, 200px);
+          grid-gap: 5px;
+          background: #f9f9f9;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <DtxInputGroup prepend="酒" labelWidth="94">
+          <el-select v-model="liqueur" class="border-l-0">
+            <el-option
+              v-for="item in yesNoOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </DtxInputGroup>
+        <DtxInputGroup prepend="量" labelWidth="94" append="ml/天">
+          <el-input v-model="liqueurNumber" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="頻率" labelWidth="94" append="天/周">
+          <el-input v-model="liqueurFrequency" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="喝酒種類" labelWidth="94">
+          <el-input v-model="liqueurTypes" />
+        </DtxInputGroup>
+      </div>
+      <div
+        style="
+          grid-column: span 5;
+          display: grid;
+          grid-template-columns: 180px repeat(2, 200px);
+          grid-gap: 5px;
+          background: #f9f9f9;
+          border: 1px solid #d7dce1;
+          padding: 5px;
+        "
+      >
+        <DtxInputGroup prepend="運動" labelWidth="94">
+          <el-select v-model="exercise" class="border-l-0">
+            <el-option
+              v-for="item in yesNoOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </DtxInputGroup>
+        <DtxInputGroup prepend="運動時間約" labelWidth="94" append="分鐘/天">
+          <el-input v-model="exerciseTime" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="頻率" labelWidth="94" append="天/周">
+          <el-input v-model="exerciseFrequency" />
+        </DtxInputGroup>
+      </div>
     </main>
     <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
       <div>健康追蹤項目 (專業人員填寫)</div>
     </header>
     <main class="grid gap-1 grid-cols-2">
-      <DtxInputGroup prepend="掛號費用">
-        <el-input v-model="input1" />
+      <DtxInputGroup prepend="醫師">
+        <div>123</div>
+        <div>456</div>
       </DtxInputGroup>
-      <DtxInputGroup prepend="部分攤額">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="欠卡押金">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="優免金額">
-        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="累積應繳">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="預收金額">
+      <DtxInputGroup prepend="衛教師">
         <el-input v-model="input1" />
       </DtxInputGroup>
     </main>
@@ -356,6 +477,75 @@ export default {
       relationship: "",
       contactNumber: "",
       secondMobileNumber: "",
+      height: "",
+      weight: "",
+      BMINumber: "",
+      waist: "",
+      bloodPressure: "",
+      pulse: "",
+      weightGain: {
+        answer1: "y",
+        answer2: "plus",
+        answer3: "",
+        answer4: "",
+      },
+      weightGainOptions1: [
+        {
+          value: "y",
+          label: "有",
+        },
+        {
+          value: "n",
+          label: "無明顯改變",
+        },
+      ],
+      weightGainOptions2: [
+        {
+          value: "plus",
+          label: "增加",
+        },
+        {
+          value: "minus",
+          label: "減輕",
+        },
+      ],
+      smoke: "n",
+      smokeOptions: [
+        {
+          value: "y",
+          label: "有",
+        },
+        {
+          value: "n",
+          label: "無",
+        },
+        {
+          value: "c",
+          label: "電子菸",
+        },
+      ],
+      smokeNumber: "",
+      smokeFrequency: "",
+      quitSmokingDays: "",
+      exposureSecondHandSmoke: "n",
+      yesNoOptions: [
+        {
+          value: "y",
+          label: "有",
+        },
+        {
+          value: "n",
+          label: "無",
+        },
+      ],
+      betelNut: "n",
+      liqueur: "n",
+      liqueurNumber: "",
+      liqueurFrequency: "",
+      liqueurTypes: "",
+      exercise: "y",
+      exerciseTime: "",
+      exerciseFrequency: "",
     };
   },
 };
