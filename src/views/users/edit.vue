@@ -19,11 +19,6 @@
       <div class="-mt-1"><van-button type="warning" round size="small">清除/重整</van-button></div>
       <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
     </header>
-    <!-- <nav class="grid nav__grid ml-1 rounded-lg bg-gray-500 cursor-pointer">
-      <div class="bg-blue-500 text-white">初診單</div>
-      <div class="bg-gray-500 text-white">基本資料</div>
-      <div class="bg-gray-500 text-white">疾病史</div>
-    </nav> -->
     <nav>
       <van-tabs type="card" class="max-w-4xl m-auto pt-2" v-model:active="activeTab">
         <van-tab title="初診單" @click="cps = FirstVisit"></van-tab>
