@@ -5,9 +5,10 @@ import element3 from "plugins/element3";
 import router from "/@/router";
 import Particles from "particles.vue3";
 import DtxInputGroup from "cps/DtxInputGroup.vue";
+import Vant from 'vant';
+import 'vant/lib/index.css';
 
-
-createApp(App).use(element3).use(Particles).use(router).use(DtxInputGroup).mount("#app");
+createApp(App).use(element3).use(Particles).use(router).use(Vant).use(DtxInputGroup).mount("#app");
 
 
 

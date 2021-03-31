@@ -56,8 +56,8 @@
       </DtxInputGroup>
     </div>
     <section class="space-x-1 mb-2 xl:flex">
-      <Regsiter class="xl:w-1/2"></Regsiter>
-      <Pay class="mt-2 xl:w-1/2 xl:mt-0"></Pay>
+      <Regsiter class="order-first xl:w-1/2 xl:order-none"></Regsiter>
+      <Pay class="order-last mt-2 xl:w-1/2 xl:mt-0 xl:order-none"></Pay>
     </section>
     <InqueryList></InqueryList>
   </div>
