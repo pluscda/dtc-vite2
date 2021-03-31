@@ -12,7 +12,19 @@ import { Locale } from 'vant';
 import zhTw from 'vant/es/locale/lang/zh-TW';
 Locale.use('zh-TW', zhTw);
 
-createApp(App).use(element3).use(Particles).use(router).use(Vant).use(DtxInputGroup).mount("#app");
+import PrimeVue from 'primevue/config';
+import Calendar from 'primevue/calendar';
+
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';   
+
+
+const app = createApp(App);
+app.component('Calendar', Calendar );
+app.component('DtxInputGroup',DtxInputGroup)
+app.use(element3).use(Particles).use(router).use(Vant).use(PrimeVue).mount("#app");
+
 
 
 
