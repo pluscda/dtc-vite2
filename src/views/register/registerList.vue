@@ -8,7 +8,7 @@
         <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2">至</div>
-      <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      <Calendar class="h-10" v-model="value2" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="身分證號">
         <el-input placeholder="搜尋身份證字號" v-model="input2" />
       </DtxInputGroup>
@@ -100,6 +100,7 @@ export default {
     return {
       input1: "J120092876",
       value: "",
+      value2: "",
       zh: {
         firstDayOfWeek: 0,
         dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
