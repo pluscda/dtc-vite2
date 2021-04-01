@@ -429,7 +429,7 @@
           <div class="grid mt-2" style="grid-template-columns: 130px 520px 1fr">
             <div class="mr-1 w-28 text-right">未轉介原因:</div>
             <div>
-              <el-checkbox-group v-model="doctorQA3">
+              <el-checkbox-group v-model="doctorQA4">
                 <el-checkbox label="病人無意願"></el-checkbox>
                 <el-checkbox label="醫院離家太遠"></el-checkbox>
                 <el-checkbox label="時間無法配合"></el-checkbox>
@@ -470,7 +470,7 @@
           <div class="grid mt-2" style="grid-template-columns: 130px 530px">
             <div class="mr-1 w-28 text-right">衛教指導:</div>
             <div>
-              <el-checkbox-group v-model="doctorQA3">
+              <el-checkbox-group v-model="healthTeacherQA">
                 <el-checkbox label="戒菸"></el-checkbox>
                 <el-checkbox label="戒檳榔"></el-checkbox>
                 <el-checkbox label="節制飲酒"></el-checkbox>
@@ -694,6 +694,8 @@ export default {
       doctorQA1: "",
       doctorQA2: [],
       doctorQA3: [],
+      doctorQA4: [],
+      healthTeacherQA: [],
     };
   },
 };
