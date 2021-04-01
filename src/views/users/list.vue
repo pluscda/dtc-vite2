@@ -14,10 +14,10 @@
         <van-button type="success" round size="small" @click="$router.push('edit/1')">編輯個人資料 / 初診單</van-button>
       </div>
       <div></div>
-      <div class="-mt-1.5"><van-button type="success" round size="small">補卡取號</van-button></div>
-      <div class="-mt-1.5"><van-button type="default" round size="small">讀取健保卡</van-button></div>
-      <div class="-mt-1.5"><van-button type="warning" round size="small">清除/重整</van-button></div>
-      <div class="-mt-1.5"><van-button type="primary" round size="small">確認掛號</van-button></div>
+      <Button class="p-button-rounded" style="margin: 4px 0">補卡取號</Button>
+      <Button class="p-button-rounded p-button-success" style="margin: 4px 0">讀取健保卡</Button>
+      <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
+      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
     </header>
     <div class="dtc-autoflow-grid ml-1 grid gap-1 mb-3">
       <DtxInputGroup prepend="身份證號">
