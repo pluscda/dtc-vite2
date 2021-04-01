@@ -426,7 +426,7 @@
               </el-checkbox-group>
             </div>
           </div>
-          <div class="grid mt-2" style="grid-template-columns: 130px 470px 1fr">
+          <div class="grid mt-2" style="grid-template-columns: 130px 520px 1fr">
             <div class="mr-1 w-28 text-right">未轉介原因:</div>
             <div>
               <el-checkbox-group v-model="doctorQA3">
@@ -436,7 +436,7 @@
                 <el-checkbox label="其他"></el-checkbox>
               </el-checkbox-group>
             </div>
-            <el-input v-model="medicalNumber" />
+            <el-input v-model="medicalNumber" style="background-color: #fff" />
           </div>
           <div class="mt-2">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
           <div
