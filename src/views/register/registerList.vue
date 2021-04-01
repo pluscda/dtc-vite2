@@ -75,7 +75,6 @@ import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
-import Button from "primevue/button";
 
 import { useList } from "../users/model/userModel";
 //身分證號
@@ -118,7 +117,6 @@ export default {
   },
   components: {
     Pagination,
-    Button,
   },
   setup() {
     // 玩家列表數據
