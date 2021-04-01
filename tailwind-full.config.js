@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors')
-
+//npx tailwindcss init tailwind-full.config.js --full
 module.exports = {
   purge: [],
   presets: [],
