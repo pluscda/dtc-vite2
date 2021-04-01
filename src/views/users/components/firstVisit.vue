@@ -124,7 +124,7 @@
         "
       >
         <el-input v-model="address.postalCode" placeholder="郵遞區號" />
-        <el-input v-model="address.completeAddress" />
+        <el-input v-model="address.completeAddress" placeholder="輸入地址" />
       </DtxInputGroup>
 
       <DtxInputGroup
