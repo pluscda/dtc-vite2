@@ -15,8 +15,8 @@
       <DtxInputGroup prepend="醫師姓名">
         <el-input placeholder="搜尋醫師姓名" v-model="input2" />
       </DtxInputGroup>
-      <div class="dtc-primay-btn"><i-eva:search-fill class="inline-block"></i-eva:search-fill>進行查詢</div>
-      <div class="dtc-info-btn"><i-eva:search-fill class="inline-block"></i-eva:search-fill>清除查詢</div>
+      <Button label="進行查詢" icon="pi pi-search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="病歷號碼">
@@ -75,6 +75,7 @@ import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
+import Button from "primevue/button";
 
 import { useList } from "../users/model/userModel";
 //身分證號
@@ -117,6 +118,7 @@ export default {
   },
   components: {
     Pagination,
+    Button,
   },
   setup() {
     // 玩家列表數據
