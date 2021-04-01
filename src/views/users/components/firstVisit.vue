@@ -527,7 +527,7 @@ let headers = [
 ];
 
 export default {
-  name: "payhis",
+  name: "firstvisit",
   components: { DtxInputGroup },
   data() {
     return {
