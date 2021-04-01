@@ -5,8 +5,6 @@ import element3 from "plugins/element3";
 import router from "/@/router";
 import Particles from "particles.vue3";
 import DtxInputGroup from "cps/DtxInputGroup.vue";
-import Vant from 'vant';
-import 'vant/lib/index.css';
 
 import { Locale } from 'vant';
 import zhTw from 'vant/es/locale/lang/zh-TW';
@@ -23,7 +21,7 @@ import 'primeicons/primeicons.css';
 
 
 const app = createApp(App);
-app.use(element3).use(Particles).use(router).use(Vant).use(PrimeVue);
+app.use(element3).use(Particles).use(router).use(PrimeVue);
 app.component('Calendar', Calendar );
 app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);

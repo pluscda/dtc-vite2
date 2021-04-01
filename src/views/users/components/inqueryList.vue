@@ -24,7 +24,7 @@
       @click.stop="toggleDetail(item)"
     >
       <div>
-        <InputSwitch v-model="item.review" size="small" @click.stop=""></InputSwitch>
+        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop=""></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
