@@ -165,6 +165,6 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 140px 88px 120px repeat(8, 120px) 120px 1fr;
+  grid-template-columns: 140px 90px 126px repeat(8, 120px) 120px 1fr;
 }
 </style>
