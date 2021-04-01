@@ -40,11 +40,10 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 cursor-pointer mx-1"
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
-      @click.stop="toggleDetail(item)"
     >
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
