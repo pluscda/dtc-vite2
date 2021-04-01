@@ -23,7 +23,9 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
       @click.stop="toggleDetail(item)"
     >
-      <div><van-switch v-model="item.review" size="small" @click.stop="" /></div>
+      <div>
+        <InputSwitch v-model="item.review" size="small" @click.stop=""></InputSwitch>
+      </div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>

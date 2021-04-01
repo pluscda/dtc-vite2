@@ -68,8 +68,8 @@
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="掛號取卡" class="h-10">
-        <van-switch v-model="takeCard" size="small" class="ml-2 h-9 mt-3" />
-        <span class="ml-0.5 mt-1.5 text-gray-600 text-lg" @click="takeCard = !takeCard">掛號後取卡</span>
+        <InputSwitch v-model="takeCard" class="mt-2 ml-0"></InputSwitch>
+        <span class="ml-0.5 mt-2 text-gray-600 text-base" @click="takeCard = !takeCard">掛號後取卡</span>
         <!-- <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
