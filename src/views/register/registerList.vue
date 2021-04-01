@@ -5,7 +5,7 @@
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="掛號日期">
-        <Calendar class="h-10" v-model="value" selectionMode="multiple" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
+        <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
       </DtxInputGroup>
       <div class="mx-1 pt-2">至</div>
       <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
