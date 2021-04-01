@@ -7,18 +7,43 @@
       <DtxInputGroup prepend="病歷號碼" labelWidth="104">
         <el-input v-model="medicalNumber" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="初診日期" labelWidth="104">
-        <input v-model="firstCheckedDate" type="date" class="date-style" />
-      </DtxInputGroup>
+      <div class="flex relative my-flex">
+        <div class="grid max-content" style="grid-template-columns: 104px">
+          <span
+            class="flex dtc-label px-3 items-center rounded rounded-r-none text-base"
+            >初診日期</span
+          >
+        </div>
+        <Calendar
+          class="h-10"
+          v-model="firstCheckedDate"
+          placeholder="輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
+      </div>
       <DtxInputGroup prepend="姓名" labelWidth="104">
         <el-input v-model="name" />
       </DtxInputGroup>
       <DtxInputGroup prepend="身分證號" labelWidth="104">
         <el-input v-model="idNumber" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期" labelWidth="104">
-        <input v-model="birthday" type="date" class="date-style" />
-      </DtxInputGroup>
+
+      <div class="flex relative my-flex">
+        <div class="grid max-content" style="grid-template-columns: 104px">
+          <span
+            class="flex dtc-label px-3 items-center rounded rounded-r-none text-base"
+            >出生日期</span
+          >
+        </div>
+        <Calendar
+          class="h-10"
+          v-model="birthday"
+          placeholder="輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
+      </div>
       <DtxInputGroup prepend="性別" labelWidth="104">
         <el-select v-model="gender" class="border-l-0">
           <el-option
@@ -479,8 +504,10 @@
       </div>
     </main>
     <footer class="mt-5 mb-10">
-      <el-button type="primary" plain>取消</el-button>
-      <el-button type="info" plain>建立初診資料</el-button>
+      <van-button color="#909399" round size="small" style="margin-right: 10px"
+        >取消</van-button
+      >
+      <van-button type="primary" round size="small">建立初診資料</van-button>
     </footer>
   </div>
 </template>
@@ -691,7 +718,7 @@ export default {
 }
 
 main {
-  grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 250px));
   .basic-info {
     grid-column: span 5;
     display: grid;
@@ -701,7 +728,7 @@ main {
     padding: 5px;
   }
   .basic-info-secion1 {
-    grid-template-columns: repeat(6, 180px);
+    grid-template-columns: 190px 190px repeat(1, 180px) 200px 210px 200px;
   }
   .basic-info-secion2 {
     grid-template-columns: 104px 120px 104px 104px 104px 140px;
@@ -711,7 +738,7 @@ main {
   }
   @media only screen and (max-width: 1024px) {
     .basic-info-secion1 {
-      grid-template-columns: repeat(3, 180px);
+      grid-template-columns: repeat(3, 200px);
     }
     .basic-info-secion3 {
       grid-template-columns: 180px repeat(2, 200px);
