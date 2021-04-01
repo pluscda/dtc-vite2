@@ -181,17 +181,7 @@
       <div>病患健康自評表 (病患填寫)</div>
     </header>
     <main class="grid gap-1 grid-cols-2">
-      <div
-        style="
-          grid-column: span 5;
-          display: grid;
-          grid-template-columns: repeat(6, 180px);
-          grid-gap: 5px;
-          background: #f9f9f9;
-          border: 1px solid #d7dce1;
-          padding: 5px;
-        "
-      >
+      <div class="basic-info basic-info-secion1">
         <DtxInputGroup prepend="身高" append="cm" labelWidth="104">
           <el-input v-model="height" />
         </DtxInputGroup>
@@ -212,17 +202,9 @@
         </DtxInputGroup>
       </div>
       <DtxInputGroup
+        class="basic-info basic-info-secion2"
         prepend="體重"
         labelWidth="104"
-        style="
-          grid-column: span 5;
-          display: grid;
-          grid-template-columns: 104px 120px 104px 104px 104px 140px;
-          grid-gap: 5px;
-          background: #f9f9f9;
-          border: 1px solid #d7dce1;
-          padding: 5px;
-        "
       >
         <el-select v-model="weightGain.answer1" class="border-l-0">
           <el-option
@@ -246,17 +228,7 @@
         <div style="padding-top: 8px">kg，期間:</div>
         <el-input v-model="weightGain.answer4" placeholder="請輸入日期" />
       </DtxInputGroup>
-      <div
-        style="
-          grid-column: span 5;
-          display: grid;
-          grid-template-columns: 180px repeat(4, 200px);
-          grid-gap: 5px;
-          background: #f9f9f9;
-          border: 1px solid #d7dce1;
-          padding: 5px;
-        "
-      >
+      <div class="basic-info basic-info-secion3">
         <DtxInputGroup prepend="菸" labelWidth="104">
           <el-select v-model="smoke" class="border-l-0">
             <el-option
@@ -720,6 +692,31 @@ export default {
 
 main {
   grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
+  .basic-info {
+    grid-column: span 5;
+    display: grid;
+    grid-gap: 5px;
+    background: #f9f9f9;
+    border: 1px solid #d7dce1;
+    padding: 5px;
+  }
+  .basic-info-secion1 {
+    grid-template-columns: repeat(6, 180px);
+  }
+  .basic-info-secion2 {
+    grid-template-columns: 104px 120px 104px 104px 104px 140px;
+  }
+  .basic-info-secion3 {
+    grid-template-columns: 180px repeat(4, 200px);
+  }
+  @media only screen and (max-width: 1024px) {
+    .basic-info-secion1 {
+      grid-template-columns: repeat(3, 180px);
+    }
+    .basic-info-secion3 {
+      grid-template-columns: 180px repeat(2, 200px);
+    }
+  }
 }
 
 .date-style {
