@@ -1,12 +1,10 @@
 <template>
   <div class="pl-1 pr-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white py-1 relative">
-      <div class="transform -translate-y-1">掛號作業</div>
-
-      <footer class="absolute inset-0 justify-end flex items-center space-x-1 mr-2">
-        <button class="dtc-warning-btn__xs relative"><i-eva:search-fill class="absolute left-1 top:1"></i-eva:search-fill>&nbsp; 進行查詢</button>
-        <button class="dtc-danger-btn__xs"><i-fluent:eraser-20-regular class="absolute left-1 top:1"></i-fluent:eraser-20-regular>&nbsp;&nbsp;清除查詢</button>
-      </footer>
+    <header class="dtc-page-header dtc-page-header-grid grid text-white relative">
+      <div>掛號作業</div>
+      <div></div>
+      <Button label="進行查詢" icon="pi pi-search" class="p-button-small" style="margin: 4px" />
+      <Button label="清除查詢" class="p-button-secondary p-button-small" style="margin: 4px" icon="pi pi-undo" />
     </header>
     <main class="grid gap-1 grid-cols-2">
       <DtxInputGroup prepend="掛號日期">
@@ -87,18 +85,10 @@ export default {
   grid-template-columns: 180px repeat(2, 160px) 1fr;
 }
 
-.dtc-autoflow-grid {
-  grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
-}
 .dtc-page-header-grid {
-  grid-template-columns: max-content 240px max-content;
+  grid-template-columns: max-content 1fr max-content max-content;
   overflow: hidden;
+  gap: 1rem;
   @apply bg-primay;
-}
-.dtc-page-header {
-  button {
-    transform: scale(0.9);
-    font-size: 16px;
-  }
 }
 </style>

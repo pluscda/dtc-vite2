@@ -47,8 +47,8 @@
       @click.stop="toggleDetail(item)"
     >
       <div class="flex flex-none space-x-2">
-        <van-button type="primary" size="mini" round>編輯</van-button>
-        <van-button type="danger" size="mini" round>取消掛號</van-button>
+        <Button label="編輯" class="p-button-sm" />
+        <Button label="取消掛號" class="p-button-sm p-button-warning" />
       </div>
 
       <div>{{ item.id || "暫無資料" }}</div>
@@ -75,7 +75,6 @@ import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
-import Button from "primevue/button";
 
 import { useList } from "../users/model/userModel";
 //身分證號
@@ -118,7 +117,6 @@ export default {
   },
   components: {
     Pagination,
-    Button,
   },
   setup() {
     // 玩家列表數據

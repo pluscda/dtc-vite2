@@ -14,6 +14,7 @@ Locale.use('zh-TW', zhTw);
 
 import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar';
+import Button from "primevue/button";
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -23,6 +24,7 @@ import 'primeicons/primeicons.css';
 const app = createApp(App);
 app.use(element3).use(Particles).use(router).use(Vant).use(PrimeVue);
 app.component('Calendar', Calendar );
+app.component("Button", Button);
 app.component('DtxInputGroup',DtxInputGroup)
 app.mount("#app");
 
