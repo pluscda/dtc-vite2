@@ -101,39 +101,57 @@
         <el-input v-model="address.postalCode" placeholder="郵遞區號" />
         <el-input v-model="address.completeAddress" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="訂閱健康報" labelWidth="104">
-        <el-radio
-          v-model="healthReport"
-          label="願意"
-          style="margin: 13px 5px 0px 2px"
-          >願意</el-radio
-        >
-        <el-radio v-model="healthReport" label="不願意" style="margin-top: 13px"
-          >不願意</el-radio
-        >
+
+      <DtxInputGroup
+        labelWidth="104"
+        prepend="訂閱健康報"
+        style="
+          grid-column: span 2;
+          display: grid;
+          grid-template-columns: 104px 1fr;
+          grid-column-gap: 5px;
+        "
+      >
+        <div>
+          <el-radio
+            v-model="healthReport"
+            label="願意"
+            style="margin: 13px 35px 0px 50px"
+            >願意</el-radio
+          >
+          <el-radio
+            v-model="healthReport"
+            label="不願意"
+            style="margin-top: 13px; margin-left: 5px"
+            >不願意</el-radio
+          >
+        </div>
       </DtxInputGroup>
       <DtxInputGroup
         prepend="是否同意收到本院簡訊"
         style="
           grid-column: span 2;
           display: grid;
-          grid-template-columns: 154px 100px 100px;
+          grid-template-columns: 154px 1fr;
           grid-column-gap: 5px;
         "
       >
-        <el-radio
-          v-model="recieveText"
-          label="願意"
-          style="margin: 13px 5px 0px 50px"
-          >願意</el-radio
-        >
-        <el-radio
-          v-model="recieveText"
-          label="不願意"
-          style="margin-top: 13px; margin-left: 5px"
-          >不願意</el-radio
-        >
+        <div>
+          <el-radio
+            v-model="recieveText"
+            label="願意"
+            style="margin: 9px 35px 0px 50px"
+            >願意</el-radio
+          >
+          <el-radio
+            v-model="recieveText"
+            label="不願意"
+            style="margin-top: 9px; margin-left: 5px"
+            >不願意</el-radio
+          >
+        </div>
       </DtxInputGroup>
+
       <DtxInputGroup
         prepend="電子信箱"
         labelWidth="104"
@@ -452,51 +470,23 @@
           >
         </div>
         <div class="question-for-doctor">
-          <div class="grid" style="grid-template-columns: 130px 1fr">
-            <div class="mr-1 w-28 text-right">健康促進需求:</div>
-            <div>
-              <el-radio
-                v-model="doctorQA1"
-                label="無"
-                style="margin-right: 10px"
-                >無</el-radio
-              >
-              <el-radio v-model="doctorQA1" label="有"
-                >有，但尚無須轉介(提供手冊-成人預防、銀髮族、疾病飲食)</el-radio
-              >
-            </div>
-          </div>
-          <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
-            <div class="mr-1 w-28 text-right">戒菸門診:</div>
-            <div>
-              <el-checkbox-group v-model="doctorQA2">
-                <el-checkbox label="照會"></el-checkbox>
-                <el-checkbox label="預約就診日期"></el-checkbox>
-              </el-checkbox-group>
-            </div>
-          </div>
-          <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
-            <div class="mr-1 w-28 text-right">轉介營養諮詢:</div>
+          <div class="grid mt-2" style="grid-template-columns: 130px 530px">
+            <div class="mr-1 w-28 text-right">衛教指導:</div>
             <div>
               <el-checkbox-group v-model="doctorQA3">
-                <el-checkbox label="照會"></el-checkbox>
-                <el-checkbox label="預約就診日期"></el-checkbox>
+                <el-checkbox label="戒菸"></el-checkbox>
+                <el-checkbox label="戒檳榔"></el-checkbox>
+                <el-checkbox label="節制飲酒"></el-checkbox>
+                <el-checkbox label="肥胖"></el-checkbox>
+                <el-checkbox label="維持正常體重"></el-checkbox>
+                <el-checkbox label="健康飲食"></el-checkbox>
+                <el-checkbox label="規律運動"></el-checkbox>
+                <el-checkbox label="高血壓"></el-checkbox>
+                <el-checkbox label="糖尿病"></el-checkbox>
+                <el-checkbox label="其它"></el-checkbox>
               </el-checkbox-group>
             </div>
           </div>
-          <div class="grid mt-2" style="grid-template-columns: 130px 470px 1fr">
-            <div class="mr-1 w-28 text-right">未轉介原因:</div>
-            <div>
-              <el-checkbox-group v-model="doctorQA3">
-                <el-checkbox label="病人無意願"></el-checkbox>
-                <el-checkbox label="醫院離家太遠"></el-checkbox>
-                <el-checkbox label="時間無法配合"></el-checkbox>
-                <el-checkbox label="其他"></el-checkbox>
-              </el-checkbox-group>
-            </div>
-            <el-input v-model="medicalNumber" />
-          </div>
-          <div class="mt-2">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
           <div
             class="mt-4 text-right flex flex-row pr-10"
             style="justify-content: flex-end"
@@ -504,9 +494,22 @@
             <div class="mr-3">衛教師:</div>
             <div style="color: #888">請蓋章</div>
           </div>
+          <hr class="mt-8 mb-3" size="8px" align="center" width="100%" />
+          <div>
+            本院配合國建署推動全民健康生活政策，協助您關心及記錄自己的健康狀況與您該知道的健康訊息及相關資源，讓您的自我健康管理可以做得更好!
+            以上衛教說明，如果您了解，請幫我們簽名:<span
+              class="inline-block px-10 pt-2 pb-2"
+              style="color: #888; border-bottom: 1px solid #cbcbcb"
+              >請蓋章</span
+            >謝謝!
+          </div>
         </div>
       </div>
     </main>
+    <footer class="mt-5 mb-10">
+      <el-button type="primary" plain>取消</el-button>
+      <el-button type="info" plain>建立初診資料</el-button>
+    </footer>
   </div>
 </template>
 
