@@ -1,6 +1,8 @@
 <template>
   <section>
-    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
+    <header
+      class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1"
+    >
       <div>查閱清單</div>
       <div>序號</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
@@ -20,11 +22,18 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 cursor-pointer"
       v-for="(item, i) in list"
       :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      :style="
+        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
+      "
       @click.stop="toggleDetail(item)"
     >
       <div>
-        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop=""></InputSwitch>
+        <InputSwitch
+          class="transform translate-y-1.5"
+          v-model="item.review"
+          size="small"
+          @click.stop="toggleDetail(item)"
+        ></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -38,10 +47,38 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
+      <div class="view-details my-light" v-if="item.review">
+        <header>
+          <div v-for="(item, i) in subHeaders" :key="i">{{ item.name }}</div>
+        </header>
+
+        <!-- <label v-for="(row, rowId) in item.rows" :key="rowId">
+          -->
+        <label v-for="(row, rowId) in 2" :key="rowId">
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+          <div>暫無資料</div>
+        </label>
+      </div>
     </main>
 
     <!-- 分頁 -->
-    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
+    <pagination
+      v-show="total > 0"
+      :total="total"
+      v-model:page="listQuery.page"
+      v-model:limit="listQuery.limit"
+      @pagination="getList"
+    ></pagination>
   </section>
 </template>
 
@@ -68,6 +105,7 @@ let headers = [
 ];
 
 let subHeaders = [
+  { name: "掛號清單", key: "name", sortDesc: null },
   { name: "掛號/預約日期", key: "name", sortDesc: null },
   { name: "看診時段", key: "name", sortDesc: null },
   { name: "看診號", key: "age", sortDesc: null },
@@ -138,6 +176,46 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 80px 60px repeat(10, minmax(90px, 120px)) minmax(90px, 1fr);
+  grid-template-columns: 80px 60px repeat(10, minmax(90px, 120px)) minmax(
+      90px,
+      1fr
+    );
+}
+.view-details {
+  grid-column: 1 / -1;
+  display: grid;
+  background: black;
+  color: white;
+  min-height: 40px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 0px;
+  text-align: center;
+  line-height: 30px;
+  label {
+    all: unset;
+  }
+  header,
+  main,
+  label {
+    display: grid;
+    border-bottom: 1px solid white;
+    border-top: none;
+    grid-template-columns: 1fr 140px repeat(10, 1fr);
+    background: gray;
+  }
+  label,
+  main {
+    border: none;
+    border-bottom: 1px solid white;
+    background: black;
+    cursor: pointer;
+  }
+}
+.my-light {
+  > div {
+    background: var(--light);
+    color: black;
+  }
 }
 </style>
