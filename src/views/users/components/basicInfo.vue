@@ -10,7 +10,7 @@
       <DtxInputGroup prepend="姓名" labelWidth="120">
         <el-input v-model="nativeName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期" labelWidth="100">
+      <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 155">
         <Calendar
           class="h-10"
           v-model="nativeBirthday"
@@ -127,7 +127,7 @@
       <DtxInputGroup prepend="姓名" labelWidth="120">
         <el-input v-model="foreignName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期" labelWidth="100">
+      <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 155">
         <Calendar
           class="h-10"
           v-model="foreignBirthday"
@@ -386,6 +386,11 @@ export default {
         ext: "",
       },
     };
+  },
+  computed: {
+    pageWidth() {
+      return Boolean(window.innerWidth <= 1280);
+    },
   },
 };
 </script>
