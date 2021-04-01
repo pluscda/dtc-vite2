@@ -10,16 +10,14 @@
         <van-switch v-model="takeCard2" size="small" class="ml-2 h-9 mt-3" />
         <span class="ml-2 inline-block transform -translate-y-0.5 text-base text-white-600" @click="takeCard = !takeCard">複診</span>
       </div>
-      <div class="ml-6 -mt-1.5">
-        <van-button type="success" icon="arrow-left" round size="small" @click="$router.replace('/users')">返回門急診掛號</van-button>
-      </div>
+      <Button style="margin: 4px 0" class="p-button-rounded" @click="$router.replace('/users')">返回門急診掛號</Button>
       <div></div>
-      <div class="-mt-1"><van-button type="success" round size="small">補卡取號</van-button></div>
-      <div class="-mt-1"><van-button type="default" round size="small">讀取健保卡</van-button></div>
-      <div class="-mt-1"><van-button type="warning" round size="small">清除/重整</van-button></div>
-      <div class="-mt-1"><van-button type="primary" round size="small">確認掛號</van-button></div>
+      <Button class="p-button-rounded" style="margin: 4px 0">補卡取號</Button>
+      <Button class="p-button-rounded p-button-success" style="margin: 4px 0">讀取健保卡</Button>
+      <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
+      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
     </header>
-    <nav class="flex flex-none m-3 dtc-tabs">
+    <nav class="m-3 dtc-tabs">
       <div @click="activeTab = 0" :class="!activeTab ? 'active' : ''">初診單</div>
       <div @click="activeTab = 1" :class="1 == activeTab ? 'active' : ''">基本資料</div>
       <div @click="activeTab = 2" :class="2 == activeTab ? 'active' : ''">疾病史</div>
