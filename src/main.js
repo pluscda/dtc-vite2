@@ -6,9 +6,7 @@ import router from "/@/router";
 import Particles from "particles.vue3";
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 
-import { Locale } from 'vant';
-import zhTw from 'vant/es/locale/lang/zh-TW';
-Locale.use('zh-TW', zhTw);
+
 
 import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar';
