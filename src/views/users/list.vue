@@ -169,10 +169,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.dtc-template-columns {
-  grid-template-columns: 180px repeat(2, 160px) 1fr;
-}
-
 .dtc-autoflow-grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
 }
