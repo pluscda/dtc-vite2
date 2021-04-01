@@ -14,6 +14,11 @@ module.exports = {
       ...colors,
     },
     extend: {
+      textColor:{
+        skin:{
+          base: 'var(--bs-orange)'
+        }
+      }
      
     },
   },

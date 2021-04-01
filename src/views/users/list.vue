@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>病患基本資料 / 就醫身份</div>
-      <div class="ml-4 flex items-center">
+  <div class="bg-skin-color">
+    <header class="grid pr-2 dtc-page-header dtc-page-header__grid">
+      <div class="">病患基本資料 / 就醫身份</div>
+      <div class="flex items-center ml-4">
         <InputSwitch v-model="takeCard" class="mt-0"></InputSwitch>
         <span @click="takeCard = !takeCard">初診</span>
       </div>
-      <div class="ml-2 flex items-center">
+      <div class="flex items-center ml-2">
         <InputSwitch v-model="takeCard2" class="mt-0"></InputSwitch>
         <span @click="takeCard = !takeCard2">複診</span>
       </div>
@@ -17,7 +17,7 @@
       <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
       <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
     </header>
-    <div class="dtc-autoflow-grid ml-1 grid gap-1 mb-3">
+    <div class="grid gap-1 mb-3 ml-1 dtc-autoflow-grid">
       <DtxInputGroup prepend="身份證號">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>
@@ -70,10 +70,10 @@
       <DtxInputGroup prepend="掛號取卡" class="h-10">
         <InputSwitch v-model="takeCard" class="mt-2 ml-0"></InputSwitch>
         <span class="ml-0.5 mt-2 text-gray-600 text-base" @click="takeCard = !takeCard">掛號後取卡</span>
-        <!-- <el-checkbox class="ml-2 h-9 mt-2" v-model="checked">掛號後取卡</el-checkbox> -->
+        <!-- <el-checkbox class="mt-2 ml-2 h-9" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
-    <section class="space-x-1 mb-2 flex flex-col-reverse xl:flex xl:flex-row">
+    <section class="flex flex-col-reverse mb-2 space-x-1 xl:flex xl:flex-row">
       <Regsiter class="xl:w-1/2"></Regsiter>
       <Pay class="mt-2 mb-2 xl:w-1/2 xl:mt-0 x:mb-0"></Pay>
     </section>
@@ -82,22 +82,22 @@
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
-import { useRouter } from "vue-router";
-import { Message } from "element3";
-import Pagination from "cps/Pagination.vue";
-import { useList } from "./model/userModel";
-import Regsiter from "./components/register.vue";
-import Pay from "./components/hisPay.vue";
-import InqueryList from "./components/inqueryList.vue";
+import { toRefs, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { Message } from 'element3';
+import Pagination from 'cps/Pagination.vue';
+import { useList } from './model/userModel';
+import Regsiter from './components/register.vue';
+import Pay from './components/hisPay.vue';
+import InqueryList from './components/inqueryList.vue';
 let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
+  { name: 'ID', key: 'id', sortDesc: null },
+  { name: '建立者', key: 'name', sortDesc: null },
+  { name: '年齡', key: 'age', sortDesc: null },
 ];
 
 export default {
-  name: "UserList2",
+  name: 'UserList2',
   components: {
     Regsiter,
     Pay,
@@ -106,27 +106,27 @@ export default {
   data() {
     return {
       takeCard: true,
-      input1: "J120092876",
+      input1: 'J120092876',
       options: [
         {
-          value: "選項1",
-          label: "牙科就診",
+          value: '選項1',
+          label: '牙科就診',
         },
 
         {
-          value: "選項3",
-          label: "身心障礙",
+          value: '選項3',
+          label: '身心障礙',
         },
         {
-          value: "選項4",
-          label: "發展遲緩兒童",
+          value: '選項4',
+          label: '發展遲緩兒童',
         },
         {
-          value: "選項5",
-          label: "失能老人",
+          value: '選項5',
+          label: '失能老人',
         },
       ],
-      value: "",
+      value: '',
     };
   },
   setup() {
@@ -136,7 +136,7 @@ export default {
 
     function handleEdit({ row }) {
       router.push({
-        name: "userEdit",
+        name: 'userEdit',
         params: { id: row.id },
       });
     }
@@ -146,7 +146,7 @@ export default {
       delItem(row.id).then(() => {
         // todo:刪除這一行，或者重新獲取數據
         // 通知用戶
-        Message.success("刪除成功！");
+        Message.success('刪除成功！');
       });
     }
 
