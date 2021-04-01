@@ -504,10 +504,14 @@
       </div>
     </main>
     <footer class="mt-5 mb-10">
-      <van-button color="#909399" round size="small" style="margin-right: 10px"
-        >取消</van-button
+      <Button
+        class="p-button-rounded p-button-secondary"
+        style="margin: 4px 10px"
+        >取消</Button
       >
-      <van-button type="primary" round size="small">建立初診資料</van-button>
+      <Button class="p-button-rounded p-button-info" style="margin: 4px 0"
+        >建立初診資料</Button
+      >
     </footer>
   </div>
 </template>
