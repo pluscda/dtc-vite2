@@ -94,13 +94,11 @@ export default {
     Pagination,
   },
   setup() {
-    // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
     subHeaders = ref(subHeaders);
     const { state, getList, delItem } = useList();
 
-    // 用戶更新
     function handleEdit({ row }) {
       router.push({
         name: "userEdit",
@@ -108,11 +106,8 @@ export default {
       });
     }
 
-    // 刪除玩家
     function handleDelete({ row }) {
       delItem(row.id).then(() => {
-        // todo:刪除這一行，或者重新獲取數據
-        // 通知用戶
         Message.success("刪除成功！");
       });
     }
