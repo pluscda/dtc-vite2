@@ -2,13 +2,13 @@
   <div>
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>病患基本資料 / 就醫身份</div>
-      <div class="ml-4">
-        <van-switch v-model="takeCard" size="small" class="ml-2 h-9 mt-3" />
-        <span class="ml-2 inline-block transform -translate-y-0.5 text-base text-white-600" @click="takeCard = !takeCard">初診</span>
+      <div class="ml-4 flex items-center">
+        <InputSwitch v-model="takeCard" class="mt-0"></InputSwitch>
+        <span @click="takeCard = !takeCard">初診</span>
       </div>
-      <div class="ml-2">
-        <van-switch v-model="takeCard2" size="small" class="ml-2 h-9 mt-3" />
-        <span class="ml-2 inline-block transform -translate-y-0.5 text-base text-white-600" @click="takeCard = !takeCard">複診</span>
+      <div class="ml-2 flex items-center">
+        <InputSwitch v-model="takeCard2" class="mt-0"></InputSwitch>
+        <span @click="takeCard = !takeCard2">複診</span>
       </div>
       <Button style="margin: 4px 0" class="p-button-rounded p-button-help" @click="$router.replace('/users/edit/1')">編輯個人資料/初診單</Button>
       <div></div>
