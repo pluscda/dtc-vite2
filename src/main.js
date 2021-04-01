@@ -21,9 +21,10 @@ import 'primeicons/primeicons.css';
 
 
 const app = createApp(App);
+app.use(element3).use(Particles).use(router).use(Vant).use(PrimeVue);
 app.component('Calendar', Calendar );
 app.component('DtxInputGroup',DtxInputGroup)
-app.use(element3).use(Particles).use(router).use(Vant).use(PrimeVue).mount("#app");
+app.mount("#app");
 
 
 
