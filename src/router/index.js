@@ -2,20 +2,20 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "layouts/index.vue";
 
 /**
- * Note: 子菜单仅当路由的children.length >= 1时才出现
+ * Note: 子菜單僅當路由的children.length >= 1時才出現
  *
- * hidden: true                   设置为true时路由将显示在sidebar中(默认false)
- * alwaysShow: true               如果设置为true则总是显示在菜单根目录
- *                                如果不设置alwaysShow, 当路由有超过一个子路由时,
- *                                将会变为嵌套模式, 否则不会显示根菜单
- * redirect: noRedirect           如果设置noRedirect时，breadcrumb中点击将不会跳转
- * name:'router-name'             name用于<keep-alive> (必须设置!!!)
+ * hidden: true                   設置為true時路由將顯示在sidebar中(默認false)
+ * alwaysShow: true               如果設置為true則總是顯示在菜單根目錄
+ *                                如果不設置alwaysShow, 當路由有超過一個子路由時,
+ *                                將會變為嵌套模式, 否則不會顯示根菜單
+ * redirect: noRedirect           如果設置noRedirect時，breadcrumb中點擊將不會跳轉
+ * name:'router-name'             name用於<keep-alive> (必須設置!!!)
  * meta : {
-    roles: ['admin','editor']    页面可访问角色设置 
-    title: 'title'               sidebar和breadcrumb显示的标题 
-    icon: 'svg-name'/'el-icon-x' sidebar中显示的图标
-    breadcrumb: false            设置为false，将不会出现在面包屑中
-    activeMenu: '/example/list'  如果设置一个path, sidebar将会在高亮匹配项
+    roles: ['admin','editor']    頁面可訪問角色設置 
+    title: 'title'               sidebar和breadcrumb顯示的標題 
+    icon: 'svg-name'/'el-icon-x' sidebar中顯示的圖標
+    breadcrumb: false            設置為false，將不會出現在麵包屑中
+    activeMenu: '/example/list'  如果設置一個path, sidebar將會在高亮匹配項
   }
  */
 export const routes = [
@@ -23,13 +23,13 @@ export const routes = [
     path: "/",
     redirect: "/home",
     component: Layout,
-    meta: { title: "导航", icon: "el-icon-s-home" },
+    meta: { title: "導航", icon: "el-icon-s-home" },
     children: [
       {
         path: "home",
         component: () => import("views/home.vue"),
         name: "Home",
-        meta: { title: "首页", icon: "el-icon-s-home" },
+        meta: { title: "首頁", icon: "el-icon-s-home" },
         children: [
           {
             path: ":id",
@@ -37,7 +37,7 @@ export const routes = [
             name: "Detail",
             hidden: true,
             meta: {
-              title: "详情",
+              title: "詳情",
               icon: "el-icon-s-home",
               activeMenu: "/home",
             },
@@ -69,7 +69,7 @@ export const routes = [
     path: "/users",
     component: Layout,
     meta: {
-      title: "用户管理",
+      title: "用戶管理",
       icon: "el-icon-user-solid",
     },
     redirect: '/users/list',
@@ -78,7 +78,7 @@ export const routes = [
         path: "list",
         component: () => import("views/users/list.vue"),
         meta: {
-          title: "用户列表",
+          title: "用戶列表",
           icon: "el-icon-document",
         },
       },
@@ -87,7 +87,7 @@ export const routes = [
         component: () => import("views/users/create.vue"),
         hidden: true,
         meta: {
-          title: "创建新用户",
+          title: "創建新用戶",
           activeMenu: "/users/list",
         },
       },
@@ -97,7 +97,7 @@ export const routes = [
         component: () => import("views/users/edit.vue"),
         hidden: true,
         meta: {
-          title: "编辑用户信息",
+          title: "編輯用戶信息",
           activeMenu: "/users/list",
         },
       },
