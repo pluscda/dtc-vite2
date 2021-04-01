@@ -110,7 +110,7 @@ export default {
         monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
         today: "今天",
         clear: "清空",
-        dateFormat: "mm/dd/yy",
+        dateFormat: "yy-mm-dd",
         weekHeader: "周",
       },
     };
