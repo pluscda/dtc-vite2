@@ -5,10 +5,10 @@
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="掛號日期">
-        <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
+        <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2">至</div>
-      <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" :locale="zh" />
+      <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="身分證號">
         <el-input placeholder="搜尋身份證字號" v-model="input2" />
       </DtxInputGroup>
@@ -156,6 +156,9 @@ export default {
       toggleDetail,
     };
   },
+  mounted() {
+    this.$primevue.config.locale = this.zh;
+  },
 };
 </script>
 
@@ -164,4 +167,3 @@ export default {
   grid-template-columns: 140px 88px 120px repeat(8, 120px) 120px 1fr;
 }
 </style>
-6
