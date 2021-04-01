@@ -17,17 +17,19 @@
       <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
       <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
     </header>
+    <Button @click="printImg('dtc-form')" style="display: none" note="demo has to print img">Print</Button>
     <nav class="m-3 dtc-tabs">
       <div @click="activeTab = 0" :class="!activeTab ? 'active' : ''">初診單</div>
       <div @click="activeTab = 1" :class="1 == activeTab ? 'active' : ''">基本資料</div>
       <div @click="activeTab = 2" :class="2 == activeTab ? 'active' : ''">疾病史</div>
     </nav>
 
-    <component :is="cps" class="mx-4 pt-2"></component>
+    <component id="dtc-form" :is="cps" class="mx-4 pt-2"></component>
   </div>
 </template>
 
 <script>
+import domtoimage from "dom-to-image";
 import FirstVisit from "./components/firstVisit.vue";
 import BasicInfo from "./components/basicInfo.vue";
 import SickHistory from "./components/sickHistory.vue";
@@ -51,6 +53,15 @@ export default {
       cps: FirstVisit,
       activeTab: 0,
     };
+  },
+  methods: {
+    async printImg(id) {
+      const el = document.getElementById(id);
+      const dataUrl = await domtoimage.toPng(el);
+      const img = new Image();
+      img.src = dataUrl;
+      document.body.appendChild(img);
+    },
   },
   watch: {
     activeTab(v) {
