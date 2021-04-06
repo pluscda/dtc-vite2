@@ -49,10 +49,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 const bgPanel = ref(null);
 const bgColor = ref("Taipei");
 const toggleBg = (event) => bgPanel.value.toggle(event);
+const global = inject("global");
+//alert(global.userDefaultBgColor);
 </script>
 
 <style lang="scss" scoped>

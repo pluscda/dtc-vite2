@@ -2,7 +2,7 @@ import {reactive} from "vue";
 import axios from "utils/request";
 
 const init = {
-  count:999,
+   userDefaultBgColor: 'black'
 };
 
 export let global = reactive({...init});
