@@ -1,11 +1,10 @@
 .dtc-page-header {
   @apply h-10 text-white text-lg pl-3 leading-10 mb-1 text-left;
-  background: transparent  0% 0% no-repeat ;
-  color:black;
+  background: transparent 0% 0% no-repeat;
+  color: black;
   background-position: top left;
   background-repeat: no-repeat;
   @apply bg-light-pattern;
-
 }
 
 .dtc-search-filters {
@@ -15,7 +14,6 @@
   margin-bottom: 12px;
   grid-template-columns: repeat(34, max-content);
   grid-gap: 0.4rem;
-  
 }
 
 .dtc-grid-header {
@@ -41,10 +39,12 @@
 
 .dtc-grid-header__divs {
   > div {
-    background: transparent linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0% no-repeat padding-box !important;
+    background: transparent
+      linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0%
+      no-repeat padding-box !important;
     color: black;
-    span{
-      display:inline-block;
+    span {
+      display: inline-block;
       transform: translateY(4px);
     }
   }
@@ -59,3 +59,44 @@
   }
 }
 
+.view-details {
+  grid-column: 1 / -1;
+  display: grid;
+  background: black;
+  color: white;
+  min-height: 40px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 0px;
+  text-align: center;
+  line-height: 30px;
+  label {
+    all: unset;
+  }
+  header,
+  main,
+  label {
+    display: grid;
+    border-bottom: 1px solid white;
+    border-top: none;
+    grid-template-columns: 1fr 140px repeat(10, 1fr);
+    background: gray;
+    > div {
+      border-right: 1px solid #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      font-size: 1rem;
+      padding: 4px 0;
+    }
+  }
+  label,
+  main {
+    border: none;
+    border-bottom: 1px solid white;
+    background: black;
+    cursor: pointer;
+  }
+}

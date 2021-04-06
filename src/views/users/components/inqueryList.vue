@@ -47,26 +47,50 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
-      <div class="view-details my-light" v-if="item.review">
-        <header>
-          <div v-for="(item, i) in subHeaders" :key="i">{{ item.name }}</div>
+      <div class="view-details" v-if="item.review">
+        <header class="dtc-grid-header">
+          <div
+            v-for="(item, i) in subHeaders"
+            :key="i"
+            @click.stop="sort(item)"
+          >
+            {{ item.name }}
+            <span
+              v-show="item.sortDesc === null"
+              style="display: inline-block; transform: translateY(4px)"
+            >
+              <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
+            </span>
+            <span
+              v-show="item.sortDesc === false"
+              style="display: inline-block; transform: translateY(4px)"
+            >
+              <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
+            </span>
+            <span
+              v-show="item.sortDesc"
+              style="display: inline-block; transform: translateY(4px)"
+            >
+              <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
+            </span>
+          </div>
         </header>
 
         <!-- <label v-for="(row, rowId) in item.rows" :key="rowId">
           -->
         <label v-for="(row, rowId) in 2" :key="rowId">
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
-          <div>暫無資料</div>
+          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
+          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
+          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
+          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
+          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
+          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
+          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
+          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
+          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
+          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
+          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
+          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
         </label>
       </div>
     </main>
@@ -175,42 +199,5 @@ export default {
       90px,
       1fr
     );
-}
-.view-details {
-  grid-column: 1 / -1;
-  display: grid;
-  background: black;
-  color: white;
-  min-height: 40px;
-  font-size: 16px;
-  margin: 10px;
-  border-radius: 0px;
-  text-align: center;
-  line-height: 30px;
-  label {
-    all: unset;
-  }
-  header,
-  main,
-  label {
-    display: grid;
-    border-bottom: 1px solid white;
-    border-top: none;
-    grid-template-columns: 1fr 140px repeat(10, 1fr);
-    background: gray;
-  }
-  label,
-  main {
-    border: none;
-    border-bottom: 1px solid white;
-    background: black;
-    cursor: pointer;
-  }
-}
-.my-light {
-  > div {
-    background: var(--light);
-    color: black;
-  }
 }
 </style>
