@@ -11,23 +11,11 @@
         <el-input v-model="nativeName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 155">
-        <Calendar
-          class="h-10"
-          v-model="nativeBirthday"
-          placeholder="輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10" v-model="nativeBirthday" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
         <el-select v-model="nativeGender" class="border-l-0">
-          <el-option
-            v-for="item in genderOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="學歷" labelWidth="120">
@@ -36,43 +24,16 @@
       <DtxInputGroup prepend="國籍" labelWidth="120">
         <el-input v-model="nativeCitizenship" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="戶籍地址"
-        labelWidth="120"
-        style="
-          grid-column: span 3;
-          display: grid;
-          grid-template-columns: 120px 104px 1fr;
-          grid-column-gap: 5px;
-        "
-      >
+      <DtxInputGroup prepend="戶籍地址" labelWidth="120" style="grid-column: span 3; display: grid; grid-template-columns: 120px 104px 1fr; grid-column-gap: 5px">
         <el-input v-model="nativeAddress.postalCode" placeholder="郵遞區號" />
-        <el-input
-          v-model="nativeAddress.completeAddress"
-          placeholder="輸入地址"
-        />
+        <el-input v-model="nativeAddress.completeAddress" placeholder="輸入地址" />
       </DtxInputGroup>
       <DtxInputGroup prepend="語言" labelWidth="120">
         <el-input v-model="nativeLanguage" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="通訊地址"
-        labelWidth="120"
-        style="
-          grid-column: span 3;
-          display: grid;
-          grid-template-columns: 120px 104px 1fr;
-          grid-column-gap: 5px;
-        "
-      >
-        <el-input
-          v-model="nativeContactAddress.postalCode"
-          placeholder="郵遞區號"
-        />
-        <el-input
-          v-model="nativeContactAddress.completeAddress"
-          placeholder="輸入地址"
-        />
+      <DtxInputGroup prepend="通訊地址" labelWidth="120" style="grid-column: span 3; display: grid; grid-template-columns: 120px 104px 1fr; grid-column-gap: 5px">
+        <el-input v-model="nativeContactAddress.postalCode" placeholder="郵遞區號" />
+        <el-input v-model="nativeContactAddress.completeAddress" placeholder="輸入地址" />
       </DtxInputGroup>
       <DtxInputGroup prepend="婚姻狀況" labelWidth="120">
         <el-input v-model="nativeMarriage" />
@@ -80,40 +41,19 @@
       <DtxInputGroup prepend="手機號碼" labelWidth="120">
         <el-input v-model="nativeMobilePhone" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="電話號碼"
-        labelWidth="120"
-        style="
-          grid-column: span 3;
-          display: grid;
-          grid-template-columns: 120px 80px 1fr 1fr;
-          grid-column-gap: 5px;
-        "
-      >
+      <DtxInputGroup prepend="電話號碼" labelWidth="120" style="grid-column: span 3; display: grid; grid-template-columns: 120px 80px 1fr 1fr; grid-column-gap: 5px">
         <el-input v-model="nativeTelPhone.district" placeholder="區號" />
         <el-input v-model="nativeTelPhone.number" placeholder="號碼" />
         <el-input v-model="nativeTelPhone.ext" placeholder="分機" />
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
         <el-select v-model="aboBlood" class="border-l-0">
-          <el-option
-            v-for="item in aboBloodOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
         <el-select v-model="rhBlood" class="border-l-0">
-          <el-option
-            v-for="item in rhBloodOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
@@ -128,23 +68,11 @@
         <el-input v-model="foreignName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 155">
-        <Calendar
-          class="h-10"
-          v-model="foreignBirthday"
-          placeholder="輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10" v-model="foreignBirthday" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
         <el-select v-model="foreignGender" class="border-l-0">
-          <el-option
-            v-for="item in genderOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="學歷" labelWidth="120">
@@ -153,24 +81,9 @@
       <DtxInputGroup prepend="國籍" labelWidth="120">
         <el-input v-model="foreignCitizenship" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="通訊地址"
-        labelWidth="120"
-        style="
-          grid-column: span 3;
-          display: grid;
-          grid-template-columns: 120px 104px 1fr;
-          grid-column-gap: 5px;
-        "
-      >
-        <el-input
-          v-model="foreignContactAddress.postalCode"
-          placeholder="郵遞區號"
-        />
-        <el-input
-          v-model="foreignContactAddress.completeAddress"
-          placeholder="輸入地址"
-        />
+      <DtxInputGroup prepend="通訊地址" labelWidth="120" style="grid-column: span 3; display: grid; grid-template-columns: 120px 104px 1fr; grid-column-gap: 5px">
+        <el-input v-model="foreignContactAddress.postalCode" placeholder="郵遞區號" />
+        <el-input v-model="foreignContactAddress.completeAddress" placeholder="輸入地址" />
       </DtxInputGroup>
       <DtxInputGroup prepend="語言" labelWidth="120">
         <el-input v-model="foreignLanguage" />
@@ -182,40 +95,19 @@
       <DtxInputGroup prepend="手機號碼" labelWidth="120">
         <el-input v-model="foreignMobilePhone" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="電話號碼"
-        labelWidth="120"
-        style="
-          grid-column: span 3;
-          display: grid;
-          grid-template-columns: 120px 80px 1fr 1fr;
-          grid-column-gap: 5px;
-        "
-      >
+      <DtxInputGroup prepend="電話號碼" labelWidth="120" style="grid-column: span 3; display: grid; grid-template-columns: 120px 80px 1fr 1fr; grid-column-gap: 5px">
         <el-input v-model="foreignTelPhone.district" placeholder="區號" />
         <el-input v-model="foreignTelPhone.number" placeholder="號碼" />
         <el-input v-model="foreignTelPhone.ext" placeholder="分機" />
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
         <el-select v-model="foreignAboBlood" class="border-l-0">
-          <el-option
-            v-for="item in aboBloodOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
         <el-select v-model="foreignRhBlood" class="border-l-0">
-          <el-option
-            v-for="item in rhBloodOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
@@ -230,55 +122,25 @@
       <DtxInputGroup prepend="單位名稱" labelWidth="120">
         <el-input v-model="occupationUnit" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="工作單位地址"
-        labelWidth="120"
-        style="
-          grid-column: span 1;
-          display: grid;
-          grid-template-columns: 120px 104px 1fr;
-          grid-column-gap: 5px;
-        "
-      >
-        <el-input
-          v-model="occupationAddress.postalCode"
-          placeholder="郵遞區號"
-        />
-        <el-input
-          v-model="occupationAddress.completeAddress"
-          placeholder="輸入地址"
-        />
+      <DtxInputGroup prepend="工作單位地址" labelWidth="120" style="grid-column: span 1; display: grid; grid-template-columns: 120px 104px 1fr; grid-column-gap: 5px">
+        <el-input v-model="occupationAddress.postalCode" placeholder="郵遞區號" />
+        <el-input v-model="occupationAddress.completeAddress" placeholder="輸入地址" />
       </DtxInputGroup>
 
-      <DtxInputGroup
-        prepend="單位電話號碼"
-        style="
-          grid-column: span 1;
-          display: grid;
-          grid-template-columns: 120px 80px 1fr 1fr;
-          grid-column-gap: 5px;
-        "
-      >
+      <DtxInputGroup prepend="單位電話號碼" style="grid-column: span 1; display: grid; grid-template-columns: 120px 80px 1fr 1fr; grid-column-gap: 5px">
         <el-input v-model="occupationPhone.district" placeholder="區號" />
         <el-input v-model="occupationPhone.number" placeholder="號碼" />
         <el-input v-model="occupationPhone.ext" placeholder="分機" />
       </DtxInputGroup>
     </main>
     <footer class="mt-5 mb-10">
-      <Button
-        class="p-button-rounded p-button-secondary"
-        style="margin: 4px 10px"
-        >取消</Button
-      >
-      <Button class="p-button-rounded p-button-info" style="margin: 4px 0"
-        >儲存</Button
-      >
+      <Button class="p-button-rounded p-button-secondary" style="margin: 4px 10px">取消</Button>
+      <Button class="p-button-rounded p-button-info" style="margin: 4px 0">儲存</Button>
     </footer>
   </div>
 </template>
 
 <script>
-import DtxInputGroup from "cps/DtxInputGroup.vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -288,7 +150,7 @@ let headers = [
 
 export default {
   name: "basicinfo",
-  components: { DtxInputGroup },
+  components: {},
   data() {
     return {
       nativeIdNumber: "",

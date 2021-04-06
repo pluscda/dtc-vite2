@@ -76,7 +76,7 @@ export const routes = [
     children: [
       {
         path: "list",
-        component: () => import("views/users/list.vue"),
+        component: () => import("/@/views/users/list.vue"),
         meta: {
           title: "用戶列表",
           icon: "el-icon-document",
@@ -84,7 +84,7 @@ export const routes = [
       },
       {
         path: "create",
-        component: () => import("views/users/create.vue"),
+        component: () => import("/@/views/users/create.vue"),
         hidden: true,
         meta: {
           title: "創建新用戶",
@@ -94,7 +94,7 @@ export const routes = [
       {
         path: "edit/:id(\\d+)",
         name: "userEdit",
-        component: () => import("views/users/edit.vue"),
+        component: () => import("/@/views/users/edit.vue"),
         hidden: true,
         meta: {
           title: "編輯用戶信息",

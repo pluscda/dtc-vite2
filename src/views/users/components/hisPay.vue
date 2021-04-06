@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import DtxInputGroup from "cps/DtxInputGroup.vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -37,7 +36,7 @@ let headers = [
 
 export default {
   name: "payhis",
-  components: { DtxInputGroup },
+
   data() {
     return {
       input1: "J120092876",

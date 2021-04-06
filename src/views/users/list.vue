@@ -96,7 +96,7 @@ let headers = [
 ];
 
 export default {
-  name: "UserList2",
+  name: "UserListHIS",
   components: {
     Regsiter,
     Pay,

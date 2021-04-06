@@ -1,8 +1,6 @@
 <template>
   <section>
-    <header
-      class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1"
-    >
+    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
       <div>查閱清單</div>
       <div>序號</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
@@ -22,18 +20,11 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 cursor-pointer"
       v-for="(item, i) in list"
       :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
       @click.stop="toggleDetail(item)"
     >
       <div>
-        <InputSwitch
-          class="transform translate-y-1.5"
-          v-model="item.review"
-          size="small"
-          @click.stop="toggleDetail(item)"
-        ></InputSwitch>
+        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -49,28 +40,15 @@
       <div>{{ item.name || "暫無資料" }}</div>
       <div class="view-details" v-if="item.review">
         <header class="dtc-grid-header">
-          <div
-            v-for="(item, i) in subHeaders"
-            :key="i"
-            @click.stop="sort(item)"
-          >
+          <div v-for="(item, i) in subHeaders" :key="i" @click.stop="sort(item)">
             {{ item.name }}
-            <span
-              v-show="item.sortDesc === null"
-              style="display: inline-block; transform: translateY(4px)"
-            >
+            <span v-show="item.sortDesc === null" style="display: inline-block; transform: translateY(4px)">
               <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
             </span>
-            <span
-              v-show="item.sortDesc === false"
-              style="display: inline-block; transform: translateY(4px)"
-            >
+            <span v-show="item.sortDesc === false" style="display: inline-block; transform: translateY(4px)">
               <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
             </span>
-            <span
-              v-show="item.sortDesc"
-              style="display: inline-block; transform: translateY(4px)"
-            >
+            <span v-show="item.sortDesc" style="display: inline-block; transform: translateY(4px)">
               <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
             </span>
           </div>
@@ -96,13 +74,7 @@
     </main>
 
     <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
@@ -111,7 +83,7 @@ import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
-import DtxInputGroup from "cps/DtxInputGroup.vue";
+
 import { useList } from "../model/userModel";
 //查閱清單
 let headers = [
@@ -145,7 +117,7 @@ let subHeaders = [
 
 export default {
   name: "inquerylist",
-  components: { DtxInputGroup },
+  components: {},
   data() {
     return {
       input1: "J120092876",
@@ -195,9 +167,6 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 80px 60px repeat(10, minmax(90px, 120px)) minmax(
-      90px,
-      1fr
-    );
+  grid-template-columns: 80px 60px repeat(10, minmax(90px, 120px)) minmax(90px, 1fr);
 }
 </style>
