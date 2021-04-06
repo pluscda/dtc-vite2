@@ -7,8 +7,8 @@
       <el-dropdown class="max-h-10" :show-timeout="1">
         <span class="text-blue-200">門急診掛號<i class="el-icon-arrow-down el-icon--right"></i> </span>
         <el-dropdown-menu>
-          <el-dropdown-item @click="$router.replace('/users/list')">掛號</el-dropdown-item>
-          <el-dropdown-item @click="$router.replace('/register')">掛號總覽清單</el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/users/list')">掛號</el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/register')">掛號總覽清單</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <el-dropdown class="max-h-10" :show-timeout="1">
