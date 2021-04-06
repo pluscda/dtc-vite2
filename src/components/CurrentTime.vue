@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xl">
+  <div class="text-lg">
     {{ timestamp }}
   </div>
 </template>
