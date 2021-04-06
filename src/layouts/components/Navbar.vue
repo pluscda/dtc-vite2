@@ -21,7 +21,8 @@
       <div>歷史報告</div>
       <div>所得明細</div>
     </section>
-    <div class="grid grid-cols-2 cursor-pointer" @click="toggleBg">
+    <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
+      <CurrentTime class="absolute inset-x-0 -ml-80 mt-2"></CurrentTime>
       <div class="mt-2.5">
         <i class="pi pi-cog" style="font-size: 24px"></i>
       </div>
@@ -66,6 +67,7 @@
 
 <script setup>
 import { ref, inject, computed, onMounted } from "vue";
+import CurrentTime from "cps/CurrentTime.vue";
 const bgPanel = ref(null);
 const avatarPanel = ref(null);
 const bgColor = ref("Taipei");

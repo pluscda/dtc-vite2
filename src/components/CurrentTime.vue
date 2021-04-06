@@ -1,11 +1,9 @@
 <template>
-  <div class="text-lg">
-    {{ timestamp }}
-  </div>
+  <div>當前時間: {{ timestamp }}</div>
 </template>
 
 <script setup>
-import { ref, onUnmounted } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 import { timer } from "rxjs";
 import dayjs from "dayjs";
 
@@ -14,9 +12,9 @@ const converToCurrentTime = () => (timestamp.value = dayjs().format("YYYY-MM-DD 
 
 const sub = timer(0, 1000).subscribe(converToCurrentTime);
 
-onUnmounted(){
-  sub.unsubscribe();
-}
+// onBeforeUnmount(){
+//   sub.unsubscribe();
+// }
 </script>
 
 <style lang="scss" scoped></style>
