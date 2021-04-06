@@ -35,4 +35,8 @@
     --tw-bg-opacity: 1;
     background-color: rgba(209, 213, 219, var(--tw-bg-opacity))  !important;
 }
-
+#app .el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover,
+#app .el-select-dropdown__item.hover, .el-select-dropdown__item:hover
+{
+  @apply bg-blue-500 text-white font-semibold #{!important};
+}
