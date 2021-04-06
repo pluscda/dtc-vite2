@@ -16,10 +16,10 @@
           >門急診掛號<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu>
-          <el-dropdown-item @click="$router.replace('/users/list')"
+          <el-dropdown-item @click="$router.push('/users/list')"
             >掛號</el-dropdown-item
           >
-          <el-dropdown-item @click="$router.replace('/register')"
+          <el-dropdown-item @click="$router.push('/register')"
             >掛號總覽清單</el-dropdown-item
           >
         </el-dropdown-menu>
