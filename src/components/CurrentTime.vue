@@ -1,5 +1,5 @@
 <template>
-  <div>當前時間: {{ timestamp }}</div>
+  <div style="contain: layout">當前時間: {{ timestamp }}</div>
 </template>
 
 <script setup>
