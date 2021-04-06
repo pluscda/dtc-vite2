@@ -27,7 +27,7 @@ app.component("InputSwitch", InputSwitch);
 app.component('DtxInputGroup',DtxInputGroup);
 app.component('OverlayPanel',OverlayPanel);
 app.component('RadioButton',RadioButton );
-app.provide('axios', app.config.globalProperties.axios);
+app.provide('axios', app.config.globalProperties.axios);//https://v3.vuejs.org/api/application-config.html#iscustomelement
 app.mount("#app");
 
 
