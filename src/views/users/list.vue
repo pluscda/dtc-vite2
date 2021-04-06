@@ -85,7 +85,6 @@
 import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
-import Pagination from "cps/Pagination.vue";
 import { useList } from "./model/userModel";
 import Regsiter from "./components/register.vue";
 import Pay from "./components/hisPay.vue";
