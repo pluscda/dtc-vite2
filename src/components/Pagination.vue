@@ -88,7 +88,7 @@ export default {
 .pagination-container {
   display: grid;
   justify-content: center;
-  grid-template-columns: max-content 100px max-content;
+  grid-template-columns: max-content 120px max-content;
   gap: 1rem;
   width: 100vw;
   font-family: Arial, Helvetica, sans-serif, "Microsoft JhengHei" !important;
