@@ -7,6 +7,7 @@
       :layout="layout"
       :total="total"
       v-bind="$attrs"
+      size="lg"
       @current-change="handleCurrentChange"
     />
     <el-select v-model="pageSize" size="small">
