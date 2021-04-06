@@ -21,13 +21,15 @@ import 'primeicons/primeicons.css';
 const app = createApp(App);
 
 app.use(element3).use(Particles).use(router).use(PrimeVue);
+// PrimeVue UI components
 app.component('Calendar', Calendar );
 app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);
-app.component('DtxInputGroup',DtxInputGroup);
 app.component('OverlayPanel',OverlayPanel);
 app.component('RadioButton',RadioButton );
-
+// DTC Custom UI components
+app.component('DtxInputGroup',DtxInputGroup);
+// Global setting
 app.config.globalProperties.axios = axios;
 app.provide('axios', app.config.globalProperties.axios);//https://v3.vuejs.org/api/application-config.html#iscustomelement
 app.mount("#app");
