@@ -14,6 +14,8 @@ import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar';
 import Button from "primevue/button";
 import InputSwitch from 'primevue/inputswitch';
+import OverlayPanel from 'primevue/overlaypanel';
+import RadioButton from 'primevue/radiobutton';
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -25,7 +27,9 @@ app.use(element3).use(Particles).use(router).use(PrimeVue);
 app.component('Calendar', Calendar );
 app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);
-app.component('DtxInputGroup',DtxInputGroup)
+app.component('DtxInputGroup',DtxInputGroup);
+app.component('OverlayPanel',OverlayPanel);
+app.component('RadioButton',RadioButton )
 app.mount("#app");
 
 
