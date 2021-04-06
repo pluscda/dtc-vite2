@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import { tryOnUnmounted } from "@vueuse/core";
 
 const timestamp = ref("");
-const converToCurrentTime = () => (timestamp.value = dayjs().format("YYYY-MM-DD HH-mm-ss"));
+const converToCurrentTime = () => (timestamp.value = dayjs().format("YYYY-MM-DD HH:mm:ss"));
 
 const sub = timer(0, 1000).subscribe(converToCurrentTime);
 
