@@ -25,22 +25,22 @@
     <div class="grid grid-cols-3 cursor-pointer" @click="toggleBg">
       <div class="mt-1"><i class="pi pi-cog" style="font-size: 18px"></i> <span class="text-blue-200 inline-block -mt-7">背景顏色</span></div>
       <OverlayPanel ref="bgPanel" showCloseIcon="true" :dismissable="true">
-        <ul class="grid grid-cols-2 gap-6">
+        <ul class="grid grid-cols-2 gap-8">
           <div class="p-field-radiobutton">
-            <RadioButton id="bgColor2" value="New York" v-model="bgColor" />
-            <label for="bgColor2">New York</label>
+            <RadioButton id="bgColor1" value="New York" v-model="bgColor" />
+            <label for="bgColor1" class="pl-2">New York</label>
           </div>
           <div class="p-field-radiobutton">
             <RadioButton id="bgColor2" value="Taipei" v-model="bgColor" />
-            <label for="bgColor2">Taipei</label>
+            <label for="bgColor2" class="pl-2">Taipei</label>
           </div>
           <div class="p-field-radiobutton">
-            <RadioButton id="bgColor2" value="Havaii" v-model="bgColor" />
-            <label for="bgColor2">Hawaii</label>
+            <RadioButton id="bgColor3" value="Havaii" v-model="bgColor" />
+            <label for="bgColor3" class="pl-2">Hawaii</label>
           </div>
           <div class="p-field-radiobutton">
-            <RadioButton id="bgColor2" value="Los Angeles" v-model="bgColor" />
-            <label for="bgColor2">洛杉矶</label>
+            <RadioButton id="bgColor4" value="Los Angeles" v-model="bgColor" />
+            <label for="bgColor4" class="pl-2">洛杉矶</label>
           </div>
         </ul>
       </OverlayPanel>
