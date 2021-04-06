@@ -68,8 +68,8 @@
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="掛號取卡" class="h-10">
-        <InputSwitch v-model="takeCard" class="mt-2 ml-0"></InputSwitch>
-        <span class="ml-0.5 mt-2 text-gray-600 text-base" @click="takeCard = !takeCard">掛號後取卡</span>
+        <InputSwitch v-model="takeCard" class="mt-2 ml-0 transform translate-x-2"></InputSwitch>
+        <span class="ml-0.5 mt-2.5 inline-block transform translate-x-2 text-gray-600 text-base" @click="takeCard = !takeCard">掛號後取卡</span>
         <!-- <el-checkbox class="mt-2 ml-2 h-9" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
@@ -82,22 +82,22 @@
 </template>
 
 <script>
-import { toRefs, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { Message } from 'element3';
-import Pagination from 'cps/Pagination.vue';
-import { useList } from './model/userModel';
-import Regsiter from './components/register.vue';
-import Pay from './components/hisPay.vue';
-import InqueryList from './components/inqueryList.vue';
+import { toRefs, ref } from "vue";
+import { useRouter } from "vue-router";
+import { Message } from "element3";
+import Pagination from "cps/Pagination.vue";
+import { useList } from "./model/userModel";
+import Regsiter from "./components/register.vue";
+import Pay from "./components/hisPay.vue";
+import InqueryList from "./components/inqueryList.vue";
 let headers = [
-  { name: 'ID', key: 'id', sortDesc: null },
-  { name: '建立者', key: 'name', sortDesc: null },
-  { name: '年齡', key: 'age', sortDesc: null },
+  { name: "ID", key: "id", sortDesc: null },
+  { name: "建立者", key: "name", sortDesc: null },
+  { name: "年齡", key: "age", sortDesc: null },
 ];
 
 export default {
-  name: 'UserList2',
+  name: "UserList2",
   components: {
     Regsiter,
     Pay,
@@ -106,27 +106,27 @@ export default {
   data() {
     return {
       takeCard: true,
-      input1: 'J120092876',
+      input1: "J120092876",
       options: [
         {
-          value: '選項1',
-          label: '牙科就診',
+          value: "選項1",
+          label: "牙科就診",
         },
 
         {
-          value: '選項3',
-          label: '身心障礙',
+          value: "選項3",
+          label: "身心障礙",
         },
         {
-          value: '選項4',
-          label: '發展遲緩兒童',
+          value: "選項4",
+          label: "發展遲緩兒童",
         },
         {
-          value: '選項5',
-          label: '失能老人',
+          value: "選項5",
+          label: "失能老人",
         },
       ],
-      value: '',
+      value: "",
     };
   },
   setup() {
@@ -136,7 +136,7 @@ export default {
 
     function handleEdit({ row }) {
       router.push({
-        name: 'userEdit',
+        name: "userEdit",
         params: { id: row.id },
       });
     }
@@ -146,7 +146,7 @@ export default {
       delItem(row.id).then(() => {
         // todo:刪除這一行，或者重新獲取數據
         // 通知用戶
-        Message.success('刪除成功！');
+        Message.success("刪除成功！");
       });
     }
 
