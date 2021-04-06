@@ -23,6 +23,7 @@
     "primeicons": "^4.1.0",
     "primevue": "^3.3.5",
     "ramda": "^0.27.1",
+    "rxjs": "^6.6.7",
     "vue": "^3.0.5",
     "vue-i18n": "^9.0.0-rc.7",
     "vue-router": "^4.0.4"
@@ -30,12 +31,13 @@
   "devDependencies": {
     "@iconify/json": "^1.1.322",
     "@intlify/vite-plugin-vue-i18n": "^2.0.0-rc.2",
+    "@tailwindcss/jit": "^0.1.18",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vitejs/plugin-vue-jsx": "^1.1.0",
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^10.2.5",
     "cross-env": "^7.0.3",
-    "postcss": "^8.2.8",
+    "postcss": "^8.2.9",
     "process": "^0.11.10",
     "sass": "^1.32.8",
     "tailwindcss": "^2.0.4",

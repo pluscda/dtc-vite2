@@ -1,7 +1,11 @@
 .dtc-page-header {
-  @apply bg-title h-10 text-white text-lg pl-3 leading-10 mb-1 text-left;
-  background: transparent linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%) 0% 0% no-repeat padding-box;
+  @apply h-10 text-white text-lg pl-3 leading-10 mb-1 text-left;
+  background: transparent  0% 0% no-repeat ;
   color:black;
+  background-position: top left;
+  background-repeat: no-repeat;
+  @apply bg-light-pattern;
+
 }
 
 .dtc-search-filters {
