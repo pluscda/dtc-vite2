@@ -51,8 +51,8 @@
       <div class="mt-1">
         <i-carbon:user-avatar-filled-alt style="font-size: 24px; margin-top: 22px"></i-carbon:user-avatar-filled-alt>
       </div>
-      <OverlayPanel ref="avatarPanel" showCloseIcon="true" :dismissable="true" class="relative z-1">
-        <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white z-0">個人中心</header>
+      <OverlayPanel ref="avatarPanel" showCloseIcon="true" :dismissable="true" class="relative">
+        <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">個人中心</header>
         <ul class="grid grid-cols-2 gap-2 pt-10 relative">
           <div class="p-field-radiobutton" style="margin: 0 auto"><Button label="登出" class="p-button" style="font-size: 0.9rem" @click="$router.push('/login')" /></div>
           <div class="p-field-radiobutton">
