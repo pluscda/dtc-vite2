@@ -23,8 +23,10 @@
     </section>
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-2"></CurrentTime>
-      <div class="mt-2.5">
-        <i class="pi pi-cog" style="font-size: 24px"></i>
+      <div class="mt-2.5 relative">
+        <el-tooltip content="主題顏色" placement="top" effect="light">
+          <i class="pi pi-cog" style="font-size: 24px"></i>
+        </el-tooltip>
       </div>
       <OverlayPanel ref="bgPanel" showCloseIcon="true" class="relative" :dismissable="true">
         <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">主題顏色</header>
@@ -50,8 +52,11 @@
     </div>
     <div class="grid grid-cols-1 cursor-pointer" @click="toggleAvatar" style="margin-right: 18px">
       <div class="mt-1">
-        <i-carbon:user-avatar-filled-alt style="font-size: 24px; margin-top: 22px"></i-carbon:user-avatar-filled-alt>
+        <el-tooltip content="個人中心" placement="top" effect="light">
+          <i-carbon:user-avatar-filled-alt style="font-size: 24px; margin-top: 22px"></i-carbon:user-avatar-filled-alt>
+        </el-tooltip>
       </div>
+
       <OverlayPanel ref="avatarPanel" showCloseIcon="true" :dismissable="true" class="relative">
         <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">個人中心</header>
         <ul class="grid grid-cols-2 gap-2 pt-10 relative">
