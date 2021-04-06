@@ -18,7 +18,6 @@
           <el-dropdown-item>諮詢-2</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-
       <div>歷史報告</div>
       <div>所得明細</div>
     </section>
@@ -49,13 +48,17 @@
 </template>
 
 <script setup>
-import { ref, inject, computed } from "vue";
+import { ref, inject, computed, onMounted } from "vue";
 const bgPanel = ref(null);
 const bgColor = ref("Taipei");
 const toggleBg = (event) => bgPanel.value.toggle(event);
 const global = inject("global");
+const axios = inject("axios");
 //const userColor = computed(() => global.userDefaultBgColor);
 //alert(global.userDefaultBgColor);
+// onMounted(() => {
+//   axios.get("/getUsers");
+// });
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import axios from "utils/request";
 import "styles/index.scss";
 import element3 from "plugins/element3";
 import router from "/@/router";
@@ -18,13 +19,15 @@ import 'primeicons/primeicons.css';
 
 
 const app = createApp(App);
+app.config.globalProperties.axios = axios;
 app.use(element3).use(Particles).use(router).use(PrimeVue);
 app.component('Calendar', Calendar );
 app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);
 app.component('DtxInputGroup',DtxInputGroup);
 app.component('OverlayPanel',OverlayPanel);
-app.component('RadioButton',RadioButton )
+app.component('RadioButton',RadioButton );
+app.provide('axios', app.config.globalProperties.axios);
 app.mount("#app");
 
 
