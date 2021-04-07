@@ -6,9 +6,6 @@
 import { defineProps, ref } from "vue";
 import { timer } from "rxjs";
 import { tryOnUnmounted } from "@vueuse/core";
-import { useMagicKeys, whenever } from "@vueuse/core";
-
-const keys = useMagicKeys();
 
 const props = defineProps({
   secs: Number,
