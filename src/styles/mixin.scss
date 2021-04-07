@@ -7,7 +7,7 @@
 }
 
 @mixin scrollBar {
- /* Let's get this party started */
+//https://css-tricks.com/examples/WebKitScrollbars/
 ::-webkit-scrollbar {
     width: 7px;
 }
