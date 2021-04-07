@@ -1,9 +1,10 @@
 <template>
-  <section class="overflow-x-hidden">
+  <section class="index-position overflow-x-hidden">
     <NavBar></NavBar>
     <main class="overflow-x-hidden overflow-y-hidden">
       <router-view></router-view>
     </main>
+    <el-backtop target=".index-position"></el-backtop>
   </section>
 </template>
 
@@ -11,4 +12,10 @@
 import NavBar from "/@/layouts/components/Navbar.vue";
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.index-position {
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+</style>
