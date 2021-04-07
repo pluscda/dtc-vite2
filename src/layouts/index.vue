@@ -1,7 +1,9 @@
 <template>
-  <section style="overflow-x: hidden">
+  <section class="overflow-x-hidden">
     <NavBar></NavBar>
-    <router-view></router-view>
+    <main class="overflow-x-hidden overflow-y-hidden">
+      <router-view></router-view>
+    </main>
   </section>
 </template>
 
