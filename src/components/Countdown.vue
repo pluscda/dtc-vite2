@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block text-black text-lg">{{ timestamp }}</div>
+  <div class="inline-block">{{ timestamp }}</div>
 </template>
 
 <script setup>
