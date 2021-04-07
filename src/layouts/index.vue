@@ -4,7 +4,15 @@
     <main class="overflow-x-hidden overflow-y-hidden">
       <router-view></router-view>
     </main>
-    <el-backtop target=".index-position" :visibility-height="100"></el-backtop>
+    <el-backtop
+      target=".index-position"
+      :visibility-height="100"
+      style="color: rgb(147 68 59)"
+    >
+      <i-mdi:clipboard-arrow-up-outline
+        style="font-size: 24px"
+      ></i-mdi:clipboard-arrow-up-outline>
+    </el-backtop>
   </section>
 </template>
 
