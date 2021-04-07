@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, toRefs } from "vue";
+import { defineProps, ref } from "vue";
 import { timer } from "rxjs";
 import { tryOnUnmounted } from "@vueuse/core";
 
