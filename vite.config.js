@@ -7,6 +7,9 @@ import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import replaceHtmlVars from 'rollup-plugin-replace-html-vars'
+import dayjs from "dayjs"
+
+const buildTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
 // need to be included for server proxy if server did not support cros
 const server =  {
     proxy: {
@@ -55,7 +58,7 @@ export default {
     replaceHtmlVars({
         files: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, './index.html') : '',
         from: '_THIS_IS_THE_VARIABLE_',
-        to: '1.0.0',
+        to: `${buildTime}`,
     }),
     vueI18n({
       include: path.resolve(__dirname, './src/locales/**')
