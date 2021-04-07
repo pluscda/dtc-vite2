@@ -4,7 +4,7 @@
     <main class="overflow-x-hidden overflow-y-hidden">
       <router-view></router-view>
     </main>
-    <el-backtop target=".index-position"></el-backtop>
+    <el-backtop target=".index-position" :visibility-height="100"></el-backtop>
   </section>
 </template>
 
