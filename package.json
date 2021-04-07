@@ -39,6 +39,7 @@
     "cross-env": "^7.0.3",
     "postcss": "^8.2.9",
     "process": "^0.11.10",
+    "rollup-plugin-replace-html-vars": "^1.0.3",
     "sass": "^1.32.8",
     "tailwindcss": "^2.0.4",
     "vite": "^2.0.1",
