@@ -24,9 +24,9 @@
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-2"></CurrentTime>
       <div class="mt-2.5 relative">
-        <el-tooltip content="主題顏色" placement="top" effect="light">
+        <!-- <el-tooltip content="主題顏色" placement="top" effect="light"> -->
           <i class="pi pi-cog" style="font-size: 24px"></i>
-        </el-tooltip>
+        <!-- </el-tooltip> -->
       </div>
       <OverlayPanel ref="bgPanel" showCloseIcon="true" class="relative" :dismissable="true">
         <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">主題顏色</header>
