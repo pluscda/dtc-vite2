@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 const timestamp = ref(props.secs);
-const converToCurrentTime = (i) => (timestamp.value -= i);
+const converToCurrentTime = (i) => (timestamp.value ? (timestamp.value -= i) : timestamp.value);
 
 const sub = timer(0, 1000).subscribe(converToCurrentTime);
 
