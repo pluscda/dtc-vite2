@@ -6,7 +6,7 @@
         <p style="margin-top: 35px">系統已閒置一段期間,會將您自動登出帳戶</p>
         <p style="margin-top: 12px">
           將在
-          <CountDown class="text-black text-lg"></CountDown>
+          <CountDown class="text-black text-lg inline-block" :secs="60"></CountDown>
           秒鐘之後自動登出
         </p>
       </nav>

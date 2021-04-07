@@ -1,14 +1,18 @@
 <template>
-  <div class="inline-block">{{ timestamp }}</div>
+  <div class="">{{ timestamp }}</div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { defineProps, ref } from "vue";
 import { timer } from "rxjs";
 import { tryOnUnmounted } from "@vueuse/core";
 
-const timestamp = ref(60);
-const converToCurrentTime = (i) => (timestamp.value -= i);
+const props = defineProps({
+  secs: Number,
+});
+
+const timestamp = props.secs ? ref(props.secs) : ref(60);
+const converToCurrentTime = (i) => (timestamp.value ? (timestamp.value -= i) : timestamp.value);
 
 const sub = timer(0, 1000).subscribe(converToCurrentTime);
 

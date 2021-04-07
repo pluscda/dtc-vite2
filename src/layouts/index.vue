@@ -23,7 +23,7 @@ import NavBar from "/@/layouts/components/Navbar.vue";
 <style lang="scss" scoped>
 .index-position {
   height: 100vh;
-  overflow-x: auto;
+  //overflow-x: auto;
   overflow-y: auto;
 }
 </style>
