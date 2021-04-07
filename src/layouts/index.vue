@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="overflow-x: hidden">
     <NavBar></NavBar>
     <router-view></router-view>
   </section>
