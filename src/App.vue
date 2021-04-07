@@ -82,3 +82,14 @@ watch(idle2, () => {
   }
 }
 </style>
+
+<style>
+#app.dark-mode {
+  background: var(--white);
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+#app.dark-mode img {
+  filter: invert(100%) hue-rotate(0deg);
+}
+</style>
