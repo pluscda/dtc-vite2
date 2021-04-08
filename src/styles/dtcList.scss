@@ -49,6 +49,7 @@
 }
 
 .dtc-grid-body {
+  border-top:none;
   &:hover {
     background-color: rgba(0, 0, 0, 0.075);
   }
