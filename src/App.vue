@@ -100,11 +100,13 @@ watch(idle2, () => {
     background: #646b74 !important;
     box-shadow: 100vw 0 0 #646b74;
     color: #fff;
+    border-color: var(--light) !important;
   }
   .dtc-grid-body {
     > div {
       background: var(--bs-gray-dark) !important;
       color: var(--light) !important;
+      border-color: var(--light) !important;
     }
   }
   .dtc-label {
