@@ -1,44 +1,22 @@
-.dtc-primay-btn{
-   @apply bg-primay text-white rounded px-4 py-2 text-sm hover:bg-gray-500;
-}
-
-.dtc-primay-btn__xs{
-   @apply bg-primay text-white rounded px-4 py-2 text-xs hover:bg-gray-500;;
-}
-.dtc-info-btn{
-   @apply bg-info text-white rounded px-4 py-2 text-sm hover:bg-gray-500;;
-}
-
-.dtc-info-btn__xs{
-   @apply bg-info text-white rounded px-4 py-2 text-xs hover:bg-gray-500;;
-}
-
-.dtc-danger-btn__xs{
-   @apply bg-rose-700 text-white rounded px-4 py-2 text-xs hover:bg-rose-400;;
-}
-.dtc-warning-btn__xs{
-   @apply bg-yellow-500 text-black rounded px-4 py-2 text-sm hover:bg-yellow-600;;
-}
 
 .dtc-tabs{
   position: relative;
   @apply cursor-pointer  flex flex-none space-x-0.5;
   > * {
-    background: transparent linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%) 0% 0% no-repeat padding-box;
-    color:black;
     height:45px;
     line-height: 45px;
     font-weight: bold;
     @apply px-3;
+    @apply bg-light-pattern text-black;
   }
   .active{
-    background: transparent linear-gradient(180deg, #CED5FF 0%, #ABB8FF 100%) 0% 0% no-repeat padding-box;
+     @apply bg-light-pattern-active text-black;
   }
   &::after{
     content:'';
-    @apply absolute inset-y-full;
     width:98vw;
-    background: transparent linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%) 0% 0% no-repeat padding-box;
     height: 6px;
+    @apply absolute inset-y-full;
+    @apply bg-light-pattern-active text-black;
   }
 }
