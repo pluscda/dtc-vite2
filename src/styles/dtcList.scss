@@ -50,13 +50,11 @@
 
 .dtc-grid-body {
   border-top:none;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.075);
-  }
   > div {
     line-height: 35px;
     @apply px-1;
   }
+
 }
 
 .view-details {

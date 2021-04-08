@@ -1,18 +1,18 @@
 <template>
-  <div class="flex relative my-flex">
+  <div class="relative flex my-flex">
     <div class="grid max-content" :style="labelWidth ? `grid-template-columns: ${labelWidth}px !important;` : ''">
-      <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-base">{{ prepend }}</span>
+      <span class="flex items-center px-3 text-base rounded rounded-r-none dtc-label dtx-prepend">{{ prepend }}</span>
     </div>
     <slot></slot>
     <div class="grid max-content" v-if="append">
-      <span class="flex dtc-label px-1 items-center rounded rounded-l-none text-xs">{{ append }}</span>
+      <span class="flex items-center px-1 text-xs rounded rounded-l-none dtc-label">{{ append }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["prepend", "append", "labelWidth"],
+  props: ['prepend', 'append', 'labelWidth'],
 };
 </script>
 

@@ -6,7 +6,7 @@
         <p style="margin-top: 35px">系統已閒置一段期間,會將您自動登出帳戶</p>
         <p style="margin-top: 12px">
           將在
-          <CountDown class="text-black text-lg inline-block" :secs="60"></CountDown>
+          <CountDown class="inline-block text-lg text-black" :secs="60"></CountDown>
           秒鐘之後自動登出
         </p>
       </nav>
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import { global, actions, mutations } from "/@/store/global";
+import { global, actions, mutations } from '/@/store/global';
 
 export default {
-  name: "App",
+  name: 'App',
   provide: {
     global,
     actions,
@@ -29,24 +29,24 @@ export default {
 </script>
 
 <script setup>
-import { useIdle } from "@vueuse/core";
-import { watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import CountDown from "cps/Countdown.vue";
+import { useIdle } from '@vueuse/core';
+import { watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import CountDown from 'cps/Countdown.vue';
 const { idle: idle1 } = useIdle(9 * 60 * 1000); // 9 min
 const { idle: idle2 } = useIdle(10 * 60 * 1000); // 10 min
 const router = useRouter();
 const route = useRoute();
 watch(idle2, () => {
-  if (idle2.value && !route.path.includes("login")) {
-    router.push("login");
+  if (idle2.value && !route.path.includes('login')) {
+    router.push('login');
   }
 });
 </script>
 
 <style lang="scss">
 #app {
-  font-family: "Microsoft JhengHei", Helvetica, Arial, sans-serif !important;
+  font-family: 'Microsoft JhengHei', Helvetica, Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -105,12 +105,17 @@ watch(idle2, () => {
     background-image: none !important;
     background: #646b74 !important;
     color: #fff;
-    border-color: #f9fafb !important;
   }
   .dtc-grid-body {
+    &:nth-child(odd) {
+      background-color: #475569 !important;
+      color: #f8fafc !important;
+    }
+    &:nth-child(even) {
+      background-color: #64748b !important;
+      color: #f8fafc !important;
+    }
     > div {
-      background: var(--bs-gray-dark) !important;
-      color: var(--light) !important;
       border-color: #f9fafb !important;
     }
   }
@@ -126,6 +131,9 @@ watch(idle2, () => {
     color: white !important;
     background: var(--gray-dark) !important;
     border: none !important;
+    @apply ring-2 ring-coolGray-600;
+  }
+  .dtx-prepend {
     @apply ring-2 ring-coolGray-600;
   }
   input {
