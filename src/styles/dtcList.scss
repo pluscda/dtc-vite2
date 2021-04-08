@@ -1,11 +1,10 @@
 
 
 .dtc-page-header {
-  @apply h-10 text-lg pl-3 leading-10 mb-1 text-left;
-  color: black;
   background-position: top left;
   background-repeat: no-repeat;
-  @apply bg-light-pattern;
+  @apply h-10 text-lg pl-3 leading-10 mb-1 text-left;
+  @apply bg-light-pattern text-black;
 }
 
 .dtc-search-filters {
@@ -40,10 +39,7 @@
 
 .dtc-grid-header__divs {
   > div {
-    background: transparent
-      linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0%
-      no-repeat padding-box !important;
-    color: black;
+    @apply bg-light-pattern text-black;
     span {
       display: inline-block;
       transform: translateY(4px);
