@@ -85,9 +85,13 @@ watch(idle2, () => {
 
 <style lang="scss">
 #app.dark-mode {
+  background: var(--dark) !important;
   .top-section {
     box-shadow: 100vw 100vh 0 var(--dark) !important;
     background: var(--dark) !important;
+  }
+  .bg-white {
+    background: none !important;
   }
 
   .dtc-page-header,
@@ -119,7 +123,7 @@ watch(idle2, () => {
       background-image: none !important;
       background: #646b74 !important;
       box-shadow: 100vw 0 0 #646b74 !important;
-      color: #fff ip !important;
+      color: #fff !important;
     }
     .active {
       color: orange !important;
