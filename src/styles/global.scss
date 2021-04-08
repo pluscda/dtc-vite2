@@ -6,3 +6,8 @@
   font-size:1rem !important;
 }
 
+
+input{
+   @apply focus:outline-none focus:ring focus:border-blue-300 #{!important};
+
+}
