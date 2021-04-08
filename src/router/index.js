@@ -61,9 +61,23 @@ export const routes = [
     ],
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import( '/@/views/DtcLogin.vue')
+    path: "/pharmacy",
+    redirect: "/pharmacy/drugmanagement",
+    component: Layout,
+    meta: { title: "掛號總覽清單", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "drugmanagement",
+        component: () => import("/@/views/pharmacy/drugmanagement.vue"),
+        name: "drugmanagement",
+        meta: { title: "清單", icon: "el-icon-s-home" },
+      },
+    ],
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("/@/views/DtcLogin.vue"),
   },
   {
     path: "/users",
@@ -72,7 +86,7 @@ export const routes = [
       title: "用戶管理",
       icon: "el-icon-user-solid",
     },
-    redirect: '/users/list',
+    redirect: "/users/list",
     children: [
       {
         path: "list",
