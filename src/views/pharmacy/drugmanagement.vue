@@ -5,10 +5,10 @@
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="藥品編號">
-        <el-input placeholder="搜尋藥品編號" v-model="input2" />
+        <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱">
-        <el-input placeholder="搜尋藥品名稱" v-model="input2" />
+        <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
@@ -41,10 +41,17 @@
     >
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
-        <Button label="取消掛號" class="p-button-sm p-button-warning" />
+        <Button label="刪除" class="p-button-sm p-button-warning" />
       </div>
 
-      <div>{{ item.id || "暫無資料" }}</div>
+      <div>
+        <InputSwitch
+          class="transform translate-y-1.5"
+          v-model="item.review"
+          size="small"
+          @click.stop="toggleDetail(item)"
+        ></InputSwitch>
+      </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -55,7 +62,8 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
     </main>
 
     <!-- 分頁 -->
@@ -78,100 +86,39 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
 //身分證號
 let headers = [
-  { name: "掛號清單", key: "id", sortDesc: null },
-  { name: "掛號/預約日期", key: "name", sortDesc: null },
-  { name: "看診時段", key: "name", sortDesc: null },
-  { name: "看診號", key: "age", sortDesc: null },
-  { name: "看診狀態", key: "age", sortDesc: null },
-  { name: "就醫類別", key: "age", sortDesc: null },
-  { name: "科別", key: "age", sortDesc: null },
-  { name: "病歷號碼", key: "age", sortDesc: null },
-  { name: "病換姓名", key: "age", sortDesc: null },
-  { name: "身分證號", key: "age", sortDesc: null },
-  { name: "醫師姓名", key: "age", sortDesc: null },
-  { name: "診間", key: "age", sortDesc: null },
+  { name: "低於庫存下限轉採購單", key: "id", sortDesc: null },
+  { name: "藥品編號", key: "name", sortDesc: null },
+  { name: "藥品名稱", key: "name", sortDesc: null },
+  { name: "單位", key: "age", sortDesc: null },
+  { name: "規格", key: "age", sortDesc: null },
+  { name: "進價", key: "age", sortDesc: null },
+  { name: "售價", key: "age", sortDesc: null },
+  { name: "存量", key: "age", sortDesc: null },
+  { name: "庫存上限", key: "age", sortDesc: null },
+  { name: "庫存下限", key: "age", sortDesc: null },
+  { name: "產地", key: "age", sortDesc: null },
+  { name: "劑型", key: "age", sortDesc: null },
+  { name: "收費項目", key: "age", sortDesc: null },
 ];
 
 export default {
   name: "inquerylist",
-
-  data() {
-    return {
-      input1: "J120092876",
-      value: "",
-      value2: "",
-      zh: {
-        firstDayOfWeek: 0,
-        dayNames: [
-          "星期日",
-          "星期一",
-          "星期二",
-          "星期三",
-          "星期四",
-          "星期五",
-          "星期六",
-        ],
-        dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-        dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-        monthNames: [
-          "一月",
-          "二月",
-          "三月",
-          "四月",
-          "五月",
-          "六月",
-          "七月",
-          "八月",
-          "九月",
-          "十月",
-          "十一月",
-          "十二月",
-        ],
-        monthNamesShort: [
-          "一",
-          "二",
-          "三",
-          "四",
-          "五",
-          "六",
-          "七",
-          "八",
-          "九",
-          "十",
-          "十一",
-          "十二",
-        ],
-        today: "今天",
-        clear: "清空",
-        dateFormat: "yy-mm-dd",
-        weekHeader: "周",
-      },
-    };
-  },
   components: {
     Pagination,
   },
   setup() {
-    // 玩家列表數據
+    //搜尋變數
+    const searchDrugId = ref("");
+    const searchDrugName = ref("");
+    // 列表數據
     const router = useRouter();
     headers = ref(headers);
-
     const { state, getList, delItem } = useList();
-
-    // 用戶更新
+    // 更新
     function handleEdit({ row }) {
       router.push({
         name: "userEdit",
         params: { id: row.id },
-      });
-    }
-
-    // 刪除玩家
-    function handleDelete({ row }) {
-      delItem(row.id).then(() => {
-        // todo:刪除這一行，或者重新獲取數據
-        // 通知用戶
-        Message.success("刪除成功！");
       });
     }
 
@@ -185,9 +132,10 @@ export default {
       ...toRefs(state),
       getList,
       handleEdit,
-      handleDelete,
       headers,
       toggleDetail,
+      searchDrugId,
+      searchDrugName,
     };
   },
   mounted() {
@@ -198,9 +146,9 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 140px 90px 126px repeat(8, minmax(90px, 120px)) 120px minmax(
-      90px,
-      1fr
+  grid-template-columns: 140px 190px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
+      2,
+      minmax(90px, 1fr)
     );
 }
 </style>
