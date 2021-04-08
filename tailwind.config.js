@@ -7,8 +7,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-     
-      ...colors,
+      ...colors,// includes all the tailwind build-in colors here; by default, it only includes part of colors 
     },
     extend: {
       textColor:{
