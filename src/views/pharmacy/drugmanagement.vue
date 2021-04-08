@@ -133,6 +133,12 @@ export default {
       global.openAddDrugDialog = true;
     };
 
+    const toggleDetail = (item) => {
+      const review = item.review;
+      state.list.forEach((s) => (s.review = false));
+      item.review = !review;
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -141,6 +147,7 @@ export default {
       searchDrugName,
       isOpenAddDrugDialog,
       openAddDialog,
+      toggleDetail,
     };
   },
   mounted() {
