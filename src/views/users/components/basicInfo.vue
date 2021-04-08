@@ -271,11 +271,9 @@ export default {
 
 .dtc-autoflow-grid {
   grid-template-columns: repeat(auto-fill, minmax(120px, 200px));
-  @apply bg-info;
 }
 .dtc-page-header-grid {
   grid-template-columns: max-content 1rem max-content max-content;
   overflow: hidden;
-  @apply bg-info;
 }
 </style>

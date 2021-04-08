@@ -85,6 +85,5 @@ export default {
   grid-template-columns: max-content 1fr max-content max-content;
   overflow: hidden;
   gap: 1rem;
-  @apply bg-primay;
 }
 </style>
