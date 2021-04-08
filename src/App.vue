@@ -86,10 +86,7 @@ watch(idle2, () => {
 <style lang="scss">
 #app.dark-mode {
   background: var(--dark) !important;
-  .top-section {
-    box-shadow: 100vw 100vh 0 var(--dark) !important;
-    background: var(--dark) !important;
-  }
+
   .bg-white {
     background: none !important;
   }
