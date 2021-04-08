@@ -28,6 +28,7 @@
     <header
       class="dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
+      <div>低於庫存下限轉採購單</div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -50,11 +51,6 @@
         i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
       "
     >
-      <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
-        <Button label="刪除" class="p-button-sm p-button-warning" />
-      </div>
-
       <div>
         <InputSwitch
           class="transform translate-y-1.5"
@@ -63,6 +59,11 @@
           @click.stop="toggleDetail(item)"
         ></InputSwitch>
       </div>
+      <div class="flex flex-none space-x-2">
+        <Button label="編輯" class="p-button-sm" />
+        <Button label="刪除" class="p-button-sm p-button-warning" />
+      </div>
+
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -95,7 +96,6 @@ import { useList } from "../users/model/userModel";
 import DrugAdd from "./drugAdd.vue";
 //身分證號
 let headers = [
-  { name: "低於庫存下限轉採購單", key: "id", sortDesc: null },
   { name: "藥品編號", key: "name", sortDesc: null },
   { name: "藥品名稱", key: "name", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
@@ -166,7 +166,7 @@ export default {
   }
 }
 .dtc-template-columns {
-  grid-template-columns: 140px 190px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
+  grid-template-columns: 190px 140px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
       2,
       minmax(90px, 1fr)
     );
