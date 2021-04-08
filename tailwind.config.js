@@ -19,7 +19,7 @@ module.exports = {
           base: 'var(--bs-orange)'
         }
       },
-      backgroundImage: theme => ({ //bg-light-pattern  , bg-footer-texture
+      backgroundImage: theme => ({ //bg-light-pattern  , bg-footer-texture, bg-xxxx all start with bg in scss or css files
          'light-pattern': "linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%)",
          'light-pattern-active': "linear-gradient(180deg, #CED5FF 0%, #ABB8FF 100%)",
          'dark-pattern': 'linear-gradient(rgb(33, 35, 37) 0%, rgb(30, 33, 34) 47%, rgb(45, 48, 50) 100%);',

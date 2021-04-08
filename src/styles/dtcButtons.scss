@@ -1,7 +1,7 @@
 
 .dtc-tabs{
   position: relative;
-  @apply cursor-pointer  flex flex-none space-x-0.5;
+  @apply cursor-pointer flex flex-none space-x-0.5;
   > * {
     height:45px;
     line-height: 45px;
