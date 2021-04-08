@@ -30,7 +30,6 @@ export default {
   width: 100%;
 }
 .dtc-label {
-  background: transparent linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0% no-repeat padding-box;
-  color: black;
+  @apply bg-light-pattern text-black;
 }
 </style>
