@@ -1,5 +1,5 @@
 <template>
-  <section class="relative">
+  <section class="relative top-section">
     <main class="warning-idle" v-if="idle1 && !$route.path.includes('login')">
       <nav>
         <header>基本醫療服務系統資訊</header>
@@ -85,8 +85,11 @@ watch(idle2, () => {
 
 <style lang="scss">
 #app.dark-mode {
-  background: var(--dark);
-  box-shadow: 100vw 100vh 0 var(--dark);
+  .top-section {
+    box-shadow: 100vw 100vh 0 var(--dark) !important;
+    background: var(--dark) !important;
+  }
+
   .dtc-page-header,
   .dtc-grid-header__divs > div {
     background-image: none !important;
@@ -96,7 +99,7 @@ watch(idle2, () => {
   }
   .dtc-grid-body {
     > div {
-      background: black !important;
+      background: var(--bs-gray-dark) !important;
       color: var(--light) !important;
     }
   }
