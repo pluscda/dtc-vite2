@@ -6,7 +6,7 @@
       <Button label="進行查詢" icon="pi pi-search" class="p-button-small" style="margin: 4px" />
       <Button label="清除查詢" class="p-button-warning p-button-small" style="margin: 4px" icon="pi pi-undo" />
     </header>
-    <main class="grid gap-1 grid-cols-2">
+    <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
       <DtxInputGroup prepend="掛號日期">
         <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
       </DtxInputGroup>

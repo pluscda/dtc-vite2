@@ -170,6 +170,8 @@ export default {
 <style lang="scss" scoped>
 .dtc-autoflow-grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
+  grid-template-rows: 40px;
+  gap: 8px;
 }
 .dtc-page-header__grid {
   grid-template-columns: max-content max-content max-content max-content 1fr repeat(4, max-content);

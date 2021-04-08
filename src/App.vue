@@ -118,6 +118,12 @@ watch(idle2, () => {
   .dtc-text {
     color: white !important;
     background: var(--gray-dark) !important;
+    border: none !important;
+    @apply ring-2 ring-coolGray-600;
+  }
+  .el-radio,
+  .dtc-text {
+    @apply ring-0;
   }
   .dtc-tabs {
     > * {

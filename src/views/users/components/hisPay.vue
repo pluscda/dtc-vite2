@@ -3,7 +3,7 @@
     <header class="dtc-page-header dtc-page-header-grid grid text-white">
       <div>應付金額</div>
     </header>
-    <main class="grid gap-1 grid-cols-2">
+    <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
       <DtxInputGroup prepend="掛號費用">
         <el-input v-model="input1" />
       </DtxInputGroup>
