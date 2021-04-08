@@ -15,6 +15,12 @@ module.exports = {
           base: 'var(--bs-orange)'
         }
       },
+      lineClamp: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+      },
       backgroundImage: theme => ({ //bg-light-pattern  , bg-footer-texture, bg-xxxx all start with bg in scss or css files
          'light-pattern': "linear-gradient(180deg, #E2E5FD 0%, #E8EAFF 47%, #C0C7F5 100%)",
          'light-pattern-active': "linear-gradient(180deg, #CED5FF 0%, #ABB8FF 100%)",
@@ -27,5 +33,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 }
