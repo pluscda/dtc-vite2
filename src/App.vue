@@ -105,13 +105,13 @@ watch(idle2, () => {
     background-image: none !important;
     background: #646b74 !important;
     color: #fff;
-    border-color: var(--light) !important;
+    border-color: #f9fafb !important;
   }
   .dtc-grid-body {
     > div {
       background: var(--bs-gray-dark) !important;
       color: var(--light) !important;
-      border-color: var(--light) !important;
+      border-color: #f9fafb !important;
     }
   }
   .dtc-label {
@@ -127,6 +127,9 @@ watch(idle2, () => {
     background: var(--gray-dark) !important;
     border: none !important;
     @apply ring-2 ring-coolGray-600;
+  }
+  input {
+    @apply focus:ring-1 focus:ring-blue-200;
   }
   .el-radio,
   .dtc-text {
