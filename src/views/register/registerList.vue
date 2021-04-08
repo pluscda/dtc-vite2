@@ -16,7 +16,7 @@
         <el-input placeholder="搜尋醫師姓名" v-model="input2" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-warning" icon="pi pi-undo" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="病歷號碼">
