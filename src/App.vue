@@ -91,11 +91,19 @@ watch(idle2, () => {
     background: none !important;
   }
 
+  .dtc-nav-bar {
+    background: #1f2937 !important;
+    background-image: none !important;
+    color: var(--light) !important;
+    .el-dropdown-selfdefine {
+      color: var(--light) !important;
+    }
+  }
+
   .dtc-page-header,
   .dtc-grid-header__divs > div {
     background-image: none !important;
     background: #646b74 !important;
-    box-shadow: 100vw 0 0 #646b74;
     color: #fff;
     border-color: var(--light) !important;
   }
