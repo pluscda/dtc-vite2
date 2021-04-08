@@ -94,6 +94,12 @@ watch(idle2, () => {
     box-shadow: 100vw 0 0 #646b74;
     color: #fff;
   }
+  .dtc-grid-header {
+    > div {
+      background: black !important;
+      color: var(--light) !important;
+    }
+  }
   .dtc-label {
     background: none !important;
     background: #646b74 !important;
