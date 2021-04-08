@@ -1,18 +1,16 @@
-import {reactive} from "vue";
+import { reactive } from "vue";
 import axios from "utils/request";
 
 const init = {
-   userDefaultBgColor: 'black'
+  userDefaultBgColor: "black",
+  openAddDrugDialog: false,
 };
 
-export let global = reactive({...init});
+export let global = reactive({ ...init });
 export const actions = {
   async sayHi() {
-    return await axios.get('http://www.google.com');
-  }
-
-}
-
-export const mutations = {
-  
+    return await axios.get("http://www.google.com");
+  },
 };
+
+export const mutations = {};
