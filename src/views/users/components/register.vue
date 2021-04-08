@@ -4,7 +4,7 @@
       <div>掛號作業</div>
       <div></div>
       <Button label="進行查詢" icon="pi pi-search" class="p-button-small" style="margin: 4px" />
-      <Button label="清除查詢" class="p-button-secondary p-button-small" style="margin: 4px" icon="pi pi-undo" />
+      <Button label="清除查詢" class="p-button-warning p-button-small" style="margin: 4px" icon="pi pi-undo" />
     </header>
     <main class="grid gap-1 grid-cols-2">
       <DtxInputGroup prepend="掛號日期">

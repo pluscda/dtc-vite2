@@ -114,6 +114,7 @@ watch(idle2, () => {
     color: #fff;
   }
   input,
+  .el-radio,
   .dtc-text {
     color: white !important;
     background: var(--gray-dark) !important;
@@ -131,6 +132,11 @@ watch(idle2, () => {
     &::after {
       background: #646b74 !important;
     }
+  }
+  main .basic-info {
+    // fix for ray
+    background: none !important;
+    background: #898b8d !important;
   }
 }
 </style>

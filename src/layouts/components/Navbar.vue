@@ -32,7 +32,7 @@
       <div class="mt-2.5 relative">
         <i-teenyicons:cog-outline style="font-size: 20px; margin-top: 22px"></i-teenyicons:cog-outline>
       </div>
-      <OverlayPanel ref="bgPanel" showCloseIcon="true" class="relative" :dismissable="true">
+      <OverlayPanel ref="bgPanel" showCloseIcon="true" class="relative bg-gray-500" :dismissable="true">
         <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">主題顏色</header>
         <ul class="grid grid-cols-2 gap-8 mt-8">
           <div class="p-field-radiobutton">
