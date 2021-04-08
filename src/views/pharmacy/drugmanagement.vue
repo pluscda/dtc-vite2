@@ -1,7 +1,8 @@
 <template>
   <section>
+    <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品信息維護</div>
+      <div>藥品信息維護{{ isOpenAddDrugDialog }}</div>
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="藥品編號">
@@ -12,6 +13,16 @@
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <div
+        class="ml-1 addNewDrug"
+        @click="openAddDialog"
+        title="新增藥品"
+        style="cursor: pointer"
+      >
+        <i-mdi:flask-empty-plus-outline
+          style="font-size: 24px; margin-top: 26px"
+        ></i-mdi:flask-empty-plus-outline>
+      </div>
     </nav>
 
     <header
@@ -78,12 +89,10 @@
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
-import { useRouter } from "vue-router";
-import { Message } from "element3";
+import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
-
 import { useList } from "../users/model/userModel";
+import DrugAdd from "./drugAdd.vue";
 //身分證號
 let headers = [
   { name: "低於庫存下限轉採購單", key: "id", sortDesc: null },
@@ -105,37 +114,33 @@ export default {
   name: "inquerylist",
   components: {
     Pagination,
+    DrugAdd,
   },
   setup() {
+    //global
+    const global = inject("global");
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     // 列表數據
-    const router = useRouter();
     headers = ref(headers);
     const { state, getList, delItem } = useList();
-    // 更新
-    function handleEdit({ row }) {
-      router.push({
-        name: "userEdit",
-        params: { id: row.id },
-      });
-    }
+    const isOpenAddDrugDialog = computed(() => {
+      return global.openAddDrugDialog;
+    });
 
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
+    const openAddDialog = () => {
+      global.openAddDrugDialog = true;
     };
 
     return {
       ...toRefs(state),
       getList,
-      handleEdit,
       headers,
-      toggleDetail,
       searchDrugId,
       searchDrugName,
+      isOpenAddDrugDialog,
+      openAddDialog,
     };
   },
   mounted() {
@@ -145,6 +150,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dtc-search-filters {
+  position: relative;
+  .addNewDrug {
+    position: absolute;
+    top: -16px;
+    right: 30px;
+  }
+}
 .dtc-template-columns {
   grid-template-columns: 140px 190px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
       2,
