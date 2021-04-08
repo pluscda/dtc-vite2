@@ -2,7 +2,7 @@
   <section>
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品信息維護{{ isOpenAddDrugDialog }}</div>
+      <div>藥品信息維護</div>
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="藥品編號">

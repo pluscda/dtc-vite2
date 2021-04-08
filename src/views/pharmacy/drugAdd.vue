@@ -21,7 +21,19 @@
             <el-input v-model="input1" />
           </DtxInputGroup>
           <DtxInputGroup prepend="是否為管制藥" labelWidth="120">
-            <el-input v-model="input1" />
+            <el-select
+              v-model="isControlledDrug"
+              placeholder="請選擇"
+              class="border-l-0"
+            >
+              <el-option
+                v-for="item in yesNoOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
           </DtxInputGroup>
           <DtxInputGroup prepend="藥品名稱" labelWidth="120">
             <el-input v-model="input1" />
@@ -131,10 +143,23 @@
 import { ref, inject } from "vue";
 
 //身分證號
-
+let yesNoOptions = [
+  {
+    value: "y",
+    label: "是",
+  },
+  {
+    value: "n",
+    label: "否",
+  },
+];
 export default {
   name: "drugAdd",
   setup() {
+    //allVariable
+    const isControlledDrug = ref("n");
+    //option
+
     //global
     const global = inject("global");
     //function
@@ -143,6 +168,8 @@ export default {
     };
 
     return {
+      isControlledDrug,
+      yesNoOptions,
       closeAddDialog,
     };
   },
