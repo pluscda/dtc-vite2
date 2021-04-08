@@ -86,6 +86,7 @@ watch(idle2, () => {
 <style lang="scss">
 #app.dark-mode {
   background: var(--dark);
+  box-shadow: 100vw 100vh 0 var(--dark);
   .dtc-page-header,
   .dtc-grid-header__divs > div {
     background-image: none !important;
@@ -99,10 +100,24 @@ watch(idle2, () => {
     box-shadow: 100vw 0 0 #646b74;
     color: #fff;
   }
-  //filter: invert(100%) hue-rotate(180deg);
-}
-
-#app.dark-mode img {
-  //filter: invert(100%) hue-rotate(0deg);
+  input,
+  .dtc-text {
+    color: white !important;
+    background: var(--gray-dark) !important;
+  }
+  .dtc-tabs {
+    > * {
+      background-image: none !important;
+      background: #646b74 !important;
+      box-shadow: 100vw 0 0 #646b74 !important;
+      color: #fff ip !important;
+    }
+    .active {
+      color: orange !important;
+    }
+    &::after {
+      background: #646b74 !important;
+    }
+  }
 }
 </style>
