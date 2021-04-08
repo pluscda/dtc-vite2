@@ -49,14 +49,9 @@
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-2"></CurrentTime>
       <div class="mt-2.5 relative">
-        <!-- <el-tooltip content="主題顏色" placement="top" effect="light">
-          <i class="pi pi-cog" style="font-size: 24px"></i>
-        </el-tooltip> -->
-        <el-tooltip content="主題顏色" placement="top" effect="light">
-          <i-teenyicons:cog-outline
-            style="font-size: 20px; margin-top: 22px"
-          ></i-teenyicons:cog-outline>
-        </el-tooltip>
+        <i-teenyicons:cog-outline
+          style="font-size: 20px; margin-top: 22px"
+        ></i-teenyicons:cog-outline>
       </div>
       <OverlayPanel
         ref="bgPanel"
@@ -95,11 +90,9 @@
       style="margin-right: 18px"
     >
       <div class="mt-1">
-        <el-tooltip content="個人中心" placement="top" effect="light">
-          <i-carbon:user-avatar-filled-alt
-            style="font-size: 24px; margin-top: 26px"
-          ></i-carbon:user-avatar-filled-alt>
-        </el-tooltip>
+        <i-carbon:user-avatar-filled-alt
+          style="font-size: 24px; margin-top: 26px"
+        ></i-carbon:user-avatar-filled-alt>
       </div>
 
       <OverlayPanel
