@@ -83,13 +83,26 @@ watch(idle2, () => {
 }
 </style>
 
-<style>
+<style lang="scss">
 #app.dark-mode {
-  background: var(--white);
-  filter: invert(100%) hue-rotate(180deg);
+  background: var(--dark);
+  .dtc-page-header,
+  .dtc-grid-header__divs > div {
+    background-image: none !important;
+    background: #646b74 !important;
+    box-shadow: 100vw 0 0 #646b74;
+    color: #fff;
+  }
+  .dtc-label {
+    background: none !important;
+    background: #646b74 !important;
+    box-shadow: 100vw 0 0 #646b74;
+    color: #fff;
+  }
+  //filter: invert(100%) hue-rotate(180deg);
 }
 
 #app.dark-mode img {
-  filter: invert(100%) hue-rotate(0deg);
+  //filter: invert(100%) hue-rotate(0deg);
 }
 </style>
