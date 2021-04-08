@@ -1,6 +1,6 @@
 <template>
   <nav class="text-blue-200 bg-gradient-to-r from-blue-900 to-blue-700 dtc-nav-bar">
-    <span class="text-fuchsia-300"><i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group></span>
+    <span :class="bgColor == 'dark-mode' ? 'text-fuchsia-300' : ''"><i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group></span>
     <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">基本醫療服務</div>
     <section class="flex gap-8 cursor-pointer">
       <div @click="$router.push('/home')">首頁</div>
@@ -84,6 +84,7 @@ const axios = inject("axios");
 // });
 watch(bgColor, (v) => {
   document.querySelector("#app").className = v;
+  global.userDefaultBgColor = v;
 });
 tryOnMounted(() => {
   document.querySelector("#app").className = bgColor.value;
