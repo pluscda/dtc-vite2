@@ -69,9 +69,10 @@
 <script setup>
 import { ref, inject, computed, onMounted, watch } from "vue";
 import CurrentTime from "cps/CurrentTime.vue";
+import { tryOnMounted } from "@vueuse/shared";
 const bgPanel = ref(null);
 const avatarPanel = ref(null);
-const bgColor = ref("Taipei");
+const bgColor = ref("dark-mode");
 const toggleBg = (event) => bgPanel.value.toggle(event);
 const toggleAvatar = (event) => avatarPanel.value.toggle(event);
 const global = inject("global");
@@ -83,6 +84,9 @@ const axios = inject("axios");
 // });
 watch(bgColor, (v) => {
   document.querySelector("#app").className = v;
+});
+tryOnMounted(() => {
+  document.querySelector("#app").className = bgColor.value;
 });
 </script>
 
