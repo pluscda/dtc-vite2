@@ -8,9 +8,9 @@
   .dtc-nav-bar {
     background: #2563EB!important;
     background-image: none !important;
-    color: var(--light) !important;
+    color: #DBEAFE !important;
     .el-dropdown-selfdefine {
-      color: var(--light) !important;
+      color: #BFDBFE !important;
     }
   }
   .dtc-grid-header{
@@ -20,14 +20,14 @@
   .dtc-grid-header__divs > div {
     background-image: none !important;
     background: #1E3A8A!important;
-    color: #fff;
+    color: #DBEAFE;
     //border-color: #9CA3AF !important;
   } 
  
   .dtc-label {
     background: none !important;
     background: #1E3A8A!important;
-    color:#F9FAFB;
+    color:#DBEAFE;
   }
   // input,
   // .el-radio,
