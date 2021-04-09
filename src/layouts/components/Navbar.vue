@@ -36,7 +36,7 @@
         <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">主題顏色</header>
         <ul class="grid grid-cols-2 gap-8 mt-8">
           <div class="p-field-radiobutton">
-            <RadioButton id="bgColor1" value="dark-mode" v-model="bgColor" />
+            <RadioButton id="bgColor1" value="dark" v-model="bgColor" />
             <label for="bgColor1" class="pl-2">暗色系</label>
           </div>
           <div class="p-field-radiobutton">
@@ -72,7 +72,7 @@ import CurrentTime from "cps/CurrentTime.vue";
 import { tryOnMounted } from "@vueuse/shared";
 const bgPanel = ref(null);
 const avatarPanel = ref(null);
-const bgColor = ref("dark-mode");
+const bgColor = ref("dark");
 const toggleBg = (event) => bgPanel.value.toggle(event);
 const toggleAvatar = (event) => avatarPanel.value.toggle(event);
 const global = inject("global");

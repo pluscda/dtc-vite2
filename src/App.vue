@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import { global, actions, mutations } from '/@/store/global';
+import { global, actions, mutations } from "/@/store/global";
 
 export default {
-  name: 'App',
+  name: "App",
   provide: {
     global,
     actions,
@@ -29,24 +29,24 @@ export default {
 </script>
 
 <script setup>
-import { useIdle } from '@vueuse/core';
-import { watch } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import CountDown from 'cps/Countdown.vue';
+import { useIdle } from "@vueuse/core";
+import { watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import CountDown from "cps/Countdown.vue";
 const { idle: idle1 } = useIdle(9 * 60 * 1000); // 9 min
 const { idle: idle2 } = useIdle(10 * 60 * 1000); // 10 min
 const router = useRouter();
 const route = useRoute();
 watch(idle2, () => {
-  if (idle2.value && !route.path.includes('login')) {
-    router.push('login');
+  if (idle2.value && !route.path.includes("login")) {
+    router.push("login");
   }
 });
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Microsoft JhengHei', Helvetica, Arial, sans-serif !important;
+  font-family: "Microsoft JhengHei", Helvetica, Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -84,7 +84,7 @@ watch(idle2, () => {
 </style>
 
 <style lang="scss">
-#app.dark-mode {
+#app.dark {
   background: var(--dark) !important;
 
   .bg-white {
