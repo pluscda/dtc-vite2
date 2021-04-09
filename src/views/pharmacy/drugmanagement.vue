@@ -23,7 +23,10 @@
     </nav>
 
     <header class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div title="低於庫存下限轉採購單" class="title-word1">採購單(註1)</div>
+      <div title="低於庫存下限轉採購單" class="title-word1">
+        採購單
+        <small style="font-size: 9px; -webkit-transform: scale(0.75)">(註1)</small>
+      </div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -139,20 +142,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dtc-grid-grumanagement-header {
-  height: 58px;
-  line-height: 50px;
-}
 .dtc-template-columns {
   grid-template-columns: 100px 140px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(2, minmax(90px, 1fr));
-  .title-word1 {
-    position: relative;
-    .title-word1-comment {
-      position: absolute;
-      font-size: 8px;
-      top: 21px;
-      right: 5px;
-    }
+}
+.management {
+  position: relative;
+  .comment {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
   }
 }
 </style>
