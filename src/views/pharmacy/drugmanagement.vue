@@ -122,7 +122,6 @@ export default {
     //global
     const global = inject("global");
     //搜尋變數
-    let tab = ref(1);
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     // 列表數據
@@ -133,13 +132,8 @@ export default {
     });
 
     const openAddDialog = () => {
-      tab.value = 2;
       global.openAddDrugDialog = true;
     };
-    // function openAddDialog() {
-    //   tab.value = 2;
-    //   alert(132);
-    // }
 
     const toggleDetail = (item) => {
       const review = item.review;
@@ -156,7 +150,6 @@ export default {
       isOpenAddDrugDialog,
       openAddDialog,
       toggleDetail,
-      tab,
     };
   },
   mounted() {
