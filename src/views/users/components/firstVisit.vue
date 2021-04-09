@@ -1,5 +1,5 @@
 <template>
-  <div class="pr-1">
+  <div class="pr-1 -mt-2">
     <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
       <div>初診病患基本資料卡</div>
     </header>
