@@ -50,15 +50,15 @@
   .dtc-tabs {
     > * {
       background-image: none !important;
-      background: #646b74 !important;
-      box-shadow: 100vw 0 0 #646b74 !important;
+      background: #0f579b !important;
+      box-shadow: 100vw 0 0 #0f579b !important;
       color: #fff !important;
     }
     .active {
       color: orange !important;
     }
     &::after {
-      background: #646b74 !important;
+      background: #0f579b !important;
     }
   }
   main .basic-info {
