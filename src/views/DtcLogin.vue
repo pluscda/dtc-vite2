@@ -20,11 +20,8 @@
 </template>
 
 <script>
-import ParticalLogin from "cps/ParticalLogin.vue";
 export default {
-  components: {
-    ParticalLogin,
-  },
+  components: {},
 };
 </script>
 
