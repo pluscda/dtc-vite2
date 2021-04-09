@@ -2,6 +2,8 @@
 import axios from "axios";
 //'development' for dev, 'production' for build; staging is defined by DTC 
 //alert(process.env.NODE_ENV) it is the same as:    import.meta.env.MODE
+// process.env.NODE_ENV ==  import.meta.env.MODE
+//ref: https://vitejs.dev/guide/env-and-mode.html
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 720 * 1000, // Timeout
