@@ -4,7 +4,7 @@
       <header>新增藥品</header>
       <div class="pl-1 pr-1 pt-2 inputs-dvs">
         <h1>新增藥品資料</h1>
-        <main class="grid gap-1 dtc-grid-cols">
+        <main class="grid dtc-grid-cols">
           <DtxInputGroup prepend="衛統編號" labelWidth="120">
             <el-input v-model="input1" />
           </DtxInputGroup>
@@ -102,7 +102,7 @@
       </div>
       <div class="pl-1 pr-1 inputs-dvs">
         <h1>新增藥品資料</h1>
-        <main class="grid gap-1 grid-cols-1">
+        <main class="grid dtc-grid-cols2">
           <DtxInputGroup prepend="警語(副作用)" labelWidth="120">
             <el-input v-model="input1" />
           </DtxInputGroup>
@@ -122,17 +122,17 @@
       </div>
       <footer>
         <Button
-          label="取消"
-          class="p-button-rounded p-button-warning footer-btn"
-          @click="closeAddDialog"
-        />
-        <Button
           label="重新填寫"
           class="p-button-rounded p-button-info footer-btn"
         />
         <Button
           label="儲存"
           class="p-button-rounded p-button-success footer-btn"
+        />
+        <Button
+          label="取消"
+          class="p-button-rounded p-button-warning footer-btn"
+          @click="closeAddDialog"
         />
       </footer>
     </div>
@@ -188,7 +188,7 @@ export default {
   place-items: center;
   z-index: 999;
   .my-wrapper {
-    width: 1000px;
+    width: 1010px;
     min-height: 220px;
     background: white;
     border-radius: 10px;
@@ -212,9 +212,15 @@ export default {
       }
       .dtc-grid-cols {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-column-gap: 16px;
+        grid-row-gap: 5px;
         div {
           margin-bottom: 2px;
         }
+      }
+      .dtc-grid-cols2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-row-gap: 7px;
       }
     }
 
