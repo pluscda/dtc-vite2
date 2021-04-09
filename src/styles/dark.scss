@@ -6,11 +6,11 @@
   }
 
   .dtc-nav-bar {
-    background: #581C87 !important;
+    background: #581c87 !important;
     background-image: none !important;
-    color: #F3E8FF !important;
+    color: #f3e8ff !important;
     .el-dropdown-selfdefine {
-      color: #F3E8FF !important;
+      color: #f3e8ff !important;
     }
   }
   .dtc-grid-header {
@@ -58,6 +58,9 @@
     background: var(--gray-dark) !important;
     border: none !important;
     @apply ring-2 ring-coolGray-600;
+  }
+  .el-checkbox__label {
+    color: white !important;
   }
   .dtx-prepend {
     @apply ring-2 ring-coolGray-600;

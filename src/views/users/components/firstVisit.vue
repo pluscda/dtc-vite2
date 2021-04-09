@@ -3,7 +3,7 @@
     <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
       <div>初診病患基本資料卡</div>
     </header>
-    <main class="grid gap-1">
+    <main class="grid gap-3">
       <DtxInputGroup prepend="病歷號碼" labelWidth="104">
         <el-input v-model="medicalNumber" />
       </DtxInputGroup>
@@ -205,7 +205,7 @@
     <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
       <div>病患健康自評表 (病患填寫)</div>
     </header>
-    <main class="grid gap-1 grid-cols-2">
+    <main class="grid gap-3 grid-cols-2">
       <div class="basic-info basic-info-secion1">
         <DtxInputGroup prepend="身高" append="cm" labelWidth="104">
           <el-input v-model="height" />
@@ -377,7 +377,7 @@
     <header class="dtc-page-header dtc-page-header-grid grid text-white mt-2">
       <div>健康追蹤項目 (專業人員填寫)</div>
     </header>
-    <main class="grid gap-1 grid-cols-2">
+    <main class="grid gap-2 grid-cols-2">
       <div
         class="flex relative my-flex"
         style="
@@ -421,7 +421,7 @@
             </div>
           </div>
           <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
-            <div class="mr-1 w-28 text-right">轉介營養諮詢:</div>
+            <div class="mr-1 w-28 text-right dtc-text">轉介營養諮詢:</div>
             <div>
               <el-checkbox-group v-model="doctorQA3">
                 <el-checkbox label="照會"></el-checkbox>
@@ -430,7 +430,7 @@
             </div>
           </div>
           <div class="grid mt-2" style="grid-template-columns: 130px 520px 1fr">
-            <div class="mr-1 w-28 text-right">未轉介原因:</div>
+            <div class="mr-1 w-28 text-right dtc-text">未轉介原因:</div>
             <div>
               <el-checkbox-group v-model="doctorQA4">
                 <el-checkbox label="病人無意願"></el-checkbox>
@@ -441,12 +441,12 @@
             </div>
             <el-input v-model="medicalNumber" style="background-color: #fff" />
           </div>
-          <div class="mt-2">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
+          <div class="mt-2 dtc-text">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
           <div
             class="mt-4 text-right flex flex-row pr-10"
             style="justify-content: flex-end"
           >
-            <div class="mr-3">醫師:</div>
+            <div class="mr-3 dtc-text">醫師:</div>
             <div style="color: #888">請蓋章</div>
           </div>
         </div>
@@ -471,7 +471,7 @@
         </div>
         <div class="question-for-doctor">
           <div class="grid mt-2" style="grid-template-columns: 130px 530px">
-            <div class="mr-1 w-28 text-right">衛教指導:</div>
+            <div class="mr-1 w-28 text-right dtc-text">衛教指導:</div>
             <div>
               <el-checkbox-group v-model="healthTeacherQA">
                 <el-checkbox label="戒菸"></el-checkbox>
@@ -491,11 +491,11 @@
             class="mt-4 text-right flex flex-row pr-10"
             style="justify-content: flex-end"
           >
-            <div class="mr-3">衛教師:</div>
+            <div class="mr-3 dtc-text">衛教師:</div>
             <div style="color: #888">請蓋章</div>
           </div>
           <hr class="mt-8 mb-3" size="8px" align="center" width="100%" />
-          <div>
+          <div class="dtc-text">
             本院配合國建署推動全民健康生活政策，協助您關心及記錄自己的健康狀況與您該知道的健康訊息及相關資源，讓您的自我健康管理可以做得更好!
             以上衛教說明，如果您了解，請幫我們簽名:<span
               class="inline-block px-10 pt-2 pb-2"
