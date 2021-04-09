@@ -1,7 +1,6 @@
 //https://www.mdeditor.tw/pl/gc7t/zh-hk
 import axios from "axios";
 //'development' for dev, 'production' for build; staging is defined by DTC 
-//alert(process.env.NODE_ENV) it is the same as:    import.meta.env.MODE
 // process.env.NODE_ENV ==  import.meta.env.MODE
 // if running in prodctuion, we can use import.meta.env.PROD  it is boolean
 //ref: https://vitejs.dev/guide/env-and-mode.html
