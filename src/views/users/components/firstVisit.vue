@@ -398,7 +398,7 @@
         </div>
         <div class="question-for-doctor">
           <div class="grid" style="grid-template-columns: 130px 1fr">
-            <div class="mr-1 w-28 text-right">健康促進需求:</div>
+            <div class="mr-1 w-28 text-right dtc-text">健康促進需求:</div>
             <div>
               <el-radio
                 v-model="doctorQA1"
@@ -412,7 +412,7 @@
             </div>
           </div>
           <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
-            <div class="mr-1 w-28 text-right">戒菸門診:</div>
+            <div class="mr-1 w-28 text-right dtc-text">戒菸門診:</div>
             <div>
               <el-checkbox-group v-model="doctorQA2">
                 <el-checkbox label="照會"></el-checkbox>
