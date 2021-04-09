@@ -13,14 +13,21 @@
       color: var(--light) !important;
     }
   }
-
+  .dtc-grid-header{
+     border-color: #9CA3AF !important;
+  }
   .dtc-page-header,
   .dtc-grid-header__divs > div {
     background-image: none !important;
     background: #4B5563 !important;
     color: #fff;
+    border-color: #9CA3AF !important;
   } 
   .dtc-grid-body {
+    border-color: #9CA3AF !important;
+    > div{
+      border-color: #9CA3AF !important;
+    }
     &:nth-child(odd) {
       background-color: #475569 !important;
       color: #f8fafc !important;
@@ -30,7 +37,7 @@
       color: #f8fafc !important;
     }
     > div {
-      border-color: #f9fafb !important;
+      border-color: #9CA3AF !important;
     }
   }
   .dtc-label {
