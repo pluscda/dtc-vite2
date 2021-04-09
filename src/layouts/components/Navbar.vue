@@ -30,7 +30,7 @@
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-3"></CurrentTime>
       <div class="mt-2.5 relative">
-        <el-tooltip content="切換暗色系主題顏色" placement="bottom" effect="light">
+        <el-tooltip content="切換主題顏色" placement="bottom" effect="light">
           <InputSwitch v-model="bgColor" class="transform translate-x-6 translate-y-2" />
         </el-tooltip>
       </div>
