@@ -2,14 +2,14 @@
   <section class="management">
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品信息維護</div>
+      <div>藥品總覽清單</div>
 
-      <Button
+      <!-- <Button
         style="margin: 4px 0px; text-align: center"
         class="p-button-rounded p-button-help"
         @click="openAddDialog"
         >新增藥品</Button
-      >
+      > -->
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="藥品編號">
@@ -159,18 +159,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dtc-page-header {
-  display: grid;
-  grid-template-columns: 140px 100px;
-  > div {
-    text-align: center;
-  }
-  .tab-style {
-    background: #7b85d2;
-    color: #fff;
-  }
-}
-
 .dtc-grid-grumanagement-header {
   height: 58px;
   line-height: 50px;

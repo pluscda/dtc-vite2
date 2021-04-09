@@ -64,7 +64,7 @@ export const routes = [
     path: "/pharmacy",
     redirect: "/pharmacy/drugmanagement",
     component: Layout,
-    meta: { title: "掛號總覽清單", icon: "el-icon-s-home" },
+    meta: { title: "藥品總覽清單", icon: "el-icon-s-home" },
     children: [
       {
         path: "drugmanagement",
