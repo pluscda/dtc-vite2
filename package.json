@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "serve": "vite --mode staging",
-    "build": "cross-env TAILWIND_MODE=build vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
