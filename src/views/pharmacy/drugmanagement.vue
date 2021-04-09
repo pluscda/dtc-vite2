@@ -3,15 +3,8 @@
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品總覽清單</div>
-
-      <!-- <Button
-        style="margin: 4px 0px; text-align: center"
-        class="p-button-rounded p-button-help"
-        @click="openAddDialog"
-        >新增藥品</Button
-      > -->
     </header>
-    <nav class="mb-2 ml-1 dtc-search-filters">
+    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="藥品編號">
         <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
       </DtxInputGroup>
