@@ -72,7 +72,7 @@ const axios = inject("axios");
 //   axios.get("/getUsers");
 // });
 watch(bgColor, (v) => {
-  document.querySelector("#app").className = v ? "dark" : "";
+  document.querySelector("#app").className = v ? "dark" : "light";
   global.userDefaultBgColor = v;
 });
 tryOnMounted(() => {

@@ -1,0 +1,69 @@
+#app.light {
+  background: var(--light) !important;
+
+  .bg-white {
+    background: none !important;
+  }
+
+  .dtc-nav-bar {
+    background: #2563EB!important;
+    background-image: none !important;
+    color: var(--light) !important;
+    .el-dropdown-selfdefine {
+      color: var(--light) !important;
+    }
+  }
+  .dtc-grid-header{
+    
+  }
+  .dtc-page-header,
+  .dtc-grid-header__divs > div {
+    background-image: none !important;
+    background: #1E3A8A!important;
+    color: #fff;
+    //border-color: #9CA3AF !important;
+  } 
+ 
+  .dtc-label {
+    background: none !important;
+    background: #1E3A8A!important;
+    color:#F9FAFB;
+  }
+  // input,
+  // .el-radio,
+  // .dtc-text {
+  //   color: white !important;
+  //   background: var(--gray-dark) !important;
+  //   border: none !important;
+  //   @apply ring-2 ring-coolGray-600;
+  // }
+  // .dtx-prepend {
+  //   @apply ring-2 ring-coolGray-600;
+  // }
+  input {
+    @apply focus:ring-1 focus:ring-blue-200;
+  }
+  .el-radio,
+  .dtc-text {
+    @apply ring-0;
+  }
+  .dtc-tabs {
+    > * {
+      background-image: none !important;
+      background: #646b74 !important;
+      box-shadow: 100vw 0 0 #646b74 !important;
+      color: #fff !important;
+    }
+    .active {
+      color: orange !important;
+    }
+    &::after {
+      background: #646b74 !important;
+    }
+  }
+  main .basic-info {
+    // fix for ray
+    background: none !important;
+    background: #898b8d !important;
+  }
+}
