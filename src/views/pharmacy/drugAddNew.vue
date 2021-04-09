@@ -6,7 +6,7 @@
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="衛統編號" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入衛統編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
         <el-input v-model="input1" />
@@ -68,13 +68,13 @@
       <DtxInputGroup prepend="適應症狀1" labelWidth="120">
         <el-input v-model="input1" />
       </DtxInputGroup>
+      <DtxInputGroup prepend="適應症狀2" labelWidth="120">
+        <el-input v-model="input1" />
+      </DtxInputGroup>
       <DtxInputGroup prepend="煎藥方式" labelWidth="120">
         <el-input v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="適應症狀2" labelWidth="120">
         <el-input v-model="input1" />
       </DtxInputGroup>
 
@@ -132,6 +132,7 @@
 </template>
 
 <script>
+import { ref, inject } from "vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -139,32 +140,35 @@ let headers = [
   { name: "年齡", key: "age", sortDesc: null },
 ];
 
+let yesNoOptions = [
+  {
+    value: "y",
+    label: "是",
+  },
+  {
+    value: "n",
+    label: "否",
+  },
+];
+
 export default {
-  name: "payhis",
+  name: "drugAddNew",
+  setup() {
+    //allVariable
+    const isControlledDrug = ref("n");
+    //option
 
-  data() {
+    //global
+    const global = inject("global");
+    //function
+    const closeAddDialog = () => {
+      global.openAddDrugDialog = false;
+    };
+
     return {
-      input1: "J120092876",
-      options: [
-        {
-          value: "選項1",
-          label: "牙科就診",
-        },
-
-        {
-          value: "選項3",
-          label: "身心障礙",
-        },
-        {
-          value: "選項4",
-          label: "發展遲緩兒童",
-        },
-        {
-          value: "選項5",
-          label: "失能老人",
-        },
-      ],
-      value: "",
+      isControlledDrug,
+      yesNoOptions,
+      closeAddDialog,
     };
   },
 };
