@@ -9,16 +9,16 @@
         <el-input v-model="input1" placeholder="輸入衛統編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
-        <el-input v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="皮試標誌" labelWidth="120">
-        <el-input placeholder="" v-model="input1" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="藥品編號" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入庫存上限" />
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存下限" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入庫存下限" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="皮試標誌" labelWidth="120">
+        <el-input placeholder="輸入皮試標誌" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥品編號" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入藥品編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="是否為管制藥" labelWidth="120">
         <el-select
@@ -36,85 +36,85 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入藥品名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="產地" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入產地" />
       </DtxInputGroup>
       <DtxInputGroup prepend="絕對禁忌" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入絕對禁忌" />
       </DtxInputGroup>
       <DtxInputGroup prepend="學名" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入學名" />
       </DtxInputGroup>
       <DtxInputGroup prepend="廠商" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入廠商" />
       </DtxInputGroup>
       <DtxInputGroup prepend="醫保等級" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入醫保等級" />
       </DtxInputGroup>
       <DtxInputGroup prepend="劑量" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入劑量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品類型" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入藥品類型" />
       </DtxInputGroup>
       <DtxInputGroup prepend="給藥方式" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入給藥方式" />
       </DtxInputGroup>
       <DtxInputGroup prepend="類別" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入類別" />
       </DtxInputGroup>
       <DtxInputGroup prepend="適應症狀1" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入適應症狀1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="適應症狀2" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入適應症狀2" />
       </DtxInputGroup>
       <DtxInputGroup prepend="煎藥方式" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入煎藥方式" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入用藥單位" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="規格" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入規格" />
       </DtxInputGroup>
       <DtxInputGroup prepend="收費項目" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入收費項目" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="進價" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入進價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入抗生素藥物" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="售價" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入售價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素等級" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入抗生素等級" />
       </DtxInputGroup>
     </main>
     <h1 class="my-3 drgu-add-title dtc-text">藥理資料</h1>
     <main class="grid dtc-list-grid2">
       <DtxInputGroup prepend="警語(副作用)" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入警語(副作用)" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用前注意" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入用前注意" />
       </DtxInputGroup>
       <DtxInputGroup prepend="不良反應" labelWidth="120">
-        <el-input placeholder="" v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入不良反應" />
       </DtxInputGroup>
       <DtxInputGroup prepend="儲存條件" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入儲存條件" />
       </DtxInputGroup>
       <DtxInputGroup prepend="圖片名稱" labelWidth="120">
-        <el-input v-model="input1" />
+        <el-input v-model="input1" placeholder="輸入圖片名稱" />
       </DtxInputGroup>
     </main>
     <footer class="mt-6 mb-4">
