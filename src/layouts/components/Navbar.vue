@@ -30,29 +30,18 @@
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-2"></CurrentTime>
       <div class="mt-2.5 relative">
-        <i-teenyicons:cog-outline style="font-size: 20px; margin-top: 22px"></i-teenyicons:cog-outline>
+        <el-tooltip content="切換主題顏色" placement="bottom" effect="light">
+          <InputSwitch v-model="bgColor" class="transform translate-x-6 translate-y-2" />
+        </el-tooltip>
       </div>
-      <OverlayPanel ref="bgPanel" showCloseIcon="true" class="relative bg-gray-500" :dismissable="true">
-        <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">主題顏色</header>
-        <ul class="grid grid-cols-2 gap-8 mt-8">
-          <div class="p-field-radiobutton">
-            <RadioButton id="bgColor1" value="dark" v-model="bgColor" />
-            <label for="bgColor1" class="pl-2">暗色系</label>
-          </div>
-          <div class="p-field-radiobutton">
-            <RadioButton id="bgColor2" value="bright-mode" v-model="bgColor" />
-            <label for="bgColor2" class="pl-2">亮色系</label>
-          </div>
-        </ul>
-      </OverlayPanel>
     </div>
     <div class="grid grid-cols-1 cursor-pointer" @click="toggleAvatar" style="margin-right: 18px">
       <div class="mt-1">
-        <i-carbon:user-avatar-filled-alt style="font-size: 24px; margin-top: 26px"></i-carbon:user-avatar-filled-alt>
+        <i-carbon:user-avatar-filled-alt style="font-size: 28px; margin-top: 24px"></i-carbon:user-avatar-filled-alt>
       </div>
 
       <OverlayPanel ref="avatarPanel" showCloseIcon="true" :dismissable="true" class="relative">
-        <header class="bg-violet-600 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">個人中心</header>
+        <header class="bg-coolGray-500 text-center text-lg pt-2 absolute inset-x-0 inset-y-0 h-10 text-white">個人中心</header>
         <ul class="grid grid-cols-2 gap-2 pt-10 relative">
           <div class="p-field-radiobutton" style="margin: 0 auto">
             <Button label="登出" class="p-button" style="font-size: 0.9rem" @click="$router.push('/login')" />
@@ -83,7 +72,7 @@ const axios = inject("axios");
 //   axios.get("/getUsers");
 // });
 watch(bgColor, (v) => {
-  document.querySelector("#app").className = v;
+  document.querySelector("#app").className = v ? "dark" : "";
   global.userDefaultBgColor = v;
 });
 tryOnMounted(() => {
