@@ -3,7 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>掛號總覽清單</div>
     </header>
-    <nav class="mb-2 ml-1 dtc-search-filters">
+    <nav class="mb-2 ml-1 dtc-search-filters mt-3">
       <DtxInputGroup prepend="掛號日期">
         <Calendar class="h-10" v-model="value" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
