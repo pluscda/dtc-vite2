@@ -4,7 +4,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "vite",
-    "serve": "vite",
+    "serve": "vite --mode staging",
     "build": "cross-env TAILWIND_MODE=build vite build",
     "preview": "vite preview"
   },

@@ -1,5 +1,6 @@
+//https://vitejs.dev/guide/env-and-mode.html#modes
+
 import path from "path";
-//import dayjs from "dayjs";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { viteMockServe } from "vite-plugin-mock";
