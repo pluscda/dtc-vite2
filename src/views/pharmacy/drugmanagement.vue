@@ -16,7 +16,7 @@
     </nav>
 
     <header class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div title="低於庫存下限轉採購單" class="title-word1">
+      <div title="限低於庫存下可轉採購單" class="title-word1">
         採購單
         <small style="font-size: 9px; -webkit-transform: scale(0.75)">(註1)</small>
       </div>
