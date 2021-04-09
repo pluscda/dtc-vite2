@@ -7,11 +7,9 @@
     <el-backtop
       target=".index-position"
       :visibility-height="100"
-      style="color: rgb(147 68 59)"
+      style="color: rgb(58 142 229)"
     >
-      <i-mdi:clipboard-arrow-up-outline
-        style="font-size: 24px"
-      ></i-mdi:clipboard-arrow-up-outline>
+      <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
 </template>
