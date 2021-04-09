@@ -310,18 +310,7 @@
           </el-option>
         </el-select>
       </DtxInputGroup>
-      <div
-        class="basic-info"
-        style="
-          grid-column: span 5;
-          display: grid;
-          grid-template-columns: 180px repeat(3, 200px);
-          grid-gap: 5px;
-          background: #f9f9f9;
-          border: 1px solid #d7dce1;
-          padding: 5px;
-        "
-      >
+      <div class="basic-info basic-info-secion4">
         <DtxInputGroup prepend="酒" labelWidth="104">
           <el-select v-model="liqueur" class="border-l-0">
             <el-option
@@ -343,18 +332,7 @@
           <el-input v-model="liqueurTypes" />
         </DtxInputGroup>
       </div>
-      <div
-        class="basic-info"
-        style="
-          grid-column: span 5;
-          display: grid;
-          grid-template-columns: 180px repeat(2, 200px);
-          grid-gap: 5px;
-          background: #f9f9f9;
-          border: 1px solid #d7dce1;
-          padding: 5px;
-        "
-      >
+      <div class="basic-info basic-info-secion5">
         <DtxInputGroup prepend="運動" labelWidth="104">
           <el-select v-model="exercise" class="border-l-0">
             <el-option
@@ -733,6 +711,7 @@ main {
     background: #f9f9f9;
     border: 1px solid #d7dce1;
     padding: 5px;
+    grid-gap: 10px;
   }
   .basic-info-secion1 {
     grid-template-columns: 190px 190px repeat(1, 180px) 200px 210px 200px;
@@ -742,6 +721,12 @@ main {
   }
   .basic-info-secion3 {
     grid-template-columns: 180px repeat(4, 200px);
+  }
+  .basic-info-secion4 {
+    grid-template-columns: 180px repeat(3, 200px);
+  }
+  .basic-info-secion5 {
+    grid-template-columns: 180px repeat(2, 200px);
   }
   @media only screen and (max-width: 1024px) {
     .basic-info-secion1 {
