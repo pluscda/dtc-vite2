@@ -1,0 +1,79 @@
+#app.dark {
+  background: var(--dark) !important;
+
+  .bg-white {
+    background: none !important;
+  }
+
+  .dtc-nav-bar {
+    background: #1f2937 !important;
+    background-image: none !important;
+    color: var(--light) !important;
+    .el-dropdown-selfdefine {
+      color: var(--light) !important;
+    }
+  }
+
+  .dtc-page-header,
+  .dtc-grid-header__divs > div {
+    background-image: none !important;
+    background: #646b74 !important;
+    color: #fff;
+  }
+  .dtc-grid-body {
+    &:nth-child(odd) {
+      background-color: #475569 !important;
+      color: #f8fafc !important;
+    }
+    &:nth-child(even) {
+      background-color: #64748b !important;
+      color: #f8fafc !important;
+    }
+    > div {
+      border-color: #f9fafb !important;
+    }
+  }
+  .dtc-label {
+    background: none !important;
+    background: #646b74 !important;
+    box-shadow: 100vw 0 0 #646b74;
+    color: #fff;
+  }
+  input,
+  .el-radio,
+  .dtc-text {
+    color: white !important;
+    background: var(--gray-dark) !important;
+    border: none !important;
+    @apply ring-2 ring-coolGray-600;
+  }
+  .dtx-prepend {
+    @apply ring-2 ring-coolGray-600;
+  }
+  input {
+    @apply focus:ring-1 focus:ring-blue-200;
+  }
+  .el-radio,
+  .dtc-text {
+    @apply ring-0;
+  }
+  .dtc-tabs {
+    > * {
+      background-image: none !important;
+      background: #646b74 !important;
+      box-shadow: 100vw 0 0 #646b74 !important;
+      color: #fff !important;
+    }
+    .active {
+      color: orange !important;
+    }
+    &::after {
+      background: #646b74 !important;
+    }
+  }
+  main .basic-info {
+    // fix for ray
+    background: none !important;
+    background: #898b8d !important;
+  }
+}
