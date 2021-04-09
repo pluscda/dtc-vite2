@@ -13,20 +13,20 @@
       color: var(--light) !important;
     }
   }
-  .dtc-grid-header{
-     border-color: #9CA3AF !important;
+  .dtc-grid-header {
+    border-color: #9ca3af !important;
   }
   .dtc-page-header,
   .dtc-grid-header__divs > div {
     background-image: none !important;
-    background: #4B5563 !important;
+    background: #4b5563 !important;
     color: #fff;
-    border-color: #9CA3AF !important;
-  } 
+    border-color: #9ca3af !important;
+  }
   .dtc-grid-body {
-    border-color: #9CA3AF !important;
-    > div{
-      border-color: #9CA3AF !important;
+    border-color: #9ca3af !important;
+    > div {
+      border-color: #9ca3af !important;
     }
     &:nth-child(odd) {
       background-color: #475569 !important;
@@ -37,7 +37,7 @@
       color: #f8fafc !important;
     }
     > div {
-      border-color: #9CA3AF !important;
+      border-color: #9ca3af !important;
     }
   }
   .dtc-label {
@@ -82,5 +82,8 @@
     // fix for ray
     background: none !important;
     background: #898b8d !important;
+  }
+  section > section > main > section > div.comment {
+    color: #fff;
   }
 }

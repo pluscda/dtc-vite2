@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="management">
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品信息維護</div>
@@ -26,9 +26,12 @@
     </nav>
 
     <header
-      class="dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
+      class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
-      <div>低於庫存下限轉採購單</div>
+      <div title="低於庫存下限轉採購單" class="title-word1">
+        低於庫存下...
+        <div class="title-word1-comment">註1</div>
+      </div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -77,7 +80,9 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
     </main>
-
+    <div style="text-align: initial; margin: 20px 0px 0px 50px" class="comment">
+      註1: 低於庫存下限轉採購單
+    </div>
     <!-- 分頁 -->
     <pagination
       v-show="total > 0"
@@ -165,10 +170,23 @@ export default {
     right: 30px;
   }
 }
+.dtc-grid-grumanagement-header {
+  height: 58px;
+  line-height: 50px;
+}
 .dtc-template-columns {
-  grid-template-columns: 190px 140px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
+  grid-template-columns: 100px 140px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
       2,
       minmax(90px, 1fr)
     );
+  .title-word1 {
+    position: relative;
+    .title-word1-comment {
+      position: absolute;
+      font-size: 8px;
+      top: 21px;
+      right: 5px;
+    }
+  }
 }
 </style>
