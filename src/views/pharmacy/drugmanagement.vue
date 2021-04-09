@@ -2,20 +2,14 @@
   <section class="management">
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div
-        style="cursor: pointer"
-        :class="tab == 1 ? 'tab-style' : ''"
-        @click="tab = 1"
-      >
-        藥品信息維護
-      </div>
-      <div
-        style="cursor: pointer"
-        :class="tab == 2 ? 'tab-style' : ''"
+      <div>藥品信息維護</div>
+
+      <Button
+        style="margin: 4px 0px; text-align: center"
+        class="p-button-rounded p-button-help"
         @click="openAddDialog"
+        >新增藥品</Button
       >
-        新增藥品
-      </div>
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="藥品編號">
@@ -32,7 +26,7 @@
       class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
       <div title="低於庫存下限轉採購單" class="title-word1">
-        低於庫存下...
+        採購單
         <div class="title-word1-comment">註1</div>
       </div>
       <div>操作</div>
@@ -83,7 +77,7 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
     </main>
-    <div style="text-align: initial; margin: 20px 0px 0px 50px" class="comment">
+    <div style="text-align: initial; margin: 20px 0px 0px 8px" class="comment">
       註1: 低於庫存下限轉採購單
     </div>
     <!-- 分頁 -->
@@ -128,7 +122,6 @@ export default {
     //global
     const global = inject("global");
     //搜尋變數
-    let tab = ref(1);
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     // 列表數據
@@ -139,13 +132,8 @@ export default {
     });
 
     const openAddDialog = () => {
-      tab.value = 2;
       global.openAddDrugDialog = true;
     };
-    // function openAddDialog() {
-    //   tab.value = 2;
-    //   alert(132);
-    // }
 
     const toggleDetail = (item) => {
       const review = item.review;
@@ -162,7 +150,6 @@ export default {
       isOpenAddDrugDialog,
       openAddDialog,
       toggleDetail,
-      tab,
     };
   },
   mounted() {
@@ -174,7 +161,7 @@ export default {
 <style lang="scss" scoped>
 .dtc-page-header {
   display: grid;
-  grid-template-columns: 140px 120px;
+  grid-template-columns: 140px 100px;
   > div {
     text-align: center;
   }
