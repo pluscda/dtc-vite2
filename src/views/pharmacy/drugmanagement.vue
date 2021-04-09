@@ -61,7 +61,7 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
     </main>
-    <div style="text-align: initial; margin: 20px 0px 0px 8px" class="comment">註1: 低於庫存下限轉採購單</div>
+    <div style="text-align: initial; margin: 20px 0px 0px 8px" class="comment">註1: 限低於庫存下可轉採購單</div>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
