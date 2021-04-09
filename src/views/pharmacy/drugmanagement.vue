@@ -22,13 +22,8 @@
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
 
-    <header
-      class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
-    >
-      <div title="低於庫存下限轉採購單" class="title-word1">
-        採購單
-        <div class="title-word1-comment">註1</div>
-      </div>
+    <header class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
+      <div title="低於庫存下限轉採購單" class="title-word1">採購單(註1)</div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -47,17 +42,10 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div>
-        <InputSwitch
-          class="transform translate-y-1.5"
-          v-model="item.review"
-          size="small"
-          @click.stop="toggleDetail(item)"
-        ></InputSwitch>
+        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
@@ -77,17 +65,9 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
     </main>
-    <div style="text-align: initial; margin: 20px 0px 0px 8px" class="comment">
-      註1: 低於庫存下限轉採購單
-    </div>
+    <div style="text-align: initial; margin: 20px 0px 0px 8px" class="comment">註1: 低於庫存下限轉採購單</div>
     <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
@@ -164,10 +144,7 @@ export default {
   line-height: 50px;
 }
 .dtc-template-columns {
-  grid-template-columns: 100px 140px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(
-      2,
-      minmax(90px, 1fr)
-    );
+  grid-template-columns: 100px 140px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(2, minmax(90px, 1fr));
   .title-word1 {
     position: relative;
     .title-word1-comment {
