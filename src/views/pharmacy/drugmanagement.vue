@@ -2,7 +2,20 @@
   <section class="management">
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品信息維護</div>
+      <div
+        style="cursor: pointer"
+        :class="tab == 1 ? 'tab-style' : ''"
+        @click="tab = 1"
+      >
+        藥品信息維護
+      </div>
+      <div
+        style="cursor: pointer"
+        :class="tab == 2 ? 'tab-style' : ''"
+        @click="openAddDialog"
+      >
+        新增藥品
+      </div>
     </header>
     <nav class="mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="藥品編號">
@@ -13,16 +26,6 @@
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-      <div
-        class="ml-1 addNewDrug"
-        @click="openAddDialog"
-        title="新增藥品"
-        style="cursor: pointer"
-      >
-        <i-mdi:flask-empty-plus-outline
-          style="font-size: 24px; margin-top: 26px"
-        ></i-mdi:flask-empty-plus-outline>
-      </div>
     </nav>
 
     <header
@@ -125,6 +128,7 @@ export default {
     //global
     const global = inject("global");
     //搜尋變數
+    let tab = ref(1);
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     // 列表數據
@@ -135,8 +139,13 @@ export default {
     });
 
     const openAddDialog = () => {
+      tab.value = 2;
       global.openAddDrugDialog = true;
     };
+    // function openAddDialog() {
+    //   tab.value = 2;
+    //   alert(132);
+    // }
 
     const toggleDetail = (item) => {
       const review = item.review;
@@ -153,6 +162,7 @@ export default {
       isOpenAddDrugDialog,
       openAddDialog,
       toggleDetail,
+      tab,
     };
   },
   mounted() {
@@ -162,14 +172,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dtc-search-filters {
-  position: relative;
-  .addNewDrug {
-    position: absolute;
-    top: -16px;
-    right: 30px;
+.dtc-page-header {
+  display: grid;
+  grid-template-columns: 140px 120px;
+  > div {
+    text-align: center;
+  }
+  .tab-style {
+    background: #7b85d2;
+    color: #fff;
   }
 }
+
 .dtc-grid-grumanagement-header {
   height: 58px;
   line-height: 50px;
