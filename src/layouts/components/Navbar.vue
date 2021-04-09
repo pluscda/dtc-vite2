@@ -31,6 +31,9 @@
           >藥局<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu>
+          <el-dropdown-item @click="$router.push('/pharmacy/drugadd')"
+            >藥品新增</el-dropdown-item
+          >
           <el-dropdown-item @click="$router.push('/pharmacy/drugmanagement')"
             >藥品總覽清單</el-dropdown-item
           >

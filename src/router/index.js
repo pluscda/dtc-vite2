@@ -75,6 +75,20 @@ export const routes = [
     ],
   },
   {
+    path: "/pharmacy",
+    redirect: "/pharmacy/drugadd",
+    component: Layout,
+    meta: { title: "藥品新增", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "drugadd",
+        component: () => import("/@/views/pharmacy/drugAddNew.vue"),
+        name: "drugadd",
+        meta: { title: "新增", icon: "el-icon-s-home" },
+      },
+    ],
+  },
+  {
     path: "/login",
     name: "Login",
     component: () => import("/@/views/DtcLogin.vue"),
