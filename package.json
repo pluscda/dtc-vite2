@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "dev": "cross-env TAILWIND_MODE=watch  vite",
-    "serve": "cross-env TAILWIND_MODE=watch  vite",
+    "dev": "vite",
+    "serve": "vite",
     "build": "cross-env TAILWIND_MODE=build vite build",
     "preview": "vite preview"
   },
