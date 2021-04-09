@@ -16,10 +16,7 @@
     </nav>
 
     <header class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div title="限低於庫存下可轉採購單" class="title-word1">
-        採購單
-        <small style="font-size: 9px; -webkit-transform: scale(0.75)">(註1)</small>
-      </div>
+      <div title="限低於庫存下可轉採購單" class="title-word1">採購單(註1)</div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
