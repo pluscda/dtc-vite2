@@ -4,7 +4,7 @@ import axios from "utils/request";
 import "styles/index.scss";
 import element3 from "plugins/element3";
 import router from "/@/router";
-import Particles from "particles.vue3";
+
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar';
@@ -20,7 +20,7 @@ import 'primeicons/primeicons.css';
 
 const app = createApp(App);
 
-app.use(element3).use(Particles).use(router).use(PrimeVue);
+app.use(element3).use(router).use(PrimeVue);
 // PrimeVue UI components
 app.component('Calendar', Calendar );
 app.component("Button", Button);
