@@ -25,12 +25,13 @@ export default {
     mutations,
   },
   mounted() {
+    // Mousetrap.init();
     // Mousetrap.bind('4', function () {
     //   alert('4');
     // });
     // Mousetrap.record(function (sequence) {
     //   // sequence is an array like ['ctrl+k', 'c']
-    //   //alert('You pressed: ' + sequence.join(' '));
+    //   alert('You pressed: ' + sequence.join(' '));
     // });
   },
 };

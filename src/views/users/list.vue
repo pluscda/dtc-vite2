@@ -1,7 +1,7 @@
 <template>
   <div class="bg-skin-color">
     <header class="grid pr-2 dtc-page-header dtc-page-header__grid">
-      <div class="">病患基本資料 / 就醫身份</div>
+      <div class="">病患基本資料 / 就醫身份 {{ msg }}</div>
       <div class="flex items-center ml-4">
         <InputSwitch v-model="takeCard" class="mt-0"></InputSwitch>
         <span @click="takeCard = !takeCard">初診</span>
@@ -82,21 +82,21 @@
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
-import { useRouter } from "vue-router";
-import { Message } from "element3";
-import { useList } from "./model/userModel";
-import Regsiter from "./components/register.vue";
-import Pay from "./components/hisPay.vue";
-import InqueryList from "./components/inqueryList.vue";
+import { toRefs, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { Message } from 'element3';
+import { useList } from './model/userModel';
+import Regsiter from './components/register.vue';
+import Pay from './components/hisPay.vue';
+import InqueryList from './components/inqueryList.vue';
 let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
+  { name: 'ID', key: 'id', sortDesc: null },
+  { name: '建立者', key: 'name', sortDesc: null },
+  { name: '年齡', key: 'age', sortDesc: null },
 ];
 
 export default {
-  name: "UserListHIS",
+  name: 'UserListHIS',
   components: {
     Regsiter,
     Pay,
@@ -105,27 +105,27 @@ export default {
   data() {
     return {
       takeCard: true,
-      input1: "J120092876",
+      input1: 'J120092876',
       options: [
         {
-          value: "選項1",
-          label: "牙科就診",
+          value: '選項1',
+          label: '牙科就診',
         },
 
         {
-          value: "選項3",
-          label: "身心障礙",
+          value: '選項3',
+          label: '身心障礙',
         },
         {
-          value: "選項4",
-          label: "發展遲緩兒童",
+          value: '選項4',
+          label: '發展遲緩兒童',
         },
         {
-          value: "選項5",
-          label: "失能老人",
+          value: '選項5',
+          label: '失能老人',
         },
       ],
-      value: "",
+      value: '',
     };
   },
   setup() {
@@ -135,7 +135,7 @@ export default {
 
     function handleEdit({ row }) {
       router.push({
-        name: "userEdit",
+        name: 'userEdit',
         params: { id: row.id },
       });
     }
@@ -145,7 +145,7 @@ export default {
       delItem(row.id).then(() => {
         // todo:刪除這一行，或者重新獲取數據
         // 通知用戶
-        Message.success("刪除成功！");
+        Message.success('刪除成功！');
       });
     }
 
