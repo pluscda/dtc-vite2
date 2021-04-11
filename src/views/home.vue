@@ -11,6 +11,7 @@ const test = 'test';
 const sub = new Subject();
 
 const t = pipe(
+  tap(console.log),
   throttleTime(4000),
   tap(() => console.log('click'))
 );

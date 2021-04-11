@@ -48,7 +48,8 @@ const router = useRouter();
 const route = useRoute();
 watch(idle2, () => {
   if (idle2.value && !route.path.includes('login')) {
-    router.push('login');
+    router.replace('/login');
+    setTimeout(location.reload(true), 0);
   }
 });
 </script>
