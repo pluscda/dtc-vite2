@@ -30,7 +30,7 @@ export function useList() {
       {
         total: axios.get('his-histories/count?' + qs ),
         data: axios.get('his-histories?' + qs)
-       }
+      }
     ).subscribe( ({total, data}) => {
        state.total = total;
        state.list = data;
