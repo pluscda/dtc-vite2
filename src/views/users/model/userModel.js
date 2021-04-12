@@ -1,5 +1,5 @@
 import { reactive, onMounted, ref } from "vue";
-import request from "utils/request";
+import axios from "utils/request";
 import queryString from "qs";
 import { forkJoin } from 'rxjs';
 
@@ -28,8 +28,8 @@ export function useList() {
     //todo: if any filter , please added below
     forkJoin(
       {
-        total: request.get('his-histories/count?' + qs ),
-        data: request.get('his-histories?' + qs)
+        total: axios.get('his-histories/count?' + qs ),
+        data: axios.get('his-histories?' + qs)
        }
     ).subscribe( ({total, data}) => {
        state.total = total;
@@ -42,7 +42,7 @@ export function useList() {
   function delItem(id) {
     state.loading = true;
 
-    return request({
+    return axios({
       url: "/deleteUser",
       method: "get",
       params: { id },
@@ -66,7 +66,7 @@ export function useItem(isEdit, id) {
   const model = ref(Object.assign({}, defaultData));
 
   const updateUser = () => {
-    return request({
+    return axios({
       url: "/updateUser",
       method: "post",
       data: model.value,
@@ -74,7 +74,7 @@ export function useItem(isEdit, id) {
   };
 
   const addUser = () => {
-    return request({
+    return axios({
       url: "/addUser",
       method: "post",
       data: model.value,
