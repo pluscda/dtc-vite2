@@ -55,8 +55,8 @@ export const actions = {
     return await axios.get("http://www.google.com");
   },
   // 取得健保卡資訊
-  getIcCardInfo() {
-    websocketService("ws://localhost:8888/Chat", "checkNhiCard");
+  async getIcCardInfo() {
+    return await websocketService("ws://localhost:8888/Chat", "checkNhiCard");
   },
 };
 

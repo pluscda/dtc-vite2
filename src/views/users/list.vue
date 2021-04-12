@@ -33,25 +33,14 @@
     </header>
     <div class="grid gap-1 mb-3 ml-1 dtc-autoflow-grid">
       <DtxInputGroup prepend="身份證號">
-        <el-input
-          placeholder="搜尋身份證字號"
-          v-model="input1"
-          readonly
-          class="bg-gray-300"
-        />
+        <el-input v-model="personBasicInfo.id" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
-        <el-input
-          placeholder="搜尋身份證字號"
-          v-model="input1"
-          readonly
-          class="bg-gray-300"
-        />
+        <el-input v-model="personBasicInfo.name" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="出生日期">
         <el-input
-          placeholder="搜尋身份證字號"
-          v-model="input1"
+          v-model="personBasicInfo.birthday"
           readonly
           class="bg-gray-300"
         />
@@ -154,7 +143,7 @@
 </template>
 
 <script>
-import { inject, toRefs, ref } from "vue";
+import { inject, toRefs, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import { useList } from "./model/userModel";
@@ -202,9 +191,10 @@ export default {
   },
   setup() {
     const router = useRouter();
+    const { state, getList, delItem } = useList();
     const actions = inject("actions");
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
+    const personBasicInfo = reactive({ name: "", id: "", birthday: "" });
 
     function handleEdit({ row }) {
       router.push({
@@ -223,8 +213,14 @@ export default {
     }
 
     //讀取健保卡
-    function readHealthCard() {
-      actions.getIcCardInfo();
+    async function readHealthCard() {
+      const data = await actions.getIcCardInfo();
+      let patientInfo = data.message.split(" ");
+      patientInfo = patientInfo.filter((s) => Boolean(s));
+
+      personBasicInfo.name = patientInfo[0].replace(/\d/g, "");
+      personBasicInfo.id = patientInfo[1].slice(0, 9);
+      personBasicInfo.birthday = patientInfo[1].slice(10, -1);
     }
 
     return {
@@ -234,6 +230,7 @@ export default {
       handleDelete,
       headers,
       readHealthCard,
+      personBasicInfo,
     };
   },
 };
