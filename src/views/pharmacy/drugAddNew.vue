@@ -113,7 +113,7 @@
       <DtxInputGroup prepend="儲存條件" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入儲存條件" />
       </DtxInputGroup>
-      <div class="dtc-grid-fileupload">
+      <div class="dtc-grid-fileupload dtc-text">
         <DtxInputGroup prepend="圖片名稱" labelWidth="120">
           <el-input v-model="input1" placeholder="輸入圖片名稱" />
         </DtxInputGroup>
@@ -121,10 +121,11 @@
           <i-ri:upload-cloud-fill
             style="font-size: 24px"
           ></i-ri:upload-cloud-fill>
-          <div class="dtc-text">Upload Image File</div>
+          <div>Upload Image File</div>
+          <input id="file-upload" type="file" @change="fileChange" />
         </label>
-        <input id="file-upload" type="file" @change="fileChange" />
-        <div class="dtc-text" style="padding-top: 6px">
+
+        <div style="padding-top: 6px">
           {{ uploadFileName }}
         </div>
       </div>
@@ -224,29 +225,9 @@ export default {
   grid-template-columns: repeat(1, 1fr);
 }
 .dtc-grid-fileupload {
-  position: relative;
+  // position: relative;
   display: grid;
   grid-template-columns: 500px 202px max-content;
   grid-column-gap: 20px;
-
-  .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: max-content max-content;
-    grid-gap: 10px;
-  }
-}
-input[type="file"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 }
 </style>
