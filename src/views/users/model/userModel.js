@@ -4,10 +4,9 @@ import queryString from "qs";
 import { forkJoin } from 'rxjs';
 
 export function useList() {
-  // 列表數據
   const state = reactive({
-    loading: true, // 加載狀態
-    list: [], // 列表數據
+    loading: true, 
+    list: [], 
     total: 0,
     listQuery: {
       page: 1,
@@ -17,7 +16,6 @@ export function useList() {
     },
   });
 
-  // 獲取列表
   function getList() {
     state.loading = true;
     const {limit, page, sort} =  state.listQuery;
@@ -28,7 +26,6 @@ export function useList() {
     sort.length ? queryObj._sort = sort.join(",") : '';
     let qs = queryString.stringify(queryObj);
     //todo: if any filter , please added below
-
     forkJoin(
       {
         total: request.get('his-histories/count?' + qs ),
@@ -39,19 +36,6 @@ export function useList() {
        state.list = data;
        state.loading = false;
     })
-    // return request({
-    //   url: "his-histories",
-    //   method: "get",
-    //   params: queryObj,
-    // })
-    //   .then( data => {
-    //     // 設置列表數據
-    //     state.list = data;
-    //     state.total = 200;
-    //   })
-    //   .finally(() => {
-    //     state.loading = false;
-    //   });
   }
 
   // 刪除項
