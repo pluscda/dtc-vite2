@@ -24,8 +24,8 @@ import NavBar from '/@/layouts/components/Navbar.vue';
 
 aside {
   background: var(--primary) !important;
-  min-height: 100vh;
-  height: 100vh;
+  height: calc(100vh - 71px);
+  min-height: calc(100vh - 71px);
 }
 
 .my-main-part {
