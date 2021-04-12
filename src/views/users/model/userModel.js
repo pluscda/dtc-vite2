@@ -1,5 +1,7 @@
 import { reactive, onMounted, ref } from "vue";
 import request from "utils/request";
+import queryString from "qs";
+import { forkJoin } from 'rxjs';
 
 export function useList() {
   // 列表數據
@@ -10,7 +12,8 @@ export function useList() {
     listQuery: {
       page: 1,
       limit: 10,
-      sort:[]
+      sort:[],
+      filter:''
     },
   });
 
@@ -23,20 +26,32 @@ export function useList() {
       _start: page > 1 ? page * limit : 0,
     }
     sort.length ? queryObj._sort = sort.join(",") : '';
+    let qs = queryString.stringify(queryObj);
+    //todo: if any filter , please added below
 
-    return request({
-      url: "his-histories",
-      method: "get",
-      params: queryObj,
+    forkJoin(
+      {
+        total: request.get('his-histories/count?' + qs ),
+        data: request.get('his-histories?' + qs)
+       }
+    ).subscribe( ({total, data}) => {
+       state.total = total;
+       state.list = data;
+       state.loading = false;
     })
-      .then( data => {
-        // 設置列表數據
-        state.list = data;
-        state.total = 200;
-      })
-      .finally(() => {
-        state.loading = false;
-      });
+    // return request({
+    //   url: "his-histories",
+    //   method: "get",
+    //   params: queryObj,
+    // })
+    //   .then( data => {
+    //     // 設置列表數據
+    //     state.list = data;
+    //     state.total = 200;
+    //   })
+    //   .finally(() => {
+    //     state.loading = false;
+    //   });
   }
 
   // 刪除項
