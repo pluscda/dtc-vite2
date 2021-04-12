@@ -27,17 +27,17 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.registerTimestamp.split("T")[0] }}</div>
+      <div>{{ item.registerSection || "暫無資料" }}</div>
+      <div>{{ item.registerNo || "暫無資料" }}</div>
+      <div>{{ item.registerName || "暫無資料" }}</div>
+      <div>{{ item.registerAlias || "暫無資料" }}</div>
+      <div>{{ item.category || "暫無資料" }}</div>
+      <div>{{ item.doctorNo || "暫無資料" }}</div>
+      <div>{{ item.doctorName || "暫無資料" }}</div>
+      <div>{{ item.totalRegisterNum || "暫無資料" }}</div>
+      <div>{{ item.totalCheckedNum || "暫無資料" }}</div>
+      <div>{{ item.totalWaitNum || "暫無資料" }}</div>
       <div class="view-details" v-if="item.review">
         <header class="dtc-grid-header">
           <div v-for="(item, i) in subHeaders" :key="i" @click.stop="sort(item)">
@@ -83,21 +83,22 @@ import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Message } from "element3";
 import Pagination from "cps/Pagination.vue";
+import queryString from "qs";
 
 import { useList } from "../model/userModel";
 //查閱清單
 let headers = [
-  { name: "掛號日期", key: "id", sortDesc: null },
-  { name: "看診時段", key: "name", sortDesc: null },
-  { name: "診間號碼", key: "name", sortDesc: null },
-  { name: "診間名稱", key: "age", sortDesc: null },
-  { name: "診間別名", key: "age", sortDesc: null },
-  { name: "科別", key: "age", sortDesc: null },
-  { name: "醫師代號", key: "age", sortDesc: null },
-  { name: "醫師姓名", key: "age", sortDesc: null },
-  { name: "掛號人數", key: "age", sortDesc: null },
-  { name: "已看診數", key: "age", sortDesc: null },
-  { name: "待看診數", key: "age", sortDesc: null },
+  { name: "掛號日期", key: "registerTimestamp", sortDesc: null },
+  { name: "看診時段", key: "registerSection", sortDesc: null },
+  { name: "診間號碼", key: "registerNo", sortDesc: null },
+  { name: "診間名稱", key: "registerName", sortDesc: null },
+  { name: "診間別名", key: "registerAlias", sortDesc: null },
+  { name: "科別", key: "category", sortDesc: null },
+  { name: "醫師代號", key: "doctorNo", sortDesc: null },
+  { name: "醫師姓名", key: "doctorName", sortDesc: null },
+  { name: "掛號人數", key: "totalRegisterNum", sortDesc: null },
+  { name: "已看診數", key: "totalCheckedNum", sortDesc: null },
+  { name: "待看診數", key: "totalWaitNum", sortDesc: null },
 ];
 
 let subHeaders = [
@@ -127,11 +128,30 @@ export default {
   components: {
     Pagination,
   },
+
   setup() {
     const router = useRouter();
     headers = ref(headers);
     subHeaders = ref(subHeaders);
     const { state, getList, delItem } = useList();
+
+    function sort(item) {
+      if (item.sortDesc) {
+        item.sortDesc = null;
+      } else if (false === item.sortDesc) {
+        item.sortDesc = true;
+      } else if (null === item.sortDesc) {
+        item.sortDesc = false;
+      }
+      const orderBy = [];
+      headers.value.forEach((s) => {
+        if (s.sortDesc !== null) {
+          orderBy.push(s.sortDesc ? `${s.key}:desc` : `${s.key}`);
+        }
+      });
+      state.listQuery.sort = orderBy;
+      getList();
+    }
 
     function handleEdit({ row }) {
       router.push({
@@ -160,6 +180,7 @@ export default {
       headers,
       subHeaders,
       toggleDetail,
+      sort,
     };
   },
 };

@@ -10,22 +10,29 @@ export function useList() {
     listQuery: {
       page: 1,
       limit: 10,
+      sort:[]
     },
   });
 
   // 獲取列表
   function getList() {
     state.loading = true;
+    const {limit, page, sort} =  state.listQuery;
+    let queryObj = {
+      _limit : limit,
+      _start: page > 1 ? page * limit : 0,
+    }
+    sort.length ? queryObj._sort = sort.join(",") : '';
 
     return request({
-      url: "/getUsers",
+      url: "his-histories",
       method: "get",
-      params: state.listQuery,
+      params: queryObj,
     })
-      .then(({ data, total }) => {
+      .then( data => {
         // 設置列表數據
         state.list = data;
-        state.total = total;
+        state.total = 200;
       })
       .finally(() => {
         state.loading = false;
@@ -58,20 +65,6 @@ const defaultData = {
 
 export function useItem(isEdit, id) {
   const model = ref(Object.assign({}, defaultData));
-
-  // 初始化時，根據isEdit判定是否需要獲取玩家詳情
-  onMounted(() => {
-    if (isEdit && id) {
-      // 獲取玩家詳情
-      request({
-        url: "/getUser",
-        method: "get",
-        params: { id },
-      }).then(({ data }) => {
-        model.value = data;
-      });
-    }
-  });
 
   const updateUser = () => {
     return request({
