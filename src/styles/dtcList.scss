@@ -1,5 +1,3 @@
-
-
 .dtc-page-header {
   background-position: top left;
   background-repeat: no-repeat;
@@ -49,12 +47,11 @@
 }
 
 .dtc-grid-body {
-  border-top:none;
+  border-top: none;
   > div {
     line-height: 35px;
     @apply px-1;
   }
-
 }
 
 .view-details {
@@ -96,5 +93,25 @@
     border-bottom: 1px solid white;
     background: black;
     cursor: pointer;
+  }
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 10px;
+
+  input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 }
