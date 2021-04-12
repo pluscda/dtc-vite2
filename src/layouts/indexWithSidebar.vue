@@ -23,10 +23,12 @@ import NavBar from '/@/layouts/components/Navbar.vue';
 }
 
 aside {
-  background: var(--primay) !important;
+  background: var(--primary) !important;
+  min-height: 100vh;
+  height: 100vh;
 }
 
 .my-main-part {
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 150px 1fr;
 }
 </style>

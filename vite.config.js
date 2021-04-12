@@ -3,7 +3,6 @@
 import path from "path";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import { viteMockServe } from "vite-plugin-mock";
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
@@ -55,7 +54,6 @@ export default {
       customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
     }),
     ViteIcons(),
-    viteMockServe({ supportTs: false}), 
     replaceHtmlVars({
         files: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, './index.html') : '',
         from: '_THIS_IS_THE_VARIABLE_',

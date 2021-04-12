@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "layouts/index.vue";
-
+import LayoutWithSideBar from "layouts/indexWithSidebar.vue";
 /**
  * Note: 子菜單僅當路由的children.length >= 1時才出現
  *
@@ -63,7 +63,7 @@ export const routes = [
   {
     path: "/pharmacy",
     redirect: "/pharmacy/drugmanagement",
-    component: Layout,
+    component: LayoutWithSideBar,
     meta: { title: "藥品總覽清單", icon: "el-icon-s-home" },
     children: [
       {
@@ -77,7 +77,7 @@ export const routes = [
   {
     path: "/pharmacy",
     redirect: "/pharmacy/drugadd",
-    component: Layout,
+    component: LayoutWithSideBar,
     meta: { title: "藥品新增", icon: "el-icon-s-home" },
     children: [
       {
