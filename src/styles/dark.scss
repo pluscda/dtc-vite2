@@ -71,6 +71,7 @@
   .el-radio,
   .dtc-text {
     @apply ring-0;
+    background:none !important;
   }
   .dtc-tabs {
     > * {

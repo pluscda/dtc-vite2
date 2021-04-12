@@ -5,18 +5,18 @@
 </template>
 
 <script setup>
-import { Subject, pipe } from 'rxjs';
-import { mapTo, throttleTime, tap, switchMap } from 'rxjs/operators';
-const test = 'test';
+import { Subject, pipe } from "rxjs";
+import { mapTo, throttleTime, tap, switchMap } from "rxjs/operators";
+const test = "test";
 const sub = new Subject();
 
 const t = pipe(
   tap(console.log),
   throttleTime(4000),
-  tap(() => console.log('click'))
+  tap(() => console.log("click"))
 );
 const getData = async () => {
-  return await fetch('https://jsonplaceholder.typicode.com/todos/1').then((s) => s.json());
+  return await fetch("https://jsonplaceholder.typicode.com/todos/1").then((s) => s.json());
 };
 sub.pipe(t, switchMap(getData)).subscribe(console.log);
 </script>
@@ -24,7 +24,7 @@ sub.pipe(t, switchMap(getData)).subscribe(console.log);
 export default {
   data() {
     return {
-      value: '',
+      value: "",
     };
   },
 };
