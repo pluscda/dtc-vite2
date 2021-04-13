@@ -31,6 +31,7 @@ export default {
       "新增採購單",
       "入庫單管理",
       "藥品申領管理",
+      "新增申請單",
       "藥房退庫管理",
     ]);
     //option
@@ -55,6 +56,9 @@ export default {
           break;
         case "藥品申領管理":
           router.push("/pharmacy/drugwarehouserequest");
+          break;
+        case "新增申請單":
+          router.push("/pharmacy/drugwarehouserequestadd");
           break;
         case "藥房退庫管理":
           // router.push("/pharmacy/drugstoremanagement");
