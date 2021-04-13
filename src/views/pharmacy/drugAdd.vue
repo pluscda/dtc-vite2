@@ -21,18 +21,8 @@
             <el-input v-model="input1" />
           </DtxInputGroup>
           <DtxInputGroup prepend="是否為管制藥" labelWidth="120">
-            <el-select
-              v-model="isControlledDrug"
-              placeholder="請選擇"
-              class="border-l-0"
-            >
-              <el-option
-                v-for="item in yesNoOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
+              <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </DtxInputGroup>
           <DtxInputGroup prepend="藥品名稱" labelWidth="120">
@@ -121,19 +111,9 @@
         </main>
       </div>
       <footer>
-        <Button
-          label="重新填寫"
-          class="p-button-rounded p-button-info footer-btn"
-        />
-        <Button
-          label="儲存"
-          class="p-button-rounded p-button-success footer-btn"
-        />
-        <Button
-          label="取消"
-          class="p-button-rounded p-button-warning footer-btn"
-          @click="closeAddDialog"
-        />
+        <Button label="重新填寫" class="p-button-rounded p-button-info footer-btn" />
+        <Button label="儲存" class="p-button-rounded p-button-success footer-btn" />
+        <Button label="取消" class="p-button-rounded p-button-warning footer-btn" @click="closeAddDialog" />
       </footer>
     </div>
   </section>
@@ -145,11 +125,11 @@ import { ref, inject } from "vue";
 //身分證號
 let yesNoOptions = [
   {
-    value: "y",
+    value: "Y",
     label: "是",
   },
   {
-    value: "n",
+    value: "N",
     label: "否",
   },
 ];
