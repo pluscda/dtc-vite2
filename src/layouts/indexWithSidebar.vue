@@ -2,7 +2,9 @@
   <section class="overflow-x-hidden index-position">
     <NavBar></NavBar>
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
-      <aside></aside>
+      <aside class="flex flex-col space-y-6 text-white pt-8">
+        <component :is="dtcCmp"></component>
+      </aside>
       <router-view></router-view>
     </main>
     <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
@@ -12,7 +14,9 @@
 </template>
 
 <script setup>
-import NavBar from '/@/layouts/components/Navbar.vue';
+import NavBar from "/@/layouts/components/Navbar.vue";
+import basicNav from "./components/basicDrugNav.vue";
+let dtcCmp = basicNav;
 </script>
 
 <style lang="scss" scoped>
@@ -23,9 +27,9 @@ import NavBar from '/@/layouts/components/Navbar.vue';
 }
 
 aside {
-  background: var(--primary) !important;
-  height: calc(100vh - 71px);
-  min-height: calc(100vh - 71px);
+  background: darken(#10579b, $amount: 5) !important;
+  height: calc(100vh - 70px);
+  min-height: calc(100vh - 70px);
 }
 
 .my-main-part {

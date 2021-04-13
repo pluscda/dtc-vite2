@@ -14,8 +14,9 @@
       <el-dropdown class="max-h-10" :show-timeout="1">
         <span class="text-blue-200">藥局<i class="el-icon-arrow-down el-icon--right"></i> </span>
         <el-dropdown-menu>
-          <el-dropdown-item @click="$router.push('/pharmacy/drugadd')">藥品新增</el-dropdown-item>
-          <el-dropdown-item @click="$router.push('/pharmacy/drugmanagement')">藥品總覽清單</el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/pharmacy/drugadd')">基本資料設定</el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/pharmacy/drugmanagement')">藥庫管理</el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/pharmacy/drugmanagement')">藥房管理</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <el-dropdown class="max-h-10" :show-timeout="1">
