@@ -1,11 +1,5 @@
 <template>
-  <div
-    v-for="(item, i) in titles"
-    :key="item"
-    class="cursor-pointer"
-    :class="activeTab == i ? 'text-orange-400' : ''"
-    @click="handleChangeTab(item)"
-  >
+  <div v-for="(item, i) in titles" :key="item" class="cursor-pointer" :class="activeTab == i ? 'text-orange-400' : ''" @click="handleChangeTab(item, i)">
     {{ item }}
   </div>
   <!-- <DrugAdd /> -->
@@ -23,19 +17,16 @@ export default {
   },
   setup() {
     //allVariable
+    const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive([
-      "藥品訊息維護",
-      "新增藥品資料",
-      "藥品廠商維護",
-      "藥品訊息維護",
-    ]);
+    const titles = reactive(["藥品訊息維護", "新增藥品資料", "藥品廠商維護", "藥品訊息維護"]);
     //option
 
     //global
 
     //function
-    const handleChangeTab = (item) => {
+    const handleChangeTab = (item, i) => {
+      activeTab.value = i;
       switch (item) {
         case "藥品訊息維護":
           router.push("/pharmacy/drugmanagement");
@@ -55,6 +46,7 @@ export default {
     return {
       titles,
       handleChangeTab,
+      activeTab,
     };
   },
 };
