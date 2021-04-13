@@ -15,7 +15,6 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { watch, ref } from "vue";
-import NavBar from "/@/layouts/components/Navbar.vue";
 import basicNav from "./components/basicDrugNav.vue";
 import wsNav from "./components/drugWarehouseNav.vue";
 import storeNav from "./components/drugStoreNav.vue";
