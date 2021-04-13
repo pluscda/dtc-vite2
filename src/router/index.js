@@ -64,27 +64,13 @@ export const routes = [
     path: "/pharmacy",
     redirect: "/pharmacy/drugmanagement",
     component: LayoutWithSideBar,
-    meta: { title: "藥品總覽清單", icon: "el-icon-s-home" },
+    meta: { title: "基本資料設定", icon: "el-icon-s-home" },
     children: [
       {
         path: "drugmanagement",
         component: () => import("/@/views/pharmacy/drugmanagement.vue"),
         name: "drugmanagement",
-        meta: { title: "清單", icon: "el-icon-s-home" },
-      },
-    ],
-  },
-  {
-    path: "/pharmacy",
-    redirect: "/pharmacy/drugadd",
-    component: LayoutWithSideBar,
-    meta: { title: "藥品新增", icon: "el-icon-s-home" },
-    children: [
-      {
-        path: "drugadd",
-        component: () => import("/@/views/pharmacy/drugAddNew.vue"),
-        name: "drugadd",
-        meta: { title: "新增", icon: "el-icon-s-home" },
+        meta: { title: "藥品資料維護", icon: "el-icon-s-home" },
       },
     ],
   },
