@@ -69,7 +69,7 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="核實" class="p-button-sm" />
+        <Button label="核實" class="p-button-sm p-button-success" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
