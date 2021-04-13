@@ -1,11 +1,5 @@
 <template>
-  <div
-    v-for="(item, i) in titles"
-    :key="item"
-    class="cursor-pointer py-3"
-    :class="activeTab == i ? 'text-orange-400 bg-fuchsia-50' : ''"
-    @click="handleChangeTab(item, i)"
-  >
+  <div v-for="(item, i) in titles" :key="item" class="cursor-pointer py-3" :class="activeTab == i ? 'text-orange-400  active-tab' : ''" @click="handleChangeTab(item, i)">
     {{ item }}
   </div>
   <!-- <DrugAdd /> -->
@@ -58,4 +52,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.active-tab {
+  background: var(--light);
+  color: var(--primary);
+}
+</style>
