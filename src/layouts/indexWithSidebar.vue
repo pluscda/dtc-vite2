@@ -25,6 +25,10 @@ const r = useRoute();
 watch(r, () => {
   if (r.path.includes("drugmanagement")) {
     dtcCmp.value = basicNav;
+  } else if (r.path.includes("drugadd")) {
+    dtcCmp.value = wsNav;
+  } else {
+    dtcCmp.value = storeNav;
   }
 });
 </script>
