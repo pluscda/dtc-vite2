@@ -22,8 +22,9 @@ import storeNav from "./components/drugStoreNav.vue";
 import addDrag from "/@/views/pharmacy/drugAdd.vue";
 const dtcCmp = ref(basicNav);
 const r = useRoute();
+const isBasicTab = r.path.includes("drugmanagement") || r.path.includes("pharmacy/drugadd") || r.path.includes("pharmacy/drugvendormanagement");
 watch(r, () => {
-  if (r.path.includes("drugmanagement") || r.path.includes("pharmacy/drugadd") || r.path.includes("pharmacy/drugvendormanagement")) {
+  if (isBasicTab) {
     dtcCmp.value = basicNav;
   } else if (r.path.includes("drugWarehouse")) {
     dtcCmp.value = wsNav;
