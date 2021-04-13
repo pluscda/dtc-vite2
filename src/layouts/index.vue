@@ -1,14 +1,9 @@
 <template>
   <section class="index-position overflow-x-hidden">
-    <NavBar></NavBar>
     <main class="overflow-x-hidden overflow-y-hidden">
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>

@@ -1,6 +1,5 @@
 <template>
   <section class="overflow-x-hidden index-position">
-    <NavBar></NavBar>
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
       <aside class="flex flex-col space-y-6 text-white pt-8 dtc-text left-nav">
         <component :is="dtcCmp"></component>
