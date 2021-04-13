@@ -49,9 +49,6 @@
 
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -70,11 +67,8 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
 //身分證號
 let headers = [
-  { name: "廠商編號", key: "name", sortDesc: null },
-  { name: "廠商名稱", key: "name", sortDesc: null },
-  { name: "聯絡人", key: "age", sortDesc: null },
-  { name: "電話", key: "age", sortDesc: null },
-  { name: "統一發票號碼", key: "age", sortDesc: null },
+  { name: "藥房編號", key: "name", sortDesc: null },
+  { name: "藥房名稱", key: "name", sortDesc: null },
 ];
 
 export default {
@@ -126,7 +120,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(5, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(2, minmax(90px, 1fr));
 }
 .management {
   position: relative;

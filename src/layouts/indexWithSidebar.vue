@@ -34,8 +34,6 @@ watch(r, () => {
     r.path.includes("pharmacy/drugstoremanagement")
   ) {
     dtcCmp.value = basicNav;
-  } else if (r.path.includes("dragadd")) {
-    dtcCmp.value = addDrag;
   } else if (r.path.includes("drugWarehouse")) {
     dtcCmp.value = wsNav;
   } else {
@@ -46,13 +44,13 @@ watch(r, () => {
 
 <style lang="scss" scoped>
 .index-position {
-  max-height: calc(100vh - 71px);
+  max-height: calc(100vh - 70px);
 }
 
 .left-nav {
   background: darken(#10579b, $amount: 5) !important;
-  height: calc(100% - 71px);
-  min-height: calc(100vh - 71px);
+  height: calc(100% - 70px);
+  min-height: calc(100vh - 70px);
   color: lighten(#10579b, $amount: 55) !important;
   div {
     padding: 4px;
