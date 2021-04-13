@@ -114,6 +114,12 @@ export const routes = [
         name: "drugwarehousing",
         meta: { title: "入庫單管理", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugwarehouserequest",
+        component: () => import("/@/views/pharmacy/drugWarehouseRequest.vue"),
+        name: "drugwarehouserequest",
+        meta: { title: "藥品申領管理", icon: "el-icon-s-home" },
+      },
     ],
   },
   {
