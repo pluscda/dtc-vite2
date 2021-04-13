@@ -7,7 +7,7 @@
       class="ml-1 dtc-search-filters mt-4"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="採號日期">
+      <DtxInputGroup prepend="退庫日期">
         <Calendar
           class="h-10"
           v-model="time1"
@@ -24,8 +24,11 @@
         :showIcon="true"
         dateFormat="yy-mm-dd"
       />
-      <DtxInputGroup prepend="採購單號">
-        <el-input placeholder="搜尋採購單號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="退庫單號">
+        <el-input placeholder="搜尋退庫單號" v-model="searchDrugId" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="退庫人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" />
@@ -35,7 +38,10 @@
       class="ml-1 dtc-search-filters mt-4"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="申請人員">
+      <DtxInputGroup prepend="退庫藥房">
+        <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="驗收人員">
         <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
@@ -104,8 +110,8 @@ import { useList } from "../users/model/userModel";
 
 //身分證號
 let headers = [
-  { name: "採購單號", key: "name", sortDesc: null },
-  { name: "採購日期", key: "name", sortDesc: null },
+  { name: "退庫單號", key: "name", sortDesc: null },
+  { name: "退庫日期", key: "name", sortDesc: null },
   { name: "結案狀態", key: "age", sortDesc: null },
   { name: "申請人員", key: "age", sortDesc: null },
   { name: "健保代碼", key: "age", sortDesc: null },
