@@ -6,11 +6,7 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -27,11 +23,7 @@ import addDrag from "/@/views/pharmacy/drugAdd.vue";
 const dtcCmp = ref(basicNav);
 const r = useRoute();
 watch(r, () => {
-  if (
-    r.path.includes("drugmanagement") ||
-    r.path.includes("pharmacy/drugadd") ||
-    r.path.includes("pharmacy/drugvendormanagement")
-  ) {
+  if (r.path.includes("drugmanagement") || r.path.includes("pharmacy/drugadd") || r.path.includes("pharmacy/drugvendormanagement")) {
     dtcCmp.value = basicNav;
   } else if (r.path.includes("dragadd")) {
     dtcCmp.value = addDrag;
@@ -45,13 +37,13 @@ watch(r, () => {
 
 <style lang="scss" scoped>
 .index-position {
-  max-height: calc(100vh - 71px);
+  max-height: calc(100vh - 70px);
 }
 
 .left-nav {
   background: darken(#10579b, $amount: 5) !important;
-  height: calc(100% - 71px);
-  min-height: calc(100vh - 71px);
+  height: calc(100% - 70px);
+  min-height: calc(100vh - 70px);
   color: lighten(#10579b, $amount: 55) !important;
   div {
     padding: 4px;
