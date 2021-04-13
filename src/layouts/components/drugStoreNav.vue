@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-const titles = ["藥品訊息維護", "藥品廠商維護", "藥品訊息維護"];
+const titles = ["藥房庫存查詢作業", "藥品申請單", "藥房退庫單"];
 let activeTab = 0;
 </script>
 
