@@ -13,10 +13,18 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+import { watch, ref } from "vue";
 import NavBar from "/@/layouts/components/Navbar.vue";
 import basicNav from "./components/basicDrugNav.vue";
-let dtcCmp = basicNav;
+let dtcCmp = ref(basicNav);
+const r = useRoute();
+watch(r, () => {
+  if (r.path.includes("drugmanagement")) {
+    dtcCmp.value = basicNav;
+  }
+});
 </script>
 
 <style lang="scss" scoped>
