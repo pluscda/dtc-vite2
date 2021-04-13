@@ -34,14 +34,12 @@ watch(r, () => {
 
 <style lang="scss" scoped>
 .index-position {
-  height: 100vh;
-  //overflow-x: auto;
-  overflow-y: auto;
+  min-height: 100vh;
 }
 
 .left-nav {
   background: darken(#10579b, $amount: 5) !important;
-  height: calc(100vh - 70px);
+  height: 100%;
   min-height: calc(100vh - 70px);
   color: lighten(#10579b, $amount: 55) !important;
 }
