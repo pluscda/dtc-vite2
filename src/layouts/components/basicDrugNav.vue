@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 .active-tab {
-  background: var(--light);
-  color: var(--primary);
+  background: var(--gray);
+  color: var(--light);
 }
 </style>
