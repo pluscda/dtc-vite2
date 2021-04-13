@@ -1,22 +1,25 @@
 <template>
   <section class="management">
-    <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品廠商維護</div>
     </header>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="藥房編號">
-        <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
+    <nav
+      class="ml-1 dtc-search-filters mt-4"
+      style="margin-bottom: 1.5rem !important"
+    >
+      <DtxInputGroup prepend="廠商編號">
+        <el-input placeholder="搜尋廠商編號" v-model="searchDrugId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥房名稱">
-        <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
+      <DtxInputGroup prepend="廠商名稱">
+        <el-input placeholder="搜尋廠商名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
 
-    <header data-msg="註1:限低於庫存下可轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div title="" class="title-word1">採購單(註1)</div>
+    <header
+      class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
+    >
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -35,10 +38,17 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      :style="
+        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
+      "
     >
       <div>
-        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
+        <InputSwitch
+          class="transform translate-y-1.5"
+          v-model="item.review"
+          size="small"
+          @click.stop="toggleDetail(item)"
+        ></InputSwitch>
       </div>
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
@@ -50,16 +60,15 @@
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
-    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
+    <pagination
+      v-show="total > 0"
+      :total="total"
+      v-model:page="listQuery.page"
+      v-model:limit="listQuery.limit"
+      @pagination="getList"
+    ></pagination>
   </section>
 </template>
 
@@ -67,28 +76,19 @@
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
-import DrugAdd from "./drugAdd.vue";
 //身分證號
 let headers = [
-  { name: "藥品編號", key: "name", sortDesc: null },
-  { name: "藥品名稱", key: "name", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "規格", key: "age", sortDesc: null },
-  { name: "進價", key: "age", sortDesc: null },
-  { name: "售價", key: "age", sortDesc: null },
-  { name: "存量", key: "age", sortDesc: null },
-  { name: "庫存上限", key: "age", sortDesc: null },
-  { name: "庫存下限", key: "age", sortDesc: null },
-  { name: "產地", key: "age", sortDesc: null },
-  { name: "劑型", key: "age", sortDesc: null },
-  { name: "收費項目", key: "age", sortDesc: null },
+  { name: "廠商編號", key: "name", sortDesc: null },
+  { name: "廠商名稱", key: "name", sortDesc: null },
+  { name: "聯絡人", key: "age", sortDesc: null },
+  { name: "電話", key: "age", sortDesc: null },
+  { name: "統一發票號碼", key: "age", sortDesc: null },
 ];
 
 export default {
   name: "inquerylist",
   components: {
     Pagination,
-    DrugAdd,
   },
   setup() {
     //global
@@ -134,7 +134,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px 100px 100px repeat(8, minmax(90px, 1fr)) 120px repeat(2, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(5, minmax(90px, 1fr));
 }
 .management {
   position: relative;
