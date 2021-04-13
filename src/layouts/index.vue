@@ -1,6 +1,6 @@
 <template>
-  <section class="index-position overflow-x-hidden">
-    <main class="overflow-x-hidden overflow-y-hidden">
+  <section class="index-position overflow-hidden">
+    <main class="overflow-x-hidden overflow-hidden">
       <router-view></router-view>
     </main>
     <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
@@ -15,8 +15,6 @@ import NavBar from "/@/layouts/components/Navbar.vue";
 
 <style lang="scss" scoped>
 .index-position {
-  height: 100vh;
-  //overflow-x: auto;
-  overflow-y: auto;
+  min-height: 100vh;
 }
 </style>
