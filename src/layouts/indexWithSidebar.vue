@@ -6,11 +6,7 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -27,10 +23,7 @@ const dtcCmp = ref(basicNav);
 const r = useRoute();
 watch(r, () => {
   console.log("r--------", r.path);
-  if (
-    r.path.includes("drugmanagement") ||
-    r.path.includes("pharmacy/drugadd")
-  ) {
+  if (r.path.includes("drugmanagement") || r.path.includes("pharmacy/drugadd")) {
     dtcCmp.value = basicNav;
   } else if (r.path.includes("drugWarehouse")) {
     dtcCmp.value = wsNav;
@@ -42,14 +35,17 @@ watch(r, () => {
 
 <style lang="scss" scoped>
 .index-position {
-  min-height: 100vh;
+  max-height: calc(100vh - 71px);
 }
 
 .left-nav {
   background: darken(#10579b, $amount: 5) !important;
-  height: calc(100% - 70px);
-  min-height: calc(100vh - 70px);
+  height: calc(100% - 71px);
+  min-height: calc(100vh - 71px);
   color: lighten(#10579b, $amount: 55) !important;
+  div {
+    padding: 4px;
+  }
 }
 
 .my-main-part {

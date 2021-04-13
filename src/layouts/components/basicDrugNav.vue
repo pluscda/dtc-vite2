@@ -2,9 +2,9 @@
   <div
     v-for="(item, i) in titles"
     :key="item"
-    class="cursor-pointer"
-    :class="activeTab == i ? 'text-orange-400' : ''"
-    @click="handleChangeTab(item)"
+    class="cursor-pointer py-3"
+    :class="activeTab == i ? 'text-orange-400  active-tab' : ''"
+    @click="handleChangeTab(item, i)"
   >
     {{ item }}
   </div>
@@ -23,6 +23,7 @@ export default {
   },
   setup() {
     //allVariable
+    const activeTab = ref(0);
     const router = useRouter();
     const titles = reactive([
       "藥品資料維護",
@@ -35,7 +36,8 @@ export default {
     //global
 
     //function
-    const handleChangeTab = (item) => {
+    const handleChangeTab = (item, i) => {
+      activeTab.value = i;
       switch (item) {
         case "藥品資料維護":
           router.push("/pharmacy/drugmanagement");
@@ -56,9 +58,15 @@ export default {
     return {
       titles,
       handleChangeTab,
+      activeTab,
     };
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.active-tab {
+  background: var(--gray);
+  color: var(--light);
+}
+</style>
