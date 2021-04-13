@@ -1,7 +1,7 @@
 <template>
   <section class="overflow-x-hidden index-position">
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
-      <aside class="flex flex-col space-y-6 text-white pt-8 dtc-text left-nav">
+      <aside class="flex flex-col space-y-6 text-white pt-8 left-nav">
         <component :is="dtcCmp"></component>
       </aside>
       <router-view></router-view>
@@ -43,6 +43,7 @@ watch(r, () => {
   background: darken(#10579b, $amount: 5) !important;
   height: calc(100vh - 70px);
   min-height: calc(100vh - 70px);
+  color: lighten(#10579b, $amount: 55) !important;
 }
 
 .my-main-part {
