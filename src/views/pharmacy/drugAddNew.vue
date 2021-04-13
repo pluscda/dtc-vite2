@@ -133,12 +133,12 @@
 
     <footer class="mt-6 mb-4">
       <Button
-        label="重新填寫"
+        label="重新新增"
         class="p-button-rounded p-button-info footer-btn"
         style="margin-right: 20px"
       />
       <Button
-        label="儲存"
+        label="確認儲存"
         class="p-button-rounded p-button-success footer-btn"
       />
     </footer>
