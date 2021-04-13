@@ -4,7 +4,7 @@ import websocketService from "utils/websock.js";
 
 
 const init = {
-  userDefaultBgColor: "black",
+  userDefaultBgColor: "dark",
   openAddDrugDialog: false,
 };
 
