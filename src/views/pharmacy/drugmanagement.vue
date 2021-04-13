@@ -16,12 +16,12 @@
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-      <Button
+      <!-- <Button
         label="藥品新增"
         class="p-button-success"
         icon="pi pi-plus"
         @click="$router.push('/pharmacy/drugadd')"
-      />
+      /> -->
     </nav>
 
     <header
