@@ -10,26 +10,12 @@
         <InputSwitch v-model="takeCard2" class="mt-0"></InputSwitch>
         <span @click="takeCard = !takeCard2">複診</span>
       </div>
-      <Button
-        style="margin: 4px 0"
-        class="p-button-rounded p-button-help"
-        @click="$router.replace('/users/edit/1')"
-        >編輯個人資料/初診單</Button
-      >
+      <Button style="margin: 4px 0" class="p-button-rounded p-button-help" @click="$router.replace('/users/edit/1')">編輯個人資料/初診單</Button>
       <div></div>
       <Button class="p-button-rounded" style="margin: 4px 0">補卡取號</Button>
-      <Button
-        class="p-button-rounded p-button-success"
-        style="margin: 4px 0"
-        @click="readHealthCard"
-        >讀取健保卡</Button
-      >
-      <Button class="p-button-rounded p-button-info" style="margin: 4px 0"
-        >清除/重整</Button
-      >
-      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0"
-        >確認掛號</Button
-      >
+      <Button class="p-button-rounded p-button-success" style="margin: 4px 0" @click="readHealthCard">讀取健保卡</Button>
+      <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
+      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
     </header>
     <div class="grid gap-1 mb-3 ml-1 dtc-autoflow-grid">
       <DtxInputGroup prepend="身份證號">
@@ -39,11 +25,7 @@
         <el-input v-model="personBasicInfo.name" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="出生日期">
-        <el-input
-          v-model="personBasicInfo.birthday"
-          readonly
-          class="bg-gray-300"
-        />
+        <el-input v-model="personBasicInfo.birthday" readonly class="bg-gray-300" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病歷號碼">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
@@ -53,84 +35,41 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="病患性別">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="就診身份">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="折扣身份">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="部分負擔">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="就醫類別">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="預防保健">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="健保卡序">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="掛號取卡" class="h-10">
-        <InputSwitch
-          v-model="takeCard"
-          class="mt-2 ml-0 transform translate-x-2"
-        ></InputSwitch>
-        <span
-          class="ml-0.5 mt-2.5 inline-block transform translate-x-2 text-gray-600 text-base dtc-text"
-          @click="takeCard = !takeCard"
-          >掛號後取卡</span
-        >
+        <InputSwitch v-model="takeCard" class="mt-2 ml-0 transform translate-x-2"></InputSwitch>
+        <span class="ml-0.5 mt-2.5 inline-block transform translate-x-2 text-gray-600 text-base dtc-text" @click="takeCard = !takeCard">掛號後取卡</span>
         <!-- <el-checkbox class="mt-2 ml-2 h-9" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
@@ -250,10 +189,7 @@ export default {
   gap: 8px;
 }
 .dtc-page-header__grid {
-  grid-template-columns: max-content max-content max-content max-content 1fr repeat(
-      4,
-      max-content
-    );
+  grid-template-columns: max-content max-content max-content max-content 1fr repeat(4, max-content);
   gap: 1rem;
 }
 </style>

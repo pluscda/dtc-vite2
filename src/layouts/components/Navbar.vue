@@ -35,8 +35,7 @@
           <el-dropdown-item @click="$router.push('/pharmacy/librarymanagement')"
             >藥庫管理</el-dropdown-item
           >
-          <el-dropdown-item
-            @click="$router.push('/pharmacy/pharmacymanagement')"
+          <el-dropdown-item @click="$router.push('/pharmacy/drugstore')"
             >藥房管理</el-dropdown-item
           >
         </el-dropdown-menu>
