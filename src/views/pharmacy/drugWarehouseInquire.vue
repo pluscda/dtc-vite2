@@ -18,9 +18,10 @@
     </nav>
 
     <header
+      data-msg="註1:限低於庫存下可轉採購單"
       class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
-      <div>操作</div>
+      <div title="" class="title-word1">採購單(註1)</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -42,9 +43,13 @@
         i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
       "
     >
-      <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
-        <Button label="刪除" class="p-button-sm p-button-warning" />
+      <div>
+        <InputSwitch
+          class="transform translate-y-1.5"
+          v-model="item.review"
+          size="small"
+          @click.stop="toggleDetail(item)"
+        ></InputSwitch>
       </div>
 
       <div>{{ item.name || "暫無資料" }}</div>
@@ -52,6 +57,14 @@
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -68,13 +81,22 @@
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
+
 //身分證號
 let headers = [
-  { name: "廠商編號", key: "name", sortDesc: null },
-  { name: "廠商名稱", key: "name", sortDesc: null },
-  { name: "聯絡人", key: "age", sortDesc: null },
-  { name: "電話", key: "age", sortDesc: null },
-  { name: "統一發票號碼", key: "age", sortDesc: null },
+  { name: "藥品編號", key: "name", sortDesc: null },
+  { name: "藥品名稱", key: "name", sortDesc: null },
+  { name: "單位", key: "age", sortDesc: null },
+  { name: "規格", key: "age", sortDesc: null },
+  { name: "批發價", key: "age", sortDesc: null },
+  { name: "零售價", key: "age", sortDesc: null },
+  { name: "採購量", key: "age", sortDesc: null },
+  { name: "申領量", key: "age", sortDesc: null },
+  { name: "存量", key: "age", sortDesc: null },
+  { name: "庫存上限", key: "age", sortDesc: null },
+  { name: "庫存下限", key: "age", sortDesc: null },
+  { name: "產地", key: "age", sortDesc: null },
+  { name: "劑型", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -126,7 +148,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(5, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(13, minmax(90px, 1fr));
 }
 .management {
   position: relative;
