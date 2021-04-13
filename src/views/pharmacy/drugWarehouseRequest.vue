@@ -72,7 +72,12 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="核實" class="p-button-sm p-button-success" />
+        <Button label="檢視" class="p-button-sm p-button-info" />
+        <Button label="編輯" class="p-button-sm p-button-success" />
+        <Button
+          label="藥房申領單轉採購單"
+          class="p-button-sm p-button-warning"
+        />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -86,8 +91,6 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -107,8 +110,8 @@ import { useList } from "../users/model/userModel";
 
 //身分證號
 let headers = [
-  { name: "採購單號", key: "name", sortDesc: null },
-  { name: "採購日期", key: "name", sortDesc: null },
+  { name: "申請單號", key: "name", sortDesc: null },
+  { name: "申請日期", key: "name", sortDesc: null },
   { name: "結案狀態", key: "age", sortDesc: null },
   { name: "申請人員", key: "age", sortDesc: null },
   { name: "健保代碼", key: "age", sortDesc: null },
@@ -117,10 +120,8 @@ let headers = [
   { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "申請數量", key: "age", sortDesc: null },
-  { name: "藥品有效日期", key: "age", sortDesc: null },
-  { name: "發票日期", key: "age", sortDesc: null },
-  { name: "發票號碼", key: "age", sortDesc: null },
-  { name: "廠商", key: "age", sortDesc: null },
+  { name: "補撥數量", key: "age", sortDesc: null },
+  { name: "補撥人員", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -223,7 +224,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
+  grid-template-columns: 232px repeat(12, minmax(90px, 1fr));
 }
 .management {
   position: relative;

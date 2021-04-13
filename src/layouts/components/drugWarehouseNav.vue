@@ -27,7 +27,7 @@ export default {
     const router = useRouter();
     const titles = reactive([
       "庫存查詢作業",
-      "採購管理作業",
+      "採購單管理",
       "新增採購單",
       "入庫單管理",
       "藥品申領管理",
@@ -44,7 +44,7 @@ export default {
         case "庫存查詢作業":
           router.push("/pharmacy/drugwarehouseinquire");
           break;
-        case "採購管理作業":
+        case "採購單管理":
           router.push("/pharmacy/drugwarehouseporder");
           break;
         case "新增採購單":
