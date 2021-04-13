@@ -1,245 +1,182 @@
 <template>
-  <section class="management">
-    <header class="dtc-page-header grid dtc-page-header__grid pr-2">
+  <div>
+    <header class="dtc-page-header dtc-page-header-grid grid text-white">
       <div>新增申請單</div>
     </header>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
-      <DtxInputGroup prepend="申請日期">
-        <Calendar
-          class="h-10"
-          v-model="time1"
-          placeholder="輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+    <main class="grid dtc-list-grid">
+      <DtxInputGroup prepend="申請日期" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入申請日期" />
       </DtxInputGroup>
-      <div class="mx-1 pt-2 dtc-text">至</div>
-      <Calendar
-        class="h-10"
-        v-model="time2"
-        placeholder="輸入日期"
-        :showIcon="true"
-        dateFormat="yy-mm-dd"
-      />
-      <DtxInputGroup prepend="申請單號">
-        <el-input placeholder="搜尋申請單號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="申請單號" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入申請單號" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="申請藥房">
-        <el-input placeholder="搜尋申請藥房" v-model="searchDrugId" />
+      <DtxInputGroup prepend="申請人員" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入申請人員" />
       </DtxInputGroup>
-
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-    </nav>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
-      <DtxInputGroup prepend="補撥人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+      <DtxInputGroup prepend="申請藥房" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入申請人員" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
+      <DtxInputGroup prepend="健保代碼" labelWidth="120">
+        <el-select
+          v-model="isControlledDrug"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in yesNoOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
       </DtxInputGroup>
-    </nav>
-
-    <header
-      class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
-    >
-      <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
-        {{ item.name }}
-        <span v-show="item.sortDesc === null">
-          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-        </span>
-        <span v-show="item.sortDesc === false">
-          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-        </span>
-        <span v-show="item.sortDesc">
-          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
-      </div>
-    </header>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
-      v-for="(item, i) in list"
-      :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
-    >
-      <div class="flex flex-none space-x-2">
-        <Button label="檢視" class="p-button-sm p-button-info" />
-        <Button label="編輯" class="p-button-sm p-button-success" />
-        <Button
-          label="藥房申領單轉採購單"
-          class="p-button-sm p-button-warning"
-        />
-      </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <DtxInputGroup prepend="藥品中文" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入藥品中文" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥品英文" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入藥品英文" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="單位" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入單位" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="申請數量" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入申請數量" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="補撥數量" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入補撥數量" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="補撥人員" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入補撥人員" />
+      </DtxInputGroup>
+      <DtxInputGroup
+        labelWidth="120"
+        prepend="結案狀態"
+        style="
+          grid-column: span 1;
+          display: grid;
+          grid-template-columns: 120px 1fr;
+          grid-column-gap: 5px;
+        "
+      >
+        <div style="text-align: start">
+          <el-radio
+            v-model="healthReport"
+            label="已結案"
+            style="margin: 13px 35px 0px 50px"
+            >已結案</el-radio
+          >
+          <el-radio
+            v-model="healthReport"
+            label="未結案"
+            style="margin-top: 13px; margin-left: 5px"
+            >未結案</el-radio
+          >
+        </div>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="備註" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入備註" />
+      </DtxInputGroup>
     </main>
-    <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
-  </section>
+
+    <footer class="mt-6 mb-4">
+      <Button
+        label="重新新增"
+        class="p-button-rounded p-button-info footer-btn"
+        style="margin-right: 20px"
+      />
+      <Button
+        label="確認儲存"
+        class="p-button-rounded p-button-success footer-btn"
+      />
+    </footer>
+  </div>
 </template>
 
 <script>
-import { toRefs, ref, reactive, inject, computed } from "vue";
-import Pagination from "cps/Pagination.vue";
-import { useList } from "../users/model/userModel";
-
-//身分證號
+import { ref, inject } from "vue";
 let headers = [
-  { name: "申請單號", key: "name", sortDesc: null },
-  { name: "申請日期", key: "name", sortDesc: null },
-  { name: "結案狀態", key: "age", sortDesc: null },
-  { name: "申請人員", key: "age", sortDesc: null },
-  { name: "健保代碼", key: "age", sortDesc: null },
-  { name: "院內代碼", key: "age", sortDesc: null },
-  { name: "藥品中文", key: "age", sortDesc: null },
-  { name: "藥品英文", key: "age", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "申請數量", key: "age", sortDesc: null },
-  { name: "補撥數量", key: "age", sortDesc: null },
-  { name: "補撥人員", key: "age", sortDesc: null },
+  { name: "ID", key: "id", sortDesc: null },
+  { name: "建立者", key: "name", sortDesc: null },
+  { name: "建立者", key: "name", sortDesc: null },
+  { name: "年齡", key: "age", sortDesc: null },
+];
+
+let yesNoOptions = [
+  {
+    value: "121",
+    label: "121",
+  },
+  {
+    value: "122",
+    label: "122",
+  },
+  {
+    value: "123",
+    label: "123",
+  },
 ];
 
 export default {
-  name: "inquerylist",
-  components: {
-    Pagination,
-  },
+  name: "drugAddNew",
   setup() {
+    //allVariable
+    const isControlledDrug = ref("121");
+    let uploadFileName = ref("");
+    //option
+
     //global
     const global = inject("global");
-    //搜尋變數
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
-    const time1 = ref("");
-    const time2 = ref("");
-    const zh = reactive({
-      firstDayOfWeek: 0,
-      dayNames: [
-        "星期日",
-        "星期一",
-        "星期二",
-        "星期三",
-        "星期四",
-        "星期五",
-        "星期六",
-      ],
-      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月",
-      ],
-      monthNamesShort: [
-        "一",
-        "二",
-        "三",
-        "四",
-        "五",
-        "六",
-        "七",
-        "八",
-        "九",
-        "十",
-        "十一",
-        "十二",
-      ],
-      today: "今天",
-      clear: "清空",
-      dateFormat: "yy-mm-dd",
-      weekHeader: "周",
-    });
-    // 列表數據
-    headers = ref(headers);
-    const { state, getList, delItem } = useList();
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
+    //function
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
+    const fileChange = (e) => {
+      console.log("----", e.target.files[0]);
+      uploadFileName.value = e.target.files[0].name;
     };
 
     return {
-      ...toRefs(state),
-      getList,
-      headers,
-      searchDrugId,
-      searchDrugName,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
-      zh,
-      time1,
-      time2,
+      //allVariable
+      isControlledDrug,
+      uploadFileName,
+      yesNoOptions,
+
+      //function
+      fileChange,
     };
-  },
-  mounted() {
-    this.$primevue.config.locale = this.zh;
   },
 };
 </script>
 
+<style scoped>
+.btn-container {
+  text-align: left;
+  padding: 0px 10px 20px 0px;
+}
+</style>
+
 <style lang="scss" scoped>
-.dtc-template-columns {
-  width: calc(100vw - 162px) !important;
-  max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 232px repeat(12, minmax(90px, 1fr));
+.dtc-page-header-grid {
+  grid-template-columns: max-content 1rem max-content max-content;
+  overflow: hidden;
 }
-.management {
-  position: relative;
-  .comment {
-    position: absolute;
-    bottom: 70px;
-    left: 0;
-  }
+
+.drgu-add-title {
+  text-align: left;
+  font-size: 18px;
+  margin-left: 12px;
 }
-.my-title::before {
-  content: attr(data-msg);
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 210px;
-  font-size: 13px;
+
+.dtc-list-grid {
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding: 0 12px;
+}
+
+.dtc-grid-fileupload {
+  // position: relative;
+  display: grid;
+  grid-template-columns: 500px 202px max-content;
+  grid-column-gap: 20px;
 }
 </style>
