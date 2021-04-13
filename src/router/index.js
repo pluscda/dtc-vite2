@@ -72,6 +72,12 @@ export const routes = [
         name: "drugmanagement",
         meta: { title: "藥品資料維護", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugadd",
+        component: () => import("/@/views/pharmacy/drugAddNew.vue"),
+        name: "drugadd",
+        meta: { title: "新增藥品", icon: "el-icon-s-home" },
+      },
     ],
   },
   {

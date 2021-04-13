@@ -7,13 +7,18 @@
   >
     {{ item }}
   </div>
+  <!-- <DrugAdd /> -->
 </template>
 
 <script>
 import { ref, reactive, inject, computed, onMounted, watch } from "vue";
+// import DrugAdd from "/@/views/pharmacy/drugAddNew.vue";
 
 export default {
   name: "sidebar",
+  components: {
+    // DrugAdd,
+  },
   setup() {
     //allVariable
     const titles = reactive([
