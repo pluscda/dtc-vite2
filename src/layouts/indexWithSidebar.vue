@@ -6,11 +6,7 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -23,7 +19,7 @@ import NavBar from "/@/layouts/components/Navbar.vue";
 import basicNav from "./components/basicDrugNav.vue";
 import wsNav from "./components/drugWarehouseNav.vue";
 import storeNav from "./components/drugStoreNav.vue";
-import addDrag from "/@/views/pharmacy/drugAdd.vue";
+
 const dtcCmp = ref(basicNav);
 const r = useRoute();
 const isBasicTab =
