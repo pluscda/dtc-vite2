@@ -29,7 +29,7 @@ export default {
       "庫存查詢作業",
       "採購管理作業",
       "新增採購單",
-      "入庫管理作業",
+      "入庫單管理",
       "藥品申請管理",
       "藥房退庫管理",
     ]);
@@ -50,8 +50,8 @@ export default {
         case "新增採購單":
           router.push("/pharmacy/drugwarehouseporderadd");
           break;
-        case "入庫管理作業":
-          // router.push("/pharmacy/drugstoremanagement");
+        case "入庫單管理":
+          router.push("/pharmacy/drugwarehousing");
           break;
         case "藥品申請管理":
           // router.push("/pharmacy/drugstoremanagement");
