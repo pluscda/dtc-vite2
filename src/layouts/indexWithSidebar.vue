@@ -43,6 +43,9 @@ watch(r, () => {
   height: calc(100% - 71px);
   min-height: calc(100vh - 71px);
   color: lighten(#10579b, $amount: 55) !important;
+  div {
+    padding: 4px;
+  }
 }
 
 .my-main-part {

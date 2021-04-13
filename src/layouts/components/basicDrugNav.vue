@@ -1,5 +1,11 @@
 <template>
-  <div v-for="(item, i) in titles" :key="item" class="cursor-pointer" :class="activeTab == i ? 'text-orange-400' : ''" @click="handleChangeTab(item, i)">
+  <div
+    v-for="(item, i) in titles"
+    :key="item"
+    class="cursor-pointer py-3"
+    :class="activeTab == i ? 'text-orange-400 bg-fuchsia-50' : ''"
+    @click="handleChangeTab(item, i)"
+  >
     {{ item }}
   </div>
   <!-- <DrugAdd /> -->
