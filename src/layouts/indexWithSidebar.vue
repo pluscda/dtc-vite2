@@ -2,7 +2,7 @@
   <section class="overflow-x-hidden index-position">
     <NavBar></NavBar>
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
-      <aside class="flex flex-col space-y-6 text-white pt-8">
+      <aside class="flex flex-col space-y-6 text-white pt-8 dtc-text left-nav">
         <component :is="dtcCmp"></component>
       </aside>
       <router-view></router-view>
@@ -36,7 +36,7 @@ watch(r, () => {
   overflow-y: auto;
 }
 
-aside {
+.left-nav {
   background: darken(#10579b, $amount: 5) !important;
   height: calc(100vh - 70px);
   min-height: calc(100vh - 70px);
