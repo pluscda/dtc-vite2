@@ -30,7 +30,8 @@ watch(r, () => {
   if (
     r.path.includes("drugmanagement") ||
     r.path.includes("pharmacy/drugadd") ||
-    r.path.includes("pharmacy/drugvendormanagement")
+    r.path.includes("pharmacy/drugvendormanagement") ||
+    r.path.includes("pharmacy/drugstoremanagement")
   ) {
     dtcCmp.value = basicNav;
   } else if (r.path.includes("dragadd")) {
