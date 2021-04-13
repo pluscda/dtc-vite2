@@ -102,6 +102,12 @@ export const routes = [
         name: "drugwarehouseporder",
         meta: { title: "採購管理作業", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugwarehouseporderadd",
+        component: () => import("/@/views/pharmacy/drugWarehousePOrderAdd.vue"),
+        name: "drugwarehouseporderadd",
+        meta: { title: "新增採購單", icon: "el-icon-s-home" },
+      },
     ],
   },
   {

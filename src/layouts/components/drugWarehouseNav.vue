@@ -48,7 +48,7 @@ export default {
           router.push("/pharmacy/drugwarehouseporder");
           break;
         case "新增採購單":
-          // router.push("/pharmacy/drugvendormanagement");
+          router.push("/pharmacy/drugwarehouseporderadd");
           break;
         case "入庫管理作業":
           // router.push("/pharmacy/drugstoremanagement");
