@@ -2,7 +2,9 @@
   <section class="overflow-x-hidden index-position">
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
       <aside class="flex flex-col space-y-6 text-white pt-8 left-nav">
-        <component :is="dtcCmp"></component>
+        <!-- <component :is="dtcCurrentCmp"></component> -->
+        <BasicNav v-if="isBasicTab" />
+        <WsNav v-if="isWarehouseTab" />
       </aside>
       <router-view></router-view>
     </main>
@@ -16,30 +18,47 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script>
 import { useRoute } from "vue-router";
-import { watch, ref } from "vue";
+import { watch, ref, reactive, computed } from "vue";
 import NavBar from "/@/layouts/components/Navbar.vue";
-import basicNav from "./components/basicDrugNav.vue";
-import wsNav from "./components/drugWarehouseNav.vue";
-import storeNav from "./components/drugStoreNav.vue";
-import addDrag from "/@/views/pharmacy/drugAdd.vue";
-const dtcCmp = ref(basicNav);
-const r = useRoute();
-const isBasicTab =
-  r.path.includes("drugmanagement") ||
-  r.path.includes("pharmacy/drugadd") ||
-  r.path.includes("pharmacy/drugvendormanagement") ||
-  r.path.includes("pharmacy/drugstoremanagement");
-watch(r, () => {
-  if (isBasicTab) {
-    dtcCmp.value = basicNav;
-  } else if (r.path.includes("drugWarehouse")) {
-    dtcCmp.value = wsNav;
-  } else {
-    dtcCmp.value = storeNav;
-  }
-});
+import BasicNav from "/@/layouts/components/basicDrugNav.vue";
+import WsNav from "/@/layouts/components/drugWarehouseNav.vue";
+import StoreNav from "./components/drugStoreNav.vue";
+
+export default {
+  name: "indexwidthbar",
+  components: {
+    BasicNav,
+    WsNav,
+    StoreNav,
+  },
+  setup() {
+    let dtcCurrentCmp = ref("basicNav");
+    const tabs = reactive(["basicNav", "wsNav", "storeNav"]);
+    const r = useRoute();
+
+    const isBasicTab = computed(() => {
+      return (
+        r.path.includes("drugmanagement") ||
+        r.path.includes("pharmacy/drugadd") ||
+        r.path.includes("pharmacy/drugvendormanagement") ||
+        r.path.includes("pharmacy/drugstoremanagement")
+      );
+    });
+
+    const isWarehouseTab = computed(() => {
+      return r.path.includes("pharmacy/drugwarehouseinquire");
+    });
+
+    return {
+      dtcCurrentCmp,
+      tabs,
+      isBasicTab,
+      isWarehouseTab,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -90,6 +90,12 @@ export const routes = [
         name: "drugstoremanagement",
         meta: { title: "藥房資料維護", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugwarehouseinquire",
+        component: () => import("/@/views/pharmacy/drugWarehouseInquire.vue"),
+        name: "drugwarehouseinquire",
+        meta: { title: "藥房資料維護", icon: "el-icon-s-home" },
+      },
     ],
   },
   {
