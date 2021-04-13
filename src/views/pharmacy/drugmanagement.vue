@@ -1,6 +1,5 @@
 <template>
   <section class="management">
-    <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品資料維護</div>
     </header>
@@ -16,12 +15,6 @@
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-      <!-- <Button
-        label="藥品新增"
-        class="p-button-success"
-        icon="pi pi-plus"
-        @click="$router.push('/pharmacy/drugadd')"
-      /> -->
     </nav>
 
     <header
@@ -92,7 +85,7 @@
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
-import DrugAdd from "./drugAdd.vue";
+
 //身分證號
 let headers = [
   { name: "藥品編號", key: "name", sortDesc: null },
@@ -113,7 +106,6 @@ export default {
   name: "inquerylist",
   components: {
     Pagination,
-    DrugAdd,
   },
   setup() {
     //global
