@@ -25,10 +25,10 @@ export default {
     //allVariable
     const router = useRouter();
     const titles = reactive([
-      "藥品訊息維護",
+      "藥品資料維護",
       "新增藥品資料",
       "藥品廠商維護",
-      "藥品訊息維護",
+      "藥房資料維護",
     ]);
     //option
 
@@ -37,16 +37,17 @@ export default {
     //function
     const handleChangeTab = (item) => {
       switch (item) {
-        case "藥品訊息維護":
+        case "藥品資料維護":
           router.push("/pharmacy/drugmanagement");
           break;
         case "新增藥品資料":
           router.push("/pharmacy/drugadd");
           break;
-        case "新增藥品資料":
+        case "藥品廠商維護":
           // alert(789);
+          router.push("/pharmacy/drugvendormanagement");
           break;
-        case "新增藥品資料":
+        case "藥房資料維護":
           // alert(321);
           break;
       }
