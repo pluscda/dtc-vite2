@@ -6,7 +6,11 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
+    <el-backtop
+      target=".index-position"
+      :visibility-height="100"
+      style="color: rgb(58 142 229)"
+    >
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -22,7 +26,11 @@ import storeNav from "./components/drugStoreNav.vue";
 import addDrag from "/@/views/pharmacy/drugAdd.vue";
 const dtcCmp = ref(basicNav);
 const r = useRoute();
-const isBasicTab = r.path.includes("drugmanagement") || r.path.includes("pharmacy/drugadd") || r.path.includes("pharmacy/drugvendormanagement");
+const isBasicTab =
+  r.path.includes("drugmanagement") ||
+  r.path.includes("pharmacy/drugadd") ||
+  r.path.includes("pharmacy/drugvendormanagement") ||
+  r.path.includes("pharmacy/drugstoremanagement");
 watch(r, () => {
   if (isBasicTab) {
     dtcCmp.value = basicNav;

@@ -84,6 +84,12 @@ export const routes = [
         name: "drugvendormanagement",
         meta: { title: "藥品廠商維護", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugstoremanagement",
+        component: () => import("/@/views/pharmacy/drugStoreManagement.vue"),
+        name: "drugstoremanagement",
+        meta: { title: "藥房資料維護", icon: "el-icon-s-home" },
+      },
     ],
   },
   {
