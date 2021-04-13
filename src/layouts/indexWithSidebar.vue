@@ -18,7 +18,7 @@ import { useRoute } from "vue-router";
 import { watch, ref } from "vue";
 import NavBar from "/@/layouts/components/Navbar.vue";
 import basicNav from "./components/basicDrugNav.vue";
-let dtcCmp = ref(basicNav);
+const dtcCmp = ref(basicNav);
 const r = useRoute();
 watch(r, () => {
   if (r.path.includes("drugmanagement")) {
