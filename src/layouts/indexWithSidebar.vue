@@ -19,7 +19,7 @@ import NavBar from "/@/layouts/components/Navbar.vue";
 import basicNav from "./components/basicDrugNav.vue";
 import wsNav from "./components/drugWarehouseNav.vue";
 import storeNav from "./components/drugStoreNav.vue";
-import addDrag from "@/views/pharmacy/drugAdd.vue";
+import addDrag from "/@/views/pharmacy/drugAdd.vue";
 const dtcCmp = ref(basicNav);
 const r = useRoute();
 watch(r, () => {
