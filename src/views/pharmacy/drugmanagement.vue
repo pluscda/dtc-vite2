@@ -132,6 +132,8 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
+  width: calc(100vw - 150px) !important;
+  max-width: calc(100vw - 150px) !important;
   grid-template-columns: 100px 120px 126px repeat(8, minmax(90px, 1fr)) 120px repeat(2, minmax(90px, 1fr));
 }
 .management {
