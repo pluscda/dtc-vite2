@@ -2,7 +2,6 @@
   <section class="overflow-x-hidden index-position">
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
       <aside class="flex flex-col space-y-6 text-white pt-8 left-nav">
-        <!-- <component :is="dtcCurrentCmp"></component> -->
         <BasicNav v-if="isBasicTab" />
         <WsNav v-if="isWarehouseTab" />
       </aside>
@@ -35,7 +34,6 @@ export default {
   },
   setup() {
     let dtcCurrentCmp = ref("basicNav");
-    const tabs = reactive(["basicNav", "wsNav", "storeNav"]);
     const r = useRoute();
 
     const isBasicTab = computed(() => {
@@ -48,12 +46,14 @@ export default {
     });
 
     const isWarehouseTab = computed(() => {
-      return r.path.includes("pharmacy/drugwarehouseinquire");
+      return (
+        r.path.includes("pharmacy/drugwarehouseinquire") ||
+        r.path.includes("pharmacy/drugwarehouseporder")
+      );
     });
 
     return {
       dtcCurrentCmp,
-      tabs,
       isBasicTab,
       isWarehouseTab,
     };
