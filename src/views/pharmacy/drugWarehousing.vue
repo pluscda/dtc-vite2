@@ -69,10 +69,10 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
-        <Button label="刪除" class="p-button-sm p-button-warning" />
+        <Button label="核實" class="p-button-sm" />
       </div>
-
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -81,6 +81,10 @@
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -104,10 +108,16 @@ let headers = [
   { name: "採購日期", key: "name", sortDesc: null },
   { name: "結案狀態", key: "age", sortDesc: null },
   { name: "申請人員", key: "age", sortDesc: null },
-  { name: "藥品編號", key: "age", sortDesc: null },
-  { name: "藥品名稱", key: "age", sortDesc: null },
+  { name: "健保代碼", key: "age", sortDesc: null },
+  { name: "院內代碼", key: "age", sortDesc: null },
+  { name: "藥品中文", key: "age", sortDesc: null },
+  { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "申請數量", key: "age", sortDesc: null },
+  { name: "藥品有效日期", key: "age", sortDesc: null },
+  { name: "發票日期", key: "age", sortDesc: null },
+  { name: "發票號碼", key: "age", sortDesc: null },
+  { name: "廠商", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -210,7 +220,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(8, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
 }
 .management {
   position: relative;
