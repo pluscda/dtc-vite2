@@ -7,11 +7,7 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -19,8 +15,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { watch, ref, reactive, computed } from "vue";
-import NavBar from "/@/layouts/components/Navbar.vue";
+import { ref, reactive, computed } from "vue";
 import BasicNav from "/@/layouts/components/basicDrugNav.vue";
 import WsNav from "/@/layouts/components/drugWarehouseNav.vue";
 import StoreNav from "./components/drugStoreNav.vue";
