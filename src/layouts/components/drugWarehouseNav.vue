@@ -61,7 +61,7 @@ export default {
           router.push("/pharmacy/drugwarehouserequestadd");
           break;
         case "藥房退庫管理":
-          // router.push("/pharmacy/drugstoremanagement");
+          router.push("/pharmacy/drugwarehousewithdrawal");
           break;
       }
     };

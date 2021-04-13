@@ -127,6 +127,13 @@ export const routes = [
         name: "drugwarehouserequestadd",
         meta: { title: "新增申請單", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugwarehousewithdrawal",
+        component: () =>
+          import("/@/views/pharmacy/drugWarehouseWithdrawal.vue"),
+        name: "drugwarehousewithdrawal",
+        meta: { title: "藥房退庫管理", icon: "el-icon-s-home" },
+      },
     ],
   },
   {

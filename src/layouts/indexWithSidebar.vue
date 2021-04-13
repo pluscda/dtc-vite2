@@ -51,7 +51,8 @@ export default {
         r.path.includes("pharmacy/drugwarehouseporderadd") ||
         r.path.includes("pharmacy/drugwarehousing") ||
         r.path.includes("pharmacy/drugwarehouserequest") ||
-        r.path.includes("pharmacy/drugwarehouserequestadd")
+        r.path.includes("pharmacy/drugwarehouserequestadd") ||
+        r.path.includes("pharmacy/drugwarehousewithdrawal")
       );
     });
 
