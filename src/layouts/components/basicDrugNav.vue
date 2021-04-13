@@ -4,6 +4,7 @@
     :key="item"
     class="cursor-pointer"
     :class="activeTab == i ? 'text-orange-400' : ''"
+    @click="handleChangeTab(item)"
   >
     {{ item }}
   </div>
@@ -12,6 +13,7 @@
 
 <script>
 import { ref, reactive, inject, computed, onMounted, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 // import DrugAdd from "/@/views/pharmacy/drugAddNew.vue";
 
 export default {
@@ -21,6 +23,7 @@ export default {
   },
   setup() {
     //allVariable
+    const router = useRouter();
     const titles = reactive([
       "藥品訊息維護",
       "新增藥品資料",
@@ -32,9 +35,26 @@ export default {
     //global
 
     //function
+    const handleChangeTab = (item) => {
+      switch (item) {
+        case "藥品訊息維護":
+          router.push("/pharmacy/drugmanagement");
+          break;
+        case "新增藥品資料":
+          router.push("/pharmacy/drugadd");
+          break;
+        case "新增藥品資料":
+          // alert(789);
+          break;
+        case "新增藥品資料":
+          // alert(321);
+          break;
+      }
+    };
 
     return {
       titles,
+      handleChangeTab,
     };
   },
 };
