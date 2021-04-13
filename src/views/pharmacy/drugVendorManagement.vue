@@ -42,14 +42,6 @@
         i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
       "
     >
-      <div>
-        <InputSwitch
-          class="transform translate-y-1.5"
-          v-model="item.review"
-          size="small"
-          @click.stop="toggleDetail(item)"
-        ></InputSwitch>
-      </div>
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
         <Button label="刪除" class="p-button-sm p-button-warning" />
