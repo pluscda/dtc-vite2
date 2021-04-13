@@ -2,16 +2,16 @@
   <section class="management">
     <DrugAdd v-if="isOpenAddDrugDialog" />
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品資料維護</div>
+      <div>藥品廠商維護</div>
     </header>
     <nav
       class="ml-1 dtc-search-filters mt-4"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="藥品編號">
+      <DtxInputGroup prepend="藥房編號">
         <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品名稱">
+      <DtxInputGroup prepend="藥房名稱">
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
