@@ -25,8 +25,6 @@ const r = useRoute();
 watch(r, () => {
   if (r.path.includes("drugmanagement") || r.path.includes("pharmacy/drugadd") || r.path.includes("pharmacy/drugvendormanagement")) {
     dtcCmp.value = basicNav;
-  } else if (r.path.includes("dragadd")) {
-    dtcCmp.value = addDrag;
   } else if (r.path.includes("drugWarehouse")) {
     dtcCmp.value = wsNav;
   } else {
