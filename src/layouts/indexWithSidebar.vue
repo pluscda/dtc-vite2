@@ -32,7 +32,7 @@ watch(r, () => {
     r.path.includes("pharmacy/drugadd")
   ) {
     dtcCmp.value = basicNav;
-  } else if (r.path.includes("librarymanagement")) {
+  } else if (r.path.includes("drugWarehouse")) {
     dtcCmp.value = wsNav;
   } else {
     dtcCmp.value = storeNav;
