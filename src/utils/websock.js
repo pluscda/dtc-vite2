@@ -1,4 +1,4 @@
-export default  websocketService = (wsurl, command) => {
+export default (wsurl, command) => {
   return new Promise((resolve, reject) => {
     const CONNECTION = new WebSocket(wsurl);
     if (!CONNECTION) {
