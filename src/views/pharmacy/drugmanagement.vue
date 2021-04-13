@@ -15,8 +15,8 @@
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
 
-    <header class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div title="限低於庫存下可轉採購單" class="title-word1">採購單(註1)</div>
+    <header data-msg="註1:限低於庫存下可轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
+      <div title="" class="title-word1">採購單(註1)</div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -58,7 +58,6 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
     </main>
-    <div style="text-align: initial; margin: 20px 0px 0px 8px" class="comment">註1: 限低於庫存下可轉採購單</div>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
@@ -142,5 +141,13 @@ export default {
     bottom: 70px;
     left: 0;
   }
+}
+.my-title::before {
+  content: attr(data-msg);
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 210px;
+  font-size: 13px;
 }
 </style>
