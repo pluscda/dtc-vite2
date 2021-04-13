@@ -6,11 +6,7 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -44,7 +40,7 @@ watch(r, () => {
 
 .left-nav {
   background: darken(#10579b, $amount: 5) !important;
-  height: 100%;
+  height: calc(100% - 70px);
   min-height: calc(100vh - 70px);
   color: lighten(#10579b, $amount: 55) !important;
 }
