@@ -13,7 +13,6 @@
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-      <!-- <Button label="藥品新增" class="p-button-success" icon="pi pi-plus" @click="$router.push('/pharmacy/drugadd')" /> -->
     </nav>
 
     <header data-msg="註1:限低於庫存下可轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
