@@ -47,16 +47,16 @@
   }
   .dtc-tabs {
     > * {
+      background-image:  none;
+      background: var(--gray);
       background-image: none !important;
-      background: #0f579b !important;
-      box-shadow: 100vw 0 0 #0f579b !important;
-      color: #fff !important;
+      color:  lighten(#10579b, $amount: 55) !important;
     }
     .active {
-      color: orange !important;
+      color: #ffc107 !important;
     }
     &::after {
-      background: #0f579b !important;
+       background: var(--gray);
     }
   }
   main .basic-info {
