@@ -5,7 +5,7 @@
 
       <el-input placeholder="使用者信箱" v-model="email2" class="">
         <template #prepend>
-          <i-ri:user-shared-fill />
+          <i-mdi:email></i-mdi:email>
         </template>
       </el-input>
       <div class="mb-8"></div>

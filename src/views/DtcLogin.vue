@@ -2,9 +2,9 @@
   <div id="dtc-login">
     <section class="login-panel">
       <h3 class="text-2xl text-white mb-11">基本醫療服務登入</h3>
-      <el-input placeholder="使用者名稱" v-model="name" class="">
+      <el-input placeholder="使用者信箱" v-model="name" class="">
         <template #prepend>
-          <i-ri:user-shared-fill />
+          <i-mdi:email></i-mdi:email>
         </template>
       </el-input>
       <div class="mb-6"></div>
