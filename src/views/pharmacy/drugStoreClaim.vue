@@ -7,19 +7,49 @@
       class="ml-1 dtc-search-filters mt-4"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="藥房">
-        <el-input placeholder="搜尋藥房" v-model="searchDrugId" />
+      <DtxInputGroup prepend="申請日期">
+        <Calendar
+          class="h-10"
+          v-model="time1"
+          placeholder="輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品名稱">
-        <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
+      <div class="mx-1 pt-2 dtc-text">至</div>
+      <Calendar
+        class="h-10"
+        v-model="time2"
+        placeholder="輸入日期"
+        :showIcon="true"
+        dateFormat="yy-mm-dd"
+      />
+      <DtxInputGroup prepend="申請單號">
+        <el-input placeholder="搜尋申請單號" v-model="searchDrugId" />
       </DtxInputGroup>
+
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+    </nav>
+    <nav
+      class="ml-1 dtc-search-filters mt-4"
+      style="margin-bottom: 1.5rem !important"
+    >
+      <DtxInputGroup prepend="申請人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="申請藥房">
+        <el-input placeholder="搜尋申請藥房" v-model="searchDrugName" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="結案狀態">
+        <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
+      </DtxInputGroup>
     </nav>
 
     <header
       class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
+      <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -41,6 +71,11 @@
         i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
       "
     >
+      <div class="flex flex-none space-x-2">
+        <Button label="檢視" class="p-button-sm p-button-warning" />
+        <Button label="編輯" class="p-button-sm" />
+      </div>
+
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -51,6 +86,8 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -64,22 +101,24 @@
 </template>
 
 <script>
-import { toRefs, ref, inject, computed } from "vue";
+import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "name", sortDesc: null },
-  { name: "院內代碼", key: "name", sortDesc: null },
+  { name: "申請單號", key: "name", sortDesc: null },
+  { name: "申請日期", key: "name", sortDesc: null },
+  { name: "結案狀態", key: "age", sortDesc: null },
+  { name: "申請人員", key: "age", sortDesc: null },
+  { name: "健保代碼", key: "age", sortDesc: null },
+  { name: "院內代碼", key: "age", sortDesc: null },
   { name: "藥品中文", key: "age", sortDesc: null },
   { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
-  { name: "規格", key: "age", sortDesc: null },
-  { name: "原核定價", key: "age", sortDesc: null },
-  { name: "存量", key: "age", sortDesc: null },
-  { name: "產地", key: "age", sortDesc: null },
-  { name: "劑型", key: "age", sortDesc: null },
+  { name: "申請數量", key: "age", sortDesc: null },
+  { name: "補撥數量", key: "age", sortDesc: null },
+  { name: "補撥人員", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -93,6 +132,54 @@ export default {
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
+    const time1 = ref("");
+    const time2 = ref("");
+    const zh = reactive({
+      firstDayOfWeek: 0,
+      dayNames: [
+        "星期日",
+        "星期一",
+        "星期二",
+        "星期三",
+        "星期四",
+        "星期五",
+        "星期六",
+      ],
+      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
+      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月",
+      ],
+      monthNamesShort: [
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六",
+        "七",
+        "八",
+        "九",
+        "十",
+        "十一",
+        "十二",
+      ],
+      today: "今天",
+      clear: "清空",
+      dateFormat: "yy-mm-dd",
+      weekHeader: "周",
+    });
     // 列表數據
     headers = ref(headers);
     const { state, getList, delItem } = useList();
@@ -119,6 +206,9 @@ export default {
       isOpenAddDrugDialog,
       openAddDialog,
       toggleDetail,
+      zh,
+      time1,
+      time2,
     };
   },
   mounted() {
@@ -131,7 +221,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: repeat(10, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(12, minmax(90px, 1fr));
 }
 .management {
   position: relative;
