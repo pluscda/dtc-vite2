@@ -6,7 +6,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import Components from 'vite-plugin-components'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
-import replaceHtmlVars from 'rollup-plugin-replace-html-vars'
+//import replaceHtmlVars from 'rollup-plugin-replace-html-vars'
 import dayjs from "dayjs"
 
 const buildTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
@@ -54,11 +54,11 @@ export default {
       customComponentResolvers: ViteIconsResolver(),//https://icones.js.org/collection/uim
     }),
     ViteIcons(),
-    replaceHtmlVars({
-        files: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, './index.html') : '',
-        from: '_THIS_IS_THE_VARIABLE_',
-        to: `${buildTime}`,
-    }),
+    // replaceHtmlVars({
+    //     files: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, './index.html') : '',
+    //     from: '_THIS_IS_THE_VARIABLE_',
+    //     to: `${buildTime}`,
+    // }),
     vueI18n({
       include: path.resolve(__dirname, './src/locales/**')
   })],

@@ -21,4 +21,8 @@ tryOnUnmounted(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.test {
+  font-size: 1rem;
+}
+</style>
