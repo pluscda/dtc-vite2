@@ -26,7 +26,11 @@ export default {
     ///allVariable
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive(["藥房庫存查詢作業", "藥品申請單", "藥房退庫單"]);
+    const titles = reactive([
+      "藥房庫存查詢作業",
+      "藥品申請單維護",
+      "藥房退庫單",
+    ]);
     //option
 
     //global
@@ -38,8 +42,8 @@ export default {
         case "藥房庫存查詢作業":
           router.push("/pharmacy/drugstoreinstock");
           break;
-        case "藥品申請單":
-          // router.push("/pharmacy/drugadd");
+        case "藥品申請單維護":
+          router.push("/pharmacy/drugstoreclaim");
           break;
         case "藥房退庫單":
           // router.push("/pharmacy/drugvendormanagement");
