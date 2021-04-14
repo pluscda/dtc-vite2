@@ -166,6 +166,12 @@ export const routes = [
         name: "drugstoreclaim",
         meta: { title: "藥品申領單維護", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugstoreclaimadd",
+        component: () => import("/@/views/pharmacy/drugStoreClaimAdd.vue"),
+        name: "drugstoreclaimadd",
+        meta: { title: "新增藥品申領單", icon: "el-icon-s-home" },
+      },
     ],
   },
 
