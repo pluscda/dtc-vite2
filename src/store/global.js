@@ -20,6 +20,16 @@ export const actions = {
       return e;
     }
   },
+  async resetPwd(obj){
+    //https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html#forgotten-reset-password
+    try{
+       const obj = await axios.post('auth/forgot-password', obj);
+       alert("please check your email for reseting the password");
+       return obj;
+    }catch(e){
+      return e;
+    }
+  },
   async registerNewUser(obj){
     // must have three of them, if no username. one can set username = email
     // if no email, can set: useranme@noreplay.com.tw

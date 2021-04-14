@@ -30,6 +30,16 @@ export const routes = [
     component: () => import("/@/views/DtcRegister.vue"),
   },
   {
+    path: "/restpwd",
+    name: "restpwd",
+    component: () => import("/@/views/DtcResetPwd.vue"),
+  },
+  {
+    path: "/restpwdex",
+    name: "restpwdex",
+    component: () => import("/@/views/DtcResetPwdEx.vue"),
+  },
+  {
     path: "/",
     redirect: "/home",
     component: Layout,

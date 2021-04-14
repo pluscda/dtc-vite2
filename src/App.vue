@@ -11,7 +11,7 @@
         </p>
       </nav>
     </main>
-    <NavBar v-if="!$route.path.includes('login') && !$route.path.includes('dtcregister')"></NavBar>
+    <NavBar v-if="!withinLogoutPages && !withinLogoutPages2"></NavBar>
     <router-view></router-view>
   </section>
 </template>
@@ -19,12 +19,22 @@
 <script>
 import { global, actions, mutations } from "/@/store/global";
 import NavBar from "/@/layouts/components/Navbar.vue";
+import CountDown from "cps/Countdown.vue";
 export default {
   name: "App",
   provide: {
     global,
     actions,
     mutations,
+  },
+  components: {
+    NavBar,
+    CountDown,
+  },
+  computed: {
+    withinLogoutPages() {
+      return this.$route.path.includes("login") || this.$route.path.includes("dtcregister") || this.$route.path.includes("resetpwd");
+    },
   },
   mounted() {
     // Mousetrap.init();
@@ -43,13 +53,13 @@ export default {
 import { useIdle } from "@vueuse/core";
 import { watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import CountDown from "cps/Countdown.vue";
 const { idle: idle1 } = useIdle(9 * 60 * 1000); // 9 min
 const { idle: idle2 } = useIdle(10 * 60 * 1000); // 10 min
 const router = useRouter();
 const route = useRoute();
+const withinLogoutPages2 = route.path.includes("login") || route.path.includes("dtcregister") || route.path.includes("resetpwd");
 watch(idle2, () => {
-  if (idle2.value && !route.path.includes("login")) {
+  if (idle2.value && !withinLogoutPages2) {
     router.replace("/login");
     setTimeout(location.reload(true), 0);
   }

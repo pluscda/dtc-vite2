@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-7">註冊新帳戶</h3>
+      <h3 class="text-2xl text-white mb-7">忘記密碼 /重設密碼</h3>
       <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
@@ -14,14 +14,7 @@
         </template>
       </el-input>
       <div class="mb-2"></div>
-      <el-input placeholder="使用者密碼" v-model="pwd" class="">
-        <template #prepend>
-          <i-ri:lock-password-fill />
-        </template>
-      </el-input>
-      <div class="mb-10"></div>
-      <el-button type="warning" class="max-w-md" round @click="register">創建新帳戶</el-button>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/login')">登入帳戶</h4>
+      <el-button type="warning" class="max-w-md" round @click="register">重設密碼</el-button>
     </section>
   </div>
 </template>
@@ -39,10 +32,10 @@ export default {
     const pwd = ref("123456");
 
     const router = useRouter();
-    const obj = { username: name.value, email: email2.value, password: pwd.value };
+    const obj = { email: email2.value };
     async function register() {
       //TODO: save jwt axios header
-      const { jwt, user } = await actions.registerNewUser(obj);
+      const { jwt, user } = await actions.resetPwd(obj);
     }
 
     return { name, pwd, register, email2 };
