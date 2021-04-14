@@ -11,7 +11,7 @@
         </p>
       </nav>
     </main>
-    <NavBar v-if="!$route.path.includes('login')"></NavBar>
+    <NavBar v-if="!$route.path.includes('login') && !$route.path.includes('dtcregister')"></NavBar>
     <router-view></router-view>
   </section>
 </template>
