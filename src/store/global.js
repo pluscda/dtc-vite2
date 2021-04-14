@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { reactive, registerRuntimeCompiler } from "vue";
 import axios from "utils/request";
 import websocketService from "utils/websock.js";
 
@@ -18,6 +18,17 @@ export const actions = {
     }catch(e){
       return e;
     }
+  },
+  async registerNewUser(obj){
+    // must have three of them, if no username. one can set username = email
+    // if no email, can set: useranme@noreplay.com.tw
+    const {username,email, password } = obj;
+    try{
+       return await axios.post('auth/local/register', obj);
+    }catch(e){
+      return e;
+    }
+
   },
   // 取得健保卡資訊
   async getIcCardInfo() {
