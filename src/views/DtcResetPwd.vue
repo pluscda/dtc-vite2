@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("loginbg.jpg");
+  background-image: url("//picsum.photos/seed/picsum/1200/1300");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
