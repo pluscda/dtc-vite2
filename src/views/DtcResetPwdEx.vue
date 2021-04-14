@@ -34,7 +34,8 @@ export default {
       //TODO: save jwt axios header
       try {
         const qs = location.href.split("?")[1];
-        const code = queryString.parse(qs).code;
+        const code = queryString.parse(qs)?.code;
+        alert(code);
         const obj = {
           code,
           password: name.value,
