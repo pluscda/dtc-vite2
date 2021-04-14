@@ -11,8 +11,8 @@
       <div class="mb-12"></div>
       <el-button type="warning" class="max-w-md" round @click="resetPwd">重設密碼</el-button>
       <footer class="flex justify-between mt-12">
-        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
         <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/login')">登入服務</h4>
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
       </footer>
     </section>
   </div>

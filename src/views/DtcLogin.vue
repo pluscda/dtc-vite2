@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("//unsplash.it/1003/1003");
+  background-image: url("//unsplash.it/998/998");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
