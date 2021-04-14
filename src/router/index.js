@@ -160,9 +160,15 @@ export const routes = [
         name: "drugstoreinstock",
         meta: { title: "藥房庫存查詢作業", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugstoreclaim",
+        component: () => import("/@/views/pharmacy/drugStoreClaim.vue"),
+        name: "drugstoreclaim",
+        meta: { title: "藥品申領單維護", icon: "el-icon-s-home" },
+      },
     ],
   },
-  
+
   {
     path: "/users",
     component: Layout,
