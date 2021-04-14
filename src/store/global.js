@@ -10,8 +10,14 @@ const init = {
 
 export let global = reactive({ ...init });
 export const actions = {
-  async sayHi() {
-    return await axios.get("http://www.google.com");
+  async login(obj) {
+    // ref:https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html
+    //The identifier param can either be an email or a username
+    try{
+       return await axios.post('auth/local',  {identifier, password});
+    }catch(e){
+      return e;
+    }
   },
   // 取得健保卡資訊
   async getIcCardInfo() {
