@@ -4,7 +4,7 @@
       <h3 class="text-2xl text-white mb-7">註冊新帳戶</h3>
       <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
-          <i-ri:user-shared-fill />
+          <i-simple-icons:namecheap></i-simple-icons:namecheap>
         </template>
       </el-input>
       <div class="mb-2"></div>
