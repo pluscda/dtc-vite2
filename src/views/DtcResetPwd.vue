@@ -1,6 +1,5 @@
 <template>
   <div id="dtc-login">
-    <Toast />
     <section class="login-panel">
       <h3 class="text-2xl text-white mb-16">基本醫療 / 忘記密碼</h3>
 
@@ -23,22 +22,20 @@
 import { inject, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import dayjs from "dayjs";
-import { useToast } from "primevue/useToast";
 export default {
   setup() {
     const email2 = ref("pluscda@gmail.com");
     const actions = inject("actions");
     const router = useRouter();
-    const toast = useToast();
     const obj = { email: email2.value };
     async function resetPwd() {
       try {
         const { ok } = await actions.resetPwd({ email: email2.value });
         if (!ok) throw "郵件無法寄出";
-        toast.add({ severity: "success", summary: "郵件寄出", detail: "請查看郵件信箱並重設密碼", life: 5000 });
+        //toast.add({ severity: "success", summary: "郵件寄出", detail: "請查看郵件信箱並重設密碼", life: 5000 });
         setTimeout(() => router.replace("/login"), 5000);
       } catch (e) {
-        toast.add({ severity: "error", summary: "郵件無法寄出", detail: "請查看郵件信箱是否正確", life: 3000 });
+        // toast.add({ severity: "error", summary: "郵件無法寄出", detail: "請查看郵件信箱是否正確", life: 3000 });
       }
     }
 

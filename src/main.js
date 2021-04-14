@@ -12,8 +12,7 @@ import Button from "primevue/button";
 import InputSwitch from 'primevue/inputswitch';
 import OverlayPanel from 'primevue/overlaypanel';
 import RadioButton from 'primevue/radiobutton';
-import Toast from 'primevue/toast';
-import ToastService from 'primevue/toastservice';
+
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -21,15 +20,14 @@ import 'primeicons/primeicons.css';
 
 
 const app = createApp(App);
-app.component('Toast',Toast );
-app.use(element3).use(router).use(PrimeVue).use(ToastService);
+
+app.use(element3).use(router).use(PrimeVue);
 // PrimeVue UI components
 app.component('Calendar', Calendar );
 app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);
 app.component('OverlayPanel',OverlayPanel);
 app.component('RadioButton',RadioButton );
-//app.component('Toast',Toast );
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting

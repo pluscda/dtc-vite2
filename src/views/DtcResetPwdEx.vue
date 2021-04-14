@@ -1,6 +1,5 @@
 <template>
   <div id="dtc-login">
-    <Toast />
     <section class="login-panel">
       <h3 class="text-2xl text-white mb-11">基本醫療 / 重設密碼</h3>
       <el-input placeholder="使用者密碼1" v-model="name" class="">
@@ -24,7 +23,7 @@
 import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
 import queryString from "qs";
-import { useToast } from "primevue/useToast";
+
 export default {
   setup() {
     const actions = inject("actions");
@@ -45,7 +44,7 @@ export default {
         const { jwt, user } = await actions.resetPwdEx(obj);
         if (!jwt) throw "Incorrect code provided";
         sessionStorage.token = jwt;
-        toast.add({ severity: "success", summary: "修改密碼成功", detail: "系統將自動導向", life: 3000 });
+        //toast.add({ severity: "success", summary: "修改密碼成功", detail: "系統將自動導向", life: 3000 });
         setTimeout(() => router.replace("/users"), 3000);
       } catch (e) {
         alert("error: " + e);
