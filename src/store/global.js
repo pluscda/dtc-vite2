@@ -24,7 +24,6 @@ export const actions = {
     //https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html#forgotten-reset-password
     try{
        const ret = await axios.post('auth/forgot-password', obj);
-       alert("please check your email for reseting the password");
        return ret;
     }catch(e){
       return e;
@@ -34,7 +33,6 @@ export const actions = {
     //https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html#forgotten-reset-password
     try{
        const ret = await axios.post('auth/reset-password', obj);
-       alert('reset pwd ok');
        return ret;
     }catch(e){
       return e;
