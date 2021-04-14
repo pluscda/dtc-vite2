@@ -33,7 +33,8 @@ export default {
     const obj = { email: email2.value };
     async function resetPwd() {
       try {
-        await actions.resetPwd({ email: email2.value });
+        const { ok } = await actions.resetPwd({ email: email2.value });
+        if (!ok) throw "郵件無法寄出";
         toast.add({ severity: "success", summary: "郵件寄出", detail: "請查看郵件信箱並重設密碼", life: 5000 });
         setTimeout(() => router.replace("/login"), 5000);
       } catch (e) {
