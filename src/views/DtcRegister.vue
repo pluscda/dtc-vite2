@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-7">註冊新帳戶</h3>
+      <h3 class="text-2xl text-white mb-7">基本醫療 / 註冊新帳戶</h3>
       <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
           <i-simple-icons:namecheap></i-simple-icons:namecheap>
