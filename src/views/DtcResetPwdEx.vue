@@ -29,17 +29,17 @@ export default {
     let qs = location.href.split("?")[1];
     qs = queryString.parse(qs);
     const actions = inject("actions");
-    const pwd1 = ref("123456");
-    const pwd2 = ref("123456");
+    const pwd1 = ref("654321");
+    const pwd2 = ref("654321");
     const router = useRouter();
     async function resetPwdEx() {
       alert(qs.code);
       const obj = {
         code: qs.code
-        password: pwd1,
-        passwordConfirmation: pwd2
+        password: pwd1.value,
+        passwordConfirmation: pwd2.value
       };
-      await actions.resetPwd(obj);
+      await actions.resetPwdEx(obj);
     }
     return { resetPwdEx, pwd1, pwd2 };
   },
