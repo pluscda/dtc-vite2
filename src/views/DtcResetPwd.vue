@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-16">基本醫療 / 重設密碼</h3>
+      <h3 class="text-2xl text-white mb-16">基本醫療 / 忘記密碼</h3>
 
       <el-input placeholder="使用者信箱" v-model="email2" class="">
         <template #prepend>
