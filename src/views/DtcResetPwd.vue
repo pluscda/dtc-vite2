@@ -28,7 +28,7 @@ export default {
     const router = useRouter();
     const obj = { email: email2.value };
     async function resetPwd() {
-      await actions.resetPwd(obj);
+      await actions.resetPwd({ email: email2.value });
       alert("please check your email to reset your password");
     }
 

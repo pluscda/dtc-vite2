@@ -23,19 +23,19 @@ export const actions = {
   async resetPwd(obj){
     //https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html#forgotten-reset-password
     try{
-       const obj = await axios.post('auth/forgot-password', obj);
+       const ret = await axios.post('auth/forgot-password', obj);
        alert("please check your email for reseting the password");
-       return obj;
+       return ret;
     }catch(e){
       return e;
     }
   },
-  async resetPwd2(obj){
+  async resetPwdEx(obj){
     //https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html#forgotten-reset-password
     try{
-       const obj = await axios.post('auth/reset-password', obj);
+       const ret = await axios.post('auth/reset-password', obj);
        alert('reset pwd ok');
-       return obj;
+       return ret;
     }catch(e){
       return e;
     }
