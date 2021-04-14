@@ -4,10 +4,15 @@
       <aside class="flex flex-col space-y-6 text-white left-nav">
         <BasicNav v-if="isBasicTab" />
         <WsNav v-if="isWarehouseTab" />
+        <StoreNav v-if="isStoreTab" />
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
+    <el-backtop
+      target=".index-position"
+      :visibility-height="100"
+      style="color: rgb(58 142 229)"
+    >
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -52,10 +57,15 @@ export default {
       );
     });
 
+    const isStoreTab = computed(() => {
+      return r.path.includes("pharmacy/drugstoreinstock");
+    });
+
     return {
       dtcCurrentCmp,
       isBasicTab,
       isWarehouseTab,
+      isStoreTab,
     };
   },
 };

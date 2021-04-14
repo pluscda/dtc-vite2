@@ -134,6 +134,12 @@ export const routes = [
         name: "drugwarehousewithdrawal",
         meta: { title: "藥房退庫管理", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugstoreinstock",
+        component: () => import("/@/views/pharmacy/drugStoreInStock.vue"),
+        name: "drugstoreinstock",
+        meta: { title: "藥房庫存查詢作業", icon: "el-icon-s-home" },
+      },
     ],
   },
   {
