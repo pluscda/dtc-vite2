@@ -31,6 +31,21 @@
           </el-option>
         </el-select>
       </DtxInputGroup>
+      <DtxInputGroup prepend="院內代碼" labelWidth="120">
+        <el-select
+          v-model="isControlledDrug"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in yesNoOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入藥品中文" />
       </DtxInputGroup>
@@ -42,37 +57,6 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入申請數量" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="補撥數量" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入補撥數量" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="補撥人員" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入補撥人員" />
-      </DtxInputGroup>
-      <DtxInputGroup
-        labelWidth="120"
-        prepend="結案狀態"
-        style="
-          grid-column: span 1;
-          display: grid;
-          grid-template-columns: 120px 1fr;
-          grid-column-gap: 5px;
-        "
-      >
-        <div style="text-align: start">
-          <el-radio
-            v-model="healthReport"
-            label="已結案"
-            style="margin: 13px 35px 0px 50px"
-            >已結案</el-radio
-          >
-          <el-radio
-            v-model="healthReport"
-            label="未結案"
-            style="margin-top: 13px; margin-left: 5px"
-            >未結案</el-radio
-          >
-        </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="備註" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入備註" />
