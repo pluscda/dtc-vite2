@@ -29,6 +29,7 @@ export default {
     const obj = { email: email2.value };
     async function resetPwd() {
       await actions.resetPwd(obj);
+      alert("please check your email to reset your password");
     }
 
     return { resetPwd, email2 };
