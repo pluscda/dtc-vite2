@@ -30,7 +30,7 @@ export default {
     const name = ref(dayjs().format("Dtc_HH_mm_ss"));
     const pwd = ref("123456");
     const router = useRouter();
-    const obj = { username: name.value, email: name.value + "@nooreplay.com", password: pwd.value };
+    const obj = { username: name.value, email: "pluscda@gmail.com", password: pwd.value };
     async function register() {
       //TODO: save jwt axios header
       const { jwt, user } = await actions.registerNewUser(obj);

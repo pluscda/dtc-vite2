@@ -31,8 +31,12 @@ export default {
     const router = useRouter();
     async function login() {
       //TODO: save jwt axios header
-      const { jwt, user } = await actions.login({ identifier: name.value, password: pwd.value });
-      router.push("/users");
+      try {
+        const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
+        jwt ? router.push("/users") : alert(JSON.stringify(message));
+      } catch (e) {
+        alert("error: " + e);
+      }
     }
 
     return { name, pwd, login };
