@@ -30,7 +30,7 @@ export default {
       "藥房庫存查詢作業",
       "藥品申請單維護",
       "新增藥品申領單",
-      "藥房退庫單",
+      "藥房退庫單維護",
     ]);
     //option
 
@@ -49,8 +49,8 @@ export default {
         case "新增藥品申領單":
           router.push("/pharmacy/drugstoreclaimadd");
           break;
-        case "藥房退庫單":
-          // router.push("/pharmacy/drugvendormanagement");
+        case "藥房退庫單維護":
+          router.push("/pharmacy/drugstorewithdrawal");
           break;
       }
     };

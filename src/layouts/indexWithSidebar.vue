@@ -61,7 +61,8 @@ export default {
       return (
         r.path.includes("pharmacy/drugstoreinstock") ||
         r.path.includes("pharmacy/drugstoreclaim") ||
-        r.path.includes("pharmacy/drugstoreclaimadd")
+        r.path.includes("pharmacy/drugstoreclaimadd") ||
+        r.path.includes("pharmacy/drugstorewithdrawal")
       );
     });
 
