@@ -23,7 +23,7 @@ export default {
     // DrugAdd,
   },
   setup() {
-    //allVariable
+    ///allVariable
     const activeTab = ref(0);
     const router = useRouter();
     const titles = reactive(["藥房庫存查詢作業", "藥品申請單", "藥房退庫單"]);
