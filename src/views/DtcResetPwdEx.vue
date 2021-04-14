@@ -23,6 +23,7 @@
 import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
 import queryString from "qs";
+import { ElMessage } from "element-plus";
 
 export default {
   setup() {
@@ -44,6 +45,7 @@ export default {
         const { jwt, user } = await actions.resetPwdEx(obj);
         if (!jwt) throw "Incorrect code provided";
         sessionStorage.token = jwt;
+        ElMessage.success({ message: "修改密碼成功,系統將自動導向", type: "success" });
         //toast.add({ severity: "success", summary: "修改密碼成功", detail: "系統將自動導向", life: 3000 });
         setTimeout(() => router.replace("/users"), 3000);
       } catch (e) {
