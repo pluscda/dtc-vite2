@@ -20,6 +20,16 @@ import LayoutWithSideBar from "layouts/indexWithSidebar.vue";
  */
 export const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("/@/views/DtcLogin.vue"),
+  },
+  {
+    path: "/dtcregister",
+    name: "dtcregister",
+    component: () => import("/@/views/DtcRegister.vue"),
+  },
+  {
     path: "/",
     redirect: "/home",
     component: Layout,
@@ -142,11 +152,7 @@ export const routes = [
       },
     ],
   },
-  {
-    path: "/login",
-    name: "Login",
-    component: () => import("/@/views/DtcLogin.vue"),
-  },
+  
   {
     path: "/users",
     component: Layout,

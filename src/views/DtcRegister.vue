@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-11">基本醫療服務登入</h3>
+      <h3 class="text-2xl text-white mb-11">創建用戶</h3>
       <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
@@ -14,8 +14,7 @@
         </template>
       </el-input>
       <div class="mb-10"></div>
-      <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('dtcregister')">註冊新帳戶</h4>
+      <el-button type="warning" class="max-w-md" round @click="regsiter">創建用戶</el-button>
     </section>
   </div>
 </template>
@@ -26,12 +25,12 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const actions = inject("actions");
-    const name = ref("");
-    const pwd = ref("");
+    const name = ref("admin");
+    const pwd = ref("123456");
     const router = useRouter();
-    async function login() {
-      await actions.login({ identifier: name.value, password: pwd.value });
-      router.push("/users");
+    const obj = { username: name.value, email: name.value + "@noreplay.com", password: pwd.ref };
+    async function register() {
+      await actions.registerNewUser(obj);
     }
 
     return { name, pwd, login };
