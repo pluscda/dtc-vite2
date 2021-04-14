@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-11">創建用戶</h3>
+      <h3 class="text-2xl text-white mb-11">註冊新帳戶</h3>
       <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
@@ -14,7 +14,7 @@
         </template>
       </el-input>
       <div class="mb-10"></div>
-      <el-button type="warning" class="max-w-md" round @click="regsiter">創建用戶</el-button>
+      <el-button type="warning" class="max-w-md" round @click="register">創建新帳戶</el-button>
     </section>
   </div>
 </template>
@@ -22,18 +22,20 @@
 <script>
 import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
+import dayjs from "dayjs";
+
 export default {
   setup() {
     const actions = inject("actions");
-    const name = ref("admin");
+    const name = ref(dayjs().format("Dtc_HH_mm_ss"));
     const pwd = ref("123456");
     const router = useRouter();
-    const obj = { username: name.value, email: name.value + "@noreplay.com", password: pwd.ref };
+    const obj = { username: name.value, email: name.value + "@abc.com", password: pwd.value };
     async function register() {
-      await actions.registerNewUser(obj);
+      const { jwt, user } = await actions.registerNewUser(obj);
     }
 
-    return { name, pwd, login };
+    return { name, pwd, register };
   },
 };
 </script>
