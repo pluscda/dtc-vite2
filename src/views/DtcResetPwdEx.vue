@@ -1,54 +1,60 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-7">忘記密碼 /重設密碼</h3>
-      <el-input placeholder="使用者密碼1" v-model="pwd1" class="">
+      <h3 class="text-2xl text-white mb-11">忘記密碼 /重設密碼</h3>
+      <el-input placeholder="使用者密碼1" v-model="name" class="">
         <template #prepend>
-          <i-ri:user-shared-fill />
+          <i-ri:lock-password-fill />
         </template>
       </el-input>
       <div class="mb-6"></div>
-      <el-input placeholder="使用者密碼2" v-model="pwd2" class="">
+      <el-input placeholder="使用者密碼2" v-model="pwd" class="">
         <template #prepend>
-          <i-ri:user-shared-fill />
+          <i-ri:lock-password-fill />
         </template>
       </el-input>
-      <div class="mb-8"></div>
-      <el-button type="warning" class="max-w-md" round @click="resetPwdEx">重設密碼</el-button>
+      <div class="mb-10"></div>
+      <el-button type="warning" class="max-w-md" round @click="login">重設密碼</el-button>
+      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
     </section>
   </div>
 </template>
 
 <script>
-import { inject, ref, reactive } from "vue";
+import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
 import queryString from "qs";
-
 export default {
   setup() {
-    let qs = location.href.split("?")[1];
-    qs = queryString.parse(qs);
     const actions = inject("actions");
-    const pwd1 = ref("654321");
-    const pwd2 = ref("654321");
+    const name = ref("");
+    const pwd = ref("");
     const router = useRouter();
-    async function resetPwdEx() {
-      alert(qs.code);
-      const obj = {
-        code: qs.code
-        password: pwd1.value,
-        passwordConfirmation: pwd2.value
-      };
-      await actions.resetPwdEx(obj);
+    async function login() {
+      //TODO: save jwt axios header
+      try {
+        const qs = location.href.split("?")[1];
+        const code = queryString.parse(qs).code;
+        const obj = {
+          code,
+          password: name.value,
+          passwordConfirmation: pwd.value,
+        };
+        await actions.resetPwdEx(obj);
+        alert("reset ok");
+      } catch (e) {
+        alert("error: " + e);
+      }
     }
-    return { resetPwdEx, pwd1, pwd2 };
+
+    return { name, pwd, login };
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("//unsplash.it/1000/1000");
+  background-image: url("loginbg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
