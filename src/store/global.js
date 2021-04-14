@@ -13,6 +13,7 @@ export const actions = {
   async login(obj) {
     // ref:https://strapi.io/documentation/developer-docs/latest/development/plugins/users-permissions.html
     //The identifier param can either be an email or a username
+    const {identifier, password} = obj;
     try{
        return await axios.post('auth/local',  {identifier, password});
     }catch(e){

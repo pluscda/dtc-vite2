@@ -2,26 +2,39 @@
   <div id="dtc-login">
     <section class="login-panel">
       <h3 class="text-2xl text-white mb-11">基本醫療服務登入</h3>
-      <el-input placeholder="使用者名稱" v-model="input1" class="">
+      <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
         </template>
       </el-input>
       <div class="mb-6"></div>
-      <el-input placeholder="使用者密碼" v-model="input1" class="">
+      <el-input placeholder="使用者密碼" v-model="pwd" class="">
         <template #prepend>
           <i-ri:lock-password-fill />
         </template>
       </el-input>
       <div class="mb-10"></div>
-      <el-button type="warning" class="max-w-md" round @click="$router.push('/')">登入</el-button>
+      <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
     </section>
   </div>
 </template>
 
 <script>
+import { inject, ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
-  components: {},
+  setup() {
+    const actions = inject("actions");
+    const name = ref("admin");
+    const pwd = ref("123456");
+    const router = useRouter();
+    async function login() {
+      await actions.login({ identifier: name.value, password: pwd.value });
+      router.push("/users");
+    }
+
+    return { name, pwd, login };
+  },
 };
 </script>
 
