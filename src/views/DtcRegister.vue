@@ -44,8 +44,9 @@ export default {
     const router = useRouter();
     const obj = { username: name.value, email: email2.value, password: pwd.value };
     async function register() {
-      //TODO: save jwt axios header
       const { jwt, user } = await actions.registerNewUser(obj);
+      sessionStorage.token = jwt;
+      router.push("/users");
     }
 
     return { name, pwd, register, email2 };

@@ -23,6 +23,7 @@
 import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
 import queryString from "qs";
+import { useToast } from "primevue/useToast";
 export default {
   setup() {
     const actions = inject("actions");
@@ -30,7 +31,6 @@ export default {
     const pwd = ref("654321");
     const router = useRouter();
     async function login() {
-      //TODO: save jwt axios header
       try {
         const qs = location.href.split("?")[1];
         const code = queryString.parse(qs)?.code;
@@ -41,7 +41,8 @@ export default {
           passwordConfirmation: pwd.value,
         };
         await actions.resetPwdEx(obj);
-        alert("reset ok");
+        const toast = useToast();
+        toast.add({ severity: "success", summary: "修改密碼成功", detail: "請重新登入", life: 5000 });
       } catch (e) {
         alert("error: " + e);
       }

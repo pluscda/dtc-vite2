@@ -16,6 +16,7 @@
     "dom-to-image": "^2.6.0",
     "element3": "^0.0.40",
     "js-yaml": "^4.0.0",
+    "mitt": "^2.1.0",
     "mockjs": "^1.1.0",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.0",

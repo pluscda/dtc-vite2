@@ -12,6 +12,7 @@ import Button from "primevue/button";
 import InputSwitch from 'primevue/inputswitch';
 import OverlayPanel from 'primevue/overlaypanel';
 import RadioButton from 'primevue/radiobutton';
+import ToastService from 'primevue/toastservice';
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -20,7 +21,7 @@ import 'primeicons/primeicons.css';
 
 const app = createApp(App);
 
-app.use(element3).use(router).use(PrimeVue);
+app.use(element3).use(router).use(PrimeVue).use(ToastService);
 // PrimeVue UI components
 app.component('Calendar', Calendar );
 app.component("Button", Button);
