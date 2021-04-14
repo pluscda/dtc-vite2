@@ -1,13 +1,19 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-11">註冊新帳戶</h3>
+      <h3 class="text-2xl text-white mb-7">註冊新帳戶</h3>
       <el-input placeholder="使用者名稱" v-model="name" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
         </template>
       </el-input>
-      <div class="mb-6"></div>
+      <div class="mb-2"></div>
+      <el-input placeholder="使用者信箱" v-model="email2" class="">
+        <template #prepend>
+          <i-ri:user-shared-fill />
+        </template>
+      </el-input>
+      <div class="mb-2"></div>
       <el-input placeholder="使用者密碼" v-model="pwd" class="">
         <template #prepend>
           <i-ri:lock-password-fill />
@@ -20,23 +26,25 @@
 </template>
 
 <script>
-import { inject, ref } from "vue";
+import { inject, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import dayjs from "dayjs";
 
 export default {
   setup() {
+    const email2 = ref("pluscda@gmail.com");
     const actions = inject("actions");
     const name = ref(dayjs().format("Dtc_HH_mm_ss"));
     const pwd = ref("123456");
+
     const router = useRouter();
-    const obj = { username: name.value, email: "pluscda@gmail.com", password: pwd.value };
+    const obj = { username: name.value, email: email2.value, password: pwd.value };
     async function register() {
       //TODO: save jwt axios header
       const { jwt, user } = await actions.registerNewUser(obj);
     }
 
-    return { name, pwd, register };
+    return { name, pwd, register, email2 };
   },
 };
 </script>
