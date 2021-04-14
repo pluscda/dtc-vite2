@@ -90,7 +90,6 @@
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -113,17 +112,16 @@ let headers = [
   { name: "退庫單號", key: "name", sortDesc: null },
   { name: "退庫日期", key: "name", sortDesc: null },
   { name: "結案狀態", key: "age", sortDesc: null },
-  { name: "申請人員", key: "age", sortDesc: null },
+  { name: "退庫人員", key: "age", sortDesc: null },
   { name: "健保代碼", key: "age", sortDesc: null },
   { name: "院內代碼", key: "age", sortDesc: null },
   { name: "藥品中文", key: "age", sortDesc: null },
   { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
-  { name: "申請數量", key: "age", sortDesc: null },
-  { name: "藥品有效日期", key: "age", sortDesc: null },
-  { name: "發票日期", key: "age", sortDesc: null },
-  { name: "發票號碼", key: "age", sortDesc: null },
-  { name: "廠商", key: "age", sortDesc: null },
+  { name: "退庫數量", key: "age", sortDesc: null },
+  { name: "核實數量", key: "age", sortDesc: null },
+  { name: "驗收人員", key: "age", sortDesc: null },
+  { name: "備註", key: "age", sortDesc: null },
 ];
 
 export default {
