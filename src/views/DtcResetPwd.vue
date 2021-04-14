@@ -34,7 +34,8 @@ export default {
     async function resetPwd() {
       try {
         await actions.resetPwd({ email: email2.value });
-        toast.add({ severity: "success", summary: "郵件寄出", detail: "請查看郵件信箱並重設密碼", life: 3000 });
+        toast.add({ severity: "success", summary: "郵件寄出", detail: "請查看郵件信箱並重設密碼", life: 5000 });
+        setTimeout(() => router.replace("/login"), 5000);
       } catch (e) {
         toast.add({ severity: "error", summary: "郵件無法寄出", detail: "請查看郵件信箱是否正確", life: 3000 });
       }
