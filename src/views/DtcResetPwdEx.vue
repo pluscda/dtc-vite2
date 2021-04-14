@@ -22,15 +22,23 @@
 <script>
 import { inject, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-import dayjs from "dayjs";
+import queryString from "qs";
 
 export default {
   setup() {
+    let qs = location.href.split("?")[1];
+    qs = queryString.parse(qs);
     const actions = inject("actions");
     const pwd1 = ref("123456");
     const pwd2 = ref("123456");
     const router = useRouter();
     async function resetPwdEx() {
+      alert(qs.code);
+      const obj = {
+        code: qs.code
+        password: pwd1,
+        passwordConfirmation: pwd2
+      };
       await actions.resetPwd(obj);
     }
     return { resetPwdEx, pwd1, pwd2 };
