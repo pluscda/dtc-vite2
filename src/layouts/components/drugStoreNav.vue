@@ -1,12 +1,6 @@
 <template>
-  <h2 class="pt-3 text-gray-400 font-thin text-base">藥局 / 基本資料設定</h2>
-  <div
-    v-for="(item, i) in titles"
-    :key="item"
-    class="cursor-pointer py-3"
-    :class="activeTab == i ? 'active-tab' : ''"
-    @click="handleChangeTab(item, i)"
-  >
+  <h2 class="pt-3 text-gray-400 font-thin text-base">藥局 / 藥房管理</h2>
+  <div v-for="(item, i) in titles" :key="item" class="cursor-pointer py-3" :class="activeTab == i ? 'active-tab' : ''" @click="handleChangeTab(item, i)">
     {{ item }}
   </div>
   <!-- <DrugAdd /> -->
@@ -26,11 +20,7 @@ export default {
     ///allVariable
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive([
-      "藥房庫存查詢作業",
-      "藥品申請單維護",
-      "藥房退庫單",
-    ]);
+    const titles = reactive(["藥房庫存查詢作業", "藥品申請單維護", "藥房退庫單"]);
     //option
 
     //global
