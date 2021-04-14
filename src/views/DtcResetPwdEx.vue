@@ -15,7 +15,6 @@
       </el-input>
       <div class="mb-10"></div>
       <el-button type="warning" class="max-w-md" round @click="login">重設密碼</el-button>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
     </section>
   </div>
 </template>

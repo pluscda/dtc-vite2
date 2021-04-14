@@ -1,17 +1,19 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-16">基本醫療/重設密碼</h3>
+      <h3 class="text-2xl text-white mb-16">基本醫療 / 重設密碼</h3>
 
       <el-input placeholder="使用者信箱" v-model="email2" class="">
         <template #prepend>
           <i-mdi:email></i-mdi:email>
         </template>
       </el-input>
-      <div class="mb-8"></div>
+      <div class="mb-12"></div>
       <el-button type="warning" class="max-w-md" round @click="resetPwd">重設密碼</el-button>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/login')">登入服務</h4>
+      <footer class="flex justify-between mt-12">
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/login')">登入服務</h4>
+      </footer>
     </section>
   </div>
 </template>

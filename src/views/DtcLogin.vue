@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-11">基本醫療服務登入</h3>
+      <h3 class="text-2xl text-white mb-11">登入基本醫療服務</h3>
       <el-input placeholder="使用者信箱" v-model="name" class="">
         <template #prepend>
           <i-mdi:email></i-mdi:email>
@@ -15,8 +15,10 @@
       </el-input>
       <div class="mb-10"></div>
       <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
+      <footer class="flex justify-between">
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
+      </footer>
     </section>
   </div>
 </template>

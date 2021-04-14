@@ -21,7 +21,10 @@
       </el-input>
       <div class="mb-10"></div>
       <el-button type="warning" class="max-w-md" round @click="register">創建新帳戶</el-button>
-      <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/login')">登入帳戶</h4>
+      <footer class="flex justify-between">
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/login')">登入帳戶</h4>
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
+      </footer>
     </section>
   </div>
 </template>
