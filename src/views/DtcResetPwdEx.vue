@@ -2,19 +2,19 @@
   <div id="dtc-login">
     <section class="login-panel">
       <h3 class="text-2xl text-white mb-7">忘記密碼 /重設密碼</h3>
-      <el-input placeholder="使用者名稱" v-model="name" class="">
+      <el-input placeholder="使用者密碼1" v-model="pwd1" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
         </template>
       </el-input>
-      <div class="mb-2"></div>
-      <el-input placeholder="使用者信箱" v-model="email2" class="">
+      <div class="mb-6"></div>
+      <el-input placeholder="使用者密碼2" v-model="pwd2" class="">
         <template #prepend>
           <i-ri:user-shared-fill />
         </template>
       </el-input>
-      <div class="mb-2"></div>
-      <el-button type="warning" class="max-w-md" round @click="register">重設密碼</el-button>
+      <div class="mb-8"></div>
+      <el-button type="warning" class="max-w-md" round @click="resetPwdEx">重設密碼</el-button>
     </section>
   </div>
 </template>
@@ -26,26 +26,21 @@ import dayjs from "dayjs";
 
 export default {
   setup() {
-    const email2 = ref("pluscda@gmail.com");
     const actions = inject("actions");
-    const name = ref(dayjs().format("Dtc_HH_mm_ss"));
-    const pwd = ref("123456");
-
+    const pwd1 = ref("123456");
+    const pwd2 = ref("123456");
     const router = useRouter();
-    const obj = { email: email2.value };
-    async function register() {
-      //TODO: save jwt axios header
-      const { jwt, user } = await actions.resetPwd(obj);
+    async function resetPwdEx() {
+      await actions.resetPwd(obj);
     }
-
-    return { name, pwd, register, email2 };
+    return { resetPwdEx, pwd1, pwd2 };
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("//picsum.photos/seed/picsum/1200/1300");
+  background-image: url("//unsplash.it/1000/1000");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;

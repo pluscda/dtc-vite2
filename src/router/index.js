@@ -30,13 +30,13 @@ export const routes = [
     component: () => import("/@/views/DtcRegister.vue"),
   },
   {
-    path: "/restpwd",
-    name: "restpwd",
+    path: "/resetpwd",
+    name: "resetpwd",
     component: () => import("/@/views/DtcResetPwd.vue"),
   },
   {
-    path: "/restpwdex",
-    name: "restpwdex",
+    path: "/resetpwdex",
+    name: "resetpwdex",
     component: () => import("/@/views/DtcResetPwdEx.vue"),
   },
   {
