@@ -72,8 +72,8 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="檢視" class="p-button-sm p-button-warning" />
-        <Button label="編輯" class="p-button-sm" />
+        <Button label="檢視" class="p-button-sm p-button-info" />
+        <Button label="編輯" class="p-button-sm p-button-success" />
       </div>
 
       <div>{{ item.name || "暫無資料" }}</div>

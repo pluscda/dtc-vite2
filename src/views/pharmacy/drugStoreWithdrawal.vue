@@ -41,9 +41,6 @@
       <DtxInputGroup prepend="退庫藥房">
         <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="驗收人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
-      </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
         <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
       </DtxInputGroup>
@@ -75,7 +72,8 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="核實" class="p-button-sm p-button-success" />
+        <Button label="檢視" class="p-button-sm p-button-info" />
+        <Button label="編輯" class="p-button-sm p-button-success" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -88,8 +86,6 @@
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -119,9 +115,7 @@ let headers = [
   { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "退庫數量", key: "age", sortDesc: null },
-  { name: "核實數量", key: "age", sortDesc: null },
   { name: "驗收人員", key: "age", sortDesc: null },
-  { name: "備註", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -224,7 +218,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(11, minmax(90px, 1fr));
 }
 .management {
   position: relative;
