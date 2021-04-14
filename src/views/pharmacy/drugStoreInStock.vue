@@ -1,14 +1,14 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>庫存查詢作業</div>
+      <div>藥房庫存查詢作業</div>
     </header>
     <nav
       class="ml-1 dtc-search-filters mt-4"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="藥品編號">
-        <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="藥房">
+        <el-input placeholder="搜尋藥房" v-model="searchDrugId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱">
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
@@ -18,10 +18,8 @@
     </nav>
 
     <header
-      data-msg="註1:限低於庫存下可轉採購單"
       class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
-      <div title="" class="title-word1">採購單(註1)</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -43,15 +41,6 @@
         i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
       "
     >
-      <div>
-        <InputSwitch
-          class="transform translate-y-1.5"
-          v-model="item.review"
-          size="small"
-          @click.stop="toggleDetail(item)"
-        ></InputSwitch>
-      </div>
-
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -62,9 +51,6 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -84,17 +70,14 @@ import { useList } from "../users/model/userModel";
 
 //身分證號
 let headers = [
-  { name: "藥品編號", key: "name", sortDesc: null },
-  { name: "藥品名稱", key: "name", sortDesc: null },
+  { name: "健保代碼", key: "name", sortDesc: null },
+  { name: "院內代碼", key: "name", sortDesc: null },
+  { name: "藥品中文", key: "age", sortDesc: null },
+  { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "規格", key: "age", sortDesc: null },
-  { name: "批發價", key: "age", sortDesc: null },
-  { name: "零售價", key: "age", sortDesc: null },
-  { name: "採購量", key: "age", sortDesc: null },
-  { name: "申領量", key: "age", sortDesc: null },
+  { name: "原核定價", key: "age", sortDesc: null },
   { name: "存量", key: "age", sortDesc: null },
-  { name: "庫存上限", key: "age", sortDesc: null },
-  { name: "庫存下限", key: "age", sortDesc: null },
   { name: "產地", key: "age", sortDesc: null },
   { name: "劑型", key: "age", sortDesc: null },
 ];
@@ -148,7 +131,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(13, minmax(90px, 1fr));
+  grid-template-columns: repeat(10, minmax(90px, 1fr));
 }
 .management {
   position: relative;
