@@ -1,5 +1,5 @@
 <template>
-  <h2 class="pt-3 text-gray-400 font-thin text-sm">藥局 / 藥庫管理</h2>
+  <h2 class="pt-3 text-gray-400 font-thin text-base">藥局 / 藥庫管理</h2>
   <div v-for="(item, i) in titles" :key="item" class="cursor-pointer py-3" :class="activeTab == i ? 'active-tab' : ''" @click="handleChangeTab(item, i)">
     {{ item }}
   </div>
