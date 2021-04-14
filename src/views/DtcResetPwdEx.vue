@@ -35,7 +35,7 @@ export default {
       try {
         const qs = location.href.split("?")[1];
         const code = queryString.parse(qs)?.code;
-        alert(code);
+        //alert(code);
         const obj = {
           code,
           password: name.value,
