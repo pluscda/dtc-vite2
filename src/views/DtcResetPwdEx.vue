@@ -1,5 +1,6 @@
 <template>
   <div id="dtc-login">
+    <Toast />
     <section class="login-panel">
       <h3 class="text-2xl text-white mb-11">基本醫療 / 重設密碼</h3>
       <el-input placeholder="使用者密碼1" v-model="name" class="">
@@ -30,6 +31,7 @@ export default {
     const name = ref("654321");
     const pwd = ref("654321");
     const router = useRouter();
+    const toast = useToast();
     async function login() {
       try {
         const qs = location.href.split("?")[1];
@@ -41,8 +43,8 @@ export default {
           passwordConfirmation: pwd.value,
         };
         await actions.resetPwdEx(obj);
-        const toast = useToast();
-        toast.add({ severity: "success", summary: "修改密碼成功", detail: "請重新登入", life: 5000 });
+        toast.add({ severity: "success", summary: "修改密碼成功", detail: "請重新登入", life: 3000 });
+        setTimeout(() => router.replace("/login"), 3000);
       } catch (e) {
         alert("error: " + e);
       }

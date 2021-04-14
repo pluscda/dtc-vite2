@@ -12,6 +12,7 @@ import Button from "primevue/button";
 import InputSwitch from 'primevue/inputswitch';
 import OverlayPanel from 'primevue/overlaypanel';
 import RadioButton from 'primevue/radiobutton';
+import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 
 import 'primevue/resources/themes/saga-blue/theme.css';
@@ -28,6 +29,7 @@ app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);
 app.component('OverlayPanel',OverlayPanel);
 app.component('RadioButton',RadioButton );
+app.component('Toast',Toast );
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
