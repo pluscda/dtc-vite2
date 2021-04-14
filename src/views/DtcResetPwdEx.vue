@@ -42,9 +42,11 @@ export default {
           password: name.value,
           passwordConfirmation: pwd.value,
         };
-        await actions.resetPwdEx(obj);
-        toast.add({ severity: "success", summary: "修改密碼成功", detail: "請重新登入", life: 3000 });
-        setTimeout(() => router.replace("/login"), 3000);
+        const { jwt, user } = await actions.resetPwdEx(obj);
+        if (!jwt) throw "Incorrect code provided";
+        sessionStorage.token = jwt;
+        toast.add({ severity: "success", summary: "修改密碼成功", detail: "系統將自動導向", life: 3000 });
+        setTimeout(() => router.replace("/users"), 3000);
       } catch (e) {
         alert("error: " + e);
       }
