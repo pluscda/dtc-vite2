@@ -21,7 +21,7 @@ import 'primeicons/primeicons.css';
 
 
 const app = createApp(App);
-
+app.component('Toast',Toast );
 app.use(element3).use(router).use(PrimeVue).use(ToastService);
 // PrimeVue UI components
 app.component('Calendar', Calendar );
@@ -29,7 +29,7 @@ app.component("Button", Button);
 app.component("InputSwitch", InputSwitch);
 app.component('OverlayPanel',OverlayPanel);
 app.component('RadioButton',RadioButton );
-app.component('Toast',Toast );
+//app.component('Toast',Toast );
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting

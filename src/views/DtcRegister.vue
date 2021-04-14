@@ -79,8 +79,8 @@ export default {
   z-index: 99999;
 }
 
-::v-deep .el-input-group__append,
-::v-deep .el-input-group__prepend {
+:deep(.el-input-group__append),
+:deep(.el-input-group__prepend) {
   background-color: #ffc107;
   color: black;
 }
