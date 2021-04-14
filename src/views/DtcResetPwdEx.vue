@@ -27,8 +27,8 @@ import queryString from "qs";
 export default {
   setup() {
     const actions = inject("actions");
-    const name = ref("");
-    const pwd = ref("");
+    const name = ref("654321");
+    const pwd = ref("654321");
     const router = useRouter();
     async function login() {
       //TODO: save jwt axios header
