@@ -15,7 +15,7 @@
       </el-input>
       <div class="mb-10"></div>
       <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
-      <footer class="flex justify-between">
+      <footer class="flex justify-between hidden">
         <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
         <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
       </footer>
@@ -33,7 +33,6 @@ export default {
     const pwd = ref("");
     const router = useRouter();
     async function login() {
-      //TODO: save jwt axios header
       try {
         const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
         sessionStorage.token = jwt;
