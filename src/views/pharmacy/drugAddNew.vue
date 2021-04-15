@@ -21,18 +21,8 @@
         <el-input v-model="input1" placeholder="輸入藥品編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="是否為管制藥" labelWidth="120">
-        <el-select
-          v-model="isControlledDrug"
-          placeholder="請選擇"
-          class="border-l-0"
-        >
-          <el-option
-            v-for="item in yesNoOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+        <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱" labelWidth="120">
@@ -118,9 +108,7 @@
           <el-input v-model="input1" placeholder="輸入圖片名稱" />
         </DtxInputGroup>
         <label for="file-upload" class="custom-file-upload">
-          <i-ri:upload-cloud-fill
-            style="font-size: 24px"
-          ></i-ri:upload-cloud-fill>
+          <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
           <div>Upload Image File</div>
           <input id="file-upload" type="file" @change="fileChange" />
         </label>
@@ -132,27 +120,40 @@
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button
-        label="重新新增"
-        class="p-button-rounded p-button-info footer-btn"
-        style="margin-right: 20px"
-      />
-      <Button
-        label="確認儲存"
-        class="p-button-rounded p-button-success footer-btn"
-      />
+      <Button label="重新新增" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
+      <Button label="確認儲存" class="p-button-rounded p-button-success footer-btn" />
     </footer>
   </div>
 </template>
 
 <script>
 import { ref, inject } from "vue";
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
+let hisId,
+  sex,
+  carreer,
+  nationality,
+  bookPaper,
+  email,
+  mobile,
+  firstVisit,
+  married,
+  address1,
+  address2,
+  name,
+  phone1,
+  phone1_1,
+  phone1_1_1,
+  blood,
+  allergy,
+  allergyTxt,
+  personId,
+  birthday,
+  sms,
+  contactName,
+  relationship,
+  contactPhone,
+  contactMobile;
+const data = {};
 
 let yesNoOptions = [
   {

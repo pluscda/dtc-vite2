@@ -53,6 +53,9 @@ export const actions = {
   async getIcCardInfo() {
     return await websocketService("ws://localhost:8888/Chat", "checkNhiCard");
   },
+  async addBasicInfo(obj){
+     return await axios.post('/his-basics', obj);
+  }
 };
 
 export const mutations = {};
