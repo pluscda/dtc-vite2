@@ -41,9 +41,9 @@
       </div>
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
-        <el-popconfirm title="確定刪除嗎？">
+        <el-popconfirm title="確定刪除嗎？" @confirm="removeItem(item)">
           <template #reference>
-            <Button label="刪除" class="p-button-sm p-button-warning" @click="removeItem(item)" />
+            <Button label="刪除" class="p-button-sm p-button-warning" />
           </template>
         </el-popconfirm>
       </div>
