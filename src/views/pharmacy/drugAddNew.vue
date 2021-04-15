@@ -124,6 +124,7 @@
 
     <footer class="mt-6 mb-4 space-x-4">
       <Button label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
 </template>
@@ -179,6 +180,7 @@ export default {
       fileUpload: "",
       showAddNew: false,
       subject: new Subject(),
+      loading: false,
     };
   },
   methods: {
@@ -188,6 +190,7 @@ export default {
     },
     async saveItem() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
+      this.loading = true;
       const formData = new FormData();
       formData.append("files.drugImg", this.fileUpload, this.his.imgName);
       formData.append("data", JSON.stringify(this.his));
@@ -206,7 +209,7 @@ export default {
     },
   },
   created() {
-    subscribe = this.subject.pipe(throttleTime(2000), exhaustMap(this.saveItem)).subscribe();
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
   },
 
   beforeUnmount() {
