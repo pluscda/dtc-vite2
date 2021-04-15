@@ -121,8 +121,7 @@ export default {
     // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
-
-    const { state, getList, delItem } = useList();
+    const { state, getList, sort, clearFilters } = useList("his-histories");
 
     // 用戶更新
     function handleEdit({ row }) {
@@ -154,6 +153,7 @@ export default {
       handleDelete,
       headers,
       toggleDetail,
+      sort,
     };
   },
   mounted() {
