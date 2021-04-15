@@ -532,7 +532,6 @@ export default {
   methods: {
     async createItem() {
       const _selfFillForm = JSON.stringify(this.selfFillForm);
-      alert(_selfFillForm);
       await this.actions.addBasicInfo({ ...this.basicCard, selfFillForm: _selfFillForm });
     },
   },
