@@ -128,32 +128,61 @@
 
 <script>
 import { ref, inject } from "vue";
+
 let hisId,
-  sex,
-  carreer,
-  nationality,
-  bookPaper,
-  email,
-  mobile,
-  firstVisit,
-  married,
-  address1,
-  address2,
-  name,
-  phone1,
-  phone1_1,
-  phone1_1_1,
-  blood,
-  allergy,
-  allergyTxt,
-  personId,
-  birthday,
-  sms,
-  contactName,
-  relationship,
-  contactPhone,
-  contactMobile;
-const data = {};
+drugId,
+drugName,
+drugAlias,
+drugDose,
+drugCate,
+drugUnit,
+drugStandard,
+buyPrice,
+sellPrice,
+stockMax,
+stockMin,
+countryFrom,
+maker,
+drugType,
+adpot1,
+adopt2,
+chageCate,
+antiDrugLevel,
+imageName;
+
+const drugInfo = {
+hisId,
+drugId,
+drugName,
+drugAlias,
+drugDose,
+drugCate,
+drugUnit,
+drugStandard,
+buyPrice,
+sellPrice,
+stockMax,
+stockMin,
+countryFrom,
+maker,
+drugType,
+adpot1,
+adopt2,
+chageCate,
+antiDrugLevel,
+skinMark,
+underControl,
+tabu,
+insuranceLevael,
+giveDrugBy,
+cookDrugBy,
+warning,
+presteps,
+badreact,
+storeBy,
+drugImg,
+imgName,
+};
 
 let yesNoOptions = [
   {
@@ -168,6 +197,11 @@ let yesNoOptions = [
 
 export default {
   name: "drugAddNew",
+  data() {
+    return {
+      drugInfo
+    }
+  }
   setup() {
     //allVariable
     const isControlledDrug = ref("n");

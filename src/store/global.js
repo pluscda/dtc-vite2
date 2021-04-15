@@ -53,8 +53,11 @@ export const actions = {
   async getIcCardInfo() {
     return await websocketService("ws://localhost:8888/Chat", "checkNhiCard");
   },
-  async addBasicInfo(obj){
+  async addBasicInfo(obj){ // for route users/edit/:id
      return await axios.post('/his-basics', obj);
+  },
+  async addDrug(obj){ // for route /pharmacy/drugadd
+     return await axios.post('/his-drug', obj);
   }
 };
 
