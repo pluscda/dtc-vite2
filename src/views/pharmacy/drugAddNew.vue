@@ -178,7 +178,7 @@ export default {
     async saveItem() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       const formData = new FormData();
-      formData.append(`files.${this.his.imgName}`, this.fileUpload, this.his.imgName);
+      formData.append(`files.drugImg`, this.fileUpload, this.his.imgName);
       formData.append("data", JSON.stringify(this.his));
       const ret = await this.actions.addDrug(formData);
     },
