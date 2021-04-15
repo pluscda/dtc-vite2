@@ -29,8 +29,8 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const actions = inject("actions");
-    const name = ref("");
-    const pwd = ref("");
+    const name = ref("14tc_14_16_03");
+    const pwd = ref("654321");
     const router = useRouter();
     async function login() {
       try {
