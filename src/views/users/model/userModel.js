@@ -5,21 +5,24 @@ import { forkJoin, of } from 'rxjs';
 import { catchError } from "rxjs/operators";
 import { ElMessage } from "element-plus";
 
+const init =  { 
+  loading: true, 
+  list: [], 
+  total: 0,
+  listQuery: {
+    page: 1,
+    limit: 10,
+    sort:[],
+    filter:''
+  }
+};
 export function useList(url) {
   const state = reactive({
-    loading: true, 
-    list: [], 
-    total: 0,
-    listQuery: {
-      page: 1,
-      limit: 10,
-      sort:[],
-      filter:''
-    },
+         ...init
   });
-
   function getList() {
     if(!url) return;
+    state.list = [];
     state.loading = true;
     const {limit, page, sort} =  state.listQuery;
     let queryObj = {
