@@ -3,7 +3,7 @@ import axios from "utils/request";
 import queryString from "qs";
 import { forkJoin } from 'rxjs';
 
-export function useList() {
+export function useList(url) {
   const state = reactive({
     loading: true, 
     list: [], 
@@ -17,6 +17,7 @@ export function useList() {
   });
 
   function getList() {
+    if(!url) return;
     state.loading = true;
     const {limit, page, sort} =  state.listQuery;
     let queryObj = {
@@ -28,8 +29,8 @@ export function useList() {
     //todo: if any filter , please added below
     forkJoin(
       {
-        total: axios.get('his-histories/count?' + qs ),
-        data: axios.get('his-histories?' + qs)
+        total: axios.get(`${url}/count?` + qs ),
+        data: axios.get(`${url}?` + qs)
       }
     ).subscribe( ({total, data}) => {
        state.total = total;
@@ -37,24 +38,30 @@ export function useList() {
        state.loading = false;
     })
   }
+  function sort(headers,item) {
+      if (item.sortDesc) {
+        item.sortDesc = null;
+      } else if (false === item.sortDesc) {
+        item.sortDesc = true;
+      } else if (null === item.sortDesc) {
+        item.sortDesc = false;
+      }
+      const orderBy = [];
+      headers.forEach((s) => {
+        if (s.sortDesc !== null) {
+          //ref: https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#sort
+          orderBy.push(s.sortDesc ? `${s.key}:desc` : `${s.key}:asc`);
+        }
+      });
+      state.listQuery.sort = orderBy;
+      getList();
+    }
 
-  // 刪除項
-  function delItem(id) {
-    state.loading = true;
-
-    return axios({
-      url: "/deleteUser",
-      method: "get",
-      params: { id },
-    }).finally(() => {
-      state.loading = false;
-    });
-  }
 
   // 首次獲取數據
   getList();
 
-  return { state, getList, delItem };
+  return { state, getList, sort};
 }
 
 const defaultData = {

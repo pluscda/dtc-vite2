@@ -17,7 +17,7 @@
     <header data-msg="註1:限低於庫存下可轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div title="" class="title-word1">採購單(註1)</div>
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers.item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -96,7 +96,7 @@ export default {
     const searchDrugName = ref("");
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
+    const { state, getList, sort } = useList("his-drugs");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
