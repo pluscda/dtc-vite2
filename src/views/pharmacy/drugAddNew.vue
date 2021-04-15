@@ -123,7 +123,7 @@
     </main>
 
     <footer class="mt-6 mb-4 space-x-4">
-      <Button label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="!his.imgName" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
@@ -156,8 +156,6 @@ let hisId,
   antiDrugLevel,
   imageName;
 
-const his = {};
-
 let yesNoOptions = [
   {
     value: "y",
@@ -175,7 +173,7 @@ export default {
   inject: ["actions"],
   data() {
     return {
-      his,
+      his: {},
       uploadFileName: "",
       fileUpload: "",
       showAddNew: false,
@@ -209,11 +207,13 @@ export default {
     },
   },
   created() {
+    this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
   },
 
   beforeUnmount() {
     subscribe.unsubscribe();
+    this.his = {};
   },
 };
 </script>
