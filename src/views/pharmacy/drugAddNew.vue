@@ -134,27 +134,6 @@ import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
 import { forkJoin, of, Subject } from "rxjs";
 import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
-let hisId,
-  drugId,
-  drugName,
-  drugAlias,
-  drugDose,
-  drugCate,
-  drugUnit,
-  drugStandard,
-  buyPrice,
-  sellPrice,
-  stockMax,
-  stockMin,
-  countryFrom,
-  maker,
-  drugType,
-  adpot1,
-  adopt2,
-  chargeCate,
-  antiBioDrug,
-  antiDrugLevel,
-  imageName;
 
 let yesNoOptions = [
   {
