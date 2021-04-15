@@ -21,7 +21,7 @@
         <el-input v-model="drugInfo.drugId" placeholder="輸入藥品編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="是否為管制藥" labelWidth="120">
-        <el-select v-model="drungInfo.underControl" placeholder="請選擇" class="border-l-0">
+        <el-select v-model="drugInfo.underControl" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -41,7 +41,7 @@
         <el-input v-model="drugInfo.maker" placeholder="輸入廠商" />
       </DtxInputGroup>
       <DtxInputGroup prepend="醫保等級" labelWidth="120">
-        <el-input v-model="drungInfo.insuranceLevael" placeholder="輸入醫保等級" />
+        <el-input v-model="drugInfo.insuranceLevael" placeholder="輸入醫保等級" />
       </DtxInputGroup>
       <DtxInputGroup prepend="劑量" labelWidth="120">
         <el-input v-model="drugInfo.drugDose" placeholder="輸入劑量" />
@@ -76,36 +76,36 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="進價" labelWidth="120">
-        <el-input v-model="drungInfo.buyPrice" placeholder="輸入進價" />
+        <el-input v-model="drugInfo.buyPrice" placeholder="輸入進價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
-        <el-input v-model="drungInfo.antiBioDrug" placeholder="輸入抗生素藥物" />
+        <el-input v-model="drugInfo.antiBioDrug" placeholder="輸入抗生素藥物" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="售價" labelWidth="120">
-        <el-input v-model="drungInfo.sellPrice" placeholder="輸入售價" />
+        <el-input v-model="drugInfo.sellPrice" placeholder="輸入售價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素等級" labelWidth="120">
-        <el-input v-model="drungInfo.antiDrugLevel" placeholder="輸入抗生素等級" />
+        <el-input v-model="drugInfo.antiDrugLevel" placeholder="輸入抗生素等級" />
       </DtxInputGroup>
     </main>
     <h1 class="my-3 drgu-add-title dtc-text">藥理資料</h1>
     <main class="grid dtc-list-grid2">
       <DtxInputGroup prepend="警語(副作用)" labelWidth="120">
-        <el-input v-model="drungInfo.warning" placeholder="輸入警語(副作用)" />
+        <el-input v-model="drugInfo.warning" placeholder="輸入警語(副作用)" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用前注意" labelWidth="120">
-        <el-input v-model="drungInfo.presteps" placeholder="輸入用前注意" />
+        <el-input v-model="drugInfo.presteps" placeholder="輸入用前注意" />
       </DtxInputGroup>
       <DtxInputGroup prepend="不良反應" labelWidth="120">
-        <el-input v-model="drungInfo.badreact" placeholder="輸入不良反應" />
+        <el-input v-model="drugInfo.badreact" placeholder="輸入不良反應" />
       </DtxInputGroup>
       <DtxInputGroup prepend="儲存條件" labelWidth="120">
-        <el-input v-model="drungInfo.storeBy" placeholder="輸入儲存條件" />
+        <el-input v-model="drugInfo.storeBy" placeholder="輸入儲存條件" />
       </DtxInputGroup>
       <div class="dtc-grid-fileupload dtc-text">
         <DtxInputGroup prepend="圖片名稱" labelWidth="120">
-          <el-input v-model="drungInfo.imgName" placeholder="輸入圖片名稱" />
+          <el-input v-model="drugInfo.imgName" placeholder="輸入圖片名稱" />
         </DtxInputGroup>
         <label for="file-upload" class="custom-file-upload">
           <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
@@ -130,60 +130,28 @@
 import { ref, inject } from "vue";
 
 let hisId,
-drugId,
-drugName,
-drugAlias,
-drugDose,
-drugCate,
-drugUnit,
-drugStandard,
-buyPrice,
-sellPrice,
-stockMax,
-stockMin,
-countryFrom,
-maker,
-drugType,
-adpot1,
-adopt2,
-chageCate,
-antiBioDrug,
-antiDrugLevel,
-imageName;
+  drugId,
+  drugName,
+  drugAlias,
+  drugDose,
+  drugCate,
+  drugUnit,
+  drugStandard,
+  buyPrice,
+  sellPrice,
+  stockMax,
+  stockMin,
+  countryFrom,
+  maker,
+  drugType,
+  adpot1,
+  adopt2,
+  chargeCate,
+  antiBioDrug,
+  antiDrugLevel,
+  imageName;
 
-const drugInfo = {
-hisId,
-drugId,
-drugName,
-drugAlias,
-drugDose,
-drugCate,
-drugUnit,
-drugStandard,
-buyPrice,
-sellPrice,
-stockMax,
-stockMin,
-countryFrom,
-maker,
-drugType,
-adpot1,
-adopt2,
-chargeCate,
-antiDrugLevel,
-skinMark,
-underControl,
-tabu,
-insuranceLevael,
-giveDrugBy,
-cookDrugBy,
-warning,
-presteps,
-badreact,
-storeBy,
-drugImg,
-imgName,
-};
+const drugInfo = {};
 
 let yesNoOptions = [
   {
@@ -201,9 +169,9 @@ export default {
   inject: ["actions"],
   data() {
     return {
-      drugInfo
-    }
-  }
+      drugInfo,
+    };
+  },
   setup() {
     //allVariable
     const isControlledDrug = ref("n");
