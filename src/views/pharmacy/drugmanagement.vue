@@ -41,11 +41,7 @@
       </div>
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" />
-        <el-popconfirm title="確定刪除嗎？" @confirm="removeItem(item)">
-          <template #reference>
-            <Button label="刪除" class="p-button-sm p-button-warning" />
-          </template>
-        </el-popconfirm>
+        <Button label="刪除" class="p-button-sm p-button-warning" @click="removeItem(item)" />
       </div>
 
       <div>{{ item.drugId || "暫無資料" }}</div>

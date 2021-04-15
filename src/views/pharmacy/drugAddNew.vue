@@ -1,9 +1,12 @@
 <template>
   <div>
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
       <div>新增藥品資料/藥理資料</div>
+      <Button label="再次新增" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-warning" />
     </header>
+
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
+
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="衛統編號" labelWidth="120">
         <el-input v-model="his.hisId" placeholder="輸入衛統編號" />
@@ -120,8 +123,7 @@
     </main>
 
     <footer class="mt-6 mb-4 space-x-4">
-      <Button label="確認儲存" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
-      <Button label="再次新增" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
+      <Button label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
     </footer>
   </div>
 </template>
@@ -129,7 +131,8 @@
 <script>
 import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
-
+import { forkJoin, of, Subject } from "rxjs";
+import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
 let hisId,
   drugId,
   drugName,
@@ -165,6 +168,7 @@ let yesNoOptions = [
   },
 ];
 
+let subscribe = "";
 export default {
   name: "drugAddNew",
   inject: ["actions"],
@@ -174,11 +178,13 @@ export default {
       uploadFileName: "",
       fileUpload: "",
       showAddNew: false,
+      subject: new Subject(),
     };
   },
   methods: {
     reset() {
       this.his = {};
+      this.showAddNew = false;
     },
     async saveItem() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
@@ -198,6 +204,13 @@ export default {
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
     },
+  },
+  created() {
+    subscribe = this.subject.pipe(throttleTime(2000), exhaustMap(this.saveItem)).subscribe();
+  },
+
+  beforeUnmount() {
+    subscribe.unsubscribe();
   },
 };
 </script>
@@ -236,5 +249,9 @@ export default {
   display: grid;
   grid-template-columns: 500px 202px max-content;
   grid-column-gap: 20px;
+}
+.button-2 {
+  grid-template-columns: max-content max-content;
+  gap: 1.5rem;
 }
 </style>
