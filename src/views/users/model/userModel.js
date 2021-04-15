@@ -35,7 +35,7 @@ export function useList(url) {
         data: axios.get(`${url}?` + qs)
       }
     ).pipe( catchError( error => {
-      ElMessage.error({ message: "AJAX ${url} get list fail!!", type: "error" });
+      ElMessage.error("AJAX ${url} get list fail!!");
       of({total:0, data:[]})
     })).subscribe( ({total, data}) => {
        state.total = total;
@@ -68,7 +68,7 @@ export function useList(url) {
   // 首次獲取數據
   getList();
 
-  return { state, getList, sort,clearFilters};
+  return { state, getList, sort, clearFilters};
 }
 
 const defaultData = {
