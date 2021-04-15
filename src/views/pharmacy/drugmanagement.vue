@@ -43,7 +43,7 @@
         <Button label="編輯" class="p-button-sm" />
         <el-popconfirm title="確定刪除嗎？">
           <template #reference>
-            <Button label="刪除" class="p-button-sm p-button-warning" />
+            <Button label="刪除" class="p-button-sm p-button-warning" @click="removeItem(item)" />
           </template>
         </el-popconfirm>
       </div>
@@ -100,7 +100,7 @@ export default {
     const searchDrugName = ref("");
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters } = useList("his-drugs");
+    const { state, getList, sort, clearFilters, removeItem } = useList("his-drugs");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
@@ -143,6 +143,7 @@ export default {
       sort,
       cleanFilter,
       search,
+      removeItem,
     };
   },
   mounted() {

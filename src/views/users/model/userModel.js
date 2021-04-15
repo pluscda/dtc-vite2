@@ -47,6 +47,16 @@ export function useList(url) {
     state.listQuery.filter = "";
     getList();
   }
+
+  async function removeItem(item){
+    try{
+      await axios.delete(`${url}/${item.id}`);
+      getList();
+    }catch(e){
+       ElMessage.error("AJAX ${url} delete item faill!!");
+    }
+  }
+
   function sort(headers,item) {
       if (item.sortDesc) {
         item.sortDesc = null;
@@ -68,7 +78,7 @@ export function useList(url) {
   // 首次獲取數據
   getList();
 
-  return { state, getList, sort, clearFilters};
+  return { state, getList, sort, clearFilters,removeItem};
 }
 
 const defaultData = {
