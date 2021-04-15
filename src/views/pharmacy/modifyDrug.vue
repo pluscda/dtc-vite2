@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="dtc-page-header dtc-page-header-grid grid text-white">
-      <div>新增藥品資料/藥理資料</div>
+      <div>編輯藥品資料</div>
     </header>
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
     <main class="grid dtc-list-grid">
@@ -121,14 +121,13 @@
 
     <footer class="mt-6 mb-4 space-x-4">
       <Button label="確認儲存" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
-      <Button label="再次新增" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
+      <Button label="重新新增" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
     </footer>
   </div>
 </template>
 
 <script>
 import { ref, inject } from "vue";
-import { ElMessage } from "element-plus";
 
 let hisId,
   drugId,
@@ -173,25 +172,15 @@ export default {
       his,
       uploadFileName: "",
       fileUpload: "",
-      showAddNew: false,
     };
   },
   methods: {
-    reset() {
-      this.his = {};
-    },
     async saveItem() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       const formData = new FormData();
       formData.append("files.drugImg", this.fileUpload, this.his.imgName);
       formData.append("data", JSON.stringify(this.his));
-      try {
-        const ret = await this.actions.addDrug(formData);
-        ElMessage.success("新增藥品成功");
-        this.showAddNew = true;
-      } catch (e) {
-        ElMessage.error("AJAX add new drug fail!!");
-      }
+      const ret = await this.actions.addDrug(formData);
     },
     fileChange(e) {
       this.fileUpload = e.target.files[0];

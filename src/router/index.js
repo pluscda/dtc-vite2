@@ -99,6 +99,12 @@ export const routes = [
         meta: { title: "新增藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "modifydrug",
+        component: () => import("/@/views/pharmacy/modifydrug.vue"),
+        name: "modifyDrag",
+        meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
+      },
+      {
         path: "drugvendormanagement",
         component: () => import("/@/views/pharmacy/drugVendorManagement.vue"),
         name: "drugvendormanagement",
