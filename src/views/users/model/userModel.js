@@ -27,8 +27,8 @@ export function useList(url) {
       _start: page > 1 ? page * limit : 0,
     }
     sort.length ? queryObj._sort = sort.join(",") : '';
-    let qs = queryString.stringify(queryObj);
-    //todo: if any filter , please added below
+    let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
+   
     forkJoin(
       {
         total: axios.get(`${url}/count?` + qs ),
@@ -42,6 +42,10 @@ export function useList(url) {
        state.list = data;
        state.loading = false;
     })
+  }
+  function clearFilters(){
+    state.listQuery.filter = "";
+    getList();
   }
   function sort(headers,item) {
       if (item.sortDesc) {
@@ -64,7 +68,7 @@ export function useList(url) {
   // 首次獲取數據
   getList();
 
-  return { state, getList, sort};
+  return { state, getList, sort,clearFilters};
 }
 
 const defaultData = {

@@ -10,8 +10,8 @@
       <DtxInputGroup prepend="藥品名稱">
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header data-msg="註1:限低於庫存下可轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -96,7 +96,7 @@ export default {
     const searchDrugName = ref("");
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort } = useList("his-drugs");
+    const { state, getList, sort, clearFilters } = useList("his-drugs");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
@@ -111,6 +111,22 @@ export default {
       item.review = !review;
     };
 
+    const cleanFilter = () => {
+      searchDrugId.value = searchDrugName.value = "";
+      clearFilters();
+    };
+    const search = () => {
+      let filters = "";
+      if (searchDrugId.value) {
+        filters += `drugId=${searchDrugId.value}`;
+      }
+      if (searchDrugName.valu) {
+        filters += `drugName=${ssearchDrugName.value}`;
+      }
+      state.listQuery.filter = filters;
+      getList();
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -121,6 +137,8 @@ export default {
       openAddDialog,
       toggleDetail,
       sort,
+      cleanFilter,
+      search,
     };
   },
   mounted() {
