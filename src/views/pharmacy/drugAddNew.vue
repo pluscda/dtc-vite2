@@ -176,7 +176,7 @@ export default {
         ElMessage.success("新增藥品成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("AJAX add new drug fail!!");
+        ElMessage.error("新增藥品失敗!!");
       }
     },
     fileChange(e) {
