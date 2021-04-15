@@ -55,9 +55,7 @@ export function useList(url) {
       });
       state.listQuery.sort = orderBy;
       getList();
-    }
-
-
+  }
   // 首次獲取數據
   getList();
 
