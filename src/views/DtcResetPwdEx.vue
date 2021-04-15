@@ -31,7 +31,6 @@ export default {
     const name = ref("654321");
     const pwd = ref("654321");
     const router = useRouter();
-    const toast = useToast();
     async function login() {
       try {
         const qs = location.href.split("?")[1];
