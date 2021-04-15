@@ -1,7 +1,8 @@
 import { reactive, registerRuntimeCompiler } from "vue";
 import axios from "utils/request";
 import websocketService from "utils/websock.js";
-
+import { forkJoin, of } from 'rxjs';
+import { catchError } from "rxjs/operators";
 
 const init = {
   userDefaultBgColor: "dark",

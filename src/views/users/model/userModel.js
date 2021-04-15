@@ -1,7 +1,9 @@
 import { reactive, onMounted, ref } from "vue";
 import axios from "utils/request";
 import queryString from "qs";
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from "rxjs/operators";
+import { ElMessage } from "element-plus";
 
 export function useList(url) {
   const state = reactive({
@@ -32,7 +34,10 @@ export function useList(url) {
         total: axios.get(`${url}/count?` + qs ),
         data: axios.get(`${url}?` + qs)
       }
-    ).subscribe( ({total, data}) => {
+    ).pipe( catchError( error => {
+      ElMessage.error({ message: "AJAX ${url} get list fail!!", type: "error" });
+      of({total:0, data:[]})
+    })).subscribe( ({total, data}) => {
        state.total = total;
        state.list = data;
        state.loading = false;
