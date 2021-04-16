@@ -118,8 +118,8 @@
         </div>
       </div>
     </main>
-    <nav class="w-36 h-36 mt-2 ml-3" v-if="newImg || his.drugImg?.name">
-      <img :src="newImg ? newImg : his.drugImg.formats?.small.url" class="object-cover rounded" />
+    <nav class="w-36 h-36 mt-2 ml-3" v-if="newImg || his.drugImg?.url">
+      <img :src="newImg ? newImg : his.drugImg?.url" class="object-cover rounded" />
     </nav>
 
     <footer class="mt-6 mb-4 space-x-4">
