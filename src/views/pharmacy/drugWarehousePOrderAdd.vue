@@ -18,7 +18,7 @@
         <!-- <el-select v-model="his.drugId" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select> -->
-        <el-input v-model="his.drugId" placeholder="輸入申請人員" />
+        <el-input v-model="his.drugId" placeholder="輸入藥品編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱" labelWidth="120">
         <el-input v-model="his.drugName" placeholder="輸入藥品名稱" />
