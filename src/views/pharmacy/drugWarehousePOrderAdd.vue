@@ -33,7 +33,7 @@
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button :disabled="!enabledSave" label="確認儲存" @click="addItem" class="p-button-rounded p-button-success footer-btn" />
+      <Button :disabled="!enabledSave || addNewItem" label="確認儲存" @click="addItem" class="p-button-rounded p-button-success footer-btn" />
     </footer>
   </div>
 </template>
