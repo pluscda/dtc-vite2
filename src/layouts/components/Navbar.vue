@@ -2,29 +2,36 @@
   <nav class="text-blue-200 bg-gradient-to-r from-blue-900 to-blue-700 dtc-nav-bar">
     <span> <i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group></span>
     <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">基本醫療服務</div>
-    <section class="flex gap-8 cursor-pointer">
+    <section class="flex gap-8 cursor-pointer items-center">
       <div @click="$router.push('/home')">首頁</div>
-      <el-dropdown class="max-h-10" :show-timeout="1">
-        <span class="text-blue-200">門急診掛號<i class="el-icon-arrow-down el-icon--right"></i> </span>
-        <el-dropdown-menu>
-          <el-dropdown-item @click="$router.push('/users/list')">掛號</el-dropdown-item>
-          <el-dropdown-item @click="$router.push('/register')">掛號總覽清單</el-dropdown-item>
-        </el-dropdown-menu>
+      <el-dropdown class="" :show-timeout="1">
+        <span class="text-blue-200">門急診掛號<i class="el-icon-arrow-down el-icon--right"></i></span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="$router.push('/users/list')">掛號</el-dropdown-item>
+            <el-dropdown-item @click="$router.push('/register')">掛號總覽清單</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
-      <el-dropdown class="max-h-10" :show-timeout="1">
+
+      <el-dropdown class="" :show-timeout="1">
         <span class="text-blue-200">藥局<i class="el-icon-arrow-down el-icon--right"></i> </span>
-        <el-dropdown-menu>
-          <el-dropdown-item @click="$router.push('/pharmacy/drugmanagement')">基本資料設定</el-dropdown-item>
-          <el-dropdown-item @click="$router.push('/pharmacy/drugwarehouseinquire')">藥庫管理</el-dropdown-item>
-          <el-dropdown-item @click="$router.push('/pharmacy/drugstoreinstock')">藥房管理</el-dropdown-item>
-        </el-dropdown-menu>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="$router.push('/pharmacy/drugmanagement')">基本資料設定</el-dropdown-item>
+            <el-dropdown-item @click="$router.push('/pharmacy/drugwarehouseinquire')">藥庫管理</el-dropdown-item>
+            <el-dropdown-item @click="$router.push('/pharmacy/drugstoreinstock')">藥房管理</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
-      <el-dropdown class="max-h-10" :show-timeout="1">
+      <el-dropdown class="" :show-timeout="1">
         <span class="text-blue-200">線上諮詢<i class="el-icon-arrow-down el-icon--right"></i> </span>
-        <el-dropdown-menu>
-          <el-dropdown-item>諮詢-1</el-dropdown-item>
-          <el-dropdown-item>諮詢-2</el-dropdown-item>
-        </el-dropdown-menu>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>諮詢-1</el-dropdown-item>
+            <el-dropdown-item>諮詢-2</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
       <div>歷史報告</div>
       <div>所得明細</div>

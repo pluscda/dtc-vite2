@@ -15,7 +15,6 @@
     "dayjs": "^1.10.4",
     "dom-to-image": "^2.6.0",
     "element-plus": "*",
-    "element3": "^0.0.40",
     "js-yaml": "^4.0.0",
     "mitt": "^2.1.0",
     "mockjs": "^1.1.0",

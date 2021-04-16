@@ -72,7 +72,7 @@
 <script>
 import { toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
-import { Message } from "element3";
+import { ElMessage } from "element-plus";
 import Pagination from "cps/Pagination.vue";
 
 import { useList } from "../users/model/userModel";
