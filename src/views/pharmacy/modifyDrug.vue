@@ -128,6 +128,7 @@
 
 <script>
 import { ref, inject } from "vue";
+import { clone } from "ramda";
 
 let yesNoOptions = [
   {
@@ -165,7 +166,7 @@ export default {
     },
   },
   mounted() {
-    this.his = this.global.editItem;
+    this.his = clone(this.global.editItem);
   },
 };
 </script>
