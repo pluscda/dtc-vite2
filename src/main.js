@@ -2,7 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import axios from "utils/request";
 import "styles/index.scss";
-import element3 from "plugins/element3";
+import ElementPlus from 'element-plus'
+import 'dayjs/locale/zh-tw'
+import locale from 'element-plus/lib/locale/lang/zh-tw'
+import "element-plus/lib/theme-chalk/index.css";
 import router from "/@/router";
 
 import DtxInputGroup from "cps/DtxInputGroup.vue";
@@ -22,7 +25,8 @@ import 'primeicons/primeicons.css';
 
 const app = createApp(App);
 
-app.use(element3).use(router).use(PrimeVue);
+
+app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
 // PrimeVue UI components
 app.component('Calendar', Calendar );
 app.component("Button", Button);
