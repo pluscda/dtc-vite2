@@ -121,7 +121,7 @@
         </div>
       </div>
     </main>
-    <nav class="w-36 h-36 mt-2 ml-3" v-if="newImg">
+    <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">

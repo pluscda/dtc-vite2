@@ -118,7 +118,7 @@
         </div>
       </div>
     </main>
-    <nav class="w-36 h-36 mt-2 ml-3" v-if="newImg || his.drugImg?.url">
+    <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg || his.drugImg?.url">
       <img :src="newImg ? newImg : his.drugImg?.url" class="object-cover rounded" />
     </nav>
 
