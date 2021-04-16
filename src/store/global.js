@@ -60,6 +60,9 @@ export const actions = {
   },
   async addDrug(obj){ // for route /pharmacy/drugadd
      return await axios.post('/his-drugs', obj);
+  },
+  async editDrug(obj){ // for route /pharmacy/modifydrug
+     return await axios.put('/his-drugs', obj);
   }
 };
 

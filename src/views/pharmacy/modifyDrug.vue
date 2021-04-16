@@ -156,7 +156,7 @@ export default {
       const formData = new FormData();
       formData.append("files.drugImg", this.fileUpload, this.his.imgName);
       formData.append("data", JSON.stringify(this.his));
-      const ret = await this.actions.addDrug(formData);
+      const ret = await this.actions.editDrug(formData);
     },
     fileChange(e) {
       this.fileUpload = e.target.files[0];
