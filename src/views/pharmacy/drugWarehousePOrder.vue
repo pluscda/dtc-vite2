@@ -4,7 +4,7 @@
       <div>採購單管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="採號日期">
+      <DtxInputGroup prepend="採購日期">
         <Calendar class="h-10" v-model="time1" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
