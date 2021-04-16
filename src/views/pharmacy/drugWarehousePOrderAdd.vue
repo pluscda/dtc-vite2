@@ -1,8 +1,8 @@
 <template>
   <div>
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
       <div>新增採購單</div>
-      <Button label="再次新增採購單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
+      <Button label="再次新增採購單" @click="reset" v-show="addNewItem" class="p-button-rounded p-button-info" />
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="採購日期" labelWidth="120">
@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       his: {},
+      addNewItem: false,
     };
   },
   computed: {
@@ -63,10 +64,15 @@ export default {
     },
   },
   methods: {
+    reset() {
+      this.his = {};
+      this.addNewItem = false;
+    },
     async addItem() {
       try {
         await this.actions.addItem("hisbuys", this.his);
         ElMessage.success("新增採購單 ok");
+        this.addNewItem = true;
       } catch (e) {
         ElMessage.error("新增採購單 fail");
       }

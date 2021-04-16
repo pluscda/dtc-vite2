@@ -13,3 +13,8 @@ input{
    @apply focus:outline-none focus:ring focus:border-blue-300 #{!important};
 
 }
+
+.button-2 {
+  grid-template-columns: max-content max-content !important;
+  gap: 1.5rem !important;
+}
