@@ -173,10 +173,10 @@ export default {
         }
         // normal update without img here
         const { drugImg, ...hisObj } = this.his;
-        await actions.editDrug(hisObj);
+        await this.actions.editDrug(hisObj);
         ElMessage.success("編輯藥品成功");
       } catch (e) {
-        ElMessage.success("編輯藥品失敗");
+        ElMessage.error("編輯藥品失敗");
       }
     },
     fileChange(e) {
