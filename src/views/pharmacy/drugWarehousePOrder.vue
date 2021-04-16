@@ -75,6 +75,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
 import { isEmpty } from "ramda";
 import queryString from "qs";
+import dayjs from "dayjs";
 
 //身分證號
 let headers = [
@@ -108,16 +109,18 @@ export default {
 
     const search = () => {
       let filters = {};
-      if (searchDrugId.value) {
-        filters.drugId = searchDrugId.value;
+      let s, e, dateQuery;
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00.000Z");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59.000Z");
+        dateQuery = queryString.stringify({
+          _where: [{ orderDate_gte: s }, { orderDate_lt: e }],
+        });
       }
-      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
-      if (searchDrugName.value) {
-        filters.drugName_contains = searchDrugName.value;
-      }
-      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
-      state.listQuery.filter = filters;
+
+      state.listQuery.filter = dateQuery;
       getList();
+      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
     };
 
     return {
