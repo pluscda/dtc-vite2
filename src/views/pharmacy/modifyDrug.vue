@@ -155,17 +155,19 @@ export default {
     };
   },
   methods: {
-    async updateWithImg() {
+    async updateImg() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload-files-related-to-an-entry
       const formData = new FormData();
-      formData.append("files.drugImg", this.fileUpload, this.his.imgName);
-      formData.append("data", JSON.stringify(this.his));
-      const ret = await this.actions.editDrugWithImg(formData);
+      const data = {};
+      formData.append("ref", "his-drug");
+      formData.append("refId", this.his.id);
+      formData.append("field", "drugImg");
+      formData.append("files", this.fileUpload, this.his.imgName);
+      const ret = await this.actions.editImg(formData);
     },
     async saveItem() {
       if (this.fileUpload) {
-        this.updateWithImg();
-        return;
+        await this.updateImg();
       }
       // normal update without img here
     },
