@@ -111,7 +111,8 @@ export default {
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("hisbuys");
 
     const cleanFilter = () => {
-      //searchDrugName.value = searchDrugName.value = searchOrderId.value =
+      searchDrugName.value = searchDrugName.value = searchOrderId.value = searchOrderPerson.value = searchStatus.value = "";
+      getList();
     };
     const search = () => {
       let filters = {};
