@@ -66,7 +66,7 @@ export const actions = {
      return await axios.post('/upload', obj);
   },
   async editDrug(obj){ // for route /pharmacy/modifydrug
-     return await axios.put('/his-drugs', obj);
+     return await axios.put(`/his-drugs/${obj.id}`, obj);
   }
 };
 
