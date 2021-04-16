@@ -100,7 +100,7 @@ export const routes = [
       },
       {
         path: "modifydrug",
-        component: () => import("/@/views/pharmacy/modifydrug.vue"),
+        component: () => import("/@/views/pharmacy/modifyDrug.vue"),
         name: "modifyDrag",
         meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
       },

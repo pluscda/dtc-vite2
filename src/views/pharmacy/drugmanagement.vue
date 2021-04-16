@@ -66,7 +66,8 @@
 <script>
 import queryString from "qs";
 import { isEmpty } from "ramda";
-import { toRefs, ref, inject, computed } from "vue";
+import { toRefs, ref, inject, computed, provide } from "vue";
+import { useRouter } from "vue-router";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
 
@@ -94,6 +95,7 @@ export default {
   setup() {
     //global
     const global = inject("global");
+    const router = useRouter();
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
@@ -133,7 +135,9 @@ export default {
     };
 
     const editItem = async (item) => {
-      await getItemDetail(item);
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifydrug");
     };
 
     return {

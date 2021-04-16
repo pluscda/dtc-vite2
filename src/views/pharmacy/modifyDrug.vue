@@ -121,37 +121,13 @@
 
     <footer class="mt-6 mb-4 space-x-4">
       <Button label="確認儲存" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
-      <Button label="重新新增" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
+      <Button label="返回列表" @click="$router.push('/pharmacy')" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
     </footer>
   </div>
 </template>
 
 <script>
 import { ref, inject } from "vue";
-
-let hisId,
-  drugId,
-  drugName,
-  drugAlias,
-  drugDose,
-  drugCate,
-  drugUnit,
-  drugStandard,
-  buyPrice,
-  sellPrice,
-  stockMax,
-  stockMin,
-  countryFrom,
-  maker,
-  drugType,
-  adpot1,
-  adopt2,
-  chargeCate,
-  antiBioDrug,
-  antiDrugLevel,
-  imageName;
-
-const his = {};
 
 let yesNoOptions = [
   {
@@ -165,11 +141,11 @@ let yesNoOptions = [
 ];
 
 export default {
-  name: "drugAddNew",
-  inject: ["actions"],
+  name: "drugModify",
+  inject: ["global", "actions"],
   data() {
     return {
-      his,
+      his: {},
       uploadFileName: "",
       fileUpload: "",
     };
@@ -187,6 +163,9 @@ export default {
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
     },
+  },
+  mounted() {
+    this.his = this.global.editItem;
   },
 };
 </script>

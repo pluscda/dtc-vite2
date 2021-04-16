@@ -8,11 +8,7 @@
       </aside>
       <router-view></router-view>
     </main>
-    <el-backtop
-      target=".index-position"
-      :visibility-height="100"
-      style="color: rgb(58 142 229)"
-    >
+    <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
     </el-backtop>
   </section>
@@ -39,6 +35,7 @@ export default {
     const isBasicTab = computed(() => {
       return (
         r.path.includes("drugmanagement") ||
+        r.path.includes("pharmacy/modifydrug") ||
         r.path.includes("pharmacy/drugadd") ||
         r.path.includes("pharmacy/drugvendormanagement") ||
         r.path.includes("pharmacy/drugstoremanagement")

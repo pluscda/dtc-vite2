@@ -7,6 +7,7 @@ import { catchError } from "rxjs/operators";
 const init = {
   userDefaultBgColor: "dark",
   openAddDrugDialog: false,
+  editItem: '',
 };
 
 export let global = reactive({ ...init });
