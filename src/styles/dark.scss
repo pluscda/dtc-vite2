@@ -1,0 +1,105 @@
+#app.dark {
+  background: var(--dark) !important;
+   .my-title::before {
+     color:white  !important; 
+  }
+  .bg-white {
+    background: none !important;
+  }
+
+  .dtc-nav-bar {
+    background: #10579b!important;
+    background-image: none !important;
+    color: #f3e8ff !important;
+    .el-dropdown-selfdefine {
+      color: #f3e8ff !important;
+    }
+  }
+  .dtc-grid-header {
+    border-color: #9ca3af !important;
+  }
+  .dtc-page-header,
+  .dtc-grid-header__divs > div {
+    background-image: none !important;
+    background: #4b5563 !important;
+    color: #fff;
+    border-color: #9ca3af !important;
+  }
+  .dtc-page-header {
+    .tab-style {
+      background: #333b47;
+    }
+  }
+  .dtc-grid-body {
+    border-color: #9ca3af !important;
+    > div {
+      border-color: #9ca3af !important;
+    }
+    &:nth-child(odd) {
+      background-color: #475569 !important;
+      color: #f8fafc !important;
+    }
+    &:nth-child(even) {
+      background-color: #64748b !important;
+      color: #f8fafc !important;
+    }
+    > div {
+      border-color: #9ca3af !important;
+    }
+  }
+  .dtc-label {
+    background: none !important;
+    background: #646b74 !important;
+    box-shadow: 100vw 0 0 #646b74;
+    color: #fff;
+  }
+  input,
+  .el-radio,
+  .dtc-text {
+    color: white !important;
+    background: var(--gray-dark) !important;
+    border: none !important;
+    @apply ring-2 ring-coolGray-600;
+  }
+  .el-checkbox__label {
+    color: white !important;
+  }
+  .dtx-prepend {
+    @apply ring-2 ring-coolGray-600;
+  }
+  input {
+    @apply focus:ring-1 focus:ring-blue-200;
+  }
+  .el-radio,
+  .dtc-text {
+    @apply ring-0;
+    background:none !important;
+  }
+  .dtc-tabs {
+    > * {
+      background-image: none !important;
+      background: #646b74 !important;
+      box-shadow: 100vw 0 0 #646b74 !important;
+      color: #fff !important;
+    }
+    .active {
+      color: orange !important;
+    }
+    &::after {
+      background: #646b74 !important;
+    }
+  }
+  main .basic-info {
+    // fix for ray
+    background: none !important;
+    background: #898b8d !important;
+  }
+  section > section > main > section > div.comment {
+    color: #fff;
+  }
+  .left-nav {
+    background: darken(#10579b, $amount: 5) !important;
+    background-image: none !important;
+    color:  lighten(#10579b, $amount: 55) !important;
+  }
+}

@@ -1,54 +1,93 @@
 import { reactive, onMounted, ref } from "vue";
-import request from "utils/request";
+import axios from "utils/request";
+import queryString from "qs";
+import { forkJoin, of } from 'rxjs';
+import { catchError } from "rxjs/operators";
+import { ElMessage } from "element-plus";
 
-export function useList() {
-  // 列表數據
+const init =  { 
+  loading: true, 
+  list: [], 
+  total: 0,
+  listQuery: {
+    page: 1,
+    limit: 10,
+    sort:[],
+    filter:''
+  }
+};
+export function useList(url) {
   const state = reactive({
-    loading: true, // 加載狀態
-    list: [], // 列表數據
-    total: 0,
-    listQuery: {
-      page: 1,
-      limit: 10,
-    },
+         ...init
   });
-
-  // 獲取列表
   function getList() {
+    if(!url) return;
+    state.list = [];
     state.loading = true;
-
-    return request({
-      url: "/getUsers",
-      method: "get",
-      params: state.listQuery,
+    const {limit, page, sort} =  state.listQuery;
+    let queryObj = {
+      _limit : limit,
+      _start: page > 1 ? page * limit : 0,
+    }
+    sort.length ? queryObj._sort = sort.join(",") : '';
+    let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
+   
+    forkJoin(
+      {
+        total: axios.get(`${url}/count?` + qs ),
+        data: axios.get(`${url}?` + qs)
+      }
+    ).pipe( catchError( error => {
+      ElMessage.error("AJAX ${url} get list fail!!");
+      of({total:0, data:[]})
+    })).subscribe( ({total, data}) => {
+       state.total = total;
+       state.list = data;
+       state.loading = false;
     })
-      .then(({ data, total }) => {
-        // 設置列表數據
-        state.list = data;
-        state.total = total;
-      })
-      .finally(() => {
-        state.loading = false;
+  }
+  function clearFilters(){
+    state.listQuery.filter = "";
+    getList();
+  }
+  async function getItemDetail(item){
+    try{
+      return await axios.get(`${url}/${item.id}`);
+    }catch(e){
+       ElMessage.error("AJAX ${url} get item detail faill!!");
+    }
+  }
+  async function removeItem(item){
+    try{
+      await axios.delete(`${url}/${item.id}`);
+      getList();
+    }catch(e){
+       ElMessage.error("AJAX ${url} delete item faill!!");
+    }
+  }
+
+  function sort(headers,item) {
+      if (item.sortDesc) {
+        item.sortDesc = null;
+      } else if (false === item.sortDesc) {
+        item.sortDesc = true;
+      } else if (null === item.sortDesc) {
+        item.sortDesc = false;
+      }
+      const orderBy = [];
+      headers.forEach((s) => {
+        if (s.sortDesc !== null) {
+          //ref: https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#sort
+          orderBy.push(s.sortDesc ? `${s.key}:desc` : `${s.key}:asc`);
+        }
       });
+      state.listQuery.sort = orderBy;
+      getList();
   }
-
-  // 刪除項
-  function delItem(id) {
-    state.loading = true;
-
-    return request({
-      url: "/deleteUser",
-      method: "get",
-      params: { id },
-    }).finally(() => {
-      state.loading = false;
-    });
-  }
-
   // 首次獲取數據
   getList();
 
-  return { state, getList, delItem };
+  return { state, getList, sort, clearFilters,removeItem,getItemDetail};
 }
 
 const defaultData = {
@@ -59,22 +98,8 @@ const defaultData = {
 export function useItem(isEdit, id) {
   const model = ref(Object.assign({}, defaultData));
 
-  // 初始化時，根據isEdit判定是否需要獲取玩家詳情
-  onMounted(() => {
-    if (isEdit && id) {
-      // 獲取玩家詳情
-      request({
-        url: "/getUser",
-        method: "get",
-        params: { id },
-      }).then(({ data }) => {
-        model.value = data;
-      });
-    }
-  });
-
   const updateUser = () => {
-    return request({
+    return axios({
       url: "/updateUser",
       method: "post",
       data: model.value,
@@ -82,7 +107,7 @@ export function useItem(isEdit, id) {
   };
 
   const addUser = () => {
-    return request({
+    return axios({
       url: "/addUser",
       method: "post",
       data: model.value,

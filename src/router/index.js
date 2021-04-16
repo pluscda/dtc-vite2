@@ -1,35 +1,55 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "layouts/index.vue";
-
+import LayoutWithSideBar from "layouts/indexWithSidebar.vue";
 /**
- * Note: 子菜单仅当路由的children.length >= 1时才出现
+ * Note: 子菜單僅當路由的children.length >= 1時才出現
  *
- * hidden: true                   设置为true时路由将显示在sidebar中(默认false)
- * alwaysShow: true               如果设置为true则总是显示在菜单根目录
- *                                如果不设置alwaysShow, 当路由有超过一个子路由时,
- *                                将会变为嵌套模式, 否则不会显示根菜单
- * redirect: noRedirect           如果设置noRedirect时，breadcrumb中点击将不会跳转
- * name:'router-name'             name用于<keep-alive> (必须设置!!!)
+ * hidden: true                   設置為true時路由將顯示在sidebar中(默認false)
+ * alwaysShow: true               如果設置為true則總是顯示在菜單根目錄
+ *                                如果不設置alwaysShow, 當路由有超過一個子路由時,
+ *                                將會變為嵌套模式, 否則不會顯示根菜單
+ * redirect: noRedirect           如果設置noRedirect時，breadcrumb中點擊將不會跳轉
+ * name:'router-name'             name用於<keep-alive> (必須設置!!!)
  * meta : {
-    roles: ['admin','editor']    页面可访问角色设置 
-    title: 'title'               sidebar和breadcrumb显示的标题 
-    icon: 'svg-name'/'el-icon-x' sidebar中显示的图标
-    breadcrumb: false            设置为false，将不会出现在面包屑中
-    activeMenu: '/example/list'  如果设置一个path, sidebar将会在高亮匹配项
+    roles: ['admin','editor']    頁面可訪問角色設置 
+    title: 'title'               sidebar和breadcrumb顯示的標題 
+    icon: 'svg-name'/'el-icon-x' sidebar中顯示的圖標
+    breadcrumb: false            設置為false，將不會出現在麵包屑中
+    activeMenu: '/example/list'  如果設置一個path, sidebar將會在高亮匹配項
   }
  */
 export const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("/@/views/DtcLogin.vue"),
+  },
+  {
+    path: "/dtcregister",
+    name: "dtcregister",
+    component: () => import("/@/views/DtcRegister.vue"),
+  },
+  {
+    path: "/resetpwd",
+    name: "resetpwd",
+    component: () => import("/@/views/DtcResetPwd.vue"),
+  },
+  {
+    path: "/resetpwdex",
+    name: "resetpwdex",
+    component: () => import("/@/views/DtcResetPwdEx.vue"),
+  },
+  {
     path: "/",
     redirect: "/home",
     component: Layout,
-    meta: { title: "导航", icon: "el-icon-s-home" },
+    meta: { title: "導航", icon: "el-icon-s-home" },
     children: [
       {
         path: "home",
         component: () => import("views/home.vue"),
         name: "Home",
-        meta: { title: "首页", icon: "el-icon-s-home" },
+        meta: { title: "首頁", icon: "el-icon-s-home" },
         children: [
           {
             path: ":id",
@@ -37,7 +57,7 @@ export const routes = [
             name: "Detail",
             hidden: true,
             meta: {
-              title: "详情",
+              title: "詳情",
               icon: "el-icon-s-home",
               activeMenu: "/home",
             },
@@ -47,43 +67,159 @@ export const routes = [
     ],
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import( '/@/views/DtcLogin.vue')
+    path: "/register",
+    redirect: "/register/list",
+    component: Layout,
+    meta: { title: "掛號總覽清單", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "list",
+        component: () => import("/@/views/register/registerList.vue"),
+        name: "regsiterlist",
+        meta: { title: "清單", icon: "el-icon-s-home" },
+      },
+    ],
   },
+  {
+    path: "/pharmacy",
+    redirect: "/pharmacy/drugmanagement",
+    component: LayoutWithSideBar,
+    meta: { title: "基本資料設定", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "drugmanagement",
+        component: () => import("/@/views/pharmacy/drugmanagement.vue"),
+        name: "drugmanagement",
+        meta: { title: "藥品資料維護", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugadd",
+        component: () => import("/@/views/pharmacy/drugAddNew.vue"),
+        name: "drugadd",
+        meta: { title: "新增藥品資料", icon: "el-icon-s-home" },
+      },
+      {
+        path: "modifydrug",
+        component: () => import("/@/views/pharmacy/modifyDrug.vue"),
+        name: "modifyDrag",
+        meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugvendormanagement",
+        component: () => import("/@/views/pharmacy/drugVendorManagement.vue"),
+        name: "drugvendormanagement",
+        meta: { title: "藥品廠商維護", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugstoremanagement",
+        component: () => import("/@/views/pharmacy/drugStoreManagement.vue"),
+        name: "drugstoremanagement",
+        meta: { title: "藥房資料維護", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouseinquire",
+        component: () => import("/@/views/pharmacy/drugWarehouseInquire.vue"),
+        name: "drugwarehouseinquire",
+        meta: { title: "庫存查詢作業", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouseporder",
+        component: () => import("/@/views/pharmacy/drugWarehousePOrder.vue"),
+        name: "drugwarehouseporder",
+        meta: { title: "採購單管理", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouseporderadd",
+        component: () => import("/@/views/pharmacy/drugWarehousePOrderAdd.vue"),
+        name: "drugwarehouseporderadd",
+        meta: { title: "新增採購單", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehousing",
+        component: () => import("/@/views/pharmacy/drugWarehousing.vue"),
+        name: "drugwarehousing",
+        meta: { title: "入庫單管理", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouserequest",
+        component: () => import("/@/views/pharmacy/drugWarehouseRequest.vue"),
+        name: "drugwarehouserequest",
+        meta: { title: "藥品申領管理", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouserequestadd",
+        component: () =>
+          import("/@/views/pharmacy/drugWarehouseRequestAdd.vue"),
+        name: "drugwarehouserequestadd",
+        meta: { title: "新增申請單", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehousewithdrawal",
+        component: () =>
+          import("/@/views/pharmacy/drugWarehouseWithdrawal.vue"),
+        name: "drugwarehousewithdrawal",
+        meta: { title: "藥房退庫管理", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugstoreinstock",
+        component: () => import("/@/views/pharmacy/drugStoreInStock.vue"),
+        name: "drugstoreinstock",
+        meta: { title: "藥房庫存查詢作業", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugstoreclaim",
+        component: () => import("/@/views/pharmacy/drugStoreClaim.vue"),
+        name: "drugstoreclaim",
+        meta: { title: "藥品申領單維護", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugstoreclaimadd",
+        component: () => import("/@/views/pharmacy/drugStoreClaimAdd.vue"),
+        name: "drugstoreclaimadd",
+        meta: { title: "新增藥品申領單", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugstorewithdrawal",
+        component: () => import("/@/views/pharmacy/drugStoreWithdrawal.vue"),
+        name: "drugstorewithdrawal",
+        meta: { title: "藥房退庫單維護", icon: "el-icon-s-home" },
+      },
+    ],
+  },
+
   {
     path: "/users",
     component: Layout,
     meta: {
-      title: "用户管理",
+      title: "用戶管理",
       icon: "el-icon-user-solid",
     },
-    redirect: '/users/list',
+    redirect: "/users/list",
     children: [
       {
         path: "list",
-        component: () => import("views/users/list.vue"),
+        component: () => import("/@/views/users/list.vue"),
         meta: {
-          title: "用户列表",
+          title: "用戶列表",
           icon: "el-icon-document",
         },
       },
       {
         path: "create",
-        component: () => import("views/users/create.vue"),
+        component: () => import("/@/views/users/create.vue"),
         hidden: true,
         meta: {
-          title: "创建新用户",
+          title: "創建新用戶",
           activeMenu: "/users/list",
         },
       },
       {
         path: "edit/:id(\\d+)",
         name: "userEdit",
-        component: () => import("views/users/edit.vue"),
+        component: () => import("/@/views/users/edit.vue"),
         hidden: true,
         meta: {
-          title: "编辑用户信息",
+          title: "編輯用戶信息",
           activeMenu: "/users/list",
         },
       },

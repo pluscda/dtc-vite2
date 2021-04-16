@@ -1,5 +1,9 @@
 .dtc-page-header {
-  @apply bg-title h-10 text-white text-lg pl-3 leading-10 mb-3 text-left;
+  background-position: top left;
+  background-repeat: no-repeat;
+  @apply h-10 text-lg pl-3 leading-10 mb-1 text-left;
+  @apply bg-light-pattern text-black;
+  //@apply bg-dark-pattern text-white;
 }
 
 .dtc-search-filters {
@@ -9,7 +13,6 @@
   margin-bottom: 12px;
   grid-template-columns: repeat(34, max-content);
   grid-gap: 0.4rem;
-  
 }
 
 .dtc-grid-header {
@@ -25,7 +28,7 @@
     -webkit-line-clamp: 1;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    font-size: 14px;
+    font-size: 1rem;
     padding: 4px 0;
   }
   > div:last-child {
@@ -35,21 +38,80 @@
 
 .dtc-grid-header__divs {
   > div {
-    @apply bg-bsGray;
-    color: white;
-    span{
-      display:inline-block;
+    @apply bg-light-pattern text-black;
+    span {
+      display: inline-block;
       transform: translateY(4px);
     }
   }
 }
 
 .dtc-grid-body {
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.075);
-  }
+  border-top: none;
   > div {
-    line-height: 24px;
+    line-height: 35px;
+    @apply px-1;
   }
 }
 
+.view-details {
+  grid-column: 1 / -1;
+  display: grid;
+  background: black;
+  color: white;
+  min-height: 40px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 0px;
+  text-align: center;
+  line-height: 30px;
+  label {
+    all: unset;
+  }
+  header,
+  main,
+  label {
+    display: grid;
+    border-bottom: 1px solid white;
+    border-top: none;
+    grid-template-columns: 1fr 140px repeat(10, 1fr);
+    background: gray;
+    > div {
+      border-right: 1px solid #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      font-size: 1rem;
+      padding: 4px 0;
+    }
+  }
+  label,
+  main {
+    border: none;
+    border-bottom: 1px solid white;
+    background: black;
+    cursor: pointer;
+  }
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 10px;
+
+  input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+}

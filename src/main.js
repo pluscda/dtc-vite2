@@ -1,13 +1,46 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import axios from "utils/request";
 import "styles/index.scss";
-import element3 from "plugins/element3";
+import ElementPlus from 'element-plus'
+import 'dayjs/locale/zh-tw'
+import locale from 'element-plus/lib/locale/lang/zh-tw'
+import "element-plus/lib/theme-chalk/index.css";
 import router from "/@/router";
-import Particles from "particles.vue3";
+
 import DtxInputGroup from "cps/DtxInputGroup.vue";
+import PrimeVue from 'primevue/config';
+import Calendar from 'primevue/calendar';
+import Button from "primevue/button";
+import InputSwitch from 'primevue/inputswitch';
+import OverlayPanel from 'primevue/overlaypanel';
+import RadioButton from 'primevue/radiobutton';
+import ProgressSpinner from 'primevue/progressspinner';
 
 
-createApp(App).use(element3).use(Particles).use(router).use(DtxInputGroup).mount("#app");
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';   
+
+
+const app = createApp(App);
+
+
+app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
+// PrimeVue UI components
+app.component('Calendar', Calendar );
+app.component("Button", Button);
+app.component("InputSwitch", InputSwitch);
+app.component('OverlayPanel',OverlayPanel);
+app.component('RadioButton',RadioButton );
+app.component('ProgressSpinner', ProgressSpinner);
+// DTC Custom UI components
+app.component('DtxInputGroup',DtxInputGroup);
+// Global setting
+app.config.globalProperties.axios = axios;
+app.provide('axios', app.config.globalProperties.axios);//https://v3.vuejs.org/api/application-config.html#iscustomelement
+app.mount("#app");
+
 
 
 

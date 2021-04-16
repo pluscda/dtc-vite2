@@ -7,12 +7,13 @@
       :layout="layout"
       :total="total"
       v-bind="$attrs"
+      size="lg"
       @current-change="handleCurrentChange"
     />
     <el-select v-model="pageSize" size="small">
       <el-option v-for="item in [10, 20, 50]" :key="item" :label="item + ' 條/頁'" :value="item"> </el-option>
     </el-select>
-    <div class="pt-2">共 {{ total }} 筆</div>
+    <div class="pt-2 dtc-text">共 {{ total }} 筆</div>
   </div>
 </template>
 
@@ -88,7 +89,7 @@ export default {
 .pagination-container {
   display: grid;
   justify-content: center;
-  grid-template-columns: max-content 100px max-content;
+  grid-template-columns: max-content 120px max-content;
   gap: 1rem;
   width: 100vw;
   font-family: Arial, Helvetica, sans-serif, "Microsoft JhengHei" !important;

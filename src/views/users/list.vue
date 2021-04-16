@@ -1,66 +1,94 @@
 <template>
-  <div class="app-container">
-    <header class="dtc-page-header">役男清冊查詢</header>
-    <div class="dtc-search-filters ml-1">
-      <DtxInputGroup prepend="檢查狀態">
+  <div class="bg-skin-color">
+    <header class="grid pr-2 dtc-page-header dtc-page-header__grid">
+      <div class="">病患基本資料 / 就醫身份 {{ msg }}</div>
+      <div class="flex items-center ml-4">
+        <InputSwitch v-model="takeCard" class="mt-0"></InputSwitch>
+        <span @click="takeCard = !takeCard">初診</span>
+      </div>
+      <div class="flex items-center ml-2">
+        <InputSwitch v-model="takeCard2" class="mt-0"></InputSwitch>
+        <span @click="takeCard = !takeCard2">複診</span>
+      </div>
+      <Button style="margin: 4px 0" class="p-button-rounded p-button-help" @click="$router.replace('/users/edit/1')">編輯個人資料/初診單</Button>
+      <div></div>
+      <Button class="p-button-rounded" style="margin: 4px 0">補卡取號</Button>
+      <Button class="p-button-rounded p-button-success" style="margin: 4px 0" @click="readHealthCard">讀取健保卡</Button>
+      <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
+      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
+    </header>
+    <div class="grid gap-1 mb-3 ml-1 dtc-autoflow-grid">
+      <DtxInputGroup prepend="身份證號">
+        <el-input v-model="personBasicInfo.id" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="病患姓名">
+        <el-input v-model="personBasicInfo.name" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="出生日期">
+        <el-input v-model="personBasicInfo.birthday" readonly class="bg-gray-300" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="病歷號碼">
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="Name">
+      <DtxInputGroup prepend="手機號碼">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="病患性別">
         <el-select v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
 
-      <DtxInputGroup prepend="身份證號">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+      <DtxInputGroup prepend="就診身份">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
-      <button class="dtc-primay-btn"><i-icomoon-free:search class="inline-block mr-2"></i-icomoon-free:search>進行查詢</button>
-      <button class="dtc-info-btn"><i-fluent:eraser-24-regular class="inline-block mr-2"></i-fluent:eraser-24-regular>清除條件</button>
+      <DtxInputGroup prepend="折扣身份">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="部分負擔">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="就醫類別">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="預防保健">
+        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="健保卡序">
+        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="掛號取卡" class="h-10">
+        <InputSwitch v-model="takeCard" class="mt-2 ml-0 transform translate-x-2"></InputSwitch>
+        <span class="ml-0.5 mt-2.5 inline-block transform translate-x-2 text-gray-600 text-base dtc-text" @click="takeCard = !takeCard">掛號後取卡</span>
+        <!-- <el-checkbox class="mt-2 ml-2 h-9" v-model="checked">掛號後取卡</el-checkbox> -->
+      </DtxInputGroup>
     </div>
-    <header class="dtc-grid-header dtc-grid-header__divs dtc-template-columns ml-1">
-      <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
-        {{ item.name }}
-        <span v-show="item.sortDesc === null">
-          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-        </span>
-        <span v-show="item.sortDesc === false">
-          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-        </span>
-        <span v-show="item.sortDesc">
-          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
-      </div>
-    </header>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1"
-      v-for="(item, i) in list"
-      :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
-    >
-      <div class="flex space-x-1">
-        <button class="dtc-primay-btn__xs">查詢1</button>
-        <button class="dtc-info-btn__xs">查詢2</button>
-        <!-- <el-button type="primary" size="mini">查詢1</el-button>
-        <el-button type="info" size="mini">查詢2</el-button> -->
-      </div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-    </main>
-
-    <!-- 分頁 -->
-    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
+    <section class="flex flex-col-reverse mb-2 space-x-1 xl:flex xl:flex-row">
+      <Regsiter class="xl:w-1/2"></Regsiter>
+      <Pay class="mt-2 mb-2 xl:w-1/2 xl:mt-0 x:mb-0"></Pay>
+    </section>
+    <InqueryList></InqueryList>
   </div>
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
+import { inject, toRefs, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { Message } from "element3";
-import Pagination from "cps/Pagination.vue";
+import { ElMessage } from "element-plus";
 import { useList } from "./model/userModel";
-
+import Regsiter from "./components/register.vue";
+import Pay from "./components/hisPay.vue";
+import InqueryList from "./components/inqueryList.vue";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -68,42 +96,45 @@ let headers = [
 ];
 
 export default {
-  name: "UserList",
+  name: "UserListHIS",
   components: {
-    Pagination,
+    Regsiter,
+    Pay,
+    InqueryList,
   },
   data() {
     return {
-      input1: "2323",
+      takeCard: true,
+      input1: "J120092876",
       options: [
         {
           value: "選項1",
-          label: "黃金糕",
+          label: "牙科就診",
         },
 
         {
           value: "選項3",
-          label: "蚵仔煎",
+          label: "身心障礙",
         },
         {
           value: "選項4",
-          label: "龍鬚麵",
+          label: "發展遲緩兒童",
         },
         {
           value: "選項5",
-          label: "北京烤鴨",
+          label: "失能老人",
         },
       ],
       value: "",
     };
   },
   setup() {
-    // 玩家列表數據
     const router = useRouter();
-    headers = ref(headers);
     const { state, getList, delItem } = useList();
+    const actions = inject("actions");
+    headers = ref(headers);
+    const personBasicInfo = reactive({ name: "", id: "", birthday: "" });
 
-    // 用戶更新
     function handleEdit({ row }) {
       router.push({
         name: "userEdit",
@@ -120,12 +151,25 @@ export default {
       });
     }
 
+    //讀取健保卡
+    async function readHealthCard() {
+      const data = await actions.getIcCardInfo();
+      let patientInfo = data.message.split(" ");
+      patientInfo = patientInfo.filter((s) => Boolean(s));
+
+      personBasicInfo.name = patientInfo[0].replace(/\d/g, "");
+      personBasicInfo.id = patientInfo[1].slice(0, 9);
+      personBasicInfo.birthday = patientInfo[1].slice(10, -1);
+    }
+
     return {
       ...toRefs(state),
       getList,
       handleEdit,
       handleDelete,
       headers,
+      readHealthCard,
+      personBasicInfo,
     };
   },
 };
@@ -139,7 +183,13 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.dtc-template-columns {
-  grid-template-columns: 180px repeat(2, 160px) 1fr;
+.dtc-autoflow-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
+  grid-template-rows: 40px;
+  gap: 8px;
+}
+.dtc-page-header__grid {
+  grid-template-columns: max-content max-content max-content max-content 1fr repeat(4, max-content);
+  gap: 1rem;
 }
 </style>

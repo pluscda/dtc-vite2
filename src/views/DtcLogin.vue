@@ -1,37 +1,55 @@
 <template>
   <div id="dtc-login">
-    <ParticalLogin></ParticalLogin>
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-11">掛號門診登入</h3>
-      <el-input placeholder="使用者名稱" v-model="input1" class="">
+      <h3 class="text-2xl text-white mb-11">登入基本醫療服務</h3>
+      <el-input placeholder="使用者信箱" v-model="name" class="">
         <template #prepend>
-          <i-ri:user-shared-fill />
+          <i-mdi:email></i-mdi:email>
         </template>
       </el-input>
       <div class="mb-6"></div>
-      <el-input placeholder="使用者密碼" v-model="input1" class="">
+      <el-input placeholder="使用者密碼" v-model="pwd" class="">
         <template #prepend>
           <i-ri:lock-password-fill />
         </template>
       </el-input>
       <div class="mb-10"></div>
-      <el-button type="warning" class="max-w-md" round @click="$router.push('/')">登入</el-button>
+      <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
+      <footer class="flex justify-between hidden">
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
+        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
+      </footer>
     </section>
   </div>
 </template>
 
 <script>
-import ParticalLogin from "cps/ParticalLogin.vue";
+import { inject, ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
-  components: {
-    ParticalLogin,
+  setup() {
+    const actions = inject("actions");
+    const name = ref("14tc_14_16_03");
+    const pwd = ref("654321");
+    const router = useRouter();
+    async function login() {
+      try {
+        const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
+        sessionStorage.token = jwt;
+        jwt ? router.push("/users") : alert(JSON.stringify(message));
+      } catch (e) {
+        alert("error: " + e);
+      }
+    }
+
+    return { name, pwd, login };
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("loginbg.jpg");
+  background-image: url("//unsplash.it/998/998");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -54,8 +72,8 @@ export default {
   z-index: 99999;
 }
 
-::v-deep .el-input-group__append,
-::v-deep .el-input-group__prepend {
+:deep(.el-input-group__append),
+:deep(.el-input-group__prepend) {
   background-color: #ffc107;
   color: black;
 }

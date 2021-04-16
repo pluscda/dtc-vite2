@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Message } from "element3";
+import { ElMessage } from "element-plus";
 import { reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useItem } from "../model/userModel";
