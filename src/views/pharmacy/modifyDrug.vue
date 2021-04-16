@@ -132,6 +132,7 @@
 <script>
 import { ref, inject } from "vue";
 import { clone } from "ramda";
+import { ElMessage } from "element-plus";
 
 let yesNoOptions = [
   {
@@ -158,7 +159,6 @@ export default {
     async updateImg() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload-files-related-to-an-entry
       const formData = new FormData();
-      const data = {};
       formData.append("ref", "his-drug");
       formData.append("refId", this.his.id);
       formData.append("field", "drugImg");
@@ -166,10 +166,15 @@ export default {
       const ret = await this.actions.editImg(formData);
     },
     async saveItem() {
-      if (this.fileUpload) {
-        await this.updateImg();
+      try {
+        if (this.fileUpload) {
+          await this.updateImg();
+        }
+        // normal update without img here
+        ElMessage.success("編輯藥品成功");
+      } catch (e) {
+        ElMessage.success("編輯藥品失敗");
       }
-      // normal update without img here
     },
     fileChange(e) {
       this.fileUpload = e.target.files[0];
