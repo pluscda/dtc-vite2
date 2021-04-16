@@ -10,7 +10,7 @@
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="採購單號">
-        <el-input placeholder="搜尋採購單號" v-model="searchDrugId" />
+        <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
@@ -18,10 +18,10 @@
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="申請人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
-        <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
+        <el-input placeholder="搜尋結案狀態" v-model="searchStatus" />
       </DtxInputGroup>
     </nav>
 
@@ -100,6 +100,9 @@ export default {
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
+    const searchStatus = ref("");
     const time1 = ref("");
     const time2 = ref("");
 
@@ -107,6 +110,9 @@ export default {
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("hisbuys");
 
+    const cleanFilter = () => {
+      //searchDrugName.value = searchDrugName.value = searchOrderId.value =
+    };
     const search = () => {
       let filters = {};
       let s, e, dateQuery;
@@ -116,6 +122,12 @@ export default {
         dateQuery = queryString.stringify({
           _where: [{ orderDate_gte: s }, { orderDate_lt: e }],
         });
+      }
+      if (searchOrderId.value) {
+        filters.orderId = searchOrderId.value;
+      }
+      if (searchOrderPerson.value) {
+        filters.orderPerson = searchOrderPerson.value;
       }
 
       state.listQuery.filter = dateQuery;
