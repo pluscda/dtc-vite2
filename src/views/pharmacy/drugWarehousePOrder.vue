@@ -13,7 +13,7 @@
         <el-input placeholder="搜尋採購單號" v-model="searchDrugId" />
       </DtxInputGroup>
 
-      <Button label="進行查詢" icon="pi pi-search" />
+      <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
@@ -106,6 +106,20 @@ export default {
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("hisbuys");
 
+    const search = () => {
+      let filters = {};
+      if (searchDrugId.value) {
+        filters.drugId = searchDrugId.value;
+      }
+      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
+      if (searchDrugName.value) {
+        filters.drugName_contains = searchDrugName.value;
+      }
+      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
+      state.listQuery.filter = filters;
+      getList();
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -118,6 +132,7 @@ export default {
       clearFilters,
       removeItem,
       getItemDetail,
+      search,
     };
   },
   mounted() {
