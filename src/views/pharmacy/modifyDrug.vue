@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     async saveItem() {
-      //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
+      //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload-files-related-to-an-entry
       const formData = new FormData();
       formData.append("files.drugImg", this.fileUpload, this.his.imgName);
       formData.append("data", JSON.stringify(this.his));
