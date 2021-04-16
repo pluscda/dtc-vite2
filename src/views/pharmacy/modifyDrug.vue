@@ -125,7 +125,7 @@
     <footer class="mt-6 mb-4 space-x-4">
       <Button label="確認儲存" v-if="!loading" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
       <Button label="返回列表" v-if="!loading" @click="$router.push('/pharmacy')" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
-      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
+      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" animationDuration="1s"></ProgressSpinner>
     </footer>
   </div>
 </template>
