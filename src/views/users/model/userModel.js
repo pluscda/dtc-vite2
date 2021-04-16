@@ -20,6 +20,10 @@ export function useList(url) {
   const state = reactive({
          ...init
   });
+  function twTime(iso) {
+      let s = dayjs(iso).format("YYYY-MM-DDT00:00:00.000Z");
+      return s.split("T")[0];
+  }
   function getList() {
     if(!url) return;
     state.list = [];
@@ -87,7 +91,7 @@ export function useList(url) {
   // 首次獲取數據
   getList();
 
-  return { state, getList, sort, clearFilters,removeItem,getItemDetail};
+  return { state, getList, sort, clearFilters,removeItem,getItemDetail,twTime};
 }
 
 const defaultData = {

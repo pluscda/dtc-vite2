@@ -10,3 +10,12 @@ window.twDate = {
     dateFormat: "yy-mm-dd",
     weekHeader: "周",
 };
+
+
+ export const twTime = (iso) => {
+      let s = dayjs(iso).format("YYYY-MM-DDT00:00:00.000Z");
+      return s.split("T")[0];
+};
+
+
+ 

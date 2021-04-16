@@ -56,7 +56,7 @@
       </div>
 
       <div>{{ item.orderId || "暫無資料" }}</div>
-      <div>{{ item.orderDate.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ twTime(item.orderDate) || "暫無資料" }}</div>
       <div>{{ item.status || "暫無資料" }}</div>
       <div>{{ item.orderPerson || "暫無資料" }}</div>
       <div>{{ item.drugId || "暫無資料" }}</div>
@@ -105,14 +105,14 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("hisbuys");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("hisbuys");
 
     const search = () => {
       let filters = {};
       let s, e, dateQuery;
       if (time1.value && time2.value) {
-        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00.000Z");
-        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59.000Z");
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
         dateQuery = queryString.stringify({
           _where: [{ orderDate_gte: s }, { orderDate_lt: e }],
         });
@@ -136,6 +136,7 @@ export default {
       removeItem,
       getItemDetail,
       search,
+      twTime,
     };
   },
   mounted() {

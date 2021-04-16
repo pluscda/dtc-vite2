@@ -72,7 +72,7 @@ export default {
     async addItem() {
       try {
         // need to add 8 hours for our timezone
-        this.his.orderDate = dayjs(this.his.orderDate).format("YYYY-MM-DDT08:00:00.000Z");
+        //this.his.orderDate = dayjs(this.his.orderDate).format("YYYY-MM-DDT08:00:00.000Z");
         await this.actions.addItem("hisbuys", this.his);
         ElMessage.success("新增採購單 ok");
         this.addNewItem = true;
