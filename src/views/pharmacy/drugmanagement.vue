@@ -120,8 +120,9 @@ export default {
       if (searchDrugId.value) {
         filters += `drugId=${searchDrugId.value}`;
       }
-      if (searchDrugName.valu) {
-        filters += `drugName=${ssearchDrugName.value}`;
+      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
+      if (searchDrugName.value) {
+        filters += `&drugName_contains=${searchDrugName.value}`;
       }
       state.listQuery.filter = filters;
       getList();
