@@ -123,8 +123,9 @@
     </nav>
 
     <footer class="mt-6 mb-4 space-x-4">
-      <Button label="確認儲存" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
-      <Button label="返回列表" @click="$router.push('/pharmacy')" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
+      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
+      <Button label="確認儲存" :disabled="loading" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
+      <Button label="返回列表" :disabled="loading" @click="$router.push('/pharmacy')" class="p-button-rounded p-button-info footer-btn" style="margin-right: 20px" />
     </footer>
   </div>
 </template>
@@ -154,6 +155,7 @@ export default {
       uploadFileName: "",
       fileUpload: "",
       newImg: "",
+      loading: false,
     };
   },
   methods: {
@@ -167,14 +169,17 @@ export default {
       const ret = await this.actions.editImg(formData);
     },
     async saveItem() {
+      this.loading = true;
       try {
         this.fileUpload ? await this.updateImg() : "";
         // normal update without img here
         const { drugImg, ...hisObj } = this.his;
         await this.actions.editDrug(hisObj);
         ElMessage.success("編輯藥品成功");
+        this.loading = false;
       } catch (e) {
         ElMessage.error("編輯藥品失敗");
+        this.loading = false;
       }
     },
     fileChange(e) {
