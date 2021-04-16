@@ -33,6 +33,7 @@
     <main
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
+      @click.stop="editItem(item)"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
@@ -63,6 +64,8 @@
 </template>
 
 <script>
+import queryString from "qs";
+import { isEmpty } from "ramda";
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "../users/model/userModel";
@@ -96,7 +99,7 @@ export default {
     const searchDrugName = ref("");
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem } = useList("his-drugs");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("his-drugs");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
@@ -116,16 +119,21 @@ export default {
       clearFilters();
     };
     const search = () => {
-      let filters = "";
+      let filters = {};
       if (searchDrugId.value) {
-        filters += `drugId=${searchDrugId.value}`;
+        filters.drugId = searchDrugId.value;
       }
       //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
       if (searchDrugName.value) {
-        filters += `&drugName_contains=${searchDrugName.value}`;
+        filters.drugName_contains = searchDrugName.value;
       }
+      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
       getList();
+    };
+
+    const editItem = async (item) => {
+      await getItemDetail(item);
     };
 
     return {
@@ -141,6 +149,7 @@ export default {
       cleanFilter,
       search,
       removeItem,
+      editItem,
     };
   },
   mounted() {
