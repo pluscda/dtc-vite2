@@ -172,6 +172,8 @@ export default {
           await this.updateImg();
         }
         // normal update without img here
+        const { drugImg, ...hisObj } = this.his;
+        await actions.editDrug(hisObj);
         ElMessage.success("編輯藥品成功");
       } catch (e) {
         ElMessage.success("編輯藥品失敗");
