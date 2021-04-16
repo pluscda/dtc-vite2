@@ -80,7 +80,6 @@ export default {
 
 .left-nav {
   background: darken(#10579b, $amount: 5) !important;
-  height: calc(100% - 70px);
   min-height: calc(100vh - 70px);
   color: lighten(#10579b, $amount: 55) !important;
   div {

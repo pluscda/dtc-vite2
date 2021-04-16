@@ -118,6 +118,9 @@
         </div>
       </div>
     </main>
+    <nav class="w-36 h-36 mt-2 ml-3">
+      <img src="//unsplash.it/500/500" class="object-cover rounded" />
+    </nav>
 
     <footer class="mt-6 mb-4 space-x-4">
       <Button label="確認儲存" class="p-button-rounded p-button-success footer-btn" @click="saveItem" />
