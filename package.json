@@ -31,11 +31,11 @@
     "vue-router": "^4.0.4"
   },
   "devDependencies": {
-    "@types/ramda": "^0.27.40",
     "@iconify/json": "^1.1.322",
     "@intlify/vite-plugin-vue-i18n": "^2.0.0-rc.2",
     "@tailwindcss/jit": "^0.1.18",
     "@tailwindcss/line-clamp": "^0.2.0",
+    "@types/ramda": "^0.27.40",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vitejs/plugin-vue-jsx": "^1.1.0",
     "@vue/compiler-sfc": "^3.0.5",

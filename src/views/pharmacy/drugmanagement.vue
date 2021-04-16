@@ -33,7 +33,6 @@
     <main
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
-      @click.stop="editItem(item)"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
@@ -41,8 +40,8 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
-        <Button label="刪除" class="p-button-sm p-button-warning" @click="removeItem(item)" />
+        <Button label="編輯" class="p-button-sm" @click.stop="editItem(item)" />
+        <Button label="刪除" class="p-button-sm p-button-warning" @click.stop="removeItem(item)" />
       </div>
 
       <div>{{ item.drugId || "暫無資料" }}</div>
