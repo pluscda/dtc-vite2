@@ -168,9 +168,7 @@ export default {
     },
     async saveItem() {
       try {
-        if (this.fileUpload) {
-          await this.updateImg();
-        }
+        this.fileUpload ? await this.updateImg() : "";
         // normal update without img here
         const { drugImg, ...hisObj } = this.his;
         await this.actions.editDrug(hisObj);
