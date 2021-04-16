@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/ramda": "^0.27.40",
     "@vueuse/core": "^4.6.2",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
@@ -32,6 +31,7 @@
     "vue-router": "^4.0.4"
   },
   "devDependencies": {
+    "@types/ramda": "^0.27.40",
     "@iconify/json": "^1.1.322",
     "@intlify/vite-plugin-vue-i18n": "^2.0.0-rc.2",
     "@tailwindcss/jit": "^0.1.18",
