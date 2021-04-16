@@ -4,7 +4,7 @@
       <div>新增採購單</div>
       <Button label="再次新增採購單" @click="reset" v-show="addNewItem" class="p-button-rounded p-button-info" />
     </header>
-    <main class="grid dtc-list-grid">
+    <main class="grid dtc-list-grid mt-5">
       <DtxInputGroup prepend="採購日期" labelWidth="120">
         <Calendar class="h-10 w-full" v-model="his.orderDate" placeholder="輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
