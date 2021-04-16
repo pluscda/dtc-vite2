@@ -2,7 +2,7 @@
   <div>
     <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
       <div>新增藥品資料/藥理資料</div>
-      <Button label="再次新增" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-warning" />
+      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
     </header>
 
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
