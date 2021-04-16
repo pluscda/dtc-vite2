@@ -110,7 +110,7 @@
         <label for="file-upload" class="custom-file-upload">
           <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
           <div>Upload Image File</div>
-          <input id="file-upload" type="file" @change="fileChange" />
+          <input id="file-upload" type="file" @change="fileChange" accept="image/*" />
         </label>
 
         <div style="padding-top: 6px">
@@ -119,7 +119,7 @@
       </div>
     </main>
     <nav class="w-36 h-36 mt-2 ml-3" v-if="his.drugImg?.name">
-      <img :src="his.drugImg.formats?.small.url" class="object-cover rounded" />
+      <img :src="newImg ? newImg : his.drugImg.formats?.small.url" class="object-cover rounded" />
     </nav>
 
     <footer class="mt-6 mb-4 space-x-4">
@@ -153,6 +153,7 @@ export default {
       his: {},
       uploadFileName: "",
       fileUpload: "",
+      newImg: "",
     };
   },
   methods: {
@@ -180,6 +181,7 @@ export default {
       this.fileUpload = e.target.files[0];
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
+      this.newImg = URL.createObjectURL(this.fileUpload);
     },
   },
   mounted() {

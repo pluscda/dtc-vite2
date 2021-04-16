@@ -113,15 +113,17 @@
         <label for="file-upload" class="custom-file-upload">
           <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
           <div>Upload Image File</div>
-          <input id="file-upload" type="file" @change="fileChange" />
+          <input id="file-upload" type="file" @change="fileChange" accept="image/*" />
         </label>
 
-        <div style="padding-top: 6px">
+        <div style="padding-top: 6px" class="hidden">
           {{ uploadFileName }}
         </div>
       </div>
     </main>
-
+    <nav class="w-36 h-36 mt-2 ml-3" v-if="newImg">
+      <img :src="newImg" class="object-cover rounded" />
+    </nav>
     <footer class="mt-6 mb-4 space-x-4">
       <Button :disabled="!his.imgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
@@ -158,6 +160,7 @@ export default {
       showAddNew: false,
       subject: new Subject(),
       loading: false,
+      newImg: "",
     };
   },
   methods: {
@@ -183,6 +186,7 @@ export default {
       this.fileUpload = e.target.files[0];
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
+      this.newImg = URL.createObjectURL(this.fileUpload);
     },
   },
   created() {
