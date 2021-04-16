@@ -81,7 +81,7 @@ import CurrentTime from "cps/CurrentTime.vue";
 import { tryOnMounted } from "@vueuse/shared";
 const bgPanel = ref(null);
 const avatarPanel = ref(null);
-const bgColor = ref("light");
+const bgColor = ref("dark");
 
 const toggleAvatar = (event) => avatarPanel.value.toggle(event);
 const global = inject("global");
@@ -92,7 +92,7 @@ const axios = inject("axios");
 //   axios.get("/getUsers");
 // });
 watch(bgColor, (v) => {
-  document.querySelector("#app").className = v ? "light" : "dark";
+  document.querySelector("#app").className = v ? "dark" : "light";
   global.userDefaultBgColor = v;
 });
 tryOnMounted(() => {
