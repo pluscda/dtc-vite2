@@ -2,60 +2,45 @@
   <div>
     <header class="dtc-page-header dtc-page-header-grid grid text-white">
       <div>新增採購單</div>
+      <Button label="再次新增採購單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="採購日期" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入採購日期" />
+        <Calendar class="h-10 w-full" v-model="his.orderDate" placeholder="輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購單號" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入採購單號" />
+        <el-input v-model="his.orderId" placeholder="輸入採購單號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請人員" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請人員" />
+        <el-input v-model="his.orderPerson" placeholder="輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品編號" labelWidth="120">
-        <el-select
-          v-model="isControlledDrug"
-          placeholder="請選擇"
-          class="border-l-0"
-        >
-          <el-option
-            v-for="item in yesNoOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
+        <!-- <el-select v-model="his.drugId" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select> -->
+        <el-input v-model="his.drugId" placeholder="輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入藥品名稱" />
+        <el-input v-model="his.drugName" placeholder="輸入藥品名稱" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="單位" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入單位" />
+        <el-input v-model="his.drugUnit" placeholder="輸入單位" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請數量" />
+        <el-input v-model="his.drugNum" placeholder="輸入申請數量" />
       </DtxInputGroup>
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button
-        label="重新新增"
-        class="p-button-rounded p-button-info footer-btn"
-        style="margin-right: 20px"
-      />
-      <Button
-        label="確認儲存"
-        class="p-button-rounded p-button-success footer-btn"
-      />
+      <Button :disabled="!enabledSave" label="確認儲存" @click="addItem" class="p-button-rounded p-button-success footer-btn" />
     </footer>
   </div>
 </template>
 
 <script>
 import { ref, inject } from "vue";
+import { ElMessage } from "element-plus";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -63,47 +48,32 @@ let headers = [
   { name: "年齡", key: "age", sortDesc: null },
 ];
 
-let yesNoOptions = [
-  {
-    value: "121",
-    label: "121",
-  },
-  {
-    value: "122",
-    label: "122",
-  },
-  {
-    value: "123",
-    label: "123",
-  },
-];
-
 export default {
   name: "drugAddNew",
-  setup() {
-    //allVariable
-    const isControlledDrug = ref("121");
-    let uploadFileName = ref("");
-    //option
-
-    //global
-    const global = inject("global");
-    //function
-
-    const fileChange = (e) => {
-      console.log("----", e.target.files[0]);
-      uploadFileName.value = e.target.files[0].name;
-    };
-
+  inject: ["actions"],
+  data() {
     return {
-      //allVariable
-      isControlledDrug,
-      uploadFileName,
-      yesNoOptions,
-
-      //function
-      fileChange,
+      his: {},
     };
+  },
+  computed: {
+    enabledSave() {
+      const ret = this.his.orderDate && this.his.orderId && this.his.orderPerson && this.his.drugId && this.his.drugName && this.his.drugUnit && this.his.drugNum;
+      return ret;
+    },
+  },
+  methods: {
+    async addItem() {
+      try {
+        await this.actions.addItem("hisbuys", this.his);
+        ElMessage.success("新增採購單 ok");
+      } catch (e) {
+        ElMessage.error("新增採購單 fail");
+      }
+    },
+  },
+  mounted() {
+    this.$primevue.config.locale = twDate;
   },
 };
 </script>

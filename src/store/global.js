@@ -67,7 +67,16 @@ export const actions = {
   },
   async editDrug(obj){ // for route /pharmacy/modifydrug
      return await axios.put(`/his-drugs/${obj.id}`, obj);
-  }
+  },
+  async addItem(url,obj){
+    return await axios.post(url, obj);
+  },
+  async editItem(url,obj){
+    return await axios.put(url + "/" + obj.id, obj);
+  },
+  async deleteItem(url,obj){
+    return await axios.delete(url + "/" + obj.id, obj);
+  },
 };
 
 export const mutations = {
