@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid text-white dtc-page-header dtc-page-header-grid">
       <div>編輯藥品資料</div>
     </header>
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
@@ -109,7 +109,7 @@
         </DtxInputGroup>
         <label for="file-upload" class="custom-file-upload">
           <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
-          <div>Upload Image File</div>
+          <div>Upload Image(AWS)</div>
           <input id="file-upload" type="file" @change="fileChange" accept="image/*" />
         </label>
 
@@ -131,30 +131,30 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
-import { clone } from "ramda";
-import { ElMessage } from "element-plus";
+import { ref, inject } from 'vue';
+import { clone } from 'ramda';
+import { ElMessage } from 'element-plus';
 
 let yesNoOptions = [
   {
-    value: "y",
-    label: "是",
+    value: 'y',
+    label: '是',
   },
   {
-    value: "n",
-    label: "否",
+    value: 'n',
+    label: '否',
   },
 ];
 
 export default {
-  name: "drugModify",
-  inject: ["global", "actions"],
+  name: 'drugModify',
+  inject: ['global', 'actions'],
   data() {
     return {
       his: {},
-      uploadFileName: "",
-      fileUpload: "",
-      newImg: "",
+      uploadFileName: '',
+      fileUpload: '',
+      newImg: '',
       loading: false,
     };
   },
@@ -162,23 +162,23 @@ export default {
     async updateImg() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload-files-related-to-an-entry
       const formData = new FormData();
-      formData.append("ref", "his-drug");
-      formData.append("refId", this.his.id);
-      formData.append("field", "drugImg");
-      formData.append("files", this.fileUpload, this.his.imgName);
+      formData.append('ref', 'his-drug');
+      formData.append('refId', this.his.id);
+      formData.append('field', 'drugImg');
+      formData.append('files', this.fileUpload, this.his.imgName);
       const ret = await this.actions.editImg(formData);
     },
     async saveItem() {
       this.loading = true;
       try {
-        this.fileUpload ? await this.updateImg() : "";
+        this.fileUpload ? await this.updateImg() : '';
         // normal update without img here
         const { drugImg, ...hisObj } = this.his;
         await this.actions.editDrug(hisObj);
-        ElMessage.success("編輯藥品成功");
+        ElMessage.success('編輯藥品成功');
         this.loading = false;
       } catch (e) {
-        ElMessage.error("編輯藥品失敗");
+        ElMessage.error('編輯藥品失敗');
         this.loading = false;
       }
     },
