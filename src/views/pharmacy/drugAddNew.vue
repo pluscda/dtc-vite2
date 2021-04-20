@@ -112,7 +112,7 @@
         </DtxInputGroup>
         <label for="file-upload" class="custom-file-upload">
           <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
-          <div>Upload Image(AWS)</div>
+          <div>上傳圖片</div>
           <input id="file-upload" type="file" @change="fileChange" accept="image/*" />
         </label>
 
@@ -132,35 +132,35 @@
 </template>
 
 <script>
-import { ref, inject } from 'vue';
-import { ElMessage } from 'element-plus';
-import { forkJoin, of, Subject } from 'rxjs';
-import { catchError, exhaustMap, takeUntil, throttleTime } from 'rxjs/operators';
+import { ref, inject } from "vue";
+import { ElMessage } from "element-plus";
+import { forkJoin, of, Subject } from "rxjs";
+import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
 
 let yesNoOptions = [
   {
-    value: 'y',
-    label: '是',
+    value: "y",
+    label: "是",
   },
   {
-    value: 'n',
-    label: '否',
+    value: "n",
+    label: "否",
   },
 ];
 
-let subscribe = '';
+let subscribe = "";
 export default {
-  name: 'drugAddNew',
-  inject: ['actions'],
+  name: "drugAddNew",
+  inject: ["actions"],
   data() {
     return {
       his: {},
-      uploadFileName: '',
-      fileUpload: '',
+      uploadFileName: "",
+      fileUpload: "",
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: '',
+      newImg: "",
     };
   },
   methods: {
@@ -172,14 +172,14 @@ export default {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
       const formData = new FormData();
-      formData.append('files.drugImg', this.fileUpload, this.his.imgName);
-      formData.append('data', JSON.stringify(this.his));
+      formData.append("files.drugImg", this.fileUpload, this.his.imgName);
+      formData.append("data", JSON.stringify(this.his));
       try {
         const ret = await this.actions.addDrug(formData);
-        ElMessage.success('新增藥品成功');
+        ElMessage.success("新增藥品成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error('新增藥品失敗!!');
+        ElMessage.error("新增藥品失敗!!");
       }
     },
     fileChange(e) {
