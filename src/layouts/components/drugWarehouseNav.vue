@@ -19,7 +19,7 @@ import { useRoute, useRouter } from "vue-router";
 // import DrugAdd from "/@/views/pharmacy/drugAddNew.vue";
 
 export default {
-  name: "sidebar",
+  name: "sidebar1029",
   components: {
     // DrugAdd,
   },
