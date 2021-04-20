@@ -37,7 +37,7 @@ export default {
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
-        case "藥房庫存查詢作業":
+        case "藥房庫存查詢":
           router.push("/pharmacy/drugstoreinstock");
           break;
         case "藥品申請單維護":
