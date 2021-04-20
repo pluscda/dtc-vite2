@@ -15,6 +15,6 @@ import NavBar from "/@/layouts/components/Navbar.vue";
 
 <style lang="scss" scoped>
 .index-position {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px) !important;
 }
 </style>
