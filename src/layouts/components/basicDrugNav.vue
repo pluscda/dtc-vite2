@@ -3,7 +3,7 @@
   <div
     v-for="(item, i) in titles"
     :key="item"
-    class="cursor-pointer py-3 flex space-x-3 pl-2"
+    class="cursor-pointer py-3 flex space-x-2 pl-2"
     :class="activeTab == i ? 'active-tab' : ''"
     @click="handleChangeTab(item, i)"
   >
