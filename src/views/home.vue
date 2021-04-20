@@ -27,4 +27,9 @@ export default {
   grid-template-columns: repeat(24, max-content);
   gap: 22px;
 }
+.dtc-page-header {
+  button {
+    margin: 3px;
+  }
+}
 </style>
