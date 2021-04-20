@@ -28,7 +28,15 @@ export default {
     const activeTab = ref(0);
     const router = useRouter();
     const titles = reactive(["庫存查詢作業", "採購單管理", "新增採購單", "入庫單管理", "藥品申領管理", "新增申請單", "藥房退庫管理"]);
-    const icons = reactive(["el-icon-zoom-in", "el-icon-s-order", "el-icon-folder-add", "el-icon-document-copy", "el-icon-pie-chart", "el-icon-plus", "el-icon-delete"]);
+    const icons = reactive([
+      "el-icon-zoom-in",
+      "el-icon-s-order",
+      "el-icon-folder-add",
+      "el-icon-document-copy",
+      "el-icon-pie-chart",
+      "el-icon-plus",
+      "el-icon-c-scale-to-original",
+    ]);
     //option
 
     //global
