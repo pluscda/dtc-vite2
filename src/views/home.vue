@@ -26,12 +26,13 @@
       <DtxInputGroup prepend="病患生日">
         <el-input v-model="dd" readonly style="width: 120px" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="身分證號">
-        <el-input v-model="dd" readonly style="width: 120px" />
-      </DtxInputGroup>
+
       <nav style="grid-column: 1/-1" class="section1-grid grid dtc-text space-x-5">
+        <DtxInputGroup prepend="身分證號">
+          <el-input v-model="dd" readonly style="width: 120px" />
+        </DtxInputGroup>
         <div class="p-field-checkbox text-black mt-2">
-          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block ml-2" />
+          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block" />
           <label for="binary" class="inline-block tran dtc-text">過敏</label>
         </div>
         <el-input v-model="dd"></el-input>
