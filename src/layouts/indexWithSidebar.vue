@@ -1,7 +1,7 @@
 <template>
   <section class="overflow-x-hidden index-position">
     <main class="grid overflow-x-hidden overflow-y-hidden my-main-part">
-      <aside class="flex flex-col space-y-6 text-white left-nav">
+      <aside class="flex flex-col space-y-2 text-white left-nav">
         <BasicNav v-if="isBasicTab" />
         <WsNav v-if="isWarehouseTab" />
         <StoreNav v-if="isStoreTab" />
