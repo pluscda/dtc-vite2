@@ -1,6 +1,6 @@
 <template>
-  <section style="background: #64748b">
-    <header class="flex space-x-5 dtc-text pl-0s dtc-tabs" style="">
+  <section style="background: #64748b" class="dtc-door-way-section">
+    <header class="flex gap-4 dtc-text pl-0s dtc-tabs" style="">
       <div>診斷</div>
       <div>套組</div>
       <div>設為套組</div>
