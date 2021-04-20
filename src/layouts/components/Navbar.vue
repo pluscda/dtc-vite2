@@ -3,7 +3,7 @@
     <span> <i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group></span>
     <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">基本醫療服務</div>
     <section class="flex gap-8 cursor-pointer items-center -mt-3">
-      <div @click="$router.push('/home')">首頁</div>
+      <div @click="$router.push('/home')">門診</div>
       <el-dropdown class="" :show-timeout="1">
         <span class="text-blue-200">門急診掛號<i class="el-icon-arrow-down el-icon--right"></i></span>
         <template #dropdown>
@@ -24,7 +24,6 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <div @click="$router.push('/home')">門診</div>
     </section>
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-3"></CurrentTime>
