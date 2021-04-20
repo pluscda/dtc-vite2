@@ -18,10 +18,10 @@
         <el-input v-model="dd" readonly style="width: 120px" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
-        <el-input v-model="dd" style="width: 100px" readonly />
+        <el-input v-model="dd" style="width: 120px" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患年齡">
-        <el-input v-model="dd" style="width: 60px" readonly />
+        <el-input v-model="dd" style="width: 120px" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患生日">
         <el-input v-model="dd" readonly style="width: 120px" />
