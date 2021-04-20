@@ -17,7 +17,6 @@
     "element-plus": "*",
     "js-yaml": "^4.0.0",
     "mitt": "^2.1.0",
-    "mockjs": "^1.1.0",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.0",
     "primeicons": "^4.1.0",
@@ -30,6 +29,7 @@
     "vue-router": "^4.0.4"
   },
   "devDependencies": {
+    "mockjs": "^1.1.0",
     "@iconify/json": "^1.1.322",
     "@intlify/vite-plugin-vue-i18n": "^2.0.0-rc.2",
     "@tailwindcss/jit": "^0.1.18",
