@@ -12,13 +12,13 @@
     </header>
     <main class="grid pb-2 pl-1 header-grid-x1 bg-yellow-100 pt-1">
       <DtxInputGroup prepend="診間號碼">
-        <el-input v-model="dd" readonly class="bg-gray-300" />
+        <el-input v-model="dd" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病歷號碼">
-        <el-input v-model="dd" readonly class="bg-gray-300" />
+        <el-input v-model="dd" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
-        <el-input v-model="dd" readonly class="bg-gray-300" />
+        <el-input v-model="dd" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患年齡">
         <el-input v-model="dd" readonly class="bg-gray-300" />
@@ -79,11 +79,11 @@ export default {
   }
 }
 .header-grid-x1 {
-  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fill, 209px);
   gap: 6px;
 }
 .ibr-grid {
-  grid-template-columns: max-content 1fr repeat(32, max-content);
+  grid-template-columns: max-content 1010px repeat(32, max-content);
   gap: 6px;
 }
 </style>
