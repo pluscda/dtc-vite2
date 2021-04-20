@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <header class="grid pr-2 dtc-page-header dtc-page-header__grid" style="margin: 0">
+  <section class="w-screen">
+    <header class="grid pr-2 dtc-page-header dtc-page-header__grid w-screen" style="margin: 0">
       <div>門診</div>
       <Button>預約掛號</Button>
       <Button class="p-button-success">預約住院</Button>
@@ -10,7 +10,7 @@
       <Button class="p-button-danger">手術排程</Button>
       <Button>檢驗報告</Button>
     </header>
-    <main class="grid pb-2 pl-1 pt-1 section1-grid">
+    <main class="grid pb-2 pl-1 pt-1 section1-grid w-screen">
       <DtxInputGroup prepend="診間號碼">
         <el-input v-model="dd" style="width: 120px" readonly />
       </DtxInputGroup>
@@ -59,7 +59,7 @@
       <Button class="p-button-warning">DITTO</Button>
       <Button class="p-button-help">完成醫囑</Button>
       <Button class="p-button-danger">科常用套組</Button>
-      <div class="absolute right-3 top-0 space-x-4">
+      <div class="absolute right-6 top-0 space-x-4">
         <Button style="height: 34px">暫存</Button>
         <Button class="p-button-success" style="height: 34px">回門診清單</Button>
       </div>
@@ -70,6 +70,9 @@
       <Set3></Set3>
       <Set4></Set4>
     </main>
+    <main class="grid grid-cols-12 mt-2">
+      <Set5></Set5>
+    </main>
   </section>
 </template>
 <script>
@@ -77,6 +80,7 @@ import Set1 from "/@/components/set1.vue";
 import Set2 from "/@/components/set2.vue";
 import Set3 from "/@/components/set3.vue";
 import Set4 from "/@/components/set4.vue";
+import Set5 from "/@/components/set5.vue";
 export default {
   data() {
     return {
@@ -90,6 +94,7 @@ export default {
     Set2,
     Set3,
     Set4,
+    Set5,
   },
 };
 </script>

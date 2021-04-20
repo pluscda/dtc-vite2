@@ -172,4 +172,9 @@ export default {
 .dtc-template-columns {
   grid-template-columns: 80px 60px repeat(10, minmax(90px, 120px)) minmax(90px, 1fr);
 }
+.dtc-door-way-section header > div {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  line-height: 50px;
+}
 </style>
