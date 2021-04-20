@@ -66,14 +66,17 @@
     </header>
     <main class="grid grid-of-2">
       <Set1></Set1>
-      <Set1></Set1>
-      <Set1></Set1>
-      <Set1></Set1>
+      <Set2></Set2>
+      <Set3></Set3>
+      <Set4></Set4>
     </main>
   </section>
 </template>
 <script>
 import Set1 from "/@/components/set1.vue";
+import Set2 from "/@/components/set2.vue";
+import Set3 from "/@/components/set3.vue";
+import Set4 from "/@/components/set4.vue";
 export default {
   data() {
     return {
@@ -84,6 +87,9 @@ export default {
   },
   components: {
     Set1,
+    Set2,
+    Set3,
+    Set4,
   },
 };
 </script>
