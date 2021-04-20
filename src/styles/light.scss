@@ -1,6 +1,8 @@
 #app.light {
   background: var(--light) !important;
-
+  .dtc-door-way-section{
+    background: darken($color: #Ffff, $amount: 15) !important;
+  }
   .bg-white {
     background: none !important;
   }

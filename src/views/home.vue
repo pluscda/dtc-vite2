@@ -60,11 +60,11 @@
       <Button class="p-button-help">完成醫囑</Button>
       <Button class="p-button-danger">科常用套組</Button>
       <div class="absolute right-3 top-0 space-x-4">
-        <Button class="p-button-help" style="height: 34px">暫存</Button>
+        <Button style="height: 34px">暫存</Button>
         <Button class="p-button-success" style="height: 34px">回門診清單</Button>
       </div>
     </header>
-    <main class="grid grid-of-2">
+    <main class="grid grid-of-2 mt-2">
       <Set1></Set1>
       <Set2></Set2>
       <Set3></Set3>
