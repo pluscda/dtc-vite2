@@ -78,29 +78,13 @@ export default {
       return global.openAddDrugDialog;
     });
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
-
     return {
       ...toRefs(state),
       getList,
       headers,
       searchDrugId,
       searchDrugName,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
     };
-  },
-  mounted() {
-    this.$primevue.config.locale = this.zh;
   },
 };
 </script>

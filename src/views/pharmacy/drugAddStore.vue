@@ -5,15 +5,15 @@
       <Button label="再次新增藥房資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
     </header>
 
-    <main class="grid dtc-list-grid">
+    <main class="grid dtc-list-grid mt-4">
       <DtxInputGroup prepend="藥房編號" labelWidth="120">
         <el-input v-model="his.hisId" placeholder="輸入藥房編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房名稱" labelWidth="120">
         <el-input v-model="his.stockMax" placeholder="輸入藥房名稱" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥房地址" labelWidth="120">
-        <el-input v-model="his.stockMin" placeholder="輸入藥房地址" />
+      <DtxInputGroup prepend="藥房地址" labelWidth="120" style="grid-column: 1/-1; margin-top: 1rem">
+        <el-input style="min-width: 500px" v-model="his.stockMin" placeholder="輸入藥房地址" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
