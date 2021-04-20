@@ -24,14 +24,11 @@ export default {
     // DrugAdd,
   },
   setup() {
-    ///allVariable
     const activeTab = ref(0);
     const router = useRouter();
     const titles = reactive(["藥房庫存查詢", "藥品申請單維護", "新增藥品申領單", "藥房退庫單維護"]);
     const icons = reactive(["el-icon-zoom-in", "el-icon-s-tools", "el-icon-folder-add", "el-icon-first-aid-kit"]);
-    //option
-
-    //global
+    router.push("/pharmacy/drugstoreinstock");
 
     //function
     const handleChangeTab = (item, i) => {

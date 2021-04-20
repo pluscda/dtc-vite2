@@ -24,7 +24,6 @@ export default {
     // DrugAdd,
   },
   setup() {
-    //allVariable
     const activeTab = ref(0);
     const router = useRouter();
     const titles = reactive(["庫存查詢作業", "採購單管理", "新增採購單", "入庫單管理", "藥品申領管理", "新增申請單", "藥房退庫管理"]);
@@ -37,11 +36,7 @@ export default {
       "el-icon-plus",
       "el-icon-c-scale-to-original",
     ]);
-    //option
-
-    //global
-
-    //function
+    router.push("/pharmacy/drugwarehouseinquire");
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
