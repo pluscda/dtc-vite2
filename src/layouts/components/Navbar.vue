@@ -24,15 +24,7 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <el-dropdown class="" :show-timeout="1">
-        <span class="text-blue-200">線上諮詢<i class="el-icon-arrow-down el-icon--right"></i> </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>諮詢-1</el-dropdown-item>
-            <el-dropdown-item>諮詢-2</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <div @click="$router.push('/home')">門診</div>
     </section>
     <div class="grid grid-cols-2 cursor-pointer relative" @click="toggleBg">
       <CurrentTime class="absolute inset-x-0 -ml-80 mt-3"></CurrentTime>
