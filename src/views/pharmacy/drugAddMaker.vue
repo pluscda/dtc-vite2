@@ -1,36 +1,56 @@
 <template>
   <div>
-    <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
+    <header
+      class="grid text-white dtc-page-header dtc-page-header-grid button-2"
+    >
       <div>新增藥品廠商</div>
-      <Button label="再次新增藥品廠商" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
+      <Button
+        label="再次新增藥品廠商"
+        style="margin: 4px 0"
+        @click="reset"
+        v-show="showAddNew"
+        class="p-button-rounded p-button-info"
+      />
     </header>
 
     <main class="grid dtc-list-grid">
-      <DtxInputGroup prepend="廠商編號" labelWidth="120">
-        <el-input v-model="his.hisId" placeholder="輸入廠商編號" />
+      <DtxInputGroup prepend="藥商編號" labelWidth="120">
+        <el-input v-model="his.hisId" placeholder="輸入藥商編號" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="廠商名稱" labelWidth="120">
-        <el-input v-model="his.stockMax" placeholder="輸入廠商名稱" />
+      <DtxInputGroup prepend="藥商名稱" labelWidth="120">
+        <el-input v-model="his.stockMax" placeholder="輸入藥商名稱" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="地址" labelWidth="120">
+        <el-input v-model="his.stockMin" placeholder="輸入地址" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="電話" labelWidth="120">
+        <el-input v-model="his.stockMin" placeholder="輸入電話" />
       </DtxInputGroup>
       <DtxInputGroup prepend="聯絡人" labelWidth="120">
-        <el-input v-model="his.stockMin" placeholder="輸入聯絡人" />
+        <el-input placeholder="輸入聯絡人" v-model="his.skinMark" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="聯絡地址" labelWidth="120">
-        <el-input v-model="his.stockMin" placeholder="輸入聯絡地址" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="聯絡電話" labelWidth="120">
-        <el-input placeholder="輸入電話" v-model="his.skinMark" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="統一發票號碼" labelWidth="120">
-        <el-input v-model="his.drugId" placeholder="輸入藥統一發票號碼" />
+      <DtxInputGroup prepend="統一發票編號" labelWidth="120">
+        <el-input v-model="his.drugId" placeholder="輸入統一發票編號" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="!his.imgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
-      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
+      <Button
+        :disabled="!his.imgName || loading"
+        label="確認儲存"
+        v-if="!showAddNew"
+        class="p-button-rounded p-button-success footer-btn"
+        @click="subject.next()"
+      />
+      <ProgressSpinner
+        v-if="loading"
+        style="width: 30px; height: 30px"
+        strokeWidth="8"
+        fill="#EEEEEE"
+        animationDuration=".5s"
+      ></ProgressSpinner>
     </footer>
   </div>
 </template>
@@ -39,7 +59,12 @@
 import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
 import { forkJoin, of, Subject } from "rxjs";
-import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
+import {
+  catchError,
+  exhaustMap,
+  takeUntil,
+  throttleTime,
+} from "rxjs/operators";
 
 let yesNoOptions = [
   {
@@ -95,7 +120,9 @@ export default {
   },
   created() {
     this.his = {};
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
+    subscribe = this.subject
+      .pipe(throttleTime(3000), exhaustMap(this.saveItem))
+      .subscribe(() => (this.loading = false));
   },
 
   beforeUnmount() {
@@ -126,7 +153,7 @@ export default {
 
 .dtc-list-grid,
 .dtc-list-grid2 {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   padding: 6px;
