@@ -15,7 +15,10 @@
       <DtxInputGroup prepend="聯絡人" labelWidth="120">
         <el-input v-model="his.stockMin" placeholder="輸入聯絡人" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="電話" labelWidth="120">
+      <DtxInputGroup prepend="聯絡地址" labelWidth="120">
+        <el-input v-model="his.stockMin" placeholder="輸入聯絡地址" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="聯絡電話" labelWidth="120">
         <el-input placeholder="輸入電話" v-model="his.skinMark" />
       </DtxInputGroup>
       <DtxInputGroup prepend="統一發票號碼" labelWidth="120">
