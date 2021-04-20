@@ -3,11 +3,12 @@
   <div
     v-for="(item, i) in titles"
     :key="item"
-    class="cursor-pointer py-3"
+    class="cursor-pointer py-3 flex space-x-1 pl-2"
     :class="activeTab == i ? 'active-tab' : ''"
     @click="handleChangeTab(item, i)"
   >
-    {{ item }}
+    <i :class="icons[i]" class="inline-block mt-0.5"></i>
+    <p class="text-left">{{ item }}</p>
   </div>
   <!-- <DrugAdd /> -->
 </template>
@@ -26,12 +27,8 @@ export default {
     ///allVariable
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive([
-      "藥房庫存查詢作業",
-      "藥品申請單維護",
-      "新增藥品申領單",
-      "藥房退庫單維護",
-    ]);
+    const titles = reactive(["藥房庫存查詢", "藥品申請單維護", "新增藥品申領單", "藥房退庫單維護"]);
+    const icons = reactive(["el-icon-zoom-in", "el-icon-s-tools", "el-icon-folder-add", "el-icon-first-aid-kit"]);
     //option
 
     //global
@@ -59,6 +56,7 @@ export default {
       titles,
       handleChangeTab,
       activeTab,
+      icons,
     };
   },
 };
