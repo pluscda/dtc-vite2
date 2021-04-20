@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props: ['prepend', 'append', 'labelWidth'],
+  props: ["prepend", "append", "labelWidth"],
 };
 </script>
 
