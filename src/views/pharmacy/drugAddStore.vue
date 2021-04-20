@@ -6,20 +6,14 @@
     </header>
 
     <main class="grid dtc-list-grid">
-      <DtxInputGroup prepend="廠商編號" labelWidth="120">
-        <el-input v-model="his.hisId" placeholder="輸入廠商編號" />
+      <DtxInputGroup prepend="藥房編號" labelWidth="120">
+        <el-input v-model="his.hisId" placeholder="輸入藥房編號" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="廠商名稱" labelWidth="120">
-        <el-input v-model="his.stockMax" placeholder="輸入廠商名稱" />
+      <DtxInputGroup prepend="藥房名稱" labelWidth="120">
+        <el-input v-model="his.stockMax" placeholder="輸入藥房名稱" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="聯絡人" labelWidth="120">
-        <el-input v-model="his.stockMin" placeholder="輸入聯絡人" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="電話" labelWidth="120">
-        <el-input placeholder="輸入電話" v-model="his.skinMark" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="統一發票號碼" labelWidth="120">
-        <el-input v-model="his.drugId" placeholder="輸入藥統一發票號碼" />
+      <DtxInputGroup prepend="藥房地址" labelWidth="120">
+        <el-input v-model="his.stockMin" placeholder="輸入藥房地址" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
