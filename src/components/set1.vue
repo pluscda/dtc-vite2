@@ -1,5 +1,5 @@
 <template>
-  <section style="background: #64748b" class="dtc-door-way-section">
+  <section style="background: #4b5563" class="dtc-door-way-section">
     <header class="flex gap-4 dtc-text pl-0s dtc-tabs" style="">
       <div>主訴</div>
       <div>套組</div>
