@@ -54,6 +54,13 @@
         </div>
       </nav>
     </main>
+    <header class="grid pr-2 dtc-page-header dtc-page-header__grid" style="margin: 0">
+      <Button class="p-button-rounded p-button-success">遠端視訊</Button>
+      <Button class="p-button-rounded p-button-info">過敏疾病紀錄</Button>
+      <Button class="p-button-rounded p-button-warning">DITTO</Button>
+      <Button class="p-button-rounded p-button-help">完成醫囑</Button>
+      <Button class="p-button-rounded p-button-danger">科常用套組</Button>
+    </header>
   </section>
 </template>
 <script>
