@@ -29,7 +29,6 @@
     "vue-router": "^4.0.4"
   },
   "devDependencies": {
-    "mockjs": "^1.1.0",
     "@iconify/json": "^1.1.322",
     "@intlify/vite-plugin-vue-i18n": "^2.0.0-rc.2",
     "@tailwindcss/jit": "^0.1.18",
@@ -41,6 +40,7 @@
     "autoprefixer": "^10.2.5",
     "cross-env": "^7.0.3",
     "postcss": "^8.2.9",
+    "mockjs": "^1.1.0",
     "process": "^0.11.10",
     "rollup-plugin-replace-html-vars": "^1.0.3",
     "sass": "^1.32.8",
