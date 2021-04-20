@@ -99,6 +99,18 @@ export const routes = [
         meta: { title: "新增藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "drugaddmaker",
+        component: () => import("/@/views/pharmacy/drugAddMaker.vue"),
+        name: "drugaddmaker",
+        meta: { title: "新增藥品廠商", icon: "el-icon-s-home" },
+      },
+       {
+        path: "drugaddstore",
+        component: () => import("/@/views/pharmacy/drugAddStore.vue"),
+        name: "drugaddstore",
+        meta: { title: "新增藥房資料", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifydrug",
         component: () => import("/@/views/pharmacy/modifyDrug.vue"),
         name: "modifyDrag",
