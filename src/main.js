@@ -17,6 +17,7 @@ import InputSwitch from 'primevue/inputswitch';
 import OverlayPanel from 'primevue/overlaypanel';
 import RadioButton from 'primevue/radiobutton';
 import ProgressSpinner from 'primevue/progressspinner';
+import Checkbox from 'primevue/checkbox';
 
 
 import 'primevue/resources/themes/saga-blue/theme.css';
@@ -35,6 +36,7 @@ app.component("InputSwitch", InputSwitch);
 app.component('OverlayPanel',OverlayPanel);
 app.component('RadioButton',RadioButton );
 app.component('ProgressSpinner', ProgressSpinner);
+app.component('Checkbox',Checkbox);
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
