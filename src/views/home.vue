@@ -4,7 +4,7 @@
       <div>門診</div>
       <Button>預約掛號</Button>
       <Button class="p-button-success">預約住院</Button>
-      <Button class="p-button-info">慢行紀錄</Button>
+      <Button class="p-button-info">慢病紀錄</Button>
       <Button class="p-button-warning">開立證明</Button>
       <Button class="p-button-help">跨院調閱</Button>
       <Button class="p-button-danger">手術排程</Button>
@@ -59,7 +59,7 @@
       <Button class="p-button-info">過敏疾病紀錄</Button>
       <Button class="p-button-warning">DITTO</Button>
       <Button class="p-button-help">完成醫囑</Button>
-      <Button class="p-button-danger">科常用套組</Button>
+      <Button class="p-button-danger">科常用組套</Button>
       <div class="absolute right-6 top-0 space-x-4">
         <Button style="height: 34px">暫存</Button>
         <Button class="p-button-success" style="height: 34px">回門診清單</Button>
