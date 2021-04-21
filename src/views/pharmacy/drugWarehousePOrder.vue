@@ -163,14 +163,14 @@ export default {
     const time2 = ref("");
 
     //Options
-    const caseClosedOptions = [
+    const caseClosedOptions = reactive([
       {
         value: null,
         text: "全部",
       },
       { value: "closed", text: "已結案" },
       { value: "unclosed", text: "未結案" },
-    ];
+    ]);
 
     // 列表數據
     headers = ref(headers);

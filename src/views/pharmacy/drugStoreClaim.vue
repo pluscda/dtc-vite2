@@ -42,7 +42,19 @@
         <el-input placeholder="搜尋申請藥房" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
-        <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
+        <el-select
+          v-model="searchStatus"
+          placeholder="請選擇結案狀態"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in caseClosedOptions"
+            :key="item.value"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
       </DtxInputGroup>
     </nav>
 
@@ -137,6 +149,7 @@ export default {
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
+    const searchStatus = ref("");
     const time1 = ref("");
     const time2 = ref("");
     const zh = reactive({
@@ -185,6 +198,17 @@ export default {
       dateFormat: "yy-mm-dd",
       weekHeader: "周",
     });
+
+    //Options
+    const caseClosedOptions = reactive([
+      {
+        value: null,
+        text: "全部",
+      },
+      { value: "closed", text: "已結案" },
+      { value: "unclosed", text: "未結案" },
+    ]);
+
     // 列表數據
     headers = ref(headers);
     const { state, getList, delItem } = useList();
@@ -208,6 +232,8 @@ export default {
       headers,
       searchDrugId,
       searchDrugName,
+      searchStatus,
+      caseClosedOptions,
       isOpenAddDrugDialog,
       openAddDialog,
       toggleDetail,
