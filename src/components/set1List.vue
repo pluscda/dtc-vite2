@@ -22,4 +22,16 @@ export default {
 .dtc-tabs::after {
   all: unset;
 }
+.dtc-template-columns {
+  grid-template-columns: repeat(11, minmax(90px, 120px)) minmax(90px, 1fr);
+}
+
+#app .dtc-grid-header__divs {
+  > div {
+    height: 34px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    line-height: 30px;
+  }
+}
 </style>

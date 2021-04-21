@@ -85,7 +85,7 @@
 import { inject, toRefs, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { useList } from "./model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 import Regsiter from "./components/register.vue";
 import Pay from "./components/hisPay.vue";
 import InqueryList from "./components/inqueryList.vue";
