@@ -1,12 +1,25 @@
 <template>
   <div>
-    <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
+    <header
+      class="dtc-page-header dtc-page-header-grid grid text-white button-2"
+    >
       <div>新增採購單</div>
-      <Button label="再次新增採購單" @click="reset" v-show="addNewItem" class="p-button-rounded p-button-info" />
+      <Button
+        label="再次新增採購單"
+        @click="reset"
+        v-show="addNewItem"
+        class="p-button-rounded p-button-info"
+      />
     </header>
     <main class="grid dtc-list-grid mt-5">
       <DtxInputGroup prepend="採購日期" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="his.orderDate" placeholder="輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar
+          class="h-10 w-full"
+          v-model="his.orderDate"
+          placeholder="輸入採購日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購單號" labelWidth="120">
         <el-input v-model="his.orderId" placeholder="輸入採購單號" />
@@ -14,18 +27,26 @@
       <DtxInputGroup prepend="申請人員" labelWidth="120">
         <el-input v-model="his.orderPerson" placeholder="輸入申請人員" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品編號" labelWidth="120">
-        <!-- <el-select v-model="his.drugId" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select> -->
-        <el-input v-model="his.drugId" placeholder="輸入藥品編號" />
+      <DtxInputGroup prepend="健保代碼" labelWidth="120">
+        <el-input v-model="his.orderPerson" placeholder="輸入健保代碼" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品名稱" labelWidth="120">
-        <el-input v-model="his.drugName" placeholder="輸入藥品名稱" />
+      <DtxInputGroup prepend="院內代碼" labelWidth="120">
+        <el-input v-model="his.orderPerson" placeholder="輸入院內代碼" />
       </DtxInputGroup>
-
+      <DtxInputGroup prepend="藥品中文" labelWidth="120">
+        <el-input v-model="his.drugName" placeholder="輸入藥品中文" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥品英文" labelWidth="120">
+        <el-input v-model="his.drugName" placeholder="輸入藥品英文" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="劑型" labelWidth="120">
+        <el-input v-model="his.drugUnit" placeholder="輸入劑型" />
+      </DtxInputGroup>
       <DtxInputGroup prepend="單位" labelWidth="120">
         <el-input v-model="his.drugUnit" placeholder="輸入單位" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥商名稱" labelWidth="120">
+        <el-input v-model="his.drugNum" placeholder="輸入藥商名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
         <el-input v-model="his.drugNum" placeholder="輸入申請數量" />
@@ -33,7 +54,12 @@
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button :disabled="!enabledSave || addNewItem" label="確認儲存" @click="addItem" class="p-button-rounded p-button-success footer-btn" />
+      <Button
+        :disabled="!enabledSave || addNewItem"
+        label="確認儲存"
+        @click="addItem"
+        class="p-button-rounded p-button-success footer-btn"
+      />
     </footer>
   </div>
 </template>
@@ -60,7 +86,14 @@ export default {
   },
   computed: {
     enabledSave() {
-      const ret = this.his.orderDate && this.his.orderId && this.his.orderPerson && this.his.drugId && this.his.drugName && this.his.drugUnit && this.his.drugNum;
+      const ret =
+        this.his.orderDate &&
+        this.his.orderId &&
+        this.his.orderPerson &&
+        this.his.drugId &&
+        this.his.drugName &&
+        this.his.drugUnit &&
+        this.his.drugNum;
       return ret;
     },
   },

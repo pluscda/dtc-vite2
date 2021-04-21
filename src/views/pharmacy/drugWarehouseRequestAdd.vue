@@ -5,7 +5,13 @@
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請日期" />
+        <Calendar
+          class="h-10 w-full"
+          v-model="applyTime"
+          placeholder="輸入申請日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請單號" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入申請單號" />
@@ -17,6 +23,21 @@
         <el-input v-model="input1" placeholder="輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
+        <el-select
+          v-model="isControlledDrug"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in yesNoOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="院內代碼" labelWidth="120">
         <el-select
           v-model="isControlledDrug"
           placeholder="請選擇"
@@ -43,11 +64,11 @@
       <DtxInputGroup prepend="申請數量" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入申請數量" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="補撥數量" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入補撥數量" />
+      <DtxInputGroup prepend="撥補數量" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入撥補數量" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="補撥人員" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入補撥人員" />
+      <DtxInputGroup prepend="撥補人員" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入撥補人員" />
       </DtxInputGroup>
       <DtxInputGroup
         labelWidth="120"
@@ -123,6 +144,7 @@ export default {
     //allVariable
     const isControlledDrug = ref("121");
     let uploadFileName = ref("");
+    const applyTime = ref("");
     //option
 
     //global
@@ -139,7 +161,7 @@ export default {
       isControlledDrug,
       uploadFileName,
       yesNoOptions,
-
+      applyTime,
       //function
       fileChange,
     };

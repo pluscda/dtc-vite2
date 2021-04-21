@@ -24,7 +24,7 @@
         <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="驗收人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+        <el-input placeholder="搜尋驗收人員" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
         <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
@@ -33,7 +33,12 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+      <div
+        v-for="(item, i) in headers"
+        :key="i"
+        @click="sort(item)"
+        :title="item.name"
+      >
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -162,7 +167,8 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
+  // grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(13, 1fr);
 }
 .management {
   position: relative;

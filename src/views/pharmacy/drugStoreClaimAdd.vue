@@ -5,7 +5,13 @@
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請日期" />
+        <Calendar
+          class="h-10 w-full"
+          v-model="applyTime"
+          placeholder="輸入申請日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請單號" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入申請單號" />
@@ -107,6 +113,7 @@ export default {
     //allVariable
     const isControlledDrug = ref("121");
     let uploadFileName = ref("");
+    const applyTime = ref("");
     //option
 
     //global
@@ -123,7 +130,7 @@ export default {
       isControlledDrug,
       uploadFileName,
       yesNoOptions,
-
+      applyTime,
       //function
       fileChange,
     };
