@@ -23,10 +23,10 @@
     </nav>
 
     <header
-      data-msg="註1:限低於庫存下可轉採購單"
+      data-msg=""
       class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
-      <div title="" class="title-word1">採購單(註1)</div>
+      <!-- <div title="" class="title-word1">採購單(註1)</div> -->
       <div>操作</div>
       <div
         v-for="(item, i) in headers"
@@ -54,14 +54,14 @@
         i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
       "
     >
-      <div>
+      <!-- <div>
         <InputSwitch
           class="transform translate-y-1.5"
           v-model="item.review"
           size="small"
           @click.stop="toggleDetail(item)"
         ></InputSwitch>
-      </div>
+      </div> -->
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" @click.stop="editItem(item)" />
         <el-popconfirm
@@ -76,17 +76,19 @@
         </el-popconfirm>
       </div>
 
-      <div>{{ item.drugId || "暫無資料" }}</div>
-      <div>{{ item.drugName || "暫無資料" }}</div>
+      <div>{{ item.unknown || "暫無資料" }}</div>
+      <div>{{ item.unknown || "暫無資料" }}</div>
+      <div>{{ item.unknown || "暫無資料" }}</div>
+      <div>{{ item.unknown || "暫無資料" }}</div>
       <div>{{ item.drugUnit || "暫無資料" }}</div>
       <div>{{ item.drugStandard || "暫無資料" }}</div>
-      <div>{{ item.buyPrice || "暫無資料" }}</div>
-      <div>{{ item.sellPrice || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
+      <div>{{ item.unknown || "暫無資料" }}</div>
+      <div>{{ item.unknown || "暫無資料" }}</div>
       <div>{{ item.stockMax || "暫無資料" }}</div>
       <div>{{ item.stockMin || "暫無資料" }}</div>
       <div>{{ item.countryFrom || "暫無資料" }}</div>
-      <div>{{ item.drugDose || "暫無資料" }}</div>
+      <div>{{ item.unknow || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
@@ -110,17 +112,19 @@ import { useList } from "/@/hooks/useHis.js";
 
 //身分證號
 let headers = [
-  { name: "藥品編號", key: "drugId", sortDesc: null },
-  { name: "藥品名稱", key: "drugName", sortDesc: null },
+  { name: "健保代碼", key: "unknown", sortDesc: null },
+  { name: "院內代碼", key: "unknown", sortDesc: null },
+  { name: "藥品中文", key: "unknown", sortDesc: null },
+  { name: "藥品英文", key: "unknown", sortDesc: null },
   { name: "單位", key: "drugUnit", sortDesc: null },
   { name: "規格", key: "drugStandard", sortDesc: null },
-  { name: "進價", key: "buyPrice", sortDesc: null },
-  { name: "售價", key: "sellPrice", sortDesc: null },
+  { name: "原核定價", key: "unknown", sortDesc: null },
+  { name: "新核定價", key: "unknown", sortDesc: null },
   { name: "存量", key: "unknown", sortDesc: null },
   { name: "庫存上限", key: "stockMax", sortDesc: null },
   { name: "庫存下限", key: "stockMin", sortDesc: null },
   { name: "產地", key: "countryFrom", sortDesc: null },
-  { name: "劑量", key: "drugDose", sortDesc: null },
+  { name: "劑型", key: "unknown", sortDesc: null },
   { name: "收費項目", key: "unknown", sortDesc: null },
 ];
 
@@ -210,7 +214,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px 100px 100px repeat(8, 1fr) 90px repeat(2, 1fr);
+  grid-template-columns: 100px repeat(14, 1fr);
 }
 .management {
   position: relative;
