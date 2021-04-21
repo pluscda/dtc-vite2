@@ -85,7 +85,7 @@ import { ElMessage } from "element-plus";
 import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 
-import { useList } from "../model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 //查閱清單
 let headers = [
   { name: "掛號日期", key: "registerTimestamp", sortDesc: null },

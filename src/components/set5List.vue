@@ -1,17 +1,9 @@
 <template>
-  <section style="background: #4b5563; grid-column: 1/-1" class="dtc-door-way-section grid">
-    <header class="flex gap-4 dtc-text pl-1 dtc-tabs" style="grid-column: 1/-1">
-      <div>用藥</div>
-      <div>套組</div>
-      <div>設為套組</div>
-    </header>
-
-    <InqueryList></InqueryList>
-  </section>
+  <section class="dtc-text text-xl">set5</section>
 </template>
 
 <script>
-import InqueryList from "/@/views/users/components/inqueryList.vue";
+import { useList } from "/@/hooks/useHis.js";
 let headers = [
   { name: "藥品名稱", key: "registerTimestamp", sortDesc: null },
   { name: "藥品類型", key: "registerSection", sortDesc: null },
@@ -29,9 +21,7 @@ export default {
   data() {
     return {};
   },
-  components: {
-    InqueryList,
-  },
+  components: {},
 };
 </script>
 

@@ -53,7 +53,7 @@
 <script>
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
-import { useList } from "../users/model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 
 //身分證號
 let headers = [
