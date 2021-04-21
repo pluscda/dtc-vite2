@@ -7,6 +7,10 @@
       <div>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
+    <Textarea class="w-full" style="height: 250px" spellcheck="false" placeholder="請輸入主訴..."></Textarea>
+    <keep-alive>
+      <component :is="Textarea"> </component>
+    </keep-alive>
   </section>
 </template>
 

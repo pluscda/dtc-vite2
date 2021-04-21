@@ -1,12 +1,13 @@
 <template>
   <section style="background: #4b5563" class="dtc-door-way-section">
     <header class="flex gap-4 dtc-text pl-0s dtc-tabs" style="">
-      <div>客觀</div>
+      <div>客訴</div>
       <div>組套</div>
       <div>設為組套</div>
       <div>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
+    <Textarea class="w-full" style="height: 250px" spellcheck="false" placeholder="請輸入客訴..."></Textarea>
   </section>
 </template>
 

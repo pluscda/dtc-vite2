@@ -1,5 +1,9 @@
 #app.dark {
   background: var(--dark) !important;
+  .p-inputtextarea{
+    background: var(--dark);
+    color:white;
+  }
    .my-title::before {
      color:white  !important; 
   }
