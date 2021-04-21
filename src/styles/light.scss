@@ -1,5 +1,9 @@
 #app.light {
   background: var(--light) !important;
+  .p-inputtextarea{
+ 
+    border:1px solid #64748B;
+  }
   .dtc-door-way-section{
     background: darken($color: #Ffff, $amount: 15) !important;
   }
