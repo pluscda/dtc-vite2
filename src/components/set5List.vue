@@ -1,7 +1,7 @@
 <template>
   <section style="width: 99vw">
     <header class="ml-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
-      <div>查閱清單</div>
+      <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -21,8 +21,13 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div>
-        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
+      <div class="flex flex-none space-x-2">
+        <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+          <template #reference>
+            <Button label="刪除" class="p-button-sm p-button-warning" />
+          </template>
+        </el-popconfirm>
       </div>
       <div>{{ i + 1 }}</div>
       <div>{{ item.registerTimestamp.split("T")[0] }}</div>
