@@ -101,7 +101,6 @@ const defaultData = {
 
 export function useItem(isEdit, id) {
   const model = ref(Object.assign({}, defaultData));
-
   const updateUser = () => {
     return axios({
       url: "/updateUser",
