@@ -39,7 +39,6 @@
       <div>{{ item.doctorNo || "暫無資料" }}</div>
       <div>{{ item.doctorName || "暫無資料" }}</div>
       <div>{{ item.totalRegisterNum || "暫無資料" }}</div>
-      <div>{{ item.totalCheckedNum || "暫無資料" }}</div>
     </main>
 
     <!-- 分頁 -->
@@ -65,7 +64,6 @@ let headers = [
   { name: "頻率名稱", key: "doctorName", sortDesc: null },
   { name: "天數", key: "totalRegisterNum", sortDesc: null },
   { name: "總量", key: "totalCheckedNum", sortDesc: null },
-  { name: "待看診數", key: "totalWaitNum", sortDesc: null },
 ];
 export default {
   data() {
@@ -116,7 +114,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: repeat(11, minmax(90px, 120px)) minmax(90px, 1fr);
+  grid-template-columns: 110px 250px repeat(8, minmax(90px, 120px)) minmax(90px, 1fr);
 }
 
 #app .dtc-grid-header__divs {
