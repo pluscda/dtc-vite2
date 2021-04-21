@@ -65,6 +65,8 @@
       <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -84,12 +86,14 @@ import { useList } from "../users/model/userModel";
 
 //身分證號
 let headers = [
-  { name: "藥品編號", key: "name", sortDesc: null },
-  { name: "藥品名稱", key: "name", sortDesc: null },
+  { name: "健保代碼", key: "name", sortDesc: null },
+  { name: "院內代碼", key: "name", sortDesc: null },
+  { name: "藥品中文", key: "name", sortDesc: null },
+  { name: "藥品英文", key: "name", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "規格", key: "age", sortDesc: null },
-  { name: "批發價", key: "age", sortDesc: null },
-  { name: "零售價", key: "age", sortDesc: null },
+  { name: "原核定價", key: "age", sortDesc: null },
+  { name: "新核定價", key: "age", sortDesc: null },
   { name: "採購量", key: "age", sortDesc: null },
   { name: "申領量", key: "age", sortDesc: null },
   { name: "存量", key: "age", sortDesc: null },
@@ -148,7 +152,8 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(13, minmax(90px, 1fr));
+  // grid-template-columns: 100px repeat(15, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(15, 1fr);
 }
 .management {
   position: relative;

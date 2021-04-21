@@ -38,8 +38,8 @@
       class="ml-1 dtc-search-filters mt-4"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="補撥人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+      <DtxInputGroup prepend="撥補人員">
+        <el-input placeholder="搜尋撥補人員" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
         <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
@@ -50,7 +50,12 @@
       class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
     >
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+      <div
+        v-for="(item, i) in headers"
+        :key="i"
+        @click="sort(item)"
+        :title="item.name"
+      >
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -120,8 +125,8 @@ let headers = [
   { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "申請數量", key: "age", sortDesc: null },
-  { name: "補撥數量", key: "age", sortDesc: null },
-  { name: "補撥人員", key: "age", sortDesc: null },
+  { name: "撥補數量", key: "age", sortDesc: null },
+  { name: "撥補人員", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -224,7 +229,8 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 232px repeat(12, minmax(90px, 1fr));
+  // grid-template-columns: 232px repeat(12, minmax(90px, 1fr));
+  grid-template-columns: 232px repeat(12, 1fr);
 }
 .management {
   position: relative;

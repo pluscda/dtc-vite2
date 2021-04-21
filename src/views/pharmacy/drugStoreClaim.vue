@@ -117,8 +117,8 @@ let headers = [
   { name: "藥品英文", key: "age", sortDesc: null },
   { name: "單位", key: "age", sortDesc: null },
   { name: "申請數量", key: "age", sortDesc: null },
-  { name: "補撥數量", key: "age", sortDesc: null },
-  { name: "補撥人員", key: "age", sortDesc: null },
+  { name: "撥補數量", key: "age", sortDesc: null },
+  { name: "撥補人員", key: "age", sortDesc: null },
 ];
 
 export default {

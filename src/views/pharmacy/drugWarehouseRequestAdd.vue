@@ -31,6 +31,21 @@
           </el-option>
         </el-select>
       </DtxInputGroup>
+      <DtxInputGroup prepend="院內代碼" labelWidth="120">
+        <el-select
+          v-model="isControlledDrug"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in yesNoOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入藥品中文" />
       </DtxInputGroup>
@@ -43,11 +58,11 @@
       <DtxInputGroup prepend="申請數量" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入申請數量" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="補撥數量" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入補撥數量" />
+      <DtxInputGroup prepend="撥補數量" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入撥補數量" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="補撥人員" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入補撥人員" />
+      <DtxInputGroup prepend="撥補人員" labelWidth="120">
+        <el-input v-model="input1" placeholder="輸入撥補人員" />
       </DtxInputGroup>
       <DtxInputGroup
         labelWidth="120"
