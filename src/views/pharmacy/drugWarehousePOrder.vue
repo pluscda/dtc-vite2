@@ -39,7 +39,19 @@
         <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
-        <el-input placeholder="搜尋結案狀態" v-model="searchStatus" />
+        <el-select
+          v-model="searchStatus"
+          placeholder="請選擇結案狀態"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in caseClosedOptions"
+            :key="item.value"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
       </DtxInputGroup>
     </nav>
 
@@ -150,6 +162,16 @@ export default {
     const time1 = ref("");
     const time2 = ref("");
 
+    //Options
+    const caseClosedOptions = [
+      {
+        value: null,
+        text: "全部",
+      },
+      { value: "closed", text: "已結案" },
+      { value: "unclosed", text: "未結案" },
+    ];
+
     // 列表數據
     headers = ref(headers);
     const {
@@ -195,8 +217,10 @@ export default {
       headers,
       searchDrugId,
       searchDrugName,
+      searchStatus,
       time1,
       time2,
+      caseClosedOptions,
       sort,
       clearFilters,
       removeItem,
