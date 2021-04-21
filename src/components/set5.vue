@@ -6,18 +6,18 @@
       <div>設為套組</div>
     </header>
 
-    <InqueryList></InqueryList>
+    <Set5List></Set5List>
   </section>
 </template>
 
 <script>
-import InqueryList from "/@/views/users/components/inqueryList.vue";
+import Set5List from "./set5List.vue";
 export default {
   data() {
     return {};
   },
   components: {
-    InqueryList,
+    Set5List,
   },
 };
 </script>

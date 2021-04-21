@@ -12,24 +12,24 @@
     </header>
     <main class="grid pb-2 pl-1 pt-1 section1-grid w-screen">
       <DtxInputGroup prepend="診間號碼">
-        <el-input v-model="dd" style="width: 120px" readonly />
+        <el-input v-model="dd" style="width: 130px" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病歷號碼">
-        <el-input v-model="dd" readonly style="width: 120px" />
+        <el-input v-model="dd" readonly style="width: 130px" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
-        <el-input v-model="dd" style="width: 120px" readonly />
+        <el-input v-model="dd" style="width: 130px" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患年齡">
-        <el-input v-model="dd" style="width: 120px" readonly />
+        <el-input v-model="dd" style="width: 130px" readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患生日">
-        <el-input v-model="dd" readonly style="width: 120px" />
+        <el-input v-model="dd" readonly style="width: 130px" />
       </DtxInputGroup>
 
       <nav style="grid-column: 1/-1" class="section1-grid grid dtc-text space-x-5">
         <DtxInputGroup prepend="身分證號">
-          <el-input v-model="dd" readonly style="width: 120px" />
+          <el-input v-model="dd" readonly style="width: 130px" />
         </DtxInputGroup>
         <div class="p-field-checkbox text-black mt-2">
           <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block" />

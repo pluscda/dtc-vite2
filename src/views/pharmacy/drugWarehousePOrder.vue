@@ -108,7 +108,7 @@
 <script>
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
-import { useList } from "../users/model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import queryString from "qs";
 import dayjs from "dayjs";

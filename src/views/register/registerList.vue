@@ -50,18 +50,18 @@
         <Button label="取消掛號" class="p-button-sm p-button-warning" />
       </div>
 
-      <div>{{ item.id.slice(0, 6) || '暫無資料' }}</div>
-      <div>{{ item.registerTimestamp.split('T')[0] || '暫無資料' }}</div>
-      <div>{{ item.registerSection || '暫無資料' }}</div>
-      <div>{{ item.registerNo || '暫無資料' }}</div>
-      <div>{{ item.doctorName || '暫無資料' }}</div>
-      <div>{{ item.registerAlias || '暫無資料' }}</div>
-      <div>{{ item.registerAlias || '暫無資料' }}</div>
-      <div>{{ item.category || '暫無資料' }}</div>
-      <div>{{ item.totalWaitNum || '暫無資料' }}</div>
-      <div>{{ item.totalWaitNum || '暫無資料' }}</div>
-      <div>{{ item.registerSection || '暫無資料' }}</div>
-      <div>{{ item.registerSection || '暫無資料' }}</div>
+      <div>{{ item.id.slice(0, 6) || "暫無資料" }}</div>
+      <div>{{ item.registerTimestamp.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.registerSection || "暫無資料" }}</div>
+      <div>{{ item.registerNo || "暫無資料" }}</div>
+      <div>{{ item.doctorName || "暫無資料" }}</div>
+      <div>{{ item.registerAlias || "暫無資料" }}</div>
+      <div>{{ item.registerAlias || "暫無資料" }}</div>
+      <div>{{ item.category || "暫無資料" }}</div>
+      <div>{{ item.totalWaitNum || "暫無資料" }}</div>
+      <div>{{ item.totalWaitNum || "暫無資料" }}</div>
+      <div>{{ item.registerSection || "暫無資料" }}</div>
+      <div>{{ item.registerSection || "暫無資料" }}</div>
     </main>
 
     <!-- 分頁 -->
@@ -70,47 +70,47 @@
 </template>
 
 <script>
-import { toRefs, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
-import Pagination from 'cps/Pagination.vue';
+import { toRefs, ref } from "vue";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+import Pagination from "cps/Pagination.vue";
 
-import { useList } from '../users/model/userModel';
+import { useList } from "/@/hooks/useHis.js";
 //身分證號
 let headers = [
-  { name: '掛號清單', key: 'id', sortDesc: null },
-  { name: '掛號/預約日期', key: 'registerTimestamp', sortDesc: null },
-  { name: '看診時段', key: 'registerSection', sortDesc: null },
-  { name: '看診號', key: 'registerNo', sortDesc: null },
-  { name: '看診狀態', key: 'registerAlias', sortDesc: null },
-  { name: '就醫類別', key: 'registerAlias', sortDesc: null },
-  { name: '科別', key: 'category', sortDesc: null },
-  { name: '病歷號碼', key: 'totalWaitNum', sortDesc: null },
-  { name: '病換姓名', key: 'doctorName', sortDesc: null },
-  { name: '身分證號', key: 'id', sortDesc: null },
-  { name: '醫師姓名', key: 'doctorName', sortDesc: null },
-  { name: '診間', key: 'registerAlias', sortDesc: null },
+  { name: "掛號清單", key: "id", sortDesc: null },
+  { name: "掛號/預約日期", key: "registerTimestamp", sortDesc: null },
+  { name: "看診時段", key: "registerSection", sortDesc: null },
+  { name: "看診號", key: "registerNo", sortDesc: null },
+  { name: "看診狀態", key: "registerAlias", sortDesc: null },
+  { name: "就醫類別", key: "registerAlias", sortDesc: null },
+  { name: "科別", key: "category", sortDesc: null },
+  { name: "病歷號碼", key: "totalWaitNum", sortDesc: null },
+  { name: "病換姓名", key: "doctorName", sortDesc: null },
+  { name: "身分證號", key: "id", sortDesc: null },
+  { name: "醫師姓名", key: "doctorName", sortDesc: null },
+  { name: "診間", key: "registerAlias", sortDesc: null },
 ];
 
 export default {
-  name: 'inquerylist',
+  name: "inquerylist",
 
   data() {
     return {
-      input1: 'J120092876',
-      value: '',
-      value2: '',
+      input1: "J120092876",
+      value: "",
+      value2: "",
       zh: {
         firstDayOfWeek: 0,
-        dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-        dayNamesShort: ['日', '一', '二', '三', '四', '五', '六'],
-        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
-        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-        monthNamesShort: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
-        today: '今天',
-        clear: '清空',
-        dateFormat: 'yy-mm-dd',
-        weekHeader: '周',
+        dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+        dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
+        dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+        monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
+        today: "今天",
+        clear: "清空",
+        dateFormat: "yy-mm-dd",
+        weekHeader: "周",
       },
     };
   },
@@ -121,12 +121,12 @@ export default {
     // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList('his-histories');
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("his-histories");
 
     // 用戶更新
     function handleEdit({ row }) {
       router.push({
-        name: 'userEdit',
+        name: "userEdit",
         params: { id: row.id },
       });
     }
@@ -136,7 +136,7 @@ export default {
       delItem(row.id).then(() => {
         // todo:刪除這一行，或者重新獲取數據
         // 通知用戶
-        Message.success('刪除成功！');
+        Message.success("刪除成功！");
       });
     }
 
