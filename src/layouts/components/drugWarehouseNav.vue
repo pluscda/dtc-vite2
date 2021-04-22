@@ -32,10 +32,13 @@ export default {
       "el-icon-s-order",
       "el-icon-folder-add",
       "el-icon-document-copy",
-      "el-icon-pie-chart",
       "el-icon-plus",
+      "el-icon-pie-chart",
+
       "el-icon-c-scale-to-original",
     ]);
+    const global = inject("global");
+    global.tabSubject.subscribe((v) => (activeTab.value = v));
     router.push("/pharmacy/drugwarehouseinquire");
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
