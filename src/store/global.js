@@ -59,14 +59,14 @@ export const actions = {
      return await axios.post('/his-basics', obj);
   },
   async addDrug(obj){ // for route /pharmacy/drugadd
-     return await axios.post('/his-drugs', obj);
+     return await axios.post('/drgadds', obj);
+  },
+  async editDrug(obj){ // for route /pharmacy/modifydrug
+     return await axios.put(`/drgadds/${obj.id}`, obj);
   },
   async editImg(obj){ 
     //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload-files-related-to-an-entry
      return await axios.post('/upload', obj);
-  },
-  async editDrug(obj){ // for route /pharmacy/modifydrug
-     return await axios.put(`/his-drugs/${obj.id}`, obj);
   },
   async addItem(url,obj){
     return await axios.post(url, obj);

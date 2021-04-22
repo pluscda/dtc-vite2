@@ -3,10 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品資料維護</div>
     </header>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
+    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="藥品編號">
         <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
       </DtxInputGroup>
@@ -14,26 +11,13 @@
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
-      <Button
-        label="清除查詢"
-        class="p-button-secondary"
-        icon="pi pi-undo"
-        @click="cleanFilter"
-      />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
-    <header
-      data-msg=""
-      class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
-    >
+    <header data-msg="" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <!-- <div title="" class="title-word1">採購單(註1)</div> -->
       <div>操作</div>
-      <div
-        v-for="(item, i) in headers"
-        :key="i"
-        @click="sort(headers, item)"
-        :title="item.name"
-      >
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -50,55 +34,34 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <!-- <div>
-        <InputSwitch
-          class="transform translate-y-1.5"
-          v-model="item.review"
-          size="small"
-          @click.stop="toggleDetail(item)"
-        ></InputSwitch>
-      </div> -->
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" @click.stop="editItem(item)" />
-        <el-popconfirm
-          title="確定刪除嗎？"
-          confirmButtonText="好的"
-          cancelButtonText="不用了"
-          @confirm="removeItem(item)"
-        >
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
           </template>
         </el-popconfirm>
       </div>
 
+      <div>{{ item.hisId || "暫無資料" }}</div>
+      <div>{{ item.chHospitalId || "暫無資料" }}</div>
+      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
+      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
+      <div>{{ item.chDrgUnit || "暫無資料" }}</div>
+      <div>{{ item.chDrgStandard || "暫無資料" }}</div>
+      <div>{{ item.rlDrgOriginalPrice || "暫無資料" }}</div>
+      <div>{{ item.rlDrgNewPrice || "暫無資料" }}</div>
       <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.drugUnit || "暫無資料" }}</div>
-      <div>{{ item.drugStandard || "暫無資料" }}</div>
-      <div>{{ item.unknow || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.stockMax || "暫無資料" }}</div>
-      <div>{{ item.stockMin || "暫無資料" }}</div>
-      <div>{{ item.countryFrom || "暫無資料" }}</div>
-      <div>{{ item.unknow || "暫無資料" }}</div>
-      <div>{{ item.unknow || "暫無資料" }}</div>
+      <div>{{ item.intDrgStockMax || "暫無資料" }}</div>
+      <div>{{ item.intDrgStockMin || "暫無資料" }}</div>
+      <div>{{ item.chDrgCountryFrom || "暫無資料" }}</div>
+      <div>{{ item.chDrgDoseType || "暫無資料" }}</div>
+      <div>{{ item.chDrgChargeBy || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
@@ -112,24 +75,24 @@ import { useList } from "/@/hooks/useHis.js";
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "unknown", sortDesc: null },
-  { name: "院內代碼", key: "unknown", sortDesc: null },
-  { name: "藥品中文", key: "unknown", sortDesc: null },
-  { name: "藥品英文", key: "unknown", sortDesc: null },
-  { name: "單位", key: "drugUnit", sortDesc: null },
-  { name: "規格", key: "drugStandard", sortDesc: null },
-  { name: "原核定價", key: "unknown", sortDesc: null },
-  { name: "新核定價", key: "unknown", sortDesc: null },
+  { name: "健保代碼", key: "hisId", sortDesc: null },
+  { name: "院內代碼", key: "chHospitalId", sortDesc: null },
+  { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
+  { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
+  { name: "用藥單位", key: "chDrgUnit", sortDesc: null },
+  { name: "規格", key: "chDrgStandard", sortDesc: null },
+  { name: "原核定價", key: "rlDrgOriginalPrice", sortDesc: null },
+  { name: "新核定價", key: "rlDrgNewPrice", sortDesc: null },
   { name: "存量", key: "unknown", sortDesc: null },
-  { name: "庫存上限", key: "stockMax", sortDesc: null },
-  { name: "庫存下限", key: "stockMin", sortDesc: null },
-  { name: "產地", key: "countryFrom", sortDesc: null },
-  { name: "劑型", key: "unknown", sortDesc: null },
-  { name: "收費項目", key: "unknown", sortDesc: null },
+  { name: "庫存上限", key: "intDrgStockMax", sortDesc: null },
+  { name: "庫存下限", key: "intDrgStockMin", sortDesc: null },
+  { name: "產地", key: "chDrgCountryFrom", sortDesc: null },
+  { name: "劑型", key: "chDrgDoseType", sortDesc: null },
+  { name: "收費項目", key: "chDrgChargeBy", sortDesc: null },
 ];
 
 export default {
-  name: "drugmanagement1",
+  name: "drugmanagementaddlist",
   components: {
     Pagination,
   },
@@ -142,14 +105,7 @@ export default {
     const searchDrugName = ref("");
     // 列表數據
     headers = ref(headers);
-    const {
-      state,
-      getList,
-      sort,
-      clearFilters,
-      removeItem,
-      getItemDetail,
-    } = useList("his-drugs");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
