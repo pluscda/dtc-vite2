@@ -5,13 +5,13 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="廠商編號">
-        <el-input placeholder="搜尋廠商編號" v-model="searchDrugId" />
+        <el-input placeholder="搜尋廠商編號" v-model="searchMakerId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="廠商名稱">
-        <el-input placeholder="搜尋廠商名稱" v-model="searchDrugName" />
+        <el-input placeholder="搜尋廠商名稱" v-model="searchMakerName" />
       </DtxInputGroup>
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -36,8 +36,12 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
-        <Button label="刪除" class="p-button-sm p-button-warning" />
+        <Button label="編輯" class="p-button-sm" @click="edit(item)" />
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+          <template #reference>
+            <Button label="刪除" class="p-button-sm p-button-warning" />
+          </template>
+        </el-popconfirm>
       </div>
 
       <div>{{ item.chDrgMakerId || "暫無資料" }}</div>
@@ -53,9 +57,11 @@
 </template>
 
 <script>
+import queryString from "qs";
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { isEmpty } from "ramda";
 //身分證號
 let headers = [
   { name: "廠商編號", key: "chDrgMakerId", sortDesc: null },
@@ -72,25 +78,49 @@ export default {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
-    // 列表數據
+    const searchMakerId = ref("");
+    const searchMakerName = ref("");
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-add-makers");
+
+    const cleanFilter = () => {
+      searchMakerId.value = searchMakerName.value = "";
+      clearFilters();
+    };
+    const search = () => {
+      let filters = {};
+      if (searchMakerId.value) {
+        filters.chDrgMakerId_contains = searchMakerId.value;
+      }
+      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
+      if (searchMakerName.value) {
+        filters.chDrgMakerName_contains = searchMakerName.value;
+      }
+      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
+      state.listQuery.filter = filters;
+      getList();
+    };
+
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifydrug");
+    };
 
     return {
       ...toRefs(state),
       getList,
       sort,
       clearFilters,
+      cleanFilter,
+      search,
       removeItem,
       getItemDetail,
+      editItem,
       headers,
-      searchDrugId,
-      searchDrugName,
+      searchMakerId,
+      searchMakerName,
     };
   },
   mounted() {
