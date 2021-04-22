@@ -39,7 +39,6 @@ export default {
     const icons = reactive(['el-icon-edit', 'el-icon-circle-plus-outline', 'el-icon-s-tools', 'el-icon-folder-add', 'el-icon-pie-chart', 'el-icon-plus']);
     const global = inject('global');
     global.pharmacyTab$.subscribe((v) => (activeTab.value = v));
-    //function
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
