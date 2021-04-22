@@ -12,7 +12,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
         <el-select v-model="his.chDrgUnit" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="主成分及含量" labelWidth="120">
@@ -26,7 +26,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥頻率" labelWidth="120">
         <el-select v-model="his.chDrgFrequency" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
@@ -46,7 +46,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
         <el-select v-model="his.chDrgAntibiotics" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
@@ -57,12 +57,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="產地" labelWidth="120">
         <el-select v-model="his.chDrgCountryFrom" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素等級" labelWidth="120">
         <el-select v-model="his.chDrgAntibioticsLevel" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="學名" labelWidth="120">
@@ -73,17 +73,17 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
         <el-select v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="管制用藥" labelWidth="120">
         <el-select v-model="his.chDrgControlType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="劑型" labelWidth="120">
         <el-select v-model="his.chDrgDoseType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="生效日期" labelWidth="120">
@@ -91,7 +91,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品分類" labelWidth="120">
         <el-select v-model="his.chDrgClassified" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="絕對禁忌" labelWidth="120">
@@ -99,7 +99,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="類別" labelWidth="120">
         <el-select v-model="his.chDrgType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="發文號" labelWidth="120">
@@ -107,12 +107,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="收費項目" labelWidth="120">
         <el-select v-model="his.chDrgChargeBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="給藥方式" labelWidth="120">
         <el-select v-model="his.chDrgGivenBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="規格" labelWidth="120">
@@ -123,12 +123,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="皮膚試驗" labelWidth="120">
         <el-select v-model="his.chDrgSkinTest" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="煎藥方式" labelWidth="120">
         <el-select v-model="his.chDrgSteamBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
@@ -177,7 +177,7 @@ import { ref, inject } from "vue";
 import { clone } from "ramda";
 import { ElMessage } from "element-plus";
 
-let yesNoOptions = [
+let dummyList = [
   {
     value: "y",
     label: "是",
