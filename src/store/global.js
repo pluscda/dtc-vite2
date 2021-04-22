@@ -1,11 +1,10 @@
-import { reactive, registerRuntimeCompiler } from "vue";
+import { reactive } from "vue";
 import axios from "utils/request";
 import websocketService from "utils/websock.js";
 import { Subject } from 'rxjs';
 
 const init = {
   userDefaultBgColor: "dark",
-  openAddDrugDialog: false,
   editItem: '',
   tabSubject : new Subject()
 };
