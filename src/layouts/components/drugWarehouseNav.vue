@@ -37,6 +37,8 @@ export default {
       "el-icon-c-scale-to-original",
     ]);
     router.push("/pharmacy/drugwarehouseinquire");
+    const global = inject("global");
+    global.tabSubject.subscribe((v) => (activeTab.value = v));
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {

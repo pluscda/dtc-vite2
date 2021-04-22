@@ -28,7 +28,8 @@ export default {
     const router = useRouter();
     const titles = reactive(["藥房庫存查詢", "藥品申請單維護", "新增藥品申領單", "藥房退庫單維護"]);
     const icons = reactive(["el-icon-zoom-in", "el-icon-s-tools", "el-icon-folder-add", "el-icon-first-aid-kit"]);
-    router.push("/pharmacy/drugstoreinstock");
+    const global = inject("global");
+    global.tabSubject.subscribe((v) => (activeTab.value = v));
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {

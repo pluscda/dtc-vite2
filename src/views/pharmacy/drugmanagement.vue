@@ -97,13 +97,12 @@ export default {
     Pagination,
   },
   setup() {
-    //global
-    const global = inject("global");
     const router = useRouter();
-    //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
-    // 列表數據
+    const global = inject("global");
+    global.tabSubject.next("0");
+
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
 

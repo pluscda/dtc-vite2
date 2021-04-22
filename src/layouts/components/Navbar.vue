@@ -77,11 +77,7 @@ const bgColor = ref("dark");
 const toggleAvatar = (event) => avatarPanel.value.toggle(event);
 const global = inject("global");
 const axios = inject("axios");
-//const userColor = computed(() => global.userDefaultBgColor);
-// alert(global.userDefaultBgColor);
-// onMounted(() => {
-//   axios.get("/getUsers");
-// });
+
 watch(bgColor, (v) => {
   document.querySelector("#app").className = v ? "dark" : "light";
   global.userDefaultBgColor = v;

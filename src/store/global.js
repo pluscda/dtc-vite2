@@ -1,13 +1,13 @@
 import { reactive, registerRuntimeCompiler } from "vue";
 import axios from "utils/request";
 import websocketService from "utils/websock.js";
-import { forkJoin, of } from 'rxjs';
-import { catchError } from "rxjs/operators";
+import { Subject } from 'rxjs';
 
 const init = {
   userDefaultBgColor: "dark",
   openAddDrugDialog: false,
-  editItem: ''
+  editItem: '',
+  tabSubject : new Subject()
 };
 
 export let global = reactive({ ...init });
@@ -81,6 +81,7 @@ export const actions = {
 
 export const mutations = {
    logout(){
+     global.tabSubject.unsubscribe();
      sessionStorage.token = "";
      global = reactive({ ...init });
    }

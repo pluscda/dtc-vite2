@@ -38,7 +38,8 @@ export default {
     const titles = reactive(["藥品資料維護", "新增藥品資料", "藥品廠商維護", "新增藥品廠商", "藥房資料維護", "新增藥房資料"]);
     const icons = reactive(["el-icon-edit", "el-icon-circle-plus-outline", "el-icon-s-tools", "el-icon-folder-add", "el-icon-pie-chart", "el-icon-plus"]);
     router.push("/pharmacy/drugmanagement");
-
+    const global = inject("global");
+    global.tabSubject.subscribe((v) => (activeTab.value = v));
     //function
     const handleChangeTab = (item, i) => {
       activeTab.value = i;

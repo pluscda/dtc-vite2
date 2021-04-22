@@ -3,10 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥房庫存查詢</div>
     </header>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
+    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="藥房">
         <el-input placeholder="搜尋藥房" v-model="searchDrugId" />
       </DtxInputGroup>
@@ -17,9 +14,7 @@
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
 
-    <header
-      class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
-    >
+    <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -37,9 +32,7 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
@@ -53,13 +46,7 @@
       <div>{{ item.name || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
@@ -88,12 +75,10 @@ export default {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
+    global.tabSubject.next("0");
     const searchDrugId = ref("");
     const searchDrugName = ref("");
-    // 列表數據
     headers = ref(headers);
     const { state, getList, delItem } = useList();
     const isOpenAddDrugDialog = computed(() => {
