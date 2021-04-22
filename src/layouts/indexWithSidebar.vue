@@ -34,7 +34,7 @@ export default {
 
     const isBasicTab = computed(() => {
       return (
-        r.path.includes("drugmanagement") ||
+        r.path.includes("pharmacy/drugmanagement") ||
         r.path.includes("pharmacy/modifydrug") ||
         r.path.includes("pharmacy/modifydrgmaker") ||
         r.path.includes("pharmacy/drugadd") ||

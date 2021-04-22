@@ -106,9 +106,6 @@ export default {
     // 列表數據
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
 
     const cleanFilter = () => {
       searchDrugId.value = searchDrugName.value = "";
