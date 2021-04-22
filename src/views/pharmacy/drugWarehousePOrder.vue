@@ -134,22 +134,24 @@ export default {
     };
     const search = () => {
       let filters = {};
-      let s, e, dateQuery;
+      let s,
+        e,
+        dateQuery = "";
       if (time1.value && time2.value) {
         s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
         e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
         dateQuery = queryString.stringify({
-          _where: [{ orderDate_gte: s }, { orderDate_lt: e }],
+          _where: [{ tiDrgPurchaseDate_gte: s }, { tiDrgPurchaseDate_lt: e }],
         });
       }
       if (searchOrderId.value) {
-        filters.orderId = searchOrderId.value;
+        filters.chDrgPurchaseId_contains = searchOrderId.value;
       }
       if (searchOrderPerson.value) {
-        filters.orderPerson = searchOrderPerson.value;
+        filters.chDrgPurchasePerson_contains = searchOrderPerson.value;
       }
-
-      state.listQuery.filter = dateQuery;
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = dateQuery + filters;
       getList();
       //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
     };
