@@ -165,7 +165,7 @@
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="!his.imgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
