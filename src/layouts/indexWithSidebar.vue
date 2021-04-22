@@ -36,6 +36,7 @@ export default {
       return (
         r.path.includes("drugmanagement") ||
         r.path.includes("pharmacy/modifydrug") ||
+        r.path.includes("pharmacy/modifydrgmaker") ||
         r.path.includes("pharmacy/drugadd") ||
         r.path.includes("pharmacy/drugvendormanagement") ||
         r.path.includes("pharmacy/drugstoremanagement")

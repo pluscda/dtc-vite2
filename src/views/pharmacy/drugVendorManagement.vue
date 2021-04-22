@@ -36,14 +36,13 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" @click="edit(item)" />
+        <Button label="編輯" class="p-button-sm" @click.stop="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
           </template>
         </el-popconfirm>
       </div>
-
       <div>{{ item.chDrgMakerId || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerAddress || "暫無資料" }}</div>
@@ -62,6 +61,7 @@ import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
+import { useRouter } from "vue-router";
 //身分證號
 let headers = [
   { name: "廠商編號", key: "chDrgMakerId", sortDesc: null },
@@ -81,6 +81,7 @@ export default {
     const global = inject("global");
     const searchMakerId = ref("");
     const searchMakerName = ref("");
+    const router = useRouter();
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-add-makers");
 
@@ -105,7 +106,7 @@ export default {
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
       global.editItem = { ...detail };
-      router.push("/pharmacy/modifydrug");
+      router.push("/pharmacy/modifydrgmaker");
     };
 
     return {
@@ -123,9 +124,7 @@ export default {
       searchMakerName,
     };
   },
-  mounted() {
-    this.$primevue.config.locale = this.zh;
-  },
+  mounted() {},
 };
 </script>
 
