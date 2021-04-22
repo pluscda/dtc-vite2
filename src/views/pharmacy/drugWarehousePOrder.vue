@@ -128,8 +128,7 @@ export default {
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
-      state.listQuery.filter = "";
-      getList();
+      clearFilters();
     };
     const search = () => {
       let filters = {};
