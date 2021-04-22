@@ -55,7 +55,7 @@ import { exhaustMap, throttleTime } from "rxjs/operators";
 let subscribe = "";
 export default {
   name: "drug1223432434",
-  inject: ["actions"],
+  inject: ["actions", "global"],
   data() {
     return {
       his: {},
@@ -88,6 +88,7 @@ export default {
     },
   },
   mounted() {
+    this.his = this.global.editItem;
     this.$primevue.config.locale = twDate;
   },
   created() {
