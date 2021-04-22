@@ -51,6 +51,7 @@
 import { ElMessage } from "element-plus";
 import { Subject } from "rxjs";
 import { exhaustMap, throttleTime } from "rxjs/operators";
+import dayjs from "dayjs";
 
 let subscribe = "";
 export default {
@@ -88,6 +89,7 @@ export default {
     },
   },
   mounted() {
+    this.global.editItem.tiDrgPurchaseDate = dayjs(this.global.editItem.tiDrgPurchaseDate).format("YYYY-MM-DD");
     this.his = this.global.editItem;
     this.$primevue.config.locale = twDate;
   },
