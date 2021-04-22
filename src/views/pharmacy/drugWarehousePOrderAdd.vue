@@ -1,65 +1,47 @@
 <template>
   <div>
-    <header
-      class="dtc-page-header dtc-page-header-grid grid text-white button-2"
-    >
+    <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
       <div>新增採購單</div>
-      <Button
-        label="再次新增採購單"
-        @click="reset"
-        v-show="addNewItem"
-        class="p-button-rounded p-button-info"
-      />
+      <Button label="再次新增採購單" @click="reset" v-show="addNewItem" class="p-button-rounded p-button-info" />
     </header>
     <main class="grid dtc-list-grid mt-5">
       <DtxInputGroup prepend="採購日期" labelWidth="120">
-        <Calendar
-          class="h-10 w-full"
-          v-model="his.orderDate"
-          placeholder="輸入採購日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購單號" labelWidth="120">
-        <el-input v-model="his.orderId" placeholder="輸入採購單號" />
+        <el-input v-model="his.chDrgPurchaseId" placeholder="輸入採購單號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請人員" labelWidth="120">
-        <el-input v-model="his.orderPerson" placeholder="輸入申請人員" />
+        <el-input v-model="his.chDrgPurchasePerson" placeholder="輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-input v-model="his.orderPerson" placeholder="輸入健保代碼" />
+        <el-input v-model="his.chDrgHisId" placeholder="輸入健保代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-input v-model="his.orderPerson" placeholder="輸入院內代碼" />
+        <el-input v-model="his.chDrgHospitalId" placeholder="輸入院內代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="his.drugName" placeholder="輸入藥品中文" />
+        <el-input v-model="his.chDrgCnName" placeholder="輸入藥品中文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="his.drugName" placeholder="輸入藥品英文" />
+        <el-input v-model="his.chDrgEnName" placeholder="輸入藥品英文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="劑型" labelWidth="120">
-        <el-input v-model="his.drugUnit" placeholder="輸入劑型" />
+        <el-input v-model="his.chDrgDoseType" placeholder="輸入劑型" />
       </DtxInputGroup>
       <DtxInputGroup prepend="單位" labelWidth="120">
-        <el-input v-model="his.drugUnit" placeholder="輸入單位" />
+        <el-input v-model="his.chDrgUnitBy" placeholder="輸入單位" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
-        <el-input v-model="his.drugNum" placeholder="輸入藥商名稱" />
+        <el-input v-model="his.chDrgMakerName" placeholder="輸入藥商名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
-        <el-input v-model="his.drugNum" placeholder="輸入申請數量" />
+        <el-input v-model="his.intDrugApplyNum" placeholder="輸入申請數量" />
       </DtxInputGroup>
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button
-        :disabled="!enabledSave || addNewItem"
-        label="確認儲存"
-        @click="addItem"
-        class="p-button-rounded p-button-success footer-btn"
-      />
+      <Button :disabled="!enabledSave || loading" label="確認儲存" @click="subject.next()" class="p-button-rounded p-button-success footer-btn" />
     </footer>
   </div>
 </template>
@@ -67,14 +49,10 @@
 <script>
 import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
-import dayjs from "dayjs";
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
+import { Subject } from "rxjs";
+import { exhaustMap, throttleTime } from "rxjs/operators";
 
+let subscribe = "";
 export default {
   name: "drugAddNew",
   inject: ["actions"],
@@ -82,19 +60,14 @@ export default {
     return {
       his: {},
       addNewItem: false,
+      subject: new Subject(),
+      loading: false,
     };
   },
   computed: {
     enabledSave() {
-      const ret =
-        this.his.orderDate &&
-        this.his.orderId &&
-        this.his.orderPerson &&
-        this.his.drugId &&
-        this.his.drugName &&
-        this.his.drugUnit &&
-        this.his.drugNum;
-      return ret;
+      const keys = ["tiDrgPurchaseDate", "chDrgPurchaseId", "chDrgPurchasePerson", "chDrgHisId"];
+      return keys.every((s) => this.his[s]);
     },
   },
   methods: {
@@ -103,19 +76,23 @@ export default {
       this.addNewItem = false;
     },
     async addItem() {
+      this.loading = true;
       try {
-        // need to add 8 hours for our timezone
-        //this.his.orderDate = dayjs(this.his.orderDate).format("YYYY-MM-DDT08:00:00.000Z");
-        await this.actions.addItem("hisbuys", this.his);
-        ElMessage.success("新增採購單 ok");
+        await this.actions.addItem("drg-warehouse-order-adds", this.his);
+        ElMessage.success("新增採購單成功");
         this.addNewItem = true;
       } catch (e) {
         ElMessage.error("新增採購單 fail");
+        this.loading = false;
       }
     },
   },
   mounted() {
     this.$primevue.config.locale = twDate;
+  },
+  created() {
+    this.his = {};
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
   },
 };
 </script>
