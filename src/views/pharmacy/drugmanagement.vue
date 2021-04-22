@@ -4,11 +4,11 @@
       <div>藥品資料維護</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="藥品編號">
-        <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="健保代碼">
+        <el-input placeholder="搜尋健保代碼" v-model="searchDrugId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品名稱">
-        <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
+      <DtxInputGroup prepend="藥品英文名稱">
+        <el-input placeholder="搜尋藥品英文名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
@@ -110,16 +110,6 @@ export default {
       return global.openAddDrugDialog;
     });
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
-
     const cleanFilter = () => {
       searchDrugId.value = searchDrugName.value = "";
       clearFilters();
@@ -127,11 +117,11 @@ export default {
     const search = () => {
       let filters = {};
       if (searchDrugId.value) {
-        filters.drugId = searchDrugId.value;
+        filters.hidId_contains = searchDrugId.value;
       }
       //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
       if (searchDrugName.value) {
-        filters.drugName_contains = searchDrugName.value;
+        filters.chDrgEnName_contains = searchDrugName.value;
       }
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
@@ -150,9 +140,6 @@ export default {
       headers,
       searchDrugId,
       searchDrugName,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
       sort,
       cleanFilter,
       search,
