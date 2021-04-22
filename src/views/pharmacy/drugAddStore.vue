@@ -5,14 +5,14 @@
       <Button label="再次新增藥房資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
     </header>
 
-    <main class="grid dtc-list-grid mt-4">
+    <main class="grid px-3 mt-4 space-y-3">
       <DtxInputGroup prepend="藥房編號" labelWidth="120">
         <el-input v-model="his.chDrgStoreId" placeholder="輸入藥房編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房名稱" labelWidth="120">
         <el-input v-model="his.chDrgStoreName" placeholder="輸入藥房名稱" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥房地址" labelWidth="120" style="grid-column: 1/-1; margin-top: 1rem">
+      <DtxInputGroup prepend="藥房地址" labelWidth="120">
         <el-input style="min-width: 500px" v-model="his.chDrgStoreAddress" placeholder="輸入藥房地址" />
       </DtxInputGroup>
     </main>
@@ -27,24 +27,24 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
-import { ElMessage } from "element-plus";
-import { forkJoin, of, Subject } from "rxjs";
-import { exhaustMap, throttleTime } from "rxjs/operators";
+import { ref, inject } from 'vue';
+import { ElMessage } from 'element-plus';
+import { forkJoin, of, Subject } from 'rxjs';
+import { exhaustMap, throttleTime } from 'rxjs/operators';
 
-let subscribe = "";
+let subscribe = '';
 export default {
-  name: "drugAddNew",
-  inject: ["actions"],
+  name: 'drugAddNew',
+  inject: ['actions'],
   data() {
     return {
       his: {},
-      uploadFileName: "",
-      fileUpload: "",
+      uploadFileName: '',
+      fileUpload: '',
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: "",
+      newImg: '',
     };
   },
   methods: {
@@ -56,11 +56,11 @@ export default {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
       try {
-        const ret = await this.actions.addItem("drg-add-stores", this.his);
-        ElMessage.success("新增藥房資料成功");
+        const ret = await this.actions.addItem('drg-add-stores', this.his);
+        ElMessage.success('新增藥房資料成功');
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("新增藥房資料失敗!!");
+        ElMessage.error('新增藥房資料失敗!!');
         this.loading = false;
       }
     },

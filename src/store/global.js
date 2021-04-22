@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 const init = {
   userDefaultBgColor: "dark",
   editItem: '',
-  tabSubject : new Subject()
+  tabSubject : new Subject(),
 };
 
 export let global = reactive({ ...init });

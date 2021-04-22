@@ -4,21 +4,21 @@
       <div>編輯藥房資料</div>
     </header>
 
-    <main class="grid dtc-list-grid mt-4">
+    <main class="grid px-3 mt-4 space-y-4">
       <DtxInputGroup prepend="藥房編號" labelWidth="120">
         <el-input v-model="his.chDrgStoreId" placeholder="輸入藥房編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房名稱" labelWidth="120">
         <el-input v-model="his.chDrgStoreName" placeholder="輸入藥房名稱" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥房地址" labelWidth="120" style="grid-column: 1/-1; margin-top: 1rem">
+      <DtxInputGroup prepend="藥房地址" labelWidth="120">
         <el-input style="min-width: 500px" v-model="his.chDrgStoreAddress" placeholder="輸入藥房地址" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
       <img :src="newImg" class="object-cover rounded" />
     </nav>
-    <footer class="mt-6 mb-4 space-x-4">
+    <footer class="mt-6 mb-4 space-x-10">
       <Button :disabled="loading" label="確認儲存" class="p-button-success footer-btn" @click="subject.next()" />
       <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
-import { ElMessage } from "element-plus";
-import { of, Subject } from "rxjs";
-import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
-import { clone } from "ramda";
+import { ref, inject } from 'vue';
+import { ElMessage } from 'element-plus';
+import { of, Subject } from 'rxjs';
+import { catchError, exhaustMap, takeUntil, throttleTime } from 'rxjs/operators';
+import { clone } from 'ramda';
 
-let subscribe = "";
+let subscribe = '';
 export default {
-  name: "drugModMakerStore2",
-  inject: ["actions", "global"],
+  name: 'drugModMakerStore2',
+  inject: ['actions', 'global'],
   data() {
     return {
       his: {},
@@ -49,11 +49,11 @@ export default {
     async editItem() {
       this.loading = true;
       try {
-        await this.actions.editItem("drg-add-stores", this.his);
-        ElMessage.success("編輯藥房資料成功");
+        await this.actions.editItem('drg-add-stores', this.his);
+        ElMessage.success('編輯藥房資料成功');
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("編輯藥房資料失敗!!");
+        ElMessage.error('編輯藥房資料失敗!!');
         this.loading = false;
       }
     },

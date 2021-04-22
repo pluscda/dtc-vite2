@@ -7,7 +7,7 @@ import 'dayjs/locale/zh-tw'
 import locale from 'element-plus/lib/locale/lang/zh-tw'
 import "element-plus/lib/theme-chalk/index.css";
 import router from "/@/router";
-
+import {BehaviorSubject} from "rxjs"
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar';
@@ -44,6 +44,7 @@ app.component('DtxInputGroup',DtxInputGroup);
 import DUMMYLIST from "./dummyData.js"
 const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
 app.config.globalProperties.dummyList = dummyList;
+app.config.globalProperties.leftSideBar$ =  new BehaviorSubject(1);
 app.mount("#app");
 
 
