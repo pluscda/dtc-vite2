@@ -1,3 +1,6 @@
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';   
 import { createApp } from "vue";
 import "./constance.js"
 import App from "./App.vue";
@@ -20,14 +23,9 @@ import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
 
 
-import 'primevue/resources/themes/saga-blue/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';   
 
 
 const app = createApp(App);
-
-
 app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
 // PrimeVue UI components
 app.component('Calendar', Calendar );
