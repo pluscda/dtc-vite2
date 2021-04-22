@@ -214,7 +214,7 @@ export default {
       try {
         this.fileUpload ? await this.updateImg() : "";
         // normal update without img here
-        const { drugImg, ...hisObj } = this.his;
+        const { s3DrgImg, ...hisObj } = this.his;
         await this.actions.editDrug(hisObj);
         ElMessage.success("編輯藥品成功");
         this.loading = false;
