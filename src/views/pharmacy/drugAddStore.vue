@@ -7,20 +7,20 @@
 
     <main class="grid dtc-list-grid mt-4">
       <DtxInputGroup prepend="藥房編號" labelWidth="120">
-        <el-input v-model="his.hisId" placeholder="輸入藥房編號" />
+        <el-input v-model="his.chDrgStoreId" placeholder="輸入藥房編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房名稱" labelWidth="120">
-        <el-input v-model="his.stockMax" placeholder="輸入藥房名稱" />
+        <el-input v-model="his.chDrgStoreName" placeholder="輸入藥房名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房地址" labelWidth="120" style="grid-column: 1/-1; margin-top: 1rem">
-        <el-input style="min-width: 500px" v-model="his.stockMin" placeholder="輸入藥房地址" />
+        <el-input style="min-width: 500px" v-model="his.chDrgStoreAddress" placeholder="輸入藥房地址" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="!his.imgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
@@ -31,17 +31,6 @@ import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
 import { forkJoin, of, Subject } from "rxjs";
 import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
-
-let yesNoOptions = [
-  {
-    value: "y",
-    label: "是",
-  },
-  {
-    value: "n",
-    label: "否",
-  },
-];
 
 let subscribe = "";
 export default {
@@ -66,22 +55,14 @@ export default {
     async saveItem() {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
-      const formData = new FormData();
-      formData.append("files.drugImg", this.fileUpload, this.his.imgName);
-      formData.append("data", JSON.stringify(this.his));
       try {
-        const ret = await this.actions.addDrug(formData);
-        ElMessage.success("新增藥品成功");
+        const ret = await this.actions.addItem("drg-add-stores", this.his);
+        ElMessage.success("新增藥房資料成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("新增藥品失敗!!");
+        ElMessage.error("新增藥房資料失敗!!");
+        this.loading = false;
       }
-    },
-    fileChange(e) {
-      this.fileUpload = e.target.files[0];
-      this.uploadFileName = e.target.files[0].name;
-      this.his.imgName = this.uploadFileName;
-      this.newImg = URL.createObjectURL(this.fileUpload);
     },
   },
   created() {
