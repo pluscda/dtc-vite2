@@ -59,6 +59,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import queryString from "qs";
 import { isEmpty } from "ramda";
+import { useRouter } from "vue-router";
 //身分證號
 let headers = [
   { name: "藥房編號", key: "chDrgStoreId", sortDesc: null },
@@ -73,12 +74,11 @@ export default {
   },
 
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
+    const router = useRouter();
     const searchStoreId = ref("");
     const searchStoreName = ref("");
-    // 列表數據
+
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-add-stores");
     const cleanFilter = () => {

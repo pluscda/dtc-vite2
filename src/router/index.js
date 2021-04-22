@@ -117,6 +117,12 @@ export const routes = [
         meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "modifydrgstore",
+        component: () => import("/@/views/pharmacy/modifyDrgStore.vue"),
+        name: "modifyDragstore",
+        meta: { title: "編輯藥品資料2", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifydrgmaker",
         component: () => import("/@/views/pharmacy/modifyDrgMaker.vue"),
         name: "modifyDragMaker",
