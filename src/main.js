@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import "./constance.js"
+
 import App from "./App.vue";
 import axios from "utils/request";
 import "styles/index.scss";
@@ -42,8 +43,9 @@ app.component('Textarea',Textarea);
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
-app.config.globalProperties.axios = axios;
-app.provide('axios', app.config.globalProperties.axios);//https://v3.vuejs.org/api/application-config.html#iscustomelement
+import DUMMYLIST from "./dummyData.js"
+const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
+app.config.globalProperties.dummyList = dummyList;
 app.mount("#app");
 
 

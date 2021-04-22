@@ -113,7 +113,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="給藥方式" labelWidth="120">
         <el-select v-model="his.chDrgGivenBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="規格" labelWidth="120">
