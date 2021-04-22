@@ -45,20 +45,20 @@
         </el-popconfirm>
       </div>
 
-      <div>{{ item.hisId || "暫無資料" }}</div>
-      <div>{{ item.chHospitalId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgUnit || "暫無資料" }}</div>
-      <div>{{ item.chDrgStandard || "暫無資料" }}</div>
-      <div>{{ item.rlDrgOriginalPrice || "暫無資料" }}</div>
-      <div>{{ item.rlDrgNewPrice || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
-      <div>{{ item.intDrgStockMax || "暫無資料" }}</div>
-      <div>{{ item.intDrgStockMin || "暫無資料" }}</div>
-      <div>{{ item.chDrgCountryFrom || "暫無資料" }}</div>
-      <div>{{ item.chDrgDoseType || "暫無資料" }}</div>
-      <div>{{ item.chDrgChargeBy || "暫無資料" }}</div>
+      <div>{{ item.hisId || '暫無資料' }}</div>
+      <div>{{ item.chHospitalId || '暫無資料' }}</div>
+      <div>{{ item.chDrgCnName || '暫無資料' }}</div>
+      <div>{{ item.chDrgEnName || '暫無資料' }}</div>
+      <div>{{ item.chDrgUnit || '暫無資料' }}</div>
+      <div>{{ item.chDrgStandard || '暫無資料' }}</div>
+      <div>{{ item.rlDrgOriginalPrice || '暫無資料' }}</div>
+      <div>{{ item.rlDrgNewPrice || '暫無資料' }}</div>
+      <div>{{ item.unknown || '暫無資料' }}</div>
+      <div>{{ item.intDrgStockMax || '暫無資料' }}</div>
+      <div>{{ item.intDrgStockMin || '暫無資料' }}</div>
+      <div>{{ item.chDrgCountryFrom || '暫無資料' }}</div>
+      <div>{{ item.chDrgDoseType || '暫無資料' }}</div>
+      <div>{{ item.chDrgChargeBy || '暫無資料' }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -66,48 +66,48 @@
 </template>
 
 <script>
-import queryString from "qs";
-import { isEmpty } from "ramda";
-import { toRefs, ref, inject, computed, provide } from "vue";
-import { useRouter } from "vue-router";
-import Pagination from "cps/Pagination.vue";
-import { useList } from "/@/hooks/useHis.js";
+import queryString from 'qs';
+import { isEmpty } from 'ramda';
+import { toRefs, ref, inject, computed, provide } from 'vue';
+import { useRouter } from 'vue-router';
+import Pagination from 'cps/Pagination.vue';
+import { useList } from '/@/hooks/useHis.js';
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "hisId", sortDesc: null },
-  { name: "院內代碼", key: "chHospitalId", sortDesc: null },
-  { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
-  { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
-  { name: "用藥單位", key: "chDrgUnit", sortDesc: null },
-  { name: "規格", key: "chDrgStandard", sortDesc: null },
-  { name: "原核定價", key: "rlDrgOriginalPrice", sortDesc: null },
-  { name: "新核定價", key: "rlDrgNewPrice", sortDesc: null },
-  { name: "存量", key: "unknown", sortDesc: null },
-  { name: "庫存上限", key: "intDrgStockMax", sortDesc: null },
-  { name: "庫存下限", key: "intDrgStockMin", sortDesc: null },
-  { name: "產地", key: "chDrgCountryFrom", sortDesc: null },
-  { name: "劑型", key: "chDrgDoseType", sortDesc: null },
-  { name: "收費項目", key: "chDrgChargeBy", sortDesc: null },
+  { name: '健保代碼', key: 'hisId', sortDesc: null },
+  { name: '院內代碼', key: 'chHospitalId', sortDesc: null },
+  { name: '藥品中文', key: 'chDrgCnName', sortDesc: null },
+  { name: '藥品英文', key: 'chDrgEnName', sortDesc: null },
+  { name: '用藥單位', key: 'chDrgUnit', sortDesc: null },
+  { name: '規格', key: 'chDrgStandard', sortDesc: null },
+  { name: '原核定價', key: 'rlDrgOriginalPrice', sortDesc: null },
+  { name: '新核定價', key: 'rlDrgNewPrice', sortDesc: null },
+  { name: '存量', key: 'unknown', sortDesc: null },
+  { name: '庫存上限', key: 'intDrgStockMax', sortDesc: null },
+  { name: '庫存下限', key: 'intDrgStockMin', sortDesc: null },
+  { name: '產地', key: 'chDrgCountryFrom', sortDesc: null },
+  { name: '劑型', key: 'chDrgDoseType', sortDesc: null },
+  { name: '收費項目', key: 'chDrgChargeBy', sortDesc: null },
 ];
 
 export default {
-  name: "drugmanagementaddlist",
+  name: 'drugmanagementaddlist',
   components: {
     Pagination,
   },
   setup() {
     const router = useRouter();
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
-    const global = inject("global");
-    global.tabSubject.next("0");
+    const searchDrugId = ref('');
+    const searchDrugName = ref('');
+    const global = inject('global');
+    global.pharmacyTab$.next('0');
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList('drgadds');
 
     const cleanFilter = () => {
-      searchDrugId.value = searchDrugName.value = "";
+      searchDrugId.value = searchDrugName.value = '';
       clearFilters();
     };
     const search = () => {
@@ -119,7 +119,7 @@ export default {
       if (searchDrugName.value) {
         filters.chDrgEnName_contains = searchDrugName.value;
       }
-      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
+      filters = isEmpty(filters) ? '' : queryString.stringify(filters);
       state.listQuery.filter = filters;
       getList();
     };
@@ -127,7 +127,7 @@ export default {
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
       global.editItem = { ...detail };
-      router.push("/pharmacy/modifydrug");
+      router.push('/pharmacy/modifydrug');
     };
 
     return {

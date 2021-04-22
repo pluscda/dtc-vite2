@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 const init = {
   userDefaultBgColor: "dark",
   editItem: '',
-  tabSubject : new Subject(),
+  pharmacyTab$ : new Subject(),
 };
 
 export let global = reactive({ ...init });
@@ -80,7 +80,7 @@ export const actions = {
 
 export const mutations = {
    logout(){
-     global.tabSubject.unsubscribe();
+     global.pharmacyTab$.unsubscribe();
      sessionStorage.token = "";
      global = reactive({ ...init });
    }

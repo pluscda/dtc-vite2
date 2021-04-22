@@ -14,36 +14,36 @@
 </template>
 
 <script>
-import { ref, reactive, inject, computed, onMounted, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref, reactive, inject, computed, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 // import DrugAdd from "/@/views/pharmacy/drugAddNew.vue";
 
 export default {
-  name: "sidebar22",
+  name: 'sidebar22',
   components: {
     // DrugAdd,
   },
   setup() {
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive(["藥房庫存查詢", "藥品申請單維護", "新增藥品申領單", "藥房退庫單維護"]);
-    const icons = reactive(["el-icon-zoom-in", "el-icon-s-tools", "el-icon-folder-add", "el-icon-first-aid-kit"]);
-    const global = inject("global");
-    global.tabSubject.subscribe((v) => (activeTab.value = v));
+    const titles = reactive(['藥房庫存查詢', '藥品申請單維護', '新增藥品申領單', '藥房退庫單維護']);
+    const icons = reactive(['el-icon-zoom-in', 'el-icon-s-tools', 'el-icon-folder-add', 'el-icon-first-aid-kit']);
+    const global = inject('global');
+    global.pharmacyTab$.subscribe((v) => (activeTab.value = v));
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
-        case "藥房庫存查詢":
-          router.push("/pharmacy/drugstoreinstock");
+        case '藥房庫存查詢':
+          router.push('/pharmacy/drugstoreinstock');
           break;
-        case "藥品申請單維護":
-          router.push("/pharmacy/drugstoreclaim");
+        case '藥品申請單維護':
+          router.push('/pharmacy/drugstoreclaim');
           break;
-        case "新增藥品申領單":
-          router.push("/pharmacy/drugstoreclaimadd");
+        case '新增藥品申領單':
+          router.push('/pharmacy/drugstoreclaimadd');
           break;
-        case "藥房退庫單維護":
-          router.push("/pharmacy/drugstorewithdrawal");
+        case '藥房退庫單維護':
+          router.push('/pharmacy/drugstorewithdrawal');
           break;
       }
     };

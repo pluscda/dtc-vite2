@@ -39,21 +39,21 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
 
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.name || '暫無資料' }}</div>
+      <div>{{ item.age || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
+      <div>{{ item.name || '暫無資料' }}</div>
+      <div>{{ item.age || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
+      <div>{{ item.name || '暫無資料' }}</div>
+      <div>{{ item.age || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
+      <div>{{ item.name || '暫無資料' }}</div>
+      <div>{{ item.age || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
+      <div>{{ item.id || '暫無資料' }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -61,39 +61,39 @@
 </template>
 
 <script>
-import { toRefs, ref, inject, computed } from "vue";
-import Pagination from "cps/Pagination.vue";
-import { useList } from "/@/hooks/useHis.js";
+import { toRefs, ref, inject, computed } from 'vue';
+import Pagination from 'cps/Pagination.vue';
+import { useList } from '/@/hooks/useHis.js';
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "name", sortDesc: null },
-  { name: "院內代碼", key: "name", sortDesc: null },
-  { name: "藥品中文", key: "name", sortDesc: null },
-  { name: "藥品英文", key: "name", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "規格", key: "age", sortDesc: null },
-  { name: "原核定價", key: "age", sortDesc: null },
-  { name: "新核定價", key: "age", sortDesc: null },
-  { name: "採購量", key: "age", sortDesc: null },
-  { name: "申領量", key: "age", sortDesc: null },
-  { name: "存量", key: "age", sortDesc: null },
-  { name: "庫存上限", key: "age", sortDesc: null },
-  { name: "庫存下限", key: "age", sortDesc: null },
-  { name: "產地", key: "age", sortDesc: null },
-  { name: "劑型", key: "age", sortDesc: null },
+  { name: '健保代碼', key: 'name', sortDesc: null },
+  { name: '院內代碼', key: 'name', sortDesc: null },
+  { name: '藥品中文', key: 'name', sortDesc: null },
+  { name: '藥品英文', key: 'name', sortDesc: null },
+  { name: '單位', key: 'age', sortDesc: null },
+  { name: '規格', key: 'age', sortDesc: null },
+  { name: '原核定價', key: 'age', sortDesc: null },
+  { name: '新核定價', key: 'age', sortDesc: null },
+  { name: '採購量', key: 'age', sortDesc: null },
+  { name: '申領量', key: 'age', sortDesc: null },
+  { name: '存量', key: 'age', sortDesc: null },
+  { name: '庫存上限', key: 'age', sortDesc: null },
+  { name: '庫存下限', key: 'age', sortDesc: null },
+  { name: '產地', key: 'age', sortDesc: null },
+  { name: '劑型', key: 'age', sortDesc: null },
 ];
 
 export default {
-  name: "inquerylist",
+  name: 'inquerylist',
   components: {
     Pagination,
   },
   setup() {
-    const global = inject("global");
-    global.tabSubject.next("0");
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
+    const global = inject('global');
+    global.pharmacyTab$.next('0');
+    const searchDrugId = ref('');
+    const searchDrugName = ref('');
 
     headers = ref(headers);
     const { state, getList, delItem } = useList();
