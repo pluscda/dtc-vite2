@@ -22,9 +22,6 @@ import ProgressSpinner from 'primevue/progressspinner';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
 
-
-
-
 const app = createApp(App);
 app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
 // PrimeVue UI components
