@@ -16,7 +16,7 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -40,12 +40,12 @@
         <Button label="刪除" class="p-button-sm p-button-warning" />
       </div>
 
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerId || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerAddress || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerPhone || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerContactPerson || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerBusinessId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -58,16 +58,16 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 //身分證號
 let headers = [
-  { name: "廠商編號", key: "name", sortDesc: null },
-  { name: "廠商名稱", key: "name", sortDesc: null },
-  { name: "地址", key: "age", sortDesc: null },
-  { name: "聯絡人", key: "age", sortDesc: null },
-  { name: "電話", key: "age", sortDesc: null },
-  { name: "統一發票號碼", key: "age", sortDesc: null },
+  { name: "廠商編號", key: "chDrgMakerId", sortDesc: null },
+  { name: "廠商名稱", key: "chDrgMakerName", sortDesc: null },
+  { name: "廠商地址", key: "chDrgMakerAddress", sortDesc: null },
+  { name: "廠商聯絡人", key: "chDrgMakerPhone ", sortDesc: null },
+  { name: "廠商電話", key: "chDrgMakerContactPerson", sortDesc: null },
+  { name: "統一發票號碼", key: "hDrgMakerBusinessId", sortDesc: null },
 ];
 
 export default {
-  name: "inquerylist",
+  name: "drg-add-makers-list",
   components: {
     Pagination,
   },
@@ -79,30 +79,18 @@ export default {
     const searchDrugName = ref("");
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
-
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-add-makers");
 
     return {
       ...toRefs(state),
       getList,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
       headers,
       searchDrugId,
       searchDrugName,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
     };
   },
   mounted() {
