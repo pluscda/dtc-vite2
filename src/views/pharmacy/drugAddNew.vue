@@ -166,7 +166,7 @@
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="!his.imgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="!his.chDrgImgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
@@ -226,7 +226,7 @@ export default {
     fileChange(e) {
       this.fileUpload = e.target.files[0];
       this.uploadFileName = e.target.files[0].name;
-      this.his.imgName = this.uploadFileName;
+      this.his.chDrgImgName = this.uploadFileName;
       this.newImg = URL.createObjectURL(this.fileUpload);
     },
   },
