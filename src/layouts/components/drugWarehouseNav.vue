@@ -34,7 +34,6 @@ export default {
       "el-icon-document-copy",
       "el-icon-plus",
       "el-icon-pie-chart",
-
       "el-icon-c-scale-to-original",
     ]);
     const global = inject("global");
