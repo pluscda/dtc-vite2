@@ -80,9 +80,8 @@ export const actions = {
 
 export const mutations = {
    logout(){
-     global.pharmacyTab$.unsubscribe();
      sessionStorage.token = "";
-     global = reactive({ ...init });
+     //global = reactive({ ...init });
    }
 
 };
