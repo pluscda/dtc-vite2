@@ -2,7 +2,7 @@
   <div>
     <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
       <div>新增藥品資料/藥理資料</div>
-      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
+      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
     </header>
 
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
@@ -173,24 +173,24 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
-import { ElMessage } from "element-plus";
-import { forkJoin, of, Subject } from "rxjs";
-import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
+import { ref, inject } from 'vue';
+import { ElMessage } from 'element-plus';
+import { forkJoin, of, Subject } from 'rxjs';
+import { catchError, exhaustMap, takeUntil, throttleTime } from 'rxjs/operators';
 
-let subscribe = "";
+let subscribe = '';
 export default {
-  name: "drugAddNew",
-  inject: ["actions"],
+  name: 'drugAddNew',
+  inject: ['actions'],
   data() {
     return {
       his: {},
-      uploadFileName: "",
-      fileUpload: "",
+      uploadFileName: '',
+      fileUpload: '',
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: "",
+      newImg: '',
     };
   },
   methods: {
@@ -202,14 +202,14 @@ export default {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
       const formData = new FormData();
-      formData.append("files.s3DrgImg", this.fileUpload, this.his.imgName);
-      formData.append("data", JSON.stringify(this.his));
+      formData.append('files.s3DrgImg', this.fileUpload, this.his.imgName);
+      formData.append('data', JSON.stringify(this.his));
       try {
         const ret = await this.actions.addDrug(formData);
-        ElMessage.success("新增藥品成功");
+        ElMessage.success('新增藥品成功');
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("新增藥品失敗!!");
+        ElMessage.error('新增藥品失敗!!');
       }
     },
     fileChange(e) {
