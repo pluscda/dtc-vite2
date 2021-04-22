@@ -49,7 +49,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
+        <Button label="編輯" class="p-button-sm" @click="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
@@ -81,6 +81,7 @@ import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import queryString from "qs";
 import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 
 //身分證號
 let headers = [
@@ -103,9 +104,8 @@ export default {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
+    const router = useRouter();
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
     const searchStatus = ref("");
@@ -152,6 +152,11 @@ export default {
       state.listQuery.filter = dateQuery + filters;
       getList();
     };
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifydrugwarehouseporderadd");
+    };
 
     return {
       ...toRefs(state),
@@ -170,6 +175,7 @@ export default {
       search,
       twTime,
       cleanFilter,
+      editItem,
     };
   },
   mounted() {

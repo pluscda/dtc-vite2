@@ -1,8 +1,7 @@
 <template>
   <div>
     <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
-      <div>新增採購單</div>
-      <Button label="再次新增採購單" @click="reset" v-show="addNewItem" class="p-button-rounded p-button-info" />
+      <div>編輯採購單</div>
     </header>
     <main class="grid dtc-list-grid mt-5">
       <DtxInputGroup prepend="採購日期" labelWidth="120">
@@ -42,6 +41,8 @@
 
     <footer class="mt-6 mb-4">
       <Button :disabled="!enabledSave || loading" label="確認儲存" @click="subject.next()" class="p-button-success footer-btn" />
+      <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
+      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
 </template>
@@ -53,7 +54,7 @@ import { exhaustMap, throttleTime } from "rxjs/operators";
 
 let subscribe = "";
 export default {
-  name: "drugAddNew",
+  name: "drug1223432434",
   inject: ["actions"],
   data() {
     return {
@@ -74,14 +75,14 @@ export default {
       this.his = {};
       this.addNewItem = false;
     },
-    async addItem() {
+    async editItem() {
       this.loading = true;
       try {
-        await this.actions.addItem("drg-warehouse-order-adds", this.his);
-        ElMessage.success("新增採購單成功");
+        await this.actions.editItem("drg-warehouse-order-adds", this.his);
+        ElMessage.success("編輯採購單成功");
         this.addNewItem = true;
       } catch (e) {
-        ElMessage.error("新增採購單 fail");
+        ElMessage.error("編輯採購單 fail");
         this.loading = false;
       }
     },
@@ -91,7 +92,7 @@ export default {
   },
   created() {
     this.his = {};
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.editItem)).subscribe(() => (this.loading = false));
   },
 };
 </script>
