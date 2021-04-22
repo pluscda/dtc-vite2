@@ -16,29 +16,29 @@
       <div class="mb-10"></div>
       <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
       <footer class="flex justify-between hidden">
-        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
-        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
+        <h4 class="pl-2 mt-4 text-sm text-left text-orange-200 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
+        <h4 class="relative float-right pl-2 mt-4 text-sm text-left text-orange-200 cursor-pointer" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
       </footer>
     </section>
   </div>
 </template>
 
 <script>
-import { inject, ref } from "vue";
-import { useRouter } from "vue-router";
+import { inject, ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   setup() {
-    const actions = inject("actions");
-    const name = ref("14tc_14_16_03");
-    const pwd = ref("654321");
+    const actions = inject('actions');
+    const name = ref('14tc_14_16_03');
+    const pwd = ref('654321');
     const router = useRouter();
     async function login() {
       try {
         const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
         sessionStorage.token = jwt;
-        jwt ? router.push("/users") : alert(JSON.stringify(message));
+        jwt ? router.push('/users') : alert(JSON.stringify(message));
       } catch (e) {
-        alert("error: " + e);
+        alert('error: ' + e);
       }
     }
 
@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("//unsplash.it/998/998");
+  background-image: url('//unsplash.it/998/998');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
