@@ -51,10 +51,10 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="輸入藥品中文" />
+        <el-input v-model="his.chDrgEnName" placeholder="輸入藥品英文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="新核定價" labelWidth="120">
-        <el-input v-model="his.rlDrgNewPrice" placeholder="輸入原核定價" />
+        <el-input v-model="his.rlDrgNewPrice" placeholder="輸入新核定價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="產地" labelWidth="120">
         <el-select v-model="his.chDrgCountryFrom" placeholder="請選擇" class="border-l-0">
