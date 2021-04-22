@@ -14,7 +14,7 @@
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click.stop="cleanFilter" />
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="申請人員">
@@ -106,8 +106,6 @@ export default {
     //global
     const global = inject("global");
     //搜尋變數
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
     const searchStatus = ref("");
@@ -129,7 +127,7 @@ export default {
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
 
     const cleanFilter = () => {
-      searchDrugName.value = searchDrugName.value = searchOrderId.value = searchOrderPerson.value = searchStatus.value = "";
+      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
       getList();
     };
     const search = () => {
@@ -160,8 +158,8 @@ export default {
       ...toRefs(state),
       getList,
       headers,
-      searchDrugId,
-      searchDrugName,
+      searchOrderId,
+      searchOrderPerson,
       searchStatus,
       time1,
       time2,
@@ -172,6 +170,7 @@ export default {
       getItemDetail,
       search,
       twTime,
+      cleanFilter,
     };
   },
   mounted() {
