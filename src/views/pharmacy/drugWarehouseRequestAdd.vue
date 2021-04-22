@@ -14,7 +14,7 @@
         <el-input v-model="input1" placeholder="輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請藥房" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請人員" />
+        <el-input v-model="input1" placeholder="輸入申請藥房" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
         <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
