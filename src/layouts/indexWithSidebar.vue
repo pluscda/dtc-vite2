@@ -35,7 +35,7 @@ export default {
         this.dtcCurrentCmp = BasicNav;
       } else if (v == 2) {
         this.dtcCurrentCmp = WsNav;
-      } else {
+      } else if (v == 3) {
         this.dtcCurrentCmp = StoreNav;
       }
     });
