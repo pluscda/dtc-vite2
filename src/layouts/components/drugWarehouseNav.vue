@@ -1,9 +1,9 @@
 <template>
-  <h2 class="pt-3 text-gray-400 font-thin text-base">藥局 / 藥庫管理</h2>
+  <h2 class="pt-3 text-base font-thin text-gray-400">藥局 / 藥庫管理</h2>
   <div
     v-for="(item, i) in titles"
     :key="item"
-    class="cursor-pointer py-3 flex space-x-2 pl-2"
+    class="flex py-3 pl-2 space-x-2 cursor-pointer"
     :class="activeTab == i ? 'active-tab' : ''"
     @click="handleChangeTab(item, i)"
   >
@@ -38,7 +38,6 @@ export default {
     ]);
     const global = inject('global');
     global.pharmacyTab$.subscribe((v) => (activeTab.value = v));
-    router.push('/pharmacy/drugwarehouseinquire');
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
