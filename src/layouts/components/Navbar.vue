@@ -18,9 +18,9 @@
         <span class="text-blue-200">藥局<i class="el-icon-arrow-down el-icon--right"></i> </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="updateRouter('/pharmacy/drugmanagement', 1)">基本資料設定</el-dropdown-item>
-            <el-dropdown-item @click="updateRouter('/pharmacy/drugwarehouseinquire', 2)">藥庫管理</el-dropdown-item>
-            <el-dropdown-item @click="updateRouter('/pharmacy/drugstoreinstock', 3)">藥房管理</el-dropdown-item>
+            <el-dropdown-item @click="updatePharmacyRouter('/pharmacy/drugmanagement', 1)">基本資料設定</el-dropdown-item>
+            <el-dropdown-item @click="updatePharmacyRouter('/pharmacy/drugwarehouseinquire', 2)">藥庫管理</el-dropdown-item>
+            <el-dropdown-item @click="updatePharmacyRouter('/pharmacy/drugstoreinstock', 3)">藥房管理</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -62,7 +62,7 @@ export default {
       this.mutations.logout();
       this.$router.push('/login');
     },
-    updateRouter(url, tabNum) {
+    updatePharmacyRouter(url, tabNum) {
       this.leftSideBar$.next(tabNum);
       this.$router.push(url);
     },
