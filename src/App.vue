@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     withinLogoutPages() {
-      return this.$route.path.includes('login') || this.$route.path.includes('dtcregister') || this.$route.path.includes('resetpwd');
+      return this.$route.path.includes('login'); // || this.$route.path.includes('dtcregister') || this.$route.path.includes('resetpwd');
     },
   },
   mounted() {

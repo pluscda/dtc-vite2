@@ -2,7 +2,7 @@
   <div>
     <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
       <div>新增藥房資料</div>
-      <Button label="再次新增藥房資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
+      <Button label="再次新增藥房資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
     </header>
 
     <main class="grid px-3 mt-4 space-y-3">
@@ -20,7 +20,7 @@
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>

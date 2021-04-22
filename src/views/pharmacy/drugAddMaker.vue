@@ -2,7 +2,7 @@
   <div>
     <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
       <div>新增藥品廠商</div>
-      <Button label="再次新增藥品廠商" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-rounded p-button-info" />
+      <Button label="再次新增藥品廠商" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
     </header>
 
     <main class="grid dtc-list-grid">
@@ -29,31 +29,31 @@
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-rounded p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
 </template>
 
 <script>
-import { ref, inject } from "vue";
-import { ElMessage } from "element-plus";
-import { of, Subject } from "rxjs";
-import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
+import { ref, inject } from 'vue';
+import { ElMessage } from 'element-plus';
+import { of, Subject } from 'rxjs';
+import { catchError, exhaustMap, takeUntil, throttleTime } from 'rxjs/operators';
 
-let subscribe = "";
+let subscribe = '';
 export default {
-  name: "drugAddNew",
-  inject: ["actions"],
+  name: 'drugAddNew',
+  inject: ['actions'],
   data() {
     return {
       his: {},
-      uploadFileName: "",
-      fileUpload: "",
+      uploadFileName: '',
+      fileUpload: '',
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: "",
+      newImg: '',
     };
   },
   methods: {
@@ -64,11 +64,11 @@ export default {
     async saveItem() {
       this.loading = true;
       try {
-        const ret = await this.actions.addItem("drg-add-makers", this.his);
-        ElMessage.success("新增藥品成功");
+        const ret = await this.actions.addItem('drg-add-makers', this.his);
+        ElMessage.success('新增藥品成功');
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("新增藥品失敗!!");
+        ElMessage.error('新增藥品失敗!!');
         this.loading = false;
       }
     },
