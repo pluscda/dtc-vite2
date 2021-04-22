@@ -151,7 +151,6 @@ export default {
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
       state.listQuery.filter = dateQuery + filters;
       getList();
-      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
     };
 
     return {
