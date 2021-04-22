@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 import "./constance.js"
 import App from "./App.vue";
-import axios from "utils/request";
 import "styles/index.scss";
 import ElementPlus from 'element-plus'
 import 'dayjs/locale/zh-tw'
