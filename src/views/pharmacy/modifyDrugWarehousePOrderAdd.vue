@@ -41,8 +41,8 @@
 
     <footer class="mt-6 mb-4 space-x-4">
       <Button :disabled="addNewItem || loading" label="確認儲存" @click="subject.next()" class="p-button-success footer-btn" />
-      <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
+      <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
     </footer>
   </div>
 </template>

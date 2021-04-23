@@ -63,8 +63,8 @@
 
     <footer class="mt-6 mb-4 space-x-6">
       <Button label="確認儲存" class="p-button-success footer-btn" @click="subject.next()" />
-      <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
+      <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
     </footer>
   </div>
 </template>
