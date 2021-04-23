@@ -68,7 +68,7 @@ watch(idle2, () => {
   //const withinLogoutPages2 = route.path.includes('login'); //|| route.path.includes('dtcregister') || route.path.includes('resetpwd');
   if (idle2.value && sessionStorage.token) {
     sessionStorage.token = "";
-    router.push("login");
+    router.push("/login");
     setTimeout(location.reload(true), 400);
   }
 });
