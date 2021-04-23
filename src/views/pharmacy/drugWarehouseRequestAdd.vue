@@ -63,12 +63,6 @@
 
 <script>
 import { ref, inject } from "vue";
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
 
 export default {
   name: "drugAddNew",
