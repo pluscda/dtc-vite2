@@ -78,7 +78,7 @@ import dayjs from "dayjs";
 let subscribe = "";
 export default {
   name: "applydrgrequestmod",
-  inject: ["actions"],
+  inject: ["actions", "global"],
   data() {
     return {
       his: {},
