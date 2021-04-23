@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     withinLogoutPages() {
-      return this.$route.path.includes("login"); // || this.$route.path.includes('dtcregister') || this.$route.path.includes('resetpwd');
+      return this.$route.path.includes("/login"); // || this.$route.path.includes('dtcregister') || this.$route.path.includes('resetpwd');
     },
   },
   mounted() {
@@ -59,11 +59,10 @@ export default {
 <script setup>
 import { useIdle } from "@vueuse/core";
 import { watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 const { idle: idle1 } = useIdle(9 * 60 * 1000); // 9 min
 const { idle: idle2 } = useIdle(10 * 60 * 1000); // 10 min
 const router = useRouter();
-const route = useRoute();
 watch(idle2, () => {
   //const withinLogoutPages2 = route.path.includes('login'); //|| route.path.includes('dtcregister') || route.path.includes('resetpwd');
   if (idle2.value && sessionStorage.token) {
