@@ -48,11 +48,11 @@
       <DtxInputGroup labelWidth="120" prepend="結案狀態" style="grid-column: span 1; display: grid; grid-template-columns: 120px 1fr; grid-column-gap: 5px">
         <div class="flex space-x-10 h-10">
           <div class="p-field-radiobutton dtc-text mt-2 ml-2">
-            <RadioButton value="true" id="close1" v-model="his.chDrgStatus" />
+            <RadioButton :value="true" id="close1" v-model="his.chDrgStatus" />
             <label for="close1">已結案</label>
           </div>
           <div class="p-field-radiobutton dtc-text mt-2">
-            <RadioButton value="false" id="close2" v-model="his.chDrgStatus" />
+            <RadioButton :value="false" id="close2" v-model="his.chDrgStatus" />
             <label for="close2">未結案</label>
           </div>
         </div>
