@@ -55,39 +55,44 @@
 
 <script>
 export default {
-  name: 'navbar2',
-  inject: ['mutations', 'global'],
+  name: "navbar2",
+  inject: ["mutations", "global"],
   methods: {
     logout() {
       this.mutations.logout();
-      this.$router.push('/login');
+      this.$router.push("/login");
     },
     updatePharmacyRouter(url, tabNum) {
       this.leftSideBar$.next(tabNum);
       this.$router.push(url);
     },
   },
+  created() {
+    if (location.href.includes("/pharmacy")) {
+      this.$router.push("/pharmacy/drugmanagement");
+    }
+  },
 };
 </script>
 
 <script setup>
-import { ref, inject, computed, onMounted, watch } from 'vue';
-import CurrentTime from 'cps/CurrentTime.vue';
-import { tryOnMounted } from '@vueuse/shared';
+import { ref, inject, computed, onMounted, watch } from "vue";
+import CurrentTime from "cps/CurrentTime.vue";
+import { tryOnMounted } from "@vueuse/shared";
 const bgPanel = ref(null);
 const avatarPanel = ref(null);
-const bgColor = ref('dark');
+const bgColor = ref("dark");
 
 const toggleAvatar = (event) => avatarPanel.value.toggle(event);
-const global = inject('global');
-const axios = inject('axios');
+const global = inject("global");
+const axios = inject("axios");
 
 watch(bgColor, (v) => {
-  document.querySelector('#app').className = v ? 'dark' : 'light';
+  document.querySelector("#app").className = v ? "dark" : "light";
   global.userDefaultBgColor = v;
 });
 tryOnMounted(() => {
-  document.querySelector('#app').className = bgColor.value;
+  document.querySelector("#app").className = bgColor.value;
 });
 </script>
 
