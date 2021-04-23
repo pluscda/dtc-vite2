@@ -4,7 +4,7 @@
       <div>新增藥品申領單</div>
       <Button label="再次新增藥品申領單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
     </header>
-    <main class="grid dtc-list-grid">
+    <main class="grid dtc-list-grid mt-3">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
         <Calendar class="h-10 w-full" v-model="his.tiDrgApplyDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
