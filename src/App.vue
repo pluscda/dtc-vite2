@@ -46,6 +46,13 @@ export default {
     //   alert('You pressed: ' + sequence.join(' '));
     // });
   },
+  watch: {
+    $route(v) {
+      if (!v.path.includes("/login") && !sessionStorage.token) {
+        this.$router.replace("/login");
+      }
+    },
+  },
 };
 </script>
 
