@@ -18,12 +18,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
         <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
         <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
@@ -70,21 +70,6 @@ let headers = [
   { name: "年齡", key: "age", sortDesc: null },
 ];
 
-let yesNoOptions = [
-  {
-    value: "121",
-    label: "121",
-  },
-  {
-    value: "122",
-    label: "122",
-  },
-  {
-    value: "123",
-    label: "123",
-  },
-];
-
 export default {
   name: "drugAddNew",
   setup() {
@@ -107,7 +92,7 @@ export default {
       //allVariable
       isControlledDrug,
       uploadFileName,
-      yesNoOptions,
+
       applyTime,
       //function
       fileChange,
