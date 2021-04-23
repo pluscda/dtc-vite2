@@ -33,7 +33,7 @@
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
         <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品英文" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="單位" labelWidth="120">
+      <DtxInputGroup prepend="藥品單位" labelWidth="120">
         <el-input v-model="his.chDrgUnitBy" placeholder="請輸入單位" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
@@ -57,8 +57,8 @@
           </div>
         </div>
       </DtxInputGroup>
-      <DtxInputGroup prepend="備註" labelWidth="120">
-        <el-input v-model="his.chDrgNote" placeholder="請輸入備註" />
+      <DtxInputGroup prepend="申領備註" labelWidth="120">
+        <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
       </DtxInputGroup>
     </main>
 
