@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import { global, actions, mutations } from '/@/store/global';
-import NavBar from '/@/layouts/components/Navbar.vue';
-import CountDown from 'cps/Countdown.vue';
+import { global, actions, mutations } from "/@/store/global";
+import NavBar from "/@/layouts/components/Navbar.vue";
+import CountDown from "cps/Countdown.vue";
 export default {
-  name: 'App',
+  name: "App",
   provide: {
     global,
     actions,
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     withinLogoutPages() {
-      return this.$route.path.includes('login'); // || this.$route.path.includes('dtcregister') || this.$route.path.includes('resetpwd');
+      return this.$route.path.includes("login"); // || this.$route.path.includes('dtcregister') || this.$route.path.includes('resetpwd');
     },
   },
   mounted() {
@@ -50,18 +50,18 @@ export default {
 </script>
 
 <script setup>
-import { useIdle } from '@vueuse/core';
-import { watch } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useIdle } from "@vueuse/core";
+import { watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 const { idle: idle1 } = useIdle(9 * 60 * 1000); // 9 min
 const { idle: idle2 } = useIdle(10 * 60 * 1000); // 10 min
 const router = useRouter();
 const route = useRoute();
 watch(idle2, () => {
   //const withinLogoutPages2 = route.path.includes('login'); //|| route.path.includes('dtcregister') || route.path.includes('resetpwd');
-  if (idle2.value && !route.path.includes('login')) {
-    sessionStorage.token = '';
-    router.push('login');
+  if (idle2.value && sessionStorage.token) {
+    sessionStorage.token = "";
+    router.push("login");
     setTimeout(location.reload(true), 400);
   }
 });
@@ -69,7 +69,7 @@ watch(idle2, () => {
 
 <style lang="scss">
 #app {
-  font-family: 'Microsoft JhengHei', Helvetica, Arial, sans-serif !important;
+  font-family: "Microsoft JhengHei", Helvetica, Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
