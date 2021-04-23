@@ -33,6 +33,7 @@ app.component('RadioButton',RadioButton );
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('Checkbox',Checkbox);
 app.component('Textarea',Textarea);
+
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting

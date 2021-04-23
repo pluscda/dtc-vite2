@@ -46,9 +46,15 @@
         <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
       </DtxInputGroup>
       <DtxInputGroup labelWidth="120" prepend="結案狀態" style="grid-column: span 1; display: grid; grid-template-columns: 120px 1fr; grid-column-gap: 5px">
-        <div style="text-align: start">
-          <el-radio v-model="his.chDrgStatus" label="已結案" style="margin: 13px 35px 0px 50px">已結案</el-radio>
-          <el-radio v-model="his.chDrgStatus" label="未結案" style="margin-top: 13px; margin-left: 5px">未結案</el-radio>
+        <div class="flex space-x-10 h-10">
+          <div class="p-field-radiobutton dtc-text mt-2 ml-2">
+            <RadioButton value="true" id="close1" v-model="his.chDrgStatus" />
+            <label for="close1">已結案</label>
+          </div>
+          <div class="p-field-radiobutton dtc-text mt-2">
+            <RadioButton value="false" id="close2" v-model="his.chDrgStatus" />
+            <label for="close2">未結案</label>
+          </div>
         </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="備註" labelWidth="120">
