@@ -43,7 +43,7 @@ export function useList(url) {
         data: axios.get(`${url}?` + qs)
       }
     ).pipe( catchError( error => {
-      ElMessage.error("AJAX ${url} get list fail!!");
+      ElMessage.error(`AJAX ${url} get list fail!!`);
       of({total:0, data:[]})
     })).subscribe( ({total, data}) => {
        state.total = total;
@@ -59,7 +59,7 @@ export function useList(url) {
     try{
       return await axios.get(`${url}/${item.id}`);
     }catch(e){
-       ElMessage.error("AJAX ${url} get item detail faill!!");
+       ElMessage.error(`AJAX ${url} get item detail faill!!`);
     }
   }
   async function removeItem(item){
@@ -67,7 +67,7 @@ export function useList(url) {
       await axios.delete(`${url}/${item.id}`);
       getList();
     }catch(e){
-       ElMessage.error("AJAX ${url} delete item faill!!");
+       ElMessage.error(`AJAX ${url} delete item faill!!`);
     }
   }
 
