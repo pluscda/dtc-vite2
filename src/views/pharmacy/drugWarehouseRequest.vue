@@ -136,7 +136,7 @@ export default {
         s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
         e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
         dateQuery = queryString.stringify({
-          _where: [{ tiDrgPurchaseDate_gte: s }, { tiDrgPurchaseDate_lt: e }],
+          _where: [{ tiDrgApplyDate_gte: s }, { tiDrgApplyDate_lt: e }],
         });
       }
       if (searchOrderId.value) {
