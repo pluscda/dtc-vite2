@@ -53,7 +53,6 @@ import { Subject } from "rxjs";
 import { exhaustMap, throttleTime } from "rxjs/operators";
 import dayjs from "dayjs";
 
-let subscribe = "";
 export default {
   name: "drug1223432434",
   inject: ["actions", "global"],

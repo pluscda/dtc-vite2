@@ -173,20 +173,8 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
 import { clone } from "ramda";
 import { ElMessage } from "element-plus";
-
-let dummyList = [
-  {
-    value: "y",
-    label: "是",
-  },
-  {
-    value: "n",
-    label: "否",
-  },
-];
 
 export default {
   name: "drugModify",
