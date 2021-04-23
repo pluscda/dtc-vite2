@@ -68,7 +68,7 @@
 <script>
 import queryString from "qs";
 import { isEmpty } from "ramda";
-import { toRefs, ref, inject, computed, provide } from "vue";
+import { toRefs, ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";

@@ -38,8 +38,8 @@
 <script>
 import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
-import { of, Subject } from "rxjs";
-import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { exhaustMap, throttleTime } from "rxjs/operators";
 
 let subscribe = "";
 export default {
