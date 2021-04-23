@@ -54,12 +54,13 @@
 </template>
 
 <script>
+import { logout$ } from "/@/store";
 export default {
   name: "navbar2",
   inject: ["mutations"],
   methods: {
     logout() {
-      this.mutations.logout();
+      logout$.next("logout");
       this.$router.push("/login");
     },
     updatePharmacyRouter(url, tabNum) {

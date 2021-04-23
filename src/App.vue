@@ -18,6 +18,7 @@
 
 <script>
 import { global, actions, mutations } from "/@/store/global";
+import { logout$ } from "/@/store";
 import NavBar from "/@/layouts/components/Navbar.vue";
 import CountDown from "cps/Countdown.vue";
 export default {
@@ -66,7 +67,7 @@ const router = useRouter();
 watch(idle2, () => {
   //const withinLogoutPages2 = route.path.includes('login'); //|| route.path.includes('dtcregister') || route.path.includes('resetpwd');
   if (idle2.value && sessionStorage.token) {
-    sessionStorage.token = "";
+    logout$.next("logout");
     router.push("/login");
     setTimeout(location.reload(true), 400);
   }

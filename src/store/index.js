@@ -1,3 +1,5 @@
 import { Subject } from 'rxjs';
 
 export const pharmacyTab$ =  new Subject();
+
+export const logout$ = new Subject();

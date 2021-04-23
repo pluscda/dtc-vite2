@@ -1,6 +1,7 @@
 import { reactive } from "vue";
 import axios from "utils/request";
 import websocketService from "utils/websock.js";
+import { logout$ } from "/@/store";
 
 const init = {
   userDefaultBgColor: "dark",
@@ -81,5 +82,6 @@ export const mutations = {
      sessionStorage.token = "";
      global = reactive({ ...init });
    }
-
 };
+
+logout$.subscribe(mutations.logout);
