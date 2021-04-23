@@ -145,7 +145,6 @@ export default {
       if (searchOrderPerson.value) {
         filters.chDrgApplyPersonName_contains = searchOrderPerson.value;
       }
-
       if (searchCatchPerson.value) {
         filters.chDrgCatchPerson_contains = searchCatchPerson;
       }
@@ -186,7 +185,9 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.$primevue.config.locale = twDate;
+  },
 };
 </script>
 
