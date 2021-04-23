@@ -5,16 +5,16 @@
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="applyTime" placeholder="輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10 w-full" v-model="applyTime" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請單號" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請單號" />
+        <el-input v-model="input1" placeholder="請輸入申請單號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請人員" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請人員" />
+        <el-input v-model="input1" placeholder="請輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請藥房" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請人員" />
+        <el-input v-model="input1" placeholder="請輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
         <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
@@ -27,19 +27,19 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入藥品中文" />
+        <el-input v-model="input1" placeholder="請輸入藥品中文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入藥品英文" />
+        <el-input v-model="input1" placeholder="請輸入藥品英文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="單位" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入單位" />
+        <el-input v-model="input1" placeholder="請輸入單位" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入申請數量" />
+        <el-input v-model="input1" placeholder="請輸入申請數量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="備註" labelWidth="120">
-        <el-input v-model="input1" placeholder="輸入備註" />
+        <el-input v-model="input1" placeholder="請輸入備註" />
       </DtxInputGroup>
     </main>
 

@@ -11,7 +11,7 @@
         <div class="grid max-content" style="grid-template-columns: 104px">
           <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-base">初診日期</span>
         </div>
-        <Calendar class="h-10" v-model="basicCard.firstVisit" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10" v-model="basicCard.firstVisit" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </div>
       <DtxInputGroup prepend="姓名" labelWidth="104">
         <el-input v-model="basicCard.name" />
@@ -24,7 +24,7 @@
         <div class="grid max-content" style="grid-template-columns: 104px">
           <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-base">出生日期</span>
         </div>
-        <Calendar class="h-10" v-model="basicCard.birthday" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10" v-model="basicCard.birthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </div>
       <DtxInputGroup prepend="性別" labelWidth="104">
         <el-select v-model="basicCard.sex" class="border-l-0">
@@ -61,7 +61,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="通訊地址" labelWidth="104" style="grid-column: span 4; display: grid; grid-template-columns: 104px 104px 1fr; grid-column-gap: 5px">
         <el-input v-model="basicCard.address1" placeholder="郵遞區號" />
-        <el-input v-model="basicCard.address2" placeholder="輸入地址" />
+        <el-input v-model="basicCard.address2" placeholder="請輸入地址" />
       </DtxInputGroup>
 
       <DtxInputGroup labelWidth="104" prepend="訂閱健康報" style="grid-column: span 2; display: grid; grid-template-columns: 104px 1fr; grid-column-gap: 5px">
@@ -126,7 +126,7 @@
         </el-select>
         <el-input v-model="selfFillForm.weightGain.answer3" />
         <div style="padding-top: 8px">kg，期間:</div>
-        <el-input v-model="selfFillForm.weightGain.answer4" placeholder="請輸入日期" />
+        <el-input v-model="selfFillForm.weightGain.answer4" placeholder="請請輸入日期" />
       </DtxInputGroup>
       <div class="basic-info basic-info-secion3">
         <DtxInputGroup prepend="菸" labelWidth="104">

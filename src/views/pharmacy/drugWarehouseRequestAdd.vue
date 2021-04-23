@@ -5,16 +5,16 @@
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="his.tiDrgApplyDate" placeholder="輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10 w-full" v-model="his.tiDrgApplyDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請單號" labelWidth="120">
-        <el-input v-model="his.chDrgApplyId" placeholder="輸入申請單號" />
+        <el-input v-model="his.chDrgApplyId" placeholder="請輸入申請單號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請人員" labelWidth="120">
-        <el-input v-model="his.chDrgApplyPersonName" placeholder="輸入申請人員" />
+        <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請藥房" labelWidth="120">
-        <el-input v-model="his.DrgApplyStoreName" placeholder="輸入申請藥房" />
+        <el-input v-model="his.DrgApplyStoreName" placeholder="請輸入申請藥房" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
         <el-select v-model="his.DrgHisId" placeholder="請選擇" class="border-l-0">
@@ -27,22 +27,22 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="his.chDrgCnName" placeholder="輸入藥品中文" />
+        <el-input v-model="his.chDrgCnName" placeholder="請輸入藥品中文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="輸入藥品英文" />
+        <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品英文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="單位" labelWidth="120">
-        <el-input v-model="his.DrgUnitBy" placeholder="輸入單位" />
+        <el-input v-model="his.DrgUnitBy" placeholder="請輸入單位" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
-        <el-input v-model="his.intDrgApplyNum" placeholder="輸入申請數量" />
+        <el-input v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="撥補數量" labelWidth="120">
-        <el-input v-model="his.intDrgCatchNum" placeholder="輸入撥補數量" />
+        <el-input v-model="his.intDrgCatchNum" placeholder="請輸入撥補數量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="撥補人員" labelWidth="120">
-        <el-input v-model="his.chDrgCatchPerson" placeholder="輸入撥補人員" />
+        <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
       </DtxInputGroup>
       <DtxInputGroup labelWidth="120" prepend="結案狀態" style="grid-column: span 1; display: grid; grid-template-columns: 120px 1fr; grid-column-gap: 5px">
         <div style="text-align: start">
@@ -51,7 +51,7 @@
         </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="備註" labelWidth="120">
-        <el-input v-model="his.chDrgNote" placeholder="輸入備註" />
+        <el-input v-model="his.chDrgNote" placeholder="請輸入備註" />
       </DtxInputGroup>
     </main>
 
@@ -63,13 +63,56 @@
 
 <script>
 import { ref, inject } from "vue";
+import { ElMessage } from "element-plus";
+import { of, Subject } from "rxjs";
+import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
 
+let subscribe = "";
 export default {
-  name: "drugAddNew",
+  name: "dtcadddrkkdkname",
+  inject: ["actions"],
   data() {
     return {
       his: {},
+      uploadFileName: "",
+      fileUpload: "",
+      showAddNew: false,
+      subject: new Subject(),
+      loading: false,
+      newImg: "",
     };
+  },
+  methods: {
+    reset() {
+      this.his = {};
+      this.showAddNew = false;
+    },
+    async saveItem() {
+      this.loading = true;
+      try {
+        const ret = await this.actions.addItem("drg-add-makers", this.his);
+        ElMessage.success("新增藥品成功");
+        this.showAddNew = true;
+      } catch (e) {
+        ElMessage.error("新增藥品失敗!!");
+        this.loading = false;
+      }
+    },
+    fileChange(e) {
+      this.fileUpload = e.target.files[0];
+      this.uploadFileName = e.target.files[0].name;
+      this.his.imgName = this.uploadFileName;
+      this.newImg = URL.createObjectURL(this.fileUpload);
+    },
+  },
+  created() {
+    this.his = {};
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
+  },
+
+  beforeUnmount() {
+    subscribe.unsubscribe();
+    this.his = {};
   },
 };
 </script>

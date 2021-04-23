@@ -5,10 +5,10 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="採購日期">
-        <Calendar class="h-10" v-model="time1" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
-      <Calendar class="h-10" v-model="time2" placeholder="輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="採購單號">
         <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
       </DtxInputGroup>

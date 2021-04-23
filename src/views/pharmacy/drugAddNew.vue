@@ -9,7 +9,7 @@
 
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-input v-model="his.hisId" placeholder="輸入健保代碼" />
+        <el-input v-model="his.hisId" placeholder="請輸入健保代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
         <el-select v-model="his.chDrgUnit" placeholder="請選擇" class="border-l-0">
@@ -17,13 +17,13 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="主成分及含量" labelWidth="120">
-        <el-input v-model="his.chDrgContain" placeholder="輸入主成分及含量" />
+        <el-input v-model="his.chDrgContain" placeholder="請輸入主成分及含量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="適應症狀1" labelWidth="120">
-        <el-input v-model="his.chSymptom1" placeholder="輸入適應症狀1" />
+        <el-input v-model="his.chSymptom1" placeholder="請輸入適應症狀1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-input v-model="his.chHospitalId" placeholder="輸入院內代碼" />
+        <el-input v-model="his.chHospitalId" placeholder="請輸入院內代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥頻率" labelWidth="120">
         <el-select v-model="his.chDrgFrequency" placeholder="請選擇" class="border-l-0">
@@ -31,19 +31,19 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
-        <el-input v-model="his.intDrgStockMax" placeholder="輸入庫存上限" />
+        <el-input v-model="his.intDrgStockMax" placeholder="請輸入庫存上限" />
       </DtxInputGroup>
       <DtxInputGroup prepend="適應症狀2" labelWidth="120">
-        <el-input v-model="his.chSymptom2" placeholder="輸入適應症狀2" />
+        <el-input v-model="his.chSymptom2" placeholder="請輸入適應症狀2" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="his.chDrgCnName" placeholder="輸入藥品中文" />
+        <el-input v-model="his.chDrgCnName" placeholder="請輸入藥品中文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="原核定價" labelWidth="120">
-        <el-input v-model="his.rlDrgOriginalPrice" placeholder="輸入原核定價" />
+        <el-input v-model="his.rlDrgOriginalPrice" placeholder="請輸入原核定價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存下限" labelWidth="120">
-        <el-input v-model="his.intDrgStockMin" placeholder="輸入庫存下限" />
+        <el-input v-model="his.intDrgStockMin" placeholder="請輸入庫存下限" />
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
         <el-select v-model="his.chDrgAntibiotics" placeholder="請選擇" class="border-l-0">
@@ -51,10 +51,10 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="輸入藥品英文" />
+        <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品英文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="新核定價" labelWidth="120">
-        <el-input v-model="his.rlDrgNewPrice" placeholder="輸入新核定價" />
+        <el-input v-model="his.rlDrgNewPrice" placeholder="請輸入新核定價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="產地" labelWidth="120">
         <el-select v-model="his.chDrgCountryFrom" placeholder="請選擇" class="border-l-0">
@@ -67,10 +67,10 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="學名" labelWidth="120">
-        <el-input v-model="his.chDrgAlias" placeholder="輸入學名" />
+        <el-input v-model="his.chDrgAlias" placeholder="請輸入學名" />
       </DtxInputGroup>
       <DtxInputGroup prepend="自費價格" labelWidth="120">
-        <el-input v-model="his.rlDrgSelfPayPrice" placeholder="輸入自費價格" />
+        <el-input v-model="his.rlDrgSelfPayPrice" placeholder="請輸入自費價格" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
         <el-select v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
@@ -88,7 +88,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="生效日期" labelWidth="120">
-        <el-input v-model="his.tiDrgEffectTime" placeholder="輸入生效日期" />
+        <el-input v-model="his.tiDrgEffectTime" placeholder="請輸入生效日期" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品分類" labelWidth="120">
         <el-select v-model="his.chDrgClassified" placeholder="請選擇" class="border-l-0">
@@ -96,7 +96,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="絕對禁忌" labelWidth="120">
-        <el-input v-model="his.chDrgForbidden" placeholder="輸入絕對禁忌" />
+        <el-input v-model="his.chDrgForbidden" placeholder="請輸入絕對禁忌" />
       </DtxInputGroup>
       <DtxInputGroup prepend="類別" labelWidth="120">
         <el-select v-model="his.chDrgType" placeholder="請選擇" class="border-l-0">
@@ -104,7 +104,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="發文號" labelWidth="120">
-        <el-input v-model="his.chDrgIssueId" placeholder="輸入發文號" />
+        <el-input v-model="his.chDrgIssueId" placeholder="請輸入發文號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="收費項目" labelWidth="120">
         <el-select v-model="his.chDrgChargeBy" placeholder="請選擇" class="border-l-0">
@@ -117,10 +117,10 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="規格" labelWidth="120">
-        <el-input v-model="his.chDrgStandard" placeholder="輸入規格" />
+        <el-input v-model="his.chDrgStandard" placeholder="請輸入規格" />
       </DtxInputGroup>
       <DtxInputGroup prepend="ATC碼" labelWidth="120">
-        <el-input v-model="his.chDrgAtcCode" placeholder="輸入ATC碼" />
+        <el-input v-model="his.chDrgAtcCode" placeholder="請輸入ATC碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="皮膚試驗" labelWidth="120">
         <el-select v-model="his.chDrgSkinTest" placeholder="請選擇" class="border-l-0">
@@ -136,20 +136,20 @@
     <h1 class="my-3 drgu-add-title dtc-text">藥理資料</h1>
     <main class="grid dtc-list-grid2">
       <DtxInputGroup prepend="警語(副作用)" labelWidth="120">
-        <el-input v-model="his.chDrgWarningMsg" placeholder="輸入警語(副作用)" />
+        <el-input v-model="his.chDrgWarningMsg" placeholder="請輸入警語(副作用)" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用前注意" labelWidth="120">
-        <el-input v-model="his.chDrgTakePreStepMsg" placeholder="輸入用前注意" />
+        <el-input v-model="his.chDrgTakePreStepMsg" placeholder="請輸入用前注意" />
       </DtxInputGroup>
       <DtxInputGroup prepend="不良反應" labelWidth="120">
-        <el-input v-model="his.chDrgSideEffectMsg" placeholder="輸入不良反應" />
+        <el-input v-model="his.chDrgSideEffectMsg" placeholder="請輸入不良反應" />
       </DtxInputGroup>
       <DtxInputGroup prepend="儲存條件" labelWidth="120">
-        <el-input v-model="his.chDrgKeepSafeMsg" placeholder="輸入儲存條件" />
+        <el-input v-model="his.chDrgKeepSafeMsg" placeholder="請輸入儲存條件" />
       </DtxInputGroup>
       <div class="dtc-grid-fileupload dtc-text">
         <DtxInputGroup prepend="圖片名稱" labelWidth="120">
-          <el-input v-model="his.chDrgImgName" placeholder="輸入圖片名稱 (先選擇右方圖片)" />
+          <el-input v-model="his.chDrgImgName" placeholder="請輸入圖片名稱 (先選擇右方圖片)" />
         </DtxInputGroup>
         <label for="file-upload" class="custom-file-upload">
           <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
@@ -173,24 +173,24 @@
 </template>
 
 <script>
-import { ref, inject } from 'vue';
-import { ElMessage } from 'element-plus';
-import { forkJoin, of, Subject } from 'rxjs';
-import { catchError, exhaustMap, takeUntil, throttleTime } from 'rxjs/operators';
+import { ref, inject } from "vue";
+import { ElMessage } from "element-plus";
+import { forkJoin, of, Subject } from "rxjs";
+import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
 
-let subscribe = '';
+let subscribe = "";
 export default {
-  name: 'drugAddNew',
-  inject: ['actions'],
+  name: "drugAddNew",
+  inject: ["actions"],
   data() {
     return {
       his: {},
-      uploadFileName: '',
-      fileUpload: '',
+      uploadFileName: "",
+      fileUpload: "",
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: '',
+      newImg: "",
     };
   },
   methods: {
@@ -202,14 +202,14 @@ export default {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
       const formData = new FormData();
-      formData.append('files.s3DrgImg', this.fileUpload, this.his.imgName);
-      formData.append('data', JSON.stringify(this.his));
+      formData.append("files.s3DrgImg", this.fileUpload, this.his.imgName);
+      formData.append("data", JSON.stringify(this.his));
       try {
         const ret = await this.actions.addDrug(formData);
-        ElMessage.success('新增藥品成功');
+        ElMessage.success("新增藥品成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error('新增藥品失敗!!');
+        ElMessage.error("新增藥品失敗!!");
       }
     },
     fileChange(e) {
