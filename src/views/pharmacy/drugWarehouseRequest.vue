@@ -10,10 +10,10 @@
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="申請單號">
-        <el-input placeholder="搜尋申請單號" v-model="searchDrugId" />
+        <el-input placeholder="搜尋申請單號" v-model="searchOrderId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="申請藥房">
-        <el-input placeholder="搜尋申請藥房" v-model="searchDrugId" />
+      <DtxInputGroup prepend="申請人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
@@ -21,11 +21,11 @@
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="撥補人員">
-        <el-input placeholder="搜尋撥補人員" v-model="searchDrugName" />
+        <el-input placeholder="搜尋撥補人員" v-model="searchCatchPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
         <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
-          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
+          <el-option v-for="item in ['全部', '未結案', '已結案']" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
     </nav>
@@ -61,7 +61,7 @@
       </div>
       <div>{{ item.chDrgApplyId || "暫無資料" }}</div>
       <div>{{ twTime(item.tiDrgApplyDate) || "暫無資料" }}</div>
-      <div>{{ item.chDrgStatus === "Y" ? "已結案" : "未結案" }}</div>
+      <div>{{ item.chDrgStatus }}</div>
       <div>{{ item.chDrgApplyPersonName || "暫無資料" }}</div>
       <div>{{ item.chDrgHisId || "暫無資料" }}</div>
       <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
@@ -111,7 +111,9 @@ export default {
     const router = useRouter();
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
-    const searchStatus = ref("");
+    const searchCatchPerson = ref("");
+    const searchDrgStore = ref("");
+    const searchStatus = ref("全部");
     const time1 = ref("");
     const time2 = ref("");
 
@@ -119,7 +121,10 @@ export default {
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
 
     const cleanFilter = () => {
-      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      searchOrderId.value = searchOrderPerson.value = time1.value = time2.value = "";
+      searchStatus.value = "全部";
+      searchDrgStore.value = "";
+      searchCatchPerson.value = "";
       clearFilters();
     };
     const search = () => {
@@ -135,11 +140,16 @@ export default {
         });
       }
       if (searchOrderId.value) {
-        filters.chDrgPurchaseId_contains = searchOrderId.value;
+        filters.chDrgApplyId_contains = searchOrderId.value;
       }
       if (searchOrderPerson.value) {
-        filters.chDrgPurchasePerson_contains = searchOrderPerson.value;
+        filters.chDrgCatchPerson_contains = searchOrderPerson.value;
       }
+
+      if (searchStatus.value != "全部") {
+        filters.chDrgStatus_contains = searchStatus.value;
+      }
+
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
       state.listQuery.filter = dateQuery + filters;
       getList();
@@ -156,7 +166,9 @@ export default {
       headers,
       searchOrderId,
       searchOrderPerson,
+      searchDrgStore,
       searchStatus,
+      searchCatchPerson,
       time1,
       time2,
       sort,
