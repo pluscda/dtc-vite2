@@ -117,6 +117,12 @@ export const routes = [
         meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "modifydrgwarehouserequestadd",
+        component: () => import("/@/views/pharmacy/modifyDrugWarehouseRequestAdd.vue"),
+        name: "modifyDrugWarehouseRequestAdd",
+        meta: { title: "modifyDrugWarehouseRequestAdd", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifydrgwarehouseporderadd",
         component: () => import("/@/views/pharmacy/modifyDrugWarehousePOrderAdd.vue"),
         name: "modifydrugwarehouseporderadd",
