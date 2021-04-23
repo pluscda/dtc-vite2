@@ -62,7 +62,8 @@
     </main>
 
     <footer class="mt-6 mb-4 space-x-6">
-      <Button :disabled="loading" label="確認儲存" class="p-button-success footer-btn" @click="subject.next()" />
+      <Button label="確認儲存" class="p-button-success footer-btn" @click="subject.next()" />
+      <Button label="返回" class="footer-btn" @click="$router.go(-1)" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
@@ -81,25 +82,19 @@ export default {
   data() {
     return {
       his: {},
-      showAddNew: false,
       subject: new Subject(),
-      loading: false,
     };
   },
   methods: {
     reset() {
       this.his = {};
-      this.showAddNew = false;
     },
     async saveItem() {
-      this.loading = true;
       try {
         const ret = await this.actions.editItem("drg-warehouse-request-adds", this.his);
         ElMessage.success("編輯藥品申領單成功");
-        this.showAddNew = true;
       } catch (e) {
         ElMessage.error("編輯藥品申領單失敗!!");
-        this.loading = false;
       }
     },
   },
@@ -107,7 +102,7 @@ export default {
     this.global.editItem.tiDrgApplyDate = dayjs(this.global.editItem.tiDrgApplyDate).format("YYYY-MM-DD");
     this.his = this.global.editItem;
     this.$primevue.config.locale = twDate;
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe();
   },
 
   beforeUnmount() {
