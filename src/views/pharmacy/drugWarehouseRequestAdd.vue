@@ -71,32 +71,6 @@ export default {
       his: {},
     };
   },
-  setup() {
-    //allVariable
-    const isControlledDrug = ref("121");
-    let uploadFileName = ref("");
-    const applyTime = ref("");
-    //option
-
-    //global
-    const global = inject("global");
-    //function
-
-    const fileChange = (e) => {
-      console.log("----", e.target.files[0]);
-      uploadFileName.value = e.target.files[0].name;
-    };
-
-    return {
-      //allVariable
-      isControlledDrug,
-      uploadFileName,
-
-      applyTime,
-      //function
-      fileChange,
-    };
-  },
 };
 </script>
 
