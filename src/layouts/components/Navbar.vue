@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { logout$ } from "/@/store";
+import { logout$, leftSideBar$ } from "/@/store";
 export default {
   name: "navbar2",
   inject: ["mutations"],
@@ -64,7 +64,7 @@ export default {
       this.$router.push("/login");
     },
     updatePharmacyRouter(url, tabNum) {
-      this.leftSideBar$.next(tabNum);
+      leftSideBar$.next(tabNum);
       this.$router.push(url);
     },
   },

@@ -13,15 +13,16 @@
 </template>
 
 <script>
-import BasicNav from '/@/layouts/components/basicDrugNav.vue';
-import WsNav from '/@/layouts/components/drugWarehouseNav.vue';
-import StoreNav from './components/drugStoreNav.vue';
+import BasicNav from "/@/layouts/components/basicDrugNav.vue";
+import WsNav from "/@/layouts/components/drugWarehouseNav.vue";
+import StoreNav from "./components/drugStoreNav.vue";
+import { leftSideBar$ } from "/@/store";
 
 export default {
-  name: 'indexwidthbar2',
+  name: "indexwidthbar2",
   data() {
     return {
-      dtcCurrentCmp: '',
+      dtcCurrentCmp: "",
     };
   },
   components: {
@@ -30,7 +31,7 @@ export default {
     StoreNav,
   },
   mounted() {
-    this.leftSideBar$.subscribe((v) => {
+    leftSideBar$.subscribe((v) => {
       if (v == 1) {
         this.dtcCurrentCmp = BasicNav;
       } else if (v == 2) {
