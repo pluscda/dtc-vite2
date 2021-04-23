@@ -72,6 +72,7 @@ import { toRefs, ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { pharmacyTab$ } from "/@/store";
 
 //身分證號
 let headers = [
@@ -101,7 +102,7 @@ export default {
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     const global = inject("global");
-    global.pharmacyTab$.next("0");
+    pharmacyTab$.next("0");
 
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");

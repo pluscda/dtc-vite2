@@ -1,12 +1,10 @@
 import { reactive } from "vue";
 import axios from "utils/request";
 import websocketService from "utils/websock.js";
-import { Subject } from 'rxjs';
 
 const init = {
   userDefaultBgColor: "dark",
   editItem: '',
-  pharmacyTab$ : new Subject(),
 };
 
 export let global = reactive({ ...init });
@@ -81,7 +79,7 @@ export const actions = {
 export const mutations = {
    logout(){
      sessionStorage.token = "";
-     //global = reactive({ ...init });
+     global = reactive({ ...init });
    }
 
 };

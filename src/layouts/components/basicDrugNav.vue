@@ -18,15 +18,13 @@
 </template>
 
 <script>
-import { ref, reactive, inject, computed, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-// import DrugAdd from "/@/views/pharmacy/drugAddNew.vue";
+import { ref, reactive, inject, computed, onMounted, watch } from "vue";
+import { useRouter } from "vue-router";
+import { pharmacyTab$ } from "/@/store";
 
 export default {
-  name: 'sidebar',
-  components: {
-    // DrugAdd,
-  },
+  name: "sidebar",
+  components: {},
   methods: {
     open(url) {
       window.open(url);
@@ -35,30 +33,30 @@ export default {
   setup() {
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive(['藥品資料維護', '新增藥品資料', '藥品廠商維護', '新增藥品廠商', '藥房資料維護', '新增藥房資料']);
-    const icons = reactive(['el-icon-edit', 'el-icon-circle-plus-outline', 'el-icon-s-tools', 'el-icon-folder-add', 'el-icon-pie-chart', 'el-icon-plus']);
-    const global = inject('global');
-    global.pharmacyTab$.subscribe((v) => (activeTab.value = v));
+    const titles = reactive(["藥品資料維護", "新增藥品資料", "藥品廠商維護", "新增藥品廠商", "藥房資料維護", "新增藥房資料"]);
+    const icons = reactive(["el-icon-edit", "el-icon-circle-plus-outline", "el-icon-s-tools", "el-icon-folder-add", "el-icon-pie-chart", "el-icon-plus"]);
+    const global = inject("global");
+    pharmacyTab$.subscribe((v) => (activeTab.value = v));
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
-        case '藥品資料維護':
-          router.push('/pharmacy/drugmanagement');
+        case "藥品資料維護":
+          router.push("/pharmacy/drugmanagement");
           break;
-        case '新增藥品資料':
-          router.push('/pharmacy/drugadd');
+        case "新增藥品資料":
+          router.push("/pharmacy/drugadd");
           break;
-        case '藥品廠商維護':
-          router.push('/pharmacy/drugvendormanagement');
+        case "藥品廠商維護":
+          router.push("/pharmacy/drugvendormanagement");
           break;
-        case '新增藥品廠商':
-          router.push('/pharmacy/drugaddmaker');
+        case "新增藥品廠商":
+          router.push("/pharmacy/drugaddmaker");
           break;
-        case '藥房資料維護':
-          router.push('/pharmacy/drugstoremanagement');
+        case "藥房資料維護":
+          router.push("/pharmacy/drugstoremanagement");
           break;
-        case '新增藥房資料':
-          router.push('/pharmacy/drugaddstore');
+        case "新增藥房資料":
+          router.push("/pharmacy/drugaddstore");
           break;
       }
     };

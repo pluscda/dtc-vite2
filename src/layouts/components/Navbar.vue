@@ -56,7 +56,7 @@
 <script>
 export default {
   name: "navbar2",
-  inject: ["mutations", "global"],
+  inject: ["mutations"],
   methods: {
     logout() {
       this.mutations.logout();
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, inject, computed, onMounted, watch } from "vue";
+import { ref, inject, watch } from "vue";
 import CurrentTime from "cps/CurrentTime.vue";
 import { tryOnMounted } from "@vueuse/shared";
 const bgPanel = ref(null);
@@ -85,7 +85,6 @@ const bgColor = ref("dark");
 
 const toggleAvatar = (event) => avatarPanel.value.toggle(event);
 const global = inject("global");
-const axios = inject("axios");
 
 watch(bgColor, (v) => {
   document.querySelector("#app").className = v ? "dark" : "light";

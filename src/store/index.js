@@ -1,9 +1,3 @@
-import { createStore } from "vuex";
+import { Subject } from 'rxjs';
 
-const store = createStore({
-  state: {
-    counter: 0,
-  },
-});
-
-export default store;
+export const pharmacyTab$ =  new Subject();
