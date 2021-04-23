@@ -5,13 +5,7 @@
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <Calendar
-          class="h-10 w-full"
-          v-model="applyTime"
-          placeholder="輸入申請日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10 w-full" v-model="applyTime" placeholder="輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請單號" labelWidth="120">
         <el-input v-model="input1" placeholder="輸入申請單號" />
@@ -23,33 +17,13 @@
         <el-input v-model="input1" placeholder="輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-select
-          v-model="isControlledDrug"
-          placeholder="請選擇"
-          class="border-l-0"
-        >
-          <el-option
-            v-for="item in yesNoOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+        <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-select
-          v-model="isControlledDrug"
-          placeholder="請選擇"
-          class="border-l-0"
-        >
-          <el-option
-            v-for="item in yesNoOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+        <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
@@ -70,15 +44,8 @@
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button
-        label="重新新增"
-        class="p-button-rounded p-button-info footer-btn"
-        style="margin-right: 20px"
-      />
-      <Button
-        label="確認儲存"
-        class="p-button-rounded p-button-success footer-btn"
-      />
+      <Button label="重新新增" class="p-button-info footer-btn" style="margin-right: 20px" />
+      <Button label="確認儲存" class="p-button-success footer-btn" />
     </footer>
   </div>
 </template>
