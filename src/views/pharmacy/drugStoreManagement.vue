@@ -64,7 +64,7 @@ import { useRouter } from "vue-router";
 let headers = [
   { name: "藥房編號", key: "chDrgStoreId", sortDesc: null },
   { name: "藥房名稱", key: "chDrgStoreName", sortDesc: null },
-  { name: "地址", key: "chDrgStoreAddress", sortDesc: null },
+  { name: "藥房地址", key: "chDrgStoreAddress", sortDesc: null },
 ];
 
 export default {
