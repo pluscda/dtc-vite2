@@ -109,6 +109,7 @@ export default {
   created() {
     this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
+    this.$primevue.config.locale = twDate;
   },
 
   beforeUnmount() {

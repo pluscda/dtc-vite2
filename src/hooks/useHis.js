@@ -21,6 +21,7 @@ export function useList(url) {
          ...init
   });
   function twTime(iso) {
+      if(!iso) return "暫無資料";
       let s = dayjs(iso).format("YYYY-MM-DDT00:00:00.000Z");
       return s.split("T")[0];
   }

@@ -16,8 +16,8 @@
         <el-input placeholder="搜尋申請藥房" v-model="searchDrugId" />
       </DtxInputGroup>
 
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="撥補人員">
@@ -32,7 +32,7 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)" :title="item.name">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -52,10 +52,15 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm p-button-success" />
+        <Button label="編輯" class="p-button-sm" @click="editItem(item)" />
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+          <template #reference>
+            <Button label="刪除" class="p-button-sm p-button-warning" />
+          </template>
+        </el-popconfirm>
       </div>
       <div>{{ item.chDrgApplyId || "暫無資料" }}</div>
-      <div>{{ item.tiDrgApplyDate || "暫無資料" }}</div>
+      <div>{{ twTime(item.tiDrgApplyDate) || "暫無資料" }}</div>
       <div>{{ item.chDrgStatus || "暫無資料" }}</div>
       <div>{{ item.chDrgApplyPersonName || "暫無資料" }}</div>
       <div>{{ item.chDrgHisId || "暫無資料" }}</div>
@@ -76,6 +81,10 @@
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { isEmpty } from "ramda";
+import queryString from "qs";
+import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 
 let headers = [
   { name: "申請單號", key: "chDrgApplyId", sortDesc: null },
@@ -96,6 +105,69 @@ export default {
   name: "inquerylistxxxx",
   components: {
     Pagination,
+  },
+  setup() {
+    const global = inject("global");
+    const router = useRouter();
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
+    const searchStatus = ref("");
+    const time1 = ref("");
+    const time2 = ref("");
+
+    headers = ref(headers);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
+
+    const cleanFilter = () => {
+      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      clearFilters();
+    };
+    const search = () => {
+      let filters = {};
+      let s,
+        e,
+        dateQuery = "";
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
+        dateQuery = queryString.stringify({
+          _where: [{ tiDrgPurchaseDate_gte: s }, { tiDrgPurchaseDate_lt: e }],
+        });
+      }
+      if (searchOrderId.value) {
+        filters.chDrgPurchaseId_contains = searchOrderId.value;
+      }
+      if (searchOrderPerson.value) {
+        filters.chDrgPurchasePerson_contains = searchOrderPerson.value;
+      }
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = dateQuery + filters;
+      getList();
+    };
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifydrgwarehouseporderadd");
+    };
+
+    return {
+      ...toRefs(state),
+      getList,
+      headers,
+      searchOrderId,
+      searchOrderPerson,
+      searchStatus,
+      time1,
+      time2,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      search,
+      twTime,
+      cleanFilter,
+      editItem,
+    };
   },
 
   mounted() {},
