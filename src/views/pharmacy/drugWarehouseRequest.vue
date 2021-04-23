@@ -143,7 +143,11 @@ export default {
         filters.chDrgApplyId_contains = searchOrderId.value;
       }
       if (searchOrderPerson.value) {
-        filters.chDrgCatchPerson_contains = searchOrderPerson.value;
+        filters.chDrgApplyPersonName_contains = searchOrderPerson.value;
+      }
+
+      if (searchCatchPerson.value) {
+        filters.chDrgCatchPerson_contains = searchCatchPerson;
       }
 
       if (searchStatus.value != "全部") {
