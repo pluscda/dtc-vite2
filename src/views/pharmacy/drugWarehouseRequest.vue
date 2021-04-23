@@ -95,7 +95,7 @@ let headers = [
   { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
   { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
   { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
-  { name: "單位", key: "chDrgUnitBy", sortDesc: null },
+  { name: "藥品單位", key: "chDrgUnitBy", sortDesc: null },
   { name: "申請數量", key: "intDrgApplyNum", sortDesc: null },
   { name: "撥補數量", key: "intDrgCatchNum", sortDesc: null },
   { name: "撥補人員", key: "chDrgCatchPerson", sortDesc: null },
