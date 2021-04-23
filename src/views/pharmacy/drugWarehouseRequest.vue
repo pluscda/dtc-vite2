@@ -24,7 +24,7 @@
         <el-input placeholder="搜尋撥補人員" v-model="searchCatchPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0" @change="search">
           <el-option v-for="item in ['全部', '未結案', '已結案']" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>

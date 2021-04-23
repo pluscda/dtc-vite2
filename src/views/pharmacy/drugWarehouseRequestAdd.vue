@@ -80,7 +80,7 @@ export default {
   inject: ["actions"],
   data() {
     return {
-      his: {},
+      his: { chDrgStatus: "未結案" },
       uploadFileName: "",
       fileUpload: "",
       showAddNew: false,
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     reset() {
-      this.his = {};
+      this.his = { chDrgStatus: "未結案" };
       this.showAddNew = false;
     },
     async saveItem() {
@@ -107,14 +107,12 @@ export default {
     },
   },
   created() {
-    this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
     this.$primevue.config.locale = twDate;
   },
 
   beforeUnmount() {
     subscribe.unsubscribe();
-    this.his = {};
   },
 };
 </script>
