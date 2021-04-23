@@ -61,7 +61,7 @@
       </div>
       <div>{{ item.chDrgApplyId || "暫無資料" }}</div>
       <div>{{ twTime(item.tiDrgApplyDate) || "暫無資料" }}</div>
-      <div>{{ item.chDrgStatus || "暫無資料" }}</div>
+      <div>{{ item.chDrgStatus === "Y" ? "已結案" : "未結案" }}</div>
       <div>{{ item.chDrgApplyPersonName || "暫無資料" }}</div>
       <div>{{ item.chDrgHisId || "暫無資料" }}</div>
       <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
