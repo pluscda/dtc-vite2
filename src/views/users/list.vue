@@ -34,33 +34,33 @@
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患性別">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="就診身份">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="折扣身份">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="部分負擔">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="就醫類別">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="預防保健">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>

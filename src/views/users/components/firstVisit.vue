@@ -27,7 +27,7 @@
         <Calendar class="h-10" v-model="basicCard.birthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </div>
       <DtxInputGroup prepend="性別" labelWidth="104">
-        <el-select v-model="basicCard.sex" class="border-l-0">
+        <el-select filterable v-model="basicCard.sex" class="border-l-0">
           <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -46,12 +46,12 @@
         <el-input v-model="basicCard.married" />
       </DtxInputGroup>
       <DtxInputGroup prepend="血型" labelWidth="104">
-        <el-select v-model="basicCard.blood" class="border-l-0">
+        <el-select filterable v-model="basicCard.blood" class="border-l-0">
           <el-option v-for="item in bloodTypeOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="藥物過敏史" labelWidth="104" style="grid-column: span 2; display: grid; grid-template-columns: 104px 80px 1fr; grid-column-gap: 5px">
-        <el-select v-model="basicCard.allergy" class="border-l-0">
+        <el-select filterable v-model="basicCard.allergy" class="border-l-0">
           <el-option v-for="item in medicalHistoryOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
         <el-input v-model="basicCard.allergyTxt" />
@@ -118,10 +118,10 @@
         </DtxInputGroup>
       </div>
       <DtxInputGroup class="basic-info basic-info-secion2" prepend="體重" labelWidth="104">
-        <el-select v-model="selfFillForm.weightGain.answer1" class="border-l-0">
+        <el-select filterable v-model="selfFillForm.weightGain.answer1" class="border-l-0">
           <el-option v-for="item in weightGainOptions1" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
-        <el-select v-model="selfFillForm.weightGain.answer2" class="border-l-0">
+        <el-select filterable v-model="selfFillForm.weightGain.answer2" class="border-l-0">
           <el-option v-for="item in weightGainOptions2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
         <el-input v-model="selfFillForm.weightGain.answer3" />
@@ -130,7 +130,7 @@
       </DtxInputGroup>
       <div class="basic-info basic-info-secion3">
         <DtxInputGroup prepend="菸" labelWidth="104">
-          <el-select v-model="selfFillForm.smoke" class="border-l-0">
+          <el-select filterable v-model="selfFillForm.smoke" class="border-l-0">
             <el-option v-for="item in smokeOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
@@ -144,7 +144,7 @@
           <el-input v-model="selfFillForm.quitSmokingDays" />
         </DtxInputGroup>
         <DtxInputGroup prepend="接觸二手菸" labelWidth="104">
-          <el-select v-model="selfFillForm.exposureSecondHandSmoke" class="border-l-0">
+          <el-select filterable v-model="selfFillForm.exposureSecondHandSmoke" class="border-l-0">
             <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
@@ -156,13 +156,13 @@
         labelWidth="104"
         style="grid-column: span 5; display: grid; grid-template-columns: 104px 86px; background: #f9f9f9; border: 1px solid #d7dce1; padding: 5px"
       >
-        <el-select v-model="selfFillForm.betelNut" class="border-l-0">
+        <el-select filterable v-model="selfFillForm.betelNut" class="border-l-0">
           <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <div class="basic-info basic-info-secion4">
         <DtxInputGroup prepend="酒" labelWidth="104">
-          <el-select v-model="selfFillForm.liqueur" class="border-l-0">
+          <el-select filterable v-model="selfFillForm.liqueur" class="border-l-0">
             <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
@@ -178,7 +178,7 @@
       </div>
       <div class="basic-info basic-info-secion5">
         <DtxInputGroup prepend="運動" labelWidth="104">
-          <el-select v-model="selfFillForm.exercise" class="border-l-0">
+          <el-select filterable v-model="selfFillForm.exercise" class="border-l-0">
             <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>

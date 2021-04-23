@@ -17,12 +17,12 @@
         <el-input v-model="input1" placeholder="請輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-select v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>

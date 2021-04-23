@@ -1,7 +1,8 @@
 <template>
   <div>
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
       <div>新增藥品申領單</div>
+      <Button label="再次新增藥品申領單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
     </header>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="申請日期" labelWidth="120">
@@ -14,15 +15,15 @@
         <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請藥房" labelWidth="120">
-        <el-input v-model="his.DrgApplyStoreName" placeholder="請輸入申請藥房" />
+        <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-select v-model="his.DrgHisId" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="his.chDrgHisId" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-select v-model="his.chDrgHospitalId" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="his.chDrgHospitalId" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -33,7 +34,7 @@
         <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品英文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="單位" labelWidth="120">
-        <el-input v-model="his.DrgUnitBy" placeholder="請輸入單位" />
+        <el-input v-model="his.chDrgUnitBy" placeholder="請輸入單位" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
         <el-input v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
@@ -55,8 +56,9 @@
       </DtxInputGroup>
     </main>
 
-    <footer class="mt-6 mb-4">
-      <Button label="確認儲存" class="p-button-success footer-btn" />
+    <footer class="mt-6 mb-4 space-x-6">
+      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
+      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
 </template>
@@ -90,19 +92,13 @@ export default {
     async saveItem() {
       this.loading = true;
       try {
-        const ret = await this.actions.addItem("drg-add-makers", this.his);
-        ElMessage.success("新增藥品成功");
+        const ret = await this.actions.addItem("drg-warehouse-request-adds", this.his);
+        ElMessage.success("新增藥品申領單成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("新增藥品失敗!!");
+        ElMessage.error("新增藥品申領單失敗!!");
         this.loading = false;
       }
-    },
-    fileChange(e) {
-      this.fileUpload = e.target.files[0];
-      this.uploadFileName = e.target.files[0].name;
-      this.his.imgName = this.uploadFileName;
-      this.newImg = URL.createObjectURL(this.fileUpload);
     },
   },
   created() {

@@ -3,7 +3,7 @@
     <div class="grid max-content" :style="labelWidth ? `grid-template-columns: ${labelWidth}px !important;` : ''">
       <span class="flex items-center px-3 text-base rounded rounded-r-none dtc-label dtx-prepend">{{ prepend }}</span>
     </div>
-    <slot></slot>
+    <div class="w-full"><slot></slot></div>
     <div class="grid max-content" v-if="append">
       <span class="flex items-center px-1 text-xs rounded rounded-l-none dtc-label">{{ append }}</span>
     </div>

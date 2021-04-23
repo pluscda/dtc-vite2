@@ -21,7 +21,7 @@
         <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
-        <el-select v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>

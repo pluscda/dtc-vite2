@@ -14,7 +14,7 @@
         <Calendar class="h-10" v-model="nativeBirthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
-        <el-select v-model="nativeGender" class="border-l-0">
+        <el-select filterable v-model="nativeGender" class="border-l-0">
           <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -47,12 +47,12 @@
         <el-input v-model="nativeTelPhone.ext" placeholder="分機" />
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
-        <el-select v-model="aboBlood" class="border-l-0">
+        <el-select filterable v-model="aboBlood" class="border-l-0">
           <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
-        <el-select v-model="rhBlood" class="border-l-0">
+        <el-select filterable v-model="rhBlood" class="border-l-0">
           <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -71,7 +71,7 @@
         <Calendar class="h-10" v-model="foreignBirthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
-        <el-select v-model="foreignGender" class="border-l-0">
+        <el-select filterable v-model="foreignGender" class="border-l-0">
           <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -101,12 +101,12 @@
         <el-input v-model="foreignTelPhone.ext" placeholder="分機" />
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
-        <el-select v-model="foreignAboBlood" class="border-l-0">
+        <el-select filterable v-model="foreignAboBlood" class="border-l-0">
           <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
-        <el-select v-model="foreignRhBlood" class="border-l-0">
+        <el-select filterable v-model="foreignRhBlood" class="border-l-0">
           <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
