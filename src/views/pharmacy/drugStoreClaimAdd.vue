@@ -1,106 +1,97 @@
 <template>
   <div>
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
-      <div>新增藥品申領單</div>
+    <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
+      <div>新增藥品申請單</div>
+      <Button label="再次新增藥品申請單" @click="reset" v-show="addNewItem" class="p-button-rounded p-button-info" />
     </header>
-    <main class="grid dtc-list-grid">
-      <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="applyTime" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
+    <main class="grid dtc-list-grid mt-5">
+      <DtxInputGroup prepend="採購日期" labelWidth="120">
+        <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="申請單號" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入申請單號" />
+      <DtxInputGroup prepend="採購單號" labelWidth="120">
+        <el-input v-model="his.chDrgPurchaseId" placeholder="請輸入採購單號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請人員" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入申請人員" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請藥房" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入申請人員" />
+        <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入申請人員" />
       </DtxInputGroup>
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-select filterable v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
+        <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-select filterable v-model="isControlledDrug" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
+        <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入藥品中文" />
+        <el-input v-model="his.chDrgCnName" placeholder="請輸入藥品中文" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入藥品英文" />
+        <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品英文" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="劑型" labelWidth="120">
+        <el-input v-model="his.chDrgDoseType" placeholder="請輸入劑型" />
       </DtxInputGroup>
       <DtxInputGroup prepend="單位" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入單位" />
+        <el-input v-model="his.chDrgUnitBy" placeholder="請輸入單位" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥商名稱" labelWidth="120">
+        <el-input v-model="his.chDrgMakerName" placeholder="請輸入藥商名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請數量" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入申請數量" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="備註" labelWidth="120">
-        <el-input v-model="input1" placeholder="請輸入備註" />
+        <el-input v-model="his.intDrugApplyNum" placeholder="請輸入申請數量" />
       </DtxInputGroup>
     </main>
 
     <footer class="mt-6 mb-4">
-      <Button label="重新新增" class="p-button-info footer-btn" style="margin-right: 20px" />
-      <Button label="確認儲存" class="p-button-success footer-btn" />
+      <Button :disabled="addNewItem || loading" label="確認儲存" @click="subject.next()" class="p-button-success footer-btn" />
     </footer>
   </div>
 </template>
 
 <script>
-import { ref, inject } from "vue";
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
+import { ElMessage } from "element-plus";
+import { Subject } from "rxjs";
+import { exhaustMap, throttleTime } from "rxjs/operators";
 
-let yesNoOptions = [
-  {
-    value: "121",
-    label: "121",
-  },
-  {
-    value: "122",
-    label: "122",
-  },
-  {
-    value: "123",
-    label: "123",
-  },
-];
-
+let subscribe = "";
 export default {
   name: "drugAddNew",
-  setup() {
-    //allVariable
-    const isControlledDrug = ref("121");
-    let uploadFileName = ref("");
-    const applyTime = ref("");
-    //option
-
-    //global
-    const global = inject("global");
-    //function
-
-    const fileChange = (e) => {
-      console.log("----", e.target.files[0]);
-      uploadFileName.value = e.target.files[0].name;
-    };
-
+  inject: ["actions"],
+  data() {
     return {
-      //allVariable
-      isControlledDrug,
-      uploadFileName,
-      yesNoOptions,
-      applyTime,
-      //function
-      fileChange,
+      his: {},
+      addNewItem: false,
+      subject: new Subject(),
+      loading: false,
     };
+  },
+  computed: {
+    enabledSave() {
+      const keys = ["tiDrgPurchaseDate", "chDrgPurchaseId", "chDrgPurchasePerson", "chDrgHisId"];
+      return keys.every((s) => this.his[s]);
+    },
+  },
+  methods: {
+    reset() {
+      this.his = {};
+      this.addNewItem = false;
+    },
+    async addItem() {
+      this.loading = true;
+      try {
+        await this.actions.addItem("drg-warehouse-order-adds", this.his);
+        ElMessage.success("新增藥品申請單成功");
+        this.addNewItem = true;
+      } catch (e) {
+        ElMessage.error("新增藥品申請單 fail");
+        this.loading = false;
+      }
+    },
+  },
+  mounted() {
+    this.$primevue.config.locale = twDate;
+  },
+  created() {
+    this.his = {};
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
   },
 };
 </script>

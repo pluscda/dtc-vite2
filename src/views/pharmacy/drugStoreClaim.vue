@@ -1,27 +1,24 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品申領單維護</div>
+      <div>藥品申請單管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="申請日期">
+      <DtxInputGroup prepend="採購日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
-      <DtxInputGroup prepend="申請單號">
-        <el-input placeholder="搜尋申請單號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="採購單號">
+        <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click.stop="cleanFilter" />
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="申請人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請藥房">
-        <el-input placeholder="搜尋申請藥房" v-model="searchDrugName" />
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
         <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
@@ -32,7 +29,7 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)" :title="item.name">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -52,22 +49,25 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="檢視" class="p-button-sm p-button-info" />
-        <Button label="編輯" class="p-button-sm p-button-success" />
+        <Button label="編輯" class="p-button-sm" @click="editItem(item)" />
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+          <template #reference>
+            <Button label="刪除" class="p-button-sm p-button-warning" />
+          </template>
+        </el-popconfirm>
       </div>
 
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.chDrgPurchaseId || "暫無資料" }}</div>
+      <div>{{ twTime(item.tiDrgPurchaseDate) || "暫無資料" }}</div>
+      <div>{{ item.status || "暫無資料" }}</div>
+      <div>{{ item.chDrgPurchasePerson || "暫無資料" }}</div>
+      <div>{{ item.chDrgHisId || "暫無資料" }}</div>
+      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
+      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
+      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
+      <div>{{ item.chDrgUnitBy || "暫無資料" }}</div>
+      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
+      <div>{{ item.chDrgDoseType || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -78,21 +78,24 @@
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { isEmpty } from "ramda";
+import queryString from "qs";
+import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 
 //身分證號
 let headers = [
-  { name: "申請單號", key: "name", sortDesc: null },
-  { name: "申請日期", key: "name", sortDesc: null },
-  { name: "結案狀態", key: "age", sortDesc: null },
-  { name: "申請人員", key: "age", sortDesc: null },
-  { name: "健保代碼", key: "age", sortDesc: null },
-  { name: "院內代碼", key: "age", sortDesc: null },
-  { name: "藥品中文", key: "age", sortDesc: null },
-  { name: "藥品英文", key: "age", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "申請數量", key: "age", sortDesc: null },
-  { name: "撥補數量", key: "age", sortDesc: null },
-  { name: "撥補人員", key: "age", sortDesc: null },
+  { name: "採購單號", key: "chDrgPurchaseId", sortDesc: null },
+  { name: "採購日期", key: "tiDrgPurchaseDate", sortDesc: null },
+  { name: "結案狀態", key: "status", sortDesc: null },
+  { name: "申請人員", key: "chDrgPurchasePerson", sortDesc: null },
+  { name: "健保代碼", key: "chDrgHisId", sortDesc: null },
+  { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
+  { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
+  { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
+  { name: "單位", key: "chDrgUnitBy", sortDesc: null },
+  { name: "申請數量", key: "intDrugApplyNum", sortDesc: null },
+  { name: "劑型", key: "chDrgDoseType", sortDesc: null },
 ];
 
 export default {
@@ -101,26 +104,13 @@ export default {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
+    const router = useRouter();
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
     const searchStatus = ref("");
     const time1 = ref("");
     const time2 = ref("");
-    const zh = reactive({
-      firstDayOfWeek: 0,
-      dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-      monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-      today: "今天",
-      clear: "清空",
-      dateFormat: "yy-mm-dd",
-      weekHeader: "周",
-    });
 
     //Options
     const caseClosedOptions = reactive([
@@ -134,39 +124,62 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
+    const cleanFilter = () => {
+      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      clearFilters();
     };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
+    const search = () => {
+      let filters = {};
+      let s,
+        e,
+        dateQuery = "";
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
+        dateQuery = queryString.stringify({
+          _where: [{ tiDrgPurchaseDate_gte: s }, { tiDrgPurchaseDate_lt: e }],
+        });
+      }
+      if (searchOrderId.value) {
+        filters.chDrgPurchaseId_contains = searchOrderId.value;
+      }
+      if (searchOrderPerson.value) {
+        filters.chDrgPurchasePerson_contains = searchOrderPerson.value;
+      }
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = dateQuery + filters;
+      getList();
+    };
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifydrgwarehouseporderadd");
     };
 
     return {
       ...toRefs(state),
       getList,
       headers,
-      searchDrugId,
-      searchDrugName,
+      searchOrderId,
+      searchOrderPerson,
       searchStatus,
-      caseClosedOptions,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
-      zh,
       time1,
       time2,
+      caseClosedOptions,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      search,
+      twTime,
+      cleanFilter,
+      editItem,
     };
   },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = twDate;
   },
 };
 </script>
@@ -175,7 +188,8 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(12, 1fr);
+  // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
+  grid-template-columns: 100px 120px 150px repeat(9, 1fr);
 }
 .management {
   position: relative;
