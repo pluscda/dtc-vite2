@@ -144,6 +144,10 @@
       <DtxInputGroup prepend="不良反應" labelWidth="120">
         <el-input v-model="his.chDrgSideEffectMsg" placeholder="請輸入不良反應" />
       </DtxInputGroup>
+      <DtxInputGroup prepend=" 用途" labelWidth="120">
+        <el-input v-model="his.chDrgSideEffectMsg" placeholder="請輸入用途" />
+      </DtxInputGroup>
+
       <DtxInputGroup prepend="儲存條件" labelWidth="120">
         <el-input v-model="his.chDrgKeepSafeMsg" placeholder="請輸入儲存條件" />
       </DtxInputGroup>
