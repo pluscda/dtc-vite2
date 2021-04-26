@@ -1,7 +1,7 @@
 <template>
   <section style="background: #4b5563" class="dtc-door-way-section">
     <header class="flex gap-4 dtc-text pl-0s dtc-tabs">
-      <div>計畫</div>
+      <div style="background: none !important" class="dtc-text">P 計畫</div>
       <div>組套</div>
       <div>設為組套</div>
       <div>清除</div>

@@ -1,5 +1,6 @@
 #app.light {
   background: var(--light) !important;
+
   .p-inputtextarea{
  
     border:1px solid #64748B;
@@ -64,10 +65,14 @@
     &::after {
        background: var(--gray);
     }
+    .dtc-text{
+       color: black  !important;
+    }
   }
   main .basic-info {
     // fix for ray
     background: none !important;
     background: #898b8d !important;
   }
+  
 }
