@@ -38,6 +38,7 @@
       <div>{{ item.category || "暫無資料" }}</div>
       <div>{{ item.doctorNo || "暫無資料" }}</div>
       <div>{{ item.doctorName || "暫無資料" }}</div>
+      <div>{{ item.doctorName || "暫無資料" }}</div>
       <div>{{ item.totalRegisterNum || "暫無資料" }}</div>
     </main>
 
@@ -54,15 +55,16 @@ import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 import { useList } from "/@/hooks/useHis.js";
 let headers = [
-  { name: "藥品名稱", key: "registerTimestamp", sortDesc: null },
-  { name: "藥品類型", key: "registerSection", sortDesc: null },
-  { name: "給藥方式", key: "registerNo", sortDesc: null },
-  { name: "煎藥方式", key: "registerName", sortDesc: null },
-  { name: "單一用量", key: "registerAlias", sortDesc: null },
-  { name: "單位名稱", key: "category", sortDesc: null },
-  { name: "頻率代碼", key: "doctorNo", sortDesc: null },
-  { name: "頻率名稱", key: "doctorName", sortDesc: null },
-  { name: "天數", key: "totalRegisterNum", sortDesc: null },
+  { name: "治療處理代碼", key: "registerTimestamp", sortDesc: null },
+  { name: "治療處理名稱", key: "registerSection", sortDesc: null },
+  { name: "次量", key: "registerNo", sortDesc: null },
+  { name: "單位", key: "registerName", sortDesc: null },
+  { name: "頻率", key: "registerAlias", sortDesc: null },
+  { name: "檢查摘要", key: "category", sortDesc: null },
+  { name: "地點", key: "doctorNo", sortDesc: null },
+  { name: " 計價", key: "doctorName", sortDesc: null },
+  { name: "自費", key: "doctorName", sortDesc: null },
+  { name: "時間", key: "totalRegisterNum", sortDesc: null },
   { name: "總量", key: "totalCheckedNum", sortDesc: null },
 ];
 export default {
@@ -114,7 +116,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 110px 250px repeat(8, minmax(90px, 120px)) minmax(90px, 1fr);
+  grid-template-columns: 110px 150px repeat(9, minmax(90px, 120px)) minmax(90px, 1fr);
 }
 
 #app .dtc-grid-header__divs {

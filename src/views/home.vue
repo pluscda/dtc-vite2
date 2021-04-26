@@ -74,6 +74,9 @@
     <main class="grid grid-cols-12 mt-2">
       <Set5></Set5>
     </main>
+    <main class="grid grid-cols-12 mt-2">
+      <Set6></Set6>
+    </main>
   </section>
 </template>
 <script>
@@ -82,6 +85,7 @@ import Set2 from "/@/components/set2.vue";
 import Set3 from "/@/components/set3.vue";
 import Set4 from "/@/components/set4.vue";
 import Set5 from "/@/components/set5.vue";
+import Set6 from "/@/components/set6.vue";
 export default {
   data() {
     return {
@@ -96,6 +100,7 @@ export default {
     Set3,
     Set4,
     Set5,
+    Set6,
   },
 };
 </script>
