@@ -20,6 +20,7 @@ import RadioButton from 'primevue/radiobutton';
 import ProgressSpinner from 'primevue/progressspinner';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
+import AutoComplete from 'primevue/autocomplete';
 
 const app = createApp(App);
 app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
@@ -32,13 +33,17 @@ app.component('RadioButton',RadioButton );
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('Checkbox',Checkbox);
 app.component('Textarea',Textarea);
+app.component('AutoComplete ',AutoComplete );
+
 
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
 import DUMMYLIST from "./dummyData.js"
+import drgList from "/@/assets/drg.json"
 const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
 app.config.globalProperties.dummyList = dummyList;
+app.config.globalProperties.drgList = drgList;
 app.mount("#app");
 
 
