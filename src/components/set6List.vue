@@ -22,7 +22,6 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
@@ -116,7 +115,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 110px 150px repeat(9, minmax(90px, 120px)) minmax(90px, 1fr);
+  grid-template-columns: 80px 130px repeat(9, minmax(90px, 120px)) minmax(90px, 1fr);
 }
 
 #app .dtc-grid-header__divs {
