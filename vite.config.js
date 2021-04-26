@@ -45,7 +45,8 @@ export default {
     },
   },
   build:{
-    assetsDir: "./" // at publish root folder, when running prod mode
+    assetsDir: "./" ,// at publish root folder, when running prod mode
+    chunkSizeWarningLimit: 1024 * 3 * 500,
   },
   plugins: [
     vue(), 
