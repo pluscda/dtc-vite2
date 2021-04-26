@@ -17,7 +17,7 @@
     </header>
     <main
       class="ml-1 text-black cursor-pointer dtc-grid-header dtc-grid-body dtc-template-columns"
-      v-for="(item, i) in list"
+      v-for="(item, i) in list.slice(0, 5)"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
