@@ -12,7 +12,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // 如果有token 就攜帶tokon
-    if(sessionStorage.token)
+    if(sessionStorage.token && sessionStorage.token.length > 9)
        config.headers.Authorization = "Bearer " + sessionStorage.token;
     return config;
   },
