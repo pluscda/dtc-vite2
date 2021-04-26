@@ -133,7 +133,7 @@ export default {
     const router = useRouter();
     headers = ref(headers);
     subHeaders = ref(subHeaders);
-    const { state, getList, sort, clearFilters } = useList("his-histories");
+    const { state, getList, sort, clearFilters } = useList("drgadds");
 
     function handleEdit({ row }) {
       router.push({

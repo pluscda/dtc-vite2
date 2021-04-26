@@ -121,7 +121,7 @@ export default {
     // 玩家列表數據
     const router = useRouter();
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("his-histories");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
 
     // 用戶更新
     function handleEdit({ row }) {
