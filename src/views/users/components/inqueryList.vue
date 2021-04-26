@@ -27,7 +27,7 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
-      <div>{{ item.registerTimestamp.split("T")[0] }}</div>
+      <div>{{ item.registerTimestamp && item.registerTimestamp.split("T")[0] }}</div>
       <div>{{ item.registerSection || "暫無資料" }}</div>
       <div>{{ item.registerNo || "暫無資料" }}</div>
       <div>{{ item.registerName || "暫無資料" }}</div>
