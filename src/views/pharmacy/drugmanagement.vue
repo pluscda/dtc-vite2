@@ -4,11 +4,17 @@
       <div>藥品資料維護</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="健保代碼">
-        <el-input placeholder="搜尋健保代碼" v-model="searchDrugId" />
+      <DtxInputGroup prepend="院內代碼">
+        <el-input placeholder="搜尋院內代碼" v-model="searchDrugId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品英文名稱">
-        <el-input placeholder="搜尋藥品英文名稱" v-model="searchDrugName" />
+      <DtxInputGroup prepend="藥品名稱">
+        <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥品學名">
+        <el-input placeholder="搜尋藥品學名" v-model="searchDrugName" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥商名稱">
+        <el-input placeholder="搜尋藥商名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
