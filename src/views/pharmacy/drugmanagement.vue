@@ -90,7 +90,7 @@ let headers = [
   { name: "規格", key: "chDrgStandard", sortDesc: null },
   { name: "原核定價", key: "rlDrgOriginalPrice", sortDesc: null },
   { name: "新核定價", key: "rlDrgNewPrice", sortDesc: null },
-  { name: "存量", key: "unknown", sortDesc: null },
+  { name: "藥商名稱", key: "unknown", sortDesc: null },
   { name: "庫存上限", key: "intDrgStockMax", sortDesc: null },
   { name: "庫存下限", key: "intDrgStockMin", sortDesc: null },
   { name: "產地", key: "chDrgCountryFrom", sortDesc: null },
