@@ -13,5 +13,43 @@ window.twDate = {
 
 
  
+export const drgSample = {
+    "hisId": "chInsuNoB", //健保代碼
+    "chDrgUnit": "chUseUnit",//用藥單位
+    "chDrgContain": "chContain", //成分
+    "chSymptom1": "chDrgUseNote", //適應症狀
+    "chHospitalId": "chDrgPriceNo",//院內碼
+    "chDrgFrequency": "chFreqNo",//用藥頻率
+    "intDrgStockMax": 0,
+    "chDrgSymptom2": "",
+    "chDrgCnName": "",
+    "rlDrgOriginalPrice": "rlClaimPriceB", //原核定價
+    "intDrgStockMin": 0,
+    "chDrgAntibiotics": "",
+    "chDrgEnName": "chDrgPriceName",//藥品英文
+    "rlDrgNewPrice": "rlClaimPrice",//新核定價
+    "chDrgCountryFrom": "",
+    "chDrgAntibioticsLevel": "",
+    "chDrgAlias": "",
+    "rlDrgSelfPayPrice": "rlSelfPrice",//自費價格
+    "chDrgMakerName": "chDrgFactory",//藥商名稱
+    "chDrgControlType": "chDrgComType",//管制用藥
+    "chDrgDoseType": "",
+    "tiDrgEffectTime": "",
+    "chDrgClassified": "",
+    "chDrgForbidden": "",
+    "chDrgType": "",
+    "chDrgIssueId": "",
+    "chDrgChargeBy": "",
+    "chDrgGivenBy": "",
+    "chDrgStandard": "",
+    "chDrgAtcCode": "chDrgGrpType1",
+    "chDrgSkinTest": "",
+    "chDrgSteamBy": "",
+    "chDrgWarningMsg": "",
+    "chDrgTakePreStepMsg": "",
+    "chDrgBadSideEffectMsg": "",
+    "chDrgKeepSafeMsg": "",
+    "chDrgImgName": "",
 
- 
+}
