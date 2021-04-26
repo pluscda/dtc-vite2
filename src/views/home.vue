@@ -74,7 +74,7 @@
     <main class="grid grid-cols-12 mt-2">
       <Set5></Set5>
     </main>
-    <main class="grid grid-cols-12 mt-2">
+    <main class="grid grid-cols-12 mt-2 mb-11">
       <Set6></Set6>
     </main>
   </section>
