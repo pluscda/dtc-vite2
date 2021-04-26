@@ -65,7 +65,7 @@
         <Button class="p-button-success" style="height: 34px">回門診清單</Button>
       </div>
     </header>
-    <main class="grid grid-of-2 mt-2" style="width: 99vw">
+    <main class="grid grid-of-2 mt-2 pl-1" style="width: 99vw">
       <Set1></Set1>
       <Set2></Set2>
       <Set3></Set3>
