@@ -138,8 +138,8 @@
       <DtxInputGroup prepend="警語(副作用)" labelWidth="120">
         <el-input v-model="his.chDrgWarningMsg" placeholder="請輸入警語(副作用)" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="用前注意" labelWidth="120">
-        <el-input v-model="his.chDrgTakePreStepMsg" placeholder="請輸入用前注意" />
+      <DtxInputGroup prepend="用藥須知" labelWidth="120">
+        <el-input v-model="his.chDrgTakePreStepMsg" placeholder="請輸入用藥須知" />
       </DtxInputGroup>
       <DtxInputGroup prepend="不良反應" labelWidth="120">
         <el-input v-model="his.chDrgSideEffectMsg" placeholder="請輸入不良反應" />
