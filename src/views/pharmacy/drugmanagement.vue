@@ -8,9 +8,9 @@
         <el-input placeholder="搜尋院內代碼" v-model="searchHospitalId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱">
-        <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
+        <el-input placeholder="搜尋中英文藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品學名" hidden>
+      <DtxInputGroup prepend="藥品學名">
         <el-input placeholder="搜尋藥品學名" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱">
@@ -53,18 +53,10 @@
 
       <div>{{ item.hisId || "暫無資料" }}</div>
       <div>{{ item.chHospitalId || "暫無資料" }}</div>
-
+      <div :title="item.chDrgCnName">{{ item.chDrgCnName || "暫無資料" }}</div>
       <div :title="item.chDrgEnName">{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgUnit || "暫無資料" }}</div>
-      <div>{{ item.chDrgStandard || "暫無資料" }}</div>
-      <div>{{ item.rlDrgOriginalPrice }}</div>
-      <div>{{ item.rlDrgNewPrice }}</div>
-      <div :title="item.chDrgMakerName">{{ item.chDrgMakerName || "暫無資料" }}</div>
-      <div>{{ item.intDrgStockMax || "暫無資料" }}</div>
-      <div>{{ item.intDrgStockMin || "暫無資料" }}</div>
-      <div>{{ item.chDrgCountryFrom || "暫無資料" }}</div>
-      <div>{{ item.chDrgDoseType || "暫無資料" }}</div>
-      <div>{{ item.chDrgChargeBy || "暫無資料" }}</div>
+      <div>{{ item.chDrgAlias || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -84,17 +76,10 @@ import { pharmacyTab$ } from "/@/store";
 let headers = [
   { name: "健保代碼", key: "hisId", sortDesc: null },
   { name: "院內代碼", key: "chHospitalId", sortDesc: null },
-  { name: "藥品名稱", key: "chDrgEnName", sortDesc: null },
-  { name: "用藥單位", key: "chDrgUnit", sortDesc: null },
-  { name: "規格", key: "chDrgStandard", sortDesc: null },
-  { name: "原核定價", key: "rlDrgOriginalPrice", sortDesc: null },
-  { name: "新核定價", key: "rlDrgNewPrice", sortDesc: null },
+  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
+  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
+  { name: "藥品學名", key: "chDrgAlias", sortDesc: null },
   { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
-  { name: "庫存上限", key: "intDrgStockMax", sortDesc: null },
-  { name: "庫存下限", key: "intDrgStockMin", sortDesc: null },
-  { name: "產地", key: "chDrgCountryFrom", sortDesc: null },
-  { name: "劑型", key: "chDrgDoseType", sortDesc: null },
-  { name: "收費項目", key: "chDrgChargeBy", sortDesc: null },
 ];
 
 export default {
@@ -163,7 +148,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px 150px 100px 200px repeat(9, 100px) 1fr;
+  grid-template-columns: 100px 150px repeat(4, 250px) 1fr;
 }
 .management {
   position: relative;
