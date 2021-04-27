@@ -122,10 +122,14 @@ export default {
       if (searchHospitalId.value) {
         filters.chHospitalId_contains = searchHospitalId.value;
       }
-      //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
       if (searchDrugName.value) {
         filters.chDrgEnName_contains = searchDrugName.value;
       }
+      if (searchDrgMaker.value) {
+        filters.chDrgMakerName_contains = searchDrgMaker.value;
+      }
+
+      //searchDrgMaker
 
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
