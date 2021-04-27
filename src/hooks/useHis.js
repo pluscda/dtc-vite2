@@ -43,7 +43,7 @@ export function useList(url) {
         data: axios.get(`${url}?` + qs)
       }
     ).pipe( catchError( error => {
-      ElMessage.error(`AJAX ${url} get list fail!!`);
+      //ElMessage.error(`AJAX ${url} get list fail!!`);
       of({total:0, data:[]})
     })).subscribe( ({total, data}) => {
        state.total = total;
