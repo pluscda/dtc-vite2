@@ -69,7 +69,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="掛號取卡" class="h-10">
         <InputSwitch v-model="takeCard" class="mt-2 ml-0 transform translate-x-2"></InputSwitch>
-        <span class="ml-0.5 mt-2.5 inline-block transform translate-x-2 text-gray-600 text-base dtc-text" @click="takeCard = !takeCard">掛號後取卡</span>
+        <span class="ml-0.5 mt-0 inline-block transform translate-x-2 -translate-y-2 text-gray-600 text-base dtc-text" @click="takeCard = !takeCard">掛號後取卡</span>
         <!-- <el-checkbox class="mt-2 ml-2 h-9" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
