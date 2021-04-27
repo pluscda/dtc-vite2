@@ -57,8 +57,8 @@
       <div :title="item.chDrgEnName">{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.chDrgUnit || "暫無資料" }}</div>
       <div>{{ item.chDrgStandard || "暫無資料" }}</div>
-      <div>{{ item.rlDrgOriginalPrice || "暫無資料" }}</div>
-      <div>{{ item.rlDrgNewPrice || "暫無資料" }}</div>
+      <div>{{ item.rlDrgOriginalPrice }}</div>
+      <div>{{ item.rlDrgNewPrice }}</div>
       <div :title="item.chDrgMakerName">{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.intDrgStockMax || "暫無資料" }}</div>
       <div>{{ item.intDrgStockMin || "暫無資料" }}</div>
