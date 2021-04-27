@@ -3,7 +3,7 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';   
 import { createApp } from "vue";
 import "./constance.js";
-import {makeDDL} from "./constance.js";
+import {getDDL} from "./constance.js";
 import App from "./App.vue";
 import "styles/index.scss";
 import ElementPlus from 'element-plus'
@@ -45,11 +45,11 @@ import drgList from "/@/assets/drg.json"
 const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
 app.config.globalProperties.dummyList = dummyList;
 app.config.globalProperties.drgList = drgList;
-// Make Drop Down list 
-app.config.globalProperties.chDrgUnitList = makeDDL('chUseUnit', drgList);//用藥單位
-app.config.globalProperties.chDrgFreqNoList = makeDDL('chFreqNo', drgList);
-app.config.globalProperties.chDrgFactoryList = makeDDL('chDrgFactory', drgList);
-app.config.globalProperties.chDrgCtrlTypeList = makeDDL('chDrgComType', drgList);
+// get Drop Down list 
+app.config.globalProperties.chDrgUnitList = getDDL('chUseUnit', drgList);//用藥單位
+app.config.globalProperties.chDrgFreqNoList = getDDL('chFreqNo', drgList);
+app.config.globalProperties.chDrgFactoryList = getDDL('chDrgFactory', drgList);
+app.config.globalProperties.chDrgCtrlTypeList = getDDL('chDrgComType', drgList);
 
 app.mount("#app");
 
