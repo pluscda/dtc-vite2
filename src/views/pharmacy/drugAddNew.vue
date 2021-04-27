@@ -88,7 +88,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="生效日期" labelWidth="120">
-        <el-input v-model="his.tiDrgEffectTime" placeholder="請輸入生效日期" />
+        <Calendar class="h-10 w-full" v-model="his.tiDrgEffectTime" placeholder="請輸入生效日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品分類" labelWidth="120">
         <el-select filterable v-model="his.chDrgClassified" placeholder="請選擇" class="border-l-0">
@@ -252,6 +252,9 @@ export default {
       this.his.chDrgImgName = this.uploadFileName;
       this.newImg = URL.createObjectURL(this.fileUpload);
     },
+  },
+  mounted() {
+    this.$primevue.config.locale = twDate;
   },
   created() {
     this.his = {};
