@@ -76,7 +76,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
         <el-select filterable v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in chDrgFactoryList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="管制用藥" labelWidth="120">

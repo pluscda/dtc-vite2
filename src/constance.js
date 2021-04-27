@@ -54,5 +54,5 @@ export const drgSample = {
 export const makeDDL = (key,objList) => {
     const arr = objList.map( s => s[key]);
     const mySet = new Set(arr);
-    return [...mySet];
+    return [...mySet].filter(s => s);
 }
