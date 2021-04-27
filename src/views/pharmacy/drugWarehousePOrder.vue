@@ -3,7 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>採購單管理</div>
     </header>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+    <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="採購日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
@@ -16,14 +16,12 @@
       <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click.stop="cleanFilter" />
     </nav>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+    <nav class="ml-1 dtc-search-filters" style="margin-top: -10px">
       <DtxInputGroup prepend="申請人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
-          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
-        </el-select>
+      <DtxInputGroup prepend="訂單狀態">
+        <el-input placeholder="搜尋訂單狀態" v-model="searchOrderId" />
       </DtxInputGroup>
     </nav>
 
@@ -87,15 +85,9 @@ import { useRouter } from "vue-router";
 let headers = [
   { name: "採購單號", key: "chDrgPurchaseId", sortDesc: null },
   { name: "採購日期", key: "tiDrgPurchaseDate", sortDesc: null },
-  { name: "結案狀態", key: "status", sortDesc: null },
+  { name: "訂單狀態", key: "status", sortDesc: null },
   { name: "申請人員", key: "chDrgPurchasePerson", sortDesc: null },
-  { name: "健保代碼", key: "chDrgHisId", sortDesc: null },
-  { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
-  { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
-  { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
-  { name: "單位", key: "chDrgUnitBy", sortDesc: null },
-  { name: "申請數量", key: "intDrugApplyNum", sortDesc: null },
-  { name: "劑型", key: "chDrgDoseType", sortDesc: null },
+  { name: "轉單類別", key: "intDrugApplyNum", sortDesc: null },
 ];
 
 export default {
@@ -189,7 +181,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 100px 120px 150px repeat(9, 1fr);
+  grid-template-columns: 100px repeat(4, 180px) 1fr;
 }
 .management {
   position: relative;
