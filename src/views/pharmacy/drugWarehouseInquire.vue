@@ -10,11 +10,18 @@
       <DtxInputGroup prepend="藥品名稱">
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
+      <DtxInputGroup prepend="藥商名稱">
+        <el-input placeholder="搜尋藥商名稱" v-model="searchDrgMaker" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="現有庫存">
+        <el-input placeholder="搜尋現有庫存" v-model="searchDrgMaker" />
+      </DtxInputGroup>
+
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
 
-    <header data-msg="註1:限低於庫存下可轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
+    <header data-msg="註1:低於安全存量轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div title="" class="title-word1">採購單(註1)</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)" :title="item.name">
         {{ item.name }}
@@ -54,6 +61,7 @@
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -66,23 +74,23 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 
-//身分證號
 let headers = [
-  { name: "健保代碼", key: "name", sortDesc: null },
-  { name: "院內代碼", key: "name", sortDesc: null },
-  { name: "藥品中文", key: "name", sortDesc: null },
-  { name: "藥品英文", key: "name", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "規格", key: "age", sortDesc: null },
-  { name: "原核定價", key: "age", sortDesc: null },
+  { name: "健保代碼", key: "hisId", sortDesc: null },
+  { name: "院內代碼", key: "chHospitalId", sortDesc: null },
+  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
+  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
+  { name: "藥品學名", key: "chDrgAlias", sortDesc: null },
+  { name: "ATC碼", key: "age", sortDesc: null },
   { name: "新核定價", key: "age", sortDesc: null },
-  { name: "採購量", key: "age", sortDesc: null },
-  { name: "申領量", key: "age", sortDesc: null },
-  { name: "存量", key: "age", sortDesc: null },
+  { name: "自費價格", key: "age", sortDesc: null },
+  { name: "生效日期", key: "age", sortDesc: null },
   { name: "庫存上限", key: "age", sortDesc: null },
   { name: "庫存下限", key: "age", sortDesc: null },
+  { name: "現有庫存", key: "age", sortDesc: null },
+  { name: "儲存位置", key: "age", sortDesc: null },
+  { name: "藥商名稱", key: "age", sortDesc: null },
+  { name: "藥品分類", key: "age", sortDesc: null },
   { name: "產地", key: "age", sortDesc: null },
-  { name: "劑型", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -131,13 +139,14 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  width: calc(100vw - 162px) !important;
-  max-width: calc(100vw - 162px) !important;
+  width: calc(103px + 120px * 16) !important;
+  max-width: calc(103px + 120px * 16) !important;
   // grid-template-columns: 100px repeat(15, minmax(90px, 1fr));
-  grid-template-columns: 100px repeat(15, 1fr);
+  grid-template-columns: 100px repeat(16, 120px);
 }
-.management {
+#app .management {
   position: relative;
+  overflow-y: auto !important;
   .comment {
     position: absolute;
     bottom: 70px;
