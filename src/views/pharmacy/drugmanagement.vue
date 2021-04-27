@@ -128,9 +128,6 @@ export default {
       if (searchDrgMaker.value) {
         filters.chDrgMakerName_contains = searchDrgMaker.value;
       }
-
-      //searchDrgMaker
-
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
       getList();
