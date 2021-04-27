@@ -56,11 +56,12 @@ export function useList(url) {
     getList();
   }
   async function getItemDetail(item){
-    try{
-      return await axios.get(`${url}/${item.id}`);
-    }catch(e){
-       ElMessage.error(`AJAX ${url} get item detail faill!!`);
-    }
+    return item;
+    // try{
+    //   return await axios.get(`${url}/${item.id}`);
+    // }catch(e){
+    //    ElMessage.error(`AJAX ${url} get item detail faill!!`);
+    // }
   }
   async function removeItem(item){
     try{
