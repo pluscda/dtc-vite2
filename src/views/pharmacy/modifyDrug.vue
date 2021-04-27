@@ -173,10 +173,6 @@
 </template>
 
 <script>
-// app.config.globalProperties.chDrgUnitList = makeDDL("chUseUnit", drgList); //用藥單位
-// app.config.globalProperties.chDrgFreqNoList = makeDDL("chFreqNo", drgList);
-// app.config.globalProperties.chDrgFactoryList = makeDDL("chDrgFactory", drgList);
-// app.config.globalProperties.chDrgCtrlTypeList = makeDDL("chDrgComType", drgList);
 import { clone } from "ramda";
 import { ElMessage } from "element-plus";
 
