@@ -114,7 +114,7 @@ export default {
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
 
     const cleanFilter = () => {
-      searchHospitalId.value = searchDrugName.value = chDrgMakerName.value = "";
+      searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
       clearFilters();
     };
     const search = () => {
