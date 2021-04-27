@@ -32,7 +32,7 @@ export function useList(url) {
     const {limit, page, sort} =  state.listQuery;
     let queryObj = {
       _limit : limit,
-      _start: page > 1 ? page * limit : 0,
+      _start: page > 1 ? (page - 1) * limit : 0,
     }
     sort.length ? queryObj._sort = sort.join(",") : '';
     let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
