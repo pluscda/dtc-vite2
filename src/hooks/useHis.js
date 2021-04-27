@@ -83,7 +83,6 @@ export function useList(url) {
       const orderBy = [];
       headers.forEach((s) => {
         if (s.sortDesc !== null) {
-          //ref: https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#sort
           orderBy.push(s.sortDesc ? `${s.key}:desc` : `${s.key}:asc`);
         }
       });
