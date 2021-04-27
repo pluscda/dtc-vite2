@@ -9,9 +9,7 @@
 
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-select v-model="his.hisId" filterable remote reserve-keyword placeholder="請輸入健保代碼" :remote-method="searchHisId" :loading="loading">
-          <el-option v-for="item in filteredHisIds" :key="item" :label="item" :value="item"> </el-option>
-        </el-select>
+        <el-input v-model="his.hisId" placeholder="請輸入健保代碼" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
         <el-select filterable v-model="his.chDrgUnit" placeholder="請選擇" class="border-l-0">
@@ -203,14 +201,6 @@ export default {
     reset() {
       this.his = {};
       this.showAddNew = false;
-    },
-    searchHisId(query) {
-      if (!query) {
-        this.filteredHisIds = [];
-        return;
-      }
-      const qs = query.toLowerCase();
-      this.filteredHisIds = this.drgList.filter((s) => s.chDrgPriceNo && s.chDrgPriceNo.toLowerCase().startsWith(qs)).map((s) => s.chDrgPriceNo);
     },
     async saveDtcItem(obj) {
       const ret = this.convertItemToSample(obj);
