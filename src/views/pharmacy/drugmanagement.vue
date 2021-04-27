@@ -5,16 +5,16 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="院內代碼">
-        <el-input placeholder="搜尋院內代碼" v-model="searchDrugId" />
+        <el-input placeholder="搜尋院內代碼" v-model="searchHospitalId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱">
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品學名">
+      <DtxInputGroup prepend="藥品學名" hidden>
         <el-input placeholder="搜尋藥品學名" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱">
-        <el-input placeholder="搜尋藥商名稱" v-model="searchDrugName" />
+        <el-input placeholder="搜尋藥商名稱" v-model="searchDrgMaker" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
@@ -59,7 +59,7 @@
       <div>{{ item.chDrgStandard || "暫無資料" }}</div>
       <div>{{ item.rlDrgOriginalPrice || "暫無資料" }}</div>
       <div>{{ item.rlDrgNewPrice || "暫無資料" }}</div>
-      <div>{{ item.unknown || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.intDrgStockMax || "暫無資料" }}</div>
       <div>{{ item.intDrgStockMin || "暫無資料" }}</div>
       <div>{{ item.chDrgCountryFrom || "暫無資料" }}</div>
@@ -90,7 +90,7 @@ let headers = [
   { name: "規格", key: "chDrgStandard", sortDesc: null },
   { name: "原核定價", key: "rlDrgOriginalPrice", sortDesc: null },
   { name: "新核定價", key: "rlDrgNewPrice", sortDesc: null },
-  { name: "藥商名稱", key: "unknown", sortDesc: null },
+  { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
   { name: "庫存上限", key: "intDrgStockMax", sortDesc: null },
   { name: "庫存下限", key: "intDrgStockMin", sortDesc: null },
   { name: "產地", key: "chDrgCountryFrom", sortDesc: null },
@@ -105,8 +105,9 @@ export default {
   },
   setup() {
     const router = useRouter();
-    const searchDrugId = ref("");
+    const searchHospitalId = ref("");
     const searchDrugName = ref("");
+    const searchDrgMaker = ref("");
     const global = inject("global");
     pharmacyTab$.next("0");
 
@@ -114,18 +115,19 @@ export default {
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
 
     const cleanFilter = () => {
-      searchDrugId.value = searchDrugName.value = "";
+      searchHospitalId.value = searchDrugName.value = "";
       clearFilters();
     };
     const search = () => {
       let filters = {};
-      if (searchDrugId.value) {
-        filters.hisId_contains = searchDrugId.value;
+      if (searchHospitalId.value) {
+        filters.chHospitalId_contains = searchHospitalId.value;
       }
       //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
       if (searchDrugName.value) {
         filters.chDrgEnName_contains = searchDrugName.value;
       }
+
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
       getList();
@@ -141,8 +143,9 @@ export default {
       ...toRefs(state),
       getList,
       headers,
-      searchDrugId,
+      searchHospitalId,
       searchDrugName,
+      searchDrgMaker,
       sort,
       cleanFilter,
       search,
@@ -160,7 +163,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(14, 1fr);
+  grid-template-columns: 100px 150px 100px 100px 200px repeat(9, 100px) 1fr;
 }
 .management {
   position: relative;

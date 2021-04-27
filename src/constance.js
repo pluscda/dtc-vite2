@@ -46,7 +46,7 @@ export const drgSample = {
     "chDrgSteamBy": "",
     "chDrgWarningMsg": "",
     "chDrgTakePreStepMsg": "",
-    "chDrgBadSideEffectMsg": "",
+    "chDrgBadSideEffectMsg": "chDrgWarning",
     "chDrgKeepSafeMsg": "",
     "chDrgImgName": "",
 }
@@ -54,5 +54,5 @@ export const drgSample = {
 export const makeDDL = (key,objList) => {
     const arr = objList.map( s => s[key]);
     const mySet = new Set(arr);
-    return [...mySet].filter(s => s);
+    return [...mySet].filter(s => s).sort();
 }
