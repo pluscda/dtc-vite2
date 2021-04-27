@@ -53,13 +53,13 @@
 
       <div>{{ item.hisId || "暫無資料" }}</div>
       <div>{{ item.chHospitalId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
+
+      <div :title="item.chDrgEnName">{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.chDrgUnit || "暫無資料" }}</div>
       <div>{{ item.chDrgStandard || "暫無資料" }}</div>
       <div>{{ item.rlDrgOriginalPrice || "暫無資料" }}</div>
       <div>{{ item.rlDrgNewPrice || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
+      <div :title="item.chDrgMakerName">{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.intDrgStockMax || "暫無資料" }}</div>
       <div>{{ item.intDrgStockMin || "暫無資料" }}</div>
       <div>{{ item.chDrgCountryFrom || "暫無資料" }}</div>
@@ -84,8 +84,7 @@ import { pharmacyTab$ } from "/@/store";
 let headers = [
   { name: "健保代碼", key: "hisId", sortDesc: null },
   { name: "院內代碼", key: "chHospitalId", sortDesc: null },
-  { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
-  { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
+  { name: "藥品名稱", key: "chDrgEnName", sortDesc: null },
   { name: "用藥單位", key: "chDrgUnit", sortDesc: null },
   { name: "規格", key: "chDrgStandard", sortDesc: null },
   { name: "原核定價", key: "rlDrgOriginalPrice", sortDesc: null },
@@ -163,7 +162,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px 150px 100px 100px 200px repeat(9, 100px) 1fr;
+  grid-template-columns: 100px 150px 100px 200px repeat(9, 100px) 1fr;
 }
 .management {
   position: relative;
