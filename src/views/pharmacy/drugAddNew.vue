@@ -239,7 +239,7 @@ export default {
         if (v == "chDrgGrpType1") {
           obj[k] = s[v] + s["chDrgGrpType2"] + s["chDrgGrpType3"];
         }
-      }
+      } // end of for loop
       return obj;
     },
     async saveItem() {
