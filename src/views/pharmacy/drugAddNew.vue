@@ -181,8 +181,9 @@
 import { ref, inject } from "vue";
 import { ElMessage } from "element-plus";
 import { forkJoin, of, Subject } from "rxjs";
-import { catchError, exhaustMap, takeUntil, throttleTime } from "rxjs/operators";
-
+import { from } from "rxjs";
+import { catchError, concatMap, takeUntil, throttleTime, map, tap, exhaustMap, delay, take } from "rxjs/operators";
+import { drgSample } from "/@/constance.js";
 let subscribe = "";
 export default {
   name: "drugAddNew",
@@ -212,8 +213,38 @@ export default {
       const qs = query.toLowerCase();
       this.filteredHisIds = this.drgList.filter((s) => s.chDrgPriceNo && s.chDrgPriceNo.toLowerCase().startsWith(qs)).map((s) => s.chDrgPriceNo);
     },
+    async saveDtcItem(obj) {
+      const ret = this.convertItemToSample(obj);
+      return await this.actions.addItem("drgadds", ret);
+    },
+    async loadItem() {
+      from(this.drgList)
+        .pipe(
+          //take(3),
+          concatMap((s) => this.saveDtcItem(s)),
+          tap(console.log),
+          delay(500)
+        )
+        .subscribe();
+    },
+    convertItemToSample(s) {
+      let obj = { ...drgSample };
+      for (let [k, v] of Object.entries(obj)) {
+        if (v && s[v]) {
+          obj[k] = s[v];
+          if (!isNaN(+s[v])) {
+            obj[k] = +obj[k];
+          }
+        }
+
+        if (v == "chDrgGrpType1") {
+          obj[k] = s[v] + s["chDrgGrpType2"] + s["chDrgGrpType3"];
+        }
+      }
+      return obj;
+    },
     async saveItem() {
-      //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
+      //return this.loadItem();
       this.loading = true;
       const formData = new FormData();
       formData.append("files.s3DrgImg", this.fileUpload, this.his.imgName);
@@ -241,6 +272,10 @@ export default {
   beforeUnmount() {
     subscribe.unsubscribe();
     this.his = {};
+    /*
+
+
+    */
   },
 };
 </script>

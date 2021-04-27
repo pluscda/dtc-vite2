@@ -221,7 +221,7 @@ export default {
   },
   mounted() {
     this.his = clone(this.global.editItem);
-    this.newImg = this.his.s3DrgImg[0].url;
+    this.newImg = this.his.s3DrgImg && this.his.s3DrgImg[0]?.url;
   },
 };
 </script>

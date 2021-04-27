@@ -10,8 +10,6 @@ window.twDate = {
     dateFormat: "yy-mm-dd",
     weekHeader: "周",
 };
-
-
  
 export const drgSample = {
     "hisId": "chInsuNoB", //健保代碼
@@ -35,7 +33,7 @@ export const drgSample = {
     "chDrgMakerName": "chDrgFactory",//藥商名稱
     "chDrgControlType": "chDrgComType",//管制用藥
     "chDrgDoseType": "",
-    "tiDrgEffectTime": "",
+    "tiDrgEffectTime": "2021-04-26T09:04:34.271Z",
     "chDrgClassified": "",
     "chDrgForbidden": "",
     "chDrgType": "",
