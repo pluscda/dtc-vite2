@@ -12,7 +12,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
         <el-select filterable v-model="his.chDrgUnit" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in chDrgUnitList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="主成分及含量" labelWidth="120">
@@ -26,7 +26,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥頻率" labelWidth="120">
         <el-select filterable v-model="his.chDrgFrequency" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in chDrgFreqNoList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
@@ -73,12 +73,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
         <el-select filterable v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in chDrgFactoryList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="管制用藥" labelWidth="120">
         <el-select filterable v-model="his.chDrgControlType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in chDrgCtrlTypeList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="劑型" labelWidth="120">
@@ -173,6 +173,10 @@
 </template>
 
 <script>
+// app.config.globalProperties.chDrgUnitList = makeDDL("chUseUnit", drgList); //用藥單位
+// app.config.globalProperties.chDrgFreqNoList = makeDDL("chFreqNo", drgList);
+// app.config.globalProperties.chDrgFactoryList = makeDDL("chDrgFactory", drgList);
+// app.config.globalProperties.chDrgCtrlTypeList = makeDDL("chDrgComType", drgList);
 import { clone } from "ramda";
 import { ElMessage } from "element-plus";
 
