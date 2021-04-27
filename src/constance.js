@@ -49,5 +49,10 @@ export const drgSample = {
     "chDrgBadSideEffectMsg": "",
     "chDrgKeepSafeMsg": "",
     "chDrgImgName": "",
+}
 
+export const makeDDL = (key,objList) => {
+    const arr = objList.map( s => s[key]);
+    const mySet = new Set(arr);
+    return [...mySet];
 }

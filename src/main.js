@@ -2,7 +2,8 @@ import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';   
 import { createApp } from "vue";
-import "./constance.js"
+import "./constance.js";
+import {makeDDL} from "./constance.js";
 import App from "./App.vue";
 import "styles/index.scss";
 import ElementPlus from 'element-plus'
@@ -20,7 +21,7 @@ import RadioButton from 'primevue/radiobutton';
 import ProgressSpinner from 'primevue/progressspinner';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
-import AutoComplete from 'primevue/autocomplete';
+
 
 const app = createApp(App);
 app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
@@ -33,7 +34,7 @@ app.component('RadioButton',RadioButton );
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('Checkbox',Checkbox);
 app.component('Textarea',Textarea);
-app.component('AutoComplete ',AutoComplete );
+
 
 
 // DTC Custom UI components
@@ -44,6 +45,12 @@ import drgList from "/@/assets/drg.json"
 const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
 app.config.globalProperties.dummyList = dummyList;
 app.config.globalProperties.drgList = drgList;
+// Make Drop Down list 
+app.config.globalProperties.chDrgUnitList = makeDDL('chUseUnit', drgList);//用藥單位
+app.config.globalProperties.chDrgFreqNoList = makeDDL('chFreqNo', drgList);
+app.config.globalProperties.chDrgFactoryList = makeDDL('chDrgFactory', drgList);
+app.config.globalProperties.chDrgCtrlTypeList = makeDDL('chDrgComType', drgList);
+
 app.mount("#app");
 
 
