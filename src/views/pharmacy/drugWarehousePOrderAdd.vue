@@ -12,7 +12,7 @@
           <el-input v-model="his.chDrgPurchaseId" placeholder="請輸入採購單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購人員" labelWidth="120">
-          <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入申請人員" />
+          <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入採購人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="120">
           <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
@@ -26,14 +26,15 @@
         <DtxInputGroup prepend="英文藥名" labelWidth="120">
           <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="劑型" labelWidth="120">
-          <el-input v-model="his.chDrgDoseType" placeholder="請輸入劑型" />
+        <DtxInputGroup prepend="藥品劑型" labelWidth="120">
+          <el-input v-model="his.chDrgDoseType" placeholder="請輸入藥品劑型" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="單位" labelWidth="120">
-          <el-input v-model="his.chDrgUnitBy" placeholder="請輸入單位" />
+        <DtxInputGroup prepend="藥品單位" labelWidth="120">
+          <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="120">
-          <el-input v-model="his.intDrugApplyNum" placeholder="請輸入申請數量" />
+          <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
+          <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
         <DtxInputGroup prepend="藥商名稱" labelWidth="120">
           <el-input v-model="his.chDrgMakerName" placeholder="請輸入藥商名稱" />
@@ -44,12 +45,36 @@
         <Button :disabled="addNewItem || loading" label="加入採購車" @click="subject.next()" class="p-button-success footer-btn" />
       </footer>
     </div>
-    <div class="right flex flex-col pr-1">
+    <div class="right bg-gray-700">
       <header class="dtc-page-header text-white button-2">
-        <div>採購單車</div>
+        <div>採購車 {{ totalAdded }}</div>
       </header>
-      <div style="flex: 1" class="bg-gray-700 rounded-md overflow-y-auto" v-if="items.length"></div>
-      <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto grid place-items-center text-2xl dtc-text" v-else>您現在沒有任何新的採購項目</div>
+      <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
+        <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
+          <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
+            <div>採購日期: {{ item.chDrgPurchaseId }}</div>
+            <div class="transform translate-x-7">採購單號: {{ item.chDrgPurchaseId }}</div>
+            <div></div>
+            <Button class="p-button-danger self-end">移除</Button>
+          </header>
+          <li>採購人員: {{ item.tiDrgPurchaseDate }}</li>
+          <li>健保代碼: {{ item.chDrgHisId }}</li>
+          <li>院內代碼: {{ item.chDrgHospitalId }}</li>
+          <li>中文藥名: {{ item.chDrgCnName }}</li>
+          <li>英文藥名: {{ item.chDrgEnName }}</li>
+          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
+          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
+          <li class="flex space-x-2">
+            <div>採購數量:</div>
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
+            <!-- <el-input style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" /> -->
+          </li>
+          <li>藥商名稱: {{ item.chDrgMakerName }}</li>
+        </nav>
+      </div>
+      <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
+        <p class="transform -translate-y-14">您現在沒有任何新的採購項目</p>
+      </div>
       <div class="h-2"></div>
     </div>
   </sction>
@@ -57,6 +82,7 @@
 
 <script>
 import { ElMessage } from "element-plus";
+import { clone } from "ramda";
 import { Subject } from "rxjs";
 import { exhaustMap, throttleTime } from "rxjs/operators";
 import dayjs from "dayjs";
@@ -78,6 +104,13 @@ export default {
       const keys = ["tiDrgPurchaseDate", "chDrgPurchaseId", "chDrgPurchasePerson", "chDrgHisId"];
       return keys.every((s) => this.his[s]);
     },
+    totalAdded() {
+      let str = "";
+      if (this.items.length) {
+        str += `(共${this.items.length}筆)`;
+      }
+      return str;
+    },
   },
   methods: {
     reset() {
@@ -85,6 +118,7 @@ export default {
       this.addNewItem = false;
     },
     async addItem() {
+      this.items.unshift(clone(this.his));
       // this.loading = true;
       // try {
       //   await this.actions.addItem("drg-warehouse-order-adds", this.his);
@@ -102,7 +136,7 @@ export default {
   created() {
     this.his = {};
     this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
+    subscribe = this.subject.pipe(exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
   },
 };
 </script>
@@ -142,5 +176,25 @@ export default {
 
 .my-2-grid {
   grid-template-columns: 380px 1fr;
+}
+.my-car-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px;
+  height: 160px;
+  gap: 10px;
+  > li {
+    color: var(--light);
+    text-align: left;
+    padding-left: 10px;
+  }
+  border: 1px solid #64748b;
+  border-radius: 10px;
+}
+.my-header {
+  grid-template-columns: repeat(3, 1fr) max-content;
+  button {
+    height: 30px;
+    transform: translateY(-3px);
+  }
 }
 </style>

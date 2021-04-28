@@ -17,8 +17,8 @@
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click.stop="cleanFilter" />
     </nav>
     <nav class="ml-1 dtc-search-filters" style="margin-top: -10px">
-      <DtxInputGroup prepend="申請人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchOrderId" />
+      <DtxInputGroup prepend="採購人員">
+        <el-input placeholder="搜尋採購人員" v-model="searchOrderId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
         <el-input placeholder="搜尋訂單狀態" v-model="searchOrderId" />

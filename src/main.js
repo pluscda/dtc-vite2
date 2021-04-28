@@ -21,6 +21,7 @@ import RadioButton from 'primevue/radiobutton';
 import ProgressSpinner from 'primevue/progressspinner';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
+import InputNumber from 'primevue/inputnumber';
 
 
 const app = createApp(App);
@@ -34,6 +35,7 @@ app.component('RadioButton',RadioButton );
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('Checkbox',Checkbox);
 app.component('Textarea',Textarea);
+app.component('InputNumber',InputNumber)
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
