@@ -1,6 +1,6 @@
 <template>
   <section class="management">
-    <header class="dtc-page-header grid dtc-page-header__grid pr-2">
+    <header class="dtc-page-header grid dtc-page-header__grid pr-2 my-long-header">
       <div>庫存查詢作業</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">

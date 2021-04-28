@@ -27,9 +27,12 @@
   .dtc-grid-header__divs > div {
     background-image: none !important;
     background: #4b5563 !important;
-    box-shadow: 1200px 0 0 #4b5563;
+   
     color: #fff;
     border-color: #9ca3af !important;
+  }
+  .my-long-header{
+    box-shadow: 1200px 0 0 #4b5563;
   }
   .dtc-page-header {
     .tab-style {
