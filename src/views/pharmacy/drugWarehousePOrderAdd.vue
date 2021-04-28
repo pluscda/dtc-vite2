@@ -42,7 +42,7 @@
       </main>
 
       <footer class="mt-6 mb-4">
-        <Button :disabled="!enabledSave" label="加入採購單列表" @click="addItem" class="p-button-success footer-btn" />
+        <Button :disabled="!enabledSave" label="加入採購單列表" @click="addItem" class="footer-btn" />
       </footer>
     </div>
     <div class="right bg-gray-700">

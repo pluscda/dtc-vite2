@@ -54,7 +54,7 @@
       </div>
     </main>
     <footer class="mt-10">
-      <Button label="返回" class="p-button-success" @click="$router.go(-1)" />
+      <Button label="返回採購單管理" @click="$router.go(-1)" />
     </footer>
   </section>
 </template>

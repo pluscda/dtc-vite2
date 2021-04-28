@@ -48,13 +48,13 @@
       </main>
 
       <footer class="mt-6 mb-4 space-x-6">
-        <Button :disabled="!enabledSave" label="加入申領單" class="p-button-success footer-btn" @click="addItem" />
+        <Button :disabled="!enabledSave" label="加入申領單" class="footer-btn" @click="addItem" />
       </footer>
     </div>
     <div class="right bg-gray-700">
       <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
         <div>申領單列表 {{ totalAdded }}</div>
-        <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成申領單</Button>
+        <Button v-if="items.length" class="self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成申領單</Button>
       </header>
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">

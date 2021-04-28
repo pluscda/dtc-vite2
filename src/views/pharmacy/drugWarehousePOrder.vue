@@ -47,7 +47,7 @@
       :style="k % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="採購單明細" class="p-button-sm p-button-success" @click="editItem(item)" />
+        <Button label="採購單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
 
       <div>{{ item.chDrgPurchaseId || "暫無資料" }}</div>
