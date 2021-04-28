@@ -42,12 +42,12 @@
       </main>
 
       <footer class="mt-6 mb-4">
-        <Button :disabled="!enabledSave" label="加入採購車" @click="addItem" class="p-button-success footer-btn" />
+        <Button :disabled="!enabledSave" label="加入採購單列表" @click="addItem" class="p-button-success footer-btn" />
       </footer>
     </div>
     <div class="right bg-gray-700">
       <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
-        <div>採購車 {{ totalAdded }}</div>
+        <div>採購單列表 {{ totalAdded }}</div>
         <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成採購</Button>
       </header>
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
