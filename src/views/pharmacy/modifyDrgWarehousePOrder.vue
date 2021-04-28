@@ -92,6 +92,7 @@ export default {
       his: { tiDrgPurchaseDate: "" },
     };
   },
+
   setup() {
     const global = inject("global");
     const router = useRouter();
@@ -106,8 +107,7 @@ export default {
     ]);
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
-    state.listQuery.limit = 1200;
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds", 1200);
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";

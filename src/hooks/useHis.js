@@ -5,18 +5,19 @@ import { forkJoin, of } from 'rxjs';
 import { catchError } from "rxjs/operators";
 import { ElMessage } from "element-plus";
 
-const init =  { 
-  loading: true, 
-  list: [], 
-  total: 0,
-  listQuery: {
-    page: 1,
-    limit: 10,
-    sort:[],
-    filter:''
-  }
-};
-export function useList(url) {
+
+export function useList(url,__limit__) {
+  const init =  { 
+    loading: true, 
+    list: [], 
+    total: 0,
+    listQuery: {
+      page: 1,
+      limit: __limit__ > 0 ? __limit__ : 10,
+      sort:[],
+      filter:''
+    }
+  };
   const state = reactive({
          ...init
   });
