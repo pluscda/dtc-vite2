@@ -49,6 +49,9 @@
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
     </main>
+    <footer class="mt-10">
+      <Button label="返回" class="p-button-success" @click="$router.go(-1)" />
+    </footer>
   </section>
 </template>
 
@@ -167,6 +170,7 @@ export default {
 }
 .management {
   position: relative;
+  overflow-y: auto !important;
   .comment {
     position: absolute;
     bottom: 70px;
