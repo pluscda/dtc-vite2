@@ -27,11 +27,11 @@
           <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="his.chDrgCnName" placeholder="請輸入藥品中文" />
+      <DtxInputGroup prepend="中文藥名" labelWidth="120">
+        <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品英文" />
+      <DtxInputGroup prepend="英文藥名" labelWidth="120">
+        <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品單位" labelWidth="120">
         <el-input v-model="his.chDrgUnitBy" placeholder="請輸入單位" />
@@ -45,25 +45,14 @@
       <DtxInputGroup prepend="撥補人員" labelWidth="120">
         <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
       </DtxInputGroup>
-      <DtxInputGroup labelWidth="120" prepend="結案狀態" style="grid-column: span 1; display: grid; grid-template-columns: 120px 1fr; grid-column-gap: 5px">
-        <div class="flex space-x-10 h-10">
-          <div class="p-field-radiobutton dtc-text mt-2 ml-2">
-            <RadioButton value="已結案" id="close1" v-model="his.chDrgStatus" />
-            <label for="close1">已結案</label>
-          </div>
-          <div class="p-field-radiobutton dtc-text mt-2">
-            <RadioButton value="未結案" id="close2" v-model="his.chDrgStatus" />
-            <label for="close2">未結案</label>
-          </div>
-        </div>
-      </DtxInputGroup>
+
       <DtxInputGroup prepend="申領備註" labelWidth="120">
         <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
       </DtxInputGroup>
     </main>
 
     <footer class="mt-6 mb-4 space-x-6">
-      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="loading" label="確認新增" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
