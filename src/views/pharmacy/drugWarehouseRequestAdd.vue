@@ -157,7 +157,7 @@ export default {
       this.items.unshift(clone(this.his));
       const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgUnitBy", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson", "chDrgNote"];
       keys.forEach((s) => {
-        this.his[s] = "";
+        this.his[s] = null;
       });
       this.his.tiDrgApplyDate = dayjs().format("YYYY-MM-DD");
     },

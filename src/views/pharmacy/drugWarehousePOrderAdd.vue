@@ -145,7 +145,7 @@ export default {
       this.items.unshift(clone(this.his));
       const keys = ["chDrgCnName", "chDrgEnName", "chDrgDoseType", "chDrgUnitBy", "chDrgMakerName"];
       keys.forEach((s) => {
-        this.his[s] = "";
+        this.his[s] = null;
       });
       this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
     },
