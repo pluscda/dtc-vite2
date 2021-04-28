@@ -49,7 +49,7 @@
       </main>
 
       <footer class="mt-6 mb-4 space-x-6">
-        <Button :disabled2="!enabledSave2" label="確認新增" class="p-button-success footer-btn" @click="addItem" />
+        <Button :disabled="!enabledSave" label="確認新增" class="p-button-success footer-btn" @click="addItem" />
         <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
       </footer>
     </div>
@@ -61,14 +61,14 @@
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
-            <div>申請日期: {{ item.chDrgApplyId }}</div>
+            <div>申請日期: {{ item.tiDrgApplyDate.split("T")[0] }}</div>
             <div class="transform translate-x-7">申請單號: {{ item.chDrgApplyId }}</div>
             <div>申請人員:{{ item.chDrgApplyPersonName }}</div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>申請藥房: {{ item.chDrgApplyPersonName }}</li>
           <li>健保代碼: {{ item.chDrgHisId }}</li>
           <li>院內代碼: {{ item.chDrgHospitalId }}</li>
+          <li>申請藥房: {{ item.chDrgApplyPersonName }}</li>
           <li>中文藥名: {{ item.chDrgCnName }}</li>
           <li>英文藥名: {{ item.chDrgEnName }}</li>
           <li>藥品單位: {{ item.chDrgUnitBy }}</li>
@@ -157,7 +157,7 @@ export default {
     },
     addItem() {
       this.items.unshift(clone(this.his));
-      const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgUnitBy", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson"];
+      const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgUnitBy", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson", "chDrgNote"];
       keys.forEach((s) => {
         this.his[s] = "";
       });
