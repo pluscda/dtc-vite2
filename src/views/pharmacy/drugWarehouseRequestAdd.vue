@@ -1,61 +1,92 @@
 <template>
-  <div>
-    <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
-      <div>新增藥品申領單</div>
-      <Button label="再次新增藥品申領單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
-    </header>
-    <main class="grid dtc-list-grid mt-3">
-      <DtxInputGroup prepend="申請日期" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="his.tiDrgApplyDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請單號" labelWidth="120">
-        <el-input v-model="his.chDrgApplyId" placeholder="請輸入申請單號" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請人員" labelWidth="120">
-        <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請藥房" labelWidth="120">
-        <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="健保代碼" labelWidth="120">
-        <el-select filterable v-model="his.chDrgHisId" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="院內代碼" labelWidth="120">
-        <el-select filterable v-model="his.chDrgHospitalId" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="中文藥名" labelWidth="120">
-        <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="英文藥名" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="藥品單位" labelWidth="120">
-        <el-input v-model="his.chDrgUnitBy" placeholder="請輸入單位" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請數量" labelWidth="120">
-        <el-input v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="撥補數量" labelWidth="120">
-        <el-input v-model="his.intDrgCatchNum" placeholder="請輸入撥補數量" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="撥補人員" labelWidth="120">
-        <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
-      </DtxInputGroup>
+  <sction class="grid gap-2 my-2-grid">
+    <div class="left">
+      <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
+        <div>新增藥品申領單</div>
+        <Button label="再次新增藥品申領單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
+      </header>
+      <main class="grid dtc-list-grid mt-3">
+        <DtxInputGroup prepend="申請日期" labelWidth="120">
+          <Calendar class="h-10 w-full" v-model="his.tiDrgApplyDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申請單號" labelWidth="120">
+          <el-input v-model="his.chDrgApplyId" placeholder="請輸入申請單號" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申請人員" labelWidth="120">
+          <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申請藥房" labelWidth="120">
+          <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="健保代碼" labelWidth="120">
+          <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="院內代碼" labelWidth="120">
+          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="中文藥名" labelWidth="120">
+          <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="英文藥名" labelWidth="120">
+          <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品單位" labelWidth="120">
+          <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申請數量" labelWidth="120">
+          <el-input v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="撥補數量" labelWidth="120">
+          <el-input v-model="his.intDrgCatchNum" placeholder="請輸入撥補數量" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="撥補人員" labelWidth="120">
+          <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
+        </DtxInputGroup>
 
-      <DtxInputGroup prepend="申領備註" labelWidth="120">
-        <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
-      </DtxInputGroup>
-    </main>
+        <DtxInputGroup prepend="申領備註" labelWidth="120">
+          <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
+        </DtxInputGroup>
+      </main>
 
-    <footer class="mt-6 mb-4 space-x-6">
-      <Button :disabled="loading" label="確認新增" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
-      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
-    </footer>
-  </div>
+      <footer class="mt-6 mb-4 space-x-6">
+        <Button :disabled="loading" label="確認新增" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
+        <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
+      </footer>
+    </div>
+    <div class="right bg-gray-700">
+      <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
+        <div>申領單列表 {{ totalAdded }}</div>
+        <!-- <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成採購</Button> -->
+      </header>
+      <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
+        <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
+          <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
+            <div>採購日期: {{ item.chDrgPurchaseId }}</div>
+            <div class="transform translate-x-7">採購單號: {{ item.chDrgPurchaseId }}</div>
+            <div></div>
+            <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
+          </header>
+          <li>採購人員: {{ item.tiDrgPurchaseDate }}</li>
+          <li>健保代碼: {{ item.chDrgHisId }}</li>
+          <li>院內代碼: {{ item.chDrgHospitalId }}</li>
+          <li>中文藥名: {{ item.chDrgCnName }}</li>
+          <li>英文藥名: {{ item.chDrgEnName }}</li>
+          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
+          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
+          <li class="flex space-x-2">
+            <div>採購數量:</div>
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
+            <!-- <el-input style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" /> -->
+          </li>
+          <li>藥商名稱: {{ item.chDrgMakerName }}</li>
+        </nav>
+      </div>
+      <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
+        <p class="transform -translate-y-14">您現在沒有任何新的申領單項目</p>
+      </div>
+      <div class="h-2"></div>
+    </div>
+  </sction>
 </template>
 
 <script>
@@ -76,6 +107,7 @@ export default {
       subject: new Subject(),
       loading: false,
       newImg: "",
+      items: [],
     };
   },
   methods: {
@@ -137,5 +169,28 @@ export default {
   display: grid;
   grid-template-columns: 500px 202px max-content;
   grid-column-gap: 20px;
+}
+.my-2-grid {
+  grid-template-columns: 380px 1fr;
+}
+.my-car-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px;
+  height: 160px;
+  gap: 10px;
+  > li {
+    color: var(--light);
+    text-align: left;
+    padding-left: 10px;
+  }
+  border: 1px solid #64748b;
+  border-radius: 10px;
+}
+.my-header {
+  grid-template-columns: repeat(3, 1fr) max-content;
+  button {
+    height: 30px;
+    transform: translateY(-3px);
+  }
 }
 </style>
