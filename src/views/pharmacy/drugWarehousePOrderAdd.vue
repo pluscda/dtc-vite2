@@ -46,8 +46,9 @@
       </footer>
     </div>
     <div class="right bg-gray-700">
-      <header class="dtc-page-header text-white button-2">
+      <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
         <div>採購車 {{ totalAdded }}</div>
+        <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成採購</Button>
       </header>
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
@@ -83,8 +84,8 @@
 <script>
 import { ElMessage } from "element-plus";
 import { clone } from "ramda";
-import { Subject } from "rxjs";
-import { exhaustMap, throttleTime } from "rxjs/operators";
+import { Subject, from } from "rxjs";
+import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
 import dayjs from "dayjs";
 let subscribe = "";
 export default {
@@ -124,6 +125,20 @@ export default {
     },
   },
   methods: {
+    confirm() {
+      this.loading = true;
+      const observer = {
+        next: (x) => console.log("Observer got a next value: " + x),
+        error: () => ElMessage.error("新增採購單 Fail"),
+        complete: () => {
+          ElMessage.success("新增採購單成功");
+          this.items = [];
+        },
+      };
+      from(this.items)
+        .pipe(mergeMap((s) => this.actions.addItem("drg-warehouse-order-adds", s)))
+        .subscribe(observer);
+    },
     removeItem(idx) {
       this.items.splice(idx, 1);
     },
@@ -131,15 +146,6 @@ export default {
       this.items.unshift(clone(this.his));
       this.his = {};
       this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
-      // this.loading = true;
-      // try {
-      //   await this.actions.addItem("drg-warehouse-order-adds", this.his);
-      //   ElMessage.success("新增採購單成功");
-      //   this.addNewItem = true;
-      // } catch (e) {
-      //   ElMessage.error("新增採購單 fail");
-      //   this.loading = false;
-      // }
     },
   },
   mounted() {
@@ -148,7 +154,7 @@ export default {
   created() {
     this.his = {};
     this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
-    subscribe = this.subject.pipe(throttleTime(1000), exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
   },
 };
 </script>
