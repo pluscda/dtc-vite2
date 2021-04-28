@@ -29,7 +29,7 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)" :title="item.name">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -49,7 +49,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="採購單明細" class="p-button-sm" />
+        <Button label="採購單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -65,7 +65,7 @@
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
-
+import { useRouter } from "vue-router";
 //身分證號
 let headers = [
   { name: "採購單號", key: "name", sortDesc: null },
@@ -80,15 +80,14 @@ export default {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
+    const router = useRouter();
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     const time1 = ref("");
     const time2 = ref("");
     const searchStatus = ref("");
-    //Options
+
     const caseClosedOptions = reactive([
       {
         value: null,
@@ -100,7 +99,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList("drg-warehouse-order-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
@@ -113,6 +112,12 @@ export default {
       const review = item.review;
       state.list.forEach((s) => (s.review = false));
       item.review = !review;
+    };
+
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/dtcmodifydrgwarehouse");
     };
 
     return {
@@ -128,6 +133,11 @@ export default {
       toggleDetail,
       time1,
       time2,
+      editItem,
+      sort,
+      clearFilters,
+      removeItem,
+      twTime,
     };
   },
   mounted() {

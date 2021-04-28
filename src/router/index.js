@@ -136,6 +136,12 @@ export const routes = [
         meta: { title: "編輯藥品資料2", icon: "el-icon-s-home" },
       },
       {
+        path: "dtcmodifydrgwarehouse",
+        component: () => import("/@/views/pharmacy/modifyDrgWarehouse.vue"),
+        name: "dtcmodifydrgwarehouse",
+        meta: { title: "dtcmodifydrgwarehouse", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifydrgmaker",
         component: () => import("/@/views/pharmacy/modifyDrgMaker.vue"),
         name: "modifyDragMaker",
