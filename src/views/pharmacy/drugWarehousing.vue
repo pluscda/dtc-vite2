@@ -3,7 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>入庫單管理</div>
     </header>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+    <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="採號日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
@@ -16,12 +16,12 @@
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+    <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請人員">
         <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
+      <DtxInputGroup prepend="訂單狀態">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -49,22 +49,12 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="核實" class="p-button-sm p-button-success" />
+        <Button label="採購單號明細" class="p-button-sm" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -80,18 +70,8 @@ import { useList } from "/@/hooks/useHis.js";
 let headers = [
   { name: "採購單號", key: "name", sortDesc: null },
   { name: "採購日期", key: "name", sortDesc: null },
-  { name: "結案狀態", key: "age", sortDesc: null },
+  { name: "訂單狀態", key: "age", sortDesc: null },
   { name: "申請人員", key: "age", sortDesc: null },
-  { name: "健保代碼", key: "age", sortDesc: null },
-  { name: "院內代碼", key: "age", sortDesc: null },
-  { name: "藥品中文", key: "age", sortDesc: null },
-  { name: "藥品英文", key: "age", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "申請數量", key: "age", sortDesc: null },
-  { name: "藥品有效日期", key: "age", sortDesc: null },
-  { name: "發票日期", key: "age", sortDesc: null },
-  { name: "發票號碼", key: "age", sortDesc: null },
-  { name: "廠商", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -108,18 +88,6 @@ export default {
     const time1 = ref("");
     const time2 = ref("");
     const searchStatus = ref("");
-    const zh = reactive({
-      firstDayOfWeek: 0,
-      dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-      monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-      today: "今天",
-      clear: "清空",
-      dateFormat: "yy-mm-dd",
-      weekHeader: "周",
-    });
     //Options
     const caseClosedOptions = reactive([
       {
@@ -132,7 +100,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
+    const { state, getList, delItem } = useList("drg-warehouse-order-adds");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
@@ -158,13 +126,12 @@ export default {
       isOpenAddDrugDialog,
       openAddDialog,
       toggleDetail,
-      zh,
       time1,
       time2,
     };
   },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = twDate;
   },
 };
 </script>
@@ -174,7 +141,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
-  grid-template-columns: 100px repeat(14, 1fr);
+  grid-template-columns: 120px repeat(3, 150px) 1fr;
 }
 .management {
   position: relative;
