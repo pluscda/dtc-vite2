@@ -41,7 +41,7 @@
       </div>
 
       <div>{{ item.chDrgHisId || "暫無資料" }}</div>
-      <div>{{ twTime(item.chDrgHospitalId) || "暫無資料" }}</div>
+      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
       <div>{{ item.chDrgCnName || "暫無資料" }}</div>
       <div>{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
@@ -49,8 +49,6 @@
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
     </main>
-    <!-- 分頁 -->
-    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
@@ -106,6 +104,7 @@ export default {
 
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
+    state.listQuery.limit = 1200;
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
@@ -133,11 +132,6 @@ export default {
       state.listQuery.filter = dateQuery + filters;
       getList();
     };
-    const editItem = async (item) => {
-      const detail = await getItemDetail(item);
-      global.editItem = { ...detail };
-      router.push("/pharmacy/modifyDrgWarehousePOrder");
-    };
 
     return {
       ...toRefs(state),
@@ -156,7 +150,6 @@ export default {
       search,
       twTime,
       cleanFilter,
-      editItem,
     };
   },
   mounted() {
