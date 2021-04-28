@@ -47,7 +47,11 @@
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
-      <div>{{ item.unknow || "暫無資料" }}</div>
+      <div>
+        <el-select filterable v-model="item.closed" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.text"> </el-option>
+        </el-select>
+      </div>
     </main>
     <footer class="mt-10">
       <Button label="返回" class="p-button-success" @click="$router.go(-1)" />
@@ -97,12 +101,8 @@ export default {
     const time1 = ref("");
     const time2 = ref("");
     const caseClosedOptions = reactive([
-      {
-        value: null,
-        text: "全部",
-      },
-      { value: "closed", text: "已結案" },
-      { value: "unclosed", text: "未結案" },
+      { value: "closed", text: "已到貨" },
+      { value: "unclosed", text: "未到貨" },
     ]);
 
     headers = ref(headers);
