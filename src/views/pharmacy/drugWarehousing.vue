@@ -49,7 +49,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="採購單號明細" class="p-button-sm" />
+        <Button label="採購單明細" class="p-button-sm" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -141,7 +141,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
-  grid-template-columns: 120px repeat(3, 150px) 1fr;
+  grid-template-columns: 110px repeat(3, 150px) 1fr;
 }
 .management {
   position: relative;
