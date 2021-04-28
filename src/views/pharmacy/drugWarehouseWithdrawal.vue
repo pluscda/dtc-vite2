@@ -3,7 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥房退庫管理</div>
     </header>
-    <nav class="ml-1 dtc-search-filters">
+    <nav class="ml-1 dtc-search-filters mt-2">
       <DtxInputGroup prepend="退庫日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
@@ -19,7 +19,7 @@
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
-    <nav class="ml-1 dtc-search-filters">
+    <nav class="ml-1 dtc-search-filters" hidden>
       <DtxInputGroup prepend="退庫藥房">
         <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
       </DtxInputGroup>
