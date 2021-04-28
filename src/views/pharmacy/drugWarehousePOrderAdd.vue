@@ -58,7 +58,7 @@
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>採購人員: {{ item.tiDrgPurchaseDate }}</li>
+          <li>採購人員: {{ item.chDrgPurchasePerson }}</li>
           <li>健保代碼: {{ item.chDrgHisId }}</li>
           <li>院內代碼: {{ item.chDrgHospitalId }}</li>
           <li>中文藥名: {{ item.chDrgCnName }}</li>
