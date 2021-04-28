@@ -49,14 +49,14 @@
       </main>
 
       <footer class="mt-6 mb-4 space-x-6">
-        <Button :disabled="loading" label="確認新增" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
+        <Button :disabled="!enabledSave" label="確認新增" class="p-button-success footer-btn" @click="addItem" />
         <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
       </footer>
     </div>
     <div class="right bg-gray-700">
       <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
         <div>申領單列表 {{ totalAdded }}</div>
-        <!-- <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成採購</Button> -->
+        <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成申領單</Button>
       </header>
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
@@ -91,8 +91,10 @@
 
 <script>
 import { ElMessage } from "element-plus";
-import { Subject } from "rxjs";
-import { exhaustMap, throttleTime } from "rxjs/operators";
+import { clone } from "ramda";
+import { Subject, from } from "rxjs";
+import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
+import dayjs from "dayjs";
 
 let subscribe = "";
 export default {
@@ -100,35 +102,70 @@ export default {
   inject: ["actions"],
   data() {
     return {
-      his: { chDrgStatus: "未結案" },
-      uploadFileName: "",
-      fileUpload: "",
-      showAddNew: false,
+      his: {},
       subject: new Subject(),
       loading: false,
-      newImg: "",
       items: [],
     };
   },
-  methods: {
-    reset() {
-      this.his = { chDrgStatus: "未結案" };
-      this.showAddNew = false;
+  computed: {
+    enabledSave() {
+      const keys = [
+        "tiDrgPurchaseDate",
+        "chDrgPurchaseId",
+        "chDrgPurchasePerson",
+        "chDrgApplyStoreName",
+        "chDrgHisId",
+        "chDrgHospitalId",
+        "chDrgCnName",
+        "chDrgEnName",
+        "chDrgDoseType",
+        "intDrgApplyNum",
+        "intDrgCatchNum",
+        "chDrgCatchPerson",
+      ];
+      return keys.every((s) => this.his[s]);
     },
-    async saveItem() {
-      this.loading = true;
-      try {
-        const ret = await this.actions.addItem("drg-warehouse-request-adds", this.his);
-        ElMessage.success("新增藥品申領單成功");
-        this.showAddNew = true;
-      } catch (e) {
-        ElMessage.error("新增藥品申領單失敗!!");
-        this.loading = false;
+    totalAdded() {
+      let str = "";
+      if (this.items.length) {
+        str += `(共${this.items.length}筆)`;
       }
+      return str;
+    },
+  },
+
+  methods: {
+    confirm() {
+      this.loading = true;
+      const observer = {
+        next: (x) => console.log("Observer got a next value: " + x),
+        error: () => ElMessage.error("新增藥品申領單 Fail"),
+        complete: () => {
+          ElMessage.success("新增藥品申領單成功");
+          this.items = [];
+        },
+      };
+      from(this.items)
+        .pipe(mergeMap((s) => this.actions.addItem("drg-warehouse-request-adds", s)))
+        .subscribe(observer);
+    },
+    removeItem(idx) {
+      this.items.splice(idx, 1);
+    },
+    addItem() {
+      this.items.unshift(clone(this.his));
+      const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgDoseType", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson"];
+      keys.forEach((s) => {
+        this.his[s] = "";
+      });
+      this.his.tiDrgApplyDate = dayjs().format("YYYY-MM-DD");
     },
   },
   created() {
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
+    this.his = {};
+    this.his.tiDrgApplyDate = dayjs().format("YYYY-MM-DD");
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     this.$primevue.config.locale = twDate;
   },
 
