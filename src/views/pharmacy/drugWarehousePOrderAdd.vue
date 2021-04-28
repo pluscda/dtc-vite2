@@ -68,7 +68,6 @@
           <li class="flex space-x-2">
             <div>採購數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
-            <!-- <el-input style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" /> -->
           </li>
           <li>藥商名稱: {{ item.chDrgMakerName }}</li>
         </nav>

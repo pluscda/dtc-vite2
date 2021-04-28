@@ -15,14 +15,14 @@
         <DtxInputGroup prepend="申請人員" labelWidth="120">
           <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="申請藥房" labelWidth="120">
-          <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
-        </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="120">
           <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="120">
           <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申請藥房" labelWidth="120">
+          <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
         </DtxInputGroup>
         <DtxInputGroup prepend="中文藥名" labelWidth="120">
           <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
@@ -49,7 +49,7 @@
       </main>
 
       <footer class="mt-6 mb-4 space-x-6">
-        <Button label="確認新增" class="p-button-success footer-btn" @click="addItem" />
+        <Button :disabled2="!enabledSave2" label="確認新增" class="p-button-success footer-btn" @click="addItem" />
         <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
       </footer>
     </div>
@@ -61,24 +61,26 @@
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
-            <div>採購日期: {{ item.chDrgPurchaseId }}</div>
-            <div class="transform translate-x-7">採購單號: {{ item.chDrgPurchaseId }}</div>
-            <div></div>
+            <div>申請日期: {{ item.chDrgApplyId }}</div>
+            <div class="transform translate-x-7">申請單號: {{ item.chDrgApplyId }}</div>
+            <div>申請人員:{{ item.chDrgApplyPersonName }}</div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>採購人員: {{ item.chDrgApplyPersonName }}</li>
+          <li>申請藥房: {{ item.chDrgApplyPersonName }}</li>
           <li>健保代碼: {{ item.chDrgHisId }}</li>
           <li>院內代碼: {{ item.chDrgHospitalId }}</li>
           <li>中文藥名: {{ item.chDrgCnName }}</li>
           <li>英文藥名: {{ item.chDrgEnName }}</li>
-          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
           <li>藥品單位: {{ item.chDrgUnitBy }}</li>
           <li class="flex space-x-2">
-            <div>採購數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
-            <!-- <el-input style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" /> -->
+            <div>申請數量:</div>
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrgApplyNum" placeholder="請輸入申請數量" />
           </li>
-          <li>藥商名稱: {{ item.chDrgMakerName }}</li>
+          <li class="flex space-x-2">
+            <div>撥補數量:</div>
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrgCatchNum" placeholder="請輸入撥補數量" />
+          </li>
+          <li>撥補人員: {{ item.chDrgCatchPerson }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
@@ -119,7 +121,7 @@ export default {
         "chDrgHospitalId",
         "chDrgCnName",
         "chDrgEnName",
-        "chDrgDoseType",
+        "chDrgUnitBy",
         "intDrgApplyNum",
         "intDrgCatchNum",
         "chDrgCatchPerson",
@@ -155,7 +157,7 @@ export default {
     },
     addItem() {
       this.items.unshift(clone(this.his));
-      const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgDoseType", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson"];
+      const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgUnitBy", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson"];
       keys.forEach((s) => {
         this.his[s] = "";
       });
