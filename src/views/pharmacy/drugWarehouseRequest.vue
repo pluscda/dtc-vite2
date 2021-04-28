@@ -137,7 +137,7 @@ export default {
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
       global.editItem = { ...detail };
-      router.push("/pharmacy/modifydrgwarehouserequestadd");
+      router.push("/pharmacy/modifyDrgWarehousePRequest");
     };
 
     return {
