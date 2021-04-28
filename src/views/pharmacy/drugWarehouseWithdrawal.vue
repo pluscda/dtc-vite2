@@ -55,7 +55,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="核實" class="p-button-sm p-button-success" />
+        <Button label="退庫明細" class="p-button-sm" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -137,7 +137,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
@@ -166,6 +166,11 @@ export default {
       zh,
       time1,
       time2,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      twTime,
     };
   },
   mounted() {
