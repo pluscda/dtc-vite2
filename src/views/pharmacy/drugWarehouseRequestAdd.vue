@@ -3,7 +3,6 @@
     <div class="left">
       <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
         <div>新增藥品申領單</div>
-        <Button label="再次新增藥品申領單" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
       </header>
       <main class="grid dtc-list-grid mt-3">
         <DtxInputGroup prepend="申請日期" labelWidth="120">
@@ -49,7 +48,7 @@
       </main>
 
       <footer class="mt-6 mb-4 space-x-6">
-        <Button :disabled="!enabledSave" label="確認新增" class="p-button-success footer-btn" @click="addItem" />
+        <Button :disabled="!enabledSave" label="加入申領單" class="p-button-success footer-btn" @click="addItem" />
         <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
       </footer>
     </div>
@@ -84,7 +83,7 @@
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
-        <p class="transform -translate-y-14">您現在沒有任何新的申領單項目</p>
+        <p class="transform -translate-y-14">暫無申領單,請填寫左邊表格後加入</p>
       </div>
       <div class="h-2"></div>
     </div>

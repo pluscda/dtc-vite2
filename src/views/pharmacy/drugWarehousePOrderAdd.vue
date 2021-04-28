@@ -73,7 +73,7 @@
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
-        <p class="transform -translate-y-14">您現在沒有任何新的採購項目</p>
+        <p class="transform -translate-y-14">暫無採購單,請填寫左邊表格後加入</p>
       </div>
       <div class="h-2"></div>
     </div>
