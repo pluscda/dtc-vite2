@@ -117,6 +117,12 @@ export const routes = [
         meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "modifyDrgWarehousePOrder",
+        component: () => import("/@/views/pharmacy/modifyDrgWarehousePOrder.vue"),
+        name: "modifyDrgWarehousePOrder",
+        meta: { title: "編輯藥品資料modifyDrgWarehousePOrder", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifydrgwarehouserequestadd",
         component: () => import("/@/views/pharmacy/modifyDrugWarehouseRequestAdd.vue"),
         name: "modifyDrugWarehouseRequestAdd",
@@ -267,5 +273,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+
 
 export default router;
