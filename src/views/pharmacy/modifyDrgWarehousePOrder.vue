@@ -5,13 +5,13 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="採購日期">
-        <el-input readonly v-model="searchOrderId" />
+        <el-input readonly :value="his.tiDrgPurchaseDate.split('T')[0]" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購單號">
-        <el-input readonly v-model="searchOrderId" />
+        <el-input readonly :value="his.chDrgPurchaseId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購人員">
-        <el-input readonly v-model="searchOrderId" />
+        <el-input readonly :value="his.chDrgPurchasePerson" />
       </DtxInputGroup>
     </nav>
 
@@ -57,6 +57,7 @@
 <script>
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
+import { clone } from "ramda";
 import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import queryString from "qs";
@@ -79,6 +80,12 @@ export default {
   name: "modifyDrgWarehousePOrder",
   components: {
     Pagination,
+  },
+  inject: ["global", "actions"],
+  data() {
+    return {
+      his: { tiDrgPurchaseDate: "" },
+    };
   },
   setup() {
     const global = inject("global");
@@ -153,7 +160,7 @@ export default {
     };
   },
   mounted() {
-    this.$primevue.config.locale = twDate;
+    this.his = clone(this.global.editItem);
   },
 };
 </script>
