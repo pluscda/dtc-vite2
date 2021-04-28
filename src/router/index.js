@@ -128,7 +128,6 @@ export const routes = [
         name: "modifyDrgWarehousePRequest",
         meta: { title: "編輯藥品資料modifyDrgWarehousePRequest", icon: "el-icon-s-home" },
       },
-     
       {
         path: "modifydrgstore",
         component: () => import("/@/views/pharmacy/modifyDrgStore.vue"),
@@ -177,6 +176,13 @@ export const routes = [
         name: "drugwarehouseporderadd",
         meta: { title: "新增採購單", icon: "el-icon-s-home" },
       },
+      {
+        path: "drugWarehouserejectadd",
+        component: () => import("/@/views/pharmacy/drugWarehouseRejectAdd.vue"),
+        name: "drugWarehouserejectadd",
+        meta: { title: "drugWarehouserejectadd", icon: "el-icon-s-home" },
+      },
+      //drugWarehouseRejectAdd
       {
         path: "drugwarehousing",
         component: () => import("/@/views/pharmacy/drugWarehousing.vue"),
