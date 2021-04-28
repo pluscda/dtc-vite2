@@ -34,10 +34,10 @@
           <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請數量" labelWidth="120">
-          <el-input v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
+          <InputNumber class="w-full" v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
         </DtxInputGroup>
         <DtxInputGroup prepend="撥補數量" labelWidth="120">
-          <el-input v-model="his.intDrgCatchNum" placeholder="請輸入撥補數量" />
+          <InputNumber class="w-full" v-model="his.intDrgCatchNum" placeholder="請輸入撥補數量" />
         </DtxInputGroup>
         <DtxInputGroup prepend="撥補人員" labelWidth="120">
           <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
