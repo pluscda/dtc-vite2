@@ -49,7 +49,6 @@
 
       <footer class="mt-6 mb-4 space-x-6">
         <Button :disabled="!enabledSave" label="加入申領單" class="p-button-success footer-btn" @click="addItem" />
-        <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
       </footer>
     </div>
     <div class="right bg-gray-700">
