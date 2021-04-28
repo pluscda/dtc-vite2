@@ -3,7 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品申領管理</div>
     </header>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+    <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
@@ -12,16 +12,14 @@
       <DtxInputGroup prepend="申請單號">
         <el-input placeholder="搜尋申請單號" v-model="searchOrderId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="申請人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
-      </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="撥補人員">
-        <el-input placeholder="搜尋撥補人員" v-model="searchCatchPerson" />
+
+    <nav class="ml-1 dtc-search-filters">
+      <DtxInputGroup prepend="申請人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="結案狀態">
         <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0" @change="search">
