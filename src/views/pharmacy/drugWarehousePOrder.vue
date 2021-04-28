@@ -42,9 +42,9 @@
     </header>
     <main
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
-      v-for="(item, i) in list"
-      :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      v-for="(item, k) in list"
+      :key="k"
+      :style="k % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" @click="editItem(item)" />
@@ -59,13 +59,7 @@
       <div>{{ twTime(item.tiDrgPurchaseDate) || "暫無資料" }}</div>
       <div>{{ item.status || "暫無資料" }}</div>
       <div>{{ item.chDrgPurchasePerson || "暫無資料" }}</div>
-      <div>{{ item.chDrgHisId || "暫無資料" }}</div>
-      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgUnitBy || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
-      <div>{{ item.chDrgDoseType || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>

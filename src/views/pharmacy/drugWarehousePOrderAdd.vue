@@ -142,9 +142,12 @@ export default {
     removeItem(idx) {
       this.items.splice(idx, 1);
     },
-    async addItem() {
+    addItem() {
       this.items.unshift(clone(this.his));
-      this.his = {};
+      const keys = ["chDrgCnName", "chDrgEnName", "chDrgDoseType", "chDrgUnitBy", "chDrgMakerName"];
+      keys.forEach((s) => {
+        this.his[s] = "";
+      });
       this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
     },
   },
