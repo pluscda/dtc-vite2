@@ -42,7 +42,7 @@
       </main>
 
       <footer class="mt-6 mb-4">
-        <Button :disabled="addNewItem || loading" label="加入採購車" @click="subject.next()" class="p-button-success footer-btn" />
+        <Button :disabled="!enabledSave" label="加入採購車" @click="addItem" class="p-button-success footer-btn" />
       </footer>
     </div>
     <div class="right bg-gray-700">
@@ -55,7 +55,7 @@
             <div>採購日期: {{ item.chDrgPurchaseId }}</div>
             <div class="transform translate-x-7">採購單號: {{ item.chDrgPurchaseId }}</div>
             <div></div>
-            <Button class="p-button-danger self-end">移除</Button>
+            <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
           <li>採購人員: {{ item.tiDrgPurchaseDate }}</li>
           <li>健保代碼: {{ item.chDrgHisId }}</li>
@@ -101,7 +101,18 @@ export default {
   },
   computed: {
     enabledSave() {
-      const keys = ["tiDrgPurchaseDate", "chDrgPurchaseId", "chDrgPurchasePerson", "chDrgHisId"];
+      const keys = [
+        "tiDrgPurchaseDate",
+        "chDrgPurchaseId",
+        "chDrgPurchasePerson",
+        "chDrgHisId",
+        "chDrgHospitalId",
+        "chDrgCnName",
+        "chDrgEnName",
+        "chDrgDoseType",
+        "chDrgUnitBy",
+        "chDrgMakerName",
+      ];
       return keys.every((s) => this.his[s]);
     },
     totalAdded() {
@@ -113,12 +124,13 @@ export default {
     },
   },
   methods: {
-    reset() {
-      this.his = {};
-      this.addNewItem = false;
+    removeItem(idx) {
+      this.items.splice(idx, 1);
     },
     async addItem() {
       this.items.unshift(clone(this.his));
+      this.his = {};
+      this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
       // this.loading = true;
       // try {
       //   await this.actions.addItem("drg-warehouse-order-adds", this.his);
@@ -136,7 +148,7 @@ export default {
   created() {
     this.his = {};
     this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
-    subscribe = this.subject.pipe(exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
+    subscribe = this.subject.pipe(throttleTime(1000), exhaustMap(this.addItem)).subscribe(() => (this.loading = false));
   },
 };
 </script>
