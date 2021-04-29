@@ -59,7 +59,7 @@
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
-            <div>退庫日期: {{ item.tiDrgApplyDate.split("T")[0] }}</div>
+            <div>退庫日期: {{}}</div>
             <div class="transform translate-x-7">退庫單號: {{ item.chDrgApplyId }}</div>
             <div>退庫人員:{{ item.chDrgApplyPersonName }}</div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>

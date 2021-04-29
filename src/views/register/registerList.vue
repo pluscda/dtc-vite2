@@ -51,7 +51,7 @@
       </div>
 
       <div>{{ "暫無資料" }}</div>
-      <div>{{ (item.registerTimestamp && item.registerTimestamp.split("T")[0]) || "暫無資料" }}</div>
+      <div>{{ "暫無資料" }}</div>
       <div>{{ item.registerSection || "暫無資料" }}</div>
       <div>{{ item.registerNo || "暫無資料" }}</div>
       <div>{{ item.doctorName || "暫無資料" }}</div>
