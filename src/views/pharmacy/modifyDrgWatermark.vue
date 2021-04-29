@@ -45,8 +45,8 @@
       <div>{{ item.chDrgCnName || "暫無資料" }}</div>
       <div>{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
-      <div class="px-1" style="max-height: 30px">
-        <InputNumber style="max-height: 30px" v-model="item.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
+      <div class="px-1">
+        <InputNumber style="max-height: 40px" v-model="item.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
       </div>
 
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
