@@ -45,11 +45,11 @@
       <div>{{ item.chDrgCnName || "暫無資料" }}</div>
       <div>{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
+
+      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div class="px-1">
         <InputNumber style="max-height: 40px" v-model="item.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
       </div>
-
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
     </main>
     <footer class="mt-10">
       <Button label="返回採購單管理" @click="$router.go(-1)" />
@@ -74,8 +74,8 @@ let headers = [
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
   { name: "採購數量", key: "intDrugApplyNum", sortDesc: null },
-  { name: "現有存量", key: "unknow", sortDesc: null },
   { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
+  { name: "現有存量", key: "unknow", sortDesc: null },
 ];
 
 export default {
