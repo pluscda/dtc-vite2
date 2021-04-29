@@ -76,7 +76,7 @@ let headers = [
 ];
 
 export default {
-  name: "inquerylist",
+  name: "inquerylist3038373",
   components: {
     Pagination,
   },

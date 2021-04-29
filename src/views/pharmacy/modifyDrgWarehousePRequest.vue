@@ -5,7 +5,7 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="申請日期">
-        <el-input readonly :value="his.tiDrgApplyDate.split('T')[0]" />
+        <el-input readonly :value="his.tiDrgApplyDate" />
       </DtxInputGroup>
       <DtxInputGroup prepend="申請單號">
         <el-input readonly :value="his.chDrgApplyId" />

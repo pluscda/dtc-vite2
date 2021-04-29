@@ -5,7 +5,7 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="採購日期">
-        <el-input readonly :value="his.tiDrgPurchaseDate.split('T')[0]" />
+        <el-input readonly :value="his.tiDrgPurchaseDate" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購單號">
         <el-input readonly :value="his.chDrgPurchaseId" />

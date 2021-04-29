@@ -8,7 +8,7 @@
         <el-input readonly :value="his.chDrgPurchaseId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購日期">
-        <el-input readonly :value="his.tiDrgPurchaseDate.split('T')[0]" />
+        <el-input readonly />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購人員">
         <el-input readonly :value="his.chDrgPurchasePerson" />
