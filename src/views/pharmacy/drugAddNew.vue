@@ -211,8 +211,7 @@ export default {
         .pipe(
           //take(3),
           concatMap((s) => this.saveDtcItem(s)),
-          tap(console.log),
-          delay(500)
+          delay(300)
         )
         .subscribe();
     },
@@ -233,7 +232,7 @@ export default {
       return obj;
     },
     async saveItem() {
-      //return this.loadItem();
+      return this.loadItem();
       this.loading = true;
       const formData = new FormData();
       formData.append("files.s3DrgImg", this.fileUpload, this.his.imgName);

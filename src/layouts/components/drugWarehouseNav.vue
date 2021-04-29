@@ -19,7 +19,7 @@ import { useRoute, useRouter } from "vue-router";
 import { pharmacyTab$ } from "/@/store";
 
 export default {
-  name: "sidebar1029",
+  name: "sidebar1029modifyDrgWatermark",
   components: {},
   setup() {
     const activeTab = ref(0);
@@ -55,7 +55,7 @@ export default {
           router.push("/pharmacy/drugwarehouseinquire");
           break;
         case "庫存安全管制":
-          // router.push("/pharmacy/drgwatermarkctrl");
+          router.push("/pharmacy/modifyDrgWatermark");
           break;
         case "採購單管理":
           router.push("/pharmacy/drugwarehouseporder");

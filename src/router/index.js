@@ -117,6 +117,12 @@ export const routes = [
         meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "modifyDrgWatermark",
+        component: () => import("/@/views/pharmacy/modifyDrgWatermark.vue"),
+        name: "modifyDrgWatermark",
+        meta: { title: "modifyDrgWatermark", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifyDrgWarehousePOrder",
         component: () => import("/@/views/pharmacy/modifyDrgWarehousePOrder.vue"),
         name: "modifyDrgWarehousePOrder",

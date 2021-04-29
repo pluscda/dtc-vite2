@@ -13,26 +13,26 @@ window.twDate = {
  
 export const drgSample = {
     "hisId": "chInsuNoB", //健保代碼
-    "chDrgUnit": "chUseUnit",//用藥單位
+    "chDrgUnit": "unit",//用藥單位
     "chDrgContain": "chContain", //成分
-    "chSymptom1": "chDrgUseNote", //適應症狀
-    "chHospitalId": "chDrgPriceNo",//院內碼
-    "chDrgFrequency": "chFreqNo",//用藥頻率
+    "chSymptom1": "", //適應症狀
+    "chHospitalId": "",//院內碼
+    "chDrgFrequency": "",//用藥頻率
     "intDrgStockMax": 0,
     "chDrgSymptom2": "",
-    "chDrgCnName": "",
-    "rlDrgOriginalPrice": "rlClaimPriceB", //原核定價
+    "chDrgCnName": "chDrgPriceName2",
+    "rlDrgOriginalPrice": 0, //原核定價
     "intDrgStockMin": 0,
     "chDrgAntibiotics": "",
     "chDrgEnName": "chDrgPriceName",//藥品英文
-    "rlDrgNewPrice": "rlClaimPrice",//新核定價
+    "rlDrgNewPrice": 0,//新核定價
     "chDrgCountryFrom": "",
     "chDrgAntibioticsLevel": "",
     "chDrgAlias": "",
-    "rlDrgSelfPayPrice": "rlSelfPrice",//自費價格
+    "rlDrgSelfPayPrice": 0,//自費價格
     "chDrgMakerName": "chDrgFactory",//藥商名稱
-    "chDrgControlType": "chDrgComType",//管制用藥
-    "chDrgDoseType": "",
+    "chDrgControlType": "",//管制用藥
+    "chDrgDoseType": "chDrgDoseType2",//劑型
     "tiDrgEffectTime": "2021-04-26T09:04:34.271Z",
     "chDrgClassified": "",
     "chDrgForbidden": "",
@@ -41,7 +41,7 @@ export const drgSample = {
     "chDrgChargeBy": "",
     "chDrgGivenBy": "",
     "chDrgStandard": "",
-    "chDrgAtcCode": "chDrgGrpType1",
+    "chDrgAtcCode": "ATC_CODE",
     "chDrgSkinTest": "",
     "chDrgSteamBy": "",
     "chDrgWarningMsg": "",
