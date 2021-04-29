@@ -51,9 +51,6 @@
         <InputNumber style="max-height: 40px" v-model="item.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
       </div>
     </main>
-    <footer class="mt-10">
-      <Button label="返回採購單管理" @click="$router.go(-1)" />
-    </footer>
   </section>
 </template>
 
