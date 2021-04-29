@@ -5,6 +5,7 @@ import { createApp } from "vue";
 import "./constance.js";
 import {getDDL} from "./constance.js";
 import App from "./App.vue";
+import * as R from 'ramda'
 import "styles/index.scss";
 import ElementPlus from 'element-plus'
 import 'dayjs/locale/zh-tw'
@@ -22,7 +23,6 @@ import ProgressSpinner from 'primevue/progressspinner';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
 import InputNumber from 'primevue/inputnumber';
-
 
 const app = createApp(App);
 app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
@@ -42,6 +42,7 @@ app.component('DtxInputGroup',DtxInputGroup);
 import DUMMYLIST from "./dummyData.js"
 import drgList from "/@/assets/drg.json"
 const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
+app.config.globalProperties.R = R;
 app.config.globalProperties.dummyList = dummyList;
 app.config.globalProperties.drgList = drgList;
 // get Drop Down list 
