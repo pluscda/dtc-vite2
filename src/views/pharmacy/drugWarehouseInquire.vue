@@ -105,14 +105,7 @@ export default {
     const searchDrugName = ref("");
 
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
-
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
 
     const toggleDetail = (item) => {
       const review = item.review;
