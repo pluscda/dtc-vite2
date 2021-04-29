@@ -51,7 +51,7 @@
       </div>
 
       <div>{{ item.chDrgPurchaseId || "暫無資料" }}</div>
-      <div>{{ twTime(item.tiDrgPurchaseDate) || "暫無資料" }}</div>
+      <div>{{ "暫無資料" }}</div>
       <div>{{ item.status || "暫無資料" }}</div>
       <div>{{ item.chDrgPurchasePerson || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>

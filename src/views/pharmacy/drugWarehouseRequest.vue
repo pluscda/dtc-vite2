@@ -53,7 +53,7 @@
         <Button label="申請單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
       <div>{{ item.chDrgApplyId || "暫無資料" }}</div>
-      <div>{{ twTime(item.tiDrgApplyDate) || "暫無資料" }}</div>
+      <div>{{ "暫無資料" }}</div>
       <div>{{ item.chDrgStatus }}</div>
       <div>{{ item.chDrgApplyPersonName || "暫無資料" }}</div>
     </main>
