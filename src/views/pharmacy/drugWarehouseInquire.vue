@@ -119,9 +119,12 @@ export default {
       headers,
       searchDrugId,
       searchDrugName,
-      isOpenAddDrugDialog,
-      openAddDialog,
       toggleDetail,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      twTime,
     };
   },
   mounted() {
