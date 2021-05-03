@@ -82,7 +82,7 @@
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
-        <p class="transform -translate-y-14">暫無申領單,請填寫左邊表格後加入</p>
+        <p class="transform -translate-y-14 text-2xl">暫無申領單,請填寫左邊表格後加入</p>
       </div>
       <div class="h-2"></div>
     </div>
