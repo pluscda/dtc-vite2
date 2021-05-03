@@ -56,23 +56,23 @@
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
-            <div>採購日期: {{ item.chDrgPurchaseId }}</div>
-            <div class="transform translate-x-7">採購單號: {{ item.chDrgPurchaseId }}</div>
+            <div>退庫日期: {{ item.chDrgPurchaseId }}</div>
+            <div class="transform translate-x-7">退庫單號: {{ item.chDrgPurchaseId }}</div>
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>採購人員: {{ item.chDrgPurchasePerson }}</li>
+          <li>退庫人員: {{ item.chDrgPurchasePerson }}</li>
           <li>健保代碼: {{ item.chDrgHisId }}</li>
           <li>院內代碼: {{ item.chDrgHospitalId }}</li>
           <li>中文藥名: {{ item.chDrgCnName }}</li>
           <li>英文藥名: {{ item.chDrgEnName }}</li>
-          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
+          <li>退庫藥房: {{ item.chDrgDoseType }}</li>
           <li>藥品單位: {{ item.chDrgUnitBy }}</li>
           <li class="flex space-x-2">
             <div>退庫數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入退庫數量" />
           </li>
-          <li>藥商名稱: {{ item.chDrgMakerName }}</li>
+          <li>備註: {{ item.chDrgMakerName }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
