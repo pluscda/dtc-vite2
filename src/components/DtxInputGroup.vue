@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex my-flex">
+  <div class="relative flex my-flex items-stretch">
     <div class="grid max-content" :style="labelWidth ? `grid-template-columns: ${labelWidth}px !important;` : ''">
       <span class="flex items-center px-3 text-base rounded rounded-r-none dtc-label dtx-prepend">{{ prepend }}</span>
     </div>
@@ -19,7 +19,6 @@ export default {
 <style lang="scss" scoped>
 .max-content {
   grid-template-columns: max-content;
-  max-height: 40px;
 }
 
 .my-flex {

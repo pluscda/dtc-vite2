@@ -135,23 +135,32 @@
     </main>
     <h1 class="my-3 drgu-add-title dtc-text">藥理資料</h1>
     <main class="grid dtc-list-grid2">
-      <DtxInputGroup prepend="警語(副作用)" labelWidth="120">
-        <el-input v-model="his.chDrgWarningMsg" placeholder="請輸入警語(副作用)" />
+      <DtxInputGroup prepend="適應症" labelWidth="144">
+        <el-input type="textarea" autosize v-model="his.chDrgWarningMsg" placeholder="請輸入適應症" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="用藥須知" labelWidth="120">
-        <el-input v-model="his.chDrgTakePreStepMsg" placeholder="請輸入用藥須知" />
+      <DtxInputGroup prepend="不良反應/副作用" labelWidth="144">
+        <el-input type="textarea" autosize v-model="his.chDrgTakePreStepMsg" placeholder="請輸入不良反應/副作用" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="不良反應" labelWidth="120">
-        <el-input v-model="his.chDrgSideEffectMsg" placeholder="請輸入不良反應" />
+      <DtxInputGroup prepend="警語" labelWidth="144">
+        <el-input type="textarea" v-model="his.chDrgSideEffectMsg" placeholder="請輸入警語" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="用途" labelWidth="120">
-        <el-input v-model="his.chDrgSideEffectMsg" placeholder="請輸入用途" />
+      <DtxInputGroup prepend="用法與用量" labelWidth="144">
+        <el-input type="textarea" v-model="his.chDrgSideEffectMsg" placeholder="請輸入用法與用量" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="儲存條件" labelWidth="120">
-        <el-input v-model="his.chDrgKeepSafeMsg" placeholder="請輸入儲存條件" />
+      <DtxInputGroup prepend="使用禁忌" labelWidth="144">
+        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入使用禁忌" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="懷孕相關" labelWidth="144">
+        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入懷孕相關" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="交互作用" labelWidth="144">
+        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入交互作用" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="藥品外觀" labelWidth="144">
+        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入藥品外觀" />
       </DtxInputGroup>
       <div class="dtc-grid-fileupload dtc-text">
-        <DtxInputGroup prepend="圖片名稱" labelWidth="120">
+        <DtxInputGroup prepend="圖片名稱" labelWidth="144">
           <el-input v-model="his.chDrgImgName" placeholder="請輸入圖片名稱 (先選擇右方圖片)" />
         </DtxInputGroup>
         <label for="file-upload" class="custom-file-upload">
@@ -309,5 +318,10 @@ export default {
 .button-2 {
   grid-template-columns: max-content max-content;
   gap: 1.5rem;
+}
+:deep(.el-textarea__inner) {
+  min-height: 40px !important;
+  color: white !important;
+  background: var(--gray-dark) !important;
 }
 </style>

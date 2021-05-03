@@ -64,8 +64,10 @@
   }
   input,
   .el-radio,
+  .el-textarea__inner,
   .dtc-text {
     color: white !important;
+    font-size:1rem;
     background: var(--gray-dark) !important;
     border: none !important;
     @apply ring-2 ring-coolGray-600;
@@ -76,8 +78,9 @@
   .dtx-prepend {
     @apply ring-2 ring-coolGray-600;
   }
-  input {
+  input, textarea {
     @apply focus:ring-1 focus:ring-blue-200;
+    
   }
   .el-radio,
   .dtc-text {
