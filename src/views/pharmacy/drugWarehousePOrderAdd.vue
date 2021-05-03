@@ -5,38 +5,38 @@
         <div>新增採購單</div>
       </header>
       <main class="grid dtc-list-grid mt-5">
-        <DtxInputGroup prepend="採購日期" labelWidth="120">
+        <DtxInputGroup prepend="採購日期" labelWidth="100">
           <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="採購單號" labelWidth="120">
+        <DtxInputGroup prepend="採購單號" labelWidth="100">
           <el-input v-model="his.chDrgPurchaseId" placeholder="請輸入採購單號" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="採購人員" labelWidth="120">
+        <DtxInputGroup prepend="採購人員" labelWidth="100">
           <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入採購人員" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="120">
+        <DtxInputGroup prepend="健保代碼" labelWidth="100">
           <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="院內代碼" labelWidth="120">
+        <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="120">
+        <DtxInputGroup prepend="中文藥名" labelWidth="100">
           <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="120">
+        <DtxInputGroup prepend="英文藥名" labelWidth="100">
           <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品劑型" labelWidth="120">
+        <DtxInputGroup prepend="藥品劑型" labelWidth="100">
           <el-input v-model="his.chDrgDoseType" placeholder="請輸入藥品劑型" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="120">
+        <DtxInputGroup prepend="藥品單位" labelWidth="100">
           <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="採購數量" labelWidth="120">
+        <DtxInputGroup prepend="採購數量" labelWidth="100">
           <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥商名稱" labelWidth="120">
+        <DtxInputGroup prepend="藥商名稱" labelWidth="100">
           <el-input v-model="his.chDrgMakerName" placeholder="請輸入藥商名稱" />
         </DtxInputGroup>
       </main>
