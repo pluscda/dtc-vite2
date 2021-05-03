@@ -4,15 +4,17 @@
       <div>庫存安全管制: 低於安全存量轉採購單</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="採購單號">
+      <DtxInputGroup prepend="健保代碼">
         <el-input readonly :value="his.chDrgPurchaseId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="採購日期">
+      <DtxInputGroup prepend="院內代碼">
         <el-input readonly />
       </DtxInputGroup>
-      <DtxInputGroup prepend="採購人員">
+      <DtxInputGroup prepend="藥商名稱">
         <el-input readonly :value="his.chDrgPurchasePerson" />
       </DtxInputGroup>
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -69,9 +71,9 @@ let headers = [
   { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "採購數量", key: "intDrugApplyNum", sortDesc: null },
+  { name: "現有存量", key: "intDrugApplyNum", sortDesc: null },
   { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
-  { name: "現有存量", key: "unknow", sortDesc: null },
+  { name: "採購數量", key: "unknow", sortDesc: null },
 ];
 
 export default {
