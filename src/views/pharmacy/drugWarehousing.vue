@@ -1,7 +1,7 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>入庫單管理</div>
+      <div>藥房入庫單管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="採號日期">
@@ -49,7 +49,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="採購單明細" class="p-button-sm" @click="editItem(item)" />
+        <Button label="入庫單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>

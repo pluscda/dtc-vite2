@@ -1,7 +1,7 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>採購單明細</div>
+      <div>藥房入庫單明細</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="採購日期">
@@ -54,7 +54,7 @@
       </div>
     </main>
     <footer class="mt-10">
-      <Button label="返回入庫單管理" @click="$router.go(-1)" />
+      <Button label="返回藥房入庫單管理" @click="$router.go(-1)" />
     </footer>
   </section>
 </template>
@@ -166,7 +166,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(6, 200px) 1fr;
+  grid-template-columns: 60px repeat(5, 200px) 1fr 120px;
 }
 .management {
   position: relative;
