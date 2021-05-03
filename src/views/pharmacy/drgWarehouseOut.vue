@@ -5,42 +5,42 @@
         <div>藥房退庫單申請</div>
       </header>
       <main class="grid dtc-list-grid mt-5">
-        <DtxInputGroup prepend="退庫日期" labelWidth="120">
+        <DtxInputGroup prepend="退庫日期" labelWidth="100">
           <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="請輸入退庫日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="退庫單號" labelWidth="120">
+        <DtxInputGroup prepend="退庫單號" labelWidth="100">
           <el-input v-model="his.chDrgPurchaseId" placeholder="請輸入退庫單號" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="退庫人員" labelWidth="120">
+        <DtxInputGroup prepend="退庫人員" labelWidth="100">
           <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入退庫人員" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="退庫藥房" labelWidth="120">
+        <DtxInputGroup prepend="退庫藥房" labelWidth="100">
           <el-input v-model="his.chDrgHisId" placeholder="請輸入退庫藥房" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="120">
+        <DtxInputGroup prepend="健保代碼" labelWidth="100">
           <el-input v-model="his.chDrgHospitalId" placeholder="請輸入健保代碼" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="院內代碼" labelWidth="120">
+        <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="120">
+        <DtxInputGroup prepend="中文藥名" labelWidth="100">
           <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="120">
+        <DtxInputGroup prepend="英文藥名" labelWidth="100">
           <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品劑型" labelWidth="120">
+        <DtxInputGroup prepend="藥品劑型" labelWidth="100">
           <el-input v-model="his.chDrgDoseType" placeholder="請輸入藥品劑型" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="120">
+        <DtxInputGroup prepend="藥品單位" labelWidth="100">
           <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="退庫數量" labelWidth="120">
+        <DtxInputGroup prepend="退庫數量" labelWidth="100">
           <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品退庫數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
-        <DtxInputGroup prepend="備註" labelWidth="120">
-          <el-input v-model="his.chDrgMakerName" placeholder="請輸入備註" />
+        <DtxInputGroup prepend="退庫備註" labelWidth="100">
+          <el-input v-model="his.chDrgMakerName" placeholder="請輸入退庫備註" />
         </DtxInputGroup>
       </main>
 
@@ -72,7 +72,7 @@
             <div>退庫數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入退庫數量" />
           </li>
-          <li>備註: {{ item.chDrgMakerName }}</li>
+          <li>退庫備註: {{ item.chDrgMakerName }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
