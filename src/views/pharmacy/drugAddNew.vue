@@ -188,8 +188,7 @@
 import { ElMessage } from "element-plus";
 import { Subject } from "rxjs";
 import { from } from "rxjs";
-import { concatMap, throttleTime, tap, exhaustMap, delay } from "rxjs/operators";
-import { drgSample } from "/@/constance.js";
+import { throttleTime, exhaustMap } from "rxjs/operators";
 let subscribe = "";
 export default {
   name: "drugAddNew",
