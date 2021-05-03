@@ -48,7 +48,7 @@
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
     </main>
     <footer class="mt-10">
-      <Button label="返回藥品申領管理" class="p-button-success" @click="$router.go(-1)" />
+      <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" />
     </footer>
   </section>
 </template>
