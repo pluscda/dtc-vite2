@@ -11,45 +11,7 @@ window.twDate = {
     weekHeader: "周",
 };
  
-export const drgSample = {
-    "hisId": "chInsuNoB", //健保代碼
-    "chDrgUnit": "unit",//用藥單位
-    "chDrgContain": "chContain", //成分
-    "chSymptom1": "", //適應症狀
-    "chHospitalId": "",//院內碼
-    "chDrgFrequency": "",//用藥頻率
-    "intDrgStockMax": 0,
-    "chDrgSymptom2": "",
-    "chDrgCnName": "chDrgPriceName2",
-    "rlDrgOriginalPrice": 0, //原核定價
-    "intDrgStockMin": 0,
-    "chDrgAntibiotics": "",
-    "chDrgEnName": "chDrgPriceName",//藥品英文
-    "rlDrgNewPrice": 0,//新核定價
-    "chDrgCountryFrom": "",
-    "chDrgAntibioticsLevel": "",
-    "chDrgAlias": "",
-    "rlDrgSelfPayPrice": 0,//自費價格
-    "chDrgMakerName": "chDrgFactory",//藥商名稱
-    "chDrgControlType": "",//管制用藥
-    "chDrgDoseType": "chDrgDoseType2",//劑型
-    "tiDrgEffectTime": "2021-04-26T09:04:34.271Z",
-    "chDrgClassified": "",
-    "chDrgForbidden": "",
-    "chDrgType": "",
-    "chDrgIssueId": "",
-    "chDrgChargeBy": "",
-    "chDrgGivenBy": "",
-    "chDrgStandard": "",
-    "chDrgAtcCode": "ATC_CODE",
-    "chDrgSkinTest": "",
-    "chDrgSteamBy": "",
-    "chDrgWarningMsg": "",
-    "chDrgTakePreStepMsg": "",
-    "chDrgBadSideEffectMsg": "chDrgWarning",
-    "chDrgKeepSafeMsg": "",
-    "chDrgImgName": "",
-}
+
 
 export const getDDL = (key,objList) => {
     const arr = objList.map( s => s[key]);
