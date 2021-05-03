@@ -148,7 +148,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px 150px repeat(4, 250px) 1fr;
+  grid-template-columns: 100px 140px 120px repeat(2, 250px) 120px 1fr;
 }
 .management {
   position: relative;
