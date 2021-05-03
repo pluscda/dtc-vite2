@@ -104,16 +104,6 @@ export default {
       return global.openAddDrugDialog;
     });
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
-
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
       global.editItem = { ...detail };
@@ -127,9 +117,6 @@ export default {
       searchDrugId,
       searchDrugName,
       searchStatus,
-      caseClosedOptions,
-      isOpenAddDrugDialog,
-      openAddDialog,
       toggleDetail,
       time1,
       time2,
