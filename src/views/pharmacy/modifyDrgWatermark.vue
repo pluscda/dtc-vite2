@@ -48,8 +48,8 @@
       <div>{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
-      <div class="px-1">
-        <InputNumber style="max-height: 40px" v-model="item.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
+      <div class="grid place-items-center">
+        <InputNumber style="max-height: 40px" placeholder="請輸入藥品採購數量" />
       </div>
     </main>
   </section>
@@ -71,8 +71,8 @@ let headers = [
   { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "現有存量", key: "intDrugApplyNum", sortDesc: null },
   { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
+  { name: "現有存量", key: "intDrugApplyNum", sortDesc: null },
   { name: "採購數量", key: "unknow", sortDesc: null },
 ];
 
@@ -161,7 +161,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(5, 180px) minmax(120px, 1fr) 180px;
+  grid-template-columns: 60px repeat(4, 180px) 1fr 120px 180px;
 }
 .management {
   position: relative;
