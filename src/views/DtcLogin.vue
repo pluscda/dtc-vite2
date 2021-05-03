@@ -34,10 +34,7 @@ export default {
     const router = useRouter();
     async function login() {
       try {
-        // const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
-        // sessionStorage.token = jwt;
-
-        const jwt = "12";
+        const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
         sessionStorage.token = jwt;
         jwt ? router.push("/users") : alert(JSON.stringify(message));
       } catch (e) {
