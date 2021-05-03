@@ -321,6 +321,7 @@ export default {
 }
 :deep(.el-textarea__inner) {
   min-height: 40px !important;
+  height: 40px;
   color: white !important;
   background: var(--gray-dark) !important;
 }
