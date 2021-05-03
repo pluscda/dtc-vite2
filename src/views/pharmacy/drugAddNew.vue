@@ -211,37 +211,7 @@ export default {
       this.his = {};
       this.showAddNew = false;
     },
-    async saveDtcItem(obj) {
-      const ret = this.convertItemToSample(obj);
-      return await this.actions.addItem("drgadds", ret);
-    },
-    async loadItem() {
-      from(this.drgList)
-        .pipe(
-          //take(3),
-          concatMap((s) => this.saveDtcItem(s)),
-          delay(300)
-        )
-        .subscribe();
-    },
-    convertItemToSample(s) {
-      let obj = { ...drgSample };
-      for (let [k, v] of Object.entries(obj)) {
-        if (v && s[v]) {
-          obj[k] = s[v];
-          if (!isNaN(+s[v])) {
-            obj[k] = +obj[k];
-          }
-        }
-
-        if (v == "chDrgGrpType1") {
-          obj[k] = s[v] + s["chDrgGrpType2"] + s["chDrgGrpType3"];
-        }
-      } // end of for loop
-      return obj;
-    },
     async saveItem() {
-      return this.loadItem();
       this.loading = true;
       const formData = new FormData();
       formData.append("files.s3DrgImg", this.fileUpload, this.his.imgName);
