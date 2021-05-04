@@ -4,7 +4,7 @@
       <div>編輯藥品資料/藥理資料</div>
     </header>
 
-    <h1 class="my-3 drgu-add-title dtc-text !text-xl">編輯藥品資料</h1>
+    <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
         <el-input v-model="his.hisId" placeholder="請輸入健保代碼" />
@@ -143,7 +143,7 @@
         </el-select>
       </DtxInputGroup>
     </main>
-    <h1 class="my-3 drgu-add-title dtc-text !text-xl">藥理資料</h1>
+    <h1 class="my-3 drgu-add-title dtc-text">藥理資料</h1>
     <main class="grid dtc-list-grid2">
       <DtxInputGroup prepend="適應症" labelWidth="144">
         <el-input type="textarea" autosize v-model="his.chDrgWarningMsg" placeholder="請輸入適應症" />
