@@ -31,7 +31,7 @@ export default {
       "el-icon-s-order",
       "el-icon-folder-add",
       "el-icon-document-copy",
-      "el-icon-plus",
+      "el-icon-s-grid",
       "el-icon-pie-chart",
       "el-icon-c-scale-to-original",
       "el-icon-s-grid",

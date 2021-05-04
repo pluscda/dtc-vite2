@@ -25,8 +25,8 @@ export default {
   setup() {
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive(["藥房庫存查詢", "藥品申請單維護", "新增藥品申領單", "藥房退庫單維護"]);
-    const icons = reactive(["el-icon-zoom-in", "el-icon-s-tools", "el-icon-folder-add", "el-icon-first-aid-kit"]);
+    const titles = reactive(["藥房庫存查詢", "藥品申請單維護", "新增藥品申領單", "藥房退庫單維護", "新增藥房退庫單"]);
+    const icons = reactive(["el-icon-zoom-in", "el-icon-s-tools", "el-icon-folder-add", "el-icon-s-grid", "el-icon-c-scale-to-original"]);
     const global = inject("global");
     pharmacyTab$.subscribe((v) => (activeTab.value = v));
     const handleChangeTab = (item, i) => {
@@ -43,6 +43,9 @@ export default {
           break;
         case "藥房退庫單維護":
           router.push("/pharmacy/drugstorewithdrawal");
+          break;
+        case "新增藥房退庫單":
+          router.push("/pharmacy/drgWarehouseOut");
           break;
       }
     };
