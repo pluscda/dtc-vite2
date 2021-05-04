@@ -19,6 +19,7 @@ export default {
 <style lang="scss" scoped>
 .max-content {
   grid-template-columns: max-content;
+  height: 40px;
 }
 
 .my-flex {
