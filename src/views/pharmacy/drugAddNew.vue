@@ -38,8 +38,8 @@
       <DtxInputGroup prepend="新核定價" labelWidth="120">
         <el-input v-model="his.rlDrgNewPrice" placeholder="請輸入新核定價" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="中文藥品" labelWidth="120">
-        <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥品" />
+      <DtxInputGroup prepend="中文藥名" labelWidth="120">
+        <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥頻率" labelWidth="120">
         <el-select filterable v-model="his.chDrgFrequency" placeholder="請選擇" class="border-l-0">
@@ -55,8 +55,8 @@
         <el-input v-model="his.rlDrgSelfPayPrice" placeholder="請輸入自費價格" />
       </DtxInputGroup>
 
-      <DtxInputGroup prepend="英文藥品" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥品" />
+      <DtxInputGroup prepend="英文藥名" labelWidth="120">
+        <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
       </DtxInputGroup>
       <DtxInputGroup prepend="給藥途徑" labelWidth="120">
         <el-select filterable v-model="his.chDrgGivenBy" placeholder="請選擇" class="border-l-0">
