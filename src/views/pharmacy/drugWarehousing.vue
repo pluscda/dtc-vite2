@@ -100,9 +100,6 @@ export default {
     // 列表數據
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
 
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
@@ -117,7 +114,6 @@ export default {
       searchDrugId,
       searchDrugName,
       searchStatus,
-      toggleDetail,
       time1,
       time2,
       editItem,

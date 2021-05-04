@@ -24,17 +24,7 @@ export default {
   setup() {
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive([
-      "庫存查詢作業",
-      "庫存安全管制",
-      "採購單管理",
-      "新增採購單",
-      "藥品申領管理",
-      "新增藥品申領單",
-      "藥房入庫單管理",
-      "藥房退庫管理",
-      "藥房退庫單申請",
-    ]);
+    const titles = reactive(["庫存查詢作業", "庫存安全管制", "採購單管理", "新增採購單", "藥房入庫單管理", "藥品申領管理", "藥房退庫管理"]);
     const icons = reactive([
       "el-icon-zoom-in",
       "el-icon-help",
