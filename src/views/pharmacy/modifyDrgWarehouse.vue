@@ -4,13 +4,13 @@
       <div>藥房入庫單明細</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="採購日期">
+      <DtxInputGroup prepend="健保代碼">
         <el-input readonly :value="his.tiDrgPurchaseDate" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="採購單號">
+      <DtxInputGroup prepend="院內代碼">
         <el-input readonly :value="his.chDrgPurchaseId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="採購人員">
+      <DtxInputGroup prepend="藥商名稱">
         <el-input readonly :value="his.chDrgPurchasePerson" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
