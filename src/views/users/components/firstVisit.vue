@@ -34,10 +34,12 @@
       <DtxInputGroup prepend="手機號碼" labelWidth="104">
         <el-input v-model="basicCard.mobile" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="電話號碼" labelWidth="104" style="grid-column: span 3; display: grid; grid-template-columns: 104px 80px 1fr 1fr; grid-column-gap: 5px">
-        <el-input v-model="basicCard.phone1" placeholder="區號" />
-        <el-input v-model="basicCard.phone1_1" placeholder="號碼" />
-        <el-input v-model="basicCard.phone1_1_1" placeholder="分機" />
+      <DtxInputGroup prepend="電話號碼" labelWidth="104" style="grid-column: span 3">
+        <div class="flex gap-3">
+          <el-input v-model="basicCard.phone1" placeholder="區號" />
+          <el-input v-model="basicCard.phone1_1" placeholder="號碼" />
+          <el-input v-model="basicCard.phone1_1_1" placeholder="分機" />
+        </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="職業" labelWidth="104">
         <el-input v-model="basicCard.carrer" />
@@ -50,28 +52,32 @@
           <el-option v-for="item in bloodTypeOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥物過敏史" labelWidth="104" style="grid-column: span 2; display: grid; grid-template-columns: 104px 80px 1fr; grid-column-gap: 5px">
-        <el-select filterable v-model="basicCard.allergy" class="border-l-0">
-          <el-option v-for="item in medicalHistoryOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-        <el-input v-model="basicCard.allergyTxt" />
+      <DtxInputGroup prepend="藥物過敏史" labelWidth="104" style="grid-column: span 2">
+        <div class="flex gap-2">
+          <el-select filterable v-model="basicCard.allergy" class="border-l-0">
+            <el-option v-for="item in medicalHistoryOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          </el-select>
+          <el-input v-model="basicCard.allergyTxt" />
+        </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="國籍" labelWidth="104">
         <el-input v-model="basicCard.nationality" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="通訊地址" labelWidth="104" style="grid-column: span 4; display: grid; grid-template-columns: 104px 104px 1fr; grid-column-gap: 5px">
-        <el-input v-model="basicCard.address1" placeholder="郵遞區號" />
-        <el-input v-model="basicCard.address2" placeholder="請輸入地址" />
+      <DtxInputGroup prepend="通訊地址" labelWidth="104" style="grid-column: span 4">
+        <div class="flex gap-2">
+          <el-input v-model="basicCard.address1" placeholder="郵遞區號" />
+          <el-input v-model="basicCard.address2" placeholder="請輸入地址" />
+        </div>
       </DtxInputGroup>
 
-      <DtxInputGroup labelWidth="104" prepend="訂閱健康報" style="grid-column: span 2; display: grid; grid-template-columns: 104px 1fr; grid-column-gap: 5px">
-        <div>
+      <DtxInputGroup labelWidth="104" prepend="訂閱健康報" style="grid-column: span 2">
+        <div class="flex gap-2">
           <el-radio v-model="basicCard.bookPaper" value="true" label="願意" style="margin: 13px 35px 0px 50px">願意</el-radio>
           <el-radio v-model="basicCard.bookPaper" value="false" label="不願意" style="margin-top: 13px; margin-left: 5px">不願意</el-radio>
         </div>
       </DtxInputGroup>
-      <DtxInputGroup prepend="是否同意收到本院簡訊" style="grid-column: span 2; display: grid; grid-template-columns: 154px 1fr; grid-column-gap: 5px">
-        <div>
+      <DtxInputGroup prepend="是否同意收到本院簡訊" style="grid-column: span 2">
+        <div class="flex gap-2">
           <el-radio v-model="basicCard.sms" value="true" label="願意" style="margin: 9px 35px 0px 50px">願意</el-radio>
           <el-radio v-model="basicCard.sms" value="false" label="不願意" style="margin-top: 9px; margin-left: 5px">不願意</el-radio>
         </div>
