@@ -31,7 +31,9 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="皮試標誌" labelWidth="120">
-        <el-input v-model="his.chDrgContain" placeholder="請輸入皮試標誌" />
+        <el-select filterable v-model="his.chDrgFrequency" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in chDrgFreqNoList" :key="item" :label="item" :value="item"> </el-option>
+        </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="新核定價" labelWidth="120">
         <el-input v-model="his.rlDrgNewPrice" placeholder="請輸入新核定價" />
