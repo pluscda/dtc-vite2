@@ -122,7 +122,7 @@
         <DtxInputGroup prepend="脈搏" labelWidth="104" append="次/分">
           <el-input v-model="selfFillForm.pulse" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="體重" labelWidth="104" class="w-28">
+        <DtxInputGroup prepend="體重" labelWidth="104" style="grid-column: 2/-1">
           <div class="flex gap-2">
             <el-select filterable v-model="selfFillForm.weightGain.answer1" class="border-l-0">
               <el-option v-for="item in weightGainOptions1" :key="item.value" :label="item.label" :value="item.value"> </el-option>
@@ -131,7 +131,7 @@
               <el-option v-for="item in weightGainOptions2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
             <el-input v-model="selfFillForm.weightGain.answer3" />
-            <div style="padding-top: 8px" class="!w-10">kg，期間:</div>
+            <div style="padding-top: 8px; min-width: 100px">kg，期間:</div>
             <el-input v-model="selfFillForm.weightGain.answer4" placeholder="請請輸入日期" />
           </div>
         </DtxInputGroup>
