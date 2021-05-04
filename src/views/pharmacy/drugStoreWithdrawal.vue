@@ -12,19 +12,17 @@
       <DtxInputGroup prepend="退庫單號">
         <el-input placeholder="搜尋退庫單號" v-model="searchDrugId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="退庫人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
-      </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="退庫藥房">
-        <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
+      <DtxInputGroup prepend="退庫人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
+
+      <DtxInputGroup prepend="訂單狀態">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -59,13 +57,6 @@
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -81,15 +72,8 @@ import { useList } from "/@/hooks/useHis.js";
 let headers = [
   { name: "退庫單號", key: "name", sortDesc: null },
   { name: "退庫日期", key: "name", sortDesc: null },
-  { name: "結案狀態", key: "age", sortDesc: null },
+  { name: "訂單狀態", key: "age", sortDesc: null },
   { name: "退庫人員", key: "age", sortDesc: null },
-  { name: "健保代碼", key: "age", sortDesc: null },
-  { name: "院內代碼", key: "age", sortDesc: null },
-  { name: "藥品中文", key: "age", sortDesc: null },
-  { name: "藥品英文", key: "age", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "退庫數量", key: "age", sortDesc: null },
-  { name: "驗收人員", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -172,7 +156,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(11, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(3, minmax(90px, 180px)) 1fr;
 }
 .management {
   position: relative;
