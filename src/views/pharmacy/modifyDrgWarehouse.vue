@@ -13,6 +13,8 @@
       <DtxInputGroup prepend="採購人員">
         <el-input readonly :value="his.chDrgPurchasePerson" />
       </DtxInputGroup>
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
