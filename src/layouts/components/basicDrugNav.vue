@@ -1,7 +1,7 @@
 <template>
   <h2 class="pt-3 text-base font-thin text-gray-400">
     <span @click="open('https://xd.adobe.com/view/29fb97b8-9810-491b-b03f-96951dd35f75-7ca8/')">藥</span>
-    <span @click="open('https://xd.adobe.com/view/4905a95e-4e64-4311-9351-8e8eff2225a6-1c56/')">局</span>
+    <span @click="open('https://xd.adobe.com/view/acb6b4a0-7b02-4ff9-9975-48e18266ae47-f9e5/')">局</span>
     / 基本資料設定
   </h2>
   <div
