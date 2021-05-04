@@ -35,12 +35,6 @@
         <DtxInputGroup prepend="申請數量" labelWidth="120">
           <InputNumber class="w-full" v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="撥補數量" labelWidth="120">
-          <InputNumber class="w-full" v-model="his.intDrgCatchNum" placeholder="請輸入撥補數量" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="撥補人員" labelWidth="120">
-          <el-input v-model="his.chDrgCatchPerson" placeholder="請輸入撥補人員" />
-        </DtxInputGroup>
 
         <DtxInputGroup prepend="申領備註" labelWidth="120">
           <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
@@ -74,11 +68,6 @@
             <div>申請數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrgApplyNum" placeholder="請輸入申請數量" />
           </li>
-          <li class="flex space-x-2">
-            <div>撥補數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrgCatchNum" placeholder="請輸入撥補數量" />
-          </li>
-          <li>撥補人員: {{ item.chDrgCatchPerson }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
