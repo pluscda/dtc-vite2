@@ -570,7 +570,7 @@ main {
     grid-gap: 5px;
     background: #f9f9f9;
     border: 1px solid #d7dce1;
-    padding: 5px;
+    padding: 10px;
     grid-gap: 10px;
     width: 96vw;
     border-radius: 10px;
