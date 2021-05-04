@@ -13,6 +13,8 @@
       <DtxInputGroup prepend="採購人員">
         <el-input readonly :value="his.chDrgPurchasePerson" />
       </DtxInputGroup>
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -46,12 +48,13 @@
       <div>{{ item.chDrgEnName || "暫無資料" }}</div>
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
+      <div><el-input v-model="his.chDrgWarningMsg" placeholder="請輸入" /></div>
       <div>
         <el-select filterable v-model="item.closed" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.text"> </el-option>
         </el-select>
       </div>
+      <div><el-input v-model="his.chDrgWarningMsg" placeholder="請輸入採購單備註" /></div>
     </main>
     <footer class="mt-10">
       <Button label="返回採購單管理" @click="$router.go(-1)" />
@@ -75,10 +78,11 @@ let headers = [
   { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "採購數量", key: "intDrugApplyNum", sortDesc: null },
-  { name: "現有存量", key: "unknow", sortDesc: null },
   { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
+  { name: "現有存量", key: "unknow", sortDesc: null },
+  { name: "採購數量", key: "intDrugApplyNum", sortDesc: null },
   { name: "是否到貨", key: "unknow", sortDesc: null },
+  { name: "備註", key: "intDrugApplyNum", sortDesc: null },
 ];
 
 export default {
@@ -166,7 +170,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(7, 180px) 1fr;
+  grid-template-columns: 60px repeat(8, 120px) 1fr;
 }
 .management {
   position: relative;
