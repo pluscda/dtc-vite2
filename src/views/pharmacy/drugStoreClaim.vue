@@ -4,12 +4,12 @@
       <div>藥品申請單管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="採購日期">
+      <DtxInputGroup prepend="申請日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
-      <DtxInputGroup prepend="採購單號">
+      <DtxInputGroup prepend="申請單號">
         <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
@@ -20,8 +20,8 @@
       <DtxInputGroup prepend="申請人員">
         <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇結案狀態" class="border-l-0">
+      <DtxInputGroup prepend="訂單狀態">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -58,16 +58,9 @@
       </div>
 
       <div>{{ item.chDrgPurchaseId || "暫無資料" }}</div>
-      <div>{{ twTime(item.tiDrgPurchaseDate) || "暫無資料" }}</div>
+      <div>{{ "暫無資料" }}</div>
       <div>{{ item.status || "暫無資料" }}</div>
       <div>{{ item.chDrgPurchasePerson || "暫無資料" }}</div>
-      <div>{{ item.chDrgHisId || "暫無資料" }}</div>
-      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgUnitBy || "暫無資料" }}</div>
-      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
-      <div>{{ item.chDrgDoseType || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -85,17 +78,10 @@ import { useRouter } from "vue-router";
 
 //身分證號
 let headers = [
-  { name: "採購單號", key: "chDrgPurchaseId", sortDesc: null },
-  { name: "採購日期", key: "tiDrgPurchaseDate", sortDesc: null },
-  { name: "結案狀態", key: "status", sortDesc: null },
+  { name: "申請單號", key: "chDrgPurchaseId", sortDesc: null },
+  { name: "申請日期", key: "tiDrgPurchaseDate", sortDesc: null },
+  { name: "訂單狀態", key: "status", sortDesc: null },
   { name: "申請人員", key: "chDrgPurchasePerson", sortDesc: null },
-  { name: "健保代碼", key: "chDrgHisId", sortDesc: null },
-  { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
-  { name: "藥品中文", key: "chDrgCnName", sortDesc: null },
-  { name: "藥品英文", key: "chDrgEnName", sortDesc: null },
-  { name: "單位", key: "chDrgUnitBy", sortDesc: null },
-  { name: "申請數量", key: "intDrugApplyNum", sortDesc: null },
-  { name: "劑型", key: "chDrgDoseType", sortDesc: null },
 ];
 
 export default {
@@ -189,7 +175,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 100px 120px 150px repeat(9, 1fr);
+  grid-template-columns: 100px repeat(3, 180px) 1fr;
 }
 .management {
   position: relative;
