@@ -39,12 +39,10 @@ app.component('InputNumber',InputNumber)
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
-import DUMMYLIST from "./dummyData.js"
-import drgList from "/@/assets/drg.json"
-const dummyList = DUMMYLIST.map( s => ({ label: s.name, value: s.name}));
+let drgList = [];
 app.config.globalProperties.R = R;
-app.config.globalProperties.dummyList = dummyList;
-app.config.globalProperties.drgList = drgList;
+app.config.globalProperties.dummyList = [];
+app.config.globalProperties.drgList = [];
 // get Drop Down list 
 app.config.globalProperties.chDrgUnitList = getDDL('chUseUnit', drgList);//用藥單位
 app.config.globalProperties.chDrgFreqNoList = getDDL('chFreqNo', drgList);
