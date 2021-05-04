@@ -4,59 +4,60 @@
       <div>編輯藥品資料/藥理資料</div>
     </header>
 
-    <h1 class="my-3 drgu-add-title dtc-text">編輯藥品資料</h1>
-
+    <h1 class="my-3 drgu-add-title dtc-text !text-xl">編輯藥品資料</h1>
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="健保代碼" labelWidth="120">
         <el-input v-model="his.hisId" placeholder="請輸入健保代碼" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="用藥單位" labelWidth="120">
+      <DtxInputGroup prepend="藥品分類" labelWidth="120">
         <el-select filterable v-model="his.chDrgUnit" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in chDrgUnitList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="主成分及含量" labelWidth="120">
-        <el-input v-model="his.chDrgContain" placeholder="請輸入主成分及含量" />
+      <DtxInputGroup prepend="管制用藥" labelWidth="120">
+        <el-select filterable v-model="his.chDrgControlType" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in chDrgCtrlTypeList" :key="item" :label="item" :value="item"> </el-option>
+        </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="適應症狀1" labelWidth="120">
-        <el-input v-model="his.chSymptom1" placeholder="請輸入適應症狀1" />
+      <DtxInputGroup prepend="原核定價" labelWidth="120">
+        <el-input v-model="his.rlDrgOriginalPrice" placeholder="請輸入原核定價" />
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
         <el-input v-model="his.chHospitalId" placeholder="請輸入院內代碼" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="用藥單位" labelWidth="120">
+        <el-select filterable v-model="his.chDrgControlType" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in chDrgCtrlTypeList" :key="item" :label="item" :value="item"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="皮試標誌" labelWidth="120">
+        <el-input v-model="his.chDrgContain" placeholder="請輸入皮試標誌" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="新核定價" labelWidth="120">
+        <el-input v-model="his.rlDrgNewPrice" placeholder="請輸入新核定價" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="中文藥品" labelWidth="120">
+        <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥品" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥頻率" labelWidth="120">
         <el-select filterable v-model="his.chDrgFrequency" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in chDrgFreqNoList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="庫存上限" labelWidth="120">
-        <el-input v-model="his.intDrgStockMax" placeholder="請輸入庫存上限" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="適應症狀2" labelWidth="120">
-        <el-input v-model="his.chSymptom2" placeholder="請輸入適應症狀2" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="藥品中文" labelWidth="120">
-        <el-input v-model="his.chDrgCnName" placeholder="請輸入藥品中文" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="原核定價" labelWidth="120">
-        <el-input v-model="his.rlDrgOriginalPrice" placeholder="請輸入原核定價" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="庫存下限" labelWidth="120">
-        <el-input v-model="his.intDrgStockMin" placeholder="請輸入庫存下限" />
-      </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
         <el-select filterable v-model="his.chDrgAntibiotics" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥品英文" labelWidth="120">
-        <el-input v-model="his.chDrgEnName" placeholder="請輸入藥品中文" />
+      <DtxInputGroup prepend="自費價格" labelWidth="120">
+        <el-input v-model="his.rlDrgSelfPayPrice" placeholder="請輸入自費價格" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="新核定價" labelWidth="120">
-        <el-input v-model="his.rlDrgNewPrice" placeholder="請輸入原核定價" />
+
+      <DtxInputGroup prepend="英文藥品" labelWidth="120">
+        <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥品" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="產地" labelWidth="120">
-        <el-select filterable v-model="his.chDrgCountryFrom" placeholder="請選擇" class="border-l-0">
+      <DtxInputGroup prepend="給藥途徑" labelWidth="120">
+        <el-select filterable v-model="his.chDrgGivenBy" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -65,74 +66,84 @@
           <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="學名" labelWidth="120">
-        <el-input v-model="his.chDrgAlias" placeholder="請輸入學名" />
+      <DtxInputGroup prepend="生效日期" labelWidth="120">
+        <Calendar class="h-10 w-full" v-model="his.tiDrgEffectTime" placeholder="請輸入生效日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="自費價格" labelWidth="120">
-        <el-input v-model="his.rlDrgSelfPayPrice" placeholder="請輸入自費價格" />
+
+      <DtxInputGroup prepend="藥品學名" labelWidth="120">
+        <el-input v-model="his.chDrgAlias" placeholder="請輸入藥品學名" />
       </DtxInputGroup>
+
+      <DtxInputGroup prepend="主成分及含量" labelWidth="120">
+        <el-input v-model="his.chSymptom1" placeholder="請輸入主成分及含量" />
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="現有庫存量" labelWidth="120">
+        <el-input v-model="his.chDrgForbidden" placeholder="請輸入現有庫存量" />
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="發文號" labelWidth="120">
+        <el-input v-model="his.chDrgIssueId" placeholder="請輸入發文號" />
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="藥品劑型" labelWidth="120">
+        <el-select filterable v-model="his.chDrgAntibioticsLevel" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="產地" labelWidth="120">
+        <el-select filterable v-model="his.chDrgCountryFrom" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="存放位置" labelWidth="120">
+        <el-input v-model="his.chDrgIssueId" placeholder="請輸入存放位置" />
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="ATC碼" labelWidth="120">
+        <el-input v-model="his.chDrgAtcCode" placeholder="請輸入ATC碼" />
+      </DtxInputGroup>
+
+      <DtxInputGroup prepend="藥品類別" labelWidth="120">
+        <el-select filterable v-model="his.chDrgType" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
         <el-select filterable v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in chDrgFactoryList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup prepend="管制用藥" labelWidth="120">
-        <el-select filterable v-model="his.chDrgControlType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgCtrlTypeList" :key="item" :label="item" :value="item"> </el-option>
-        </el-select>
+
+      <DtxInputGroup prepend="庫存上限" labelWidth="120">
+        <el-input v-model="his.intDrgStockMin" placeholder="請輸入庫存上限" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="劑型" labelWidth="120">
-        <el-select filterable v-model="his.chDrgDoseType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="生效日期" labelWidth="120">
-        <el-input v-model="his.tiDrgEffectTime" placeholder="請輸入生效日期" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="藥品分類" labelWidth="120">
-        <el-select filterable v-model="his.chDrgClassified" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="絕對禁忌" labelWidth="120">
-        <el-input v-model="his.chDrgForbidden" placeholder="請輸入絕對禁忌" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="類別" labelWidth="120">
-        <el-select filterable v-model="his.chDrgType" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="發文號" labelWidth="120">
-        <el-input v-model="his.chDrgIssueId" placeholder="請輸入發文號" />
-      </DtxInputGroup>
+
       <DtxInputGroup prepend="收費項目" labelWidth="120">
-        <el-select filterable v-model="his.chDrgChargeBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
+        <el-input v-model="his.chDrgAtcCode" placeholder="請輸入收費項目" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="給藥方式" labelWidth="120">
-        <el-select filterable v-model="his.chDrgGivenBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
+
+      <DtxInputGroup prepend="藥品規格" labelWidth="120">
+        <el-input v-model="his.chDrgStandard" placeholder="請輸入藥品規格" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="規格" labelWidth="120">
-        <el-input v-model="his.chDrgStandard" placeholder="請輸入規格" />
+
+      <DtxInputGroup prepend="保存期限" labelWidth="120">
+        <Calendar class="h-10 w-full" v-model="his.tiDrgEffectTime" placeholder="請輸入保存期限" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="ATC碼" labelWidth="120">
-        <el-input v-model="his.chDrgAtcCode" placeholder="請輸入ATC碼" />
+
+      <DtxInputGroup prepend="庫存下限" labelWidth="120">
+        <el-input v-model="his.intDrgStockMin" placeholder="請輸入庫存下限" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="皮膚試驗" labelWidth="120">
-        <el-select filterable v-model="his.chDrgSkinTest" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
-      <DtxInputGroup prepend="煎藥方式" labelWidth="120">
-        <el-select filterable v-model="his.chDrgSteamBy" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+      <DtxInputGroup prepend="單/複方" labelWidth="120">
+        <el-select filterable v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in chDrgFactoryList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
-    <h1 class="my-3 drgu-add-title dtc-text">藥理資料</h1>
+    <h1 class="my-3 drgu-add-title dtc-text !text-xl">藥理資料</h1>
     <main class="grid dtc-list-grid2">
       <DtxInputGroup prepend="適應症" labelWidth="144">
         <el-input type="textarea" autosize v-model="his.chDrgWarningMsg" placeholder="請輸入適應症" />
@@ -141,22 +152,22 @@
         <el-input type="textarea" autosize v-model="his.chDrgTakePreStepMsg" placeholder="請輸入不良反應/副作用" />
       </DtxInputGroup>
       <DtxInputGroup prepend="警語" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgSideEffectMsg" placeholder="請輸入警語" />
+        <el-input type="textarea" autosize v-model="his.chDrgSideEffectMsg" placeholder="請輸入警語" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用法與用量" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgSideEffectMsg" placeholder="請輸入用法與用量" />
+        <el-input type="textarea" autosize v-model="his.chDrgSideEffectMsg" placeholder="請輸入用法與用量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="使用禁忌" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入使用禁忌" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入使用禁忌" />
       </DtxInputGroup>
       <DtxInputGroup prepend="懷孕相關" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入懷孕相關" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入懷孕相關" />
       </DtxInputGroup>
       <DtxInputGroup prepend="交互作用" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入交互作用" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入交互作用" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品外觀" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入藥品外觀" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入藥品外觀" />
       </DtxInputGroup>
       <div class="dtc-grid-fileupload dtc-text">
         <DtxInputGroup prepend="圖片名稱" labelWidth="144">

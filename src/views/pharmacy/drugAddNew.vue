@@ -154,22 +154,22 @@
         <el-input type="textarea" autosize v-model="his.chDrgTakePreStepMsg" placeholder="請輸入不良反應/副作用" />
       </DtxInputGroup>
       <DtxInputGroup prepend="警語" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgSideEffectMsg" placeholder="請輸入警語" />
+        <el-input type="textarea" autosize v-model="his.chDrgSideEffectMsg" placeholder="請輸入警語" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用法與用量" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgSideEffectMsg" placeholder="請輸入用法與用量" />
+        <el-input type="textarea" autosize v-model="his.chDrgSideEffectMsg" placeholder="請輸入用法與用量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="使用禁忌" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入使用禁忌" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入使用禁忌" />
       </DtxInputGroup>
       <DtxInputGroup prepend="懷孕相關" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入懷孕相關" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入懷孕相關" />
       </DtxInputGroup>
       <DtxInputGroup prepend="交互作用" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入交互作用" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入交互作用" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品外觀" labelWidth="144">
-        <el-input type="textarea" v-model="his.chDrgKeepSafeMsg" placeholder="請輸入藥品外觀" />
+        <el-input type="textarea" autosize v-model="his.chDrgKeepSafeMsg" placeholder="請輸入藥品外觀" />
       </DtxInputGroup>
       <div class="dtc-grid-fileupload dtc-text">
         <DtxInputGroup prepend="圖片名稱" labelWidth="144">
