@@ -122,18 +122,21 @@
         <DtxInputGroup prepend="脈搏" labelWidth="104" append="次/分">
           <el-input v-model="selfFillForm.pulse" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="體重" labelWidth="104" class="w-28">
+          <div class="flex gap-2">
+            <el-select filterable v-model="selfFillForm.weightGain.answer1" class="border-l-0">
+              <el-option v-for="item in weightGainOptions1" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+            </el-select>
+            <el-select filterable v-model="selfFillForm.weightGain.answer2" class="border-l-0">
+              <el-option v-for="item in weightGainOptions2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+            </el-select>
+            <el-input v-model="selfFillForm.weightGain.answer3" />
+            <div style="padding-top: 8px" class="!w-10">kg，期間:</div>
+            <el-input v-model="selfFillForm.weightGain.answer4" placeholder="請請輸入日期" />
+          </div>
+        </DtxInputGroup>
       </div>
-      <DtxInputGroup class="basic-info basic-info-secion2" prepend="體重" labelWidth="104">
-        <el-select filterable v-model="selfFillForm.weightGain.answer1" class="border-l-0">
-          <el-option v-for="item in weightGainOptions1" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-        <el-select filterable v-model="selfFillForm.weightGain.answer2" class="border-l-0">
-          <el-option v-for="item in weightGainOptions2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-        <el-input v-model="selfFillForm.weightGain.answer3" />
-        <div style="padding-top: 8px">kg，期間:</div>
-        <el-input v-model="selfFillForm.weightGain.answer4" placeholder="請請輸入日期" />
-      </DtxInputGroup>
+
       <div class="basic-info basic-info-secion3">
         <DtxInputGroup prepend="菸" labelWidth="104">
           <el-select filterable v-model="selfFillForm.smoke" class="border-l-0">
@@ -155,17 +158,13 @@
           </el-select>
         </DtxInputGroup>
       </div>
-
-      <DtxInputGroup
-        class="basic-info"
-        prepend="檳榔"
-        labelWidth="104"
-        style="grid-column: span 5; display: grid; grid-template-columns: 104px 86px; background: #f9f9f9; border: 1px solid #d7dce1; padding: 5px"
-      >
-        <el-select filterable v-model="selfFillForm.betelNut" class="border-l-0">
-          <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
-        </el-select>
-      </DtxInputGroup>
+      <div class="basic-info">
+        <DtxInputGroup prepend="檳榔" labelWidth="104" style="grid-column: span 5">
+          <el-select filterable v-model="selfFillForm.betelNut" class="border-l-0">
+            <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          </el-select>
+        </DtxInputGroup>
+      </div>
       <div class="basic-info basic-info-secion4">
         <DtxInputGroup prepend="酒" labelWidth="104">
           <el-select filterable v-model="selfFillForm.liqueur" class="border-l-0">
@@ -576,7 +575,11 @@ main {
     grid-gap: 10px;
   }
   .basic-info-secion1 {
-    grid-template-columns: 190px 190px repeat(1, 180px) 200px 210px 200px;
+    grid-template-columns: 190px 190px 180px 200px 210px;
+    height: auto;
+    > div {
+      height: 40px;
+    }
   }
   .basic-info-secion2 {
     grid-template-columns: 104px 120px 104px 104px 104px 140px;
