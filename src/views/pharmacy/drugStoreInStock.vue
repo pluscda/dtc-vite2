@@ -16,7 +16,6 @@
       <DtxInputGroup prepend="現有庫存">
         <el-input placeholder="搜尋現有庫存" v-model="searchDrgMaker" />
       </DtxInputGroup>
-
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
@@ -102,19 +101,12 @@ export default {
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
 
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
-
     return {
       ...toRefs(state),
       getList,
       headers,
       searchDrugId,
       searchDrugName,
-      toggleDetail,
       sort,
       clearFilters,
       removeItem,
