@@ -52,7 +52,11 @@
           <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.text"> </el-option>
         </el-select>
       </div>
+      <div>
+        <Calendar class="h-10 w-full" v-model="item.mydate" placeholder="請輸入有效日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      </div>
     </main>
+
     <footer class="mt-10">
       <Button label="返回藥房入庫單管理" @click="$router.go(-1)" />
     </footer>
@@ -76,9 +80,10 @@ let headers = [
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
   { name: "採購數量", key: "intDrugApplyNum", sortDesc: null },
-
   { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
   { name: "是否入庫", key: "unknow", sortDesc: null },
+  { name: "有效日期", key: "unknow", sortDesc: null },
+  //
 ];
 
 export default {
@@ -166,7 +171,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(5, 200px) 1fr 120px;
+  grid-template-columns: 60px repeat(5, 200px) 1fr 120px 180px;
 }
 .management {
   position: relative;
