@@ -573,6 +573,8 @@ main {
     border: 1px solid #d7dce1;
     padding: 5px;
     grid-gap: 10px;
+    width: 96vw;
+    border-radius: 10px;
   }
   .basic-info-secion1 {
     grid-template-columns: 190px 190px 180px 200px 210px;
