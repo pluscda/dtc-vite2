@@ -290,7 +290,6 @@
     </main>
     <footer class="mt-5 mb-10">
       <Button class="p-button-info" style="margin: 4px 0" @click="createItem">建立初診資料</Button>
-      <Button class="p-button-secondary" style="margin: 4px 10px">取消</Button>
     </footer>
   </div>
 </template>

@@ -148,8 +148,7 @@
       </DtxInputGroup>
     </main>
     <footer class="mt-5 mb-10">
-      <Button class="p-button-info" style="margin: 4px 0">儲存</Button>
-      <Button class="p-button-secondary" style="margin: 4px 10px">取消</Button>
+      <Button class="p-button-info" style="margin: 4px 0">儲存基本資料</Button>
     </footer>
   </div>
 </template>
