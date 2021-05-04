@@ -83,7 +83,7 @@
         </div>
       </DtxInputGroup>
 
-      <DtxInputGroup prepend="電子信箱" labelWidth="104" style="grid-column: span 2; display: grid; grid-template-columns: 104px 1fr; grid-column-gap: 5px">
+      <DtxInputGroup prepend="電子信箱" labelWidth="104" style="grid-column: span 2">
         <el-input v-model="basicCard.email" />
       </DtxInputGroup>
       <DtxInputGroup prepend="緊急聯絡人" labelWidth="104">
