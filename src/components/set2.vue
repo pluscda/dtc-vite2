@@ -7,7 +7,7 @@
       <div>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
-    <Textarea class="w-full" style="height: 250px" spellcheck="false" placeholder="請請輸入客觀檢查..."></Textarea>
+    <Textarea class="w-full" style="height: 250px" spellcheck="false" placeholder="請輸入客觀檢查..."></Textarea>
   </section>
 </template>
 
