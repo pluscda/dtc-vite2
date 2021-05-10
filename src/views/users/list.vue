@@ -1,7 +1,7 @@
 <template>
   <div class="bg-skin-color">
     <header class="grid pr-2 dtc-page-header dtc-page-header__grid">
-      <div class="">病患基本資料 / 就醫身份 {{ msg }}</div>
+      <div class="">掛號{{ msg }}</div>
       <div class="flex items-center ml-4">
         <InputSwitch v-model="takeCard" class="mt-0"></InputSwitch>
         <span @click="takeCard = !takeCard">初診</span>
