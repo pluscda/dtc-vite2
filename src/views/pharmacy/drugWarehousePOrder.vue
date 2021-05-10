@@ -159,7 +159,7 @@ export default {
     };
   },
   mounted() {
-    this.$primevue.config.locale = twDate;
+    this.$primevue.config.locale = primeVueDateFormat;
   },
 };
 </script>

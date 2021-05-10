@@ -151,7 +151,7 @@ export default {
     this.his = {};
     this.his.tiDrgApplyDate = dayjs().format("YYYY-MM-DD");
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
-    this.$primevue.config.locale = twDate;
+    this.$primevue.config.locale = primeVueDateFormat;
   },
 
   beforeUnmount() {

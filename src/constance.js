@@ -1,4 +1,4 @@
-window.twDate = {
+window.primeVueDateFormat = {
     firstDayOfWeek: 0,
     dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
     dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
