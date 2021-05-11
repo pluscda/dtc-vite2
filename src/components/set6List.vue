@@ -1,6 +1,7 @@
 <template>
   <section style="width: 99vw">
     <header class="ml-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
+      <div>序號</div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
@@ -17,10 +18,11 @@
     </header>
     <main
       class="ml-1 text-black cursor-pointer dtc-grid-header dtc-grid-body dtc-template-columns"
-      v-for="(item, i) in list.slice(0, 5)"
+      v-for="(item, i) in 3"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
+      <div>{{ i + 1 }}</div>
       <div class="flex flex-none space-x-2">
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
@@ -28,17 +30,32 @@
           </template>
         </el-popconfirm>
       </div>
-      <div>{{ i + 1 }}</div>
-      <div>{{ item.registerTimestamp && item.registerTimestamp }}</div>
-      <div>{{ item.registerSection || "暫無資料" }}</div>
-      <div>{{ item.registerNo || "暫無資料" }}</div>
-      <div>{{ item.registerName || "暫無資料" }}</div>
-      <div>{{ item.registerAlias || "暫無資料" }}</div>
-      <div>{{ item.category || "暫無資料" }}</div>
-      <div>{{ item.doctorNo || "暫無資料" }}</div>
-      <div>{{ item.doctorName || "暫無資料" }}</div>
-      <div>{{ item.doctorName || "暫無資料" }}</div>
-      <div>{{ item.totalRegisterNum || "暫無資料" }}</div>
+      <div>
+        <el-select class="w-full" v-model="input" filterable placeholder="請選擇"></el-select>
+      </div>
+      <div>
+        <el-select class="w-full" v-model="input" filterable placeholder="請選擇"></el-select>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <Checkbox v-model="checked" :binary="true" class="transform -translate-y-2" />
+      </div>
+      <div>
+        <Checkbox v-model="checked" :binary="true" class="transform -translate-y-2" />
+      </div>
+      <div>
+        <Checkbox v-model="checked" :binary="true" class="transform -translate-y-2" />
+      </div>
+      <div><el-input placeholder="" v-model="input" clearable> </el-input></div>
+      <div><el-input placeholder="" v-model="input" clearable> </el-input></div>
     </main>
 
     <!-- 分頁 -->
@@ -56,19 +73,22 @@ import { useList } from "/@/hooks/useHis.js";
 let headers = [
   { name: "治療處理代碼", key: "registerTimestamp", sortDesc: null },
   { name: "治療處理名稱", key: "registerSection", sortDesc: null },
-  { name: "次量", key: "registerNo", sortDesc: null },
-  { name: "單位", key: "registerName", sortDesc: null },
-  { name: "頻率", key: "registerAlias", sortDesc: null },
+  { name: "體檢/部位", key: "registerNo", sortDesc: null },
   { name: "檢查摘要", key: "category", sortDesc: null },
-  { name: "地點", key: "doctorNo", sortDesc: null },
-  { name: " 計價", key: "doctorName", sortDesc: null },
-  { name: "自費", key: "doctorName", sortDesc: null },
-  { name: "時間", key: "totalRegisterNum", sortDesc: null },
-  { name: "總量", key: "totalCheckedNum", sortDesc: null },
+  { name: "數量", key: "doctorNo", sortDesc: null },
+  { name: " 緊急", key: "doctorName", sortDesc: null },
+  { name: "計價", key: "doctorName", sortDesc: null },
+  { name: "自費", key: "totalRegisterNum", sortDesc: null },
+  { name: "時間", key: "totalCheckedNum", sortDesc: null },
+  { name: "地點", key: "totalCheckedNum", sortDesc: null },
 ];
+
 export default {
   data() {
-    return {};
+    return {
+      input: "",
+      checked: "",
+    };
   },
   components: {
     Pagination,
@@ -115,7 +135,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 80px 130px repeat(9, minmax(90px, 120px)) minmax(90px, 1fr);
+  grid-template-columns: 60px 70px 160px 200px repeat(6, 110px) 120px 1fr;
 }
 
 #app .dtc-grid-header__divs {
