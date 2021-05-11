@@ -51,7 +51,7 @@
         </el-popconfirm>
       </div>
 
-      <div>{{ item.hisId || "暫無資料" }}</div>
+      <div>{{ item.chDrgId || "暫無資料" }}</div>
       <div>{{ item.chHospitalId || "暫無資料" }}</div>
       <div :title="item.chDrgCnName">{{ item.chDrgCnName || "暫無資料" }}</div>
       <div :title="item.chDrgEnName">{{ item.chDrgEnName || "暫無資料" }}</div>
@@ -74,7 +74,7 @@ import { pharmacyTab$ } from "/@/store";
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "hisId", sortDesc: null },
+  { name: "健保代碼", key: "chDrgId", sortDesc: null },
   { name: "院內代碼", key: "chHospitalId", sortDesc: null },
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
@@ -96,7 +96,7 @@ export default {
     pharmacyTab$.next("0");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-infos");
 
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
