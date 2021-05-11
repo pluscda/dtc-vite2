@@ -37,10 +37,11 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1 animate__fadeInUp"
       v-for="(item, i) in list"
       :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      style="animation-duration: 0.3s"
+      :style="i % 2 == 0 ? `animation-duration:${i * 0.1}s ;background-color: #F5F5F5;` : `animation-duration:${i * 0.1}s;background-color: #E0E0E0;`"
     >
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" @click.stop="editItem(item)" />
