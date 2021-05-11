@@ -54,7 +54,9 @@
       <div>
         <Checkbox v-model="checked" :binary="true" class="transform -translate-y-2" />
       </div>
-      <div><el-input placeholder="" v-model="input" clearable> </el-input></div>
+      <div>
+        <Calendar class="h-10 w-full" v-model="tiDrgEffectTime" placeholder="請輸入" :showIcon="true" dateFormat="yy-mm-dd" />
+      </div>
       <div><el-input placeholder="" v-model="input" clearable> </el-input></div>
     </main>
 
@@ -88,10 +90,14 @@ export default {
     return {
       input: "",
       checked: "",
+      tiDrgEffectTime: "",
     };
   },
   components: {
     Pagination,
+  },
+  mounted() {
+    this.$primevue.config.locale = primeVueDateFormat;
   },
   setup() {
     const router = useRouter();
@@ -135,7 +141,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 70px 160px 200px repeat(6, 110px) 120px 1fr;
+  grid-template-columns: 60px 70px 160px 200px repeat(6, 110px) 160px 1fr;
 }
 
 #app .dtc-grid-header__divs {
