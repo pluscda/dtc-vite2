@@ -19,7 +19,7 @@
         <Button label="刪除" class="p-button-sm p-button-warning w-11" />
       </div>
       <div class="no-ring" style="border-color: #9ca3af !important">
-        <el-select v-model="input" filterable placeholder="請選擇"></el-select>
+        <el-select v-model="input" filterable placeholder="請輸入或選擇"></el-select>
       </div>
       <div class="no-ring">
         <el-input style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
