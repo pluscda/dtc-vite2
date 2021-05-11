@@ -14,8 +14,8 @@
         {{ item.name }}
       </div>
     </header>
-    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 45px" v-for="(item, i) in 4" :key="i">
-      <div class="" style="border-color: #9ca3af !important">
+    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in 4" :key="i">
+      <div style="border-color: #9ca3af !important">
         <Button label="刪除" class="p-button-sm p-button-warning w-11" />
       </div>
       <div class="no-ring" style="border-color: #9ca3af !important">
