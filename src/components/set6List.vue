@@ -5,15 +5,6 @@
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
-        <span v-show="item.sortDesc === null">
-          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-        </span>
-        <span v-show="item.sortDesc === false">
-          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-        </span>
-        <span v-show="item.sortDesc">
-          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
       </div>
     </header>
     <main
