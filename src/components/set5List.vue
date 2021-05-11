@@ -53,7 +53,7 @@
         <el-input placeholder="" v-model="input" clearable> </el-input>
       </div>
       <div>
-        <el-checkbox v-model="checked"></el-checkbox>
+        <Checkbox v-model="checked" :binary="true" />
       </div>
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
@@ -143,7 +143,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 100px 120px 1fr repeat(11, 80px);
+  grid-template-columns: 60px 100px 120px 1fr repeat(11, 90px);
 }
 
 #app .dtc-grid-header__divs {
