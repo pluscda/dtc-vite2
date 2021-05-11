@@ -114,4 +114,8 @@
     background-image: none !important;
     color:  lighten(#10579b, $amount: 55) !important;
   }
+  .no-ring input:focus {
+     --tw-ring-color: transparent !important;
+   }
 }
+

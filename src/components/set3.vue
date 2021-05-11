@@ -14,15 +14,15 @@
         {{ item.name }}
       </div>
     </header>
-    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 45px" v-for="(item, i) in [{}, {}, {}]" :key="i">
+    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 45px" v-for="(item, i) in 4" :key="i">
       <div class="" style="border-color: #9ca3af !important">
         <Button label="刪除" class="p-button-sm p-button-warning w-11" />
       </div>
       <div class="" style="border-color: #9ca3af !important">
-        <el-select v-model="item.value" filterable placeholder="請選擇"></el-select>
+        <el-select v-model="input" filterable placeholder="請選擇"></el-select>
       </div>
-      <div class="" style="box-shadow: 0px !important">
-        <el-input size="" style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
+      <div class="">
+        <el-input class="no-ring" size="" style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
       </div>
     </main>
   </section>

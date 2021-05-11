@@ -84,5 +84,8 @@
     background: none !important;
     background: #898b8d !important;
   }
+  .no-ring input:focus {
+     --tw-ring-color: transparent !important;
+   }
   
 }
