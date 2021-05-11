@@ -1,18 +1,10 @@
 <template>
   <section style="width: 99vw">
     <header class="ml-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
+      <div>序號</div>
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
-        <span v-show="item.sortDesc === null">
-          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-        </span>
-        <span v-show="item.sortDesc === false">
-          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-        </span>
-        <span v-show="item.sortDesc">
-          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
       </div>
     </header>
     <main
@@ -21,6 +13,7 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
+      <div>{{ i + 1 }}</div>
       <div class="flex flex-none space-x-2">
         <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
@@ -29,16 +22,45 @@
           </template>
         </el-popconfirm>
       </div>
-      <div>{{ i + 1 }}</div>
-      <div>{{ "暫無資料" }}</div>
-      <div>{{ item.registerSection || "暫無資料" }}</div>
-      <div>{{ item.registerNo || "暫無資料" }}</div>
-      <div>{{ item.registerName || "暫無資料" }}</div>
-      <div>{{ item.registerAlias || "暫無資料" }}</div>
-      <div>{{ item.category || "暫無資料" }}</div>
-      <div>{{ item.doctorNo || "暫無資料" }}</div>
-      <div>{{ item.doctorName || "暫無資料" }}</div>
-      <div>{{ item.totalRegisterNum || "暫無資料" }}</div>
+      <div>
+        <el-select v-model="input" filterable placeholder="請選擇"></el-select>
+      </div>
+      <div>
+        <el-select class="w-full" v-model="input" filterable placeholder="請選擇"></el-select>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-checkbox v-model="checked"></el-checkbox>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div>
+        <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
     </main>
 
     <!-- 分頁 -->
@@ -54,20 +76,27 @@ import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 import { useList } from "/@/hooks/useHis.js";
 let headers = [
-  { name: "藥品名稱", key: "registerTimestamp", sortDesc: null },
-  { name: "藥品類型", key: "registerSection", sortDesc: null },
-  { name: "給藥方式", key: "registerNo", sortDesc: null },
-  { name: "煎藥方式", key: "registerName", sortDesc: null },
-  { name: "單一用量", key: "registerAlias", sortDesc: null },
-  { name: "單位名稱", key: "category", sortDesc: null },
-  { name: "頻率代碼", key: "doctorNo", sortDesc: null },
-  { name: "頻率名稱", key: "doctorName", sortDesc: null },
-  { name: "天數", key: "totalRegisterNum", sortDesc: null },
+  { name: "代碼", key: "registerTimestamp", sortDesc: null },
+  { name: "藥品名稱", key: "registerSection", sortDesc: null },
+  { name: "日劑量", key: "registerNo", sortDesc: null },
+  { name: "次劑量", key: "registerName", sortDesc: null },
+  { name: "頻率", key: "registerAlias", sortDesc: null },
+  { name: "途徑", key: "category", sortDesc: null },
+  { name: "日份", key: "doctorNo", sortDesc: null },
+  { name: "單位", key: "doctorName", sortDesc: null },
+  { name: "調劑", key: "totalRegisterNum", sortDesc: null },
   { name: "總量", key: "totalCheckedNum", sortDesc: null },
+  { name: "慢簽", key: "doctorName", sortDesc: null },
+  { name: "健保單價", key: "totalRegisterNum", sortDesc: null },
+  { name: "自費單價", key: "totalCheckedNum", sortDesc: null },
 ];
+
 export default {
   data() {
-    return {};
+    return {
+      checked: false,
+      input: "",
+    };
   },
   components: {
     Pagination,
@@ -114,7 +143,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 110px 250px repeat(8, minmax(90px, 120px)) minmax(90px, 1fr);
+  grid-template-columns: 60px 100px 120px 1fr repeat(11, 80px);
 }
 
 #app .dtc-grid-header__divs {
