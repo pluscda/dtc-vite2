@@ -8,13 +8,37 @@
       <div>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
+    <header class="my-title relative dtc-grid-header dtc-grid-header__divs dtc-template-columns">
+      <div>操作</div>
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
+        {{ item.name }}
+      </div>
+    </header>
+    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 45px" v-for="(item, i) in [{}, {}, {}]" :key="i">
+      <div class="" style="border-color: #9ca3af !important">
+        <Button label="刪除" class="p-button-sm p-button-warning w-11" />
+      </div>
+      <div class="" style="border-color: #9ca3af !important">
+        <el-select v-model="item.value" filterable placeholder="請選擇"></el-select>
+      </div>
+      <div class="" style="box-shadow: 0px !important">
+        <el-input size="" style="max-height: 20px" placeholder="請輸入內容" v-model="input" clearable> </el-input>
+      </div>
+    </main>
   </section>
 </template>
 
 <script>
+let headers = [
+  { name: "ICD10", key: "chDrgId", sortDesc: null },
+  { name: "診斷", key: "chHospitalId", sortDesc: null },
+];
 export default {
   data() {
-    return {};
+    return {
+      headers,
+      input: "",
+    };
   },
 };
 </script>
@@ -22,5 +46,14 @@ export default {
 <style lang="scss" scoped>
 .dtc-tabs::after {
   all: unset;
+}
+.dtc-template-columns {
+  height: 40px;
+  > div {
+    border-radius: 0px !important;
+    line-height: 34px;
+  }
+  width: 100%;
+  grid-template-columns: 70px 180px 1fr;
 }
 </style>

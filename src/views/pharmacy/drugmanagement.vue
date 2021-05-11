@@ -73,7 +73,6 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 
-//身分證號
 let headers = [
   { name: "健保代碼", key: "chDrgId", sortDesc: null },
   { name: "院內代碼", key: "chHospitalId", sortDesc: null },
