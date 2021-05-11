@@ -53,7 +53,7 @@
         <el-input placeholder="" v-model="input" clearable> </el-input>
       </div>
       <div>
-        <Checkbox v-model="checked" :binary="true" />
+        <Checkbox v-model="checked" :binary="true" class="transform -translate-y-2" />
       </div>
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
