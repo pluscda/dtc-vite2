@@ -16,7 +16,11 @@
     </header>
     <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in 4" :key="i">
       <div style="border-color: #9ca3af !important">
-        <Button label="刪除" class="p-button-sm p-button-warning w-11" />
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+          <template #reference>
+            <Button label="刪除" class="p-button-sm p-button-warning" />
+          </template>
+        </el-popconfirm>
       </div>
       <div class="no-ring" style="border-color: #9ca3af !important">
         <el-select v-model="input" filterable placeholder="請輸入或選擇"></el-select>
