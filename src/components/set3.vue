@@ -22,7 +22,7 @@
         <el-select v-model="item.value" filterable placeholder="請選擇"></el-select>
       </div>
       <div class="" style="box-shadow: 0px !important">
-        <el-input size="" style="max-height: 20px" placeholder="請輸入內容" v-model="input" clearable> </el-input>
+        <el-input size="" style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
       </div>
     </main>
   </section>
@@ -31,7 +31,7 @@
 <script>
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
-  { name: "診斷", key: "chHospitalId", sortDesc: null },
+  { name: "診斷內容", key: "chHospitalId", sortDesc: null },
 ];
 export default {
   data() {
