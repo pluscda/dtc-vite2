@@ -4,7 +4,7 @@
       <aside class="flex flex-col space-y-2 text-white left-nav">
         <component :is="dtcCurrentCmp"></component>
       </aside>
-      <router-view></router-view>
+      <transition name="fade"> <router-view></router-view> </transition>
     </main>
     <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>

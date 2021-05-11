@@ -46,8 +46,8 @@
       <div>{{ item.chDrgMakerId || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerAddress || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerPhone || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerContactPerson || "暫無資料" }}</div>
+      <div>{{ item.chDrgMakerPhone || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerBusinessId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
