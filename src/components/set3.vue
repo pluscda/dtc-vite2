@@ -35,7 +35,7 @@
       <div class="no-ring flex">
         <AutoComplete
           class="inline-block border-transparent transform -translate-y-1"
-          style="min-width: 575px; width: 575px; max-width: 575px"
+          style="width: clamp(100%, 100%, 100%)"
           placeholder="請輸入診斷內容"
           v-model="item.icdWords"
           :suggestions="item.filteredICDWords"

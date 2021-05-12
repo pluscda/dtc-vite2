@@ -21,7 +21,7 @@
           </template>
         </el-popconfirm>
       </div>
-      <div class="no-ring">
+      <div class="flex">
         <AutoComplete
           class="transform"
           style="max-height: 40px"
@@ -31,7 +31,7 @@
           field="name"
         />
       </div>
-      <div class="no-ring">
+      <div class="flex">
         <AutoComplete
           class="transform"
           style="max-height: 40px"
@@ -146,7 +146,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 70px 160px 200px repeat(6, 110px) 160px 1fr;
+  grid-template-columns: 60px 70px 190px 190px repeat(6, 110px) 160px 1fr;
 }
 
 #app .dtc-grid-header__divs {
