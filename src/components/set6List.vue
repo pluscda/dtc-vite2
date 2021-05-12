@@ -21,7 +21,7 @@
           </template>
         </el-popconfirm>
       </div>
-      <div>
+      <div class="no-ring">
         <AutoComplete
           class="transform"
           style="max-height: 40px"
@@ -31,7 +31,7 @@
           field="name"
         />
       </div>
-      <div>
+      <div class="no-ring">
         <AutoComplete
           class="transform"
           style="max-height: 40px"
