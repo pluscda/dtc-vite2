@@ -161,6 +161,16 @@ export const routes = [
         meta: { title: "dtcmodifydrgwarehouse", icon: "el-icon-s-home" },
       },
       {
+        path: "dtcmodifydrgwarehouseinventory",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehouseInventory.vue"),
+        name: "dtcmodifydrgwarehouseinventory",
+        meta: {
+          title: "dtcmodifydrgwarehouseinventory",
+          icon: "el-icon-s-home",
+        },
+      },
+      {
         path: "modifydrgmaker",
         component: () => import("/@/views/pharmacy/modifyDrgMaker.vue"),
         name: "modifyDragMaker",

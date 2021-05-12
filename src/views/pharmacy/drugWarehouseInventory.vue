@@ -92,11 +92,7 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button
-          label="入庫單明細"
-          class="p-button-sm"
-          @click="editItem(item)"
-        />
+        <Button label="明細" class="p-button-sm" @click="editItem(item)" />
       </div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
@@ -165,7 +161,7 @@ export default {
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
       global.editItem = { ...detail };
-      router.push("/pharmacy/dtcmodifydrgwarehouse");
+      router.push("/pharmacy/dtcmodifydrgwarehouseinventory");
     };
 
     return {
