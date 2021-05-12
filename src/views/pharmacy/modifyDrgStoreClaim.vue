@@ -88,7 +88,7 @@
     </main>
 
     <footer class="mt-10">
-      <Button label="返回藥庫盤點管理" @click="$router.go(-1)" />
+      <Button label="返回藥品申請單管理" @click="$router.go(-1)" />
     </footer>
   </section>
 </template>
