@@ -14,14 +14,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div>{{ i + 1 }}</div>
-      <div class="flex flex-none space-x-2">
-        <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
-        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
-          <template #reference>
-            <Button label="刪除" class="p-button-sm p-button-warning" />
-          </template>
-        </el-popconfirm>
-      </div>
+
       <div>
         <el-select v-model="input" filterable placeholder="請選擇"></el-select>
       </div>
@@ -60,6 +53,14 @@
       </div>
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
+      </div>
+      <div class="flex flex-none space-x-2">
+        <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+          <template #reference>
+            <Button label="刪除" class="p-button-sm p-button-warning" />
+          </template>
+        </el-popconfirm>
       </div>
     </main>
 
@@ -143,7 +144,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 100px 120px 1fr repeat(11, 90px);
+  grid-template-columns: 60px 100px 120px 1fr repeat(10, 90px) 120px;
 }
 
 #app .dtc-grid-header__divs {
