@@ -117,5 +117,11 @@
   .no-ring input:focus {
      --tw-ring-color: transparent !important;
    }
+   .pi-spinner {
+      color: white;
+    }
+    .p-autocomplete-input{
+      border:none;
+    }
 }
 

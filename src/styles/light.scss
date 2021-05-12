@@ -87,5 +87,11 @@
   .no-ring input:focus {
      --tw-ring-color: transparent !important;
    }
+   .pi-spinner {
+      color: black;
+    }
+    .p-autocomplete-input{
+      border:none;
+    }
   
 }

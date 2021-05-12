@@ -23,12 +23,25 @@
         </el-popconfirm>
       </div>
       <div class="no-ring">
-        <el-select v-model="item.icd10" filterable remote :remote-method="searchICD10(item)" :loading="item.loading" placeholder="請輸入">
-          <el-option v-for="opt in item.options" :key="opt.value" :label="opt.label" :value="opt.value"> </el-option>
-        </el-select>
+        <AutoComplete
+          class="border-transparent transform -translate-y-1"
+          placeholder="請輸入"
+          v-model="item.icd10"
+          :suggestions="item.filteredICD10"
+          @complete="searchICD10(item, $event)"
+          field="name"
+        />
       </div>
-      <div class="no-ring">
-        <el-input style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
+      <div class="no-ring flex">
+        <AutoComplete
+          class="inline-block border-transparent transform -translate-y-1"
+          style="min-width: 575px; width: 575px; max-width: 575px"
+          placeholder="請輸入診斷內容"
+          v-model="item.icdWords"
+          :suggestions="item.filteredICDWords"
+          @complete="searchICDWords(item, $event)"
+          field="name"
+        />
       </div>
     </main>
   </section>
@@ -51,12 +64,13 @@ export default {
     };
   },
   methods: {
-    searchICD10(item) {
-      console.log(item.icd10);
-      // if (item.icd10) {
-      //   console.log(item.icd10);
-      // }
-      // this.icd10$.next(item);
+    searchICD10(item, event) {
+      console.log(event.query);
+      // item.filteredICD10 = [];
+    },
+    searchICDWords(item, event) {
+      console.log(event.query);
+      // item.filteredICDWords = [];
     },
   },
 };
@@ -74,5 +88,10 @@ export default {
   }
   width: 100%;
   grid-template-columns: 70px 180px 1fr;
+}
+:deep(.p-autocomplete-input) {
+  width: 100%;
+  display: block;
+  border-color: transparent;
 }
 </style>

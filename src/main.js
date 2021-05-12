@@ -23,6 +23,7 @@ import ProgressSpinner from 'primevue/progressspinner';
 import Checkbox from 'primevue/checkbox';
 import Textarea from 'primevue/textarea';
 import InputNumber from 'primevue/inputnumber';
+import AutoComplete from 'primevue/autocomplete';
 
 const app = createApp(App);
 app.use(ElementPlus, { locale }).use(PrimeVue).use(router);
@@ -36,6 +37,7 @@ app.component('ProgressSpinner', ProgressSpinner);
 app.component('Checkbox',Checkbox);
 app.component('Textarea',Textarea);
 app.component('InputNumber',InputNumber)
+app.component('AutoComplete',AutoComplete)
 // DTC Custom UI components
 app.component('DtxInputGroup',DtxInputGroup);
 // Global setting
