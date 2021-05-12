@@ -130,15 +130,23 @@ export const routes = [
       },
       {
         path: "modifyDrgWarehousePOrder",
-        component: () => import("/@/views/pharmacy/modifyDrgWarehousePOrder.vue"),
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehousePOrder.vue"),
         name: "modifyDrgWarehousePOrder",
-        meta: { title: "編輯藥品資料modifyDrgWarehousePOrder", icon: "el-icon-s-home" },
+        meta: {
+          title: "編輯藥品資料modifyDrgWarehousePOrder",
+          icon: "el-icon-s-home",
+        },
       },
       {
         path: "modifyDrgWarehousePRequest",
-        component: () => import("/@/views/pharmacy/modifyDrgWarehousePRequest.vue"),
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehousePRequest.vue"),
         name: "modifyDrgWarehousePRequest",
-        meta: { title: "編輯藥品資料modifyDrgWarehousePRequest", icon: "el-icon-s-home" },
+        meta: {
+          title: "編輯藥品資料modifyDrgWarehousePRequest",
+          icon: "el-icon-s-home",
+        },
       },
       {
         path: "modifydrgstore",
@@ -151,6 +159,16 @@ export const routes = [
         component: () => import("/@/views/pharmacy/modifyDrgWarehouse.vue"),
         name: "dtcmodifydrgwarehouse",
         meta: { title: "dtcmodifydrgwarehouse", icon: "el-icon-s-home" },
+      },
+      {
+        path: "dtcmodifydrgwarehouseinventory",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehouseInventory.vue"),
+        name: "dtcmodifydrgwarehouseinventory",
+        meta: {
+          title: "dtcmodifydrgwarehouseinventory",
+          icon: "el-icon-s-home",
+        },
       },
       {
         path: "modifydrgmaker",
@@ -200,6 +218,12 @@ export const routes = [
         component: () => import("/@/views/pharmacy/drugWarehousing.vue"),
         name: "drugwarehousing",
         meta: { title: "入庫單管理", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouseinventory",
+        component: () => import("/@/views/pharmacy/drugWarehouseInventory.vue"),
+        name: "drugwarehouseinventory",
+        meta: { title: "藥庫盤點管理", icon: "el-icon-s-home" },
       },
       {
         path: "drugwarehouserequest",
@@ -292,7 +316,5 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-
-
 
 export default router;
