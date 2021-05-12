@@ -81,6 +81,20 @@ export const routes = [
     ],
   },
   {
+    path: "/diagnosis",
+    redirect: "/diagnosis/diseasecodemanagement",
+    component: Layout,
+    meta: { title: "診斷", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "diseasecodemanagement",
+        component: () => import("/@/views/diagnosis/diseaseCodeManagement.vue"),
+        name: "diseasecodemanagement",
+        meta: { title: "疾病代碼管理", icon: "el-icon-s-home" },
+      },
+    ],
+  },
+  {
     path: "/pharmacy",
     redirect: "/pharmacy/drugmanagement",
     component: LayoutWithSideBar,
