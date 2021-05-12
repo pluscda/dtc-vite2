@@ -35,6 +35,7 @@ export default {
     ]);
     const icons = reactive([
       "el-icon-zoom-in",
+      "el-icon-help",
       "el-icon-s-tools",
       "el-icon-folder-add",
       "el-icon-s-grid",
