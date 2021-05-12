@@ -60,6 +60,7 @@
           <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
         </span>
       </div>
+      <div>上傳</div>
     </header>
     <main
       class="mx-1 ml-1 text-black dtc-grid-header dtc-grid-body dtc-template-columns"
@@ -78,7 +79,7 @@
       <div>暫無資料</div>
       <div>暫無資料</div>
       <div>暫無資料</div>
-      <div></div>
+      <div><Checkbox v-model="checked" :binary="true" class="transform -translate-y-2" /></div>
     </main>
 
     <!-- 分頁 -->
@@ -105,7 +106,6 @@ let headers = [
   { name: "狀態", key: "totalWaitNum", sortDesc: null },
   { name: "時間", key: "doctorName", sortDesc: null },
   { name: "備註", key: "id", sortDesc: null },
-  { name: "上傳", key: "doctorName", sortDesc: null },
 ];
 
 let tabs = ["預約掛號", "預約住院", "慢行紀錄", "開立證明", "跨院調閱", "醫療影像", "手術排程", "檢驗報告"];
