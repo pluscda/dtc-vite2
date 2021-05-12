@@ -14,7 +14,7 @@
         {{ item.name }}
       </div>
     </header>
-    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in 4" :key="i">
+    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in items" :key="i">
       <div style="border-color: #9ca3af !important">
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
@@ -22,27 +22,56 @@
           </template>
         </el-popconfirm>
       </div>
-      <div class="no-ring" style="border-color: #9ca3af !important">
-        <el-select v-model="input" filterable placeholder="請輸入或選擇"></el-select>
-      </div>
       <div class="no-ring">
-        <el-input style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
+        <AutoComplete
+          class="border-transparent transform -translate-y-1"
+          placeholder="請輸入"
+          v-model="item.icd10"
+          :suggestions="item.filteredICD10"
+          @complete="searchICD10(item, $event)"
+          field="name"
+        />
+      </div>
+      <div class="no-ring flex">
+        <AutoComplete
+          class="inline-block border-transparent transform -translate-y-1"
+          style="min-width: 575px; width: 575px; max-width: 575px"
+          placeholder="請輸入診斷內容"
+          v-model="item.icdWords"
+          :suggestions="item.filteredICDWords"
+          @complete="searchICDWords(item, $event)"
+          field="name"
+        />
       </div>
     </main>
   </section>
 </template>
 
 <script>
+import { Subject } from "rxjs";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
 ];
+const items = [{}, {}, {}, {}];
 export default {
   data() {
     return {
       headers,
       input: "",
+      items,
+      icd10$: new Subject(),
     };
+  },
+  methods: {
+    searchICD10(item, event) {
+      console.log(event.query);
+      // item.filteredICD10 = [];
+    },
+    searchICDWords(item, event) {
+      console.log(event.query);
+      // item.filteredICDWords = [];
+    },
   },
 };
 </script>
@@ -59,5 +88,10 @@ export default {
   }
   width: 100%;
   grid-template-columns: 70px 180px 1fr;
+}
+:deep(.p-autocomplete-input) {
+  width: 100%;
+  display: block;
+  border-color: transparent;
 }
 </style>

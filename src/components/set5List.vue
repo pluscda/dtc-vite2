@@ -2,10 +2,11 @@
   <section style="width: 99vw">
     <header class="ml-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
       <div>序號</div>
-      <div>操作</div>
+
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
       </div>
+      <div>操作</div>
     </header>
     <main
       class="ml-1 text-black cursor-pointer dtc-grid-header dtc-grid-body dtc-template-columns"
