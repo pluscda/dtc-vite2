@@ -17,7 +17,7 @@
         <div>保留: 8</div>
       </div>
     </header>
-    <header class="flex pr-2 dtc-page-header space-x-5 transform -translate-y-0.5">
+    <header class="flex pr-2 dtc-page-header space-x-3 transform -translate-y-0.5">
       <div>目前診號: 02</div>
       <div>病歷號: 322324</div>
       <div>姓名: 立證明</div>
