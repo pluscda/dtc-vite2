@@ -16,11 +16,18 @@
     >
       <div>{{ i + 1 }}</div>
 
-      <div>
-        <el-select v-model="input" filterable placeholder="請選擇"></el-select>
+      <div class="flex no-ring">
+        <AutoComplete
+          class="transform"
+          style="max-height: 40px"
+          v-model="item.icdWords"
+          :suggestions="item.filteredICDWords"
+          @complete="searchICDWords(item, $event)"
+          field="name"
+        />
       </div>
-      <div>
-        <el-select class="w-full" v-model="input" filterable placeholder="請選擇"></el-select>
+      <div class="flex no-ring">
+        <AutoComplete style="max-height: 40px" v-model="item.icdWords2" :suggestions="item.filteredICDWords2" @complete="searchICDWords(item, $event)" field="name" />
       </div>
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
@@ -145,7 +152,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 100px 120px 1fr repeat(10, 90px) 120px;
+  grid-template-columns: 60px 1fr 250px 120px repeat(10, 90px) 120px;
 }
 
 #app .dtc-grid-header__divs {
@@ -155,5 +162,11 @@ export default {
     border-top-right-radius: 0px;
     line-height: 30px;
   }
+}
+:deep(input.p-autocomplete-input) {
+  display: block;
+  width: 249px !important;
+  min-width: 249px !important;
+  max-width: 249px !important;
 }
 </style>

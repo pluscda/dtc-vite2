@@ -66,7 +66,7 @@ export default {
   methods: {
     searchICD10(item, event) {
       console.log(event.query);
-      // item.filteredICD10 = [];
+      item.filteredICD10 = [];
     },
     searchICDWords(item, event) {
       console.log(event.query);
