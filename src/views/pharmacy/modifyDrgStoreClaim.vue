@@ -7,14 +7,22 @@
       class="ml-1 dtc-search-filters mt-2"
       style="margin-bottom: 1.5rem !important"
     >
-      <DtxInputGroup prepend="健保代碼">
-        <el-input readonly :value="his.tiDrgPurchaseDate" />
+      <DtxInputGroup prepend="申請日期">
+        <Calendar
+          class="h-10"
+          placeholder="請輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
-      <DtxInputGroup prepend="院內代碼">
-        <el-input readonly :value="his.chDrgPurchaseId" />
+      <DtxInputGroup prepend="申請單號">
+        <el-input :value="his.chDrgPurchaseId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="藥商名稱">
-        <el-input readonly :value="his.chDrgPurchasePerson" />
+      <DtxInputGroup prepend="申請人員">
+        <el-input :value="his.chDrgPurchasePerson" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="申請藥房">
+        <el-input :value="his.chDrgPurchaseStore" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
       <Button
@@ -74,13 +82,40 @@
       <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
       <div>{{ item.chDrgCnName || "暫無資料" }}</div>
       <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
-
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div>
-        <el-input placeholder="數量" v-model="item.chDrgNumber" clearable>
-        </el-input>
+        <el-select
+          filterable
+          v-model="item.chDrgArrival"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in caseClosedOptions"
+            :key="item.text"
+            :label="item.text"
+            :value="item.text"
+          >
+          </el-option>
+        </el-select>
       </div>
+
+      <div>
+        <el-select
+          filterable
+          v-model="item.closed"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in caseClosedOptions"
+            :key="item.text"
+            :label="item.text"
+            :value="item.text"
+          >
+          </el-option>
+        </el-select>
+      </div>
+
       <div>
         <el-input placeholder="備註內容" v-model="item.chDrgRemark" clearable>
         </el-input>
@@ -109,9 +144,8 @@ let headers = [
   { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
   { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
   { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "用藥單位", key: "intDrugApplyNum", sortDesc: null },
-  { name: "庫存數量", key: "chDrgMakerName", sortDesc: null },
-  { name: "盤點數量", key: "unknow", sortDesc: null },
+  { name: "是否到貨", key: "chDrg", sortDesc: null },
+  { name: "是否入庫", key: "chDrgArrival", sortDesc: null },
   { name: "備註", key: "unknow", sortDesc: null },
   //
 ];
@@ -214,7 +248,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(5, 200px) 1fr 120px 180px;
+  grid-template-columns: 60px repeat(5, 1fr) 120px 180px;
 }
 .management {
   position: relative;
