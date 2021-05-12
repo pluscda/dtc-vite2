@@ -17,7 +17,7 @@
     >
       <div>{{ i + 1 }}</div>
 
-      <div class="flex no-ring">
+      <div class="flex">
         <AutoComplete
           class="transform"
           style="max-height: 40px"
@@ -27,7 +27,7 @@
           field="name"
         />
       </div>
-      <div class="flex no-ring">
+      <div class="flex">
         <AutoComplete
           style="max-height: 40px; width: clamp(100%, 100%, 100%) !important"
           v-model="item.icdWords2"
