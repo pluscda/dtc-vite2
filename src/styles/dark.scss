@@ -1,4 +1,7 @@
 #app.dark {
+  .dtc-grid-header > div {
+    border-color: #9ca3af !important;
+  }
   background: var(--dark) !important;
   .p-inputtextarea{
     background: var(--dark);
@@ -124,4 +127,5 @@
       border:none;
     }
 }
+
 
