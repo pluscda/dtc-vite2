@@ -5,16 +5,33 @@
     </header>
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請日期">
-        <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar
+          class="h-10"
+          v-model="time1"
+          placeholder="請輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
-      <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      <Calendar
+        class="h-10"
+        v-model="time2"
+        placeholder="請輸入日期"
+        :showIcon="true"
+        dateFormat="yy-mm-dd"
+      />
       <DtxInputGroup prepend="申請單號">
         <el-input placeholder="搜尋申請單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
+      <Button
+        label="清除查詢"
+        class="p-button-secondary"
+        icon="pi pi-undo"
+        @click="cleanFilter"
+      />
     </nav>
 
     <nav class="ml-1 dtc-search-filters">
@@ -22,15 +39,51 @@
         <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0" @change="search">
-          <el-option v-for="item in ['全部', '未結案', '已結案']" :key="item" :label="item" :value="item"> </el-option>
+        <el-select
+          filterable
+          v-model="searchStatus"
+          placeholder="請選擇訂單狀態"
+          class="border-l-0"
+          @change="search"
+        >
+          <el-option
+            v-for="item in ['全部', '未結案', '已結案']"
+            :key="item"
+            :label="item"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="申請藥房">
+        <el-select
+          filterable
+          v-model="searchDrugStore"
+          placeholder="請選擇申請藥房"
+          class="border-l-0"
+          @change="search"
+        >
+          <el-option> </el-option>
         </el-select>
       </DtxInputGroup>
     </nav>
 
-    <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
+    <header
+      class="
+        my-title
+        relative
+        dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
+        dtc-template-columns
+        mx-1
+      "
+    >
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
+      <div
+        v-for="(item, i) in headers"
+        :key="i"
+        @click="sort(headers, item)"
+        :title="item.name"
+      >
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -44,13 +97,24 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
+      class="
+        dtc-grid-header dtc-grid-body dtc-template-columns
+        text-black
+        ml-1
+        mx-1
+      "
       v-for="(item, i) in list"
       :key="i"
-      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      :style="
+        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
+      "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="申請單明細" class="p-button-sm" @click="editItem(item)" />
+        <Button
+          label="申請單明細"
+          class="p-button-sm"
+          @click="editItem(item)"
+        />
       </div>
       <div>{{ item.chDrgApplyId || "暫無資料" }}</div>
       <div>{{ "暫無資料" }}</div>
@@ -58,7 +122,13 @@
       <div>{{ item.chDrgApplyPersonName || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
-    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
+    <pagination
+      v-show="total > 0"
+      :total="total"
+      v-model:page="listQuery.page"
+      v-model:limit="listQuery.limit"
+      @pagination="getList"
+    ></pagination>
   </section>
 </template>
 
@@ -91,14 +161,27 @@ export default {
     const searchCatchPerson = ref("");
     const searchDrgStore = ref("");
     const searchStatus = ref("全部");
+    const searchDrugStore = ref("");
     const time1 = ref("");
     const time2 = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
+    const {
+      state,
+      getList,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      twTime,
+    } = useList("drg-warehouse-request-adds");
 
     const cleanFilter = () => {
-      searchOrderId.value = searchOrderPerson.value = time1.value = time2.value = "";
+      searchOrderId.value =
+        searchOrderPerson.value =
+        time1.value =
+        time2.value =
+          "";
       searchStatus.value = "全部";
       searchDrgStore.value = "";
       searchCatchPerson.value = "";
@@ -149,6 +232,7 @@ export default {
       searchDrgStore,
       searchStatus,
       searchCatchPerson,
+      searchDrugStore,
       time1,
       time2,
       sort,
