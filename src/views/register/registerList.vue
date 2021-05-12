@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <nav class="mt-3 mb-2 ml-1 dtc-search-filters">
+    <nav class="mt-3 mb-2 ml-1 dtc-search-filters relative">
       <DtxInputGroup prepend="序號搜尋">
         <el-input placeholder="搜尋序號" v-model="input2" />
       </DtxInputGroup>
@@ -44,6 +44,9 @@
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <div class="absolute right-4">
+        <Button :disabled="!checked" class="p-button-help">確認上傳</Button>
+      </div>
     </nav>
 
     <header class="mx-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
@@ -120,6 +123,7 @@ export default {
       value2: "",
       tabs,
       headers,
+      checked: false,
     };
   },
   components: {
