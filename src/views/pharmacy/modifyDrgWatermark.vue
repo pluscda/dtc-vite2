@@ -3,10 +3,60 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>庫存安全管制: 低於安全存量轉採購單</div>
     </header>
-
-    <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1 mt-3">
+    <nav
+      class="ml-1 dtc-search-filters mt-2"
+      style="margin-bottom: 1.5rem !important"
+    >
+      <DtxInputGroup prepend="採購日期">
+        <Calendar
+          class="h-10"
+          v-model="time1"
+          placeholder="請輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
+      </DtxInputGroup>
+      <div class="mx-1 pt-2 dtc-text">至</div>
+      <Calendar
+        class="h-10"
+        v-model="time2"
+        placeholder="請輸入日期"
+        :showIcon="true"
+        dateFormat="yy-mm-dd"
+      />
+      <DtxInputGroup prepend="採購單號">
+        <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
+      </DtxInputGroup>
+      <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
+      <Button
+        label="清除查詢"
+        class="p-button-secondary"
+        icon="pi pi-undo"
+        @click.stop="cleanFilter"
+      />
+    </nav>
+    <nav class="ml-1 dtc-search-filters" style="margin-top: -10px">
+      <DtxInputGroup prepend="採購人員">
+        <el-input placeholder="搜尋採購人員" v-model="searchOrderPerson" />
+      </DtxInputGroup>
+    </nav>
+    <header
+      class="
+        my-title
+        relative
+        dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
+        dtc-template-columns
+        mx-1
+        mt-3
+      "
+    >
       <div>序號</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
+      <div
+        v-for="(item, i) in headers"
+        :key="i"
+        @click="sort(headers, item)"
+        :title="item.name"
+      >
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -20,10 +70,17 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
+      class="
+        dtc-grid-header dtc-grid-body dtc-template-columns
+        text-black
+        ml-1
+        mx-1
+      "
       v-for="(item, k) in list"
       :key="k"
-      :style="k % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
+      :style="
+        k % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
+      "
     >
       <div class="flex flex-none space-x-2">
         {{ k + 1 }}
@@ -36,7 +93,10 @@
       <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
       <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
       <div class="grid place-items-center">
-        <InputNumber style="max-height: 40px" placeholder="請輸入藥品採購數量" />
+        <InputNumber
+          style="max-height: 40px"
+          placeholder="請輸入藥品採購數量"
+        />
       </div>
     </main>
   </section>
@@ -89,10 +149,23 @@ export default {
     ]);
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds", 1200);
+    const {
+      state,
+      getList,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      twTime,
+    } = useList("drg-warehouse-order-adds", 1200);
 
     const cleanFilter = () => {
-      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      searchOrderId.value =
+        searchOrderPerson.value =
+        searchStatus.value =
+        time1.value =
+        time2.value =
+          "";
       clearFilters();
     };
     const search = () => {
