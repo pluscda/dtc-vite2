@@ -1,8 +1,24 @@
 <template>
   <section>
-    <header class="grid pr-2 dtc-page-header dtc-page-header__grid">
-      <div>掛號總覽清單</div>
+    <header class="flex pr-2 dtc-page-header space-x-3 py-1">
+      <div class="transform -translate-y-1">掛號總覽清單</div>
+      <Button>預約掛號</Button>
+      <Button class="p-button-success">預約住院</Button>
+      <Button class="p-button-info">慢病紀錄</Button>
+      <Button class="p-button-warning">開立證明</Button>
+      <Button class="p-button-help">跨院調閱</Button>
+      <Button class="p-button-danger">手術排程</Button>
+      <Button>檢驗報告</Button>
+      <div style="flex: 1"></div>
+      <div class="justify-end flex space-x-4 pr-2">
+        <div>掛號: 2</div>
+        <div>已看: 4</div>
+        <div>未看: 6</div>
+        <div>保留: 8</div>
+      </div>
     </header>
+    <header class="flex pr-2 dtc-page-header space-x-2 transform -translate-y-0.5"></header>
+
     <nav class="mt-3 mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="序號搜尋">
         <el-input placeholder="搜尋序號" v-model="input2" />
@@ -79,6 +95,8 @@ let headers = [
   { name: "上傳", key: "doctorName", sortDesc: null },
 ];
 
+let tabs = ["預約掛號", "預約住院", "慢行紀錄", "開立證明", "跨院調閱", "醫療影像", "手術排程", "檢驗報告"];
+
 export default {
   name: "inquerylist",
 
@@ -87,18 +105,8 @@ export default {
       input1: "J120092876",
       value: "",
       value2: "",
-      zh: {
-        firstDayOfWeek: 0,
-        dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-        dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-        dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-        monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-        monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-        today: "今天",
-        clear: "清空",
-        dateFormat: "yy-mm-dd",
-        weekHeader: "周",
-      },
+      tabs,
+      headers,
     };
   },
   components: {
@@ -107,7 +115,6 @@ export default {
   setup() {
     // 玩家列表數據
     const router = useRouter();
-    headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
 
     // 用戶更新
