@@ -10,17 +10,11 @@
       <DtxInputGroup prepend="病歷號碼">
         <el-input placeholder="搜尋病歷號碼" v-model="input2" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="保險身份">
-        <el-input placeholder="搜尋保險身份" v-model="input2" />
+      <DtxInputGroup prepend="病患身份">
+        <el-input placeholder="搜尋病患身份" v-model="input2" />
       </DtxInputGroup>
-
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-    </nav>
-    <nav class="mb-2 ml-1 dtc-search-filters">
-      <DtxInputGroup prepend="病歷號碼">
-        <el-input placeholder="搜尋病歷號碼" v-model="input2" />
-      </DtxInputGroup>
     </nav>
 
     <header class="mx-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
