@@ -186,6 +186,13 @@ export const routes = [
         meta: { title: "編輯藥品Maker資料", icon: "el-icon-s-home" },
       },
       {
+        path: "modifydrgstorewatermark",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgStoreWatermark.vue"),
+        name: "modifydrgstorewatermark",
+        meta: { title: "modifydrgstorewatermark", icon: "el-icon-s-home" },
+      },
+      {
         path: "drugvendormanagement",
         component: () => import("/@/views/pharmacy/drugVendorManagement.vue"),
         name: "drugvendormanagement",
