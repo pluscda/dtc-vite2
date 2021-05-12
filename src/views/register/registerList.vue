@@ -4,28 +4,21 @@
       <div>掛號總覽清單</div>
     </header>
     <nav class="mt-3 mb-2 ml-1 dtc-search-filters">
-      <DtxInputGroup prepend="掛號日期">
-        <Calendar class="h-10" v-model="value" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      <DtxInputGroup prepend="序號搜尋">
+        <el-input placeholder="搜尋序號" v-model="input2" />
       </DtxInputGroup>
-      <div class="pt-2 mx-1 dtc-text">至</div>
-      <Calendar class="h-10" v-model="value2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
-      <DtxInputGroup prepend="身分證號">
-        <el-input placeholder="搜尋身份證字號" v-model="input2" />
+      <DtxInputGroup prepend="病歷號碼">
+        <el-input placeholder="搜尋病歷號碼" v-model="input2" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="醫師姓名">
-        <el-input placeholder="搜尋醫師姓名" v-model="input2" />
+      <DtxInputGroup prepend="病患身份">
+        <el-input placeholder="搜尋病患身份" v-model="input2" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
-    <nav class="mb-2 ml-1 dtc-search-filters">
-      <DtxInputGroup prepend="病歷號碼">
-        <el-input placeholder="搜尋病歷號碼" v-model="input2" />
-      </DtxInputGroup>
-    </nav>
 
     <header class="mx-1 dtc-grid-header dtc-grid-header__divs dtc-template-columns">
-      <div>操作</div>
+      <div>序號</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -45,23 +38,18 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" />
-        <Button label="取消掛號" class="p-button-sm p-button-warning" />
-      </div>
-
-      <div>{{ "暫無資料" }}</div>
-      <div>{{ "暫無資料" }}</div>
-      <div>{{ item.registerSection || "暫無資料" }}</div>
-      <div>{{ item.registerNo || "暫無資料" }}</div>
-      <div>{{ item.doctorName || "暫無資料" }}</div>
-      <div>{{ item.registerAlias || "暫無資料" }}</div>
-      <div>{{ item.registerAlias || "暫無資料" }}</div>
-      <div>{{ item.category || "暫無資料" }}</div>
-      <div>{{ item.totalWaitNum || "暫無資料" }}</div>
-      <div>{{ item.totalWaitNum || "暫無資料" }}</div>
-      <div>{{ item.registerSection || "暫無資料" }}</div>
-      <div>{{ item.registerSection || "暫無資料" }}</div>
+      <div>{{ i + 1 }}</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div>暫無資料</div>
+      <div></div>
     </main>
 
     <!-- 分頁 -->
@@ -78,18 +66,17 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 //身分證號
 let headers = [
-  { name: "掛號清單", key: "id", sortDesc: null },
-  { name: "掛號/預約日期", key: "registerTimestamp", sortDesc: null },
-  { name: "看診時段", key: "registerSection", sortDesc: null },
-  { name: "看診號", key: "registerNo", sortDesc: null },
-  { name: "看診狀態", key: "registerAlias", sortDesc: null },
-  { name: "就醫類別", key: "registerAlias", sortDesc: null },
-  { name: "科別", key: "category", sortDesc: null },
-  { name: "病歷號碼", key: "totalWaitNum", sortDesc: null },
-  { name: "病換姓名", key: "doctorName", sortDesc: null },
-  { name: "身分證號", key: "id", sortDesc: null },
-  { name: "醫師姓名", key: "doctorName", sortDesc: null },
-  { name: "診間", key: "registerAlias", sortDesc: null },
+  { name: "病歷號碼", key: "id", sortDesc: null },
+  { name: "病患姓名", key: "registerTimestamp", sortDesc: null },
+  { name: "病患性別", key: "registerSection", sortDesc: null },
+  { name: "病患年齡", key: "registerNo", sortDesc: null },
+  { name: "病患身份", key: "registerAlias", sortDesc: null },
+  { name: "英文姓名", key: "registerAlias", sortDesc: null },
+  { name: "報到", key: "category", sortDesc: null },
+  { name: "狀態", key: "totalWaitNum", sortDesc: null },
+  { name: "時間", key: "doctorName", sortDesc: null },
+  { name: "備註", key: "id", sortDesc: null },
+  { name: "上傳", key: "doctorName", sortDesc: null },
 ];
 
 export default {
@@ -164,6 +151,6 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  grid-template-columns: 140px 90px 126px repeat(8, minmax(90px, 120px)) 120px minmax(90px, 1fr);
+  grid-template-columns: 60px repeat(9, 120px) 1fr 120px;
 }
 </style>
