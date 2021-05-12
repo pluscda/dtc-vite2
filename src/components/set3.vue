@@ -14,7 +14,7 @@
         {{ item.name }}
       </div>
     </header>
-    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in 4" :key="i">
+    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in items" :key="i">
       <div style="border-color: #9ca3af !important">
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
@@ -22,8 +22,10 @@
           </template>
         </el-popconfirm>
       </div>
-      <div class="no-ring" style="border-color: #9ca3af !important">
-        <el-select v-model="input" filterable placeholder="請輸入或選擇"></el-select>
+      <div class="no-ring">
+        <el-select v-model="item.icd10" filterable remote :remote-method="searchICD10(item)" :loading="item.loading" placeholder="請輸入">
+          <el-option v-for="opt in item.options" :key="opt.value" :label="opt.label" :value="opt.value"> </el-option>
+        </el-select>
       </div>
       <div class="no-ring">
         <el-input style="max-height: 20px" placeholder="請輸入診斷內容" v-model="input" clearable> </el-input>
@@ -33,16 +35,29 @@
 </template>
 
 <script>
+import { Subject } from "rxjs";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
 ];
+const items = [{}, {}, {}, {}];
 export default {
   data() {
     return {
       headers,
       input: "",
+      items,
+      icd10$: new Subject(),
     };
+  },
+  methods: {
+    searchICD10(item) {
+      console.log(item.icd10);
+      // if (item.icd10) {
+      //   console.log(item.icd10);
+      // }
+      // this.icd10$.next(item);
+    },
   },
 };
 </script>
