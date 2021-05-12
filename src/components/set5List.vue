@@ -153,7 +153,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 200px 260px 120px repeat(10, minmax(60px, 90px)) 120px;
+  grid-template-columns: 60px 200px 260px 120px repeat(10, minmax(67px, 90px)) 120px;
 }
 
 #app .dtc-grid-header__divs {
