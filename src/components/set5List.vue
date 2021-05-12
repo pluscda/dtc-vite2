@@ -11,6 +11,7 @@
     <main
       class="ml-1 text-black cursor-pointer dtc-grid-header dtc-grid-body dtc-template-columns"
       v-for="(item, i) in 5"
+      style="max-height: 48px"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
@@ -62,7 +63,7 @@
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
       </div>
-      <div class="flex space-x-6">
+      <div class="flex space-x-2">
         <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
@@ -152,7 +153,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 200px 270px 120px repeat(10, 90px) 1fr;
+  grid-template-columns: 60px 200px 260px 120px repeat(10, minmax(60px, 90px)) 120px;
 }
 
 #app .dtc-grid-header__divs {
