@@ -22,10 +22,24 @@
         </el-popconfirm>
       </div>
       <div>
-        <el-select class="w-full" v-model="input" filterable placeholder="請選擇"></el-select>
+        <AutoComplete
+          class="transform"
+          style="max-height: 40px"
+          v-model="item.icdWords"
+          :suggestions="item.filteredICDWords"
+          @complete="searchICDWords(item, $event)"
+          field="name"
+        />
       </div>
       <div>
-        <el-select class="w-full" v-model="input" filterable placeholder="請選擇"></el-select>
+        <AutoComplete
+          class="transform"
+          style="max-height: 40px"
+          v-model="item.icdWords"
+          :suggestions="item.filteredICDWords"
+          @complete="searchICDWords(item, $event)"
+          field="name"
+        />
       </div>
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
