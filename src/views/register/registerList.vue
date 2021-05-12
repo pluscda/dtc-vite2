@@ -17,7 +17,7 @@
         <div>保留: 8</div>
       </div>
     </header>
-    <header class="flex pr-2 dtc-page-header space-x-5 transform -translate-y-0.5 py-1">
+    <header class="flex pr-2 dtc-page-header space-x-5 transform -translate-y-0.5">
       <div>目前診號: 02</div>
       <div>病歷號: 322324</div>
       <div>姓名: 立證明</div>
@@ -25,8 +25,10 @@
       <div>年齡: 37</div>
       <div>生日: 20/20/20</div>
       <div>身分證號: A128873654</div>
-      <Button class="p-button-warning">同科換診</Button>
-      <div style="width: 210px">
+      <div class="py-1 flex">
+        <Button class="p-button-warning">同科換診</Button>
+      </div>
+      <div style="width: 210px" class="py-1">
         <el-input size="small" class="transform -translate-y-1.5" placeholder="請輸入病歷號碼"></el-input>
       </div>
       <!--  -->
