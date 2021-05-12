@@ -26,7 +26,7 @@
           field="name"
         />
       </div>
-      <div class="flex no-ring">
+      <div class="flex no-ring my-drg-name">
         <AutoComplete style="max-height: 40px" v-model="item.icdWords2" :suggestions="item.filteredICDWords2" @complete="searchICDWords(item, $event)" field="name" />
       </div>
       <div>
@@ -62,7 +62,7 @@
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
       </div>
-      <div class="flex flex-none space-x-2">
+      <div class="flex space-x-6">
         <Button label="藥典" class="p-button-sm" @click.stop="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
@@ -152,7 +152,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 1fr 250px 120px repeat(10, 90px) 120px;
+  grid-template-columns: 60px 200px 270px 120px repeat(10, 90px) 1fr;
 }
 
 #app .dtc-grid-header__divs {
@@ -163,7 +163,7 @@ export default {
     line-height: 30px;
   }
 }
-:deep(input.p-autocomplete-input) {
+:deep(.my-drg-name input.p-autocomplete-input) {
   display: block;
   width: 249px !important;
   min-width: 249px !important;
