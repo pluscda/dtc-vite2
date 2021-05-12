@@ -27,8 +27,14 @@
           field="name"
         />
       </div>
-      <div class="flex no-ring my-drg-name">
-        <AutoComplete style="max-height: 40px" v-model="item.icdWords2" :suggestions="item.filteredICDWords2" @complete="searchICDWords(item, $event)" field="name" />
+      <div class="flex no-ring">
+        <AutoComplete
+          style="max-height: 40px; width: clamp(100%, 100%, 100%) !important"
+          v-model="item.icdWords2"
+          :suggestions="item.filteredICDWords2"
+          @complete="searchICDWords(item, $event)"
+          field="name"
+        />
       </div>
       <div>
         <el-input placeholder="" v-model="input" clearable> </el-input>
@@ -153,7 +159,7 @@ export default {
   all: unset;
 }
 .dtc-template-columns {
-  grid-template-columns: 60px 200px 260px 120px repeat(10, minmax(67px, 90px)) 120px;
+  grid-template-columns: 60px 200px 1fr 120px repeat(10, minmax(67px, 90px)) 120px;
 }
 
 #app .dtc-grid-header__divs {
@@ -164,10 +170,9 @@ export default {
     line-height: 30px;
   }
 }
-:deep(.my-drg-name input.p-autocomplete-input) {
+:deep(.p-autocomplete-input) {
+  width: 100%;
   display: block;
-  width: 249px !important;
-  min-width: 249px !important;
-  max-width: 249px !important;
+  border-color: transparent;
 }
 </style>
