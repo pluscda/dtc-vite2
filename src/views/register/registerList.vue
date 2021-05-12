@@ -17,7 +17,20 @@
         <div>保留: 8</div>
       </div>
     </header>
-    <header class="flex pr-2 dtc-page-header space-x-2 transform -translate-y-0.5"></header>
+    <header class="flex pr-2 dtc-page-header space-x-5 transform -translate-y-0.5">
+      <div>目前診號: 02</div>
+      <div>病歷號: 322324</div>
+      <div>姓名: 立證明</div>
+      <div>性別: 8</div>
+      <div>年齡: 37</div>
+      <div>生日: 20/20/20</div>
+      <div>身分證號: A128873654</div>
+      <div style="flex: 1"></div>
+      <div class="justify-end flex space-x-7 pr-2">
+        <div>一般內科</div>
+        <div>第一診</div>
+      </div>
+    </header>
 
     <nav class="mt-3 mb-2 ml-1 dtc-search-filters">
       <DtxInputGroup prepend="序號搜尋">
