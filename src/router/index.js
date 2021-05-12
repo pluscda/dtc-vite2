@@ -171,6 +171,15 @@ export const routes = [
         },
       },
       {
+        path: "dtcmodifydrgstoreclaim",
+        component: () => import("/@/views/pharmacy/modifyDrgStoreClaim.vue"),
+        name: "dtcmodifydrgstoreclaim",
+        meta: {
+          title: "dtcmodifydrgstoreclaim",
+          icon: "el-icon-s-home",
+        },
+      },
+      {
         path: "modifydrgmaker",
         component: () => import("/@/views/pharmacy/modifyDrgMaker.vue"),
         name: "modifyDragMaker",
