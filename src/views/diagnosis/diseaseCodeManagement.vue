@@ -71,7 +71,11 @@
             <div style="color: #16b57f">
               <i class="el-icon-edit inline-block mt-0.5"></i>
             </div>
-            <div class="word-2" style="color: #f15555">
+            <div
+              class="word-2"
+              style="color: #f15555"
+              @click="deleteDisease(item)"
+            >
               <i class="el-icon-delete inline-block mt-0.5"></i>
             </div>
             <div></div>
@@ -416,6 +420,15 @@ export default {
       diseaseOptions.splice(index, 1);
       usuallyDiseaseOptions.push(item);
     };
+    const deleteDisease = (item) => {
+      let index = usuallyDiseaseOptions.findIndex((s) => s == item);
+      usuallyDiseaseOptions.splice(index, 1);
+      diseaseOptions.push(item);
+      diseaseOptions.sort(function (a, b) {
+        if (a.value > b.value) return 1;
+        if (a.value < b.value) return -1;
+      });
+    };
 
     return {
       ...toRefs(state),
@@ -434,10 +447,8 @@ export default {
       internationChineName,
       illu,
       addDisease,
+      deleteDisease,
     };
-  },
-  mounted() {
-    this.$primevue.config.locale = this.zh;
   },
 };
 </script>
