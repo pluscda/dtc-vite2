@@ -16,7 +16,7 @@
           >
             <el-option
               v-for="item in divisionOptions"
-              :key="item"
+              :key="`${item}divisionOption`"
               :label="item.text"
               :value="item.value"
             >
@@ -33,13 +33,17 @@
             <main
               class="disease-header disease-content"
               v-for="(item, i) in diseaseOptions"
-              :key="i"
+              :key="`${item}${i}diseaseOption`"
               :title="item.name"
             >
               <div></div>
               <div class="word-1">{{ item.value }}</div>
               <div></div>
-              <div class="word-2" style="color: #6da8e2">
+              <div
+                class="word-2"
+                style="color: #6da8e2"
+                @click="addDisease(item)"
+              >
                 <i class="el-icon-plus inline-block mt-0.5"></i>
               </div>
             </main>
@@ -57,8 +61,8 @@
         <div class="content content2">
           <main
             class="disease-header2 disease-content2"
-            v-for="(item, i) in diseaseOptions"
-            :key="i"
+            v-for="(item, i) in usuallyDiseaseOptions"
+            :key="`${item}${i}disease-header`"
             :title="item.name"
           >
             <div></div>
@@ -67,7 +71,11 @@
             <div style="color: #16b57f">
               <i class="el-icon-edit inline-block mt-0.5"></i>
             </div>
-            <div class="word-2" style="color: #f15555">
+            <div
+              class="word-2"
+              style="color: #f15555"
+              @click="deleteDisease(item)"
+            >
               <i class="el-icon-delete inline-block mt-0.5"></i>
             </div>
             <div></div>
@@ -83,7 +91,11 @@
         mt-4
       "
     >
-      <div v-for="(item, i) in headers" :key="i" :title="item.name">
+      <div
+        v-for="(item, i) in headers"
+        :key="`${item}${i}dtc-grid-header`"
+        :title="item.name"
+      >
         {{ item.name }}
       </div>
     </header>
@@ -106,7 +118,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD91${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -122,7 +134,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD101${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -162,7 +174,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD92${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -178,7 +190,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD102${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -218,7 +230,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD93${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -234,7 +246,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD103${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -278,7 +290,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD94${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -294,7 +306,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD104${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -327,9 +339,9 @@
     <Button
       label="回門診"
       @click="$router.push('/home')"
-      class="p-button-md p-button-info mr-3"
+      class="p-button-md p-button-info mr-3 mt-3"
     />
-    <Button label="確認" class="p-button-md p-button-warning" />
+    <Button label="確認" class="p-button-md p-button-warning mt-3" />
   </section>
 </template>
 
@@ -362,7 +374,7 @@ export default {
       { value: "Obstetrics & Gynecology", text: "Obstetrics & Gynecology" },
       { value: "Orthopedics", text: "Orthopedics" },
     ]);
-    const diseaseOptions = reactive([
+    let diseaseOptions = reactive([
       { value: "Aarskog Scott Syndrome", text: "Aarskog Scott Syndrome" },
       {
         value: "Familial Amyloidotic Polyneuropathy",
@@ -377,9 +389,13 @@ export default {
         text: "Paroxysmal Nocturnal Hemoglobinuria, PNH",
       },
       { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
+      { value: "Argininosuccinic aciduria", text: "Argininosuccinic aciduria" },
+      {
+        value: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+        text: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+      },
     ]);
+    let usuallyDiseaseOptions = reactive([]);
     //secrion3 variable
     const slow = reactive({});
     const ro = reactive({});
@@ -399,6 +415,21 @@ export default {
       twTime,
     } = useList("drg-warehouse-request-adds");
 
+    const addDisease = (item) => {
+      let index = diseaseOptions.findIndex((s) => s == item);
+      diseaseOptions.splice(index, 1);
+      usuallyDiseaseOptions.push(item);
+    };
+    const deleteDisease = (item) => {
+      let index = usuallyDiseaseOptions.findIndex((s) => s == item);
+      usuallyDiseaseOptions.splice(index, 1);
+      diseaseOptions.push(item);
+      diseaseOptions.sort(function (a, b) {
+        if (a.value > b.value) return 1;
+        if (a.value < b.value) return -1;
+      });
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -406,6 +437,7 @@ export default {
       searchDivision,
       divisionOptions,
       diseaseOptions,
+      usuallyDiseaseOptions,
       sort,
       slow,
       ro,
@@ -414,10 +446,9 @@ export default {
       internationEngName,
       internationChineName,
       illu,
+      addDisease,
+      deleteDisease,
     };
-  },
-  mounted() {
-    this.$primevue.config.locale = this.zh;
   },
 };
 </script>
@@ -449,8 +480,8 @@ export default {
 .disease-content,
 .disease-header2 {
   display: grid;
-  grid-template-columns: 120px 1fr 106px;
-  border-radius: 5px;
+  grid-template-columns: 120px 1fr 82px;
+  border-radius: 5px 5px 0 0;
   height: 32px;
   line-height: 32px;
 }
@@ -464,7 +495,7 @@ export default {
 }
 
 .disease-header2 {
-  grid-template-columns: 140px 1fr 60px 60px 15px;
+  grid-template-columns: 140px 1fr 60px 60px 2px;
 }
 .content2 {
   height: 283px;
@@ -480,7 +511,7 @@ export default {
   .section-3-word {
     display: inline-block;
     padding: 5px;
-    border-radius: 6px 6px 0 0;
+    border-radius: 5px 5px 0 0;
   }
 }
 </style>
