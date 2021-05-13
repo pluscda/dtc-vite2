@@ -87,8 +87,6 @@ export default {
   mounted() {
     this.icd10$
       .pipe(
-        //debounceTime(500),
-        //debounceTime(3_000),
         distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
         switchMap(this.getICD10List)
       )
