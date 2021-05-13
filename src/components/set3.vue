@@ -1,51 +1,22 @@
 <template>
   <section style="background: #4b5563" class="dtc-door-way-section">
     <header class="flex gap-4 dtc-text pl-0s dtc-tabs" style="">
-      <section style="background: none !important" class="dtc-text cursor-auto">
-        A 診斷
-      </section>
+      <section style="background: none !important" class="dtc-text cursor-auto">A 診斷</section>
       <div>組套</div>
       <div>設為組套</div>
-      <div @click="$router.push('/diagnosis/diseasecodemanagement')">
-        診斷碼搜尋
-      </div>
+      <div @click="$router.push('/diagnosis/diseasecodemanagement')">診斷碼搜尋</div>
       <div>清除</div>
     </header>
-    <nav
-      class="w-full border-b-4"
-      style="border-color: #646b74 !important"
-    ></nav>
-    <header
-      class="
-        my-title
-        relative
-        dtc-grid-header dtc-grid-header__divs
-        dtc-template-columns
-      "
-    >
+    <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
+    <header class="my-title relative dtc-grid-header dtc-grid-header__divs dtc-template-columns">
       <div>操作</div>
-      <div
-        v-for="(item, i) in headers"
-        :key="i"
-        @click="sort(headers, item)"
-        :title="item.name"
-      >
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
       </div>
     </header>
-    <main
-      class="my-title relative dtc-grid-header dtc-template-columns"
-      style="height: 50px"
-      v-for="(item, i) in items"
-      :key="i"
-    >
+    <main class="my-title relative dtc-grid-header dtc-template-columns" style="height: 50px" v-for="(item, i) in items" :key="i">
       <div style="border-color: #9ca3af !important">
-        <el-popconfirm
-          title="確定刪除嗎？"
-          confirmButtonText="好的"
-          cancelButtonText="不用了"
-          @confirm="removeItem(item)"
-        >
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
           </template>
@@ -98,9 +69,7 @@ export default {
   },
   methods: {
     selectedICD10(item) {
-      const obj = item?.filteredICD10?.find(
-        (s) => s.chDrgCnName == item?.icd10?.chDrgCnName
-      );
+      const obj = item?.filteredICD10?.find((s) => s.chDrgCnName == item?.icd10?.chDrgCnName);
       item.icdWords = obj?.chDrgMakerName;
     },
     async getICD10List({ item, event }) {
