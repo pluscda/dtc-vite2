@@ -16,7 +16,7 @@
           >
             <el-option
               v-for="item in divisionOptions"
-              :key="item"
+              :key="`${item}divisionOption`"
               :label="item.text"
               :value="item.value"
             >
@@ -33,13 +33,17 @@
             <main
               class="disease-header disease-content"
               v-for="(item, i) in diseaseOptions"
-              :key="i"
+              :key="`${item}${i}diseaseOption`"
               :title="item.name"
             >
               <div></div>
               <div class="word-1">{{ item.value }}</div>
               <div></div>
-              <div class="word-2" style="color: #6da8e2">
+              <div
+                class="word-2"
+                style="color: #6da8e2"
+                @click="addDisease(item)"
+              >
                 <i class="el-icon-plus inline-block mt-0.5"></i>
               </div>
             </main>
@@ -58,7 +62,7 @@
           <main
             class="disease-header2 disease-content2"
             v-for="(item, i) in usuallyDiseaseOptions"
-            :key="i"
+            :key="`${item}${i}disease-header`"
             :title="item.name"
           >
             <div></div>
@@ -83,7 +87,11 @@
         mt-4
       "
     >
-      <div v-for="(item, i) in headers" :key="i" :title="item.name">
+      <div
+        v-for="(item, i) in headers"
+        :key="`${item}${i}dtc-grid-header`"
+        :title="item.name"
+      >
         {{ item.name }}
       </div>
     </header>
@@ -106,7 +114,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD91${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -122,7 +130,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD101${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -162,7 +170,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD92${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -178,7 +186,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD102${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -218,7 +226,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD93${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -234,7 +242,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD103${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -278,7 +286,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD94${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -294,7 +302,7 @@
         >
           <el-option
             v-for="item in divisionOptions"
-            :key="item"
+            :key="`ICD104${item}`"
             :label="item.text"
             :value="item.value"
           >
@@ -362,7 +370,7 @@ export default {
       { value: "Obstetrics & Gynecology", text: "Obstetrics & Gynecology" },
       { value: "Orthopedics", text: "Orthopedics" },
     ]);
-    const diseaseOptions = reactive([
+    let diseaseOptions = reactive([
       { value: "Aarskog Scott Syndrome", text: "Aarskog Scott Syndrome" },
       {
         value: "Familial Amyloidotic Polyneuropathy",
@@ -383,7 +391,7 @@ export default {
         text: "Aromatic L-amino acid decarboxylase deficiency,AADC",
       },
     ]);
-    const usuallyDiseaseOptions = reactive([]);
+    let usuallyDiseaseOptions = reactive([]);
     //secrion3 variable
     const slow = reactive({});
     const ro = reactive({});
@@ -403,6 +411,12 @@ export default {
       twTime,
     } = useList("drg-warehouse-request-adds");
 
+    const addDisease = (item) => {
+      let index = diseaseOptions.findIndex((s) => s == item);
+      diseaseOptions.splice(index, 1);
+      usuallyDiseaseOptions.push(item);
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -419,6 +433,7 @@ export default {
       internationEngName,
       internationChineName,
       illu,
+      addDisease,
     };
   },
   mounted() {
