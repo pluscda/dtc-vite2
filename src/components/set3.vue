@@ -27,6 +27,7 @@
           class="border-transparent transform -translate-y-1"
           placeholder="請輸入"
           v-model="item.icd10"
+          :delay="300"
           :suggestions="item.filteredICD10"
           @complete="searchICD10(item, $event)"
           field="chDrgCnName"
@@ -86,7 +87,7 @@ export default {
   mounted() {
     this.icd10$
       .pipe(
-        debounceTime(500),
+        //debounceTime(500),
         //debounceTime(3_000),
         distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
         switchMap(this.getICD10List)
