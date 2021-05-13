@@ -29,7 +29,7 @@
           v-model="item.icd10"
           :suggestions="item.filteredICD10"
           @complete="searchICD10(item, $event)"
-          field="name"
+          field="chDrgCnName"
         />
       </div>
       <div class="no-ring flex">
@@ -49,6 +49,8 @@
 
 <script>
 import { Subject } from "rxjs";
+import axios from "utils/request";
+import { debounceTime, distinctUntilChanged, switchMap, filter } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
@@ -64,14 +66,29 @@ export default {
     };
   },
   methods: {
+    async getDDL({ item, event }) {
+      const atc = "chDrgId_contains=" + event.query;
+      const ret = await axios.get("drg-infos?_limit=20&" + atc);
+      item.filteredICD10 = ret;
+    },
     searchICD10(item, event) {
-      console.log(event.query);
-      item.filteredICD10 = [];
+      // item.filteredICD10 = [];
+      this.icd10$.next({ item, event });
     },
     searchICDWords(item, event) {
       console.log(event.query);
       // item.filteredICDWords = [];
     },
+  },
+  mounted() {
+    this.icd10$
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        filter(({ _, event }) => event.query && event.query.length > 1),
+        switchMap(this.getDDL)
+      )
+      .subscribe();
   },
 };
 </script>
