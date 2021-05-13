@@ -50,7 +50,8 @@
 <script>
 import { Subject } from "rxjs";
 import axios from "utils/request";
-import { debounceTime, distinctUntilChanged, switchMap, filter } from "rxjs/operators";
+import { useSubscription } from "@vueuse/rxjs";
+import { debounceTime, distinctUntilChanged, switchMap, filter, tap } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
@@ -83,9 +84,11 @@ export default {
   mounted() {
     this.icd10$
       .pipe(
+        //tap(({ item }) => (item.filteredICD10 = [])),
         debounceTime(500),
-        distinctUntilChanged(),
+        //debounceTime(3_000),
         filter(({ _, event }) => event.query && event.query.length > 1),
+        distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
         switchMap(this.getDDL)
       )
       .subscribe();
@@ -110,5 +113,8 @@ export default {
   width: 100%;
   display: block;
   border-color: transparent;
+}
+:deep(.p-autocomplete-loader) {
+  display: none !important;
 }
 </style>
