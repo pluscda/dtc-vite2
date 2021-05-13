@@ -66,7 +66,7 @@ export default {
     };
   },
   methods: {
-    async getDDL({ item, event }) {
+    async getICD10List({ item, event }) {
       const atc = "chDrgId_contains=" + event.query;
       const ret = await axios.get("drg-infos?_limit=20&" + atc);
       item.filteredICD10 = ret;
@@ -85,7 +85,7 @@ export default {
         //debounceTime(3_000),
         filter(({ _, event }) => event.query && event.query.length > 1),
         distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
-        switchMap(this.getDDL)
+        switchMap(this.getICD10List)
       )
       .subscribe();
   },
