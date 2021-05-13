@@ -49,9 +49,9 @@
 </template>
 
 <script>
-import { Subject } from "rxjs";
+import { Subject, of } from "rxjs";
 import axios from "utils/request";
-import { distinctUntilChanged, switchMap } from "rxjs/operators";
+import { distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
@@ -95,7 +95,8 @@ export default {
           if (eq) cur.item.filteredICD10 = [];
           return eq;
         }),
-        switchMap(this.getICD10List)
+        switchMap(this.getICD10List),
+        catchError((s) => of(""))
       )
       .subscribe();
   },
