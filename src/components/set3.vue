@@ -31,6 +31,7 @@
           :suggestions="item.filteredICD10"
           @complete="searchICD10(item, $event)"
           field="chDrgCnName"
+          @item-select="selectedICD10(item)"
         />
       </div>
       <div class="no-ring flex">
@@ -49,9 +50,9 @@
 </template>
 
 <script>
-import { Subject } from "rxjs";
+import { Subject, of } from "rxjs";
 import axios from "utils/request";
-import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
+import { distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
@@ -67,6 +68,10 @@ export default {
     };
   },
   methods: {
+    selectedICD10(item) {
+      const obj = item?.filteredICD10?.find((s) => s.chDrgCnName == item?.icd10?.chDrgCnName);
+      item.icdWords = obj?.chDrgMakerName;
+    },
     async getICD10List({ item, event }) {
       if (event?.query?.length > 1) {
         const atc = "chDrgId_contains=" + event.query;
@@ -84,13 +89,19 @@ export default {
       // item.filteredICDWords = [];
     },
   },
+  beforeUnmount() {
+    this.icd10$.unsubscribe();
+  },
   mounted() {
     this.icd10$
       .pipe(
-        //debounceTime(500),
-        //debounceTime(3_000),
-        distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
-        switchMap(this.getICD10List)
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!pre.event.query === cur.event.query;
+          if (eq) cur.item.filteredICD10 = [];
+          return eq;
+        }),
+        switchMap(this.getICD10List),
+        catchError((s) => of(""))
       )
       .subscribe();
   },

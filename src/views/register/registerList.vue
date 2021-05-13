@@ -75,9 +75,10 @@
       <div>上傳</div>
     </header>
     <main
-      class="mx-1 ml-1 text-black dtc-grid-header dtc-grid-body dtc-template-columns"
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1 animate__fadeInUp"
       v-for="(item, i) in list"
       :key="i"
+      style="animation-duration: 0.3s"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div>{{ i + 1 }}</div>
