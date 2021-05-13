@@ -450,7 +450,7 @@ export default {
 .disease-header2 {
   display: grid;
   grid-template-columns: 120px 1fr 106px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   height: 32px;
   line-height: 32px;
 }
@@ -480,7 +480,7 @@ export default {
   .section-3-word {
     display: inline-block;
     padding: 5px;
-    border-radius: 6px 6px 0 0;
+    border-radius: 5px 5px 0 0;
   }
 }
 </style>
