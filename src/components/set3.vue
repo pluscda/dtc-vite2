@@ -50,7 +50,6 @@
 <script>
 import { Subject } from "rxjs";
 import axios from "utils/request";
-import { useSubscription } from "@vueuse/rxjs";
 import { debounceTime, distinctUntilChanged, switchMap, filter, tap } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
