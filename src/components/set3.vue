@@ -51,7 +51,7 @@
 <script>
 import { Subject } from "rxjs";
 import axios from "utils/request";
-import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
+import { distinctUntilChanged, switchMap } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
