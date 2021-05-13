@@ -50,7 +50,7 @@
 <script>
 import { Subject } from "rxjs";
 import axios from "utils/request";
-import { debounceTime, distinctUntilChanged, switchMap, filter, tap } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, switchMap, filter } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
@@ -72,18 +72,15 @@ export default {
       item.filteredICD10 = ret;
     },
     searchICD10(item, event) {
-      // item.filteredICD10 = [];
       this.icd10$.next({ item, event });
     },
     searchICDWords(item, event) {
-      console.log(event.query);
       // item.filteredICDWords = [];
     },
   },
   mounted() {
     this.icd10$
       .pipe(
-        //tap(({ item }) => (item.filteredICD10 = [])),
         debounceTime(500),
         //debounceTime(3_000),
         filter(({ _, event }) => event.query && event.query.length > 1),

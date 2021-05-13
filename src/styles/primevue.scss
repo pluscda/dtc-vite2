@@ -9,8 +9,11 @@
 {
   transform: translateY(4px) !important;
 }
-:deep(.p-autocomplete-input) {
+.p-autocomplete-input {
   width: 100%;
   display: block;
   border-color: transparent;
+}
+.p-autocomplete-loader {
+  display: none !important;
 }
