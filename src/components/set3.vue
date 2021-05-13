@@ -83,8 +83,8 @@ export default {
       .pipe(
         debounceTime(500),
         //debounceTime(3_000),
-        filter(({ _, event }) => event.query && event.query.length > 1),
         distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
+        filter(({ _, event }) => event.query && event.query.length > 1),
         switchMap(this.getICD10List)
       )
       .subscribe();
