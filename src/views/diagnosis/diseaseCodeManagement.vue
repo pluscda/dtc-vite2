@@ -77,57 +77,259 @@
     </main>
     <header
       class="
-        my-title
-        relative
         dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
         dtc-template-columns
-        mx-1
+        mx-2
         mt-4
       "
     >
-      <div
-        v-for="(item, i) in headers"
-        :key="i"
-        @click="sort(headers, item)"
-        :title="item.name"
-      >
+      <div v-for="(item, i) in headers" :key="i" :title="item.name">
         {{ item.name }}
-        <span v-show="item.sortDesc === null">
-          <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-        </span>
-        <span v-show="item.sortDesc === false">
-          <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-        </span>
-        <span v-show="item.sortDesc">
-          <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
       </div>
     </header>
     <main
-      class="
-        dtc-grid-header dtc-grid-body dtc-template-columns
-        text-black
-        ml-1
-        mx-1
-      "
-      v-for="(item, i) in list"
-      :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
+      style="background-color: #f5f5f5"
     >
-      <div class="flex flex-none space-x-2">
-        <Button
-          label="入庫單明細"
-          class="p-button-sm"
-          @click="editItem(item)"
-        />
+      <div style="padding-top: 0px">
+        <Checkbox :binary="true" v-model="slow['one']" class="inline-block" />
       </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div style="padding-top: 12px; padding-bottom: 0px">
+        <InputSwitch v-model="ro['one']"></InputSwitch>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD9['one']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD10['one']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>主診斷碼</div>
+      <div>
+        <el-input placeholder="" v-model="internationEngName['one']" clearable>
+        </el-input>
+      </div>
+      <div>
+        <el-input
+          placeholder=""
+          v-model="internationChineName['one']"
+          clearable
+        >
+        </el-input>
+      </div>
     </main>
+    <main
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
+      style="background-color: #e0e0e0"
+    >
+      <div style="padding-top: 0px">
+        <Checkbox :binary="true" v-model="slow['two']" class="inline-block" />
+      </div>
+      <div style="padding-top: 12px; padding-bottom: 0px">
+        <InputSwitch v-model="ro['two']"></InputSwitch>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD9['two']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD10['two']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>副診斷碼1</div>
+      <div>
+        <el-input placeholder="" v-model="internationEngName['two']" clearable>
+        </el-input>
+      </div>
+      <div>
+        <el-input
+          placeholder=""
+          v-model="internationChineName['two']"
+          clearable
+        >
+        </el-input>
+      </div>
+    </main>
+    <main
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
+      style="background-color: #f5f5f5"
+    >
+      <div style="padding-top: 0px">
+        <Checkbox :binary="true" v-model="slow['three']" class="inline-block" />
+      </div>
+      <div style="padding-top: 12px; padding-bottom: 0px">
+        <InputSwitch v-model="ro['three']"></InputSwitch>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD9['three']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD10['three']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>副診斷碼2</div>
+      <div>
+        <el-input
+          placeholder=""
+          v-model="internationEngName['three']"
+          clearable
+        >
+        </el-input>
+      </div>
+      <div>
+        <el-input
+          placeholder=""
+          v-model="internationChineName['three']"
+          clearable
+        >
+        </el-input>
+      </div>
+    </main>
+    <main
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
+      style="background-color: #e0e0e0"
+    >
+      <div style="padding-top: 0px">
+        <Checkbox :binary="true" v-model="slow['four']" class="inline-block" />
+      </div>
+      <div style="padding-top: 12px; padding-bottom: 0px">
+        <InputSwitch v-model="ro['four']"></InputSwitch>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD9['four']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>
+        <el-select
+          filterable
+          v-model="selectedICD10['four']"
+          placeholder="請選擇"
+          class="border-l-0"
+        >
+          <el-option
+            v-for="item in divisionOptions"
+            :key="item"
+            :label="item.text"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </div>
+      <div>副診斷碼3</div>
+      <div>
+        <el-input placeholder="" v-model="internationEngName['four']" clearable>
+        </el-input>
+      </div>
+      <div>
+        <el-input
+          placeholder=""
+          v-model="internationChineName['four']"
+          clearable
+        >
+        </el-input>
+      </div>
+    </main>
+    <div class="section-3">
+      <span class="dtc-label section-3-word">診斷說明:</span>
+      <el-input
+        type="textarea"
+        autosize
+        v-model="illu"
+        placeholder="請輸入診斷說明"
+      />
+    </div>
+    <Button
+      label="回門診"
+      @click="$router.push('/home')"
+      class="p-button-md p-button-info mr-3"
+    />
+    <Button label="確認" class="p-button-md p-button-warning" />
   </section>
 </template>
 
@@ -152,7 +354,6 @@ export default {
     Pagination,
   },
   setup() {
-    const global = inject("global");
     const searchDivision = ref("");
     const divisionOptions = reactive([
       { value: "Nephrology", text: "Nephrology" },
@@ -178,12 +379,15 @@ export default {
       { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
       { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
       { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
     ]);
-
+    //secrion3 variable
+    const slow = reactive({});
+    const ro = reactive({});
+    const selectedICD9 = reactive({});
+    const selectedICD10 = reactive({});
+    const internationEngName = reactive({});
+    const internationChineName = reactive({});
+    const illu = ref("");
     headers = ref(headers);
     const {
       state,
@@ -203,6 +407,13 @@ export default {
       divisionOptions,
       diseaseOptions,
       sort,
+      slow,
+      ro,
+      selectedICD9,
+      selectedICD10,
+      internationEngName,
+      internationChineName,
+      illu,
     };
   },
   mounted() {
@@ -263,8 +474,13 @@ export default {
     border-radius: 0px;
   }
 }
-.word1,
-.word2 {
-  cursor: pointer;
+.section-3 {
+  text-align: initial;
+  margin: 10px 10px;
+  .section-3-word {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 6px 6px 0 0;
+  }
 }
 </style>
