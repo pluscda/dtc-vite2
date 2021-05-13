@@ -4,6 +4,7 @@ import axios from "axios";
 // process.env.NODE_ENV ==  import.meta.env.MODE
 // if running in prodctuion, we can use import.meta.env.PROD  it is boolean
 //ref: https://vitejs.dev/guide/env-and-mode.html
+const cancelToken = axios.CancelToken.source();
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 720 * 1000, // Timeout
@@ -11,9 +12,11 @@ const service = axios.create({
 // 發起請求之前的攔截器
 service.interceptors.request.use(
   config => {
+    config.cancelToken = cancelToken;
     // 如果有token 就攜帶tokon
     if(sessionStorage.token && sessionStorage.token.length > 9)
        config.headers.Authorization = "Bearer " + sessionStorage.token;
+   
     return config;
   },
   error => Promise.reject(error)
