@@ -87,7 +87,11 @@ export default {
   mounted() {
     this.icd10$
       .pipe(
-        distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!pre.event.query === cur.event.query;
+          if (eq) cur.item.filteredICD10 = [];
+          return eq;
+        }),
         switchMap(this.getICD10List)
       )
       .subscribe();
