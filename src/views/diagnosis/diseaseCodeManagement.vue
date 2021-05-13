@@ -117,10 +117,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD9Optopns"
             :key="`ICD91${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -133,10 +133,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD10Optopns"
             :key="`ICD101${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -173,10 +173,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD9Optopns"
             :key="`ICD92${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -189,10 +189,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD10Optopns"
             :key="`ICD102${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -229,10 +229,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD9Optopns"
             :key="`ICD93${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -245,10 +245,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD10Optopns"
             :key="`ICD103${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -289,10 +289,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD9Optopns"
             :key="`ICD94${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -305,10 +305,10 @@
           class="border-l-0"
         >
           <el-option
-            v-for="item in divisionOptions"
+            v-for="item in allICD10Optopns"
             :key="`ICD104${item}`"
-            :label="item.text"
-            :value="item.value"
+            :label="item"
+            :value="item"
           >
           </el-option>
         </el-select>
@@ -403,6 +403,14 @@ export default {
     const selectedICD10 = reactive({});
     const internationEngName = reactive({});
     const internationChineName = reactive({});
+    const allICD9Optopns = reactive([
+      "140.0",
+      "140.1",
+      "140.2",
+      "140.3",
+      "140.4",
+    ]);
+    const allICD10Optopns = reactive(["C00", "C01", "C02", "C03", "C04"]);
     const illu = ref("");
     headers = ref(headers);
     const {
@@ -443,6 +451,8 @@ export default {
       ro,
       selectedICD9,
       selectedICD10,
+      allICD9Optopns,
+      allICD10Optopns,
       internationEngName,
       internationChineName,
       illu,
