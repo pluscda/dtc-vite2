@@ -50,7 +50,7 @@
 <script>
 import { Subject } from "rxjs";
 import axios from "utils/request";
-import { debounceTime, distinctUntilChanged, switchMap, filter } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 let headers = [
   { name: "ICD10", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
@@ -67,9 +67,14 @@ export default {
   },
   methods: {
     async getICD10List({ item, event }) {
-      const atc = "chDrgId_contains=" + event.query;
-      const ret = await axios.get("drg-infos?_limit=20&" + atc);
-      item.filteredICD10 = ret;
+      if (event?.query?.length > 1) {
+        const atc = "chDrgId_contains=" + event.query;
+        const ret = await axios.get("drg-infos?_limit=20&" + atc);
+        item.filteredICD10 = ret;
+      } else {
+        item.filteredICD10 = [];
+      }
+      return "";
     },
     searchICD10(item, event) {
       this.icd10$.next({ item, event });
@@ -84,7 +89,6 @@ export default {
         debounceTime(500),
         //debounceTime(3_000),
         distinctUntilChanged((pre, cur) => pre.event.query === cur.event.query),
-        filter(({ _, event }) => event.query && event.query.length > 1),
         switchMap(this.getICD10List)
       )
       .subscribe();
@@ -104,13 +108,5 @@ export default {
   }
   width: 100%;
   grid-template-columns: 70px 180px 1fr;
-}
-:deep(.p-autocomplete-input) {
-  width: 100%;
-  display: block;
-  border-color: transparent;
-}
-:deep(.p-autocomplete-loader) {
-  display: none !important;
 }
 </style>
