@@ -68,7 +68,7 @@
             <div></div>
             <div class="word-1">{{ item.value }}</div>
             <div></div>
-            <div style="color: #16b57f">
+            <div class="word-2" style="color: #16b57f">
               <i class="el-icon-edit inline-block mt-0.5"></i>
             </div>
             <div
@@ -513,5 +513,8 @@ export default {
     padding: 5px;
     border-radius: 5px 5px 0 0;
   }
+}
+.word-2 {
+  cursor: pointer;
 }
 </style>
