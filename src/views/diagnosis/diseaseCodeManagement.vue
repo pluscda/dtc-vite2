@@ -57,7 +57,7 @@
         <div class="content content2">
           <main
             class="disease-header2 disease-content2"
-            v-for="(item, i) in diseaseOptions"
+            v-for="(item, i) in usuallyDiseaseOptions"
             :key="i"
             :title="item.name"
           >
@@ -377,9 +377,13 @@ export default {
         text: "Paroxysmal Nocturnal Hemoglobinuria, PNH",
       },
       { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
+      { value: "Argininosuccinic aciduria", text: "Argininosuccinic aciduria" },
+      {
+        value: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+        text: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+      },
     ]);
+    const usuallyDiseaseOptions = reactive([]);
     //secrion3 variable
     const slow = reactive({});
     const ro = reactive({});
@@ -406,6 +410,7 @@ export default {
       searchDivision,
       divisionOptions,
       diseaseOptions,
+      usuallyDiseaseOptions,
       sort,
       slow,
       ro,
@@ -449,7 +454,7 @@ export default {
 .disease-content,
 .disease-header2 {
   display: grid;
-  grid-template-columns: 120px 1fr 106px;
+  grid-template-columns: 120px 1fr 82px;
   border-radius: 5px 5px 0 0;
   height: 32px;
   line-height: 32px;
@@ -464,7 +469,7 @@ export default {
 }
 
 .disease-header2 {
-  grid-template-columns: 140px 1fr 60px 60px 15px;
+  grid-template-columns: 140px 1fr 60px 60px 2px;
 }
 .content2 {
   height: 283px;
