@@ -31,6 +31,7 @@
           :suggestions="item.filteredICD10"
           @complete="searchICD10(item, $event)"
           field="chDrgCnName"
+          @item-select="selectedICD10(item)"
         />
       </div>
       <div class="no-ring flex">
@@ -67,6 +68,10 @@ export default {
     };
   },
   methods: {
+    selectedICD10(item) {
+      const obj = item?.filteredICD10?.find((s) => s.chDrgCnName == item?.icd10?.chDrgCnName);
+      item.icdWords = obj?.chDrgMakerName;
+    },
     async getICD10List({ item, event }) {
       if (event?.query?.length > 1) {
         const atc = "chDrgId_contains=" + event.query;
