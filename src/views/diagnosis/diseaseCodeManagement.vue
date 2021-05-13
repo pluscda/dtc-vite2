@@ -424,7 +424,7 @@ export default {
       let index = usuallyDiseaseOptions.findIndex((s) => s == item);
       usuallyDiseaseOptions.splice(index, 1);
       diseaseOptions.push(item);
-      diseaseOptions.sort(function (a, b) {
+      diseaseOptions.sort((a, b) => {
         if (a.value > b.value) return 1;
         if (a.value < b.value) return -1;
       });
