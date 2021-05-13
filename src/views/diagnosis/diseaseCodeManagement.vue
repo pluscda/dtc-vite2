@@ -327,9 +327,9 @@
     <Button
       label="回門診"
       @click="$router.push('/home')"
-      class="p-button-md p-button-info mr-3"
+      class="p-button-md p-button-info mr-3 mt-3"
     />
-    <Button label="確認" class="p-button-md p-button-warning" />
+    <Button label="確認" class="p-button-md p-button-warning mt-3" />
   </section>
 </template>
 
