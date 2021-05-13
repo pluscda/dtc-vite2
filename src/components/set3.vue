@@ -84,6 +84,9 @@ export default {
       // item.filteredICDWords = [];
     },
   },
+  beforeUnmount() {
+    this.icd10$.unsubscribe();
+  },
   mounted() {
     this.icd10$
       .pipe(
