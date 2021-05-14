@@ -62,11 +62,22 @@
           <main
             class="disease-header2 disease-content2"
             v-for="(item, i) in usuallyDiseaseOptions"
-            :key="`${item}${i}disease-header`"
+            :key="`${item}${i}usuallydisease-header`"
             :title="item.name"
           >
             <div></div>
-            <div class="word-1">{{ item.value }}</div>
+            <div class="word-1">
+              <input
+                v-if="item.edit"
+                v-model="item.value"
+                @blur="item.edit = false"
+                @keyup.enter="item.edit = false"
+                style="min-width: 420px"
+              />
+              <div v-else style="cursor: pointer">
+                <span @click="item.edit = true">{{ item.value }}</span>
+              </div>
+            </div>
             <div></div>
             <div class="word-2" style="color: #16b57f">
               <i class="el-icon-edit inline-block mt-0.5"></i>
@@ -319,28 +330,44 @@ export default {
       { value: "Orthopedics", text: "Orthopedics" },
     ]);
     let diseaseOptions = reactive([
-      { value: "Aarskog Scott Syndrome", text: "Aarskog Scott Syndrome" },
-      {
-        value: "Familial Amyloidotic Polyneuropathy",
-        text: "Familial Amyloidotic Polyneuropathy",
-      },
       {
         value: "3-methylcrotonyl-CoA-carboxylase deficiency, 3MCC",
         text: "3-methylcrotonyl-CoA-carboxylase deficiency, 3MCC",
+        edit: false,
+      },
+      {
+        value: "Aarskog Scott Syndrome",
+        text: "Aarskog Scott Syndrome",
+        edit: false,
+      },
+      {
+        value: "Argininosuccinic aciduria",
+        text: "Argininosuccinic aciduria",
+        edit: false,
+      },
+      {
+        value: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+        text: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+        edit: false,
+      },
+      {
+        value: "Familial Amyloidotic Polyneuropathy",
+        text: "Familial Amyloidotic Polyneuropathy",
+        edit: false,
       },
       {
         value: "Paroxysmal Nocturnal Hemoglobinuria, PNH",
         text: "Paroxysmal Nocturnal Hemoglobinuria, PNH",
+        edit: false,
       },
-      { value: "Retinitis Pigmentosa", text: "Retinitis Pigmentosa" },
-      { value: "Argininosuccinic aciduria", text: "Argininosuccinic aciduria" },
       {
-        value: "Aromatic L-amino acid decarboxylase deficiency,AADC",
-        text: "Aromatic L-amino acid decarboxylase deficiency,AADC",
+        value: "Retinitis Pigmentosa",
+        text: "Retinitis Pigmentosa",
+        edit: false,
       },
     ]);
     let usuallyDiseaseOptions = reactive([]);
-    //secrion3 variable
+    //section3 variable
     const slow = reactive({});
     const ro = reactive({});
     const selectedICD9 = reactive({});
