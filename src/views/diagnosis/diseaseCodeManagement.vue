@@ -110,36 +110,22 @@
         <InputSwitch v-model="ro['one']"></InputSwitch>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD9['one']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD9Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD9Optopns"
-            :key="`ICD91${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD10['one']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD10Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD10Optopns"
-            :key="`ICD101${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>主診斷碼</div>
       <div>
@@ -166,36 +152,22 @@
         <InputSwitch v-model="ro['two']"></InputSwitch>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD9['two']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD9Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD9Optopns"
-            :key="`ICD92${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD10['two']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD10Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD10Optopns"
-            :key="`ICD102${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>副診斷碼1</div>
       <div>
@@ -222,36 +194,22 @@
         <InputSwitch v-model="ro['three']"></InputSwitch>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD9['three']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD9Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD9Optopns"
-            :key="`ICD93${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD10['three']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD10Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD10Optopns"
-            :key="`ICD103${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>副診斷碼2</div>
       <div>
@@ -282,36 +240,22 @@
         <InputSwitch v-model="ro['four']"></InputSwitch>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD9['four']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD9Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD9Optopns"
-            :key="`ICD94${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>
-        <el-select
-          filterable
+        <el-input
+          placeholder=""
           v-model="selectedICD10['four']"
-          placeholder="請選擇"
-          class="border-l-0"
+          @change="showICD10Option"
+          clearable
         >
-          <el-option
-            v-for="item in allICD10Optopns"
-            :key="`ICD104${item}`"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+        </el-input>
       </div>
       <div>副診斷碼3</div>
       <div>
@@ -438,6 +382,14 @@ export default {
       });
     };
 
+    const showICD9Option = (item) => {
+      console.log("ShowICD9Option");
+    };
+
+    const showICD10Option = (item) => {
+      console.log("ShowICD10Option");
+    };
+
     return {
       ...toRefs(state),
       getList,
@@ -458,6 +410,8 @@ export default {
       illu,
       addDisease,
       deleteDisease,
+      showICD9Option,
+      showICD10Option,
     };
   },
 };
