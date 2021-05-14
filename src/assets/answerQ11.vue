@@ -47,17 +47,22 @@ export default {
     return {
       items,
       showDlg: false,
+      img:'',
+      title:'',
+      description:'',
     };
   },
   methods: {
     saveBlog(){
       //get img , title, content here
       // assume that we have it now
+      // validation skip here
       const obj =   {
         src: this.img,
         title: this.title,
         description: this.content,
       },
+      // AJAX post here to backend; since it has no backend now, we add in array now
       this.items.push(obj);
       this.showDlg = false;
     }
