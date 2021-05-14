@@ -398,6 +398,10 @@ export default {
       let index = diseaseOptions.findIndex((s) => s == item);
       diseaseOptions.splice(index, 1);
       usuallyDiseaseOptions.push(item);
+      usuallyDiseaseOptions.sort((a, b) => {
+        if (a.value > b.value) return 1;
+        if (a.value < b.value) return -1;
+      });
     };
     const deleteDisease = (item) => {
       let index = usuallyDiseaseOptions.findIndex((s) => s == item);
