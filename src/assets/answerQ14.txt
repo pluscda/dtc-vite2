@@ -1,8 +1,0 @@
-from scratch:
-1.	install required packages.
-2.  Setup the routing paths for both BE and FE.
-3.	Find the Single source of true (Redux, Vuex, Ngrx, or DBs, others)
-4.	Break the main components into: views, models, services, and repo.
-5.	Define the interfaces for both BE and FE  APIs and DTOs.
-6.  Validate the data from both BE and FE.
-
