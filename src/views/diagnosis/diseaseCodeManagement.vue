@@ -124,7 +124,8 @@
         <el-input
           placeholder=""
           v-model="selectedICD9['one']"
-          @change="showICD9Option"
+          @change="showICD9Option(selectedICD9['one'])"
+          @keydown.enter="showICD9Option(selectedICD9['one'])"
           clearable
         >
         </el-input>
@@ -166,7 +167,7 @@
         <el-input
           placeholder=""
           v-model="selectedICD9['two']"
-          @change="showICD9Option"
+          @change="showICD9Option(selectedICD9['two'])"
           clearable
         >
         </el-input>
@@ -297,6 +298,7 @@
       class="p-button-md p-button-info mr-3 mt-3"
     />
     <Button label="確認" class="p-button-md p-button-warning mt-3" />
+    <ShowICD9List :allICD9Optopns="allICD9Optopns"></ShowICD9List>
   </section>
 </template>
 
@@ -304,6 +306,8 @@
 import { toRefs, ref, inject, computed, reactive } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import allIDC9Data from "/@/dataIDC9.js";
+import ShowICD9List from "./showICD9List.vue";
 
 let headers = [
   { name: "慢性" },
@@ -319,8 +323,11 @@ export default {
   name: "inquerylist",
   components: {
     Pagination,
+    ShowICD9List,
   },
   setup() {
+    const global = inject("global");
+    let displayBasic = ref(false);
     const searchDivision = ref("");
     const divisionOptions = reactive([
       { value: "Nephrology", text: "Nephrology" },
@@ -374,13 +381,12 @@ export default {
     const selectedICD10 = reactive({});
     const internationEngName = reactive({});
     const internationChineName = reactive({});
-    const allICD9Optopns = reactive([
-      "140.0",
-      "140.1",
-      "140.2",
-      "140.3",
-      "140.4",
-    ]);
+    let allICD9Optopns = reactive([]);
+    allICD9Optopns = allIDC9Data.map((s) => {
+      s.combine = `${s.value}${s.text}`;
+      return s;
+    });
+
     const allICD10Optopns = reactive(["C00", "C01", "C02", "C03", "C04"]);
     const illu = ref("");
     headers = ref(headers);
@@ -414,7 +420,14 @@ export default {
     };
 
     const showICD9Option = (item) => {
-      console.log("ShowICD9Option");
+      if (!Boolean(item)) {
+        return;
+      }
+      global.editItem = item;
+      global.showICD9Item = true;
+    };
+    const openBasic = (item) => {
+      displayBasic.value = true;
     };
 
     const showICD10Option = (item) => {
@@ -443,6 +456,8 @@ export default {
       deleteDisease,
       showICD9Option,
       showICD10Option,
+      displayBasic,
+      openBasic,
     };
   },
 };
@@ -450,8 +465,6 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  // width: calc(103px + 120px * 16) !important;
-  // max-width: calc(103px + 120px * 16) !important;
   grid-template-columns: 80px 100px 120px 120px 220px 1fr 1fr;
 }
 #app .management {
@@ -512,4 +525,11 @@ export default {
 .word-2 {
   cursor: pointer;
 }
+.p-dialog-content {
+  overflow: hidden !important;
+}
+.p-dialog-content {
+  overflow-y: hidden;
+}
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
