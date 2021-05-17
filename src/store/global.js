@@ -7,6 +7,7 @@ const init = {
   userDefaultBgColor: "dark",
   editItem: "",
   showICD9Item: false,
+  dataICD9Index: 0,
 };
 
 export let global = reactive({ ...init });

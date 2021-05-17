@@ -124,8 +124,8 @@
         <el-input
           placeholder=""
           v-model="selectedICD9['one']"
-          @change="showICD9Option(selectedICD9['one'])"
-          @keydown.enter="showICD9Option(selectedICD9['one'])"
+          @change="showICD9Option(selectedICD9['one'], 1)"
+          @keydown.enter="showICD9Option(selectedICD9['one'], 1)"
           clearable
         >
         </el-input>
@@ -167,7 +167,8 @@
         <el-input
           placeholder=""
           v-model="selectedICD9['two']"
-          @change="showICD9Option(selectedICD9['two'])"
+          @change="showICD9Option(selectedICD9['two'], 2)"
+          @keydown.enter="showICD9Option(selectedICD9['two'], 2)"
           clearable
         >
         </el-input>
@@ -209,7 +210,8 @@
         <el-input
           placeholder=""
           v-model="selectedICD9['three']"
-          @change="showICD9Option"
+          @change="showICD9Option(selectedICD9['three'], 3)"
+          @keydown.enter="showICD9Option(selectedICD9['three'], 3)"
           clearable
         >
         </el-input>
@@ -255,7 +257,8 @@
         <el-input
           placeholder=""
           v-model="selectedICD9['four']"
-          @change="showICD9Option"
+          @change="showICD9Option(selectedICD9['four'], 4)"
+          @keydown.enter="showICD9Option(selectedICD9['four'], 4)"
           clearable
         >
         </el-input>
@@ -303,7 +306,7 @@
 </template>
 
 <script>
-import { toRefs, ref, inject, computed, reactive } from "vue";
+import { toRefs, ref, inject, computed, reactive, watch } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import allIDC9Data from "/@/dataIDC9.js";
@@ -419,10 +422,11 @@ export default {
       });
     };
 
-    const showICD9Option = (item) => {
+    const showICD9Option = (item, index) => {
       if (!Boolean(item)) {
         return;
       }
+      global.dataICD9Index = index;
       global.editItem = item;
       global.showICD9Item = true;
     };
@@ -433,6 +437,44 @@ export default {
     const showICD10Option = (item) => {
       console.log("ShowICD10Option");
     };
+
+    watch(
+      () => global.showICD9Item,
+      (idx, prevIdx) => {
+        let isClose = idx;
+        console.log("global.editItem", global.editItem);
+        console.log("global.dataICD9Index", global.dataICD9Index);
+        if (
+          !idx &&
+          Boolean(global.editItem) &&
+          (+global.dataICD9Index == 1 ||
+            +global.dataICD9Index == 2 ||
+            +global.dataICD9Index == 3 ||
+            +global.dataICD9Index == 4)
+        ) {
+          switch (global.dataICD9Index) {
+            case 1:
+              selectedICD9["one"] = global.editItem;
+              global.dataICD9Index = 0;
+              break;
+            case 2:
+              selectedICD9["two"] = global.editItem;
+              global.dataICD9Index = 0;
+              break;
+            case 3:
+              selectedICD9["three"] = global.editItem;
+              global.dataICD9Index = 0;
+              break;
+            case 4:
+              selectedICD9["four"] = global.editItem;
+              global.dataICD9Index = 0;
+              break;
+            default:
+              console.log(`Sorry, no data`);
+          }
+        }
+      }
+    );
 
     return {
       ...toRefs(state),

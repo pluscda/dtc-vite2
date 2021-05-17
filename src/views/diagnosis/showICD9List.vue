@@ -72,7 +72,7 @@ export default {
       global.showICD9Item = false;
     };
     let selectICD9 = (item) => {
-      console.log(item);
+      global.editItem = item.value;
       global.showICD9Item = false;
     };
 
