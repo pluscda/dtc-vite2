@@ -101,6 +101,7 @@ export default {
 }
 .content:hover {
   background: #1f6ddb !important;
+  color: #fff;
   cursor: pointer;
 }
 </style>
