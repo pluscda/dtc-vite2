@@ -442,8 +442,6 @@ export default {
       () => global.showICD9Item,
       (idx, prevIdx) => {
         let isClose = idx;
-        console.log("global.editItem", global.editItem);
-        console.log("global.dataICD9Index", global.dataICD9Index);
         if (
           !idx &&
           Boolean(global.editItem) &&
