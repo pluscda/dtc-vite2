@@ -1,9 +1,9 @@
 <template>
   <div class="pr-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid text-white dtc-page-header dtc-page-header-grid">
       <div>本國國人基本資料</div>
     </header>
-    <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
+    <main class="grid grid-cols-2 gap-3 lg:grid-cols-5">
       <DtxInputGroup prepend="身分證字號" labelWidth="120">
         <el-input v-model="nativeIdNumber" />
       </DtxInputGroup>
@@ -63,10 +63,10 @@
         </el-select>
       </DtxInputGroup>
     </main>
-    <header class="mt-5 dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid mt-5 text-white dtc-page-header dtc-page-header-grid">
       <div>外國國人基本資料</div>
     </header>
-    <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
+    <main class="grid grid-cols-2 gap-3 lg:grid-cols-5">
       <DtxInputGroup prepend="護照/身分證/居留證號碼" class="col-span-2">
         <el-input v-model="foreignIdNumber" />
       </DtxInputGroup>
@@ -122,10 +122,10 @@
       </DtxInputGroup>
     </main>
 
-    <header class="mt-5 dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid mt-5 text-white dtc-page-header dtc-page-header-grid">
       <div>工作單位資訊</div>
     </header>
-    <main class="grid gap-3 grid-cols-2">
+    <main class="grid grid-cols-2 gap-3">
       <DtxInputGroup prepend="職業類別" labelWidth="120">
         <el-input v-model="occupation" />
       </DtxInputGroup>
@@ -166,7 +166,7 @@ export default {
   components: {},
   data() {
     return {
-      nativeIdNumber: "",
+      nativeIdNumber: null,
       nativeName: "",
       nativeBirthday: "",
       nativeGender: "male",
