@@ -1,9 +1,9 @@
 <template>
   <div class="pr-1">
-    <header class="dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid text-white dtc-page-header dtc-page-header-grid">
       <div>本國國人基本資料</div>
     </header>
-    <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
+    <main class="grid grid-cols-2 gap-3 lg:grid-cols-5">
       <DtxInputGroup prepend="身分證字號" labelWidth="120">
         <el-input v-model="nativeIdNumber" />
       </DtxInputGroup>
@@ -63,10 +63,10 @@
         </el-select>
       </DtxInputGroup>
     </main>
-    <header class="mt-5 dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid mt-5 text-white dtc-page-header dtc-page-header-grid">
       <div>外國國人基本資料</div>
     </header>
-    <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
+    <main class="grid grid-cols-2 gap-3 lg:grid-cols-5">
       <DtxInputGroup prepend="護照/身分證/居留證號碼" class="col-span-2">
         <el-input v-model="foreignIdNumber" />
       </DtxInputGroup>
@@ -122,10 +122,10 @@
       </DtxInputGroup>
     </main>
 
-    <header class="mt-5 dtc-page-header dtc-page-header-grid grid text-white">
+    <header class="grid mt-5 text-white dtc-page-header dtc-page-header-grid">
       <div>工作單位資訊</div>
     </header>
-    <main class="grid gap-3 grid-cols-2">
+    <main class="grid grid-cols-2 gap-3">
       <DtxInputGroup prepend="職業類別" labelWidth="120">
         <el-input v-model="occupation" />
       </DtxInputGroup>
@@ -155,110 +155,110 @@
 
 <script>
 let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
+  { name: 'ID', key: 'id', sortDesc: null },
+  { name: '建立者', key: 'name', sortDesc: null },
+  { name: '建立者', key: 'name', sortDesc: null },
+  { name: '年齡', key: 'age', sortDesc: null },
 ];
 
 export default {
-  name: "basicinfo",
+  name: 'basicinfo',
   components: {},
   data() {
     return {
-      nativeIdNumber: "",
-      nativeName: "",
-      nativeBirthday: "",
-      nativeGender: "male",
+      nativeIdNumber: '441',
+      nativeName: '23',
+      nativeBirthday: '',
+      nativeGender: 'male',
       genderOptions: [
         {
-          value: "male",
-          label: "男",
+          value: 'male',
+          label: '男',
         },
 
         {
-          value: "female",
-          label: "女",
+          value: 'female',
+          label: '女',
         },
       ],
-      nativeEducation: "",
-      nativeCitizenship: "",
+      nativeEducation: '',
+      nativeCitizenship: '',
       nativeAddress: {
-        postalCode: "",
-        completeAddress: "",
+        postalCode: '',
+        completeAddress: '',
       },
-      nativeLanguage: "",
+      nativeLanguage: '',
       nativeContactAddress: {
-        postalCode: "",
-        completeAddress: "",
+        postalCode: '',
+        completeAddress: '',
       },
-      nativeMarriage: "",
-      nativeMobilePhone: "",
+      nativeMarriage: '',
+      nativeMobilePhone: '',
       nativeTelPhone: {
-        district: "",
-        number: "",
-        ext: "",
+        district: '',
+        number: '',
+        ext: '',
       },
-      aboBlood: "A",
+      aboBlood: 'A',
       aboBloodOptions: [
         {
-          value: "A",
-          label: "A",
+          value: 'A',
+          label: 'A',
         },
         {
-          value: "B",
-          label: "B",
+          value: 'B',
+          label: 'B',
         },
         {
-          value: "AB",
-          label: "AB",
+          value: 'AB',
+          label: 'AB',
         },
         {
-          value: "O",
-          label: "O",
+          value: 'O',
+          label: 'O',
         },
       ],
-      rhBlood: "negative",
+      rhBlood: 'negative',
       rhBloodOptions: [
         {
-          value: "positive",
-          label: "Rh+",
+          value: 'positive',
+          label: 'Rh+',
         },
         {
-          value: "negative",
-          label: "Rh-",
+          value: 'negative',
+          label: 'Rh-',
         },
       ],
-      foreignIdNumber: "",
-      foreignName: "",
-      foreignBirthday: "",
-      foreignGender: "male",
-      foreignEducation: "",
-      foreignCitizenship: "",
+      foreignIdNumber: '',
+      foreignName: '',
+      foreignBirthday: '',
+      foreignGender: 'male',
+      foreignEducation: '',
+      foreignCitizenship: '',
       foreignContactAddress: {
-        postalCode: "",
-        completeAddress: "",
+        postalCode: '',
+        completeAddress: '',
       },
-      foreignLanguage: "",
-      foreignMarriage: "",
-      foreignMobilePhone: "",
+      foreignLanguage: '',
+      foreignMarriage: '',
+      foreignMobilePhone: '',
       foreignTelPhone: {
-        district: "",
-        number: "",
-        ext: "",
+        district: '',
+        number: '',
+        ext: '',
       },
-      foreignAboBlood: "A",
-      foreignRhBlood: "negative",
-      occupation: "",
-      occupationUnit: "",
+      foreignAboBlood: 'A',
+      foreignRhBlood: 'negative',
+      occupation: '',
+      occupationUnit: '',
       occupationAddress: {
-        postalCode: "",
-        completeAddress: "",
+        postalCode: '',
+        completeAddress: '',
       },
       occupationPhone: {
-        district: "",
-        number: "",
-        ext: "",
+        district: '',
+        number: '',
+        ext: '',
       },
     };
   },
