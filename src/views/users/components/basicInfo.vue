@@ -166,8 +166,13 @@ export default {
   components: {},
   data() {
     return {
+<<<<<<< HEAD
       nativeIdNumber: '441',
       nativeName: '23',
+=======
+      nativeIdNumber: '1',
+      nativeName: '2',
+>>>>>>> 25047719312a45c843b048cf0ed7447bb780387f
       nativeBirthday: '',
       nativeGender: 'male',
       genderOptions: [
