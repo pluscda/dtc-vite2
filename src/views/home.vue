@@ -1,6 +1,6 @@
 <template>
   <div class="myCan relative">
-    <canvas id="can1" @click="interactWithCanvas($event)"></canvas>
+    <canvas id="can1" @click="interactWithCanvas($event)" @pointermove="interactWithCanvas($event)"></canvas>
   </div>
 </template>
 <script>
