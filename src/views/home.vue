@@ -52,22 +52,46 @@ export default {
     },
 
     init() {
-      for (let i = 0; i < 20; ++i) {
+      for (let i = 0; i < 5; ++i) {
         this.parArr.push(new Partical(this.canvas, this.ctx));
       }
     },
     displayPartical() {
-      const arr = [...this.parArr];
-      arr.forEach((s, i) => {
+      this.parArr.forEach((s, i) => {
         s.update();
         s.draw();
+        // for (let j = i; j < this.parArr.length; ++j) {
+        //   let dx = this.parArr[i].x - this.parArr[j].x;
+        //   let dy = this.parArr[i].y - this.parArr[j].y;
+        //   const distance = Math.sqrt(dx * dx + dy * dy);
+        //   if (distance < 100) {
+        //     this.ctx.beginPath();
+        //     this.ctx.strokeStyle = this.parArr[i].color;
+        //     this.ctx.moveTo(this.parArr[i].x, this.parArr[i].y);
+        //     this.ctx.lineTo(this.parArr[j].x, this.parArr[j].y);
+        //     this.ctx.stroke();
+        //   }
+        // }
+        // this.R.range(i, this.parArr.length).forEach((j) => {
+        //   let dx = this.parArr[i].x - this.parArr[j].x;
+        //   let dy = this.parArr[i].y - this.parArr[j].y;
+        //   const distance = Math.sqrt(dx * dx + dy * dy);
+        //   if (distance < 100) {
+        //     this.ctx.beginPath();
+        //     this.ctx.strokeStyle = this.parArr[i].color;
+        //     this.ctx.moveTo(this.parArr[i].x, this.parArr[i].y);
+        //     this.ctx.lineTo(this.parArr[j].x, this.parArr[j].y);
+        //     this.ctx.stroke();
+        //   }
+        // });
         s.size <= 0.3 ? this.parArr.splice(i, 1) : "";
       });
     },
     animate() {
-      hsl++;
-      this.ctx.fillStyle = "rgba(0,0,0,0.02)";
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      hsl += 5;
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      // this.ctx.fillStyle = "rgba(0,0,0,0.02)";
+      // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
       this.displayPartical();
       requestAnimationFrame(this.animate);
     },
@@ -78,9 +102,7 @@ export default {
     this.canvas.height = window.innerHeight;
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "white";
-    //  this.init();
     this.animate();
-    //window.addEventListener("resize", this.drawRect);
   },
 };
 </script>
