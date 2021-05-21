@@ -4,14 +4,16 @@
   </div>
 </template>
 <script>
+let hsl = 0;
 class Partical {
   constructor(canvas, ctx, mouse) {
     this.x = mouse ? mouse.x : Math.random() * canvas.width;
     this.y = mouse ? mouse.y : Math.random() * canvas.height;
-    this.size = Math.random() * 16 + 1;
+    this.size = Math.random() * 8 + 1;
     this.speedX = Math.random() * 3 - 1.5;
     this.speedY = Math.random() * 3 - 1.5;
     this.ctx = ctx;
+    this.color = `hsl(${hsl}, 100%, 50%)`;
   }
   update() {
     this.x += this.speedX;
@@ -20,7 +22,7 @@ class Partical {
   }
   draw() {
     this.ctx.beginPath();
-    this.ctx.fillStyle = "blue";
+    this.ctx.fillStyle = this.color;
     this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     this.ctx.fill();
   }
@@ -50,7 +52,7 @@ export default {
     },
 
     init() {
-      for (let i = 0; i < 100; ++i) {
+      for (let i = 0; i < 20; ++i) {
         this.parArr.push(new Partical(this.canvas, this.ctx));
       }
     },
@@ -63,7 +65,9 @@ export default {
       });
     },
     animate() {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      hsl++;
+      this.ctx.fillStyle = "rgba(0,0,0,0.02)";
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
       this.displayPartical();
       requestAnimationFrame(this.animate);
     },
