@@ -3,10 +3,7 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>申請單明細</div>
     </header>
-    <nav
-      class="ml-1 dtc-search-filters mt-2"
-      style="margin-bottom: 1.5rem !important"
-    >
+    <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="申請日期">
         <el-input readonly :value="his.tiDrgApplyDate" />
       </DtxInputGroup>
@@ -21,22 +18,9 @@
       </DtxInputGroup>
     </nav>
 
-    <header
-      class="
-        my-title
-        relative
-        dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
-        dtc-template-columns
-        mx-1
-      "
-    >
+    <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>序號</div>
-      <div
-        v-for="(item, i) in headers"
-        :key="i"
-        @click="sort(headers, item)"
-        :title="item.name"
-      >
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -50,17 +34,10 @@
       </div>
     </header>
     <main
-      class="
-        dtc-grid-header dtc-grid-body dtc-template-columns
-        text-black
-        ml-1
-        mx-1
-      "
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, k) in list"
       :key="k"
-      :style="
-        k % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="k % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
         {{ k + 1 }}
@@ -119,23 +96,10 @@ export default {
     ]);
 
     headers = ref(headers);
-    const {
-      state,
-      getList,
-      sort,
-      clearFilters,
-      removeItem,
-      getItemDetail,
-      twTime,
-    } = useList("drg-warehouse-order-adds", 1200);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds", 1200);
 
     const cleanFilter = () => {
-      searchOrderId.value =
-        searchOrderPerson.value =
-        searchStatus.value =
-        time1.value =
-        time2.value =
-          "";
+      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
       clearFilters();
     };
     const search = () => {
