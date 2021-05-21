@@ -1,6 +1,6 @@
 <template>
   <div class="myCan relative">
-    <canvas id="can1" @click="interactWithCanvas($event)" @pointermove="interactWithCanvas($event)"></canvas>
+    <canvas id="can1" @click="interactWithCanvas($event)"></canvas>
   </div>
 </template>
 <script>
@@ -8,7 +8,7 @@ class Partical {
   constructor(canvas, ctx) {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 5 + 1;
+    this.size = Math.random() * 16 + 1;
     this.speedX = Math.random() * 3 - 1.5;
     this.speedY = Math.random() * 3 - 1.5;
     this.ctx = ctx;
@@ -16,11 +16,12 @@ class Partical {
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
+    if (this.size > 0.2) this.size -= 0.1;
   }
   draw() {
     this.ctx.beginPath();
     this.ctx.fillStyle = "blue";
-    this.ctx.arc(this.x, this.y, 50, 0, Math.PI * 2);
+    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     this.ctx.fill();
   }
 }
@@ -43,6 +44,9 @@ export default {
     interactWithCanvas(e) {
       this.mouse.x = e.x;
       this.mouse.y = e.y;
+      this.R.range(1, 10).forEach(() => {
+        this.parArr.push(new Partical(this.canvas, this.ctx));
+      });
     },
 
     init() {
@@ -51,9 +55,11 @@ export default {
       }
     },
     displayPartical() {
-      this.parArr.forEach((s) => {
+      const arr = [...this.parArr];
+      arr.forEach((s, i) => {
         s.update();
         s.draw();
+        s.size <= 0.3 ? this.parArr.splice(i, 1) : "";
       });
     },
     animate() {
@@ -68,7 +74,7 @@ export default {
     this.canvas.height = window.innerHeight;
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "white";
-    this.init();
+    //  this.init();
     this.animate();
     //window.addEventListener("resize", this.drawRect);
   },
