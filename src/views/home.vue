@@ -5,9 +5,9 @@
 </template>
 <script>
 class Partical {
-  constructor(canvas, ctx) {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
+  constructor(canvas, ctx, mouse) {
+    this.x = mouse ? mouse.x : Math.random() * canvas.width;
+    this.y = mouse ? mouse.y : Math.random() * canvas.height;
     this.size = Math.random() * 16 + 1;
     this.speedX = Math.random() * 3 - 1.5;
     this.speedY = Math.random() * 3 - 1.5;
@@ -45,7 +45,7 @@ export default {
       this.mouse.x = e.x;
       this.mouse.y = e.y;
       this.R.range(1, 10).forEach(() => {
-        this.parArr.push(new Partical(this.canvas, this.ctx));
+        this.parArr.push(new Partical(this.canvas, this.ctx, this.mouse));
       });
     },
 
