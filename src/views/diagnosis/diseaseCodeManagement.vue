@@ -62,118 +62,46 @@
         {{ item.name }}
       </div>
     </header>
-    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #f5f5f5">
+    <main v-for="(item, rowIdx) in icdRows" :key="'ritem' + rowIdx" class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2">
       <div style="padding-top: 0px">
-        <Checkbox :binary="true" v-model="slow['one']" class="inline-block" />
+        <Checkbox :binary="true" v-model="item.slow" class="inline-block" />
       </div>
       <div style="padding-top: 12px; padding-bottom: 0px">
-        <InputSwitch v-model="ro['one']"></InputSwitch>
+        <InputSwitch v-model="item.ro"></InputSwitch>
+      </div>
+      <div class="">
+        <AutoComplete
+          class="border-transparent transform"
+          placeholder="請輸入"
+          v-model="item.icd9"
+          :delay="300"
+          :suggestions="item.filteredICD9"
+          @complete="searchICD9(item, $event)"
+          field="chDrgCnName"
+          @item-select="selectedICD9(item)"
+        />
+      </div>
+      <div class="">
+        <AutoComplete
+          class="border-transparent transform"
+          placeholder="請輸入"
+          v-model="item.icd10"
+          :delay="300"
+          :suggestions="item.filteredICD10"
+          @complete="searchICD10(item, $event)"
+          field="chDrgCnName"
+          @item-select="selectedICD10(item)"
+        />
+      </div>
+      <div>{{ rowIdx == 0 ? "主診斷碼" : "副診斷碼" + rowIdx }}</div>
+      <div>
+        <el-input placeholder="" v-model="item.internationEngName" clearable> </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD9['one']"
-          @change="showICD9Option(selectedICD9['one'], 1)"
-          @keydown.enter="showICD9Option(selectedICD9['one'], 1)"
-          clearable
-        >
-        </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="selectedICD10['one']" @change="showICD10Option" clearable> </el-input>
-      </div>
-      <div>主診斷碼</div>
-      <div>
-        <el-input placeholder="" v-model="internationEngName['one']" clearable> </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="internationChineName['one']" clearable> </el-input>
+        <el-input placeholder="" v-model="item.internationChineName" clearable> </el-input>
       </div>
     </main>
-    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #e0e0e0">
-      <div style="padding-top: 0px">
-        <Checkbox :binary="true" v-model="slow['two']" class="inline-block" />
-      </div>
-      <div style="padding-top: 12px; padding-bottom: 0px">
-        <InputSwitch v-model="ro['two']"></InputSwitch>
-      </div>
-      <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD9['two']"
-          @change="showICD9Option(selectedICD9['two'], 2)"
-          @keydown.enter="showICD9Option(selectedICD9['two'], 2)"
-          clearable
-        >
-        </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="selectedICD10['two']" @change="showICD10Option" clearable> </el-input>
-      </div>
-      <div>副診斷碼1</div>
-      <div>
-        <el-input placeholder="" v-model="internationEngName['two']" clearable> </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="internationChineName['two']" clearable> </el-input>
-      </div>
-    </main>
-    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #f5f5f5">
-      <div style="padding-top: 0px">
-        <Checkbox :binary="true" v-model="slow['three']" class="inline-block" />
-      </div>
-      <div style="padding-top: 12px; padding-bottom: 0px">
-        <InputSwitch v-model="ro['three']"></InputSwitch>
-      </div>
-      <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD9['three']"
-          @change="showICD9Option(selectedICD9['three'], 3)"
-          @keydown.enter="showICD9Option(selectedICD9['three'], 3)"
-          clearable
-        >
-        </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="selectedICD10['three']" @change="showICD10Option" clearable> </el-input>
-      </div>
-      <div>副診斷碼2</div>
-      <div>
-        <el-input placeholder="" v-model="internationEngName['three']" clearable> </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="internationChineName['three']" clearable> </el-input>
-      </div>
-    </main>
-    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #e0e0e0">
-      <div style="padding-top: 0px">
-        <Checkbox :binary="true" v-model="slow['four']" class="inline-block" />
-      </div>
-      <div style="padding-top: 12px; padding-bottom: 0px">
-        <InputSwitch v-model="ro['four']"></InputSwitch>
-      </div>
-      <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD9['four']"
-          @change="showICD9Option(selectedICD9['four'], 4)"
-          @keydown.enter="showICD9Option(selectedICD9['four'], 4)"
-          clearable
-        >
-        </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="selectedICD10['four']" @change="showICD10Option" clearable> </el-input>
-      </div>
-      <div>副診斷碼3</div>
-      <div>
-        <el-input placeholder="" v-model="internationEngName['four']" clearable> </el-input>
-      </div>
-      <div>
-        <el-input placeholder="" v-model="internationChineName['four']" clearable> </el-input>
-      </div>
-    </main>
+
     <div class="section-3">
       <span class="dtc-label section-3-word">診斷說明:</span>
       <el-input type="textarea" autosize v-model="illu" placeholder="請輸入診斷說明" />
@@ -187,6 +115,9 @@
 
 <script>
 import { toRefs, ref, inject, computed, reactive, watch } from "vue";
+import { Subject, of, pipe } from "rxjs";
+import axios from "utils/request";
+import { distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import allIDC9Data from "/@/dataIDC9.js";
@@ -199,6 +130,76 @@ export default {
   components: {
     Pagination,
     ShowICD9List,
+  },
+  data() {
+    return {
+      icd10$: new Subject(),
+      icd9$: new Subject(),
+    };
+  },
+  methods: {
+    selectedICD10(item) {
+      const obj = item?.filteredICD10?.find((s) => s.chDrgCnName == item?.icd10?.chDrgCnName);
+      item.internationChineName = obj?.chDrgMakerName;
+    },
+    selectedICD9(item) {
+      const obj = item?.filteredICD9?.find((s) => s.chDrgCnName == item?.icd9?.chDrgCnName);
+      item.internationChineName = obj?.chDrgMakerName;
+    },
+    async getICD10List({ item, event }) {
+      if (event?.query?.length > 1) {
+        const atc = "chDrgId_contains=" + event.query;
+        const ret = await axios.get("drg-infos?_limit=20&" + atc);
+        item.filteredICD10 = ret;
+      } else {
+        item.filteredICD10 = [];
+      }
+      return "";
+    },
+    async getICD9List({ item, event }) {
+      if (event?.query?.length > 1) {
+        const atc = "chDrgId_contains=" + event.query;
+        const ret = await axios.get("drg-infos?_limit=20&" + atc);
+        item.filteredICD9 = ret;
+      } else {
+        item.filteredICD9 = [];
+      }
+      return "";
+    },
+    searchICD10(item, event) {
+      this.icd10$.next({ item, event });
+    },
+    searchICD9(item, event) {
+      this.icd9$.next({ item, event });
+    },
+  },
+  beforeUnmount() {
+    this.icd10$.unsubscribe();
+    this.icd9$.unsubscribe();
+  },
+  mounted() {
+    this.icd10$
+      .pipe(
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!pre.event.query === cur.event.query;
+          if (eq) cur.item.filteredICD10 = [];
+          return eq;
+        }),
+        switchMap(this.getICD10List),
+        catchError((s) => of(""))
+      )
+      .subscribe();
+    this.icd9$
+      .pipe(
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!pre.event.query === cur.event.query;
+          if (eq) cur.item.filteredICD9 = [];
+          return eq;
+        }),
+        switchMap(this.getICD9List),
+        catchError((s) => of(""))
+      )
+      .subscribe();
   },
   setup() {
     const global = inject("global");
@@ -249,11 +250,11 @@ export default {
       },
     ]);
     let usuallyDiseaseOptions = reactive([]);
+    const icdRows = reactive([{}, {}, {}, {}]);
     //section3 variable
     const slow = reactive({});
     const ro = reactive({});
-    const selectedICD9 = reactive({});
-    const selectedICD10 = reactive({});
+
     const internationEngName = reactive({});
     const internationChineName = reactive({});
     let allICD9Optopns = reactive([]);
@@ -342,8 +343,6 @@ export default {
       sort,
       slow,
       ro,
-      selectedICD9,
-      selectedICD10,
       allICD9Optopns,
       allICD10Optopns,
       internationEngName,
@@ -355,6 +354,7 @@ export default {
       showICD10Option,
       displayBasic,
       openBasic,
+      icdRows,
     };
   },
 };
