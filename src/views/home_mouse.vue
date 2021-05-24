@@ -1,6 +1,6 @@
 <template>
-  <div class="myCan relative" @pointermove="interactWithCanvas($event)">
-    <canvas id="can1"></canvas>
+  <div class="myCan relative">
+    <canvas id="can1" @click="interactWithCanvas($event)" @pointermove="interactWithCanvas($event)"></canvas>
   </div>
 </template>
 <script>
@@ -44,7 +44,6 @@ export default {
       this.ctx.fillRect(10, 10, 100, 20);
     },
     interactWithCanvas(e) {
-      e.preventDefault();
       this.mouse.x = e.x;
       this.mouse.y = e.y;
       this.R.range(1, 10).forEach(() => {
@@ -53,16 +52,11 @@ export default {
     },
 
     init() {
-      for (let i = 0; i < 20; ++i) {
+      for (let i = 0; i < 40; ++i) {
         this.parArr.push(new Partical(this.canvas, this.ctx));
       }
     },
-    resize() {
-      this.canvas.width = window.innerWidth;
-      this.canvas.height = window.innerHeight;
-    },
     displayPartical() {
-      const arr = [];
       this.parArr.forEach((s, i) => {
         s.update();
         s.draw();
@@ -78,6 +72,18 @@ export default {
         //     this.ctx.stroke();
         //   }
         // }
+        // this.R.range(i, this.parArr.length).forEach((j) => {
+        //   let dx = this.parArr[i].x - this.parArr[j].x;
+        //   let dy = this.parArr[i].y - this.parArr[j].y;
+        //   const distance = Math.sqrt(dx * dx + dy * dy);
+        //   if (distance < 100) {
+        //     this.ctx.beginPath();
+        //     this.ctx.strokeStyle = this.parArr[i].color;
+        //     this.ctx.moveTo(this.parArr[i].x, this.parArr[i].y);
+        //     this.ctx.lineTo(this.parArr[j].x, this.parArr[j].y);
+        //     this.ctx.stroke();
+        //   }
+        // });
         s.size <= 0.3 ? this.parArr.splice(i, 1) : "";
       });
     },
@@ -97,7 +103,6 @@ export default {
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "white";
     this.animate();
-    window.addEventListener("resize", this.resize);
   },
 };
 </script>
@@ -106,9 +111,6 @@ export default {
 .myCan {
   width: 100vw;
   height: calc(100vh);
-  max-width: 100vw;
-  max-height: 100vh;
-  overflow: hidden !important;
   background: var(--dark);
   color: var(--light);
   > canvas {
@@ -116,7 +118,6 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    overflow: hidden !important;
   }
 }
 </style>
