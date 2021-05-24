@@ -32,8 +32,8 @@
         <header class="disease-header2 dtc-label">
           <div class="word-1">常用疾病類別 (95)</div>
           <div></div>
-          <div class="word-2">編輯</div>
-          <div class="word-2">刪除</div>
+          <div v-if="usuallyDiseaseOptions.length > 0">編輯</div>
+          <div v-if="usuallyDiseaseOptions.length > 0">刪除</div>
           <div></div>
         </header>
         <div class="content content2">
