@@ -1,26 +1,13 @@
 <template>
   <section class="management">
-    <header
-      class="dtc-page-header grid dtc-page-header__grid pr-2 my-long-header"
-    >
+    <header class="dtc-page-header grid dtc-page-header__grid pr-2 my-long-header">
       <div>診斷碼管理</div>
     </header>
     <main class="section-1">
       <div>
         <DtxInputGroup prepend="科別" labelWidth="120">
-          <el-select
-            filterable
-            v-model="searchDivision"
-            placeholder="請選擇"
-            class="border-l-0"
-          >
-            <el-option
-              v-for="item in divisionOptions"
-              :key="`${item}divisionOption`"
-              :label="item.text"
-              :value="item.value"
-            >
-            </el-option>
+          <el-select filterable v-model="searchDivision" placeholder="請選擇" class="border-l-0">
+            <el-option v-for="item in divisionOptions" :key="`${item}divisionOption`" :label="item.text" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
         <div>
@@ -30,20 +17,11 @@
             <div class="word-2">加入</div>
           </header>
           <div class="content">
-            <main
-              class="disease-header disease-content"
-              v-for="(item, i) in diseaseOptions"
-              :key="`${item}${i}diseaseOption`"
-              :title="item.name"
-            >
+            <main class="disease-header disease-content" v-for="(item, i) in diseaseOptions" :key="`${item}${i}diseaseOption`" :title="item.name">
               <div></div>
               <div class="word-1">{{ item.value }}</div>
               <div></div>
-              <div
-                class="word-2"
-                style="color: #6da8e2"
-                @click="addDisease(item)"
-              >
+              <div class="word-2" style="color: #6da8e2" @click="addDisease(item)">
                 <i class="el-icon-plus inline-block mt-0.5"></i>
               </div>
             </main>
@@ -59,21 +37,10 @@
           <div></div>
         </header>
         <div class="content content2">
-          <main
-            class="disease-header2 disease-content2"
-            v-for="(item, i) in usuallyDiseaseOptions"
-            :key="`${item}${i}usuallydisease-header`"
-            :title="item.name"
-          >
+          <main class="disease-header2 disease-content2" v-for="(item, i) in usuallyDiseaseOptions" :key="`${item}${i}usuallydisease-header`" :title="item.name">
             <div></div>
             <div class="word-1">
-              <input
-                v-if="item.edit"
-                v-model="item.value"
-                @blur="item.edit = false"
-                @keyup.enter="item.edit = false"
-                style="min-width: 420px"
-              />
+              <input v-if="item.edit" v-model="item.value" @blur="item.edit = false" @keyup.enter="item.edit = false" style="min-width: 420px" />
               <div v-else style="cursor: pointer">
                 <span @click="item.edit = true">{{ item.value }}</span>
               </div>
@@ -82,11 +49,7 @@
             <div class="word-2" style="color: #16b57f">
               <i class="el-icon-edit inline-block mt-0.5"></i>
             </div>
-            <div
-              class="word-2"
-              style="color: #f15555"
-              @click="deleteDisease(item)"
-            >
+            <div class="word-2" style="color: #f15555" @click="deleteDisease(item)">
               <i class="el-icon-delete inline-block mt-0.5"></i>
             </div>
             <div></div>
@@ -94,26 +57,12 @@
         </div>
       </div>
     </main>
-    <header
-      class="
-        dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
-        dtc-template-columns
-        mx-2
-        mt-4
-      "
-    >
-      <div
-        v-for="(item, i) in headers"
-        :key="`${item}${i}dtc-grid-header`"
-        :title="item.name"
-      >
+    <header class="dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-2 mt-4">
+      <div v-for="(item, i) in headers" :key="`${item}${i}dtc-grid-header`" :title="item.name">
         {{ item.name }}
       </div>
     </header>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
-      style="background-color: #f5f5f5"
-    >
+    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #f5f5f5">
       <div style="padding-top: 0px">
         <Checkbox :binary="true" v-model="slow['one']" class="inline-block" />
       </div>
@@ -131,32 +80,17 @@
         </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD10['one']"
-          @change="showICD10Option"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="selectedICD10['one']" @change="showICD10Option" clearable> </el-input>
       </div>
       <div>主診斷碼</div>
       <div>
-        <el-input placeholder="" v-model="internationEngName['one']" clearable>
-        </el-input>
+        <el-input placeholder="" v-model="internationEngName['one']" clearable> </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="internationChineName['one']"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="internationChineName['one']" clearable> </el-input>
       </div>
     </main>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
-      style="background-color: #e0e0e0"
-    >
+    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #e0e0e0">
       <div style="padding-top: 0px">
         <Checkbox :binary="true" v-model="slow['two']" class="inline-block" />
       </div>
@@ -174,32 +108,17 @@
         </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD10['two']"
-          @change="showICD10Option"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="selectedICD10['two']" @change="showICD10Option" clearable> </el-input>
       </div>
       <div>副診斷碼1</div>
       <div>
-        <el-input placeholder="" v-model="internationEngName['two']" clearable>
-        </el-input>
+        <el-input placeholder="" v-model="internationEngName['two']" clearable> </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="internationChineName['two']"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="internationChineName['two']" clearable> </el-input>
       </div>
     </main>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
-      style="background-color: #f5f5f5"
-    >
+    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #f5f5f5">
       <div style="padding-top: 0px">
         <Checkbox :binary="true" v-model="slow['three']" class="inline-block" />
       </div>
@@ -217,36 +136,17 @@
         </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD10['three']"
-          @change="showICD10Option"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="selectedICD10['three']" @change="showICD10Option" clearable> </el-input>
       </div>
       <div>副診斷碼2</div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="internationEngName['three']"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="internationEngName['three']" clearable> </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="internationChineName['three']"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="internationChineName['three']" clearable> </el-input>
       </div>
     </main>
-    <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2"
-      style="background-color: #e0e0e0"
-    >
+    <main class="dtc-grid-header dtc-grid-body dtc-template-columns text-black mx-2" style="background-color: #e0e0e0">
       <div style="padding-top: 0px">
         <Checkbox :binary="true" v-model="slow['four']" class="inline-block" />
       </div>
@@ -264,43 +164,23 @@
         </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="selectedICD10['four']"
-          @change="showICD10Option"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="selectedICD10['four']" @change="showICD10Option" clearable> </el-input>
       </div>
       <div>副診斷碼3</div>
       <div>
-        <el-input placeholder="" v-model="internationEngName['four']" clearable>
-        </el-input>
+        <el-input placeholder="" v-model="internationEngName['four']" clearable> </el-input>
       </div>
       <div>
-        <el-input
-          placeholder=""
-          v-model="internationChineName['four']"
-          clearable
-        >
-        </el-input>
+        <el-input placeholder="" v-model="internationChineName['four']" clearable> </el-input>
       </div>
     </main>
     <div class="section-3">
       <span class="dtc-label section-3-word">診斷說明:</span>
-      <el-input
-        type="textarea"
-        autosize
-        v-model="illu"
-        placeholder="請輸入診斷說明"
-      />
+      <el-input type="textarea" autosize v-model="illu" placeholder="請輸入診斷說明" />
     </div>
-    <Button
-      label="回門診"
-      @click="$router.push('/home')"
-      class="p-button-md p-button-info mr-3 mt-3"
-    />
-    <Button label="確認" class="p-button-md p-button-warning mt-3" />
+    <Button label="確認診斷碼管理" class="p-button-md p-button-warning mt-3 mr-4" />
+    <Button label="回門診" @click="$router.push('/home')" class="p-button-md p-button-info mr-3 mt-3" />
+
     <ShowICD9List :allICD9Optopns="allICD9Optopns"></ShowICD9List>
   </section>
 </template>
@@ -312,15 +192,7 @@ import { useList } from "/@/hooks/useHis.js";
 import allIDC9Data from "/@/dataIDC9.js";
 import ShowICD9List from "./showICD9List.vue";
 
-let headers = [
-  { name: "慢性" },
-  { name: "R/0" },
-  { name: "ICD9" },
-  { name: "ICD10" },
-  { name: "" },
-  { name: "國際級病名稱(英)" },
-  { name: "國際級病名稱(中)" },
-];
+let headers = [{ name: "慢性" }, { name: "R/0" }, { name: "ICD9" }, { name: "ICD10" }, { name: "" }, { name: "國際級病名稱(英)" }, { name: "國際級病名稱(中)" }];
 
 export default {
   name: "inquerylist",
@@ -393,15 +265,7 @@ export default {
     const allICD10Optopns = reactive(["C00", "C01", "C02", "C03", "C04"]);
     const illu = ref("");
     headers = ref(headers);
-    const {
-      state,
-      getList,
-      sort,
-      clearFilters,
-      removeItem,
-      getItemDetail,
-      twTime,
-    } = useList("drg-warehouse-request-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
 
     const addDisease = (item) => {
       let index = diseaseOptions.findIndex((s) => s == item);
@@ -442,14 +306,7 @@ export default {
       () => global.showICD9Item,
       (idx, prevIdx) => {
         let isClose = idx;
-        if (
-          !idx &&
-          Boolean(global.editItem) &&
-          (+global.dataICD9Index == 1 ||
-            +global.dataICD9Index == 2 ||
-            +global.dataICD9Index == 3 ||
-            +global.dataICD9Index == 4)
-        ) {
+        if (!idx && Boolean(global.editItem) && (+global.dataICD9Index == 1 || +global.dataICD9Index == 2 || +global.dataICD9Index == 3 || +global.dataICD9Index == 4)) {
           switch (global.dataICD9Index) {
             case 1:
               selectedICD9["one"] = global.editItem;
