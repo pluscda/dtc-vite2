@@ -102,14 +102,12 @@
       </div>
     </main>
 
-    <div class="section-3">
-      <span class="dtc-label section-3-word">診斷說明:</span>
-      <el-input type="textarea" autosize v-model="illu" placeholder="請輸入診斷說明" />
+    <div class="flex flex-col space-y-1 px-2 mt-2 mb-2">
+      <span class="dtc-label inline-block w-24 py-3">診斷說明:</span>
+      <Textarea autosize v-model="illu" placeholder="請輸入診斷說明"></Textarea>
     </div>
     <Button label="確認診斷碼管理" class="p-button-md p-button-warning mt-3 mr-4" />
     <Button label="回門診" @click="$router.push('/home')" class="p-button-md p-button-info mr-3 mt-3" />
-
-    <ShowICD9List :allICD9Optopns="allICD9Optopns"></ShowICD9List>
   </section>
 </template>
 
@@ -118,19 +116,15 @@ import { toRefs, ref, inject, computed, reactive, watch } from "vue";
 import { Subject, of, pipe } from "rxjs";
 import axios from "utils/request";
 import { distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
-import Pagination from "cps/Pagination.vue";
+
 import { useList } from "/@/hooks/useHis.js";
 import allIDC9Data from "/@/dataIDC9.js";
-import ShowICD9List from "./showICD9List.vue";
 
 let headers = [{ name: "慢性" }, { name: "R/0" }, { name: "ICD9" }, { name: "ICD10" }, { name: "" }, { name: "國際級病名稱(英)" }, { name: "國際級病名稱(中)" }];
 
 export default {
-  name: "inquerylist",
-  components: {
-    Pagination,
-    ShowICD9List,
-  },
+  name: "inquerylistcodevi",
+  components: {},
   data() {
     return {
       icd10$: new Subject(),
