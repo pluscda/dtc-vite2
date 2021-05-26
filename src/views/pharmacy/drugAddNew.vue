@@ -225,11 +225,8 @@ export default {
     },
     async saveItem() {
       this.loading = true;
-      const formData = new FormData();
-      formData.append("files.s3DrgImg", this.fileUpload, this.his.imgName);
-      formData.append("data", JSON.stringify(this.his));
       try {
-        const ret = await this.actions.addDrug(formData);
+        const ret = await this.actions.addDrug(this.his);
         ElMessage.success("新增藥品成功");
         this.showAddNew = true;
       } catch (e) {
@@ -240,7 +237,7 @@ export default {
       this.fileUpload = e.target.files[0];
       this.uploadFileName = e.target.files[0].name;
       this.his.chDrgImgName = this.uploadFileName;
-      this.newImg = URL.createObjectURL(this.fileUpload);
+      this.his.image = URL.createObjectURL(this.fileUpload);
     },
   },
   mounted() {
