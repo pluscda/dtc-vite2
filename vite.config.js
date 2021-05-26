@@ -14,7 +14,7 @@ const buildTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
 const server =  {
     proxy: {
       // string shorthand
-      '/foo': 'http://localhost:4567/foo',
+      '/ymhis': 'http://192.168.22.4/ymhis/rest',
       // with options
       '/api': {
         target: 'http://jsonplaceholder.typicode.com',
@@ -44,6 +44,12 @@ export default {
       hooks: path.resolve(__dirname, "src/hooks"),
     },
   },
+  // server:{
+  //   proxy: {
+  //       // string shorthand
+  //       '/ymhis': 'http://192.168.22.4/ymhis/rest',
+  //   }
+  // },
   build:{
     assetsDir: "./" ,// at publish root folder, when running prod mode
     chunkSizeWarningLimit: 1024 * 1024 * 50,

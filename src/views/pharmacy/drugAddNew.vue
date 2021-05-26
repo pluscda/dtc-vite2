@@ -192,7 +192,7 @@
       <img :src="newImg" class="object-cover rounded" />
     </nav>
     <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="!his.chDrgImgName || loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
+      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
       <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
     </footer>
   </div>
@@ -226,10 +226,11 @@ export default {
     async saveItem() {
       this.loading = true;
       try {
-        const ret = await this.actions.addDrug(this.his);
+        const ret = await this.actions.addDrg(this.his);
         ElMessage.success("新增藥品成功");
         this.showAddNew = true;
       } catch (e) {
+        alert(e);
         ElMessage.error("新增藥品失敗!!");
       }
     },
@@ -244,6 +245,7 @@ export default {
     this.$primevue.config.locale = primeVueDateFormat;
   },
   created() {
+    this.actions.getUnitCode();
     this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
   },
@@ -251,6 +253,7 @@ export default {
   beforeUnmount() {
     subscribe.unsubscribe();
     this.his = {};
+
     /*
 
 
