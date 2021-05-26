@@ -1,6 +1,5 @@
 import { reactive } from "vue";
 import axios from "utils/request";
-import websocketService from "utils/websock.js";
 import { logout$ } from "/@/store";
 
 const init = {
