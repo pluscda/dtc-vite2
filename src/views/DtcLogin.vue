@@ -34,9 +34,11 @@ export default {
     const router = useRouter();
     async function login() {
       try {
-        const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
-        sessionStorage.token = jwt;
-        jwt ? router.push("/register/list") : alert(JSON.stringify(message));
+        // const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
+        // sessionStorage.token = jwt;
+        // jwt ? router.push("/register/list") : alert(JSON.stringify(message));
+        sessionStorage.token = "12";
+        router.push("/register/list");
       } catch (e) {
         alert("error: " + e);
       }
