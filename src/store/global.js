@@ -192,6 +192,42 @@ actions.adam =  {
   async getDrgRejectItemDetail(qs){//41
      return await axios.get("/med/pharmacyOrderItems?" + qs);
   },
+  async getDrgCategoryCode(){//42
+     return await axios.get("/med/categoryCode");
+  },
+  async getUnitCode(){//43
+     return await axios.get("/med/unitCode");
+  },
+  async getfrequencyCode(){//44
+     return await axios.get("/med/frequencyCode");
+  },
+  async getRouteCode(){//45
+     return await axios.get("/med/routeCode");
+  },
+  async getControlledCode(){//46
+     return await axios.get("/med/controlledCode");
+  },
+  async getAntibioticsCode(){//47
+     return await axios.get("/med/antibioticsCode");
+  },
+  async getDosageFormCode(){//48
+     return await axios.get("/med/dosageFormCode");
+  },
+  async getISO3166Code(){//49
+     return await axios.get("/med/ISO3166_1_countryCode");
+  },
+  async getPharmacologyCode(){//50
+     return await axios.get("/med/pharmacologyCode");
+  },
+  async getPlaceCode(){//51
+     return await axios.get("/med/placeCode");
+  },
+  async getChargeCode(){//52
+     return await axios.get("/med/chargeCode");
+  },
+  async getOrderStatusCode(){//53
+     return await axios.get("/med/orderStatusCode");
+  },
 
 
 
