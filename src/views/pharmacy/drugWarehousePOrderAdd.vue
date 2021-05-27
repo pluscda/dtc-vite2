@@ -13,7 +13,7 @@
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <AutoComplete
-            class="inline-block border-transparent transform -translate-y-1"
+            class="inline-block border-transparent transform"
             style="width: clamp(100%, 100%, 100%)"
             placeholder="請輸入院內代碼"
             v-model="his.medId"
