@@ -9,7 +9,7 @@
           <Calendar class="h-10 w-full" :readonly="items.length" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購單號" labelWidth="100">
-          <el-input v-model="his.chDrgPurchaseId" :readonly="items.length" > placeholder="請輸入採購單號" />
+          <el-input v-model="his.chDrgPurchaseId" :readonly="items.length" placeholder="請輸入採購單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
