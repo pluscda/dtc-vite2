@@ -45,14 +45,6 @@ app.component("DtxInputGroup", DtxInputGroup);
 // Global setting
 let drgList = [];
 app.config.globalProperties.R = R;
-app.config.globalProperties.dummyList = [];
-app.config.globalProperties.drgList = [];
-// get Drop Down list
-app.config.globalProperties.chDrgUnitList = getDDL("chUseUnit", drgList); //用藥單位
-app.config.globalProperties.chDrgFreqNoList = getDDL("chFreqNo", drgList);
-app.config.globalProperties.chDrgFactoryList = getDDL("chDrgFactory", drgList);
-app.config.globalProperties.chDrgCtrlTypeList = getDDL("chDrgComType", drgList);
-
 app.mount("#app");
 
 // i18n; not use it now
