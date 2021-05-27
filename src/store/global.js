@@ -4,24 +4,26 @@ import { logout$ } from "/@/store";
 import checkNhiCard from "utils/websock.js";
 import {firstValueFrom,defer} from "rxjs"
 import {shareReplay}  from "rxjs/operators";
+const delyAjax = (url) => defer( _ => axios.get(url)).pipe(shareReplay(1));
+
 //用藥單位
-const unit$ = defer( _ => axios.get("/med/unitCode")).pipe(shareReplay(1));
+const unit$ = delyAjax("/med/unitCode");
 //藥品類別
-const cates$ = defer( _ => axios.get("/med/categoryCode")).pipe(shareReplay(1));
+const cates$ = delyAjax("/med/categoryCode");
 // 用藥頻率
-const feqCodes$ = defer( _ => axios.get("/med/frequencyCode")).pipe(shareReplay(1));
+const feqCodes$ = delyAjax("/med/frequencyCode");
 //給藥途徑
-const routeCodes$ = defer( _ => axios.get("/med/routeCode")).pipe(shareReplay(1));
+const routeCodes$ = delyAjax("/med/routeCode");
 //藥品劑型
-const dogses$ = defer( _ => axios.get("/med/dosageFormCode")).pipe(shareReplay(1));
+const dogses$ = delyAjax("/med/dosageFormCode");
 //藥品分類
-const parhCodes$ = defer( _ => axios.get("/med/pharmacologyCode")).pipe(shareReplay(1));
+const parhCodes$ = delyAjax("/med/pharmacologyCode");
 //管制用藥
-const controlls$ = defer( _ => axios.get("/med/controlledCode")).pipe(shareReplay(1));
+const controlls$ = delyAjax("/med/controlledCode");
 //抗生素藥物
-const antiCodes$ = defer( _ => axios.get("/med/antibioticsCode")).pipe(shareReplay(1));
+const antiCodes$ = delyAjax("/med/antibioticsCode");
 //make at
-const contries$ = defer( _ => axios.get("/med/ISO3166_1_countryCode")).pipe(shareReplay(1));
+const contries$ =  delyAjax("/med/ISO3166_1_countryCode");
 
 const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls$,antiCodes$,contries$];
 
