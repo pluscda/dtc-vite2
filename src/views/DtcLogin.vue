@@ -16,8 +16,8 @@
       <div class="mb-10"></div>
       <el-button type="warning" class="max-w-md" round @click="login">登入</el-button>
       <footer class="flex justify-between hidden">
-        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
-        <h4 class="text-orange-200 text-sm mt-4 text-left pl-2 cursor-pointer relative float-right" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
+        <h4 class="pl-2 mt-4 text-sm text-left text-orange-200 cursor-pointer" @click.stop="$router.push('/dtcregister')">註冊帳戶</h4>
+        <h4 class="relative float-right pl-2 mt-4 text-sm text-left text-orange-200 cursor-pointer" @click.stop="$router.push('/resetpwd')">忘記密碼</h4>
       </footer>
     </section>
   </div>
@@ -34,9 +34,12 @@ export default {
     const router = useRouter();
     async function login() {
       try {
-        const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
-        sessionStorage.token = jwt;
-        jwt ? router.push("/users") : alert(JSON.stringify(message));
+        // const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
+        // sessionStorage.token = jwt;
+        // jwt ? router.push("/register/list") : alert(JSON.stringify(message));
+        sessionStorage.token = "12";
+        actions.getAllDDL();
+        router.push("/register/list");
       } catch (e) {
         alert("error: " + e);
       }

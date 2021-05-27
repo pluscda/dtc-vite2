@@ -1,7 +1,7 @@
 <template>
   <div class="bg-skin-color">
     <header class="grid pr-2 dtc-page-header dtc-page-header__grid">
-      <div class="">病患基本資料 / 就醫身份 {{ msg }}</div>
+      <div class="">掛號{{ msg }}</div>
       <div class="flex items-center ml-4">
         <InputSwitch v-model="takeCard" class="mt-0"></InputSwitch>
         <span @click="takeCard = !takeCard">初診</span>
@@ -34,33 +34,33 @@
         <el-input placeholder="搜尋檢查狀態" v-model="input1" />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患性別">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="就診身份">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="折扣身份">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="部分負擔">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="就醫類別">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="預防保健">
-        <el-select v-model="value" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -69,7 +69,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="掛號取卡" class="h-10">
         <InputSwitch v-model="takeCard" class="mt-2 ml-0 transform translate-x-2"></InputSwitch>
-        <span class="ml-0.5 mt-2.5 inline-block transform translate-x-2 text-gray-600 text-base dtc-text" @click="takeCard = !takeCard">掛號後取卡</span>
+        <span class="ml-0.5 mt-0 inline-block transform translate-x-2 -translate-y-2 text-gray-600 text-base dtc-text" @click="takeCard = !takeCard">掛號後取卡</span>
         <!-- <el-checkbox class="mt-2 ml-2 h-9" v-model="checked">掛號後取卡</el-checkbox> -->
       </DtxInputGroup>
     </div>
@@ -85,7 +85,7 @@
 import { inject, toRefs, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { useList } from "./model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 import Regsiter from "./components/register.vue";
 import Pay from "./components/hisPay.vue";
 import InqueryList from "./components/inqueryList.vue";

@@ -81,6 +81,20 @@ export const routes = [
     ],
   },
   {
+    path: "/diagnosis",
+    redirect: "/diagnosis/diseasecodemanagement",
+    component: Layout,
+    meta: { title: "診斷", icon: "el-icon-s-home" },
+    children: [
+      {
+        path: "diseasecodemanagement",
+        component: () => import("/@/views/diagnosis/diseaseCodeManagement.vue"),
+        name: "diseasecodemanagement",
+        meta: { title: "疾病代碼管理", icon: "el-icon-s-home" },
+      },
+    ],
+  },
+  {
     path: "/pharmacy",
     redirect: "/pharmacy/drugmanagement",
     component: LayoutWithSideBar,
@@ -99,10 +113,98 @@ export const routes = [
         meta: { title: "新增藥品資料", icon: "el-icon-s-home" },
       },
       {
+        path: "drugaddmaker",
+        component: () => import("/@/views/pharmacy/drugAddMaker.vue"),
+        name: "drugaddmaker",
+        meta: { title: "新增藥品廠商", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugaddstore",
+        component: () => import("/@/views/pharmacy/drugAddStore.vue"),
+        name: "drugaddstore",
+        meta: { title: "新增藥房資料", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drgWarehouseOut",
+        component: () => import("/@/views/pharmacy/drgWarehouseOut.vue"),
+        name: "drgWarehouseOut",
+        meta: { title: "drgWarehouseOut", icon: "el-icon-s-home" },
+      },
+      {
         path: "modifydrug",
         component: () => import("/@/views/pharmacy/modifyDrug.vue"),
         name: "modifyDrag",
         meta: { title: "編輯藥品資料", icon: "el-icon-s-home" },
+      },
+      {
+        path: "modifyDrgWatermark",
+        component: () => import("/@/views/pharmacy/modifyDrgWatermark.vue"),
+        name: "modifyDrgWatermark",
+        meta: { title: "modifyDrgWatermark", icon: "el-icon-s-home" },
+      },
+      {
+        path: "modifyDrgWarehousePOrder",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehousePOrder.vue"),
+        name: "modifyDrgWarehousePOrder",
+        meta: {
+          title: "編輯藥品資料modifyDrgWarehousePOrder",
+          icon: "el-icon-s-home",
+        },
+      },
+      {
+        path: "modifyDrgWarehousePRequest",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehousePRequest.vue"),
+        name: "modifyDrgWarehousePRequest",
+        meta: {
+          title: "編輯藥品資料modifyDrgWarehousePRequest",
+          icon: "el-icon-s-home",
+        },
+      },
+      {
+        path: "modifydrgstore",
+        component: () => import("/@/views/pharmacy/modifyDrgStore.vue"),
+        name: "modifyDragstore",
+        meta: { title: "編輯藥品資料2", icon: "el-icon-s-home" },
+      },
+      {
+        path: "dtcmodifydrgwarehouse",
+        component: () => import("/@/views/pharmacy/modifyDrgWarehouse.vue"),
+        name: "dtcmodifydrgwarehouse",
+        meta: { title: "dtcmodifydrgwarehouse", icon: "el-icon-s-home" },
+      },
+      {
+        path: "dtcmodifydrgwarehouseinventory",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgWarehouseInventory.vue"),
+        name: "dtcmodifydrgwarehouseinventory",
+        meta: {
+          title: "dtcmodifydrgwarehouseinventory",
+          icon: "el-icon-s-home",
+        },
+      },
+      {
+        path: "dtcmodifydrgstoreclaim",
+        component: () => import("/@/views/pharmacy/modifyDrgStoreClaim.vue"),
+        name: "dtcmodifydrgstoreclaim",
+        meta: {
+          title: "dtcmodifydrgstoreclaim",
+          icon: "el-icon-s-home",
+        },
+      },
+      {
+        path: "modifydrgmaker",
+        component: () => import("/@/views/pharmacy/modifyDrgMaker.vue"),
+        name: "modifyDragMaker",
+        meta: { title: "編輯藥品Maker資料", icon: "el-icon-s-home" },
+      },
+      {
+        path: "modifydrgstorewatermark",
+        component: () =>
+          import("/@/views/pharmacy/modifyDrgStoreWatermark.vue"),
+        name: "modifydrgstorewatermark",
+        meta: { title: "modifydrgstorewatermark", icon: "el-icon-s-home" },
       },
       {
         path: "drugvendormanagement",
@@ -135,10 +237,23 @@ export const routes = [
         meta: { title: "新增採購單", icon: "el-icon-s-home" },
       },
       {
+        path: "drugWarehouserejectadd",
+        component: () => import("/@/views/pharmacy/drugWarehouseRejectAdd.vue"),
+        name: "drugWarehouserejectadd",
+        meta: { title: "drugWarehouserejectadd", icon: "el-icon-s-home" },
+      },
+      //drugWarehouseRejectAdd
+      {
         path: "drugwarehousing",
         component: () => import("/@/views/pharmacy/drugWarehousing.vue"),
         name: "drugwarehousing",
         meta: { title: "入庫單管理", icon: "el-icon-s-home" },
+      },
+      {
+        path: "drugwarehouseinventory",
+        component: () => import("/@/views/pharmacy/drugWarehouseInventory.vue"),
+        name: "drugwarehouseinventory",
+        meta: { title: "藥庫盤點管理", icon: "el-icon-s-home" },
       },
       {
         path: "drugwarehouserequest",

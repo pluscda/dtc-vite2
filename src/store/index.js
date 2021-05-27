@@ -1,9 +1,5 @@
-import { createStore } from "vuex";
+import { Subject,BehaviorSubject } from 'rxjs';
 
-const store = createStore({
-  state: {
-    counter: 0,
-  },
-});
-
-export default store;
+export const pharmacyTab$ =  new Subject();
+export const logout$ = new Subject();
+export const leftSideBar$ =  new BehaviorSubject(1);

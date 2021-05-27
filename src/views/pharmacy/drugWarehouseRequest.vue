@@ -3,15 +3,12 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥品申領管理</div>
     </header>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
+    <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請日期">
         <Calendar
           class="h-10"
           v-model="time1"
-          placeholder="輸入日期"
+          placeholder="請輸入日期"
           :showIcon="true"
           dateFormat="yy-mm-dd"
         />
@@ -20,37 +17,73 @@
       <Calendar
         class="h-10"
         v-model="time2"
-        placeholder="輸入日期"
+        placeholder="請輸入日期"
         :showIcon="true"
         dateFormat="yy-mm-dd"
       />
       <DtxInputGroup prepend="申請單號">
-        <el-input placeholder="搜尋申請單號" v-model="searchDrugId" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="申請藥房">
-        <el-input placeholder="搜尋申請藥房" v-model="searchDrugId" />
+        <el-input placeholder="搜尋申請單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button
+        label="清除查詢"
+        class="p-button-secondary"
+        icon="pi pi-undo"
+        @click="cleanFilter"
+      />
     </nav>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
-      <DtxInputGroup prepend="補撥人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+
+    <nav class="ml-1 dtc-search-filters">
+      <DtxInputGroup prepend="申請人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
+      <DtxInputGroup prepend="訂單狀態">
+        <el-select
+          filterable
+          v-model="searchStatus"
+          placeholder="請選擇訂單狀態"
+          class="border-l-0"
+          @change="search"
+        >
+          <el-option
+            v-for="item in ['全部', '未結案', '已結案']"
+            :key="item"
+            :label="item"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="申請藥房">
+        <el-select
+          filterable
+          v-model="searchDrugStore"
+          placeholder="請選擇申請藥房"
+          class="border-l-0"
+          @change="search"
+        >
+          <el-option> </el-option>
+        </el-select>
       </DtxInputGroup>
     </nav>
 
     <header
-      class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
+      class="
+        my-title
+        relative
+        dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
+        dtc-template-columns
+        mx-1
+      "
     >
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+      <div
+        v-for="(item, i) in headers"
+        :key="i"
+        @click="sort(headers, item)"
+        :title="item.name"
+      >
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -64,7 +97,12 @@
       </div>
     </header>
     <main
-      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
+      class="
+        dtc-grid-header dtc-grid-body dtc-template-columns
+        text-black
+        ml-1
+        mx-1
+      "
       v-for="(item, i) in list"
       :key="i"
       :style="
@@ -72,25 +110,16 @@
       "
     >
       <div class="flex flex-none space-x-2">
-        <Button label="檢視" class="p-button-sm p-button-info" />
-        <Button label="編輯" class="p-button-sm p-button-success" />
         <Button
-          label="藥房申領單轉採購單"
-          class="p-button-sm p-button-warning"
+          label="申請單明細"
+          class="p-button-sm"
+          @click="editItem(item)"
         />
       </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.chDrgApplyId || "暫無資料" }}</div>
+      <div>{{ "暫無資料" }}</div>
+      <div>{{ item.chDrgStatus }}</div>
+      <div>{{ item.chDrgApplyPersonName || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination
@@ -106,116 +135,119 @@
 <script>
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
-import { useList } from "../users/model/userModel";
+import { useList } from "/@/hooks/useHis.js";
+import { isEmpty } from "ramda";
+import queryString from "qs";
+import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 
-//身分證號
 let headers = [
-  { name: "申請單號", key: "name", sortDesc: null },
-  { name: "申請日期", key: "name", sortDesc: null },
-  { name: "結案狀態", key: "age", sortDesc: null },
-  { name: "申請人員", key: "age", sortDesc: null },
-  { name: "健保代碼", key: "age", sortDesc: null },
-  { name: "院內代碼", key: "age", sortDesc: null },
-  { name: "藥品中文", key: "age", sortDesc: null },
-  { name: "藥品英文", key: "age", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "申請數量", key: "age", sortDesc: null },
-  { name: "補撥數量", key: "age", sortDesc: null },
-  { name: "補撥人員", key: "age", sortDesc: null },
+  { name: "申請單號", key: "chDrgApplyId", sortDesc: null },
+  { name: "申請日期", key: "tiDrgApplyDate", sortDesc: null },
+  { name: "訂單狀態", key: "chDrgStatus", sortDesc: null },
+  { name: "申請人員", key: "chDrgApplyPersonName", sortDesc: null },
 ];
 
 export default {
-  name: "inquerylist",
+  name: "inquerylistxxxx",
   components: {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
+    const router = useRouter();
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
+    const searchCatchPerson = ref("");
+    const searchDrgStore = ref("");
+    const searchStatus = ref("全部");
+    const searchDrugStore = ref("");
     const time1 = ref("");
     const time2 = ref("");
-    const zh = reactive({
-      firstDayOfWeek: 0,
-      dayNames: [
-        "星期日",
-        "星期一",
-        "星期二",
-        "星期三",
-        "星期四",
-        "星期五",
-        "星期六",
-      ],
-      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月",
-      ],
-      monthNamesShort: [
-        "一",
-        "二",
-        "三",
-        "四",
-        "五",
-        "六",
-        "七",
-        "八",
-        "九",
-        "十",
-        "十一",
-        "十二",
-      ],
-      today: "今天",
-      clear: "清空",
-      dateFormat: "yy-mm-dd",
-      weekHeader: "周",
-    });
-    // 列表數據
+
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
+    const {
+      state,
+      getList,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      twTime,
+    } = useList("drg-warehouse-request-adds");
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
+    const cleanFilter = () => {
+      searchOrderId.value =
+        searchOrderPerson.value =
+        time1.value =
+        time2.value =
+          "";
+      searchStatus.value = "全部";
+      searchDrgStore.value = "";
+      searchCatchPerson.value = "";
+      clearFilters();
     };
+    const search = () => {
+      let filters = {};
+      let s,
+        e,
+        dateQuery = "";
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
+        dateQuery = queryString.stringify({
+          _where: [{ tiDrgApplyDate_gte: s }, { tiDrgApplyDate_lt: e }],
+        });
+      }
+      if (searchOrderId.value) {
+        filters.chDrgApplyId_contains = searchOrderId.value;
+      }
+      if (searchOrderPerson.value) {
+        filters.chDrgApplyPersonName_contains = searchOrderPerson.value;
+      }
+      if (searchCatchPerson.value) {
+        filters.chDrgCatchPerson_contains = searchCatchPerson;
+      }
 
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
+      if (searchStatus.value != "全部") {
+        filters.chDrgStatus_contains = searchStatus.value;
+      }
+
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = dateQuery + filters;
+      getList();
+    };
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifyDrgWarehousePRequest");
     };
 
     return {
       ...toRefs(state),
       getList,
       headers,
-      searchDrugId,
-      searchDrugName,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
-      zh,
+      searchOrderId,
+      searchOrderPerson,
+      searchDrgStore,
+      searchStatus,
+      searchCatchPerson,
+      searchDrugStore,
       time1,
       time2,
+      sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      search,
+      twTime,
+      cleanFilter,
+      editItem,
     };
   },
+
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = primeVueDateFormat;
   },
 };
 </script>
@@ -224,7 +256,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 232px repeat(12, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(3, 180px) 1fr;
 }
 .management {
   position: relative;

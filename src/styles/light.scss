@@ -1,32 +1,53 @@
 #app.light {
   background: var(--light) !important;
 
+  .p-inputtextarea {
+    border: 1px solid #64748b;
+  }
+  .dtc-door-way-section {
+    background: darken($color: #ffff, $amount: 15) !important;
+  }
   .bg-white {
     background: none !important;
   }
 
   .dtc-nav-bar {
-    background: #10579b!important;
+    background: #10579b !important;
     background-image: none !important;
-    color: #DBEAFE !important;
+    color: #dbeafe !important;
     .el-dropdown-selfdefine {
-      color: #BFDBFE !important;
+      color: #bfdbfe !important;
     }
   }
- 
+
   .dtc-page-header,
   .dtc-grid-header__divs > div {
     background-image: none !important;
-    background: #646b74!important;
+    background: #646b74 !important;
     color: #fff;
     //border-color: #9CA3AF !important;
-  } 
- 
+  }
+  .my-long-header {
+    box-shadow: 1200px 0 0 #646b74;
+  }
+
   .dtc-label {
     background: none !important;
     background: #757575 !important;
-    color:#fff;
+    color: #fff;
   }
+
+  .el-textarea__inner {
+    color: black !important;
+    background: var(--light) !important;
+    font-size: 1rem !important;
+  }
+  .content {
+    // box-shadow: 100vw 0 0 #e0e1e1;
+    // color: rgb(63, 63, 63);
+    border: 1px solid #3f3f3f;
+  }
+
   // input,
   // .el-radio,
   // .dtc-text {
@@ -47,21 +68,33 @@
   }
   .dtc-tabs {
     > * {
-      background-image:  none;
+      background-image: none;
       background: var(--gray);
       background-image: none !important;
-      color:  lighten(#10579b, $amount: 55) !important;
+      color: lighten(#10579b, $amount: 55) !important;
     }
     .active {
       color: #ffc107 !important;
     }
     &::after {
-       background: var(--gray);
+      background: var(--gray);
+    }
+    .dtc-text {
+      color: var(--dark) !important;
     }
   }
   main .basic-info {
     // fix for ray
     background: none !important;
     background: #898b8d !important;
+  }
+  .no-ring input:focus {
+    --tw-ring-color: transparent !important;
+  }
+  .pi-spinner {
+    color: black;
+  }
+  .p-autocomplete-input {
+    border: none;
   }
 }

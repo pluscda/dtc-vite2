@@ -4,4 +4,16 @@
     font-size: 13px  !important;
     padding: 0px 5px !important;
 }
-
+.p-field-checkbox .tran,
+.p-radiobutton > label
+{
+  transform: translateY(4px) !important;
+}
+.p-autocomplete-input {
+  width: 100%;
+  display: block;
+  border-color: transparent;
+}
+// .p-autocomplete-loader {
+//   display: none !important;
+// }

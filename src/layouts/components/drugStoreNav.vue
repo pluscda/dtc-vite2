@@ -3,11 +3,12 @@
   <div
     v-for="(item, i) in titles"
     :key="item"
-    class="cursor-pointer py-3"
+    class="cursor-pointer py-3 flex space-x-2 pl-2"
     :class="activeTab == i ? 'active-tab' : ''"
     @click="handleChangeTab(item, i)"
   >
-    {{ item }}
+    <i :class="icons[i]" class="inline-block mt-0.5"></i>
+    <p class="text-left">{{ item }}</p>
   </div>
   <!-- <DrugAdd /> -->
 </template>
@@ -15,33 +16,41 @@
 <script>
 import { ref, reactive, inject, computed, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-// import DrugAdd from "/@/views/pharmacy/drugAddNew.vue";
-
+import { pharmacyTab$ } from "/@/store";
 export default {
-  name: "sidebar",
+  name: "sidebar22",
   components: {
     // DrugAdd,
   },
   setup() {
-    ///allVariable
     const activeTab = ref(0);
     const router = useRouter();
     const titles = reactive([
-      "藥房庫存查詢作業",
+      "藥房庫存查詢",
+      "庫存安全管制",
       "藥品申請單維護",
       "新增藥品申領單",
       "藥房退庫單維護",
+      "新增藥房退庫單",
     ]);
-    //option
-
-    //global
-
-    //function
+    const icons = reactive([
+      "el-icon-zoom-in",
+      "el-icon-help",
+      "el-icon-s-tools",
+      "el-icon-folder-add",
+      "el-icon-s-grid",
+      "el-icon-c-scale-to-original",
+    ]);
+    const global = inject("global");
+    pharmacyTab$.subscribe((v) => (activeTab.value = v));
     const handleChangeTab = (item, i) => {
       activeTab.value = i;
       switch (item) {
-        case "藥房庫存查詢作業":
+        case "藥房庫存查詢":
           router.push("/pharmacy/drugstoreinstock");
+          break;
+        case "庫存安全管制":
+          router.push("/pharmacy/modifydrgstorewatermark");
           break;
         case "藥品申請單維護":
           router.push("/pharmacy/drugstoreclaim");
@@ -52,6 +61,9 @@ export default {
         case "藥房退庫單維護":
           router.push("/pharmacy/drugstorewithdrawal");
           break;
+        case "新增藥房退庫單":
+          router.push("/pharmacy/drgWarehouseOut");
+          break;
       }
     };
 
@@ -59,6 +71,7 @@ export default {
       titles,
       handleChangeTab,
       activeTab,
+      icons,
     };
   },
 };

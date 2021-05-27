@@ -3,52 +3,32 @@
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
       <div>藥房退庫單維護</div>
     </header>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
+    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="退庫日期">
-        <Calendar
-          class="h-10"
-          v-model="time1"
-          placeholder="輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
-      <Calendar
-        class="h-10"
-        v-model="time2"
-        placeholder="輸入日期"
-        :showIcon="true"
-        dateFormat="yy-mm-dd"
-      />
+      <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="退庫單號">
         <el-input placeholder="搜尋退庫單號" v-model="searchDrugId" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="退庫人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
     </nav>
-    <nav
-      class="ml-1 dtc-search-filters mt-4"
-      style="margin-bottom: 1.5rem !important"
-    >
-      <DtxInputGroup prepend="退庫藥房">
-        <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
+    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+      <DtxInputGroup prepend="退庫人員">
+        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="結案狀態">
-        <el-input placeholder="搜尋結案狀態" v-model="searchDrugName" />
+
+      <DtxInputGroup prepend="訂單狀態">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
+          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
     </nav>
 
-    <header
-      class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1"
-    >
+    <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
         {{ item.name }}
@@ -67,9 +47,7 @@
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
         <Button label="檢視" class="p-button-sm p-button-info" />
@@ -79,43 +57,23 @@
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
 <script>
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
-import { useList } from "../users/model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 
 //身分證號
 let headers = [
   { name: "退庫單號", key: "name", sortDesc: null },
   { name: "退庫日期", key: "name", sortDesc: null },
-  { name: "結案狀態", key: "age", sortDesc: null },
+  { name: "訂單狀態", key: "age", sortDesc: null },
   { name: "退庫人員", key: "age", sortDesc: null },
-  { name: "健保代碼", key: "age", sortDesc: null },
-  { name: "院內代碼", key: "age", sortDesc: null },
-  { name: "藥品中文", key: "age", sortDesc: null },
-  { name: "藥品英文", key: "age", sortDesc: null },
-  { name: "單位", key: "age", sortDesc: null },
-  { name: "退庫數量", key: "age", sortDesc: null },
-  { name: "驗收人員", key: "age", sortDesc: null },
 ];
 
 export default {
@@ -129,54 +87,32 @@ export default {
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
+    const searchStatus = ref("");
     const time1 = ref("");
     const time2 = ref("");
     const zh = reactive({
       firstDayOfWeek: 0,
-      dayNames: [
-        "星期日",
-        "星期一",
-        "星期二",
-        "星期三",
-        "星期四",
-        "星期五",
-        "星期六",
-      ],
+      dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
       dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
       dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月",
-      ],
-      monthNamesShort: [
-        "一",
-        "二",
-        "三",
-        "四",
-        "五",
-        "六",
-        "七",
-        "八",
-        "九",
-        "十",
-        "十一",
-        "十二",
-      ],
+      monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+      monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
       today: "今天",
       clear: "清空",
       dateFormat: "yy-mm-dd",
       weekHeader: "周",
     });
+
+    //Options
+    const caseClosedOptions = reactive([
+      {
+        value: null,
+        text: "全部",
+      },
+      { value: "closed", text: "已結案" },
+      { value: "unclosed", text: "未結案" },
+    ]);
+
     // 列表數據
     headers = ref(headers);
     const { state, getList, delItem } = useList();
@@ -200,7 +136,9 @@ export default {
       headers,
       searchDrugId,
       searchDrugName,
+      searchStatus,
       isOpenAddDrugDialog,
+      caseClosedOptions,
       openAddDialog,
       toggleDetail,
       zh,
@@ -218,7 +156,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(11, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(3, minmax(90px, 180px)) 1fr;
 }
 .management {
   position: relative;

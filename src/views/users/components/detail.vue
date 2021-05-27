@@ -18,7 +18,7 @@
 import { ElMessage } from "element-plus";
 import { reactive, ref } from "vue";
 import { useRoute } from "vue-router";
-import { useItem } from "../model/userModel";
+//import { useItem } from "import { useList } from "/@/hooks/useHis.js";";
 
 export default {
   props: {

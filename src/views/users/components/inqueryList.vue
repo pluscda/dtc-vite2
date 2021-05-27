@@ -27,7 +27,7 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
-      <div>{{ item.registerTimestamp.split("T")[0] }}</div>
+      <div>{{ "暫無資料" }}</div>
       <div>{{ item.registerSection || "暫無資料" }}</div>
       <div>{{ item.registerNo || "暫無資料" }}</div>
       <div>{{ item.registerName || "暫無資料" }}</div>
@@ -85,7 +85,7 @@ import { ElMessage } from "element-plus";
 import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 
-import { useList } from "../model/userModel";
+import { useList } from "/@/hooks/useHis.js";
 //查閱清單
 let headers = [
   { name: "掛號日期", key: "registerTimestamp", sortDesc: null },
@@ -133,7 +133,7 @@ export default {
     const router = useRouter();
     headers = ref(headers);
     subHeaders = ref(subHeaders);
-    const { state, getList, sort, clearFilters } = useList("his-histories");
+    const { state, getList, sort, clearFilters } = useList("drgadds");
 
     function handleEdit({ row }) {
       router.push({
@@ -171,5 +171,10 @@ export default {
 <style lang="scss" scoped>
 .dtc-template-columns {
   grid-template-columns: 80px 60px repeat(10, minmax(90px, 120px)) minmax(90px, 1fr);
+}
+.dtc-door-way-section header > div {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  line-height: 50px;
 }
 </style>

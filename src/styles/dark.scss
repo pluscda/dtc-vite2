@@ -1,14 +1,22 @@
 #app.dark {
+  .dtc-grid-header > div {
+    border-color: #9ca3af !important;
+  }
   background: var(--dark) !important;
-   .my-title::before {
-     color:white  !important; 
+  .p-inputtextarea {
+    background: var(--dark);
+    color: var(--light);
+    border-color: #a3a3a3;
+  }
+  .my-title::before {
+    color: white !important;
   }
   .bg-white {
     background: none !important;
   }
 
   .dtc-nav-bar {
-    background: #10579b!important;
+    background: #10579b !important;
     background-image: none !important;
     color: #f3e8ff !important;
     .el-dropdown-selfdefine {
@@ -22,8 +30,12 @@
   .dtc-grid-header__divs > div {
     background-image: none !important;
     background: #4b5563 !important;
+
     color: #fff;
     border-color: #9ca3af !important;
+  }
+  .my-long-header {
+    box-shadow: 1200px 0 0 #4b5563;
   }
   .dtc-page-header {
     .tab-style {
@@ -53,10 +65,19 @@
     box-shadow: 100vw 0 0 #646b74;
     color: #fff;
   }
+  .content {
+    background: none !important;
+    background: #dfdfdf !important;
+    box-shadow: 100vw 0 0 #e0e1e1;
+    color: rgb(63, 63, 63);
+    border: 1px solid #e0e1e1;
+  }
   input,
   .el-radio,
+  .el-textarea__inner,
   .dtc-text {
     color: white !important;
+    font-size: 1rem;
     background: var(--gray-dark) !important;
     border: none !important;
     @apply ring-2 ring-coolGray-600;
@@ -67,13 +88,14 @@
   .dtx-prepend {
     @apply ring-2 ring-coolGray-600;
   }
-  input {
+  input,
+  textarea {
     @apply focus:ring-1 focus:ring-blue-200;
   }
   .el-radio,
   .dtc-text {
     @apply ring-0;
-    background:none !important;
+    background: none !important;
   }
   .dtc-tabs {
     > * {
@@ -100,6 +122,15 @@
   .left-nav {
     background: darken(#10579b, $amount: 5) !important;
     background-image: none !important;
-    color:  lighten(#10579b, $amount: 55) !important;
+    color: lighten(#10579b, $amount: 55) !important;
+  }
+  .no-ring input:focus {
+    --tw-ring-color: transparent !important;
+  }
+  .pi-spinner {
+    color: white;
+  }
+  .p-autocomplete-input {
+    border: none;
   }
 }

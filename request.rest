@@ -1,0 +1,12 @@
+GET http://192.168.22.4/ymhis/rest/med/unitCode
+
+###
+
+POST http://192.168.22.4/ymhis/rest/med/usualMed
+Content-Type:  application/json
+
+{
+   "c_name": "sd"
+}
+
+

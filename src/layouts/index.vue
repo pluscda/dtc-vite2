@@ -1,7 +1,7 @@
 <template>
   <section class="index-position overflow-hidden">
     <main class="overflow-x-hidden overflow-hidden">
-      <router-view></router-view>
+      <transition name="fade"> <router-view></router-view> </transition>
     </main>
     <el-backtop target=".index-position" :visibility-height="100" style="color: rgb(58 142 229)">
       <i-mdi:arrow-up style="font-size: 24px"></i-mdi:arrow-up>
@@ -15,6 +15,6 @@ import NavBar from "/@/layouts/components/Navbar.vue";
 
 <style lang="scss" scoped>
 .index-position {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px) !important;
 }
 </style>
