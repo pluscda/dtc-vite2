@@ -20,11 +20,14 @@ const controlls$ = from(axios.get("/med/controlledCode")).pipe(shareReplay(1));
 //抗生素藥物
 const antiCodes$ = from(axios.get("/med/antibioticsCode")).pipe(shareReplay(1));
 
+const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
+
 const init = {
   userDefaultBgColor: "dark",
   editItem: "",
   showICD9Item: false,
   dataICD9Index: 0,
+  answers,
 };
 
 export let global = reactive({ ...init });

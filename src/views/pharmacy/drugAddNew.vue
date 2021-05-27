@@ -34,7 +34,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="皮試標誌" labelWidth="120">
         <el-select filterable v-model="his.skin_test_flag" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgFreqNoList" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in ddl.yesno" :key="item.label" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="新核定價" labelWidth="120">
@@ -50,7 +50,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
         <el-select filterable v-model="his.antibiotics_flag" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in ddl.antiCodes" :key="item.antibioticsCode" :label="item.antibioticsName" :value="item.antibioticsCode"> </el-option>
+          <el-option v-for="item in ddl.yesno" :key="item.label" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="自費價格" labelWidth="120">
@@ -205,7 +205,7 @@ import { throttleTime, exhaustMap } from "rxjs/operators";
 let subscribe = "";
 export default {
   name: "drugAddNew",
-  inject: ["actions"],
+  inject: ["global", "actions"],
   data() {
     return {
       his: {},
@@ -229,6 +229,7 @@ export default {
       this.ddl.parhs = await this.actions.getPharmacologyCode();
       this.ddl.controlls = await this.actions.getControlledCode();
       this.ddl.antiCodes = await this.actions.getAntibioticsCode();
+      this.ddl.yesno = this.global.answers;
     },
     reset() {
       this.his = {};
