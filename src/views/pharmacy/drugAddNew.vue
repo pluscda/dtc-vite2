@@ -92,7 +92,7 @@
 
       <DtxInputGroup prepend="藥品劑型" labelWidth="120">
         <el-select filterable v-model="his.dosage_form_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in ddl.doges" :key="item.dosageFormCode" :label="item.dosageFormName" :value="item.dosageFormCode"> </el-option>
         </el-select>
       </DtxInputGroup>
 
@@ -225,6 +225,7 @@ export default {
       this.ddl.cates = await this.actions.getDrgCategoryCode();
       this.ddl.freqs = await this.actions.getfrequencyCode();
       this.ddl.routes = await this.actions.getRouteCode();
+      this.ddl.doges = await this.actions.getDosageFormCode();
     },
     reset() {
       this.his = {};

@@ -11,6 +11,8 @@ const cates$ = from(axios.get("/med/categoryCode")).pipe(shareReplay(1));
 const feqCodes$ = from(axios.get("/med/frequencyCode")).pipe(shareReplay(1));
 //給藥途徑
 const routeCodes$ = from(axios.get("/med/routeCode")).pipe(shareReplay(1));
+//藥品劑型
+const dogses$ = from(axios.get("/med/dosageFormCode")).pipe(shareReplay(1));
 
 const init = {
   userDefaultBgColor: "dark",
@@ -155,7 +157,7 @@ export const actions = {
      return await axios.get("/med/antibioticsCode");
   },
   async getDosageFormCode(){//48
-     return await axios.get("/med/dosageFormCode");
+     return firstValueFrom(dogses$);
   },
   async getISO3166Code(){//49
      return await axios.get("/med/ISO3166_1_countryCode");
