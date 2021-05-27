@@ -7,13 +7,13 @@
 
     <main class="grid px-3 mt-4 space-y-3">
       <DtxInputGroup prepend="藥房編號" labelWidth="120">
-        <el-input v-model="his.chDrgStoreId" placeholder="請輸入藥房編號" />
+        <el-input v-model="his.pharmacyId" placeholder="請輸入藥房編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房名稱" labelWidth="120">
-        <el-input v-model="his.chDrgStoreName" placeholder="請輸入藥房名稱" />
+        <el-input v-model="his.cname" placeholder="請輸入藥房名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房位置" labelWidth="120">
-        <el-input style="min-width: 500px" v-model="his.chDrgStoreAddress" placeholder="請輸入藥房位置" />
+        <el-input style="min-width: 500px" v-model="his.place" placeholder="請輸入藥房位置" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
@@ -55,7 +55,7 @@ export default {
       //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
       try {
-        const ret = await this.actions.addItem("drg-add-stores", this.his);
+        const ret = await this.actions.addPharmacyStore(this.his);
         ElMessage.success("新增藥房資料成功");
         this.showAddNew = true;
       } catch (e) {
