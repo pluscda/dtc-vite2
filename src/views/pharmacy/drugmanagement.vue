@@ -74,12 +74,12 @@ import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 
 let headers = [
-  { name: "健保代碼", key: "chDrgId", sortDesc: null },
-  { name: "院內代碼", key: "chHospitalId", sortDesc: null },
-  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
-  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "藥品學名", key: "chDrgAlias", sortDesc: null },
-  { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
+  { name: "健保代碼", key: "nhiCode", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
+  { name: "中文藥名", key: "cname", sortDesc: null },
+  { name: "英文藥名", key: "ename", sortDesc: null },
+  { name: "藥品學名", key: "scientificName", sortDesc: null },
+  { name: "藥商名稱", key: "vendorName", sortDesc: null },
 ];
 
 export default {
