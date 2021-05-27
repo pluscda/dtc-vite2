@@ -7,6 +7,8 @@ import {shareReplay}  from "rxjs/operators";
 const unit$ = from(axios.get("/med/unitCode")).pipe(shareReplay(1));
 //藥品分類 
 const cates$ = from(axios.get("/med/categoryCode")).pipe(shareReplay(1));
+// frequencyCode
+const feqCodes$ = from(axios.get("/med/frequencyCode")).pipe(shareReplay(1));
 const init = {
   userDefaultBgColor: "dark",
   editItem: "",
@@ -138,7 +140,7 @@ export const actions = {
       return firstValueFrom(unit$);
   },
   async getfrequencyCode(){//44
-     return await axios.get("/med/frequencyCode");
+     return firstValueFrom(feqCodes$);
   },
   async getRouteCode(){//45
      return await axios.get("/med/routeCode");

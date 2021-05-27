@@ -45,7 +45,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥頻率" labelWidth="120">
         <el-select filterable v-model="his.frequency_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgFreqNoList" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in ddl.freqs" :key="item.frequencyCode" :label="item.frequencyName" :value="item.frequencyCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
@@ -223,6 +223,7 @@ export default {
     async getDDL() {
       this.ddl.unit = await this.actions.getUnitCode();
       this.ddl.cates = await this.actions.getDrgCategoryCode();
+      this.ddl.freqs = await this.actions.getfrequencyCode();
     },
     reset() {
       this.his = {};
