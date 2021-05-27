@@ -33,8 +33,6 @@ const formulas = [{value:'單方', label:'單方'},{value:'複方', label:'複�
 const init = {
   userDefaultBgColor: "dark",
   editItem: "",
-  showICD9Item: false,
-  dataICD9Index: 0,
   answers,
   formulas
 };
