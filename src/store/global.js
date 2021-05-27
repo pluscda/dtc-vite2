@@ -2,9 +2,9 @@ import { reactive } from "vue";
 import axios from "utils/request";
 import { logout$ } from "/@/store";
 import checkNhiCard from "utils/websock.js";
-import {firstValueFrom,defer} from "rxjs"
-import {shareReplay}  from "rxjs/operators";
-const delyAjax = (url) => defer( _ => axios.get(url)).pipe(shareReplay(1));
+import {firstValueFrom,defer,ReplaySubject} from "rxjs"
+//https://medium.com/volosoft/whats-new-in-rxjs-7-a11cc564c6c0
+const delyAjax = (url) => defer( _ => axios.get(url)).pipe({connector: () => new ReplaySubject(1)});
 
 //用藥單位
 const unit$ = delyAjax("/med/unitCode");
