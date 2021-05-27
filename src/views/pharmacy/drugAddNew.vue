@@ -50,7 +50,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素藥物" labelWidth="120">
         <el-select filterable v-model="his.antibiotics_flag" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in ddl.antiCodes" :key="item.antibioticsCode" :label="item.antibioticsName" :value="item.antibioticsCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="自費價格" labelWidth="120">
@@ -67,7 +67,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素等級" labelWidth="120">
         <el-select filterable v-model="his.antibiotics_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in ddl.antiCodes" :key="item.antibioticsCode" :label="item.antibioticsName" :value="item.antibioticsCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="生效日期" labelWidth="120">
@@ -228,6 +228,7 @@ export default {
       this.ddl.doges = await this.actions.getDosageFormCode();
       this.ddl.parhs = await this.actions.getPharmacologyCode();
       this.ddl.controlls = await this.actions.getControlledCode();
+      this.ddl.antiCodes = await this.actions.getAntibioticsCode();
     },
     reset() {
       this.his = {};

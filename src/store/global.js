@@ -17,6 +17,8 @@ const dogses$ = from(axios.get("/med/dosageFormCode")).pipe(shareReplay(1));
 const parhCodes$ = from(axios.get("/med/pharmacologyCode")).pipe(shareReplay(1));
 //管制用藥
 const controlls$ = from(axios.get("/med/controlledCode")).pipe(shareReplay(1));
+//抗生素藥物
+const antiCodes$ = from(axios.get("/med/antibioticsCode")).pipe(shareReplay(1));
 
 const init = {
   userDefaultBgColor: "dark",
@@ -158,7 +160,7 @@ export const actions = {
      return firstValueFrom(controlls$);
   },
   async getAntibioticsCode(){//47
-     return await axios.get("/med/antibioticsCode");
+     return firstValueFrom(antiCodes$);
   },
   async getDosageFormCode(){//48
      return firstValueFrom(dogses$);
