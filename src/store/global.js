@@ -6,7 +6,7 @@ import {firstValueFrom,defer,ReplaySubject} from "rxjs"
 import { share } from "rxjs/operators";
 //https://medium.com/volosoft/whats-new-in-rxjs-7-a11cc564c6c0
 const delyAjax = (url) => defer( _ => axios.get(url)).pipe( share({connector: () => new ReplaySubject(1)}) );
-
+//DTC API DOC : https://drive.google.com/drive/folders/1LcbHvvxXy9AuJ6RiZ3rEqMVATtMWf-gy
 //用藥單位
 const unit$ = delyAjax("/med/unitCode");
 //藥品類別
