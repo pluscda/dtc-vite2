@@ -12,7 +12,16 @@
           <el-input v-model="his.chDrgPurchaseId" :readonly="items.length" placeholder="請輸入採購單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
-          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
+          <AutoComplete
+            class="inline-block border-transparent transform -translate-y-1"
+            style="width: clamp(100%, 100%, 100%)"
+            placeholder="請輸入院內代碼"
+            v-model="his.medId"
+            :suggestions="medIds"
+            @complete="searchMedId($event)"
+            @item-select="selectedMedId(item)"
+            field="name"
+          />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="100">
           <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
@@ -88,17 +97,20 @@ import { clone } from "ramda";
 import { Subject, from } from "rxjs";
 import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
 import dayjs from "dayjs";
-
+let subscribe = "";
+let subscribe2 = "";
 export default {
-  name: "drugAddNew",
+  name: "drugAddNewOrderAdded",
   inject: ["actions"],
   data() {
     return {
       his: {},
       addNewItem: false,
       subject: new Subject(),
+      med$: new Subject(),
       loading: false,
       items: [],
+      medIds: [],
     };
   },
   computed: {
@@ -127,6 +139,20 @@ export default {
     },
   },
   methods: {
+    selectedMedId(item) {},
+    async getMedIdList(event) {
+      if (event?.query?.length > 1) {
+        const atc = "chDrgId_contains=" + event.query;
+        const ret = await axios.get("drg-infos?_limit=20&" + atc);
+        this.medIds = ret;
+      } else {
+        this.medIds = [];
+      }
+      return "";
+    },
+    searchMedId(event) {
+      this.med$.next(event);
+    },
     confirm() {
       this.loading = true;
       const observer = {
@@ -156,10 +182,25 @@ export default {
   mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
   },
+  beforeMount() {
+    subscribe.unsubscribe();
+    subscribe2.unsubscribe();
+  },
   created() {
     this.his = {};
     this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
+    subscribe2 = this.med$
+      .pipe(
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!(pre.event.query === cur.event.query);
+          if (eq) this.meds = [];
+          return eq;
+        }),
+        switchMap(this.getMedIdList),
+        catchError((s) => of(""))
+      )
+      .subscribe();
   },
 };
 </script>
