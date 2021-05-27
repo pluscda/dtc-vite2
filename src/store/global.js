@@ -5,7 +5,7 @@ import {from,firstValueFrom} from "rxjs"
 import {shareReplay}  from "rxjs/operators";
 //用藥單位
 const unit$ = from(axios.get("/med/unitCode")).pipe(shareReplay(1));
-//藥品分類 
+//藥品類別
 const cates$ = from(axios.get("/med/categoryCode")).pipe(shareReplay(1));
 // 用藥頻率
 const feqCodes$ = from(axios.get("/med/frequencyCode")).pipe(shareReplay(1));
@@ -13,7 +13,8 @@ const feqCodes$ = from(axios.get("/med/frequencyCode")).pipe(shareReplay(1));
 const routeCodes$ = from(axios.get("/med/routeCode")).pipe(shareReplay(1));
 //藥品劑型
 const dogses$ = from(axios.get("/med/dosageFormCode")).pipe(shareReplay(1));
-
+//藥品分類
+const parhCodes$ = from(axios.get("/med/pharmacologyCode")).pipe(shareReplay(1));
 const init = {
   userDefaultBgColor: "dark",
   editItem: "",
@@ -163,7 +164,7 @@ export const actions = {
      return await axios.get("/med/ISO3166_1_countryCode");
   },
   async getPharmacologyCode(){//50
-     return await axios.get("/med/pharmacologyCode");
+     return firstValueFrom(parhCodes$);
   },
   async getPlaceCode(){//51
      return await axios.get("/med/placeCode");

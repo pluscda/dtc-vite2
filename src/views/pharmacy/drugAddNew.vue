@@ -13,7 +13,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品分類" labelWidth="120">
         <el-select filterable v-model="his.pharmacology_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in ddl.cates" :key="item.categoryCode" :label="item.categoryName" :value="item.categoryCode"> </el-option>
+          <el-option v-for="item in ddl.parhs" :key="item.categoryCode" :label="item.categoryName" :value="item.categoryCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="管制用藥" labelWidth="120">
@@ -112,7 +112,7 @@
 
       <DtxInputGroup prepend="藥品類別" labelWidth="120">
         <el-select filterable v-model="his.category_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in ddl.cates" :key="item.categoryCode" :label="item.categoryName" :value="item.categoryCode"> </el-option>
         </el-select>
       </DtxInputGroup>
 
@@ -226,6 +226,7 @@ export default {
       this.ddl.freqs = await this.actions.getfrequencyCode();
       this.ddl.routes = await this.actions.getRouteCode();
       this.ddl.doges = await this.actions.getDosageFormCode();
+      this.ddl.parhs = await this.actions.getPharmacologyCode();
     },
     reset() {
       this.his = {};
