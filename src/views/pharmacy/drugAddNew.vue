@@ -175,17 +175,12 @@
       </DtxInputGroup>
       <div class="dtc-grid-fileupload dtc-text">
         <DtxInputGroup prepend="圖片名稱" labelWidth="144">
-          <el-input v-model="his.chDrgImgName" readonly placeholder="請輸入圖片名稱 (先選擇右方圖片)" />
+          <label for="file-upload" class="custom-file-upload">
+            <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
+            <div>選擇圖片</div>
+            <input id="file-upload" type="file" @change="fileChange" accept="image/x-png,image/gif,image/jpeg" />
+          </label>
         </DtxInputGroup>
-        <label for="file-upload" class="custom-file-upload">
-          <i-ri:upload-cloud-fill style="font-size: 24px"></i-ri:upload-cloud-fill>
-          <div>選擇圖片</div>
-          <input id="file-upload" type="file" @change="fileChange" accept="image/x-png,image/gif,image/jpeg" />
-        </label>
-
-        <div style="padding-top: 6px" class="hidden">
-          {{ uploadFileName }}
-        </div>
       </div>
     </main>
     <nav class="mt-2 ml-3" v-if="newImg" style="width: auto; height: auto">
