@@ -35,6 +35,9 @@ const init = {
 
 export let global = reactive({ ...init });
 export const actions = {
+  async getIcCardInfo() {
+    return await websocketService("ws://localhost:8888/Chat", "checkNhiCard");
+  },
    //新增藥品資料
   async addDrg(obj){ //2
     return await axios.post("/med/usualMed", obj);
