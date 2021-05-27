@@ -6,7 +6,7 @@
       </header>
       <main class="grid dtc-list-grid mt-5">
         <DtxInputGroup prepend="採購日期" labelWidth="100">
-          <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
+          <Calendar class="h-10 w-full" :readonly="items.length" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購單號" labelWidth="100">
           <el-input v-model="his.chDrgPurchaseId" :readonly="items.length" > placeholder="請輸入採購單號" />
