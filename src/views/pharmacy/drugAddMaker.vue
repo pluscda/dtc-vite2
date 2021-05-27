@@ -62,10 +62,11 @@ export default {
     async saveItem() {
       this.loading = true;
       try {
-        const ret = await this.actions.addDrgVendor(his);
+        const ret = await this.actions.addDrgVendor(this.his);
         ElMessage.success("新增藥品廠商成功");
         this.showAddNew = true;
       } catch (e) {
+        alert(e);
         ElMessage.error("新增藥品廠商失敗!!");
         this.loading = false;
       }
