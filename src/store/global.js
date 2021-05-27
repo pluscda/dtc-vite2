@@ -1,7 +1,12 @@
 import { reactive } from "vue";
 import axios from "utils/request";
 import { logout$ } from "/@/store";
-
+import {from,firstValueFrom} from "rxjs"
+import {shareReplay}  from "rxjs/operators";
+//用藥單位
+const unit$ = from(axios.get("/med/unitCode")).pipe(shareReplay(1));
+//藥品分類 
+const cates$ = from(axios.get("/med/categoryCode")).pipe(shareReplay(1));
 const init = {
   userDefaultBgColor: "dark",
   editItem: "",
@@ -127,10 +132,10 @@ export const actions = {
      return await axios.get("/med/pharmacyOrderItems?" + qs);
   },
   async getDrgCategoryCode(){//42
-     return await axios.get("/med/categoryCode");
+     return firstValueFrom(cates$);
   },
   async getUnitCode(){//43
-     return await axios.get("/med/unitCode");
+      return firstValueFrom(unit$);
   },
   async getfrequencyCode(){//44
      return await axios.get("/med/frequencyCode");

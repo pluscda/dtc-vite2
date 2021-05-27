@@ -13,7 +13,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品分類" labelWidth="120">
         <el-select filterable v-model="his.pharmacology_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgUnitList" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in ddl.cates" :key="item.categoryCode" :label="item.categoryName" :value="item.categoryCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="管制用藥" labelWidth="120">
@@ -29,7 +29,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="用藥單位" labelWidth="120">
         <el-select filterable v-model="his.medication_unit_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgCtrlTypeList" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in ddl.unit" :key="item.unitCode" :label="item.unitName" :value="item.unitCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="皮試標誌" labelWidth="120">
@@ -200,7 +200,7 @@
 
 <script>
 import { ElMessage } from "element-plus";
-import { Subject } from "rxjs";
+import { Subject, forkJoin } from "rxjs";
 import { throttleTime, exhaustMap } from "rxjs/operators";
 let subscribe = "";
 export default {
@@ -216,9 +216,14 @@ export default {
       loading: false,
       newImg: "",
       filteredHisIds: [],
+      ddl: {},
     };
   },
   methods: {
+    async getDDL() {
+      this.ddl.unit = await this.actions.getUnitCode();
+      this.ddl.cates = await this.actions.getDrgCategoryCode();
+    },
     reset() {
       this.his = {};
       this.showAddNew = false;
@@ -245,7 +250,8 @@ export default {
     this.$primevue.config.locale = primeVueDateFormat;
   },
   created() {
-    this.actions.getUnitCode();
+    this.getDDL();
+
     this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
   },
