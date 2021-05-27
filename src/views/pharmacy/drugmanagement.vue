@@ -52,12 +52,12 @@
         </el-popconfirm>
       </div>
 
-      <div>{{ item.chDrgId || "暫無資料" }}</div>
-      <div>{{ item.chHospitalId || "暫無資料" }}</div>
-      <div :title="item.chDrgCnName">{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div :title="item.chDrgEnName">{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgAlias || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div :title="item.cname">{{ item.cname || "暫無資料" }}</div>
+      <div :title="item.ename">{{ item.ename || "暫無資料" }}</div>
+      <div>{{ item.scientificName || "暫無資料" }}</div>
+      <div>{{ item.vendorName || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -96,7 +96,7 @@ export default {
     pharmacyTab$.next("0");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-infos");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/usualMed");
 
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";

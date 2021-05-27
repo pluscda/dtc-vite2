@@ -32,23 +32,23 @@ export function useList(url,__limit__) {
     state.loading = true;
     const {limit, page, sort} =  state.listQuery;
     let queryObj = {
-      _limit : limit,
-      _start: page > 1 ? (page - 1) * limit : 0,
+      limit : limit,
+      pageStart: page > 1 ? (page - 1) * limit : 0,
     }
     sort.length ? queryObj._sort = sort.join(",") : '';
     let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
    
     forkJoin(
       {
-        total: axios.get(`${url}/count?` + qs ),
         data: axios.get(`${url}?` + qs)
       }
     ).pipe( catchError( error => {
       //ElMessage.error(`AJAX ${url} get list fail!!`);
-      of({total:0, data:[]})
-    })).subscribe( ({total, data}) => {
-       state.total = total;
-       state.list = data;
+      of({data:{count:0, entry:[]}})
+    })).subscribe( ({data}) => {
+       const  {count, entry} = data;
+       state.total = count;
+       state.list = entry;
        state.loading = false;
     })
   }

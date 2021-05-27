@@ -96,7 +96,6 @@ import { ElMessage } from "element-plus";
 import { clone } from "ramda";
 import { Subject, from } from "rxjs";
 import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
-
 import dayjs from "dayjs";
 let subscribe = "";
 let subscribe2 = "";
@@ -175,10 +174,11 @@ export default {
     },
     addItem() {
       this.items.unshift(clone(this.his));
-      const keys = ["chDrgCnName", "chDrgEnName", "chDrgDoseType", "chDrgUnitBy", "chDrgMakerName"];
+      const keys = ["orderId", "quantity", "chDrgUnitBy", "chDrgMakerName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
+      this.his.orderId = this.actions.getRandomId();
       this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
