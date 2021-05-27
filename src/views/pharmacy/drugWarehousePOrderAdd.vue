@@ -6,17 +6,18 @@
       </header>
       <main class="grid dtc-list-grid mt-5">
         <DtxInputGroup prepend="採購日期" labelWidth="100">
-          <Calendar class="h-10 w-full" :readonly="items.length" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
+          <Calendar class="h-10 w-full" :readonly="items.length" v-model="his.orderDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購單號" labelWidth="100">
-          <el-input v-model="his.chDrgPurchaseId" :readonly="items.length" placeholder="請輸入採購單號" />
+          <el-input v-model="his.orderId" :readonly="items.length" placeholder="請輸入採購單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <AutoComplete
             class="inline-block border-transparent transform"
             style="width: clamp(100%, 100%, 100%)"
             placeholder="請輸入院內代碼"
-            v-model="his.medId"
+            v-model="his.medicinedId"
+            :delay="300"
             :suggestions="medIds"
             @complete="searchMedId($event)"
             @item-select="selectedMedId(item)"
@@ -24,7 +25,7 @@
           />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="100">
-          <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
+          <InputNumber v-model="his.quantity" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
         <DtxInputGroup prepend="採購人員" labelWidth="100">
@@ -117,7 +118,7 @@ export default {
   computed: {
     enabledSave() {
       // const keys = [
-      //   "tiDrgPurchaseDate",
+      //   "orderDate",
       //   "chDrgPurchaseId",
       //   "chDrgPurchasePerson",
       //   "chDrgHisId",
@@ -179,7 +180,7 @@ export default {
       keys.forEach((s) => {
         this.his[s] = null;
       });
-      this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
+      this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
   mounted() {
@@ -191,7 +192,8 @@ export default {
   },
   created() {
     this.his = {};
-    this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
+    this.his.orderDate = dayjs().format("YYYY-MM-DD");
+    this.his.orderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     subscribe2 = this.med$
       .pipe(
