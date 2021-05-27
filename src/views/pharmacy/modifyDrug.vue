@@ -245,7 +245,7 @@ export default {
   mounted() {
     this.getDDL();
     this.his = clone(this.global.editItem);
-    alert(JSON.stringify(this.his));
+    //alert(JSON.stringify(this.his));
     this.newImg = this.his.image;
   },
 };
