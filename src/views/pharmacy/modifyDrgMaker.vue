@@ -6,22 +6,22 @@
 
     <main class="grid dtc-list-grid">
       <DtxInputGroup prepend="廠商編號" labelWidth="120">
-        <el-input v-model="his.chDrgMakerId" placeholder="請輸入廠商編號" />
+        <el-input v-model="his.vendorId" readonly placeholder="請輸入廠商編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="廠商名稱" labelWidth="120">
-        <el-input v-model="his.chDrgMakerName" placeholder="請輸入廠商名稱" />
+        <el-input v-model="his.name" placeholder="請輸入廠商名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="廠商地址" labelWidth="120">
-        <el-input v-model="his.chDrgMakerAddress" placeholder="請輸入廠商地址" />
+        <el-input v-model="his.address" placeholder="請輸入廠商地址" />
       </DtxInputGroup>
       <DtxInputGroup prepend="廠商電話" labelWidth="120">
-        <el-input v-model="his.chDrgMakerPhone" placeholder="請輸入廠商電話" />
+        <el-input v-model="his.phone" placeholder="請輸入廠商電話" />
       </DtxInputGroup>
       <DtxInputGroup prepend="廠商聯絡人" labelWidth="120">
-        <el-input placeholder="請輸入聯絡人" v-model="his.chDrgMakerContactPerson" />
+        <el-input placeholder="請輸入廠商聯絡人" v-model="his.contact" />
       </DtxInputGroup>
       <DtxInputGroup prepend="統一發票編號" labelWidth="120">
-        <el-input v-model="his.chDrgMakerBusinessId" placeholder="請輸入廠商統一發票編號" />
+        <el-input v-model="his.taxId" placeholder="請輸入廠商統一發票編號" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
@@ -57,11 +57,11 @@ export default {
     async editItem() {
       this.loading = true;
       try {
-        await this.actions.editItem("drg-add-makers", this.his);
-        ElMessage.success("編輯藥品成功");
+        await this.actions.editDrgVendor(this.his);
+        ElMessage.success("編輯藥品廠商成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("編輯藥品失敗!!");
+        ElMessage.error("編輯藥品廠商失敗!!");
         this.loading = false;
       }
     },
