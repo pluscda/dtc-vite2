@@ -52,7 +52,6 @@ export default {
       this.showAddNew = false;
     },
     async saveItem() {
-      //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload
       this.loading = true;
       try {
         const ret = await this.actions.addPharmacyStore(this.his);
