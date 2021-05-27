@@ -139,7 +139,9 @@ export default {
     },
   },
   methods: {
-    selectedMedId(item) {},
+    selectedMedId(item) {
+      // TODO: get selected id then ajax other info based on the id;
+    },
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
         const atc = "chDrgId_contains=" + event.query;
@@ -193,7 +195,7 @@ export default {
     subscribe2 = this.med$
       .pipe(
         distinctUntilChanged((pre, cur) => {
-          const eq = !!(pre.event.query === cur.event.query);
+          const eq = !!(pre.query === cur.query);
           if (eq) this.meds = [];
           return eq;
         }),
