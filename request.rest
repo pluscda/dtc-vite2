@@ -8,5 +8,3 @@ Content-Type:  application/json
 {
    "c_name": "sd"
 }
-
-

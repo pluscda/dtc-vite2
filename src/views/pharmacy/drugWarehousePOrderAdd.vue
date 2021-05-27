@@ -9,35 +9,36 @@
           <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="請輸入採購日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購單號" labelWidth="100">
-          <el-input v-model="his.chDrgPurchaseId" placeholder="請輸入採購單號" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="採購人員" labelWidth="100">
-          <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入採購人員" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="100">
-          <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
+          <el-input v-model="his.chDrgPurchaseId" :readonly="items.length" > placeholder="請輸入採購單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="100">
-          <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="100">
-          <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="藥品劑型" labelWidth="100">
-          <el-input v-model="his.chDrgDoseType" placeholder="請輸入藥品劑型" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="100">
-          <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="100">
           <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
+        <DtxInputGroup prepend="採購人員" labelWidth="100">
+          <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入採購人員" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="健保代碼" labelWidth="100">
+          <el-input v-model="his.chDrgHisId" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="中文藥名" labelWidth="100">
+          <el-input v-model="his.chDrgCnName" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="英文藥名" labelWidth="100">
+          <el-input v-model="his.chDrgEnName" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品劑型" labelWidth="100">
+          <el-input v-model="his.chDrgDoseType" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品單位" labelWidth="100">
+          <el-input v-model="his.chDrgUnitBy" readonly />
+        </DtxInputGroup>
+
         <DtxInputGroup prepend="藥商名稱" labelWidth="100">
-          <el-input v-model="his.chDrgMakerName" placeholder="請輸入藥商名稱" />
+          <el-input v-model="his.chDrgMakerName" readonly />
         </DtxInputGroup>
       </main>
 
@@ -59,16 +60,17 @@
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
           <li>採購人員: {{ item.chDrgPurchasePerson }}</li>
-          <li>健保代碼: {{ item.chDrgHisId }}</li>
           <li>院內代碼: {{ item.chDrgHospitalId }}</li>
-          <li>中文藥名: {{ item.chDrgCnName }}</li>
-          <li>英文藥名: {{ item.chDrgEnName }}</li>
-          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
-          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
+          <li>健保代碼: {{ item.chDrgHisId }}</li>
           <li class="flex space-x-2">
             <div>採購數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
           </li>
+          <li>中文藥名: {{ item.chDrgCnName }}</li>
+          <li>英文藥名: {{ item.chDrgEnName }}</li>
+          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
+          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
+
           <li>藥商名稱: {{ item.chDrgMakerName }}</li>
         </nav>
       </div>
@@ -135,7 +137,7 @@ export default {
         },
       };
       from(this.items)
-        .pipe(mergeMap((s) => this.actions.addItem("drg-warehouse-order-adds", s)))
+        .pipe(mergeMap((s) => this.actions.addDrgOrder(s)))
         .subscribe(observer);
     },
     removeItem(idx) {
