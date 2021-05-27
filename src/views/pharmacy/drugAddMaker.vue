@@ -42,7 +42,7 @@ import { exhaustMap, throttleTime } from "rxjs/operators";
 
 let subscribe = "";
 export default {
-  name: "drugAddNew",
+  name: "drugAddNew新增藥品廠商",
   inject: ["actions"],
   data() {
     return {
@@ -52,7 +52,6 @@ export default {
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: "",
     };
   },
   methods: {
@@ -64,18 +63,12 @@ export default {
       this.loading = true;
       try {
         const ret = await this.actions.addDrgVendor(his);
-        ElMessage.success("新增藥品成功");
+        ElMessage.success("新增藥品廠商成功");
         this.showAddNew = true;
       } catch (e) {
-        ElMessage.error("新增藥品失敗!!");
+        ElMessage.error("新增藥品廠商失敗!!");
         this.loading = false;
       }
-    },
-    fileChange(e) {
-      this.fileUpload = e.target.files[0];
-      this.uploadFileName = e.target.files[0].name;
-      this.his.imgName = this.uploadFileName;
-      this.newImg = URL.createObjectURL(this.fileUpload);
     },
   },
   created() {
