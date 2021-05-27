@@ -31,7 +31,6 @@ const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls
 const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
 const formulas = [{value:'單方', label:'單方'},{value:'複方', label:'複方'}]
 const init = {
-  userDefaultBgColor: "dark",
   editItem: "",
   answers,
   formulas
