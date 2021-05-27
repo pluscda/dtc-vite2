@@ -98,7 +98,7 @@
 
       <DtxInputGroup prepend="產地" labelWidth="120">
         <el-select filterable v-model="his.made_in_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in ddl.froms" :key="item.numCode" :label="item.cname" :value="item.numCode"> </el-option>
         </el-select>
       </DtxInputGroup>
 
@@ -229,6 +229,7 @@ export default {
       this.ddl.parhs = await this.actions.getPharmacologyCode();
       this.ddl.controlls = await this.actions.getControlledCode();
       this.ddl.antiCodes = await this.actions.getAntibioticsCode();
+      this.ddl.froms = await this.actions.getISO3166Code();
       this.ddl.yesno = this.global.answers;
     },
     reset() {

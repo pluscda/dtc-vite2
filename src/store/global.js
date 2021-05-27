@@ -19,6 +19,8 @@ const parhCodes$ = from(axios.get("/med/pharmacologyCode")).pipe(shareReplay(1))
 const controlls$ = from(axios.get("/med/controlledCode")).pipe(shareReplay(1));
 //抗生素藥物
 const antiCodes$ = from(axios.get("/med/antibioticsCode")).pipe(shareReplay(1));
+//make at
+const contries$ = from(axios.get("/med/ISO3166_1_countryCode")).pipe(shareReplay(1));
 
 const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
 
@@ -169,7 +171,7 @@ export const actions = {
      return firstValueFrom(dogses$);
   },
   async getISO3166Code(){//49
-     return await axios.get("/med/ISO3166_1_countryCode");
+     return firstValueFrom(contries$);
   },
   async getPharmacologyCode(){//50
      return firstValueFrom(parhCodes$);
