@@ -46,7 +46,6 @@
         <DtxInputGroup prepend="藥品單位" labelWidth="100">
           <el-input v-model="his.chDrgUnitBy" readonly />
         </DtxInputGroup>
-
         <DtxInputGroup prepend="藥商名稱" labelWidth="100">
           <el-input v-model="his.chDrgMakerName" readonly />
         </DtxInputGroup>
