@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 import axios from "utils/request";
 import { logout$ } from "/@/store";
-import websocketService from "utils/websock.js";
+import checkNhiCard from "utils/websock.js";
 import {from,firstValueFrom} from "rxjs"
 import {shareReplay}  from "rxjs/operators";
 //用藥單位
@@ -37,7 +37,7 @@ const init = {
 export let global = reactive({ ...init });
 export const actions = {
   async getIcCardInfo() {
-    return await websocketService("ws://localhost:8888/Chat", "checkNhiCard");
+    return await checkNhiCard("ws://localhost:8888/Chat", "checkNhiCard");
   },
    //新增藥品資料
   async addDrg(obj){ //2

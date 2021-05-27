@@ -200,7 +200,7 @@
 
 <script>
 import { ElMessage } from "element-plus";
-import { Subject, forkJoin } from "rxjs";
+import { Subject } from "rxjs";
 import { throttleTime, exhaustMap } from "rxjs/operators";
 let subscribe = "";
 export default {
@@ -253,6 +253,7 @@ export default {
       this.uploadFileName = e.target.files[0].name;
       this.his.chDrgImgName = this.uploadFileName;
       this.his.image = URL.createObjectURL(this.fileUpload);
+      this.newImg = this.his.image;
     },
   },
   mounted() {
@@ -260,7 +261,6 @@ export default {
   },
   created() {
     this.getDDL();
-
     this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
   },
