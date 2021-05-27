@@ -62,7 +62,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="給藥途徑" labelWidth="120">
         <el-select filterable v-model="his.route_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in dummyList" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in ddl.routes" :key="item.routeCode" :label="item.routeName" :value="item.routeCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="抗生素等級" labelWidth="120">
@@ -224,6 +224,7 @@ export default {
       this.ddl.unit = await this.actions.getUnitCode();
       this.ddl.cates = await this.actions.getDrgCategoryCode();
       this.ddl.freqs = await this.actions.getfrequencyCode();
+      this.ddl.routes = await this.actions.getRouteCode();
     },
     reset() {
       this.his = {};
