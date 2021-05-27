@@ -211,24 +211,26 @@ export default {
       fileUpload: "",
       newImg: "",
       loading: false,
+      ddl: {},
     };
   },
   methods: {
-    async updateImg() {
-      //https://strapi.io/documentation/developer-docs/latest/development/plugins/upload.html#upload-files-related-to-an-entry
-      const formData = new FormData();
-      formData.append("ref", "drgadd");
-      formData.append("refId", this.his.id);
-      formData.append("field", "s3DrgImg");
-      formData.append("files", this.fileUpload, this.his.imgName);
-      const ret = await this.actions.editImg(formData);
+    async getDDL() {
+      this.ddl.unit = await this.actions.getUnitCode();
+      this.ddl.cates = await this.actions.getDrgCategoryCode();
+      this.ddl.freqs = await this.actions.getfrequencyCode();
+      this.ddl.routes = await this.actions.getRouteCode();
+      this.ddl.doges = await this.actions.getDosageFormCode();
+      this.ddl.parhs = await this.actions.getPharmacologyCode();
+      this.ddl.controlls = await this.actions.getControlledCode();
+      this.ddl.antiCodes = await this.actions.getAntibioticsCode();
+      this.ddl.froms = await this.actions.getISO3166Code();
+      this.ddl.yesno = this.global.answers;
+      this.ddl.formulas = this.global.formulas;
     },
     async saveItem() {
       this.loading = true;
       try {
-        this.fileUpload ? await this.updateImg() : "";
-        // normal update without img here
-        const { s3DrgImg, ...hisObj } = this.his;
         await this.actions.editDrug(hisObj);
         ElMessage.success("編輯藥品成功");
         this.loading = false;
@@ -242,11 +244,13 @@ export default {
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
       this.newImg = URL.createObjectURL(this.fileUpload);
+      this.his.image = this.newImg;
     },
   },
   mounted() {
+    this.getDDL();
     this.his = clone(this.global.editItem);
-    this.newImg = this.his.s3DrgImg && this.his.s3DrgImg[0]?.url;
+    this.newImg = this.his.image;
   },
 };
 </script>
