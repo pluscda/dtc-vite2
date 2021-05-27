@@ -2,7 +2,7 @@ import { reactive } from "vue";
 import axios from "utils/request";
 import { logout$ } from "/@/store";
 import checkNhiCard from "utils/websock.js";
-import {forkJoin,firstValueFrom, merge,defer} from "rxjs"
+import {firstValueFrom,defer} from "rxjs"
 import {shareReplay}  from "rxjs/operators";
 //用藥單位
 const unit$ = defer( _ => axios.get("/med/unitCode")).pipe(shareReplay(1));
