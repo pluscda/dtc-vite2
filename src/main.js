@@ -3,7 +3,6 @@ import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import { createApp } from "vue";
 import "./constance.js";
-import { getDDL } from "./constance.js";
 import App from "./App.vue";
 import * as R from "ramda";
 import "styles/index.scss";
