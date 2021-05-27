@@ -18,7 +18,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="管制用藥" labelWidth="120">
         <el-select filterable v-model="his.controlled_code" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgCtrlTypeList" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in ddl.controlls" :key="item.controlledCode" :label="item.controlledName" :value="item.controlledCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="原核定價" labelWidth="120">
@@ -227,6 +227,7 @@ export default {
       this.ddl.routes = await this.actions.getRouteCode();
       this.ddl.doges = await this.actions.getDosageFormCode();
       this.ddl.parhs = await this.actions.getPharmacologyCode();
+      this.ddl.controlls = await this.actions.getControlledCode();
     },
     reset() {
       this.his = {};
