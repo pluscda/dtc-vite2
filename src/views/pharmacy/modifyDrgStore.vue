@@ -6,13 +6,13 @@
 
     <main class="grid px-3 mt-4 space-y-4">
       <DtxInputGroup prepend="藥房編號" labelWidth="120">
-        <el-input v-model="his.chDrgStoreId" placeholder="請輸入藥房編號" />
+        <el-input v-model="his.pharmacyId" readonly placeholder="請輸入藥房編號" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房名稱" labelWidth="120">
-        <el-input v-model="his.chDrgStoreName" placeholder="請輸入藥房名稱" />
+        <el-input v-model="his.cname" placeholder="請輸入藥房名稱" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥房位置" labelWidth="120">
-        <el-input style="min-width: 500px" v-model="his.chDrgStoreAddress" placeholder="請輸入藥房位置" />
+        <el-input style="min-width: 500px" v-model="his.place" placeholder="請輸入藥房位置" />
       </DtxInputGroup>
     </main>
     <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
@@ -48,7 +48,7 @@ export default {
     async editItem() {
       this.loading = true;
       try {
-        await this.actions.editItem("drg-add-stores", this.his);
+        await this.actions.editPharmacyStore(this.his);
         ElMessage.success("編輯藥房資料成功");
         this.showAddNew = true;
       } catch (e) {
