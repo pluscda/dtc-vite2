@@ -2,26 +2,28 @@ import { reactive } from "vue";
 import axios from "utils/request";
 import { logout$ } from "/@/store";
 import checkNhiCard from "utils/websock.js";
-import {from,firstValueFrom} from "rxjs"
+import {forkJoin,firstValueFrom, merge,defer} from "rxjs"
 import {shareReplay}  from "rxjs/operators";
 //用藥單位
-const unit$ = from(axios.get("/med/unitCode")).pipe(shareReplay(1));
+const unit$ = defer( _ => axios.get("/med/unitCode")).pipe(shareReplay(1));
 //藥品類別
-const cates$ = from(axios.get("/med/categoryCode")).pipe(shareReplay(1));
+const cates$ = defer( _ => axios.get("/med/categoryCode")).pipe(shareReplay(1));
 // 用藥頻率
-const feqCodes$ = from(axios.get("/med/frequencyCode")).pipe(shareReplay(1));
+const feqCodes$ = defer( _ => axios.get("/med/frequencyCode")).pipe(shareReplay(1));
 //給藥途徑
-const routeCodes$ = from(axios.get("/med/routeCode")).pipe(shareReplay(1));
+const routeCodes$ = defer( _ => axios.get("/med/routeCode")).pipe(shareReplay(1));
 //藥品劑型
-const dogses$ = from(axios.get("/med/dosageFormCode")).pipe(shareReplay(1));
+const dogses$ = defer( _ => axios.get("/med/dosageFormCode")).pipe(shareReplay(1));
 //藥品分類
-const parhCodes$ = from(axios.get("/med/pharmacologyCode")).pipe(shareReplay(1));
+const parhCodes$ = defer( _ => axios.get("/med/pharmacologyCode")).pipe(shareReplay(1));
 //管制用藥
-const controlls$ = from(axios.get("/med/controlledCode")).pipe(shareReplay(1));
+const controlls$ = defer( _ => axios.get("/med/controlledCode")).pipe(shareReplay(1));
 //抗生素藥物
-const antiCodes$ = from(axios.get("/med/antibioticsCode")).pipe(shareReplay(1));
+const antiCodes$ = defer( _ => axios.get("/med/antibioticsCode")).pipe(shareReplay(1));
 //make at
-const contries$ = from(axios.get("/med/ISO3166_1_countryCode")).pipe(shareReplay(1));
+const contries$ = defer( _ => axios.get("/med/ISO3166_1_countryCode")).pipe(shareReplay(1));
+
+const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls$,antiCodes$,contries$];
 
 const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
 const formulas = [{value:'單方', label:'單方'},{value:'複方', label:'複方'}]
@@ -38,6 +40,9 @@ export let global = reactive({ ...init });
 export const actions = {
   async getIcCardInfo() {
     return await checkNhiCard("ws://localhost:8888/Chat", "checkNhiCard");
+  },
+  getAllDDL(){
+    ddlObs.forEach(s => firstValueFrom(s))
   },
    //新增藥品資料
   async addDrg(obj){ //2

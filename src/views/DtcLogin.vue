@@ -38,6 +38,7 @@ export default {
         // sessionStorage.token = jwt;
         // jwt ? router.push("/register/list") : alert(JSON.stringify(message));
         sessionStorage.token = "12";
+        actions.getAllDDL();
         router.push("/register/list");
       } catch (e) {
         alert("error: " + e);
