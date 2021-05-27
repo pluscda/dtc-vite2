@@ -143,7 +143,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="單/複方" labelWidth="120">
         <el-select filterable v-model="his.compound_desc" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in chDrgFactoryList" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in ddl.formulas" :key="item.value" :label="item.value" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
@@ -231,6 +231,7 @@ export default {
       this.ddl.antiCodes = await this.actions.getAntibioticsCode();
       this.ddl.froms = await this.actions.getISO3166Code();
       this.ddl.yesno = this.global.answers;
+      this.ddl.formulas = this.global.formulas;
     },
     reset() {
       this.his = {};
