@@ -88,7 +88,7 @@ import { clone } from "ramda";
 import { Subject, from } from "rxjs";
 import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
 import dayjs from "dayjs";
-let subscribe = "";
+
 export default {
   name: "drugAddNew",
   inject: ["actions"],
@@ -103,19 +103,20 @@ export default {
   },
   computed: {
     enabledSave() {
-      const keys = [
-        "tiDrgPurchaseDate",
-        "chDrgPurchaseId",
-        "chDrgPurchasePerson",
-        "chDrgHisId",
-        "chDrgHospitalId",
-        "chDrgCnName",
-        "chDrgEnName",
-        "chDrgDoseType",
-        "chDrgUnitBy",
-        "chDrgMakerName",
-      ];
-      return keys.every((s) => this.his[s]);
+      // const keys = [
+      //   "tiDrgPurchaseDate",
+      //   "chDrgPurchaseId",
+      //   "chDrgPurchasePerson",
+      //   "chDrgHisId",
+      //   "chDrgHospitalId",
+      //   "chDrgCnName",
+      //   "chDrgEnName",
+      //   "chDrgDoseType",
+      //   "chDrgUnitBy",
+      //   "chDrgMakerName",
+      // ];
+      // return keys.every((s) => this.his[s]);
+      return true;
     },
     totalAdded() {
       let str = "";
@@ -137,7 +138,7 @@ export default {
         },
       };
       from(this.items)
-        .pipe(mergeMap((s) => this.actions.addDrgOrder(s)))
+        .pipe(mergeMap((s) => this.actions.addDrgOrderItem(s)))
         .subscribe(observer);
     },
     removeItem(idx) {
