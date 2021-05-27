@@ -42,7 +42,6 @@ app.component("Dialog", Dialog);
 // DTC Custom UI components
 app.component("DtxInputGroup", DtxInputGroup);
 // Global setting
-let drgList = [];
 app.config.globalProperties.R = R;
 app.mount("#app");
 
