@@ -92,11 +92,11 @@ export default {
     const search = () => {
       let filters = {};
       if (searchMakerId.value) {
-        filters.chDrgMakerId_contains = searchMakerId.value;
+        filters.vendorId = searchMakerId.value;
       }
       //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
       if (searchMakerName.value) {
-        filters.chDrgMakerName_contains = searchMakerName.value;
+        filters.name = searchMakerName.value;
       }
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
