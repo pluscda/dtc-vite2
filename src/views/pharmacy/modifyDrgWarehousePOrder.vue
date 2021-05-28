@@ -42,11 +42,11 @@
         {{ k + 1 }}
       </div>
 
-      <div>{{ item.chDrgHisId || "暫無資料" }}</div>
-      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.pharmacyId || "暫無資料" }}</div>
+      <div>{{ item.cname || "暫無資料" }}</div>
+      <div>{{ item.ename || "暫無資料" }}</div>
+      <div>{{ item.vendorName || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
       <div><el-input v-model="his.chDrgWarningMsg" placeholder="請輸入" /></div>
       <div>
@@ -74,15 +74,15 @@ import { useRouter } from "vue-router";
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "chDrgHisId", sortDesc: null },
-  { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
-  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
-  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "藥商名稱", key: "chDrgMakerName", sortDesc: null },
+  { name: "健保代碼", key: "nhiCode", sortDesc: null },
+  { name: "院內代碼", key: "pharmacyId", sortDesc: null },
+  { name: "中文藥名", key: "cname", sortDesc: null },
+  { name: "英文藥名", key: "ename", sortDesc: null },
+  { name: "藥商名稱", key: "vendorName", sortDesc: null },
   { name: "現有存量", key: "unknow", sortDesc: null },
   { name: "採購數量", key: "intDrugApplyNum", sortDesc: null },
   { name: "是否到貨", key: "unknow", sortDesc: null },
-  { name: "備註", key: "intDrugApplyNum", sortDesc: null },
+  { name: "備註", key: "unknow", sortDesc: null },
 ];
 
 export default {
@@ -111,7 +111,7 @@ export default {
     ]);
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds", 1200);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrderItmes", 100000, "&orderId=" + global.editItem.orderId);
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
@@ -123,11 +123,10 @@ export default {
         e,
         dateQuery = "";
       if (time1.value && time2.value) {
-        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
-        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
-        dateQuery = queryString.stringify({
-          _where: [{ tiDrgPurchaseDate_gte: s }, { tiDrgPurchaseDate_lt: e }],
-        });
+        s = dayjs(time1.value).format("YYYY-MM-DD");
+        e = dayjs(time2.value).format("YYYY-MM-DD");
+        filter.orderStartDate = s;
+        filter.orderEndDate = e;
       }
       if (searchOrderId.value) {
         filters.chDrgPurchaseId_contains = searchOrderId.value;

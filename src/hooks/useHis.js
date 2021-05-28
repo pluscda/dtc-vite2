@@ -6,7 +6,7 @@ import { catchError } from "rxjs/operators";
 import { ElMessage } from "element-plus";
 
 
-export function useList(url,__limit__) {
+export function useList(url,__limit__, extra) {
   const init =  { 
     loading: true, 
     list: [], 
@@ -41,7 +41,9 @@ export function useList(url,__limit__) {
     }
     sort.length ? queryObj.sort = sort.join(",") : '';
     let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
-   
+    if(extra){
+      qs += extra;
+    }
     forkJoin(
       {
         data: axios.get(`${url}?` + qs)
