@@ -116,13 +116,13 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="藥商名稱" labelWidth="120">
-        <el-select filterable v-model="his.chDrgMakerName" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="his.vendorName" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in chDrgFactoryList" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
-        <el-input v-model="his.intDrgStockMin" placeholder="請輸入庫存上限" />
+        <el-input v-model="his.upperLimit" placeholder="請輸入庫存上限" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="收費項目" labelWidth="120">
@@ -138,7 +138,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="庫存下限" labelWidth="120">
-        <el-input v-model="his.intDrgStockMin" placeholder="請輸入庫存下限" />
+        <el-input v-model="his.lowerLimit" placeholder="請輸入庫存下限" />
       </DtxInputGroup>
       <DtxInputGroup prepend="單/複方" labelWidth="120">
         <el-select filterable v-model="his.compoundDesc" placeholder="請選擇" class="border-l-0">
