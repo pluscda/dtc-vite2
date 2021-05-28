@@ -91,11 +91,7 @@ export default {
     Pagination,
   },
   inject: ["global", "actions"],
-  data() {
-    return {
-      his: { tiDrgPurchaseDate: "" },
-    };
-  },
+  data() {},
 
   setup() {
     const global = inject("global");
@@ -153,9 +149,7 @@ export default {
       searchOrderTime,
     };
   },
-  mounted() {
-    this.his = clone(this.global.editItem);
-  },
+  mounted() {},
 };
 </script>
 
