@@ -116,9 +116,7 @@ export default {
     };
     const search = () => {
       let filters = {};
-      let s,
-        e,
-        dateQuery = "";
+      let s, e;
       if (time1.value && time2.value) {
         s = dayjs(time1.value).format("YYYY-MM-DD");
         e = dayjs(time2.value).format("YYYY-MM-DD");
@@ -136,7 +134,7 @@ export default {
         filters.isClose = orderStatus.value;
       }
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
-      state.listQuery.filter = dateQuery + filters;
+      state.listQuery.filter = filters;
       getList();
     };
     const editItem = async (item) => {

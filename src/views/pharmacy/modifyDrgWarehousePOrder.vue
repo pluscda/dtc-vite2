@@ -104,8 +104,7 @@ export default {
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
     const searchStatus = ref("");
-    const time1 = ref("");
-    const time2 = ref("");
+
     const caseClosedOptions = reactive([
       { value: "closed", text: "已到貨" },
       { value: "unclosed", text: "未到貨" },
@@ -120,9 +119,7 @@ export default {
     };
     const search = () => {
       let filters = {};
-      let s,
-        e,
-        dateQuery = "";
+      let s;
       if (searchOrderTime.value) {
         s = dayjs(searchOrderTime.value).format("YYYY-MM-DD");
         filter.orderDate = s;
@@ -134,7 +131,7 @@ export default {
         filters.staffId = searchOrderPerson.value;
       }
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
-      state.listQuery.filter = dateQuery + filters;
+      state.listQuery.filter = filters;
       getList();
     };
 
@@ -145,8 +142,6 @@ export default {
       searchOrderId,
       searchOrderPerson,
       searchStatus,
-      time1,
-      time2,
       caseClosedOptions,
       sort,
       clearFilters,
