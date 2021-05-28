@@ -52,11 +52,11 @@
         <Button label="採購單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
 
-      <div>{{ item.chDrgPurchaseId || "暫無資料" }}</div>
-      <div>{{ "暫無資料" }}</div>
-      <div>{{ item.status || "暫無資料" }}</div>
-      <div>{{ item.chDrgPurchasePerson || "暫無資料" }}</div>
-      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
+      <div>{{ item.orderId || "暫無資料" }}</div>
+      <div>{{ (orderDate && orderDate.split("T")[0]) || "暫無資料" }}</div>
+      <div>{{ item.isClose ? "已結案" : "未結案" }}</div>
+      <div>{{ item.staffId || "暫無資料" }}</div>
+      <div>{{ item.unknow || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -75,7 +75,7 @@ import { useRouter } from "vue-router";
 let headers = [
   { name: "採購單號", key: "orderId", sortDesc: null },
   { name: "採購日期", key: "orderDate", sortDesc: null },
-  { name: "訂單狀態", key: "status", sortDesc: null },
+  { name: "訂單狀態", key: "isClose", sortDesc: null },
   { name: "申請人員", key: "staffId", sortDesc: null },
   { name: "轉單類別", key: "isClose", sortDesc: null },
 ];
@@ -120,11 +120,10 @@ export default {
         e,
         dateQuery = "";
       if (time1.value && time2.value) {
-        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
-        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
-        dateQuery = queryString.stringify({
-          _where: [{ tiDrgPurchaseDate_gte: s }, { tiDrgPurchaseDate_lt: e }],
-        });
+        s = dayjs(time1.value).format("YYYY-MM-DD");
+        e = dayjs(time2.value).format("YYYY-MM-DD");
+        filter.orderStartDate = s;
+        filter.orderEndDate = e;
       }
       if (searchOrderId.value) {
         filters.orderId = searchOrderId.value;
