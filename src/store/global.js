@@ -40,7 +40,7 @@ const init = {
 export let global = reactive({ ...init });
 export const actions = {
   getRandomId(){
-   return dayjs().format("YYYY-MM-DDTHH:mm:ss");
+   return dayjs().format("HHmmssYYYYMMDD");
   },
   async getIcCardInfo() {
     return await checkNhiCard("ws://localhost:8888/Chat", "checkNhiCard");
