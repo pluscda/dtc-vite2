@@ -35,6 +35,9 @@ export function useList(url,__limit__) {
       limit : limit,
       pageStart: page > 1 ? (page - 1) * limit : 0,
     }
+    if(state.listQuery.filter){
+      pageStart = 0;
+    }
     sort.length ? queryObj._sort = sort.join(",") : '';
     let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
    
@@ -64,9 +67,9 @@ export function useList(url,__limit__) {
     //    ElMessage.error(`AJAX ${url} get item detail faill!!`);
     // }
   }
-  async function removeItem(item){
+  async function removeItem(qs){
     try{
-      await axios.delete(`${url}/${item.id}`);
+      await axios.delete(`${url}?` + qs);
       getList();
     }catch(e){
        ElMessage.error(`AJAX ${url} delete item faill!!`);
