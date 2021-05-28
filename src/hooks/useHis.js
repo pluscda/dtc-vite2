@@ -100,28 +100,3 @@ export function useList(url,__limit__) {
   return { state, getList, sort, clearFilters,removeItem,getItemDetail,twTime};
 }
 
-const defaultData = {
-  name: "",
-  age: undefined,
-};
-
-export function useItem(isEdit, id) {
-  const model = ref(Object.assign({}, defaultData));
-  const updateUser = () => {
-    return axios({
-      url: "/updateUser",
-      method: "post",
-      data: model.value,
-    });
-  };
-
-  const addUser = () => {
-    return axios({
-      url: "/addUser",
-      method: "post",
-      data: model.value,
-    });
-  };
-
-  return { model, updateUser, addUser };
-}
