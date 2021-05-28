@@ -21,7 +21,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="原核定價" labelWidth="120">
-        <el-input v-model="his.originPrice" placeholder="請輸入原核定價" />
+        <InputNumber class="w-full" v-model="his.originPrice" placeholder="請輸入原核定價"></InputNumber>
       </DtxInputGroup>
       <DtxInputGroup prepend="院內代碼" labelWidth="120">
         <el-input v-model="his.medicineId" placeholder="請輸入院內代碼" />
@@ -37,7 +37,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="新核定價" labelWidth="120">
-        <el-input v-model="his.newPrice" placeholder="請輸入新核定價" />
+        <InputNumber class="w-full" v-model="his.newPrice" placeholder="請輸入新核定價"></InputNumber>
       </DtxInputGroup>
       <DtxInputGroup prepend="中文藥名" labelWidth="120">
         <el-input v-model="his.cname" placeholder="請輸入中文藥名" />
@@ -53,7 +53,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="自費價格" labelWidth="120">
-        <el-input v-model="his.selfPay" placeholder="請輸入自費價格" />
+        <InputNumber class="w-full" v-model="his.selfPay" placeholder="請輸入自費價格"></InputNumber>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="英文藥名" labelWidth="120">
@@ -82,7 +82,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="現有庫存量" labelWidth="120">
-        <el-input v-model="his.chDrgForbidden" placeholder="請輸入現有庫存量" />
+        <InputNumber class="w-full" v-model="his.chDrgForbidden" placeholder="請輸入現有庫存量"></InputNumber>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="發文號" labelWidth="120">
@@ -122,7 +122,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="庫存上限" labelWidth="120">
-        <el-input v-model="his.upperLimit" placeholder="請輸入庫存上限" />
+        <InputNumber class="w-full" v-model="his.upperLimit" placeholder="請輸入庫存上限"></InputNumber>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="收費項目" labelWidth="120">
@@ -138,7 +138,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="庫存下限" labelWidth="120">
-        <el-input v-model="his.lowerLimit" placeholder="請輸入庫存下限" />
+        <InputNumber class="w-full" v-model="his.lowerLimit" placeholder="請輸入庫存下限"></InputNumber>
       </DtxInputGroup>
       <DtxInputGroup prepend="單/複方" labelWidth="120">
         <el-select filterable v-model="his.compoundDesc" placeholder="請選擇" class="border-l-0">
