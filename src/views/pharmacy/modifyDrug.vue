@@ -229,10 +229,11 @@ export default {
       //   !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
       // });
       try {
-        await this.actions.editDrug(this.his);
+        await this.actions.editDrg(this.his);
         ElMessage.success("編輯藥品成功");
         this.loading = false;
       } catch (e) {
+        alert(e);
         ElMessage.error("編輯藥品失敗");
         this.loading = false;
       }
