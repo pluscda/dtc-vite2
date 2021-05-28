@@ -235,9 +235,9 @@ export default {
     async saveItem() {
       this.loading = true;
       try {
-        Object.keys(this.his).forEach((s) => {
-          !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
-        });
+        // Object.keys(this.his).forEach((s) => {
+        //   !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
+        // });
         const ret = await this.actions.addDrg(this.his);
         ElMessage.success("新增藥品成功");
         this.showAddNew = true;

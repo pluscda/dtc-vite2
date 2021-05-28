@@ -225,9 +225,9 @@ export default {
     },
     async saveItem() {
       this.loading = true;
-      Object.keys(this.his).forEach((s) => {
-        !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
-      });
+      // Object.keys(this.his).forEach((s) => {
+      //   !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
+      // });
       try {
         await this.actions.editDrug(this.his);
         ElMessage.success("編輯藥品成功");
@@ -250,7 +250,6 @@ export default {
     this.his = clone(this.global.editItem);
     if (this.his.expiredDate) this.his.expiredDate = this.his.expiredDate.split("T")[0];
     if (this.his.effectiveDate) this.his.effectiveDate = this.his.effectiveDate.split("T")[0];
-    //alert(JSON.stringify(this.his));
     this.newImg = this.his.image;
   },
 };

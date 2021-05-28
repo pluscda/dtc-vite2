@@ -4,7 +4,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "vite",
-    "serve": "vite --mode staging",
+    "serve": "vite --mode staging --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview"
   },
