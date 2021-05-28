@@ -11,7 +11,7 @@
         <el-input placeholder="搜尋中英文藥品名稱" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品學名">
-        <el-input placeholder="搜尋藥品學名" v-model="searchDrugName" />
+        <el-input placeholder="搜尋藥品學名" v-model="searchSci" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥商名稱">
         <el-input placeholder="搜尋藥商名稱" v-model="searchDrgMaker" />
@@ -91,6 +91,7 @@ export default {
     const router = useRouter();
     const searchHospitalId = ref("");
     const searchDrugName = ref("");
+    const searchSci = ref("");
     const searchDrgMaker = ref("");
     const global = inject("global");
     pharmacyTab$.next("0");
@@ -105,13 +106,16 @@ export default {
     const search = () => {
       let filters = {};
       if (searchHospitalId.value) {
-        filters.chHospitalId_contains = searchHospitalId.value;
+        filters.medicineId = searchHospitalId.value;
       }
       if (searchDrugName.value) {
-        filters.chDrgEnName_contains = searchDrugName.value;
+        filters.name = searchDrugName.value;
+      }
+      if (searchSci.value) {
+        filters.scientificName = searchSci.value;
       }
       if (searchDrgMaker.value) {
-        filters.chDrgMakerName_contains = searchDrgMaker.value;
+        filters.vendorName = searchDrgMaker.value;
       }
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
@@ -131,6 +135,7 @@ export default {
       searchHospitalId,
       searchDrugName,
       searchDrgMaker,
+      searchSci,
       sort,
       cleanFilter,
       search,

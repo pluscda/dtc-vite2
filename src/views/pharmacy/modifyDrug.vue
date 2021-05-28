@@ -196,7 +196,6 @@
 import { clone } from "ramda";
 import { ElMessage } from "element-plus";
 import toBase64 from "utils/base64";
-
 export default {
   name: "drugModify",
   inject: ["global", "actions"],
