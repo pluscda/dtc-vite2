@@ -46,20 +46,20 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
 
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.medicinedId || "暫無資料" }}</div>
+      <div>{{ item.medCname || "暫無資料" }}</div>
+      <div>{{ item.medEname || "暫無資料" }}</div>
+      <div>{{ item.scientificName || "暫無資料" }}</div>
+      <div>{{ item.atcCode || "暫無資料" }}</div>
+      <div>{{ item.newPrice || "暫無資料" }}</div>
+      <div>{{ item.selfPrice || "暫無資料" }}</div>
+      <div>{{ item.effectiveDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.upperLimit || "暫無資料" }}</div>
+      <div>{{ item.lowerLimit || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
+      <div :title="item.vendorName">{{ item.vendorName || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
     </main>

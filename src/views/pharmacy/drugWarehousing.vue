@@ -10,7 +10,7 @@
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="採購單號">
-        <el-input placeholder="搜尋採購單號" v-model="searchDrugId" />
+        <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" />
@@ -18,10 +18,10 @@
     </nav>
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請人員">
-        <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
+        <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
+        <el-select filterable v-model="orderStatus" placeholder="請選擇訂單狀態" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -51,10 +51,10 @@
       <div class="flex flex-none space-x-2">
         <Button label="入庫單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.orderId || "暫無資料" }}</div>
+      <div>{{ item.orderDate.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.staffId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -68,10 +68,10 @@ import { useList } from "/@/hooks/useHis.js";
 import { useRouter } from "vue-router";
 //身分證號
 let headers = [
-  { name: "採購單號", key: "name", sortDesc: null },
-  { name: "採購日期", key: "name", sortDesc: null },
-  { name: "訂單狀態", key: "age", sortDesc: null },
-  { name: "申請人員", key: "age", sortDesc: null },
+  { name: "採購單號", key: "orderId", sortDesc: null },
+  { name: "採購日期", key: "orderDate", sortDesc: null },
+  { name: "訂單狀態", key: "isClosed", sortDesc: null },
+  { name: "申請人員", key: "staffId", sortDesc: null },
 ];
 
 export default {
@@ -82,11 +82,12 @@ export default {
   setup() {
     const global = inject("global");
     const router = useRouter();
-    const searchDrugId = ref("");
-    const searchDrugName = ref("");
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
     const time1 = ref("");
     const time2 = ref("");
-    const searchStatus = ref("");
+    const searchStatus = ref(null);
+    const orderStatus = ref(null);
 
     const caseClosedOptions = reactive([
       {
@@ -99,7 +100,35 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrder");
+    const cleanFilter = () => {
+      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      orderStatus.value = null;
+      clearFilters();
+    };
+    const search = () => {
+      let filters = {};
+      let s, e;
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DD");
+        e = dayjs(time2.value).format("YYYY-MM-DD");
+        filter.orderStartDate = s;
+        filter.orderEndDate = e;
+      }
+      if (searchOrderId.value) {
+        filters.orderId = searchOrderId.value;
+      }
+      if (searchOrderPerson.value) {
+        filters.staffId = searchOrderPerson.value;
+      }
+
+      if (orderStatus.value !== null) {
+        filters.isClose = orderStatus.value;
+      }
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = filters;
+      getList();
+    };
 
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
@@ -111,9 +140,9 @@ export default {
       ...toRefs(state),
       getList,
       headers,
-      searchDrugId,
-      searchDrugName,
       searchStatus,
+      searchOrderId,
+      searchOrderPerson,
       time1,
       time2,
       editItem,
@@ -121,6 +150,10 @@ export default {
       clearFilters,
       removeItem,
       twTime,
+      caseClosedOptions,
+      search,
+      cleanFilter,
+      orderStatus,
     };
   },
   mounted() {
