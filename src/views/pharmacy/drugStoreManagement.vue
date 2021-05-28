@@ -44,9 +44,9 @@
         </el-popconfirm>
       </div>
 
-      <div>{{ item.chDrgStoreId || "暫無資料" }}</div>
-      <div>{{ item.chDrgStoreName || "暫無資料" }}</div>
-      <div>{{ item.chDrgStoreAddress || "暫無資料" }}</div>
+      <div>{{ item.pharmacyId || "暫無資料" }}</div>
+      <div>{{ item.cname || "暫無資料" }}</div>
+      <div>{{ item.place || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -62,9 +62,9 @@ import { isEmpty } from "ramda";
 import { useRouter } from "vue-router";
 //身分證號
 let headers = [
-  { name: "藥房編號", key: "chDrgStoreId", sortDesc: null },
-  { name: "藥房名稱", key: "chDrgStoreName", sortDesc: null },
-  { name: "藥房位置", key: "chDrgStoreAddress", sortDesc: null },
+  { name: "藥房編號", key: "pharmacyId", sortDesc: null },
+  { name: "藥房名稱", key: "cname", sortDesc: null },
+  { name: "藥房位置", key: "place", sortDesc: null },
 ];
 
 export default {
@@ -80,18 +80,20 @@ export default {
     const searchStoreName = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-add-stores");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyStore");
     const cleanFilter = () => {
       searchStoreId.value = searchStoreName.value = "";
       clearFilters();
     };
     const search = () => {
       let filters = {};
+
       if (searchStoreId.value) {
-        filters.chDrgStoreId_contains = searchStoreId.value;
+        filters.pharmacyId = searchStoreId.value;
       }
+
       if (searchStoreName.value) {
-        filters.chDrgStoreName_contains = searchStoreName.value;
+        filters.name = searchStoreName.value;
       }
 
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
