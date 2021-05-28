@@ -46,7 +46,7 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ item.nhiCode || "暫無資料" }}</div>
-      <div>{{ item.medicinedId || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
       <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
       <div :title="item.medEname">{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.scientificName || "暫無資料" }}</div>
@@ -75,7 +75,7 @@ import { pharmacyTab$ } from "/@/store";
 
 let headers = [
   { name: "健保代碼", key: "nhiCode", sortDesc: null },
-  { name: "院內代碼", key: "medicinedId", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },
   { name: "英文藥名", key: "medEname", sortDesc: null },
   { name: "藥品學名", key: "scientificName", sortDesc: null },
