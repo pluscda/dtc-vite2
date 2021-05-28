@@ -71,11 +71,11 @@ import dayjs from "dayjs";
 import { useRouter } from "vue-router";
 
 let headers = [
-  { name: "採購單號", key: "chDrgPurchaseId", sortDesc: null },
-  { name: "採購日期", key: "tiDrgPurchaseDate", sortDesc: null },
+  { name: "採購單號", key: "orderId", sortDesc: null },
+  { name: "採購日期", key: "orderDate", sortDesc: null },
   { name: "訂單狀態", key: "status", sortDesc: null },
-  { name: "申請人員", key: "chDrgPurchasePerson", sortDesc: null },
-  { name: "轉單類別", key: "intDrugApplyNum", sortDesc: null },
+  { name: "申請人員", key: "staffId", sortDesc: null },
+  { name: "轉單類別", key: "isClose", sortDesc: null },
 ];
 
 export default {
@@ -104,7 +104,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-order-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrder");
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
@@ -123,10 +123,10 @@ export default {
         });
       }
       if (searchOrderId.value) {
-        filters.chDrgPurchaseId_contains = searchOrderId.value;
+        filters.orderId = searchOrderId.value;
       }
       if (searchOrderPerson.value) {
-        filters.chDrgPurchasePerson_contains = searchOrderPerson.value;
+        filters.staffId = searchOrderPerson.value;
       }
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
       state.listQuery.filter = dateQuery + filters;
