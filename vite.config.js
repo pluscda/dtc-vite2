@@ -9,6 +9,8 @@ import vueI18n from '@intlify/vite-plugin-vue-i18n'
 //import replaceHtmlVars from 'rollup-plugin-replace-html-vars'
 import dayjs from "dayjs"
 
+const rewiteUrl = process.env.NODE_ENV === 'production' ? '/nouse' : '/ymhis';
+
 const buildTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
 // need to be included for server proxy if server did not support cros
 const server =  {
@@ -44,12 +46,12 @@ export default {
       hooks: path.resolve(__dirname, "src/hooks"),
     },
   },
-  // server:{
-  //   proxy: {
-  //       // string shorthand
-  //       '/ymhis': 'http://192.168.22.4/ymhis/rest',
-  //   }
-  // },
+  server:{
+    proxy: {
+        // string shorthand
+        [rewiteUrl]: 'http://192.168.22.4/',   
+    }
+  },
   build:{
     assetsDir: "./" ,// at publish root folder, when running prod mode
     chunkSizeWarningLimit: 1024 * 1024 * 50,
