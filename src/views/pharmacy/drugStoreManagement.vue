@@ -37,7 +37,7 @@
     >
       <div class="flex flex-none space-x-2">
         <Button label="編輯" class="p-button-sm" @click="editItem(item)" />
-        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem(item)">
+        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem('pharmacyId=' + item.pharmacyId)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
           </template>
@@ -60,7 +60,7 @@ import { useList } from "/@/hooks/useHis.js";
 import queryString from "qs";
 import { isEmpty } from "ramda";
 import { useRouter } from "vue-router";
-//身分證號
+
 let headers = [
   { name: "藥房編號", key: "pharmacyId", sortDesc: null },
   { name: "藥房名稱", key: "cname", sortDesc: null },
