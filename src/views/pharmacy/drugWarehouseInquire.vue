@@ -75,20 +75,20 @@ import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 
 let headers = [
-  { name: "健保代碼", key: "hisId", sortDesc: null },
-  { name: "院內代碼", key: "chHospitalId", sortDesc: null },
-  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
-  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "藥品學名", key: "chDrgAlias", sortDesc: null },
-  { name: "ATC碼", key: "age", sortDesc: null },
-  { name: "新核定價", key: "age", sortDesc: null },
-  { name: "自費價格", key: "age", sortDesc: null },
-  { name: "生效日期", key: "age", sortDesc: null },
+  { name: "健保代碼", key: "pharmacyId", sortDesc: null },
+  { name: "院內代碼", key: "medicinedId", sortDesc: null },
+  { name: "中文藥名", key: "medCname", sortDesc: null },
+  { name: "英文藥名", key: "medEname", sortDesc: null },
+  { name: "藥品學名", key: "scientificName", sortDesc: null },
+  { name: "ATC碼", key: "atcCode", sortDesc: null },
+  { name: "新核定價", key: "newPrice", sortDesc: null },
+  { name: "自費價格", key: "selfPay", sortDesc: null },
+  { name: "生效日期", key: "effectiveDate", sortDesc: null },
   { name: "庫存上限", key: "age", sortDesc: null },
   { name: "庫存下限", key: "age", sortDesc: null },
   { name: "現有庫存", key: "age", sortDesc: null },
   { name: "儲存位置", key: "age", sortDesc: null },
-  { name: "藥商名稱", key: "age", sortDesc: null },
+  { name: "藥商名稱", key: "vendorName", sortDesc: null },
   { name: "藥品分類", key: "age", sortDesc: null },
   { name: "產地", key: "age", sortDesc: null },
 ];
@@ -105,7 +105,7 @@ export default {
     const searchDrugName = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
 
     const toggleDetail = (item) => {
       const review = item.review;
