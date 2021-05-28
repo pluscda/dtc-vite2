@@ -21,7 +21,9 @@
         <el-input placeholder="搜尋採購人員" v-model="searchOrderId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
-        <el-input placeholder="搜尋訂單狀態" v-model="searchOrderId" />
+        <el-select filterable v-model="orderStatus" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
+        </el-select>
       </DtxInputGroup>
     </nav>
 
@@ -91,6 +93,7 @@ export default {
     const searchStatus = ref("");
     const time1 = ref("");
     const time2 = ref("");
+    const orderStatus = ref(null);
 
     //Options
     const caseClosedOptions = reactive([
@@ -98,8 +101,8 @@ export default {
         value: null,
         text: "全部",
       },
-      { value: "closed", text: "已結案" },
-      { value: "unclosed", text: "未結案" },
+      { value: 1, text: "已結案" },
+      { value: 0, text: "未結案" },
     ]);
 
     // 列表數據
@@ -108,6 +111,7 @@ export default {
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      orderStatus.value = null;
       clearFilters();
     };
     const search = () => {
@@ -127,6 +131,10 @@ export default {
       }
       if (searchOrderPerson.value) {
         filters.staffId = searchOrderPerson.value;
+      }
+
+      if (orderStatus.value !== null) {
+        filters.isClose = orderStatus.value;
       }
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
       state.listQuery.filter = dateQuery + filters;
@@ -156,6 +164,7 @@ export default {
       twTime,
       cleanFilter,
       editItem,
+      orderStatus,
     };
   },
   mounted() {
