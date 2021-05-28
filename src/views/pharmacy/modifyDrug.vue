@@ -195,9 +195,10 @@
 <script>
 import { clone } from "ramda";
 import { ElMessage } from "element-plus";
+import toBase64 from "utils/base64";
 
 export default {
-  name: "drugModify",
+  name: "drugModify101",
   inject: ["global", "actions"],
   data() {
     return {
@@ -239,7 +240,7 @@ export default {
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
       this.newImg = URL.createObjectURL(this.fileUpload);
-      this.his.image = this.newImg;
+      this.his.image = await toBase64(this.fileUpload);
     },
   },
   mounted() {
