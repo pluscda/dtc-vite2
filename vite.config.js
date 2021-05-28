@@ -30,12 +30,6 @@ const server =  {
     }
 }
 export default {
-  // server : {
-  //   proxy: {
-  //     // string shorthand
-  //     'ymhis': 'http://192.168.22.4/ymhis/rest',
-  //   },
-  // },
   resolve: {
     alias: {
       "/@": path.resolve(__dirname, "src"),
