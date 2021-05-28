@@ -43,12 +43,12 @@
           </template>
         </el-popconfirm>
       </div>
-      <div>{{ item.chDrgMakerId || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerAddress || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerContactPerson || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerPhone || "暫無資料" }}</div>
-      <div>{{ item.chDrgMakerBusinessId || "暫無資料" }}</div>
+      <div>{{ item.vendorId || "暫無資料" }}</div>
+      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.address || "暫無資料" }}</div>
+      <div>{{ item.contact || "暫無資料" }}</div>
+      <div>{{ item.phone || "暫無資料" }}</div>
+      <div>{{ item.taxId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -64,12 +64,12 @@ import { isEmpty } from "ramda";
 import { useRouter } from "vue-router";
 //身分證號
 let headers = [
-  { name: "廠商編號", key: "chDrgMakerId", sortDesc: null },
-  { name: "廠商名稱", key: "chDrgMakerName", sortDesc: null },
-  { name: "廠商地址", key: "chDrgMakerAddress", sortDesc: null },
-  { name: "廠商聯絡人", key: "chDrgMakerPhone ", sortDesc: null },
-  { name: "廠商電話", key: "chDrgMakerContactPerson", sortDesc: null },
-  { name: "統一發票號碼", key: "hDrgMakerBusinessId", sortDesc: null },
+  { name: "廠商編號", key: "vendorId", sortDesc: null },
+  { name: "廠商名稱", key: "name", sortDesc: null },
+  { name: "廠商地址", key: "address", sortDesc: null },
+  { name: "廠商聯絡人", key: "contact", sortDesc: null },
+  { name: "廠商電話", key: "phone", sortDesc: null },
+  { name: "統一發票號碼", key: "taxId", sortDesc: null },
 ];
 
 export default {
@@ -83,7 +83,7 @@ export default {
     const searchMakerName = ref("");
     const router = useRouter();
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drg-add-makers");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/medVendor");
 
     const cleanFilter = () => {
       searchMakerId.value = searchMakerName.value = "";
