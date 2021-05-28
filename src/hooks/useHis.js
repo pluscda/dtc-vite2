@@ -36,9 +36,10 @@ export function useList(url,__limit__) {
       pageStart: page > 1 ? (page - 1) * limit : 0,
     }
     if(state.listQuery.filter){
-      pageStart = 0;
+      queryObj.pageStart = 0;
+      state.listQuery.page = 1;
     }
-    sort.length ? queryObj._sort = sort.join(",") : '';
+    sort.length ? queryObj.sort = sort.join(",") : '';
     let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
    
     forkJoin(
