@@ -45,11 +45,10 @@
       <div>
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
-
       <div>{{ item.nhiCode || "暫無資料" }}</div>
       <div>{{ item.medicinedId || "暫無資料" }}</div>
-      <div>{{ item.medCname || "暫無資料" }}</div>
-      <div>{{ item.medEname || "暫無資料" }}</div>
+      <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
+      <div :title="item.medEname">{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.scientificName || "暫無資料" }}</div>
       <div>{{ item.atcCode || "暫無資料" }}</div>
       <div>{{ item.newPrice || "暫無資料" }}</div>
@@ -106,6 +105,28 @@ export default {
 
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
+    const cleanFilter = () => {
+      searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
+      clearFilters();
+    };
+    const search = () => {
+      let filters = {};
+      if (searchHospitalId.value) {
+        filters.medicineId = searchHospitalId.value;
+      }
+      if (searchDrugName.value) {
+        filters.name = searchDrugName.value;
+      }
+      if (searchSci.value) {
+        filters.scientificName = searchSci.value;
+      }
+      if (searchDrgMaker.value) {
+        filters.vendorName = searchDrgMaker.value;
+      }
+      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
+      state.listQuery.filter = filters;
+      getList();
+    };
 
     const toggleDetail = (item) => {
       const review = item.review;
@@ -125,6 +146,8 @@ export default {
       removeItem,
       getItemDetail,
       twTime,
+      cleanFilter,
+      search,
     };
   },
   mounted() {
