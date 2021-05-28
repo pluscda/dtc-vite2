@@ -5,13 +5,13 @@
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="採購日期">
-        <el-input readonly :value="his.tiDrgPurchaseDate" />
+        <Calendar class="h-10" v-model="searchOrderTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購單號">
-        <el-input readonly :value="his.chDrgPurchaseId" />
+        <el-input v-model="searchOrderId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="採購人員">
-        <el-input readonly :value="his.chDrgPurchasePerson" />
+        <el-input v-model="searchOrderPerson" />
       </DtxInputGroup>
       <Button label="進行查詢" icon="pi pi-search" @click="search" />
       <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
@@ -100,6 +100,7 @@ export default {
   setup() {
     const global = inject("global");
     const router = useRouter();
+    const searchOrderTime = ref("");
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
     const searchStatus = ref("");
@@ -122,17 +123,15 @@ export default {
       let s,
         e,
         dateQuery = "";
-      if (time1.value && time2.value) {
-        s = dayjs(time1.value).format("YYYY-MM-DD");
-        e = dayjs(time2.value).format("YYYY-MM-DD");
-        filter.orderStartDate = s;
-        filter.orderEndDate = e;
+      if (searchOrderTime.value) {
+        s = dayjs(searchOrderTime.value).format("YYYY-MM-DD");
+        filter.orderDate = s;
       }
       if (searchOrderId.value) {
-        filters.chDrgPurchaseId_contains = searchOrderId.value;
+        filters.orderId = searchOrderId.value;
       }
       if (searchOrderPerson.value) {
-        filters.chDrgPurchasePerson_contains = searchOrderPerson.value;
+        filters.staffId = searchOrderPerson.value;
       }
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
       state.listQuery.filter = dateQuery + filters;
@@ -156,6 +155,7 @@ export default {
       search,
       twTime,
       cleanFilter,
+      searchOrderTime,
     };
   },
   mounted() {
