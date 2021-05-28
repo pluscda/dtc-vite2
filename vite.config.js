@@ -10,27 +10,8 @@ import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import dayjs from "dayjs"
 
 const rewiteUrl = process.env.NODE_ENV === 'production' ? '/nouse' : '/ymhis';
-
 const buildTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
-// need to be included for server proxy if server did not support cros
-const server =  {
-    proxy: {
-      // string shorthand
-      '/ymhis': 'http://192.168.22.4/ymhis/rest',
-      // with options
-      '/api': {
-        target: 'http://jsonplaceholder.typicode.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      },
-      // with RegEx
-      '^/fallback/.*': {
-        target: 'http://jsonplaceholder.typicode.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/fallback/, '')
-      }
-    }
-}
+
 export default {
   resolve: {
     alias: {
