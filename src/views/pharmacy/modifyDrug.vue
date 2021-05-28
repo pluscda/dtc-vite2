@@ -198,7 +198,7 @@ import { ElMessage } from "element-plus";
 import toBase64 from "utils/base64";
 
 export default {
-  name: "drugModify101",
+  name: "drugModify",
   inject: ["global", "actions"],
   data() {
     return {
@@ -235,7 +235,7 @@ export default {
         this.loading = false;
       }
     },
-    fileChange(e) {
+    async fileChange(e) {
       this.fileUpload = e.target.files[0];
       this.uploadFileName = e.target.files[0].name;
       this.his.imgName = this.uploadFileName;
