@@ -225,8 +225,11 @@ export default {
     },
     async saveItem() {
       this.loading = true;
+      Object.keys(this.his).forEach((s) => {
+        !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
+      });
       try {
-        await this.actions.editDrug(hisObj);
+        await this.actions.editDrug(this.his);
         ElMessage.success("編輯藥品成功");
         this.loading = false;
       } catch (e) {
