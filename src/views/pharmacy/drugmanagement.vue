@@ -76,8 +76,8 @@ import { pharmacyTab$ } from "/@/store";
 let headers = [
   { name: "健保代碼", key: "nhiCode", sortDesc: null },
   { name: "院內代碼", key: "medicineId", sortDesc: null },
-  { name: "中文藥名", key: "name", sortDesc: null },
-  { name: "英文藥名", key: "name", sortDesc: null },
+  { name: "中文藥名", key: "cname", sortDesc: null },
+  { name: "英文藥名", key: "ename", sortDesc: null },
   { name: "藥品學名", key: "scientificName", sortDesc: null },
   { name: "藥商名稱", key: "vendorName", sortDesc: null },
 ];
