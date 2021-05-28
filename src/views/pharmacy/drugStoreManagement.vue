@@ -93,7 +93,7 @@ export default {
       }
 
       if (searchStoreName.value) {
-        filters.name = searchStoreName.value;
+        filters.cname = searchStoreName.value;
       }
 
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
