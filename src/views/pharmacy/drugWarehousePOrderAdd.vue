@@ -11,6 +11,9 @@
         <DtxInputGroup prepend="採購單號" labelWidth="100">
           <el-input v-model="his.orderId" :readonly="items.length" placeholder="請輸入採購單號" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="採購人員" labelWidth="100">
+          <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
+        </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
           <AutoComplete
             class="inline-block border-transparent transform"
@@ -28,9 +31,6 @@
         <DtxInputGroup prepend="採購數量" labelWidth="100">
           <InputNumber v-model="his.quantity" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
-        </DtxInputGroup>
-        <DtxInputGroup prepend="採購人員" labelWidth="100">
-          <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="100">
           <el-input v-model="his.nhiCode" readonly />
@@ -74,7 +74,7 @@
           <li>健保代碼: {{ item.nhiCode }}</li>
           <li class="flex space-x-2">
             <div>採購數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入採購數量" />
           </li>
           <li>中文藥名: {{ item.cname }}</li>
           <li>英文藥名: {{ item.ename }}</li>
@@ -183,7 +183,7 @@ export default {
     addItem() {
       this.his.medicinedId = this.his.medicinedId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["orderId", "quantity", "medicinedId"];
+      const keys = ["orderId", "quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
