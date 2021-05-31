@@ -25,7 +25,6 @@
             :suggestions="medIds"
             @complete="searchMedId($event)"
             @item-select="selectedMedId()"
-            field="seq"
           />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="100">
@@ -129,7 +128,7 @@ export default {
   methods: {
     async selectedMedId() {
       this.meds = [];
-      const obj = await this.actions.getDrgDetail(this.his.medicinedId.seq);
+      const obj = await this.actions.getDrgDetail(this.his.medicinedId);
       this.his.cname = obj.cname;
       this.his.ename = obj.ename;
       this.his.medicationUnitName = obj.medicationUnitName;
@@ -141,7 +140,7 @@ export default {
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
         const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
-        this.medIds = ret;
+        this.medIds = ret.map((s) => s.seq);
       } else {
         this.medIds = [];
         this.meds = [];
@@ -183,7 +182,7 @@ export default {
       this.items.splice(idx, 1);
     },
     addItem() {
-      this.his.medicinedId = this.his.medicinedId.seq;
+      //this.his.medicinedId = this.his.medicinedId.seq;
       this.items.unshift(clone(this.his));
       const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
