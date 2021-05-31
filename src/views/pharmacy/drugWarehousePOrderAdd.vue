@@ -212,7 +212,6 @@ export default {
       .subscribe(() => (this.loading = false));
     subscribe2 = this.med$
       .pipe(
-        //tap((s) => alert(s.query)),
         distinctUntilChanged((pre, cur) => {
           const eq = !!(pre.query === cur.query);
           if (eq) this.meds = [];
