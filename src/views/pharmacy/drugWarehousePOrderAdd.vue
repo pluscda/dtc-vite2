@@ -59,7 +59,7 @@
     <div class="right bg-gray-700">
       <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
         <div>採購單列表 {{ totalAdded }}</div>
-        <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next()" style="height: 30px">確定完成採購</Button>
+        <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="confirm" style="height: 30px">確定完成採購</Button>
       </header>
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
@@ -169,7 +169,7 @@ export default {
           {
             orderId: s.orderId,
             staffId: s.staffId,
-            orderDate: days(s.orderDate).format("YYY-MM-DDT") + ":00.000Z",
+            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + ":00.000Z",
           }
         )
       );
@@ -201,7 +201,13 @@ export default {
     this.his = {};
     this.his.orderDate = dayjs().format("YYYY-MM-DD");
     this.his.orderId = this.actions.getRandomId();
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
+    subscribe = this.subject
+      .pipe(
+        tap(() => alert(232323)),
+        throttleTime(3000),
+        exhaustMap(this.confirm)
+      )
+      .subscribe(() => (this.loading = false));
     this.med$
       .pipe(
         //tap((s) => alert(s.query)),
