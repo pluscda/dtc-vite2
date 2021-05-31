@@ -53,7 +53,7 @@
       </div>
 
       <div>{{ item.orderId || "暫無資料" }}</div>
-      <div>{{ (orderDate && orderDate.split("T")[0]) || "暫無資料" }}</div>
+      <div>{{ (item.orderDate && item.orderDate.split("T")[0]) || "暫無資料" }}</div>
       <div>{{ item.isClose ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
       <div>{{ item.unknow || "暫無資料" }}</div>
