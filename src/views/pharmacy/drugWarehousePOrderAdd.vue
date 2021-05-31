@@ -169,7 +169,7 @@ export default {
           {
             orderId: s.orderId,
             staffId: s.staffId,
-            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + ":00.000Z",
+            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + "T00:00:00.000Z",
           }
         )
       );
