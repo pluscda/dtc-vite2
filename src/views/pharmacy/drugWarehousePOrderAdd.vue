@@ -32,22 +32,22 @@
           <InputNumber v-model="his.quantity" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="100">
+        <DtxInputGroup prepend="健保代碼" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.nhiCode" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="100">
+        <DtxInputGroup prepend="中文藥名" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.cname" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="100">
+        <DtxInputGroup prepend="英文藥名" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.ename" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品劑型" labelWidth="100">
+        <DtxInputGroup prepend="藥品劑型" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.dosageFormCode" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="100">
+        <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.medicationUnitName" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥商名稱" labelWidth="100">
+        <DtxInputGroup prepend="藥商名稱" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.vendorName" readonly />
         </DtxInputGroup>
       </main>
