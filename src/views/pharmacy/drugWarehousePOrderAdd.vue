@@ -18,6 +18,7 @@
             placeholder="請輸入院內代碼"
             v-model="his.medicinedId"
             :delay="300"
+            :spellcheck="false"
             :suggestions="medIds"
             @complete="searchMedId($event)"
             @item-select="selectedMedId(item)"
@@ -133,6 +134,8 @@ export default {
       this.his.medicationUnitName = obj.medicationUnitName;
       this.his.dosageFormCode = obj.dosageFormCode;
       this.his.nhiCode = obj.nhiCode;
+      this.his.quantity = 13;
+      if (!this.his.staffId) this.his.staffId = "Adam";
     },
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
