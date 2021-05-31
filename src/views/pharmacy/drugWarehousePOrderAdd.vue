@@ -157,6 +157,7 @@ export default {
         complete: () => {
           ElMessage.success("新增採購單成功");
           this.items = [];
+          this.his.orderId = this.actions.getRandomId();
         },
       };
       const items = this.items.map((s) =>
@@ -187,7 +188,6 @@ export default {
       keys.forEach((s) => {
         this.his[s] = null;
       });
-      this.his.orderId = this.actions.getRandomId();
       this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
