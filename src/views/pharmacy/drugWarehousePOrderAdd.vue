@@ -185,7 +185,7 @@ export default {
     addItem() {
       this.his.medicinedId = this.his.medicinedId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["orderId", "quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
+      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
