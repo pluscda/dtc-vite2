@@ -17,11 +17,12 @@
             style="width: clamp(100%, 100%, 100%)"
             placeholder="請輸入院內代碼"
             v-model="his.medicinedId"
+            spellcheck="false"
             :delay="300"
             :suggestions="medIds"
             @complete="searchMedId($event)"
             @item-select="selectedMedId(item)"
-            field="name"
+            field="seq"
           />
         </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="100">
@@ -29,25 +30,25 @@
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
         <DtxInputGroup prepend="採購人員" labelWidth="100">
-          <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入採購人員" />
+          <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="100">
-          <el-input v-model="his.chDrgHisId" readonly />
+          <el-input v-model="his.nhiCode" readonly />
         </DtxInputGroup>
         <DtxInputGroup prepend="中文藥名" labelWidth="100">
-          <el-input v-model="his.chDrgCnName" readonly />
+          <el-input v-model="his.cname" readonly />
         </DtxInputGroup>
         <DtxInputGroup prepend="英文藥名" labelWidth="100">
-          <el-input v-model="his.chDrgEnName" readonly />
+          <el-input v-model="his.ename" readonly />
         </DtxInputGroup>
         <DtxInputGroup prepend="藥品劑型" labelWidth="100">
-          <el-input v-model="his.chDrgDoseType" readonly />
+          <el-input v-model="his.dosageFormCode" readonly />
         </DtxInputGroup>
         <DtxInputGroup prepend="藥品單位" labelWidth="100">
-          <el-input v-model="his.chDrgUnitBy" readonly />
+          <el-input v-model="his.medicationUnitName" readonly />
         </DtxInputGroup>
         <DtxInputGroup prepend="藥商名稱" labelWidth="100">
-          <el-input v-model="his.chDrgMakerName" readonly />
+          <el-input v-model="his.vendorName" readonly />
         </DtxInputGroup>
       </main>
 
@@ -68,19 +69,18 @@
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>採購人員: {{ item.chDrgPurchasePerson }}</li>
-          <li>院內代碼: {{ item.chDrgHospitalId }}</li>
-          <li>健保代碼: {{ item.chDrgHisId }}</li>
+          <li>採購人員: {{ item.staffId }}</li>
+          <li>院內代碼: {{ item.medicinedId }}</li>
+          <li>健保代碼: {{ item.nhiCode }}</li>
           <li class="flex space-x-2">
             <div>採購數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入採購數量" />
           </li>
-          <li>中文藥名: {{ item.chDrgCnName }}</li>
-          <li>英文藥名: {{ item.chDrgEnName }}</li>
-          <li>藥品劑型: {{ item.chDrgDoseType }}</li>
-          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
-
-          <li>藥商名稱: {{ item.chDrgMakerName }}</li>
+          <li>中文藥名: {{ item.cname }}</li>
+          <li>英文藥名: {{ item.ename }}</li>
+          <li>藥品劑型: {{ item.dosageFormCode }}</li>
+          <li>藥品單位: {{ item.medicationUnitName }}</li>
+          <li>藥商名稱: {{ item.vendorName }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
@@ -94,8 +94,8 @@
 <script>
 import { ElMessage } from "element-plus";
 import { clone } from "ramda";
-import { Subject, from } from "rxjs";
-import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
+import { Subject, from, of } from "rxjs";
+import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError, tap } from "rxjs/operators";
 import dayjs from "dayjs";
 let subscribe = "";
 let subscribe2 = "";
@@ -115,20 +115,8 @@ export default {
   },
   computed: {
     enabledSave() {
-      // const keys = [
-      //   "orderDate",
-      //   "chDrgPurchaseId",
-      //   "chDrgPurchasePerson",
-      //   "chDrgHisId",
-      //   "chDrgHospitalId",
-      //   "chDrgCnName",
-      //   "chDrgEnName",
-      //   "chDrgDoseType",
-      //   "chDrgUnitBy",
-      //   "chDrgMakerName",
-      // ];
-      // return keys.every((s) => this.his[s]);
-      return true;
+      const keys = ["orderDate", "orderId", "medicinedId", "quantity", "staffId"];
+      return keys.every((s) => this.his[s]);
     },
     totalAdded() {
       let str = "";
@@ -139,13 +127,20 @@ export default {
     },
   },
   methods: {
-    selectedMedId(item) {
-      // TODO: get selected id then ajax other info based on the id;
+    getDosageName(code) {
+      return "";
+    },
+    async selectedMedId(item) {
+      const obj = await this.actions.getDrgDetail(this.his.medicinedId.seq);
+      this.his.cname = obj.cname;
+      this.his.ename = obj.ename;
+      this.his.medicationUnitName = obj.medicationUnitName;
+      this.his.dosageFormCode = obj.dosageFormCode;
+      this.his.nhiCode = obj.nhiCode;
     },
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
-        const atc = "chDrgId_contains=" + event.query;
-        const ret = await axios.get("drg-infos?_limit=20&" + atc);
+        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
         this.medIds = ret;
       } else {
         this.medIds = [];
@@ -165,7 +160,21 @@ export default {
           this.items = [];
         },
       };
-      from(this.items)
+      const items = this.items.map((s) =>
+        Object.assign(
+          {
+            pharmacyOrderId: s.orderId,
+            medicineId: s.medicineId,
+            quantity: +s.quantity,
+          },
+          {
+            orderId: s.orderId,
+            staffId: s.staffId,
+            orderDate: days(s.orderDate).format("YYY-MM-DDT") + ":00.000Z",
+          }
+        )
+      );
+      from(items)
         .pipe(mergeMap((s) => this.actions.addDrgOrderItem(s)))
         .subscribe(observer);
     },
@@ -173,8 +182,9 @@ export default {
       this.items.splice(idx, 1);
     },
     addItem() {
+      this.his.medicinedId = this.his.medicinedId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["orderId", "quantity", "chDrgUnitBy", "chDrgMakerName"];
+      const keys = ["orderId", "quantity", "medicinedId"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
@@ -196,6 +206,7 @@ export default {
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     subscribe2 = this.med$
       .pipe(
+        //tap((s) => alert(s.query)),
         distinctUntilChanged((pre, cur) => {
           const eq = !!(pre.query === cur.query);
           if (eq) this.meds = [];

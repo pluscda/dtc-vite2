@@ -199,9 +199,13 @@ export const actions = {
   async getOrderStatusCode(){//53
      return await axios.get("/med/orderStatusCode");
   },
-  async getTop20MedIds(id){
-    return await axios.get("/med/querySeq?limit=20&medicinedId=" + id);
-  }
+  async getTop20MedIds(id, table = 'UsualMed'){
+    return await axios.get(`/med/querySeq?table=${table}&limit=20&startWith=1&seqId=${id}`);
+  },
+  async getDrgDetail(id){
+     const {entry} = await axios.get(`/med/usualMed?medicineId=` + id);
+     return entry && entry.length  ? entry[0] : "";
+  },
 
 };
 
