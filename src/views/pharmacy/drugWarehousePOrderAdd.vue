@@ -17,7 +17,6 @@
             style="width: clamp(100%, 100%, 100%)"
             placeholder="請輸入院內代碼"
             v-model="his.medicinedId"
-            spellcheck="false"
             :delay="300"
             :suggestions="medIds"
             @complete="searchMedId($event)"
@@ -127,9 +126,6 @@ export default {
     },
   },
   methods: {
-    getDosageName(code) {
-      return "";
-    },
     async selectedMedId(item) {
       const obj = await this.actions.getDrgDetail(this.his.medicinedId.seq);
       this.his.cname = obj.cname;
@@ -144,8 +140,8 @@ export default {
         this.medIds = ret;
       } else {
         this.medIds = [];
+        this.meds = [];
       }
-      return "";
     },
     searchMedId(event) {
       this.med$.next(event);
@@ -197,14 +193,13 @@ export default {
   },
   beforeMount() {
     subscribe.unsubscribe();
-    subscribe2.unsubscribe();
   },
   created() {
     this.his = {};
     this.his.orderDate = dayjs().format("YYYY-MM-DD");
     this.his.orderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
-    subscribe2 = this.med$
+    this.med$
       .pipe(
         //tap((s) => alert(s.query)),
         distinctUntilChanged((pre, cur) => {
