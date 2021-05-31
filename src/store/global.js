@@ -199,6 +199,9 @@ export const actions = {
   async getOrderStatusCode(){//53
      return await axios.get("/med/orderStatusCode");
   },
+  async getTop20MedIds(id){
+    return await axios.get("/med/querySeq?limit=20&medicinedId=" + id);
+  }
 
 };
 
