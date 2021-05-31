@@ -203,13 +203,7 @@ export default {
     this.his = {};
     this.his.orderDate = dayjs().format("YYYY-MM-DD");
     this.his.orderId = this.actions.getRandomId();
-    subscribe = this.subject
-      .pipe(
-        tap(() => alert(232323)),
-        throttleTime(3000),
-        exhaustMap(this.confirm)
-      )
-      .subscribe(() => (this.loading = false));
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     subscribe2 = this.med$
       .pipe(
         distinctUntilChanged((pre, cur) => {
