@@ -71,10 +71,10 @@ export const actions = {
   },
   //新增藥品採購明細
   async addDrgOrderItem(obj){ //8
-     return await axios.post("/med/medOrderItmes", obj);
+     return await axios.post("/med/medOrderItems", obj);
   },
   async editDrgOrderItem(obj){ //9
-    return await axios.put("/med/medOrderItmes", obj);
+    return await axios.put("/med/medOrderItems", obj);
   },
   //新增藥房藥品申領單
   async addPharmacyOrder(obj){ //10
