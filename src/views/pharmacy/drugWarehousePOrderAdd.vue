@@ -64,20 +64,20 @@
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
-            <div>採購日期: {{ item.chDrgPurchaseId }}</div>
-            <div class="transform translate-x-7">採購單號: {{ item.chDrgPurchaseId }}</div>
+            <div>採購日期: {{ item.orderDate }}</div>
+            <div class="transform translate-x-7">採購單號: {{ item.orderId }}</div>
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
           <li>採購人員: {{ item.staffId }}</li>
           <li>院內代碼: {{ item.medicinedId }}</li>
           <li>健保代碼: {{ item.nhiCode }}</li>
-          <li class="flex space-x-2">
+          <li class="flex space-x-2 transform translate-y-2">
             <div>採購數量:</div>
             <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入採購數量" />
           </li>
-          <li>中文藥名: {{ item.cname }}</li>
-          <li>英文藥名: {{ item.ename }}</li>
+          <li class="flex space-x-2 transform translate-y-2">中文藥名: {{ item.cname }}</li>
+          <li class="flex space-x-2 transform translate-y-2">英文藥名: {{ item.ename }}</li>
           <li>藥品劑型: {{ item.dosageFormCode }}</li>
           <li>藥品單位: {{ item.medicationUnitName }}</li>
           <li>藥商名稱: {{ item.vendorName }}</li>
