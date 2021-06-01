@@ -30,7 +30,7 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
