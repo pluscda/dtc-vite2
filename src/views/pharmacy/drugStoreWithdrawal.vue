@@ -44,15 +44,15 @@
     </header>
     <main
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
-      v-for="(item, i) in list"
+      v-for="(item2, i) in list"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
-      <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
-      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
-      <div>{{ item.staffId || "暫無資料" }}</div>
-      <div><InputNumber v-model="item.quantity" @input="updateQuantity(item)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
+      <div>{{ item2.pharmacyOrderId || "暫無資料" }}</div>
+      <div>{{ item2.orderDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item2.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item2.staffId || "暫無資料" }}</div>
+      <div><InputNumber v-model="item2.quantity" @input="updateQuantity(item2)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -69,7 +69,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 import { Subject } from "rxjs";
-import { debounceTime, exhaustMap, tap } from "rxjs/operators";
+import { debounceTime, delay, distinctUntilChanged, exhaustMap, tap } from "rxjs/operators";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
@@ -92,6 +92,7 @@ export default {
         return;
       }
       try {
+        //requestAnimationFrame(async () => this.actions.editPharmacyRejectOrderDetails(item));
         await this.actions.editPharmacyRejectOrderDetails(item);
         ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
       } catch (e) {
@@ -108,8 +109,8 @@ export default {
 
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems");
-    const updateQuantity = (item) => {
-      q$.next(item);
+    const updateQuantity = (item2) => {
+      requestAnimationFrame(() => q$.next(item2));
     };
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
@@ -154,7 +155,12 @@ export default {
   },
   mounted() {
     this.$primevue.config.locale = this.zh;
-    q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
+    q$.pipe(
+      debounceTime(1000),
+      distinctUntilChanged((pre, cur) => pre.quantity === cur.quantity),
+      delay(500),
+      exhaustMap(this.update)
+    ).subscribe();
   },
 };
 </script>
