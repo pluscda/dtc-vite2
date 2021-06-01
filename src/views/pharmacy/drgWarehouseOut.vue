@@ -16,7 +16,7 @@
             class="inline-block border-transparent transform"
             style="width: clamp(100%, 100%, 100%)"
             placeholder="請輸入院內代碼"
-            v-model="his.pharmacyId"
+            v-model="his.medicineId"
             :delay="300"
             :spellcheck="false"
             :suggestions="medIds"
@@ -25,10 +25,10 @@
           />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫人員" labelWidth="100">
-          <el-input v-model="his.staff" placeholder="請輸入退庫人員" />
+          <el-input v-model="his.staffId" placeholder="請輸入退庫人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫數量" labelWidth="100">
-          <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品退庫數量" class="w-full" />
+          <InputNumber v-model="his.quantity" placeholder="請輸入藥品退庫數量" class="w-full" />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫備註" labelWidth="100">
           <el-input v-model="his.note" placeholder="請輸入退庫備註" />
@@ -70,18 +70,18 @@
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>退庫人員: {{ item.chDrgPurchasePerson }}</li>
-          <li>健保代碼: {{ item.chDrgHisId }}</li>
-          <li>院內代碼: {{ item.chDrgHospitalId }}</li>
-          <li>中文藥名: {{ item.chDrgCnName }}</li>
-          <li>英文藥名: {{ item.chDrgEnName }}</li>
-          <li>退庫藥房: {{ item.chDrgDoseType }}</li>
-          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
+          <li>退庫人員: {{ item.staffId }}</li>
+          <li>健保代碼: {{ item.nhiCode }}</li>
+          <li>院內代碼: {{ item.medicineId }}</li>
+          <li>中文藥名: {{ item.cname }}</li>
+          <li>英文藥名: {{ item.ename }}</li>
+          <li>退庫藥房: {{ item.vendorName }}</li>
+          <li>藥品單位: {{ item.medicationUnitName }}</li>
           <li class="flex space-x-2">
             <div>退庫數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrugApplyNum" placeholder="請輸入退庫數量" />
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入退庫數量" />
           </li>
-          <li>退庫備註: {{ item.chDrgMakerName }}</li>
+          <li>退庫備註: {{ item.note }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
@@ -132,7 +132,7 @@ export default {
   methods: {
     async selectedMedId() {
       this.meds = [];
-      const obj = await this.actions.getDrgDetail(this.his.pharmacyId);
+      const obj = await this.actions.getDrgDetail(this.his.medicineId);
       this.his.cname = obj.cname;
       this.his.ename = obj.ename;
       this.his.medicationUnitName = obj.medicationUnitName;
