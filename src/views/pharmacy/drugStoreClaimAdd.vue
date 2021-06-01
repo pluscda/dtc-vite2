@@ -6,37 +6,37 @@
       </header>
       <main class="grid dtc-list-grid mt-3">
         <DtxInputGroup prepend="申請日期" labelWidth="120">
-          <Calendar class="h-10 w-full" v-model="his.tiDrgApplyDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
+          <Calendar class="h-10 w-full" v-model="his.orderDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請單號" labelWidth="120">
-          <el-input v-model="his.chDrgApplyId" placeholder="請輸入申請單號" />
+          <el-input v-model="his.orderId" placeholder="請輸入申請單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="120">
-          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
+          <el-input v-model="his.medicineId" placeholder="請輸入院內代碼" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請人員" labelWidth="120">
-          <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
+          <el-input v-model="his.staffId" placeholder="請輸入申請人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請數量" labelWidth="120">
-          <InputNumber class="w-full" v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
+          <InputNumber class="w-full" v-model="his.quantity" placeholder="請輸入申請數量" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申領備註" labelWidth="120">
-          <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
+          <el-input v-model="his.note" placeholder="請輸入申領備註" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請藥房" labelWidth="120">
-          <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
+          <el-input v-model="his.vendorName" placeholder="請輸入申請藥房" />
         </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="120">
-          <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
+          <el-input v-model="his.nhiCode" placeholder="請輸入健保代碼" />
         </DtxInputGroup>
         <DtxInputGroup prepend="中文藥名" labelWidth="120">
-          <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
+          <el-input v-model="his.cname" placeholder="請輸入中文藥名" />
         </DtxInputGroup>
         <DtxInputGroup prepend="英文藥名" labelWidth="120">
-          <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
+          <el-input v-model="his.ename" placeholder="請輸入英文藥名" />
         </DtxInputGroup>
         <DtxInputGroup prepend="藥品單位" labelWidth="120">
-          <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
+          <el-input v-model="his.medicationUnitName" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
       </main>
 
@@ -53,19 +53,19 @@
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
             <div>申請日期: {{ "暫無資料" }}</div>
-            <div class="transform translate-x-7">申請單號: {{ item.chDrgApplyId }}</div>
-            <div>申請人員:{{ item.chDrgApplyPersonName }}</div>
+            <div class="transform translate-x-7">申請單號: {{ item.orderId }}</div>
+            <div>申請人員:{{ item.staffId }}</div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>健保代碼: {{ item.chDrgHisId }}</li>
-          <li>院內代碼: {{ item.chDrgHospitalId }}</li>
-          <li>申請藥房: {{ item.chDrgApplyPersonName }}</li>
-          <li>中文藥名: {{ item.chDrgCnName }}</li>
-          <li>英文藥名: {{ item.chDrgEnName }}</li>
-          <li>藥品單位: {{ item.chDrgUnitBy }}</li>
+          <li>健保代碼: {{ item.nhiCode }}</li>
+          <li>院內代碼: {{ item.medicineId }}</li>
+          <li>申請藥房: {{ item.staffId }}</li>
+          <li>中文藥名: {{ item.cname }}</li>
+          <li>英文藥名: {{ item.ename }}</li>
+          <li>藥品單位: {{ item.medicationUnitName }}</li>
           <li class="flex space-x-2">
             <div>申請數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.intDrgApplyNum" placeholder="請輸入申請數量" />
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入申請數量" />
           </li>
         </nav>
       </div>
@@ -98,20 +98,7 @@ export default {
   },
   computed: {
     enabledSave() {
-      const keys = [
-        "tiDrgApplyDate",
-        "chDrgApplyId",
-        "chDrgApplyPersonName",
-        "chDrgApplyStoreName",
-        "chDrgHisId",
-        "chDrgHospitalId",
-        "chDrgCnName",
-        "chDrgEnName",
-        "chDrgUnitBy",
-        "intDrgApplyNum",
-        "intDrgCatchNum",
-        "chDrgCatchPerson",
-      ];
+      const keys = ["orderDate", "orderId", "staffId", "medicineId", "quantity"];
       return keys.every((s) => this.his[s]);
     },
     totalAdded() {
@@ -143,16 +130,16 @@ export default {
     },
     addItem() {
       this.items.unshift(clone(this.his));
-      const keys = ["chDrgApplyStoreName", "chDrgCnName", "chDrgEnName", "chDrgUnitBy", "intDrgApplyNum", "intDrgCatchNum", "chDrgCatchPerson", "chDrgNote"];
+      const keys = ["vendorName", "cname", "ename", "medicationUnitName", "quantity", "intDrgCatchNum", "chDrgCatchPerson", "note"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
-      this.his.tiDrgApplyDate = dayjs().format("YYYY-MM-DD");
+      this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
   created() {
     this.his = {};
-    this.his.tiDrgApplyDate = dayjs().format("YYYY-MM-DD");
+    this.his.orderDate = dayjs().format("YYYY-MM-DD");
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     this.$primevue.config.locale = primeVueDateFormat;
   },
