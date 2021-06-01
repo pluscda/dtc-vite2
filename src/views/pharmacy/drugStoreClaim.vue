@@ -49,7 +49,6 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm" @click="editItem(item)" />
         <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem('medicineId=' + item.pharmacyOrderId)">
           <template #reference>
             <Button label="刪除" class="p-button-sm p-button-warning" />
@@ -60,6 +59,7 @@
       <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.staffId || "暫無資料" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
@@ -81,6 +81,7 @@ let headers = [
   { name: "申請日期", key: "orderDate", sortDesc: null },
   { name: "訂單狀態", key: "isClosed", sortDesc: null },
   { name: "申請人員", key: "staffId", sortDesc: null },
+  { name: "申請數量", key: "quantity", sortDesc: null },
 ];
 
 export default {
@@ -144,7 +145,7 @@ export default {
     };
   },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = primeVueDateFormat;
   },
 };
 </script>
@@ -154,7 +155,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 100px repeat(3, 180px) 1fr;
+  grid-template-columns: 70px repeat(3, 180px) 220px 1fr;
 }
 .management {
   position: relative;
