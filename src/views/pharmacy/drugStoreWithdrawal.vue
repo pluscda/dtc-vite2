@@ -60,9 +60,13 @@
 </template>
 
 <script>
-import { toRefs, ref, reactive, inject, computed } from "vue";
+import queryString from "qs";
+import { isEmpty } from "ramda";
+import { toRefs, ref, inject } from "vue";
+import { useRouter } from "vue-router";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { pharmacyTab$ } from "/@/store";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
@@ -78,44 +82,54 @@ export default {
     Pagination,
   },
   setup() {
-    const global = inject("global");
-    const searchDrugId = ref("");
+    const router = useRouter();
+    const searchHospitalId = ref("");
     const searchDrugName = ref("");
-    const searchStatus = ref("");
-    const time1 = ref("");
-    const time2 = ref("");
-    const zh = reactive({
-      firstDayOfWeek: 0,
-      dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-      monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-      today: "今天",
-      clear: "清空",
-      dateFormat: "yy-mm-dd",
-      weekHeader: "周",
-    });
-    const caseClosedOptions = reactive([
-      {
-        value: null,
-        text: "全部",
-      },
-      { value: "closed", text: "已結案" },
-      { value: "unclosed", text: "未結案" },
-    ]);
+    const searchSci = ref("");
+    const searchDrgMaker = ref("");
+    const global = inject("global");
+    pharmacyTab$.next("0");
 
-    const updateQuantity = (item) => {};
-
-    // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList("med/pharmacyOrder");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder");
+    const updateQuantity = (item) => {
+      alert();
+    };
+    const cleanFilter = () => {
+      searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
+      clearFilters();
+    };
+
+    const search = () => {
+      let filters = {};
+      if (searchHospitalId.value) {
+        filters.medicineId = searchHospitalId.value;
+      }
+      if (searchDrugName.value) {
+        filters.name = searchDrugName.value;
+      }
+      if (searchSci.value) {
+        filters.scientificName = searchSci.value;
+      }
+      if (searchDrgMaker.value) {
+        filters.vendorName = searchDrgMaker.value;
+      }
+      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
+      state.listQuery.filter = filters;
+      getList();
+    };
+
     return {
       ...toRefs(state),
       getList,
       headers,
-      caseClosedOptions,
-      zh,
+      searchHospitalId,
+      searchDrugName,
+      searchDrgMaker,
+      searchSci,
+      sort,
+      cleanFilter,
+      search,
       updateQuantity,
     };
   },
