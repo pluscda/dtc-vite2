@@ -26,16 +26,16 @@
         <DtxInputGroup prepend="申請藥房" labelWidth="120">
           <el-input v-model="his.vendorName" placeholder="請輸入申請藥房" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="120">
+        <DtxInputGroup prepend="健保代碼" labelWidth="120" v-if="his.nhiCode">
           <el-input v-model="his.nhiCode" placeholder="請輸入健保代碼" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="120">
+        <DtxInputGroup prepend="中文藥名" labelWidth="120" v-if="his.nhiCode">
           <el-input v-model="his.cname" placeholder="請輸入中文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="120">
+        <DtxInputGroup prepend="英文藥名" labelWidth="120" v-if="his.nhiCode">
           <el-input v-model="his.ename" placeholder="請輸入英文藥名" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="120">
+        <DtxInputGroup prepend="藥品單位" labelWidth="120" v-if="his.nhiCode">
           <el-input v-model="his.medicationUnitName" placeholder="請輸入藥品單位" />
         </DtxInputGroup>
       </main>
