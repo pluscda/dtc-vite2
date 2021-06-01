@@ -30,6 +30,9 @@
         <DtxInputGroup prepend="退庫數量" labelWidth="100">
           <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品退庫數量" class="w-full" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="退庫備註" labelWidth="100">
+          <el-input v-model="his.note" placeholder="請輸入退庫備註" />
+        </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.nhiCode" readonly />
         </DtxInputGroup>
@@ -46,10 +49,7 @@
           <el-input v-model="his.medicationUnitName" readonly />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫藥房" labelWidth="100">
-          <el-input v-model="his.vendorName" placeholder="請輸入退庫藥房" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="退庫備註" labelWidth="100">
-          <el-input v-model="his.note" placeholder="請輸入退庫備註" />
+          <el-input v-model="his.vendorName" readonly />
         </DtxInputGroup>
       </main>
 
@@ -132,7 +132,7 @@ export default {
   methods: {
     async selectedMedId() {
       this.meds = [];
-      const obj = await this.actions.getDrgDetail(this.his.pharmacyOrderId);
+      const obj = await this.actions.getDrgDetail(this.his.pharmacyId);
       this.his.cname = obj.cname;
       this.his.ename = obj.ename;
       this.his.medicationUnitName = obj.medicationUnitName;
@@ -175,7 +175,7 @@ export default {
     },
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
-        const ret = await this.actions.getTop20MedIds(event.query, "PharmacyStore");
+        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
         this.medIds = ret.map((s) => s.seq);
       } else {
         this.medIds = [];
