@@ -30,6 +30,11 @@
         <DtxInputGroup prepend="退庫數量" labelWidth="100">
           <InputNumber v-model="his.quantity" placeholder="請輸入藥品退庫數量" class="w-full" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="退庫藥房" labelWidth="100">
+          <el-select filterable v-model="his.vendorName" placeholder="請選擇" class="border-l-0">
+            <el-option v-for="item in ddl.freqs" :key="item.frequencyCode" :label="item.frequencyName" :value="item.frequencyCode"> </el-option>
+          </el-select>
+        </DtxInputGroup>
         <DtxInputGroup prepend="退庫備註" labelWidth="100">
           <el-input v-model="his.note" placeholder="請輸入退庫備註" />
         </DtxInputGroup>
@@ -47,9 +52,6 @@
         </DtxInputGroup>
         <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.medicationUnitName" readonly />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="退庫藥房" labelWidth="100" v-if="his.nhiCode">
-          <el-input v-model="his.vendorName" readonly />
         </DtxInputGroup>
       </main>
 
@@ -112,6 +114,7 @@ export default {
       loading: false,
       items: [],
       medIds: [],
+      ddl: {},
     };
   },
   computed: {
@@ -195,8 +198,9 @@ export default {
       this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
-  mounted() {
+  async mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
+    this.ddl.freqs = await this.actions.getfrequencyCode();
   },
   beforeUnmount() {
     subscribe.unsubscribe();

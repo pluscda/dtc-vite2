@@ -11,17 +11,23 @@
         <DtxInputGroup prepend="申請單號" labelWidth="120">
           <el-input v-model="his.chDrgApplyId" placeholder="請輸入申請單號" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="院內代碼" labelWidth="120">
+          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
+        </DtxInputGroup>
         <DtxInputGroup prepend="申請人員" labelWidth="120">
           <el-input v-model="his.chDrgApplyPersonName" placeholder="請輸入申請人員" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申請數量" labelWidth="120">
+          <InputNumber class="w-full" v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="申領備註" labelWidth="120">
+          <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請藥房" labelWidth="120">
           <el-input v-model="his.chDrgApplyStoreName" placeholder="請輸入申請藥房" />
         </DtxInputGroup>
         <DtxInputGroup prepend="健保代碼" labelWidth="120">
           <el-input v-model="his.chDrgHisId" placeholder="請輸入健保代碼" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="院內代碼" labelWidth="120">
-          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
         </DtxInputGroup>
         <DtxInputGroup prepend="中文藥名" labelWidth="120">
           <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
@@ -31,12 +37,6 @@
         </DtxInputGroup>
         <DtxInputGroup prepend="藥品單位" labelWidth="120">
           <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="申請數量" labelWidth="120">
-          <InputNumber class="w-full" v-model="his.intDrgApplyNum" placeholder="請輸入申請數量" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="申領備註" labelWidth="120">
-          <el-input v-model="his.chDrgNote" placeholder="請輸入申領備註" />
         </DtxInputGroup>
       </main>
 
