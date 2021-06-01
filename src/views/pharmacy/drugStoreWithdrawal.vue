@@ -96,12 +96,12 @@ export default {
         return;
       }
       try {
-        ElMessage.close();
         item.orderType = -1;
         await this.actions.editPharmacyRejectOrderDetails(item);
         ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
         return;
       } catch (e) {
+        alert(e);
         ElMessage.error("變更藥品退庫數量失敗: " + item.pharmacyOrderId);
       }
     },
