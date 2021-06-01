@@ -79,12 +79,16 @@ let headers = [
   { name: "退庫數量", key: "quantity", sortDesc: null },
 ];
 
-const q$ = new Subject();
 export default {
   name: "inqueryliststoredrgww",
   inject: ["actions"],
   components: {
     Pagination,
+  },
+  data() {
+    return {
+      q$: new Subject(),
+    };
   },
   methods: {
     async update(item) {
@@ -101,19 +105,19 @@ export default {
         ElMessage.error("變更藥品退庫數量失敗: " + item.pharmacyOrderId);
       }
     },
+    updateQuantity(item2) {
+      this.q$.next(item2);
+    },
   },
   setup() {
     const searchHospitalId = ref("");
     const searchDrugName = ref("");
     const searchSci = ref("");
     const searchDrgMaker = ref("");
-    const global = inject("global");
 
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems", 0, "&orderType=-1");
-    const updateQuantity = (item2) => {
-      q$.next(item2);
-    };
+
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
       clearFilters();
@@ -149,15 +153,14 @@ export default {
       sort,
       cleanFilter,
       search,
-      updateQuantity,
     };
   },
   beforeUnmount() {
-    q$.unsubscribe();
+    this.q$.unsubscribe();
   },
   mounted() {
     this.$primevue.config.locale = this.zh;
-    q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
+    this.q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>
