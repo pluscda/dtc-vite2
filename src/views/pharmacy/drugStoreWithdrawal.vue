@@ -69,7 +69,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 import { Subject } from "rxjs";
-import { debounceTime, exhaustMap, tap, filter } from "rxjs/operators";
+import { debounceTime, exhaustMap, tap } from "rxjs/operators";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
@@ -81,7 +81,8 @@ let headers = [
 
 const q$ = new Subject();
 export default {
-  name: "inqueryliststoredrg",
+  name: "inqueryliststoredrgww",
+  inject: ["actions"],
   components: {
     Pagination,
   },
@@ -90,7 +91,12 @@ export default {
       if (!item.quantity) {
         return;
       }
-      ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
+      try {
+        await this.actions.editPharmacyRejectOrderDetails(item);
+        ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
+      } catch (e) {
+        ElMessage.error("變更藥品退庫數量失敗: " + item.pharmacyOrderId);
+      }
     },
   },
   setup() {
@@ -99,10 +105,9 @@ export default {
     const searchSci = ref("");
     const searchDrgMaker = ref("");
     const global = inject("global");
-    pharmacyTab$.next("0");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems");
     const updateQuantity = (item) => {
       q$.next(item);
     };
