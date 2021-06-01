@@ -52,7 +52,7 @@
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
-      <div><InputNumber v-model="item.quantity" @change="updateQuantity(item)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
+      <div><InputNumber v-model="item.quantity" @input="updateQuantity(item)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -61,12 +61,15 @@
 
 <script>
 import queryString from "qs";
+import { ElMessage } from "element-plus";
 import { isEmpty } from "ramda";
 import { toRefs, ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
+import { Subject } from "rxjs";
+import { debounceTime, exhaustMap, tap, filter } from "rxjs/operators";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
@@ -76,13 +79,21 @@ let headers = [
   { name: "退庫數量", key: "quantity", sortDesc: null },
 ];
 
+const q$ = new Subject();
 export default {
   name: "inqueryliststoredrg",
   components: {
     Pagination,
   },
+  methods: {
+    async update(item) {
+      if (!item.quantity) {
+        return;
+      }
+      ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
+    },
+  },
   setup() {
-    const router = useRouter();
     const searchHospitalId = ref("");
     const searchDrugName = ref("");
     const searchSci = ref("");
@@ -93,7 +104,7 @@ export default {
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder");
     const updateQuantity = (item) => {
-      alert();
+      q$.next(item);
     };
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
@@ -133,8 +144,12 @@ export default {
       updateQuantity,
     };
   },
+  beforeUnmount() {
+    q$.unsubscribe();
+  },
   mounted() {
     this.$primevue.config.locale = this.zh;
+    q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>
