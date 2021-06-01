@@ -92,10 +92,10 @@ export const actions = {
   },
   //新增藥房申退明細
   async addPharmacyRejectOrderDetails(obj){ //14
-     return await axios.post("/med/pharmacyOrderItems", obj);
+     return await axios.post("/med/pharmacyOrderItems?orderType=-1", obj);
   },
   async editPharmacyRejectOrderDetails(obj){ //15
-     return await axios.put("/med/pharmacyOrderItems", obj);
+     return await axios.put("/med/pharmacyOrderItems?orderType=-1", obj);
   },
   //新增藥房
   async addPharmacyStore(obj){ //16

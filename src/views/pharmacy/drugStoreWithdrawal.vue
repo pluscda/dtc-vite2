@@ -109,7 +109,7 @@ export default {
     const global = inject("global");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems", 0, "&orderType=-1");
     const updateQuantity = (item2) => {
       q$.next(item2);
     };
@@ -156,11 +156,7 @@ export default {
   },
   mounted() {
     this.$primevue.config.locale = this.zh;
-    q$.pipe(
-      debounceTime(1000),
-      distinctUntilChanged((pre, cur) => +pre.quantity !== +cur.quantity),
-      exhaustMap(this.update)
-    ).subscribe();
+    q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>
