@@ -71,11 +71,15 @@
 
 <script>
 import queryString from "qs";
+import { ElMessage } from "element-plus";
 import { isEmpty } from "ramda";
 import { toRefs, ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { pharmacyTab$ } from "/@/store";
+import { Subject } from "rxjs";
+import { debounceTime, delay, distinctUntilChanged, tap, exhaustMap } from "rxjs/operators";
 
 //身分證號
 let headers = [
@@ -90,6 +94,29 @@ export default {
   name: "drugmanagementaddlistclaim",
   components: {
     Pagination,
+  },
+  data() {
+    return {
+      q$: new Subject(),
+    };
+  },
+  methods: {
+    async update(item) {
+      if (!item.quantity) {
+        return;
+      }
+      try {
+        await this.actions.editPharmacyOrder(item);
+        ElMessage.success("變更藥品申請數量成功: " + item.pharmacyOrderId);
+        return;
+      } catch (e) {
+        alert(e);
+        ElMessage.error("變更藥品申請數量失敗: " + item.pharmacyOrderId);
+      }
+    },
+    updateQuantity(item2) {
+      this.q$.next(item2);
+    },
   },
   setup() {
     const router = useRouter();
