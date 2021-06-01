@@ -12,7 +12,17 @@
           <el-input v-model="his.orderId" placeholder="請輸入申請單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="120">
-          <el-input v-model="his.medicineId" placeholder="請輸入院內代碼" />
+          <AutoComplete
+            class="inline-block border-transparent transform"
+            style="width: clamp(100%, 100%, 100%)"
+            placeholder="請輸入院內代碼"
+            v-model="his.medicineId"
+            :delay="300"
+            :spellcheck="false"
+            :suggestions="medIds"
+            @complete="searchMedId($event)"
+            @item-select="selectedMedId()"
+          />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請人員" labelWidth="120">
           <el-input v-model="his.staffId" placeholder="請輸入申請人員" />
@@ -83,20 +93,25 @@
 <script>
 import { ElMessage } from "element-plus";
 import { clone } from "ramda";
-import { Subject, from } from "rxjs";
-import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
+import { Subject, from, of } from "rxjs";
+import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError, tap } from "rxjs/operators";
 import dayjs from "dayjs";
-
 let subscribe = "";
+let subscribe2 = "";
+
 export default {
   name: "dtcadddrkkdkname",
   inject: ["actions"],
   data() {
     return {
       his: {},
+      addNewItem: false,
       subject: new Subject(),
+      med$: new Subject(),
       loading: false,
       items: [],
+      medIds: [],
+      ddl: {},
     };
   },
   computed: {
