@@ -160,6 +160,7 @@ export default {
             pharmacyOrderId: s.pharmacyOrderId,
             medicineId: s.medicineId,
             quantity: +s.quantity,
+            orderType: -1,
           },
           {
             orderId: s.orderId,
