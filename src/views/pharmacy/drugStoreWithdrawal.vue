@@ -29,7 +29,6 @@
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div>操作</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
@@ -49,13 +48,11 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div class="flex flex-none space-x-2">
-        <Button label="編輯" class="p-button-sm p-button-success" />
-      </div>
       <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
+      <div><InputNumber v-model="item.quantity" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -72,6 +69,7 @@ let headers = [
   { name: "退庫日期", key: "orderDate", sortDesc: null },
   { name: "訂單狀態", key: "isClosed", sortDesc: null },
   { name: "退庫人員", key: "staffId", sortDesc: null },
+  { name: "退庫數量", key: "quantity", sortDesc: null },
 ];
 
 export default {
@@ -130,7 +128,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 80px repeat(3, minmax(90px, 180px)) 1fr;
+  grid-template-columns: repeat(3, minmax(90px, 180px)) 120px 1fr;
 }
 .management {
   position: relative;
