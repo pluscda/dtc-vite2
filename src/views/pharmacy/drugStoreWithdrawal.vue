@@ -52,7 +52,7 @@
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
-      <div><InputNumber v-model="item.quantity" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
+      <div><InputNumber v-model="item.quantity" @change="updateQuantity(item)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -96,8 +96,6 @@ export default {
       dateFormat: "yy-mm-dd",
       weekHeader: "周",
     });
-
-    //Options
     const caseClosedOptions = reactive([
       {
         value: null,
@@ -106,6 +104,8 @@ export default {
       { value: "closed", text: "已結案" },
       { value: "unclosed", text: "未結案" },
     ]);
+
+    const updateQuantity = (item) => {};
 
     // 列表數據
     headers = ref(headers);
@@ -116,6 +116,7 @@ export default {
       headers,
       caseClosedOptions,
       zh,
+      updateQuantity,
     };
   },
   mounted() {
