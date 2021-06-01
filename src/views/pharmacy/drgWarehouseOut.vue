@@ -169,7 +169,7 @@ export default {
         )
       );
       from(items)
-        .pipe(mergeMap((s) => this.actions.addDrgOrderItem(s)))
+        .pipe(mergeMap((s) => this.actions.addPharmacyRejectOrderDetails(s)))
         .subscribe(observer);
     },
     async getMedIdList(event) {
