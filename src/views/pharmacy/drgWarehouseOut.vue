@@ -6,41 +6,50 @@
       </header>
       <main class="grid dtc-list-grid mt-5">
         <DtxInputGroup prepend="退庫日期" labelWidth="100">
-          <Calendar class="h-10 w-full" v-model="his.tiDrgPurchaseDate" placeholder="請輸入退庫日期" :showIcon="true" dateFormat="yy-mm-dd" />
+          <Calendar class="h-10 w-full" v-model="his.orderDate" placeholder="請輸入退庫日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫單號" labelWidth="100">
-          <el-input v-model="his.chDrgPurchaseId" placeholder="請輸入退庫單號" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="退庫人員" labelWidth="100">
-          <el-input v-model="his.chDrgPurchasePerson" placeholder="請輸入退庫人員" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="退庫藥房" labelWidth="100">
-          <el-input v-model="his.chDrgHisId" placeholder="請輸入退庫藥房" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="100">
-          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入健保代碼" />
+          <el-input v-model="his.pharmacyOrderId" placeholder="請輸入退庫單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="100">
-          <el-input v-model="his.chDrgHospitalId" placeholder="請輸入院內代碼" />
+          <AutoComplete
+            class="inline-block border-transparent transform"
+            style="width: clamp(100%, 100%, 100%)"
+            placeholder="請輸入院內代碼"
+            v-model="his.pharmacyId"
+            :delay="300"
+            :spellcheck="false"
+            :suggestions="medIds"
+            @complete="searchMedId($event)"
+            @item-select="selectedMedId()"
+          />
         </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="100">
-          <el-input v-model="his.chDrgCnName" placeholder="請輸入中文藥名" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="100">
-          <el-input v-model="his.chDrgEnName" placeholder="請輸入英文藥名" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="藥品劑型" labelWidth="100">
-          <el-input v-model="his.chDrgDoseType" placeholder="請輸入藥品劑型" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="100">
-          <el-input v-model="his.chDrgUnitBy" placeholder="請輸入藥品單位" />
+        <DtxInputGroup prepend="退庫人員" labelWidth="100">
+          <el-input v-model="his.staff" placeholder="請輸入退庫人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫數量" labelWidth="100">
           <InputNumber v-model="his.intDrugApplyNum" placeholder="請輸入藥品退庫數量" class="w-full" />
-          <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
+        </DtxInputGroup>
+        <DtxInputGroup prepend="健保代碼" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.nhiCode" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="中文藥名" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.cname" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="英文藥名" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.ename" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品劑型" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.dosageFormCode" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.medicationUnitName" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="退庫藥房" labelWidth="100">
+          <el-input v-model="his.vendorName" placeholder="請輸入退庫藥房" />
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫備註" labelWidth="100">
-          <el-input v-model="his.chDrgMakerName" placeholder="請輸入退庫備註" />
+          <el-input v-model="his.note" placeholder="請輸入退庫備註" />
         </DtxInputGroup>
       </main>
 
@@ -90,33 +99,27 @@ import { Subject, from } from "rxjs";
 import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
 import dayjs from "dayjs";
 let subscribe = "";
+let subscribe2 = "";
 export default {
-  name: "drugAddNew",
+  name: "drugAddNewOrderAdded",
   inject: ["actions"],
   data() {
     return {
       his: {},
       addNewItem: false,
       subject: new Subject(),
+      med$: new Subject(),
       loading: false,
       items: [],
+      medIds: [],
     };
   },
   computed: {
     enabledSave() {
-      const keys = [
-        "tiDrgPurchaseDate",
-        "chDrgPurchaseId",
-        "chDrgPurchasePerson",
-        "chDrgHisId",
-        "chDrgHospitalId",
-        "chDrgCnName",
-        "chDrgEnName",
-        "chDrgDoseType",
-        "chDrgUnitBy",
-        "chDrgMakerName",
-      ];
-      return keys.every((s) => this.his[s]);
+      //const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
+      const keys = [];
+      return true;
+      //return keys.every((s) => this.his[s]);
     },
     totalAdded() {
       let str = "";
@@ -127,39 +130,90 @@ export default {
     },
   },
   methods: {
+    async selectedMedId() {
+      this.meds = [];
+      const obj = await this.actions.getDrgDetail(this.his.pharmacyOrderId);
+      this.his.cname = obj.cname;
+      this.his.ename = obj.ename;
+      this.his.medicationUnitName = obj.medicationUnitName;
+      this.his.dosageFormCode = obj.dosageFormCode;
+      this.his.nhiCode = obj.nhiCode;
+      this.his.quantity = 13;
+      if (!this.his.staffId) this.his.staffId = "Adam";
+    },
     confirm() {
       this.loading = true;
       const observer = {
         next: (x) => console.log("Observer got a next value: " + x),
-        error: () => ElMessage.error("新增採購單 Fail"),
+        error: () => ElMessage.error("新增藥房退庫單 Fail"),
         complete: () => {
-          ElMessage.success("新增採購單成功");
+          ElMessage.success("新增藥房退庫單成功");
           this.items = [];
+          this.his.pharmacyOrderId = this.actions.getRandomId();
         },
       };
-      from(this.items)
-        .pipe(mergeMap((s) => this.actions.addItem("drg-warehouse-order-adds", s)))
+      const items = this.items.map((s) =>
+        Object.assign(
+          {
+            pharmacyOrderId: s.pharmacyOrderId,
+            medicineId: s.medicineId,
+            quantity: +s.quantity,
+          },
+          {
+            orderId: s.orderId,
+            staffId: s.staffId,
+            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + "T00:00:00.000Z",
+          }
+        )
+      );
+      from(items)
+        .pipe(mergeMap((s) => this.actions.addDrgOrderItem(s)))
         .subscribe(observer);
+    },
+    async getMedIdList(event) {
+      if (event?.query?.length > 1) {
+        const ret = await this.actions.getTop20MedIds(event.query, "PharmacyStore");
+        this.medIds = ret.map((s) => s.seq);
+      } else {
+        this.medIds = [];
+        this.meds = [];
+      }
     },
     removeItem(idx) {
       this.items.splice(idx, 1);
     },
     addItem() {
+      //this.his.medicinedId = this.his.medicinedId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["chDrgCnName", "chDrgEnName", "chDrgDoseType", "chDrgUnitBy", "chDrgMakerName"];
+      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
-      this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
+      this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
   mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
   },
+  beforeUnmount() {
+    subscribe.unsubscribe();
+    subscribe2.unsubscribe();
+  },
   created() {
-    this.his = {};
-    this.his.tiDrgPurchaseDate = dayjs().format("YYYY-MM-DD");
+    this.his.orderDate = dayjs().format("YYYY-MM-DD");
+    this.his.pharmacyOrderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
+    subscribe2 = this.med$
+      .pipe(
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!(pre.query === cur.query);
+          if (eq) this.meds = [];
+          return eq;
+        }),
+        switchMap(this.getMedIdList),
+        catchError((s) => of(""))
+      )
+      .subscribe();
   },
 };
 </script>
