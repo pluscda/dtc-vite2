@@ -50,7 +50,6 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="檢視" class="p-button-sm p-button-info" />
         <Button label="編輯" class="p-button-sm p-button-success" />
       </div>
       <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
@@ -133,7 +132,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: 100px repeat(3, minmax(90px, 180px)) 1fr;
+  grid-template-columns: 80px repeat(3, minmax(90px, 180px)) 1fr;
 }
 .management {
   position: relative;
