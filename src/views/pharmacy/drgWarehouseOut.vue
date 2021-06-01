@@ -32,7 +32,7 @@
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫藥房" labelWidth="100">
           <el-select filterable v-model="his.vendorName" placeholder="請選擇" class="border-l-0">
-            <el-option v-for="item in ddl.freqs" :key="item.frequencyCode" :label="item.frequencyName" :value="item.frequencyCode"> </el-option>
+            <el-option v-for="item in ddl.freqs" :key="item.pharmacyId" :label="item.name" :value="item.pharmacyId"> </el-option>
           </el-select>
         </DtxInputGroup>
         <DtxInputGroup prepend="退庫備註" labelWidth="100">
@@ -200,7 +200,7 @@ export default {
   },
   async mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
-    this.ddl.freqs = await this.actions.getfrequencyCode();
+    this.ddl.freqs = await this.actions.getDrgStoreList();
   },
   beforeUnmount() {
     subscribe.unsubscribe();

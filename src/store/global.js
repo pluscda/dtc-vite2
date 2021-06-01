@@ -26,8 +26,10 @@ const controlls$ = delyAjax("/med/controlledCode");
 const antiCodes$ = delyAjax("/med/antibioticsCode");
 //make at
 const contries$ =  delyAjax("/med/ISO3166_1_countryCode");
+//藥房清單
+const drgStoreList$ =  delyAjax("/med/pharmacyStoreList");
 
-const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls$,antiCodes$,contries$];
+const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls$,antiCodes$,contries$,drgStoreList$];
 
 const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
 const formulas = [{value:'單方', label:'單方'},{value:'複方', label:'複方'}]
@@ -81,7 +83,7 @@ export const actions = {
     return await axios.post("/med/pharmacyOrderItems", obj);
   },
   async editPharmacyOrder(obj){ //11
-    return await axios.put("/med/pharmacyOrder", obj);
+     return await axios.put("/med/pharmacyOrderItems", obj);
   },
   //新增藥房藥品退庫單
   async addPharmacyRejectOrder(obj){ //12
@@ -186,6 +188,9 @@ export const actions = {
   },
   async getISO3166Code(){//49
      return firstValueFrom(contries$);
+  },
+  async getDrgStoreList(){
+    return firstValueFrom(drgStoreList$);
   },
   async getPharmacologyCode(){//50
      return firstValueFrom(parhCodes$);
