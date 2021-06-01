@@ -105,7 +105,7 @@ export const actions = {
      return await axios.post("/med/pharmacyStore", obj);
   },
   async deletePharmacyStore(id){ //18
-     return await axios.delete("/med/pharmacyStore?pharmacyId=");
+     return await axios.delete("/med/pharmacyStore?pharmacyId=" +id);
   },
   async getPharmacyStoreDetail(qs){ //19
      return await axios.get("/med/pharmacyStore?" + qs);
