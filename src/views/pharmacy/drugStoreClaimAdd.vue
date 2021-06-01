@@ -32,7 +32,7 @@
         </DtxInputGroup>
         <DtxInputGroup prepend="申請藥房" labelWidth="120">
           <el-select filterable v-model="his.vendorName" placeholder="請選擇" class="border-l-0">
-            <el-option v-for="item in [1, 2]" :key="item" :label="item" :value="item"> </el-option>
+            <el-option v-for="item in storeList" :key="item.pharmacyId" :label="item.name" :value="item.pharmacyId"> </el-option>
           </el-select>
         </DtxInputGroup>
         <DtxInputGroup prepend="申領備註" labelWidth="120">
@@ -112,6 +112,7 @@ export default {
       items: [],
       medIds: [],
       ddl: {},
+      storeList: [],
     };
   },
   computed: {
@@ -197,7 +198,8 @@ export default {
       this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
-  created() {
+  async created() {
+    this.storeList = await this.actions.getDrgStoreList();
     this.his.orderDate = dayjs().format("YYYY-MM-DD");
     this.his.pharmacyOrderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
