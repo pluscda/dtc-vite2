@@ -61,7 +61,7 @@
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
       <div>
-        <el-input type="number" v-model="item.quantity" placeholder="請輸入藥品申請數量" class="w-full" />
+        <el-input type="number" v-model="item.quantity" @input="updateQuantity(item)" placeholder="請輸入藥品申請數量" class="w-full" />
       </div>
     </main>
     <!-- 分頁 -->
@@ -127,7 +127,7 @@ export default {
     const global = inject("global");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems");
 
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
@@ -173,8 +173,12 @@ export default {
       editItem,
     };
   },
+  beforeUnmount() {
+    this.q$.unsubscribe();
+  },
   mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
+    this.q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>

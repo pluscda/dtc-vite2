@@ -159,7 +159,7 @@ export default {
     this.q$.unsubscribe();
   },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = primeVueDateFormat;
     this.q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
