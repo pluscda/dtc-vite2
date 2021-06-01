@@ -152,7 +152,7 @@ export default {
     };
   },
   beforeUnmount() {
-    //q$.unsubscribe();
+    q$.unsubscribe();
   },
   mounted() {
     this.$primevue.config.locale = this.zh;
