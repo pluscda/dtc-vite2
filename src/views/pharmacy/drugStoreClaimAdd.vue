@@ -9,7 +9,7 @@
           <Calendar class="h-10 w-full" v-model="his.orderDate" placeholder="請輸入申請日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請單號" labelWidth="120">
-          <el-input v-model="his.orderId" placeholder="請輸入申請單號" />
+          <el-input v-model="his.pharmacyOrderId" placeholder="請輸入申請單號" />
         </DtxInputGroup>
         <DtxInputGroup prepend="院內代碼" labelWidth="120">
           <AutoComplete
@@ -66,7 +66,7 @@
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
             <div>申請日期: {{ "暫無資料" }}</div>
-            <div class="transform translate-x-7">申請單號: {{ item.orderId }}</div>
+            <div class="transform translate-x-7">申請單號: {{ item.pharmacyOrderId }}</div>
             <div>申請人員:{{ item.staffId }}</div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
@@ -116,7 +116,7 @@ export default {
   },
   computed: {
     enabledSave() {
-      const keys = ["orderDate", "orderId", "staffId", "medicineId", "quantity", "vendorName"];
+      const keys = ["orderDate", "pharmacyOrderId", "staffId", "medicineId", "quantity", "vendorName"];
       return keys.every((s) => this.his[s]);
     },
     totalAdded() {
@@ -162,7 +162,7 @@ export default {
             pharmacyOrderId: s.pharmacyOrderId,
             medicineId: s.medicineId,
             quantity: +s.quantity,
-            orderType: -1,
+            //orderType: -1,
           },
           {
             staffId: s.staffId,
@@ -199,7 +199,7 @@ export default {
   },
   created() {
     this.his.orderDate = dayjs().format("YYYY-MM-DD");
-    this.his.orderId = this.actions.getRandomId();
+    this.his.pharmacyOrderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     this.$primevue.config.locale = primeVueDateFormat;
     subscribe2 = this.med$
