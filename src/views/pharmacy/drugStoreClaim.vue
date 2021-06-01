@@ -95,6 +95,7 @@ export default {
   components: {
     Pagination,
   },
+  inject: ["actions"],
   data() {
     return {
       q$: new Subject(),
