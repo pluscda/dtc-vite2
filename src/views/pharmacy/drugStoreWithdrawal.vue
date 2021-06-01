@@ -53,10 +53,10 @@
         <Button label="檢視" class="p-button-sm p-button-info" />
         <Button label="編輯" class="p-button-sm p-button-success" />
       </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
+      <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.staffId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -70,10 +70,10 @@ import { useList } from "/@/hooks/useHis.js";
 
 //身分證號
 let headers = [
-  { name: "退庫單號", key: "name", sortDesc: null },
-  { name: "退庫日期", key: "name", sortDesc: null },
-  { name: "訂單狀態", key: "age", sortDesc: null },
-  { name: "退庫人員", key: "age", sortDesc: null },
+  { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
+  { name: "退庫日期", key: "orderDate", sortDesc: null },
+  { name: "訂單狀態", key: "isClosed", sortDesc: null },
+  { name: "退庫人員", key: "staffId", sortDesc: null },
 ];
 
 export default {
@@ -115,35 +115,14 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, delItem } = useList();
-    const isOpenAddDrugDialog = computed(() => {
-      return global.openAddDrugDialog;
-    });
-
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
-    };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
+    const { state, getList, delItem } = useList("med/pharmacyOrder");
 
     return {
       ...toRefs(state),
       getList,
       headers,
-      searchDrugId,
-      searchDrugName,
-      searchStatus,
-      isOpenAddDrugDialog,
       caseClosedOptions,
-      openAddDialog,
-      toggleDetail,
       zh,
-      time1,
-      time2,
     };
   },
   mounted() {
