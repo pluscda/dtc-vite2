@@ -21,7 +21,9 @@
           <InputNumber class="w-full" v-model="his.quantity" placeholder="請輸入申請數量" />
         </DtxInputGroup>
         <DtxInputGroup prepend="申請藥房" labelWidth="120">
-          <el-input v-model="his.vendorName" placeholder="請輸入申請藥房" />
+          <el-select filterable v-model="his.vendorName" placeholder="請選擇" class="border-l-0">
+            <el-option v-for="item in [1, 2]" :key="item" :label="item" :value="item"> </el-option>
+          </el-select>
         </DtxInputGroup>
         <DtxInputGroup prepend="申領備註" labelWidth="120">
           <el-input v-model="his.note" placeholder="請輸入申領備註" />
