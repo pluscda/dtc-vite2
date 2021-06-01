@@ -157,8 +157,8 @@ export default {
     this.$primevue.config.locale = this.zh;
     q$.pipe(
       debounceTime(1000),
-      distinctUntilChanged((pre, cur) => pre.quantity === cur.quantity),
-      delay(500),
+      //distinctUntilChanged((pre, cur) => pre.quantity === cur.quantity),
+      //delay(500),
       exhaustMap(this.update)
     ).subscribe();
   },
