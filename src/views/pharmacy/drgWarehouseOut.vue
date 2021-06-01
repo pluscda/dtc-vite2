@@ -152,6 +152,7 @@ export default {
           this.his.medicineId = "";
           this.items = [];
           this.his.pharmacyOrderId = this.actions.getRandomId();
+          this.his.medicineId = "";
         },
       };
       const items = this.items.map((s) =>
