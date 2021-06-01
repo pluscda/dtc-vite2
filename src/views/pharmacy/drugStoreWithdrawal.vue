@@ -80,9 +80,7 @@ export default {
     Pagination,
   },
   setup() {
-    //global
     const global = inject("global");
-    //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     const searchStatus = ref("");
