@@ -176,7 +176,7 @@ export default {
     },
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
-        const ret = await this.actions.getTop20MedIds(event.query, "PharmacyOrder");
+        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
         this.medIds = ret.map((s) => s.seq);
       } else {
         this.medIds = [];
@@ -201,10 +201,22 @@ export default {
     this.his.orderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     this.$primevue.config.locale = primeVueDateFormat;
+    subscribe2 = this.med$
+      .pipe(
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!(pre.query === cur.query);
+          if (eq) this.meds = [];
+          return eq;
+        }),
+        switchMap(this.getMedIdList),
+        catchError((s) => of(""))
+      )
+      .subscribe();
   },
 
   beforeUnmount() {
     subscribe.unsubscribe();
+    subscribe2.unsubscribe();
   },
 };
 </script>
