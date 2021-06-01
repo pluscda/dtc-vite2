@@ -61,7 +61,7 @@
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
       <div>
-        <el-input type="number" v-model="item.quantity" @input="updateQuantity(item)" placeholder="請輸入藥品申請數量" class="w-full" />
+        <el-input type="number" v-model.number="item.quantity" @input="updateQuantity(item)" placeholder="請輸入藥品申請數量" class="w-full" />
       </div>
     </main>
     <!-- 分頁 -->
@@ -79,7 +79,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 import { Subject } from "rxjs";
-import { debounceTime, delay, distinctUntilChanged, tap, exhaustMap } from "rxjs/operators";
+import { debounceTime, delay, distinctUntilKeyChanged, tap, exhaustMap } from "rxjs/operators";
 
 //身分證號
 let headers = [
