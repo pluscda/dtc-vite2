@@ -95,8 +95,8 @@
 <script>
 import { ElMessage } from "element-plus";
 import { clone } from "ramda";
-import { Subject, from } from "rxjs";
-import { exhaustMap, throttleTime, mergeMap } from "rxjs/operators";
+import { Subject, from, of } from "rxjs";
+import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError, tap } from "rxjs/operators";
 import dayjs from "dayjs";
 let subscribe = "";
 let subscribe2 = "";
@@ -140,6 +140,9 @@ export default {
       this.his.nhiCode = obj.nhiCode;
       this.his.quantity = 13;
       if (!this.his.staffId) this.his.staffId = "Adam";
+    },
+    searchMedId(event) {
+      this.med$.next(event);
     },
     confirm() {
       this.loading = true;
