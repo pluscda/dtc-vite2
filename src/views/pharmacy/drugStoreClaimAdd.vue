@@ -193,6 +193,7 @@ export default {
       keys.forEach((s) => {
         this.his[s] = null;
       });
+      this.his.medicineId = "";
       this.his.orderDate = dayjs().format("YYYY-MM-DD");
     },
   },
