@@ -68,7 +68,6 @@ import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 
-//身分證號
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
   { name: "退庫日期", key: "orderDate", sortDesc: null },
@@ -116,7 +115,6 @@ export default {
     // 列表數據
     headers = ref(headers);
     const { state, getList, delItem } = useList("med/pharmacyOrder");
-
     return {
       ...toRefs(state),
       getList,
