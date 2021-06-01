@@ -107,6 +107,7 @@ export default {
         return;
       }
       try {
+        // ElMessage ? ElMessage.close() : "";
         item.quantity = +item.quantity;
         await this.actions.editPharmacyOrder(item);
         ElMessage.success("變更藥品申請數量成功: " + item.pharmacyOrderId);
