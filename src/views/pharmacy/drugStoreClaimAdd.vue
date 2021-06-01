@@ -20,12 +20,13 @@
         <DtxInputGroup prepend="申請數量" labelWidth="120">
           <InputNumber class="w-full" v-model="his.quantity" placeholder="請輸入申請數量" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="申領備註" labelWidth="120">
-          <el-input v-model="his.note" placeholder="請輸入申領備註" />
-        </DtxInputGroup>
         <DtxInputGroup prepend="申請藥房" labelWidth="120">
           <el-input v-model="his.vendorName" placeholder="請輸入申請藥房" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="申領備註" labelWidth="120">
+          <el-input v-model="his.note" placeholder="請輸入申領備註" />
+        </DtxInputGroup>
+
         <DtxInputGroup prepend="健保代碼" labelWidth="120" v-if="his.nhiCode">
           <el-input v-model="his.nhiCode" placeholder="請輸入健保代碼" />
         </DtxInputGroup>
@@ -98,7 +99,7 @@ export default {
   },
   computed: {
     enabledSave() {
-      const keys = ["orderDate", "orderId", "staffId", "medicineId", "quantity"];
+      const keys = ["orderDate", "orderId", "staffId", "medicineId", "quantity", "vendorName"];
       return keys.every((s) => this.his[s]);
     },
     totalAdded() {
