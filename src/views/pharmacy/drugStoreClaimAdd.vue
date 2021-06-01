@@ -114,6 +114,20 @@ export default {
   },
 
   methods: {
+    async selectedMedId() {
+      this.meds = [];
+      const obj = await this.actions.getDrgDetail(this.his.medicineId);
+      this.his.cname = obj.cname;
+      this.his.ename = obj.ename;
+      this.his.medicationUnitName = obj.medicationUnitName;
+      this.his.dosageFormCode = obj.dosageFormCode;
+      this.his.nhiCode = obj.nhiCode;
+      this.his.quantity = 13;
+      if (!this.his.staffId) this.his.staffId = "Adam";
+    },
+    searchMedId(event) {
+      this.med$.next(event);
+    },
     confirm() {
       this.loading = true;
       const observer = {
@@ -121,19 +135,46 @@ export default {
         error: () => ElMessage.error("新增藥品申領單 Fail"),
         complete: () => {
           ElMessage.success("新增藥品申領單成功");
+          this.his.medicineId = "";
           this.items = [];
+          this.his.pharmacyOrderId = this.actions.getRandomId();
+          this.his.medicineId = "";
         },
       };
-      from(this.items)
-        .pipe(mergeMap((s) => this.actions.addItem("drg-warehouse-request-adds", s)))
+      const items = this.items.map((s) =>
+        Object.assign(
+          {
+            pharmacyOrderId: s.pharmacyOrderId,
+            medicineId: s.medicineId,
+            quantity: +s.quantity,
+            orderType: -1,
+          },
+          {
+            staffId: s.staffId,
+            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + "T00:00:00.000Z",
+          }
+        )
+      );
+      from(items)
+        .pipe(mergeMap((s) => this.actions.addPharmacyRejectOrderDetails(s)))
         .subscribe(observer);
+    },
+    async getMedIdList(event) {
+      if (event?.query?.length > 1) {
+        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
+        this.medIds = ret.map((s) => s.seq);
+      } else {
+        this.medIds = [];
+        this.meds = [];
+      }
     },
     removeItem(idx) {
       this.items.splice(idx, 1);
     },
     addItem() {
+      //this.his.medicinedId = this.his.medicinedId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["vendorName", "cname", "ename", "medicationUnitName", "quantity", "intDrgCatchNum", "chDrgCatchPerson", "note"];
+      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
@@ -141,8 +182,8 @@ export default {
     },
   },
   created() {
-    this.his = {};
     this.his.orderDate = dayjs().format("YYYY-MM-DD");
+    this.his.orderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     this.$primevue.config.locale = primeVueDateFormat;
   },
