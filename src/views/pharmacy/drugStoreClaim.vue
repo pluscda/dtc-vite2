@@ -61,7 +61,7 @@
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
       <div>
-        <div><el-input type="number" v-model="item.quantity" placeholder="請輸入藥品申請數量" class="w-full" /></div>
+        <el-input type="number" v-model="item.quantity" placeholder="請輸入藥品申請數量" class="w-full" />
       </div>
     </main>
     <!-- 分頁 -->
