@@ -52,7 +52,7 @@
       <div>{{ item2.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item2.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item2.staffId || "暫無資料" }}</div>
-      <div><InputNumber v-model="item2.quantity" @input="updateQuantity(item2)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
+      <div><el-input type="number" v-model="item2.quantity" @input="updateQuantity(item2)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -69,7 +69,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 import { Subject } from "rxjs";
-import { debounceTime, delay, distinctUntilChanged, exhaustMap, tap } from "rxjs/operators";
+import { debounceTime, delay, distinctUntilChanged, tap, exhaustMap } from "rxjs/operators";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
@@ -95,6 +95,7 @@ export default {
         //requestAnimationFrame(async () => this.actions.editPharmacyRejectOrderDetails(item));
         await this.actions.editPharmacyRejectOrderDetails(item);
         ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
+        return;
       } catch (e) {
         ElMessage.error("變更藥品退庫數量失敗: " + item.pharmacyOrderId);
       }
@@ -110,7 +111,7 @@ export default {
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems");
     const updateQuantity = (item2) => {
-      requestAnimationFrame(() => q$.next(item2));
+      q$.next(item2);
     };
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
@@ -151,14 +152,13 @@ export default {
     };
   },
   beforeUnmount() {
-    q$.unsubscribe();
+    //q$.unsubscribe();
   },
   mounted() {
     this.$primevue.config.locale = this.zh;
     q$.pipe(
       debounceTime(1000),
-      //distinctUntilChanged((pre, cur) => pre.quantity === cur.quantity),
-      //delay(500),
+      distinctUntilChanged((pre, cur) => +pre.quantity !== +cur.quantity),
       exhaustMap(this.update)
     ).subscribe();
   },
