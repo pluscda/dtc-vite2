@@ -40,7 +40,8 @@ export function useList(url,__limit__, extra) {
       state.listQuery.page = 1;
     }
     sort.length ? queryObj.sort = sort.join(",") : '';
-    let qs = queryString.stringify(queryObj) + "&" + state.listQuery.filter;
+    const str =  queryString.stringify(queryObj);
+    let qs = state.listQuery.filter? str + "&" + state.listQuery.filter : str ;
     if(extra){
       qs += extra;
     }
