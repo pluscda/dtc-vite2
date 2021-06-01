@@ -40,18 +40,18 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
+      <div :title="item.medEname">{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.atcCode || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
       <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
-      <div>{{ item.id || "暫無資料" }}</div>
+      <div>{{ item.effectiveDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.expiredDateDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.upperLimit || "暫無資料" }}</div>
+      <div>{{ item.lowerLimit || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
@@ -69,17 +69,17 @@ import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 
 let headers = [
-  { name: "健保代碼", key: "hisId", sortDesc: null },
-  { name: "院內代碼", key: "chHospitalId", sortDesc: null },
-  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
-  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "藥品學名", key: "chDrgAlias", sortDesc: null },
-  { name: "ATC碼", key: "age", sortDesc: null },
+  { name: "健保代碼", key: "nhiCode", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
+  { name: "中文藥名", key: "medCname", sortDesc: null },
+  { name: "英文藥名", key: "medEname", sortDesc: null },
+  { name: "藥品學名", key: "age", sortDesc: null },
+  { name: "ATC碼", key: "atcCode", sortDesc: null },
   { name: "新核定價", key: "age", sortDesc: null },
   { name: "自費價格", key: "age", sortDesc: null },
-  { name: "生效日期", key: "age", sortDesc: null },
-  { name: "庫存上限", key: "age", sortDesc: null },
-  { name: "庫存下限", key: "age", sortDesc: null },
+  { name: "生效日期", key: "effectiveDate", sortDesc: null },
+  { name: "庫存上限", key: "expiredDateDate", sortDesc: null },
+  { name: "庫存下限", key: "upperLimit", sortDesc: null },
   { name: "現有庫存", key: "age", sortDesc: null },
   { name: "儲存位置", key: "age", sortDesc: null },
   { name: "藥商名稱", key: "age", sortDesc: null },
@@ -99,7 +99,7 @@ export default {
     const searchDrugName = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
 
     return {
       ...toRefs(state),
