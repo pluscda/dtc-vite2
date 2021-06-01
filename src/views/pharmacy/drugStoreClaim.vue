@@ -60,7 +60,9 @@
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
-      <div>{{ item.staffId || "暫無資料" }}</div>
+      <div>
+        <div><el-input type="number" v-model="item.quantity" placeholder="請輸入藥品申請數量" class="w-full" /></div>
+      </div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
