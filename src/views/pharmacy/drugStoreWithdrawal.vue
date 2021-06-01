@@ -92,7 +92,7 @@ export default {
         return;
       }
       try {
-        //requestAnimationFrame(async () => this.actions.editPharmacyRejectOrderDetails(item));
+        ElMessage.close();
         await this.actions.editPharmacyRejectOrderDetails(item);
         ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
         return;
