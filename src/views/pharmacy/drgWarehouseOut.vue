@@ -48,7 +48,7 @@
         <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.medicationUnitName" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="退庫藥房" labelWidth="100">
+        <DtxInputGroup prepend="退庫藥房" labelWidth="100" v-if="his.nhiCode">
           <el-input v-model="his.vendorName" readonly />
         </DtxInputGroup>
       </main>
@@ -116,10 +116,8 @@ export default {
   },
   computed: {
     enabledSave() {
-      //const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
-      const keys = [];
-      return true;
-      //return keys.every((s) => this.his[s]);
+      const keys = ["quantity", "orderDate", "medicineId", "staffId"];
+      return keys.every((s) => this.his[s]);
     },
     totalAdded() {
       let str = "";
@@ -151,6 +149,7 @@ export default {
         error: () => ElMessage.error("新增藥房退庫單 Fail"),
         complete: () => {
           ElMessage.success("新增藥房退庫單成功");
+          this.his.medicineId = "";
           this.items = [];
           this.his.pharmacyOrderId = this.actions.getRandomId();
         },
