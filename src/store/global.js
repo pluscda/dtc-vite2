@@ -78,7 +78,7 @@ export const actions = {
   },
   //新增藥房藥品申領單
   async addPharmacyOrder(obj){ //10
-     return await axios.post("/med/pharmacyOrder", obj);
+    return await axios.post("/med/pharmacyOrderItems", obj);
   },
   async editPharmacyOrder(obj){ //11
     return await axios.put("/med/pharmacyOrder", obj);

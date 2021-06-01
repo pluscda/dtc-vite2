@@ -171,12 +171,12 @@ export default {
         )
       );
       from(items)
-        .pipe(mergeMap((s) => this.actions.addPharmacyRejectOrderDetails(s)))
+        .pipe(mergeMap((s) => this.actions.addPharmacyOrder(s)))
         .subscribe(observer);
     },
     async getMedIdList(event) {
       if (event?.query?.length > 1) {
-        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
+        const ret = await this.actions.getTop20MedIds(event.query, "PharmacyOrder");
         this.medIds = ret.map((s) => s.seq);
       } else {
         this.medIds = [];
