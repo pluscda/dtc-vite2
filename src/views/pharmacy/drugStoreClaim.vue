@@ -79,7 +79,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 import { Subject } from "rxjs";
-import { debounceTime, delay, distinctUntilKeyChanged, tap, exhaustMap } from "rxjs/operators";
+import { debounceTime, delay, distinctUntilKeyChanged, tap, exhaustMap, distinctUntilChanged } from "rxjs/operators";
 
 //身分證號
 let headers = [
@@ -181,7 +181,13 @@ export default {
   },
   mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
-    this.q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
+    this.q$
+      .pipe(
+        debounceTime(1000),
+        //distinctUntilChanged(null, (s) => s.quantity),
+        exhaustMap(this.update)
+      )
+      .subscribe();
   },
 };
 </script>
