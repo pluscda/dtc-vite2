@@ -64,6 +64,7 @@ import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import queryString from "qs";
 import dayjs from "dayjs";
+import { ElMessage } from "element-plus";
 let headers = [
   { name: "健保代碼", key: "nhiCode", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },

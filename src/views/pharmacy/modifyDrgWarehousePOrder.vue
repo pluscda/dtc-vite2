@@ -48,13 +48,13 @@
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.vendorName || "暫無資料" }}</div>
       <div>{{ item.currentStock || "暫無資料" }}</div>
-      <div><el-input v-model="item.quantity" placeholder="請輸入" /></div>
+      <div><el-input v-model="item.quantity" type="number" placeholder="請輸入" @change="update(item)" /></div>
       <div>
-        <el-select filterable v-model="item.closed" placeholder="未到貨" class="border-l-0">
+        <el-select filterable v-model="item.closed" @change="update(item)" placeholder="未到貨" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </div>
-      <div><el-input v-model="item.orderNote" placeholder="請輸入採購單備註" /></div>
+      <div><el-input v-model="item.orderNote" @change="update(item)" placeholder="請輸入採購單備註" /></div>
     </main>
     <footer class="mt-10">
       <Button label="返回採購單管理" @click="$router.go(-1)" />
@@ -71,6 +71,7 @@ import { isEmpty } from "ramda";
 import queryString from "qs";
 import dayjs from "dayjs";
 import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
 
 //身分證號
 let headers = [
@@ -92,7 +93,16 @@ export default {
   },
   inject: ["global", "actions"],
   data() {},
-
+  methods: {
+    async update(item) {
+      try {
+        await this.actions.editDrgOrderItem(item);
+        ElMessage.success("採購單明細");
+      } catch (e) {
+        ElMessage.error("採購單明細");
+      }
+    },
+  },
   setup() {
     const global = inject("global");
     const router = useRouter();
