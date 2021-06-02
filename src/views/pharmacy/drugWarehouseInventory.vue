@@ -5,22 +5,10 @@
     </header>
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="採號日期">
-        <Calendar
-          class="h-10"
-          v-model="time1"
-          placeholder="請輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
-      <Calendar
-        class="h-10"
-        v-model="time2"
-        placeholder="請輸入日期"
-        :showIcon="true"
-        dateFormat="yy-mm-dd"
-      />
+      <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="採購單號">
         <el-input placeholder="搜尋採購單號" v-model="searchDrugId" />
       </DtxInputGroup>
@@ -33,39 +21,15 @@
         <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
-        <el-select
-          filterable
-          v-model="searchStatus"
-          placeholder="請選擇訂單狀態"
-          class="border-l-0"
-        >
-          <el-option
-            v-for="item in caseClosedOptions"
-            :key="item.value"
-            :label="item.text"
-            :value="item.value"
-          >
-          </el-option>
+        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
+          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
     </nav>
 
-    <header
-      class="
-        my-title
-        relative
-        dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs
-        dtc-template-columns
-        mx-1
-      "
-    >
+    <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div
-        v-for="(item, i) in headers"
-        :key="i"
-        @click="sort(headers, item)"
-        :title="item.name"
-      >
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -79,34 +43,21 @@
       </div>
     </header>
     <main
-      class="
-        dtc-grid-header dtc-grid-body dtc-template-columns
-        text-black
-        ml-1
-        mx-1
-      "
+      class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
       v-for="(item, i) in list"
       :key="i"
-      :style="
-        i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'
-      "
+      :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
         <Button label="明細" class="p-button-sm" @click="editItem(item)" />
       </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div>{{ item.inventoryDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.amount || "暫無資料" }}</div>
+      <div>{{ item.inventory || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
-    <pagination
-      v-show="total > 0"
-      :total="total"
-      v-model:page="listQuery.page"
-      v-model:limit="listQuery.limit"
-      @pagination="getList"
-    ></pagination>
+    <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
   </section>
 </template>
 
@@ -117,10 +68,10 @@ import { useList } from "/@/hooks/useHis.js";
 import { useRouter } from "vue-router";
 //身分證號
 let headers = [
-  { name: "採購單號", key: "name", sortDesc: null },
-  { name: "採購日期", key: "name", sortDesc: null },
-  { name: "訂單狀態", key: "age", sortDesc: null },
-  { name: "申請人員", key: "age", sortDesc: null },
+  { name: "盤庫單號", key: "medicineId", sortDesc: null },
+  { name: "盤庫日期", key: "inventoryDate", sortDesc: null },
+  { name: "庫存數量", key: "amount", sortDesc: null },
+  { name: "盤點數量", key: "inventory", sortDesc: null },
 ];
 
 export default {
@@ -148,15 +99,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const {
-      state,
-      getList,
-      sort,
-      clearFilters,
-      removeItem,
-      getItemDetail,
-      twTime,
-    } = useList("drg-warehouse-order-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medInventory");
 
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
