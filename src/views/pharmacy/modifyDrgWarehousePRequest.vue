@@ -16,6 +16,8 @@
       <DtxInputGroup prepend="申請藥房">
         <el-input readonly :value="his.chDrgApplyStoreName" />
       </DtxInputGroup>
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -48,10 +50,10 @@
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
-      <div>{{ item.quantity || "暫無資料" }}</div>
+      <div><el-input v-model="item.quantity" type="number" placeholder="請輸入" @change="update(item)" /></div>
     </main>
     <footer class="mt-10">
-      <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" />
+      <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" :disabled="disableBtn" />
     </footer>
   </section>
 </template>
@@ -83,7 +85,21 @@ export default {
   data() {
     return {
       his: { tiDrgApplyDate: "" },
+      disableBtn: false,
     };
+  },
+  methods: {
+    async update(item) {
+      this.disableBtn = true;
+      try {
+        await this.actions.editPharmacyOrder(item);
+        ElMessage.success("編輯申請單明細成功: " + item.nhiCode);
+        this.disableBtn = false;
+      } catch (e) {
+        ElMessage.error("編輯申請單明");
+        this.disableBtn = false;
+      }
+    },
   },
   setup() {
     const searchOrderId = ref("");
