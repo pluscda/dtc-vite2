@@ -48,7 +48,7 @@
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
-      <div>{{ item.quantity || "暫無資料" }}</div>
+      <div><el-input v-model="item.quantity" type="number" placeholder="請輸入" @change="update(item)" /></div>
     </main>
     <footer class="mt-10">
       <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" />
@@ -63,7 +63,9 @@ import { clone } from "ramda";
 import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import queryString from "qs";
+import { ElMessage } from "element-plus";
 import dayjs from "dayjs";
+
 let headers = [
   { name: "健保代碼", key: "nhiCode", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },
@@ -83,9 +85,22 @@ export default {
   data() {
     return {
       his: { tiDrgApplyDate: "" },
+      disableBtn: false,
     };
   },
-  methods() {},
+  methods: {
+    async update(item) {
+      this.disableBtn = true;
+      try {
+        await this.actions.editPharmacyOrder(item);
+        ElMessage.success("編輯退庫單明細成功: " + item.nhiCode);
+        this.disableBtn = false;
+      } catch (e) {
+        ElMessage.error("編輯退庫單明細");
+        this.disableBtn = false;
+      }
+    },
+  },
   setup() {
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
