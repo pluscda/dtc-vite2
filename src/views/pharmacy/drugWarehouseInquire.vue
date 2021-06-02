@@ -45,8 +45,8 @@
       <div>
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
-      <div><el-input placeholder="請輸入" v-model="item.upperLimit" @input="change(item)" type="number" /></div>
-      <div><el-input placeholder="請輸入" v-model="item.lowerLimit" @input="change(item)" type="number" /></div>
+      <div><el-input placeholder="請輸入" v-model="item.upperLimit" @input="change(item)" min="0" type="number" /></div>
+      <div><el-input placeholder="請輸入" v-model="item.lowerLimit" @input="change(item)" min="0" type="number" /></div>
       <div>{{ item.nhiCode || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
       <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
@@ -177,7 +177,7 @@ export default {
     this.subject$.unsubscribe();
   },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    //this.$primevue.config.locale =
     this.subject$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
