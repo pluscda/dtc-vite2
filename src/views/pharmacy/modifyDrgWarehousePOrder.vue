@@ -107,7 +107,7 @@ export default {
     ]);
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrderItmes", 100000, "&orderId=" + global.editItem.orderId);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrderItems", 100000, "&orderId=" + global.editItem.orderId);
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
