@@ -263,6 +263,12 @@ export const routes = [
         meta: { title: "藥庫盤點管理", icon: "el-icon-s-home" },
       },
       {
+        path: "drugwarehouseinventoryadd",
+        component: () => import("/@/views/pharmacy/drugWarehouseInventoryAdd.vue"),
+        name: "drugwarehouseinventoryadd",
+        meta: { title: "藥庫盤點管理", icon: "el-icon-s-home" },
+      },
+      {
         path: "drugwarehouserequest",
         component: () => import("/@/views/pharmacy/drugWarehouseRequest.vue"),
         name: "drugwarehouserequest",
