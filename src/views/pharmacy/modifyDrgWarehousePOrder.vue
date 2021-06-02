@@ -57,7 +57,7 @@
       <div><el-input v-model="item.orderNote" @change="update(item)" placeholder="請輸入採購單備註" /></div>
     </main>
     <footer class="mt-10">
-      <Button label="返回採購單管理" @click="$router.go(-1)" />
+      <Button label="返回採購單管理" @click="$router.go(-1)" :disabled="disableBtn" />
     </footer>
   </section>
 </template>
@@ -92,14 +92,21 @@ export default {
     Pagination,
   },
   inject: ["global", "actions"],
-  data() {},
+  data() {
+    return {
+      disableBtn: false,
+    };
+  },
   methods: {
     async update(item) {
+      this.disableBtn = true;
       try {
         await this.actions.editDrgOrderItem(item);
-        ElMessage.success("採購單明細");
+        ElMessage.success("編輯採購單明細成功: " + item.nhiCode);
+        this.disableBtn = false;
       } catch (e) {
-        ElMessage.error("採購單明細");
+        ElMessage.error("編輯採購單明細");
+        this.disableBtn = false;
       }
     },
   },
