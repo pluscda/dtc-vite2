@@ -1,85 +1,206 @@
 <template>
-  <div>
-    <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
-      <div>新增藥庫盤點</div>
-      <Button label="再次新增新增藥庫盤點" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
-    </header>
+  <sction class="grid gap-2 my-2-grid">
+    <div class="left">
+      <header class="dtc-page-header dtc-page-header-grid grid text-white button-2">
+        <div>新增藥庫盤點</div>
+      </header>
+      <main class="grid dtc-list-grid mt-5">
+        <DtxInputGroup prepend="盤庫日期" labelWidth="120">
+          <Calendar class="h-10 w-full" v-model="his.inventoryDate" placeholder="請輸入盤庫日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="院內代碼" labelWidth="120">
+          <el-input v-model="his.medicineId" placeholder="請輸入院內代碼" />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="庫存數量" labelWidth="120">
+          <InputNumber class="w-full" v-model="his.amount" placeholder="請輸入庫存數量"></InputNumber>
+        </DtxInputGroup>
+        <DtxInputGroup prepend="盤點數量" labelWidth="120">
+          <InputNumber class="w-full" v-model="his.inventory" placeholder="請輸入庫存數量"></InputNumber>
+        </DtxInputGroup>
 
-    <main class="grid dtc-list-grid">
-      <DtxInputGroup prepend="廠商編號" labelWidth="120">
-        <el-input v-model="his.vendorId" placeholder="請輸入廠商編號" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="廠商名稱" labelWidth="120">
-        <el-input v-model="his.name" placeholder="請輸入廠商名稱" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="廠商地址" labelWidth="120">
-        <el-input v-model="his.address" placeholder="請輸入廠商地址" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="廠商電話" labelWidth="120">
-        <el-input v-model="his.phone" placeholder="請輸入廠商電話" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="廠商聯絡人" labelWidth="120">
-        <el-input placeholder="請輸入廠商聯絡人" v-model="his.contact" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="統一發票編號" labelWidth="120">
-        <el-input v-model="his.taxId" placeholder="請輸入廠商統一發票編號" />
-      </DtxInputGroup>
-    </main>
-    <nav class="w-16 h-16 mt-2 ml-3" v-if="newImg">
-      <img :src="newImg" class="object-cover rounded" />
-    </nav>
-    <footer class="mt-6 mb-4 space-x-4">
-      <Button :disabled="loading" label="確認儲存" v-if="!showAddNew" class="p-button-success footer-btn" @click="subject.next()" />
-      <ProgressSpinner v-if="loading" style="width: 30px; height: 30px" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></ProgressSpinner>
-    </footer>
-  </div>
+        <DtxInputGroup prepend="健保代碼" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.nhiCode" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="中文藥名" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.cname" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="英文藥名" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.ename" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品劑型" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.dosageFormCode" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.medicationUnitName" readonly />
+        </DtxInputGroup>
+        <DtxInputGroup prepend="藥商名稱" labelWidth="100" v-if="his.nhiCode">
+          <el-input v-model="his.vendorName" readonly />
+        </DtxInputGroup>
+      </main>
+
+      <footer class="mt-6 mb-4">
+        <Button :disabled="!enabledSave" label="加入藥庫盤點單列表" @click="addItem" class="footer-btn" />
+      </footer>
+    </div>
+    <div class="right bg-gray-700">
+      <header class="dtc-page-header text-white button-2 flex justify-between pr-2">
+        <div>藥庫盤點單列表 {{ totalAdded }}</div>
+        <Button v-if="items.length" class="p-button-success self-end transform -translate-y-1" @click="subject.next('1')" style="height: 30px">確定完成藥庫盤點</Button>
+      </header>
+      <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
+        <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
+          <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
+            <div>藥庫盤點日期: {{ item.orderDate }}</div>
+            <div class="transform translate-x-7">藥庫盤點單號: {{ item.orderId }}</div>
+            <div></div>
+            <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
+          </header>
+          <li>盤點人員: {{ item.staffId }}</li>
+          <li>院內代碼: {{ item.medicinedId }}</li>
+          <li>健保代碼: {{ item.nhiCode }}</li>
+          <li class="flex space-x-2 transform translate-y-2">
+            <div>藥庫盤點數量:</div>
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入藥庫盤點數量" />
+          </li>
+          <li class="flex space-x-2 transform translate-y-2">中文藥名: {{ item.cname }}</li>
+          <li class="flex space-x-2 transform translate-y-2">英文藥名: {{ item.ename }}</li>
+          <li>藥品劑型: {{ item.dosageFormCode }}</li>
+          <li>藥品單位: {{ item.medicationUnitName }}</li>
+          <li>藥商名稱: {{ item.vendorName }}</li>
+        </nav>
+      </div>
+      <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
+        <p class="transform -translate-y-14 text-2xl">暫無藥庫盤點單,請填寫左邊表格後加入</p>
+      </div>
+      <div class="h-2"></div>
+    </div>
+  </sction>
 </template>
 
 <script>
 import { ElMessage } from "element-plus";
-import { Subject } from "rxjs";
-import { exhaustMap, throttleTime } from "rxjs/operators";
-
+import { clone } from "ramda";
+import { Subject, from, of } from "rxjs";
+import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError, tap } from "rxjs/operators";
+import dayjs from "dayjs";
 let subscribe = "";
+let subscribe2 = "";
 export default {
-  name: "drugAddNew新增新增藥庫盤點",
+  name: "drugAddNewOrderAdded",
   inject: ["actions"],
   data() {
     return {
       his: {},
-      uploadFileName: "",
-      fileUpload: "",
-      showAddNew: false,
+      addNewItem: false,
       subject: new Subject(),
+      med$: new Subject(),
       loading: false,
+      items: [],
+      medIds: [],
     };
   },
-  methods: {
-    reset() {
-      this.his = {};
-      this.showAddNew = false;
+  computed: {
+    enabledSave() {
+      const keys = ["orderDate", "orderId", "medicinedId", "quantity", "staffId"];
+      return keys.every((s) => this.his[s]);
     },
-    async saveItem() {
-      this.loading = true;
-      try {
-        const ret = await this.actions.addDrgVendor(this.his);
-        ElMessage.success("新增藥庫盤點成功");
-        this.showAddNew = true;
-      } catch (e) {
-        alert(e);
-        ElMessage.error("新增藥庫盤點失敗!!");
-        this.loading = false;
+    totalAdded() {
+      let str = "";
+      if (this.items.length) {
+        str += `(共${this.items.length}筆)`;
+      }
+      return str;
+    },
+  },
+  methods: {
+    async selectedMedId() {
+      this.meds = [];
+      const obj = await this.actions.getDrgDetail(this.his.medicinedId);
+      this.his.cname = obj.cname;
+      this.his.ename = obj.ename;
+      this.his.medicationUnitName = obj.medicationUnitName;
+      this.his.dosageFormCode = obj.dosageFormCode;
+      this.his.nhiCode = obj.nhiCode;
+      this.his.quantity = 13;
+      if (!this.his.staffId) this.his.staffId = "Adam";
+    },
+    async getMedIdList(event) {
+      if (event?.query?.length > 1) {
+        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
+        this.medIds = ret.map((s) => s.seq);
+      } else {
+        this.medIds = [];
+        this.meds = [];
       }
     },
+    searchMedId(event) {
+      this.med$.next(event);
+    },
+    confirm() {
+      this.loading = true;
+      const observer = {
+        next: (x) => console.log("Observer got a next value: " + x),
+        error: () => ElMessage.error("新增藥庫盤點 Fail"),
+        complete: () => {
+          ElMessage.success("新增藥庫盤點成功");
+          this.items = [];
+          this.his.orderId = this.actions.getRandomId();
+        },
+      };
+      const items = this.items.map((s) =>
+        Object.assign(
+          {
+            pharmacyOrderId: s.orderId,
+            medicineId: s.medicineId,
+            quantity: +s.quantity,
+          },
+          {
+            orderId: s.orderId,
+            staffId: s.staffId,
+            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + "T00:00:00.000Z",
+          }
+        )
+      );
+      from(items)
+        .pipe(mergeMap((s) => this.actions.addDrgOrderItem(s)))
+        .subscribe(observer);
+    },
+    removeItem(idx) {
+      this.items.splice(idx, 1);
+    },
+    addItem() {
+      //this.his.medicinedId = this.his.medicinedId.seq;
+      this.items.unshift(clone(this.his));
+      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
+      keys.forEach((s) => {
+        this.his[s] = null;
+      });
+      this.his.orderDate = dayjs().format("YYYY-MM-DD");
+    },
+  },
+  mounted() {
+    this.$primevue.config.locale = primeVueDateFormat;
+  },
+  beforeUnmount() {
+    subscribe.unsubscribe();
+    subscribe2.unsubscribe();
   },
   created() {
     this.his = {};
-    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
-  },
-
-  beforeUnmount() {
-    subscribe.unsubscribe();
-    this.his = {};
+    this.his.orderDate = dayjs().format("YYYY-MM-DD");
+    this.his.orderId = this.actions.getRandomId();
+    subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
+    subscribe2 = this.med$
+      .pipe(
+        distinctUntilChanged((pre, cur) => {
+          const eq = !!(pre.query === cur.query);
+          if (eq) this.meds = [];
+          return eq;
+        }),
+        switchMap(this.getMedIdList),
+        catchError((s) => of(""))
+      )
+      .subscribe();
   },
 };
 </script>
@@ -103,24 +224,41 @@ export default {
   margin-left: 12px;
 }
 
-.dtc-list-grid,
-.dtc-list-grid2 {
+.dtc-list-grid {
   grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  padding: 6px;
+  padding: 0 12px;
 }
-.dtc-list-grid2 {
-  grid-template-columns: repeat(1, 1fr);
-}
+
 .dtc-grid-fileupload {
   // position: relative;
   display: grid;
   grid-template-columns: 500px 202px max-content;
   grid-column-gap: 20px;
 }
-.button-2 {
-  grid-template-columns: max-content max-content;
-  gap: 1.5rem;
+
+.my-2-grid {
+  grid-template-columns: 380px 1fr;
+}
+.my-car-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px;
+  height: 160px;
+  gap: 10px;
+  > li {
+    color: var(--light);
+    text-align: left;
+    padding-left: 10px;
+  }
+  border: 1px solid #64748b;
+  border-radius: 10px;
+}
+.my-header {
+  grid-template-columns: repeat(3, 1fr) max-content;
+  button {
+    height: 30px;
+    transform: translateY(-3px);
+  }
 }
 </style>
