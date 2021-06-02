@@ -5,17 +5,27 @@
         <div>新增藥庫盤點</div>
       </header>
       <main class="grid dtc-list-grid mt-5">
-        <DtxInputGroup prepend="盤庫日期" labelWidth="120">
+        <DtxInputGroup prepend="盤庫日期" labelWidth="100">
           <Calendar class="h-10 w-full" v-model="his.inventoryDate" placeholder="請輸入盤庫日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="院內代碼" labelWidth="120">
-          <el-input v-model="his.medicineId" placeholder="請輸入院內代碼" />
-        </DtxInputGroup>
-        <DtxInputGroup prepend="庫存數量" labelWidth="120">
+        <DtxInputGroup prepend="庫存數量" labelWidth="100">
           <InputNumber class="w-full" v-model="his.amount" placeholder="請輸入庫存數量"></InputNumber>
         </DtxInputGroup>
-        <DtxInputGroup prepend="盤點數量" labelWidth="120">
-          <InputNumber class="w-full" v-model="his.inventory" placeholder="請輸入庫存數量"></InputNumber>
+        <DtxInputGroup prepend="盤點數量" labelWidth="100">
+          <InputNumber class="w-full" v-model="his.inventory" placeholder="請輸入盤點數量"></InputNumber>
+        </DtxInputGroup>
+        <DtxInputGroup prepend="院內代碼" labelWidth="100">
+          <AutoComplete
+            class="inline-block border-transparent transform"
+            style="width: clamp(100%, 100%, 100%)"
+            placeholder="請輸入院內代碼"
+            v-model="his.medicinedId"
+            :delay="300"
+            :spellcheck="false"
+            :suggestions="medIds"
+            @complete="searchMedId($event)"
+            @item-select="selectedMedId()"
+          />
         </DtxInputGroup>
 
         <DtxInputGroup prepend="健保代碼" labelWidth="100" v-if="his.nhiCode">
@@ -50,23 +60,24 @@
       <div style="flex: 1" class="rounded-md overflow-y-auto grid my-3-grid px-4 mb-10" v-if="items.length">
         <nav v-for="(item, i) in items" :key="i" class="grid my-car-grid list-none" :class="!i ? 'mt-4' : 'mt-2'">
           <header style="grid-column: 1/-1" class="bg-blueGray-900 relative text-blueGray-100 text-left px-2 py-2 text-lg grid rounded-sm my-header">
-            <div>藥庫盤點日期: {{ item.orderDate }}</div>
-            <div class="transform translate-x-7">藥庫盤點單號: {{ item.orderId }}</div>
+            <div>盤點日期: {{ item.inventoryDate }}</div>
+            <div hidden class="transform translate-x-7">盤點單號: {{ item.orderId }}</div>
+            <div></div>
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>盤點人員: {{ item.staffId }}</li>
           <li>院內代碼: {{ item.medicinedId }}</li>
-          <li>健保代碼: {{ item.nhiCode }}</li>
-          <li class="flex space-x-2 transform translate-y-2">
-            <div>藥庫盤點數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入藥庫盤點數量" />
-          </li>
-          <li class="flex space-x-2 transform translate-y-2">中文藥名: {{ item.cname }}</li>
-          <li class="flex space-x-2 transform translate-y-2">英文藥名: {{ item.ename }}</li>
+          <li>盤庫日期: {{ item.inventoryDate }}</li>
+
+          <li class="flex space-x-2 transform">中文藥名: {{ item.cname }}</li>
+          <li class="flex space-x-2 transform">英文藥名: {{ item.ename }}</li>
           <li>藥品劑型: {{ item.dosageFormCode }}</li>
           <li>藥品單位: {{ item.medicationUnitName }}</li>
           <li>藥商名稱: {{ item.vendorName }}</li>
+          <li class="flex space-x-2 transform">
+            <div>盤點數量:</div>
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.amount" placeholder="請輸入藥庫盤點數量" />
+          </li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
@@ -86,7 +97,7 @@ import dayjs from "dayjs";
 let subscribe = "";
 let subscribe2 = "";
 export default {
-  name: "drugAddNewOrderAdded",
+  name: "drugAddNewOrderAdded12928272",
   inject: ["actions"],
   data() {
     return {
@@ -101,8 +112,8 @@ export default {
   },
   computed: {
     enabledSave() {
-      const keys = ["orderDate", "orderId", "medicinedId", "quantity", "staffId"];
-      return keys.every((s) => this.his[s]);
+      // const keys = ["inventoryDate", "inventory", "medicinedId", "amount"];
+      return this.his.nhiCode ? true : false;
     },
     totalAdded() {
       let str = "";
@@ -121,7 +132,6 @@ export default {
       this.his.medicationUnitName = obj.medicationUnitName;
       this.his.dosageFormCode = obj.dosageFormCode;
       this.his.nhiCode = obj.nhiCode;
-      this.his.quantity = 13;
       if (!this.his.staffId) this.his.staffId = "Adam";
     },
     async getMedIdList(event) {
@@ -144,7 +154,7 @@ export default {
         complete: () => {
           ElMessage.success("新增藥庫盤點成功");
           this.items = [];
-          this.his.orderId = this.actions.getRandomId();
+          //this.his.orderId = this.actions.getRandomId();
         },
       };
       const items = this.items.map((s) =>
@@ -175,7 +185,7 @@ export default {
       keys.forEach((s) => {
         this.his[s] = null;
       });
-      this.his.orderDate = dayjs().format("YYYY-MM-DD");
+      this.his.inventoryDat = dayjs().format("YYYY-MM-DD");
     },
   },
   mounted() {
@@ -186,8 +196,7 @@ export default {
     subscribe2.unsubscribe();
   },
   created() {
-    this.his = {};
-    this.his.orderDate = dayjs().format("YYYY-MM-DD");
+    this.his.inventoryDate = dayjs().format("YYYY-MM-DD");
     this.his.orderId = this.actions.getRandomId();
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     subscribe2 = this.med$
