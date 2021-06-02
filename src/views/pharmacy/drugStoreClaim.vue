@@ -1,7 +1,7 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥品申請單管理</div>
+      <div>藥品申領管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請日期">
@@ -10,19 +10,25 @@
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       <DtxInputGroup prepend="申請單號">
-        <el-input placeholder="搜尋採購單號" v-model="searchOrderId" />
+        <el-input placeholder="搜尋申請單號" v-model="searchOrderId" />
       </DtxInputGroup>
 
-      <Button label="進行查詢" icon="pi pi-search" @click.stop="search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click.stop="cleanFilter" />
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
+
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="申請人員">
         <el-input placeholder="搜尋申請人員" v-model="searchOrderPerson" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
-          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
+        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0" @change="search">
+          <el-option v-for="item in ['全部', '未結案', '已結案']" :key="item" :label="item" :value="item"> </el-option>
+        </el-select>
+      </DtxInputGroup>
+      <DtxInputGroup prepend="申請藥房">
+        <el-select filterable v-model="searchDrugStore" placeholder="請選擇申請藥房" class="border-l-0" @change="search">
+          <el-option> </el-option>
         </el-select>
       </DtxInputGroup>
     </nav>
@@ -49,20 +55,12 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <el-popconfirm title="確定刪除嗎？" confirmButtonText="好的" cancelButtonText="不用了" @confirm="removeItem('medicineId=' + item.pharmacyOrderId)">
-          <template #reference>
-            <Button label="刪除" class="p-button-sm p-button-warning" />
-          </template>
-        </el-popconfirm>
+        <Button label="申請單明細" class="p-button-sm" @click="editItem(item)" />
       </div>
-
       <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
       <div>{{ item.staffId || "暫無資料" }}</div>
-      <div>
-        <el-input type="number" v-model.number="item.quantity" @input="updateQuantity(item)" placeholder="請輸入藥品申請數量" class="w-full" />
-      </div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -70,124 +68,109 @@
 </template>
 
 <script>
-import queryString from "qs";
-import { ElMessage } from "element-plus";
-import { isEmpty } from "ramda";
-import { toRefs, ref, inject } from "vue";
-import { useRouter } from "vue-router";
+import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
-import { pharmacyTab$ } from "/@/store";
-import { Subject } from "rxjs";
-import { debounceTime, delay, distinctUntilKeyChanged, tap, exhaustMap, distinctUntilChanged } from "rxjs/operators";
+import { isEmpty } from "ramda";
+import queryString from "qs";
+import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 
-//身分證號
 let headers = [
   { name: "申請單號", key: "pharmacyOrderId", sortDesc: null },
   { name: "申請日期", key: "orderDate", sortDesc: null },
   { name: "訂單狀態", key: "isClosed", sortDesc: null },
   { name: "申請人員", key: "staffId", sortDesc: null },
-  { name: "申請數量", key: "quantity", sortDesc: null },
 ];
 
 export default {
-  name: "drugmanagementaddlistclaim",
+  name: "inquerylistxxxx",
   components: {
     Pagination,
   },
-  inject: ["actions"],
-  data() {
-    return {
-      q$: new Subject(),
-    };
-  },
-  methods: {
-    async update(item) {
-      if (!item.quantity) {
-        return;
-      }
-      try {
-        // ElMessage ? ElMessage.close() : "";
-        item.quantity = +item.quantity;
-        await this.actions.editPharmacyOrder(item);
-        ElMessage.success("變更藥品申請數量成功: " + item.pharmacyOrderId);
-        return;
-      } catch (e) {
-        alert(e);
-        ElMessage.error("變更藥品申請數量失敗: " + item.pharmacyOrderId);
-      }
-    },
-    updateQuantity(item2) {
-      this.q$.next(item2);
-    },
-  },
   setup() {
-    const router = useRouter();
-    const searchHospitalId = ref("");
-    const searchDrugName = ref("");
-    const searchSci = ref("");
-    const searchDrgMaker = ref("");
     const global = inject("global");
+    const router = useRouter();
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
+    const searchCatchPerson = ref("");
+    const searchDrgStore = ref("");
+    const searchStatus = ref("全部");
+    const searchDrugStore = ref("");
+    const time1 = ref("");
+    const time2 = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrder");
 
     const cleanFilter = () => {
-      searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
+      searchOrderId.value = searchOrderPerson.value = time1.value = time2.value = "";
+      searchStatus.value = "全部";
+      searchDrgStore.value = "";
+      searchCatchPerson.value = "";
       clearFilters();
     };
     const search = () => {
       let filters = {};
-      if (searchHospitalId.value) {
-        filters.medicineId = searchHospitalId.value;
+      let s,
+        e,
+        dateQuery = "";
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
+        dateQuery = queryString.stringify({
+          _where: [{ orderDate_gte: s }, { orderDate_lt: e }],
+        });
       }
-      if (searchDrugName.value) {
-        filters.name = searchDrugName.value;
+      if (searchOrderId.value) {
+        filters.pharmacyOrderId_contains = searchOrderId.value;
       }
-      if (searchSci.value) {
-        filters.scientificName = searchSci.value;
+      if (searchOrderPerson.value) {
+        filters.staffId_contains = searchOrderPerson.value;
       }
-      if (searchDrgMaker.value) {
-        filters.vendorName = searchDrgMaker.value;
+      if (searchCatchPerson.value) {
+        filters.chDrgCatchPerson_contains = searchCatchPerson;
       }
-      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
-      state.listQuery.filter = filters;
+
+      if (searchStatus.value != "全部") {
+        filters.isClosed_contains = searchStatus.value;
+      }
+
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = dateQuery + filters;
       getList();
     };
-
     const editItem = async (item) => {
       const detail = await getItemDetail(item);
       global.editItem = { ...detail };
-      router.push("/pharmacy/modifydrug");
+      router.push("/pharmacy/modifyDrgWarehousePRequest");
     };
 
     return {
       ...toRefs(state),
       getList,
       headers,
-      searchHospitalId,
-      searchDrugName,
-      searchDrgMaker,
-      searchSci,
+      searchOrderId,
+      searchOrderPerson,
+      searchDrgStore,
+      searchStatus,
+      searchCatchPerson,
+      searchDrugStore,
+      time1,
+      time2,
       sort,
-      cleanFilter,
-      search,
+      clearFilters,
       removeItem,
+      getItemDetail,
+      search,
+      twTime,
+      cleanFilter,
       editItem,
     };
   },
-  beforeUnmount() {
-    this.q$.unsubscribe();
-  },
+
   mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
-    this.q$
-      .pipe(
-        debounceTime(1000),
-        //distinctUntilChanged(null, (s) => s.quantity),
-        exhaustMap(this.update)
-      )
-      .subscribe();
   },
 };
 </script>
@@ -196,8 +179,7 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 70px repeat(3, 180px) 220px 1fr;
+  grid-template-columns: 100px repeat(3, 180px) 1fr;
 }
 .management {
   position: relative;

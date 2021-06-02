@@ -1,9 +1,9 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥房退庫單維護</div>
+      <div>藥房退庫管理</div>
     </header>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
+    <nav class="ml-1 dtc-search-filters mt-2">
       <DtxInputGroup prepend="退庫日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
@@ -12,24 +12,25 @@
       <DtxInputGroup prepend="退庫單號">
         <el-input placeholder="搜尋退庫單號" v-model="searchDrugId" />
       </DtxInputGroup>
-
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
-    </nav>
-    <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
       <DtxInputGroup prepend="退庫人員">
         <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
 
-      <DtxInputGroup prepend="訂單狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
-          <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
-        </el-select>
+      <Button label="進行查詢" icon="pi pi-search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+    </nav>
+    <nav class="ml-1 dtc-search-filters" hidden>
+      <DtxInputGroup prepend="退庫藥房">
+        <el-input placeholder="搜尋退庫藥房" v-model="searchDrugName" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="點收人員">
+        <el-input placeholder="搜尋點收人員" v-model="searchDrugName" />
       </DtxInputGroup>
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
-      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
+      <div>操作</div>
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -44,15 +45,17 @@
     </header>
     <main
       class="dtc-grid-header dtc-grid-body dtc-template-columns text-black ml-1 mx-1"
-      v-for="(item2, i) in list"
+      v-for="(item, i) in list"
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div>{{ item2.pharmacyOrderId || "暫無資料" }}</div>
-      <div>{{ item2.orderDate?.split("T")[0] || "暫無資料" }}</div>
-      <div>{{ item2.isClosed ? "已結案" : "未結案" }}</div>
-      <div>{{ item2.staffId || "暫無資料" }}</div>
-      <div><el-input type="number" v-model="item2.quantity" @input="updateQuantity(item2)" placeholder="請輸入藥品退庫數量" class="w-full" /></div>
+      <div class="flex flex-none space-x-2">
+        <Button label="退庫明細" class="p-button-sm" @click="editItem(item)" />
+      </div>
+      <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
+      <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.staffId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -60,107 +63,65 @@
 </template>
 
 <script>
-import queryString from "qs";
-import { ElMessage } from "element-plus";
-import { isEmpty } from "ramda";
-import { toRefs, ref, inject } from "vue";
-import { useRouter } from "vue-router";
+import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
-import { pharmacyTab$ } from "/@/store";
-import { Subject } from "rxjs";
-import { debounceTime, delay, distinctUntilChanged, tap, exhaustMap } from "rxjs/operators";
+import { useRouter } from "vue-router";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
-  { name: "退庫日期", key: "orderDate", sortDesc: null },
+  { name: "退庫單號", key: "orderDate", sortDesc: null },
   { name: "訂單狀態", key: "isClosed", sortDesc: null },
   { name: "退庫人員", key: "staffId", sortDesc: null },
-  { name: "退庫數量", key: "quantity", sortDesc: null },
 ];
 
 export default {
-  name: "inqueryliststoredrgww",
-  inject: ["actions"],
+  name: "inquerylist3038373",
   components: {
     Pagination,
   },
-  data() {
-    return {
-      q$: new Subject(),
-    };
-  },
-  methods: {
-    async update(item) {
-      if (!item.quantity) {
-        return;
-      }
-      try {
-        item.orderType = -1;
-        await this.actions.editPharmacyRejectOrderDetails(item);
-        ElMessage.success("變更藥品退庫數量成功: " + item.pharmacyOrderId);
-        return;
-      } catch (e) {
-        alert(e);
-        ElMessage.error("變更藥品退庫數量失敗: " + item.pharmacyOrderId);
-      }
-    },
-    updateQuantity(item2) {
-      this.q$.next(item2);
-    },
-  },
   setup() {
-    const searchHospitalId = ref("");
+    //global
+    const global = inject("global");
+    const router = useRouter();
+    //搜尋變數
+    const searchDrugId = ref("");
     const searchDrugName = ref("");
-    const searchSci = ref("");
-    const searchDrgMaker = ref("");
+    const searchStatus = ref("");
+    const time1 = ref("");
+    const time2 = ref("");
 
+    // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder", 0, "&orderType=-1");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrder", 0, "&orderType=-1");
+    const isOpenAddDrugDialog = computed(() => {
+      return global.openAddDrugDialog;
+    });
 
-    const cleanFilter = () => {
-      searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
-      clearFilters();
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifyDrgWarehouseReject");
     };
-
-    const search = () => {
-      let filters = {};
-      if (searchHospitalId.value) {
-        filters.medicineId = searchHospitalId.value;
-      }
-      if (searchDrugName.value) {
-        filters.name = searchDrugName.value;
-      }
-      if (searchSci.value) {
-        filters.scientificName = searchSci.value;
-      }
-      if (searchDrgMaker.value) {
-        filters.vendorName = searchDrgMaker.value;
-      }
-      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
-      state.listQuery.filter = filters;
-      getList();
-    };
-
     return {
       ...toRefs(state),
       getList,
       headers,
-      searchHospitalId,
+      searchDrugId,
       searchDrugName,
-      searchDrgMaker,
-      searchSci,
+      searchStatus,
+      time1,
+      time2,
       sort,
-      cleanFilter,
-      search,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      twTime,
+      editItem,
     };
-  },
-  beforeUnmount() {
-    this.q$.unsubscribe();
   },
   mounted() {
     this.$primevue.config.locale = primeVueDateFormat;
-    this.q$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>
@@ -169,7 +130,8 @@ export default {
 .dtc-template-columns {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
-  grid-template-columns: repeat(3, minmax(90px, 180px)) 120px 1fr;
+  // grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
+  grid-template-columns: 100px repeat(3, 180px) 1fr;
 }
 .management {
   position: relative;
