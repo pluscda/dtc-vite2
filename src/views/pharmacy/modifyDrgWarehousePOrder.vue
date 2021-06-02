@@ -50,7 +50,7 @@
       <div>{{ item.currentStock || "暫無資料" }}</div>
       <div><el-input v-model="item.quantity" placeholder="請輸入" /></div>
       <div>
-        <el-select filterable v-model="item.closed" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="item.closed" placeholder="未到貨" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </div>
