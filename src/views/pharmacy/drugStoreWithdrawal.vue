@@ -116,7 +116,7 @@ export default {
     const searchDrgMaker = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems", 0, "&orderType=-1");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder", 0, "&orderType=-1");
 
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";

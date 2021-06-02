@@ -130,7 +130,7 @@ export default {
     const global = inject("global");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrderItems");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("/med/pharmacyOrder");
 
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
