@@ -88,6 +88,7 @@ export default {
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
     const searchStatus = ref("");
+    const global = inject("global");
     const time1 = ref("");
     const time2 = ref("");
     const caseClosedOptions = reactive([
@@ -96,7 +97,11 @@ export default {
     ]);
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrderItems", 1200);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList(
+      "/med/pharmacyOrderItems",
+      1200,
+      "&pharmacyOrderId=" + global.editItem.pharmacyOrderId
+    );
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
