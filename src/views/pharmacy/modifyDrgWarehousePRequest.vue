@@ -43,12 +43,12 @@
         {{ k + 1 }}
       </div>
 
-      <div>{{ item.chDrgHisId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
-      <div>{{ item.unknow || "暫無資料" }}</div>
-      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.medCname || "暫無資料" }}</div>
+      <div>{{ item.medEname || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.quantity || "暫無資料" }}</div>
     </main>
     <footer class="mt-10">
       <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" />
@@ -65,12 +65,12 @@ import { isEmpty } from "ramda";
 import queryString from "qs";
 import dayjs from "dayjs";
 let headers = [
-  { name: "健保代碼", key: "chDrgHisId", sortDesc: null },
-  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
-  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
-  { name: "申請狀態", key: "unknow", sortDesc: null },
-  { name: "申請數量", key: "intDrugApplyNum", sortDesc: null },
+  { name: "健保代碼", key: "nhiCode", sortDesc: null },
+  { name: "中文藥名", key: "medCname", sortDesc: null },
+  { name: "英文藥名", key: "medEname", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
+  { name: "申請狀態", key: "isClosed", sortDesc: null },
+  { name: "申請數量", key: "quantity", sortDesc: null },
 ];
 
 export default {
