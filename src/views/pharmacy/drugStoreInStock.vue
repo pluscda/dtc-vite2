@@ -64,9 +64,12 @@
 </template>
 
 <script>
-import { toRefs, ref, inject, computed } from "vue";
+iimport { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { ElMessage } from "element-plus";
+import { Subject } from "rxjs";
+import { debounceTime, exhaustMap } from "rxjs/operators";
 import { pharmacyTab$ } from "/@/store";
 
 let headers = [
@@ -93,6 +96,28 @@ export default {
   components: {
     Pagination,
   },
+  inject: ["actions"],
+  data() {
+    return {
+      subject$: new Subject(),
+    };
+  },
+  methods: {
+    change(item) {
+      this.subject$.next(item);
+    },
+    async update(item) {
+      if (!item.upperLimit || item.lowerLimit < 0) return;
+      if (item.lowerLimit > item.upperLimit) return;
+      try {
+        await this.actions.editDrgStock2(item);
+        ElMessage.success("修改成功: " + item.medicineId);
+      } catch (e) {
+        alert(e);
+      }
+      return;
+    },
+  },
   setup() {
     const global = inject("global");
     pharmacyTab$.next("0");
@@ -115,8 +140,12 @@ export default {
       twTime,
     };
   },
+  beforeUnmount() {
+    this.subject$.unsubscribe();
+  },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    //this.$primevue.config.locale =
+    this.subject$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>

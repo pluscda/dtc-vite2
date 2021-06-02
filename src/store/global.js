@@ -143,6 +143,9 @@ export const actions = {
   async editDrgStock(obj){ //33
      return await axios.put("/med/medStock", obj);
   },
+  async editDrgStock2(obj){ //33-1
+     return await axios.put("/med/pharmacyStock", obj);
+  },
   async getDrgStockWatermark(qs){//34
      return await axios.get("/med/medStock?" + qs);
   },
