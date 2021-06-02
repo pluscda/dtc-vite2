@@ -45,6 +45,8 @@
       <div>
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
+      <div><el-input placeholder="請輸入" v-model="item.upperLimit" @input="change(item)" type="number" /></div>
+      <div><el-input placeholder="請輸入" v-model="item.lowerLimit" @input="change(item)" type="number" /></div>
       <div>{{ item.nhiCode || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
       <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
@@ -54,8 +56,7 @@
       <div>{{ item.newPrice || "暫無資料" }}</div>
       <div>{{ item.selfPrice || "暫無資料" }}</div>
       <div>{{ item.effectiveDate?.split("T")[0] || "暫無資料" }}</div>
-      <div>{{ item.upperLimit || "暫無資料" }}</div>
-      <div>{{ item.lowerLimit || "暫無資料" }}</div>
+
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div :title="item.vendorName">{{ item.vendorName || "暫無資料" }}</div>
@@ -71,11 +72,13 @@
 import { toRefs, ref, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
-import { pharmacyTab$ } from "/@/store";
+import { ElMessage } from "element-plus";
+import { Subject } from "rxjs";
+import { debounceTime, exhaustMap } from "rxjs/operators";
 
 let headers = [
-  { name: "健保代碼", key: "nhiCode", sortDesc: null },
-  { name: "院內代碼", key: "medicineId", sortDesc: null },
+  { name: "庫存上限", key: "upperLimit", sortDesc: null },
+  { name: "庫存下限", key: "lowerLimit", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },
   { name: "英文藥名", key: "medEname", sortDesc: null },
   { name: "藥品學名", key: "scientificName", sortDesc: null },
@@ -83,8 +86,8 @@ let headers = [
   { name: "新核定價", key: "newPrice", sortDesc: null },
   { name: "自費價格", key: "selfPay", sortDesc: null },
   { name: "生效日期", key: "effectiveDate", sortDesc: null },
-  { name: "庫存上限", key: "upperLimit", sortDesc: null },
-  { name: "庫存下限", key: "lowerLimit", sortDesc: null },
+  { name: "健保代碼", key: "nhiCode", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
   { name: "現有庫存", key: "age", sortDesc: null },
   { name: "儲存位置", key: "age", sortDesc: null },
   { name: "藥商名稱", key: "vendorName", sortDesc: null },
@@ -97,11 +100,32 @@ export default {
   components: {
     Pagination,
   },
+  inject: ["actions"],
+  data() {
+    return {
+      subject$: new Subject(),
+    };
+  },
+  methods: {
+    change(item) {
+      this.subject$.next(item);
+    },
+    async update(item) {
+      if (!item.upperLimit || item.lowerLimit < 0) return;
+      if (item.lowerLimit > item.upperLimit) return;
+      try {
+        await this.actions.editDrgStock(item);
+        ElMessage.success("修改成功: " + item.medicineId);
+      } catch (e) {
+        alert(e);
+      }
+      return;
+    },
+  },
   setup() {
     const global = inject("global");
     const searchDrugId = ref("");
     const searchDrugName = ref("");
-
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
     const cleanFilter = () => {
@@ -149,8 +173,12 @@ export default {
       search,
     };
   },
+  beforeUnmount() {
+    this.subject$.unsubscribe();
+  },
   mounted() {
     this.$primevue.config.locale = this.zh;
+    this.subject$.pipe(debounceTime(1000), exhaustMap(this.update)).subscribe();
   },
 };
 </script>
