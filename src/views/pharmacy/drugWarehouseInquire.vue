@@ -99,7 +99,6 @@ export default {
   },
   setup() {
     const global = inject("global");
-    pharmacyTab$.next("0");
     const searchDrugId = ref("");
     const searchDrugName = ref("");
 
