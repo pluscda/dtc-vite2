@@ -30,7 +30,7 @@
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
       <div>操作</div>
-      <div v-for="(item, i) in headers" :key="i" @click="sort(item)" :title="item.name">
+      <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)" :title="item.name">
         {{ item.name }}
         <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
@@ -52,10 +52,10 @@
       <div class="flex flex-none space-x-2">
         <Button label="退庫明細" class="p-button-sm" />
       </div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.name || "暫無資料" }}</div>
-      <div>{{ item.age || "暫無資料" }}</div>
+      <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
+      <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
+      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.staffId || "暫無資料" }}</div>
     </main>
     <!-- 分頁 -->
     <pagination v-show="total > 0" :total="total" v-model:page="listQuery.page" v-model:limit="listQuery.limit" @pagination="getList"></pagination>
@@ -67,12 +67,11 @@ import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 
-//身分證號
 let headers = [
-  { name: "退庫單號", key: "name", sortDesc: null },
-  { name: "退庫日期", key: "name", sortDesc: null },
-  { name: "訂單狀態", key: "age", sortDesc: null },
-  { name: "退庫人員", key: "age", sortDesc: null },
+  { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
+  { name: "退庫單號", key: "orderDate", sortDesc: null },
+  { name: "訂單狀態", key: "isClosed", sortDesc: null },
+  { name: "退庫人員", key: "staffId", sortDesc: null },
 ];
 
 export default {
@@ -114,7 +113,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("drg-warehouse-request-adds");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrderItems", 0, "&orderType=-1");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
