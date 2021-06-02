@@ -43,7 +43,7 @@
       </div>
 
       <div>{{ item.nhiCode || "暫無資料" }}</div>
-      <div>{{ item.pharmacyId || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
       <div>{{ item.medCname || "暫無資料" }}</div>
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.vendorName || "暫無資料" }}</div>
@@ -75,7 +75,7 @@ import { useRouter } from "vue-router";
 //身分證號
 let headers = [
   { name: "健保代碼", key: "nhiCode", sortDesc: null },
-  { name: "院內代碼", key: "pharmacyId", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },
   { name: "英文藥名", key: "medEname", sortDesc: null },
   { name: "藥商名稱", key: "vendorName", sortDesc: null },
