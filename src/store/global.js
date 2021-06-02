@@ -33,10 +33,12 @@ const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls
 
 const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
 const formulas = [{value:'單方', label:'單方'},{value:'複方', label:'複方'}]
+const closes = [{value:null, label:'全部'},{value:1, label:'已結案'},{value:0, label:'未結案'}]
 const init = {
   editItem: "",
   answers,
-  formulas
+  formulas,
+  closes
 };
 
 export let global = reactive({ ...init });
