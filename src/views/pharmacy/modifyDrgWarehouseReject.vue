@@ -1,20 +1,21 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>採購單明細</div>
+      <div>退庫單明細</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-2" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="採購日期">
-        <Calendar class="h-10" v-model="searchOrderTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      <DtxInputGroup prepend="退庫日期">
+        <el-input readonly :value="his.tiDrgApplyDate" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="採購單號">
-        <el-input v-model="searchOrderId" />
+      <DtxInputGroup prepend="退庫單號">
+        <el-input readonly :value="his.chDrgApplyId" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="採購人員">
-        <el-input v-model="searchOrderPerson" />
+      <DtxInputGroup prepend="退庫人員">
+        <el-input readonly :value="his.chDrgApplyPersonName" />
       </DtxInputGroup>
-      <Button label="進行查詢" icon="pi pi-search" @click="search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
+      <DtxInputGroup prepend="退庫藥房">
+        <el-input readonly :value="his.chDrgApplyStoreName" />
+      </DtxInputGroup>
     </nav>
 
     <header class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -43,21 +44,14 @@
       </div>
 
       <div>{{ item.nhiCode || "暫無資料" }}</div>
-      <div>{{ item.pharmacyId || "暫無資料" }}</div>
       <div>{{ item.medCname || "暫無資料" }}</div>
       <div>{{ item.medEname || "暫無資料" }}</div>
-      <div>{{ item.vendorName || "暫無資料" }}</div>
-      <div>{{ item.currentStock || "暫無資料" }}</div>
-      <div><el-input v-model="item.quantity" placeholder="請輸入" /></div>
-      <div>
-        <el-select filterable v-model="item.closed" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.value"> </el-option>
-        </el-select>
-      </div>
-      <div><el-input v-model="item.orderNote" placeholder="請輸入採購單備註" /></div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
+      <div>{{ item.quantity || "暫無資料" }}</div>
     </main>
     <footer class="mt-10">
-      <Button label="返回採購單管理" @click="$router.go(-1)" />
+      <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" />
     </footer>
   </section>
 </template>
@@ -70,44 +64,46 @@ import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import queryString from "qs";
 import dayjs from "dayjs";
-import { useRouter } from "vue-router";
-
-//身分證號
 let headers = [
   { name: "健保代碼", key: "nhiCode", sortDesc: null },
-  { name: "院內代碼", key: "pharmacyId", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },
   { name: "英文藥名", key: "medEname", sortDesc: null },
-  { name: "藥商名稱", key: "vendorName", sortDesc: null },
-  { name: "現有存量", key: "currentStock", sortDesc: null },
-  { name: "採購數量", key: "quantity", sortDesc: null },
-  { name: "是否到貨", key: "isClosed", sortDesc: null },
-  { name: "備註", key: "orderNote", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
+  { name: "退庫狀態", key: "isClosed", sortDesc: null },
+  { name: "退庫數量", key: "quantity", sortDesc: null },
 ];
 
 export default {
-  name: "modifyDrgWarehousePOrder",
+  //
+  name: "modifyDrgWarehousePOrder46ww",
   components: {
     Pagination,
   },
   inject: ["global", "actions"],
-  data() {},
-
+  data() {
+    return {
+      his: { tiDrgApplyDate: "" },
+    };
+  },
+  methods() {},
   setup() {
-    const global = inject("global");
-    const router = useRouter();
-    const searchOrderTime = ref("");
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
     const searchStatus = ref("");
-
+    const global = inject("global");
+    const time1 = ref("");
+    const time2 = ref("");
     const caseClosedOptions = reactive([
-      { value: "1", text: "已到貨" },
-      { value: "0", text: "未到貨" },
+      { value: "closed", text: "已到貨" },
+      { value: "unclosed", text: "未到貨" },
     ]);
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrderItems", 100000, "&orderId=" + global.editItem.orderId);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList(
+      "/med/pharmacyOrderItems",
+      1200,
+      "&pharmacyOrderId=" + global.editItem.pharmacyOrderId
+    );
 
     const cleanFilter = () => {
       searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
@@ -115,19 +111,24 @@ export default {
     };
     const search = () => {
       let filters = {};
-      let s;
-      if (searchOrderTime.value) {
-        s = dayjs(searchOrderTime.value).format("YYYY-MM-DD");
-        filter.orderDate = s;
+      let s,
+        e,
+        dateQuery = "";
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
+        dateQuery = queryString.stringify({
+          _where: [{ tiDrgApplyDate_gte: s }, { tiDrgApplyDate_lt: e }],
+        });
       }
       if (searchOrderId.value) {
-        filters.orderId = searchOrderId.value;
+        filters.chDrgApplyId_contains = searchOrderId.value;
       }
       if (searchOrderPerson.value) {
-        filters.staffId = searchOrderPerson.value;
+        filters.chDrgApplyPerson_contains = searchOrderPerson.value;
       }
       filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
-      state.listQuery.filter = filters;
+      state.listQuery.filter = dateQuery + filters;
       getList();
     };
 
@@ -138,6 +139,8 @@ export default {
       searchOrderId,
       searchOrderPerson,
       searchStatus,
+      time1,
+      time2,
       caseClosedOptions,
       sort,
       clearFilters,
@@ -146,10 +149,11 @@ export default {
       search,
       twTime,
       cleanFilter,
-      searchOrderTime,
     };
   },
-  mounted() {},
+  mounted() {
+    this.his = clone(this.global.editItem);
+  },
 };
 </script>
 
@@ -158,7 +162,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(8, 120px) 1fr;
+  grid-template-columns: 60px repeat(5, 180px) 1fr;
 }
 .management {
   position: relative;

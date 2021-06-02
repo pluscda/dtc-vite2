@@ -199,6 +199,13 @@ export const routes = [
         name: "modifyDragMaker",
         meta: { title: "編輯藥品Maker資料", icon: "el-icon-s-home" },
       },
+      //modifyDrgWarehouseReject
+      {
+        path: "modifyDrgWarehouseReject",
+        component: () => import("/@/views/pharmacy/modifyDrgWarehouseReject.vue"),
+        name: "modifyDrgWarehouseReject",
+        meta: { title: "modifyDrgWarehouseReject", icon: "el-icon-s-home" },
+      },
       {
         path: "modifydrgstorewatermark",
         component: () =>

@@ -50,7 +50,7 @@
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
       <div class="flex flex-none space-x-2">
-        <Button label="退庫明細" class="p-button-sm" />
+        <Button label="退庫明細" class="p-button-sm" @click="editItem(item)" />
       </div>
       <div>{{ item.pharmacyOrderId || "暫無資料" }}</div>
       <div>{{ item.orderDate?.split("T")[0] || "暫無資料" }}</div>
@@ -66,6 +66,7 @@
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
+import { useRouter } from "vue-router";
 
 let headers = [
   { name: "退庫單號", key: "pharmacyOrderId", sortDesc: null },
@@ -82,34 +83,13 @@ export default {
   setup() {
     //global
     const global = inject("global");
+    const router = useRouter();
     //搜尋變數
     const searchDrugId = ref("");
     const searchDrugName = ref("");
     const searchStatus = ref("");
     const time1 = ref("");
     const time2 = ref("");
-    const zh = reactive({
-      firstDayOfWeek: 0,
-      dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-      dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-      dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
-      monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-      monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-      today: "今天",
-      clear: "清空",
-      dateFormat: "yy-mm-dd",
-      weekHeader: "周",
-    });
-
-    //Options
-    const caseClosedOptions = reactive([
-      {
-        value: null,
-        text: "全部",
-      },
-      { value: "closed", text: "已結案" },
-      { value: "unclosed", text: "未結案" },
-    ]);
 
     // 列表數據
     headers = ref(headers);
@@ -118,16 +98,11 @@ export default {
       return global.openAddDrugDialog;
     });
 
-    const openAddDialog = () => {
-      global.openAddDrugDialog = true;
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifyDrgWarehouseReject");
     };
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
-
     return {
       ...toRefs(state),
       getList,
@@ -135,11 +110,6 @@ export default {
       searchDrugId,
       searchDrugName,
       searchStatus,
-      caseClosedOptions,
-      isOpenAddDrugDialog,
-      openAddDialog,
-      toggleDetail,
-      zh,
       time1,
       time2,
       sort,
@@ -147,10 +117,11 @@ export default {
       removeItem,
       getItemDetail,
       twTime,
+      editItem,
     };
   },
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = primeVueDateFormat;
   },
 };
 </script>
