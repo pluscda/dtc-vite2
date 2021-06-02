@@ -113,7 +113,7 @@ export default {
 
     // 列表數據
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrderItems", 0, "&orderType=-1");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrder", 0, "&orderType=-1");
     const isOpenAddDrugDialog = computed(() => {
       return global.openAddDrugDialog;
     });
