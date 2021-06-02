@@ -160,19 +160,17 @@ export default {
       const items = this.items.map((s) =>
         Object.assign(
           {
-            pharmacyOrderId: s.orderId,
             medicineId: s.medicineId,
             quantity: +s.quantity,
           },
           {
-            orderId: s.orderId,
-            staffId: s.staffId,
-            orderDate: dayjs(s.orderDate).format("YYYY-MM-DD") + "T00:00:00.000Z",
+            amount: s.amount,
+            inventoryDat: dayjs(s.inventoryDat).format("YYYY-MM-DD") + "T00:00:00.000Z",
           }
         )
       );
       from(items)
-        .pipe(mergeMap((s) => this.actions.addDrgOrderItem(s)))
+        .pipe(mergeMap((s) => this.actions.addDrgInventory(s)))
         .subscribe(observer);
     },
     removeItem(idx) {
