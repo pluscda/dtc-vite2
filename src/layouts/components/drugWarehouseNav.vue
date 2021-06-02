@@ -24,16 +24,7 @@ export default {
   setup() {
     const activeTab = ref(0);
     const router = useRouter();
-    const titles = reactive([
-      "庫存查詢作業",
-      "庫存安全管制",
-      "採購單管理",
-      "新增採購單",
-      "入庫單管理",
-      "藥庫盤點管理",
-      "藥品申領管理",
-      "藥房退庫管理",
-    ]);
+    const titles = reactive(["庫存查詢作業", "庫存安全管制", "採購單管理", "新增採購單", "入庫單管理", "藥庫盤點", "新增藥庫盤點", "藥品申領管理", "藥房退庫管理"]);
     const icons = reactive([
       "el-icon-zoom-in",
       "el-icon-help",
@@ -41,6 +32,7 @@ export default {
       "el-icon-folder-add",
       "el-icon-document-copy",
       "el-icon-s-grid",
+      "el-icon-edit",
       "el-icon-pie-chart",
       "el-icon-c-scale-to-original",
       "el-icon-s-grid",
@@ -67,6 +59,9 @@ export default {
           break;
         case "藥庫盤點管理":
           router.push("/pharmacy/drugwarehouseinventory");
+          break;
+        case "新增藥庫盤點單":
+          router.push("/pharmacy/drugwarehouseinventoryadd");
           break;
         case "藥品申領管理":
           router.push("/pharmacy/drugwarehouserequest");
