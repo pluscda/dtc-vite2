@@ -4,13 +4,13 @@
       <div>藥庫盤點管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters">
-      <DtxInputGroup prepend="採號日期">
+      <DtxInputGroup prepend="盤點日期">
         <Calendar class="h-10" v-model="time1" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <div class="mx-1 pt-2 dtc-text">至</div>
       <Calendar class="h-10" v-model="time2" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
-      <DtxInputGroup prepend="採購單號">
-        <el-input placeholder="搜尋採購單號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="盤點單號">
+        <el-input placeholder="搜尋盤點單號" v-model="searchDrugId" />
       </DtxInputGroup>
 
       <Button label="進行查詢" icon="pi pi-search" />
@@ -20,8 +20,8 @@
       <DtxInputGroup prepend="申請人員">
         <el-input placeholder="搜尋申請人員" v-model="searchDrugName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="訂單狀態">
-        <el-select filterable v-model="searchStatus" placeholder="請選擇訂單狀態" class="border-l-0">
+      <DtxInputGroup prepend="盤點狀態">
+        <el-select filterable v-model="searchStatus" placeholder="請選擇盤點狀態" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.value" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -51,7 +51,7 @@
       <div class="flex flex-none space-x-2">
         <Button label="明細" class="p-button-sm" @click="editItem(item)" />
       </div>
-      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div>{{ item.inventoryId || "暫無資料" }}</div>
       <div>{{ item.inventoryDate?.split("T")[0] || "暫無資料" }}</div>
       <div>{{ item.amount || "暫無資料" }}</div>
       <div>{{ item.inventory || "暫無資料" }}</div>
@@ -68,7 +68,7 @@ import { useList } from "/@/hooks/useHis.js";
 import { useRouter } from "vue-router";
 //身分證號
 let headers = [
-  { name: "盤庫單號", key: "medicineId", sortDesc: null },
+  { name: "盤庫單號", key: "inventoryId", sortDesc: null },
   { name: "盤庫日期", key: "inventoryDate", sortDesc: null },
   { name: "庫存數量", key: "amount", sortDesc: null },
   { name: "盤點數量", key: "inventory", sortDesc: null },
