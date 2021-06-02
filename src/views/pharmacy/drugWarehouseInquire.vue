@@ -103,7 +103,7 @@ export default {
     const searchDrugName = ref("");
 
     headers = ref(headers);
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/pharmacyOrderItems");
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
     const cleanFilter = () => {
       searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
       clearFilters();
