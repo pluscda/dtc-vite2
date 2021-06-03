@@ -17,8 +17,8 @@
         <el-input placeholder="搜尋現有庫存" v-model="searchDrgMaker" />
       </DtxInputGroup>
 
-      <Button label="進行查詢" icon="pi pi-search" />
-      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" />
+      <Button label="進行查詢" icon="pi pi-search" @click="search" />
+      <Button label="清除查詢" class="p-button-secondary" icon="pi pi-undo" @click="cleanFilter" />
     </nav>
 
     <header data-msg="註1:低於安全存量轉採購單" class="my-title relative dtc-grid-grumanagement-header dtc-grid-header dtc-grid-header__divs dtc-template-columns mx-1">
@@ -75,6 +75,8 @@ import { useList } from "/@/hooks/useHis.js";
 import { ElMessage } from "element-plus";
 import { Subject } from "rxjs";
 import { debounceTime, exhaustMap } from "rxjs/operators";
+import { isEmpty } from "ramda";
+import queryString from "qs";
 
 let headers = [
   { name: "庫存上限", key: "upperLimit", sortDesc: null },
@@ -126,7 +128,7 @@ export default {
     const global = inject("global");
     const searchDrugId = ref("");
     const searchDrugName = ref("");
-    const searchSci = ref("");
+    const searchDrgMaker = ref("");
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
     const cleanFilter = () => {
@@ -144,8 +146,8 @@ export default {
       if (searchDrgMaker.value) {
         filters.vendorName = searchDrgMaker.value;
       }
-      // if (searchSci.value) {
-      //   filters.scientificName = searchSci.value;
+      // if (searchDrgMaker.value) {
+      //   filters.scientificName = searchDrgMaker.value;
       // }
 
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
@@ -173,7 +175,7 @@ export default {
       twTime,
       cleanFilter,
       search,
-      searchSci,
+      searchDrgMaker,
     };
   },
   beforeUnmount() {
