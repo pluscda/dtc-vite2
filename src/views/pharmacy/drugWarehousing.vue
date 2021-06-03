@@ -1,7 +1,7 @@
 <template>
   <section class="management">
     <header class="dtc-page-header grid dtc-page-header__grid pr-2">
-      <div>藥房入庫單管理</div>
+      <div>入庫單管理</div>
     </header>
     <nav class="ml-1 dtc-search-filters">
       <DtxInputGroup prepend="採號日期">
