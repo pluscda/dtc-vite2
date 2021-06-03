@@ -18,7 +18,7 @@
     </nav>
     <nav class="ml-1 dtc-search-filters" style="margin-top: -10px">
       <DtxInputGroup prepend="採購人員">
-        <el-input placeholder="搜尋採購人員" v-model="searchOrderId" />
+        <el-input placeholder="搜尋採購人員" v-model="searchStaffId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="訂單狀態">
         <el-select filterable v-model="orderStatus" placeholder="請選擇" class="border-l-0">
@@ -90,7 +90,7 @@ export default {
     const router = useRouter();
     const searchOrderId = ref("");
     const searchOrderPerson = ref("");
-    const searchStatus = ref("");
+    const searchStaffId = ref("");
     const time1 = ref("");
     const time2 = ref("");
     const orderStatus = ref(null);
@@ -110,31 +110,13 @@ export default {
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medOrder");
 
     const cleanFilter = () => {
-      searchOrderId.value = searchOrderPerson.value = searchStatus.value = time1.value = time2.value = "";
+      searchOrderId.value = searchOrderPerson.value = searchStaffId.value = time1.value = time2.value = "";
       orderStatus.value = null;
       clearFilters();
     };
     const cleanFilter = () => {
-      searchSci.value = searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
+      searchStaffId.value = searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
       clearFilters();
-    };
-    const search = () => {
-      let filters = {};
-      if (searchHospitalId.value) {
-        filters.medicineId = searchHospitalId.value;
-      }
-      if (searchDrugName.value) {
-        filters.name = searchDrugName.value;
-      }
-      if (searchSci.value) {
-        filters.scientificName = searchSci.value;
-      }
-      if (searchDrgMaker.value) {
-        filters.vendorName = searchDrgMaker.value;
-      }
-      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
-      state.listQuery.filter = filters;
-      getList();
     };
     const search = () => {
       let filters = {};
@@ -171,7 +153,7 @@ export default {
       headers,
       searchOrderId,
       searchOrderPerson,
-      searchStatus,
+      searchStaffId,
       time1,
       time2,
       caseClosedOptions,
