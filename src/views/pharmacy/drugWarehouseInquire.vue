@@ -126,6 +126,7 @@ export default {
     const global = inject("global");
     const searchDrugId = ref("");
     const searchDrugName = ref("");
+    const searchSci = ref("");
     headers = ref(headers);
     const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/med/medStock");
     const cleanFilter = () => {
@@ -134,18 +135,19 @@ export default {
     };
     const search = () => {
       let filters = {};
-      if (searchHospitalId.value) {
-        filters.medicineId = searchHospitalId.value;
+      if (searchDrugId.value) {
+        filters.medicineId = searchDrugId.value;
       }
       if (searchDrugName.value) {
         filters.name = searchDrugName.value;
       }
-      if (searchSci.value) {
-        filters.scientificName = searchSci.value;
-      }
       if (searchDrgMaker.value) {
         filters.vendorName = searchDrgMaker.value;
       }
+      // if (searchSci.value) {
+      //   filters.scientificName = searchSci.value;
+      // }
+
       filters = isEmpty(filters) ? "" : queryString.stringify(filters);
       state.listQuery.filter = filters;
       getList();
@@ -171,6 +173,7 @@ export default {
       twTime,
       cleanFilter,
       search,
+      searchSci,
     };
   },
   beforeUnmount() {
