@@ -114,10 +114,7 @@ export default {
       orderStatus.value = null;
       clearFilters();
     };
-    const cleanFilter = () => {
-      searchStaffId.value = searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
-      clearFilters();
-    };
+
     const search = () => {
       let filters = {};
       let s, e;
