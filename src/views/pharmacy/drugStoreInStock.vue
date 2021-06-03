@@ -49,10 +49,10 @@
       <div>{{ item.atcCode || "暫無資料" }}</div>
       <div>{{ item.newPrice || "暫無資料" }}</div>
       <div>{{ item.selfPrice || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
       <div>{{ item.effectiveDate?.split("T")[0] || "暫無資料" }}</div>
-      <div>{{ item.nhiCode || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
-      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div :title="item.vendorName">{{ item.vendorName || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>

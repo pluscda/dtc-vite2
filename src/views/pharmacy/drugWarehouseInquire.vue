@@ -47,16 +47,15 @@
       </div>
       <div><el-input placeholder="請輸入" v-model="item.upperLimit" @input="change(item)" min="0" type="number" /></div>
       <div><el-input placeholder="請輸入" v-model="item.lowerLimit" @input="change(item)" min="0" type="number" /></div>
-      <div>{{ item.nhiCode || "暫無資料" }}</div>
-      <div>{{ item.medicineId || "暫無資料" }}</div>
       <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
       <div :title="item.medEname">{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.scientificName || "暫無資料" }}</div>
       <div>{{ item.atcCode || "暫無資料" }}</div>
       <div>{{ item.newPrice || "暫無資料" }}</div>
       <div>{{ item.selfPrice || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
       <div>{{ item.effectiveDate?.split("T")[0] || "暫無資料" }}</div>
-
+      <div>{{ item.medicineId || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div>{{ item.id || "暫無資料" }}</div>
       <div :title="item.vendorName">{{ item.vendorName || "暫無資料" }}</div>
