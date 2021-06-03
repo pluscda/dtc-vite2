@@ -4,8 +4,8 @@
       <div>庫存查詢作業</div>
     </header>
     <nav class="ml-1 dtc-search-filters mt-4" style="margin-bottom: 1.5rem !important">
-      <DtxInputGroup prepend="藥品編號">
-        <el-input placeholder="搜尋藥品編號" v-model="searchDrugId" />
+      <DtxInputGroup prepend="院內代碼">
+        <el-input placeholder="搜尋院內代碼" v-model="searchDrugId" />
       </DtxInputGroup>
       <DtxInputGroup prepend="藥品名稱">
         <el-input placeholder="搜尋藥品名稱" v-model="searchDrugName" />
