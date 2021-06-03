@@ -114,6 +114,28 @@ export default {
       orderStatus.value = null;
       clearFilters();
     };
+    const cleanFilter = () => {
+      searchSci.value = searchHospitalId.value = searchDrugName.value = searchDrgMaker.value = "";
+      clearFilters();
+    };
+    const search = () => {
+      let filters = {};
+      if (searchHospitalId.value) {
+        filters.medicineId = searchHospitalId.value;
+      }
+      if (searchDrugName.value) {
+        filters.name = searchDrugName.value;
+      }
+      if (searchSci.value) {
+        filters.scientificName = searchSci.value;
+      }
+      if (searchDrgMaker.value) {
+        filters.vendorName = searchDrgMaker.value;
+      }
+      filters = isEmpty(filters) ? "" : queryString.stringify(filters);
+      state.listQuery.filter = filters;
+      getList();
+    };
     const search = () => {
       let filters = {};
       let s, e;
