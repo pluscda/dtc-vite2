@@ -1,7 +1,7 @@
 <template>
   <div id="dtc-login">
     <section class="login-panel">
-      <h3 class="text-2xl text-white mb-11">登入基本醫療服務</h3>
+      <h3 class="text-2xl text-white mb-11">登入陽明交通大學醫療服務</h3>
       <el-input placeholder="使用者信箱" v-model="name" class="">
         <template #prepend>
           <i-mdi:email></i-mdi:email>

@@ -1,7 +1,7 @@
 <template>
   <nav class="text-blue-200 bg-gradient-to-r from-blue-900 to-blue-700 dtc-nav-bar">
     <span> <i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group></span>
-    <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">基本醫療服務</div>
+    <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">陽明交通大學醫療服務</div>
     <section class="flex items-center gap-8 -mt-3 cursor-pointer">
       <div @click="$router.push('/home')">門診</div>
       <el-dropdown class="" :show-timeout="1">
@@ -104,6 +104,6 @@ tryOnMounted(() => {
   padding: 0 1rem;
   line-height: 70px;
   font-size: 1rem;
-  grid-template-columns: max-content 160px 1fr max-content max-content;
+  grid-template-columns: max-content 270px 1fr max-content max-content;
 }
 </style>
