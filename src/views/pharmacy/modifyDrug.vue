@@ -129,7 +129,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="藥品規格" labelWidth="120">
-        <el-input v-model="his.chDrgStandard" placeholder="請輸入藥品規格" />
+        <el-input v-model="his.standardDesc" placeholder="請輸入藥品規格" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="保存期限" labelWidth="120">
