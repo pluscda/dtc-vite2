@@ -48,13 +48,14 @@
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.vendorName || "暫無資料" }}</div>
       <div>{{ item.currentStock || "暫無資料" }}</div>
-      <div><el-input v-model="item.quantity" type="number" placeholder="請輸入" @change="update(item)" /></div>
+      <div><el-input v-model="item.quantity" type="number" min="1" placeholder="請輸入" @change="update(item)" /></div>
+      <div><el-input v-model="item.shippingAmount" type="number" min="1" placeholder="請輸入" @change="update(item)" /></div>
       <div>
         <el-select filterable v-model="item.closed" @change="update(item)" placeholder="未到貨" class="border-l-0">
           <el-option v-for="item in caseClosedOptions" :key="item.text" :label="item.text" :value="item.value"> </el-option>
         </el-select>
       </div>
-      <div><el-input v-model="item.orderNote" @change="update(item)" placeholder="請輸入採購單備註" /></div>
+      <div><el-input v-model="item.note" @change="update(item)" placeholder="請輸入採購單備註" /></div>
     </main>
     <footer class="mt-10">
       <Button label="返回採購單管理" @click="$router.go(-1)" :disabled="disableBtn" />
@@ -82,8 +83,9 @@ let headers = [
   { name: "藥商名稱", key: "vendorName", sortDesc: null },
   { name: "現有存量", key: "currentStock", sortDesc: null },
   { name: "採購數量", key: "quantity", sortDesc: null },
+  { name: "到貨數量", key: "shippingAmount", sortDesc: null },
   { name: "是否到貨", key: "isClosed", sortDesc: null },
-  { name: "備註", key: "orderNote", sortDesc: null },
+  { name: "備註", key: "note", sortDesc: null },
 ];
 
 export default {
@@ -175,7 +177,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(8, 120px) 1fr;
+  grid-template-columns: 60px repeat(9, 120px) 1fr;
 }
 .management {
   position: relative;

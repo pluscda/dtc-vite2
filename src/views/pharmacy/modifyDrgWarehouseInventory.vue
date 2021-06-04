@@ -49,7 +49,7 @@
       <div>{{ item.medicationUnitName || "暫無資料" }}</div>
       <div>{{ item.inventory || "暫無資料" }}</div>
       <div>
-        <el-input placeholder="數量" v-model="item.amount" clearable @change="update(item)"> </el-input>
+        <el-input placeholder="數量" v-model="item.amount" @change="update(item)"> </el-input>
       </div>
       <div>
         <el-input placeholder="備註內容" v-model="item.note" clearable @change="update(item)"> </el-input>
@@ -100,6 +100,7 @@ export default {
 
   methods: {
     async update(item) {
+      if (!item.amount) return;
       try {
         await this.actions.updateDrgInventoryItem(item);
         ElMessage.success("修改成功: " + item.medicineId);

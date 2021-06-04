@@ -40,8 +40,9 @@
       :key="i"
       :style="i % 2 == 0 ? 'background-color: #F5F5F5;' : 'background-color: #E0E0E0;'"
     >
-      <div><el-input placeholder="請輸入" v-model="item.upperLimit" @input="change(item)" min="0" type="number" /></div>
-      <div><el-input placeholder="請輸入" v-model="item.lowerLimit" @input="change(item)" min="0" type="number" /></div>
+      <div>{{ item.pharmacyName || "暫無資料" }}</div>
+      <div><el-input placeholder="請輸入" v-model="item.upperLimit" @input="update(item)" min="0" type="number" /></div>
+      <div><el-input placeholder="請輸入" v-model="item.lowerLimit" @input="update(item)" min="0" type="number" /></div>
 
       <div :title="item.medCname">{{ item.medCname || "暫無資料" }}</div>
       <div :title="item.medEname">{{ item.medEname || "暫無資料" }}</div>
@@ -70,6 +71,7 @@ import { useList } from "/@/hooks/useHis.js";
 import { pharmacyTab$ } from "/@/store";
 
 let headers = [
+  { name: "藥房名稱", key: "pharmacyName", sortDesc: null },
   { name: "庫存上限", key: "upperLimit", sortDesc: null },
   { name: "庫存下限", key: "lowerLimit", sortDesc: null },
   { name: "中文藥名", key: "medCname", sortDesc: null },
@@ -89,9 +91,19 @@ let headers = [
 ];
 
 export default {
-  name: "inquerylist",
+  name: "inquerylistpharmacyName",
   components: {
     Pagination,
+  },
+  methods: {
+    async update(item) {
+      try {
+        await this.actions.editDrgStock2(item);
+        ElMessage.success("編輯成功: " + item.nhiCode);
+      } catch (e) {
+        ElMessage.error("編輯 fail");
+      }
+    },
   },
   setup() {
     const global = inject("global");
@@ -123,10 +135,9 @@ export default {
 
 <style lang="scss" scoped>
 .dtc-template-columns {
-  width: calc(120px * 16) !important;
-  max-width: calc(120px * 16) !important;
-  // grid-template-columns: 100px repeat(15, minmax(90px, 1fr));
-  grid-template-columns: repeat(16, 120px);
+  width: calc(120px * 16 + 180px) !important;
+  max-width: calc(120px * 16 + 180px) !important;
+  grid-template-columns: 180px repeat(16, 120px);
 }
 #app .management {
   position: relative;
