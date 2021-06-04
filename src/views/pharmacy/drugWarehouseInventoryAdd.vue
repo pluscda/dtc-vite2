@@ -8,6 +8,9 @@
         <DtxInputGroup prepend="盤庫日期" labelWidth="100">
           <Calendar class="h-10 w-full" v-model="his.inventoryDate" placeholder="請輸入盤庫日期" :showIcon="true" dateFormat="yy-mm-dd" />
         </DtxInputGroup>
+        <DtxInputGroup prepend="採購人員" labelWidth="100">
+          <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
+        </DtxInputGroup>
         <DtxInputGroup prepend="庫存數量" labelWidth="100">
           <InputNumber class="w-full" v-model="his.amount" placeholder="請輸入庫存數量"></InputNumber>
         </DtxInputGroup>
@@ -164,8 +167,9 @@ export default {
             quantity: +s.quantity,
           },
           {
+            staffId: s.staffId,
             amount: s.amount,
-            inventoryDat: dayjs(s.inventoryDat).format("YYYY-MM-DD") + "T00:00:00.000Z",
+            inventoryDate: dayjs(s.inventoryDat).format("YYYY-MM-DD") + "T00:00:00.000Z",
           }
         )
       );
