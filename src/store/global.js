@@ -217,7 +217,6 @@ export const actions = {
     const t2 =  axios.get(`/med/searchUsualMed?limit=10&startWith=0&name=${name}`);
     const [r1, r2] = await Promise.all([t1, t2]);
     const total = r1?.length ? r1.concat(r2) : r2;
-    //name = name.toLowerCase();
     total?.forEach( s => {
       s.display = `${s.cname}(${s.ename})`;
     })
