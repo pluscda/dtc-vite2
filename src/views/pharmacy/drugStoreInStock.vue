@@ -95,6 +95,7 @@ export default {
   components: {
     Pagination,
   },
+  inject: ["global", "actions"],
   methods: {
     async update(item) {
       try {
