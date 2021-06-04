@@ -203,11 +203,11 @@ export default {
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.confirm)).subscribe(() => (this.loading = false));
     subscribe2 = this.med$
       .pipe(
-        distinctUntilChanged((pre, cur) => {
-          const eq = !!(pre.query === cur.query);
-          if (eq) this.meds = [];
-          return eq;
-        }),
+        // distinctUntilChanged((pre, cur) => {
+        //   const eq = !!(pre.query === cur.query);
+        //   if (eq) this.meds = [];
+        //   return eq;
+        // }),
         switchMap(this.getMedIdList),
         catchError((s) => of(""))
       )
