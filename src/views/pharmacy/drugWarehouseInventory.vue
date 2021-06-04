@@ -134,7 +134,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px repeat(14, minmax(90px, 1fr));
-  grid-template-columns: 110px repeat(3, 150px) 1fr;
+  grid-template-columns: 80px repeat(3, 150px) 1fr;
 }
 .management {
   position: relative;
