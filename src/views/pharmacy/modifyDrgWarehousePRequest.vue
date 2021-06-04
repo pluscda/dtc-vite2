@@ -49,8 +49,8 @@
       <div>{{ item.medCname || "暫無資料" }}</div>
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
-      <div>{{ item.isClosed ? "已結案" : "未結案" }}</div>
-      <div><el-input v-model="item.quantity" type="number" placeholder="請輸入" @change="update(item)" /></div>
+      <div><el-input v-model="item.quantity" min="1" type="number" placeholder="請輸入" @change="update(item)" /></div>
+      <div><el-input v-model="item.shippingAmount" min="1" type="number" placeholder="請輸入" @change="update(item)" /></div>
     </main>
     <footer class="mt-10">
       <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" :disabled="disableBtn" />
@@ -96,7 +96,7 @@ export default {
         ElMessage.success("編輯申請單明細成功: " + item.nhiCode);
         this.disableBtn = false;
       } catch (e) {
-        ElMessage.error("編輯申請單明");
+        ElMessage.error("編輯申請單明 fail");
         this.disableBtn = false;
       }
     },
