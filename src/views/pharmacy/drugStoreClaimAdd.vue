@@ -160,6 +160,7 @@ export default {
       const items = this.items.map((s) =>
         Object.assign(
           {
+            pharmacyId: this.actions.getRandomId(),
             pharmacyOrderId: s.pharmacyOrderId,
             medicineId: s.medicineId,
             quantity: +s.quantity,
