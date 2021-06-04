@@ -104,7 +104,7 @@ export default {
         await this.actions.updateDrgInventoryItem(item);
         ElMessage.success("修改成功: " + item.medicineId);
       } catch (e) {
-        ElMessage.error("修改成功");
+        ElMessage.error("修改失敗: " + item.medicineId);
       }
     },
   },
