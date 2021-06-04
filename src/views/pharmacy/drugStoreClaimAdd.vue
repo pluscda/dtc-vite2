@@ -72,7 +72,7 @@
           </header>
           <li>健保代碼: {{ item.nhiCode }}</li>
           <li>院內代碼: {{ item.medicineId }}</li>
-          <li>申請藥房: {{ item.staffId }}</li>
+          <li>申請藥房: {{ item.vendorName }}</li>
           <li>中文藥名: {{ item.cname }}</li>
           <li>英文藥名: {{ item.ename }}</li>
           <li>藥品單位: {{ item.medicationUnitName }}</li>
@@ -160,7 +160,7 @@ export default {
       const items = this.items.map((s) =>
         Object.assign(
           {
-            pharmacyId: this.actions.getRandomId(),
+            pharmacyId: s.vendorName,
             pharmacyOrderId: s.pharmacyOrderId,
             medicineId: s.medicineId,
             quantity: +s.quantity,
