@@ -12,7 +12,7 @@
           <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
         </DtxInputGroup>
         <DtxInputGroup prepend="庫存數量" labelWidth="100">
-          <InputNumber class="w-full" v-model="his.amount" placeholder="請輸入庫存數量"></InputNumber>
+          <InputNumber class="w-full" v-model="his.quantity" placeholder="請輸入庫存數量"></InputNumber>
         </DtxInputGroup>
         <DtxInputGroup prepend="盤點數量" labelWidth="100">
           <InputNumber class="w-full" v-model="his.inventory" placeholder="請輸入盤點數量"></InputNumber>
@@ -138,7 +138,7 @@ export default {
       if (!this.his.staffId) this.his.staffId = "Adam";
     },
     async getMedIdList(event) {
-      if (event?.query?.length > 1) {
+      if (event?.query?.length) {
         const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
         this.medIds = ret.map((s) => s.seq);
       } else {
@@ -165,6 +165,7 @@ export default {
           {
             medicineId: s.medicineId,
             quantity: +s.quantity,
+            inventory: +s.inventory,
           },
           {
             staffId: s.staffId,
