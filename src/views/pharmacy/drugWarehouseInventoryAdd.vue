@@ -79,7 +79,7 @@
           <li>藥商名稱: {{ item.vendorName }}</li>
           <li class="flex space-x-2 transform">
             <div>盤點數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.amount" placeholder="請輸入藥庫盤點數量" />
+            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.inventory" placeholder="請輸入藥庫盤點數量" />
           </li>
         </nav>
       </div>
