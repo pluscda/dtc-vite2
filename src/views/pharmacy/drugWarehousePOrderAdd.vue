@@ -11,9 +11,6 @@
         <DtxInputGroup prepend="採購單號" labelWidth="100">
           <el-input v-model="his.orderId" :readonly="items.length" placeholder="請輸入採購單號" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="採購人員" labelWidth="100">
-          <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
-        </DtxInputGroup>
         <DtxInputGroup prepend="藥品名稱" labelWidth="100">
           <AutoComplete
             class="inline-block border-transparent transform"
@@ -27,7 +24,9 @@
             @item-select="selectedMedId()"
           />
         </DtxInputGroup>
-
+        <DtxInputGroup prepend="採購人員" labelWidth="100">
+          <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
+        </DtxInputGroup>
         <DtxInputGroup prepend="採購數量" labelWidth="100">
           <InputNumber v-model="his.quantity" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
