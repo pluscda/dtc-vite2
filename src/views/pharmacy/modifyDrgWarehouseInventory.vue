@@ -42,18 +42,18 @@
         {{ k + 1 }}
       </div>
 
-      <div>{{ item.chDrgHisId || "暫無資料" }}</div>
-      <div>{{ item.chDrgHospitalId || "暫無資料" }}</div>
-      <div>{{ item.chDrgCnName || "暫無資料" }}</div>
-      <div>{{ item.chDrgEnName || "暫無資料" }}</div>
-      <div>{{ item.intDrugApplyNum || "暫無資料" }}</div>
+      <div>{{ item.nhiCode || "暫無資料" }}</div>
+      <div>{{ item.medicineId || "暫無資料" }}</div>
+      <div>{{ item.cname || "暫無資料" }}</div>
+      <div>{{ item.ename || "暫無資料" }}</div>
+      <div>{{ item.medicationUnitName || "暫無資料" }}</div>
 
-      <div>{{ item.chDrgMakerName || "暫無資料" }}</div>
+      <div>{{ item.inventory || "暫無資料" }}</div>
       <div>
-        <el-input placeholder="數量" v-model="item.chDrgNumber" clearable> </el-input>
+        <el-input placeholder="數量" v-model="item.amount" clearable> </el-input>
       </div>
       <div>
-        <el-input placeholder="備註內容" v-model="item.chDrgRemark" clearable> </el-input>
+        <el-input placeholder="備註內容" v-model="item.note" clearable> </el-input>
       </div>
     </main>
 
@@ -75,14 +75,14 @@ import { useRouter } from "vue-router";
 
 //身分證號
 let headers = [
-  { name: "健保代碼", key: "chDrgHisId", sortDesc: null },
-  { name: "院內代碼", key: "chDrgHospitalId", sortDesc: null },
-  { name: "中文藥名", key: "chDrgCnName", sortDesc: null },
-  { name: "英文藥名", key: "chDrgEnName", sortDesc: null },
-  { name: "用藥單位", key: "intDrugApplyNum", sortDesc: null },
-  { name: "庫存數量", key: "chDrgMakerName", sortDesc: null },
-  { name: "盤點數量", key: "unknow", sortDesc: null },
-  { name: "備註", key: "unknow", sortDesc: null },
+  { name: "健保代碼", key: "nhiCode", sortDesc: null },
+  { name: "院內代碼", key: "medicineId", sortDesc: null },
+  { name: "中文藥名", key: "cname", sortDesc: null },
+  { name: "英文藥名", key: "ename", sortDesc: null },
+  { name: "用藥單位", key: "medicationUnitName", sortDesc: null },
+  { name: "庫存數量", key: "inventory", sortDesc: null },
+  { name: "盤點數量", key: "currentStock", sortDesc: null },
+  { name: "備註", key: "note", sortDesc: null },
   //
 ];
 
