@@ -47,7 +47,6 @@
       <div>{{ item.cname || "暫無資料" }}</div>
       <div>{{ item.ename || "暫無資料" }}</div>
       <div>{{ item.medicationUnitName || "暫無資料" }}</div>
-
       <div>{{ item.inventory || "暫無資料" }}</div>
       <div>
         <el-input placeholder="數量" v-model="item.amount" clearable> </el-input>
@@ -175,7 +174,7 @@ export default {
   width: calc(100vw - 162px) !important;
   max-width: calc(100vw - 162px) !important;
   // grid-template-columns: 100px 120px 150px repeat(9, minmax(90px, 1fr));
-  grid-template-columns: 60px repeat(5, 200px) 1fr 120px 180px;
+  grid-template-columns: 60px repeat(7, 120px) 1fr;
 }
 .management {
   position: relative;
