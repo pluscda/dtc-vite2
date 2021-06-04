@@ -48,9 +48,8 @@
       <div>{{ item.ename || "暫無資料" }}</div>
       <div>{{ item.medicationUnitName || "暫無資料" }}</div>
       <div>{{ item.inventory || "暫無資料" }}</div>
-      <div>
-        <el-input placeholder="數量" v-model="item.amount" @change="update(item)"> </el-input>
-      </div>
+      <div>{{ item.amount || "暫無資料" }}</div>
+
       <div>
         <el-input placeholder="備註內容" v-model="item.note" clearable @change="update(item)"> </el-input>
       </div>
