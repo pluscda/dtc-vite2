@@ -49,8 +49,8 @@
       <div>{{ item.medCname || "暫無資料" }}</div>
       <div>{{ item.medEname || "暫無資料" }}</div>
       <div>{{ item.medicineId || "暫無資料" }}</div>
-      <div><el-input v-model="item.quantity" min="1" type="number" placeholder="請輸入" @change="update(item)" /></div>
-      <div><el-input v-model="item.shippingAmount" min="1" type="number" placeholder="請輸入" @change="update(item)" /></div>
+      <div><el-input v-model="item.quantity" min="1" type="number" placeholder="請輸入申請狀態" @change="update(item)" /></div>
+      <div><el-input v-model="item.shippingAmount" min="1" type="number" placeholder="請輸入申請數量" @change="update(item)" /></div>
     </main>
     <footer class="mt-10">
       <Button label="返回藥品申領管理" class="" @click="$router.go(-1)" :disabled="disableBtn" />
@@ -72,8 +72,8 @@ let headers = [
   { name: "中文藥名", key: "medCname", sortDesc: null },
   { name: "英文藥名", key: "medEname", sortDesc: null },
   { name: "院內代碼", key: "medicineId", sortDesc: null },
-  { name: "申請狀態", key: "isClosed", sortDesc: null },
-  { name: "申請數量", key: "quantity", sortDesc: null },
+  { name: "申請狀態", key: "quantity", sortDesc: null },
+  { name: "申請數量", key: "shippingAmount", sortDesc: null },
 ];
 
 export default {
@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     async update(item) {
+      if (!item.quantity || !item.shippingAmount) return;
       this.disableBtn = true;
       try {
         await this.actions.editPharmacyOrder(item);
