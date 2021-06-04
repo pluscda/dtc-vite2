@@ -14,12 +14,12 @@
         <DtxInputGroup prepend="採購人員" labelWidth="100">
           <el-input v-model="his.staffId" placeholder="請輸入採購人員" />
         </DtxInputGroup>
-        <DtxInputGroup prepend="院內代碼" labelWidth="100">
+        <DtxInputGroup prepend="藥品名稱" labelWidth="100">
           <AutoComplete
             class="inline-block border-transparent transform"
             style="width: clamp(100%, 100%, 100%)"
-            placeholder="請輸入院內代碼"
-            v-model="his.medicinedId"
+            placeholder="搜尋中/英文藥品名稱"
+            v-model="his.name"
             :delay="300"
             :spellcheck="false"
             :suggestions="medIds"
@@ -27,26 +27,27 @@
             @item-select="selectedMedId()"
           />
         </DtxInputGroup>
+
         <DtxInputGroup prepend="採購數量" labelWidth="100">
           <InputNumber v-model="his.quantity" placeholder="請輸入藥品採購數量" class="w-full" />
           <!-- <el-input v-model="his.intDrugApplyNum" placeholder="請輸入藥品採購數量" /> -->
         </DtxInputGroup>
-        <DtxInputGroup prepend="健保代碼" labelWidth="100" v-if="his.nhiCode">
-          <el-input v-model="his.nhiCode" readonly />
+        <DtxInputGroup prepend="院內代碼" labelWidth="100" v-if="his.medicineId">
+          <el-input v-model="his.medicineId" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="中文藥名" labelWidth="100" v-if="his.nhiCode">
+        <DtxInputGroup prepend="中文藥名" labelWidth="100" v-if="his.medicineId">
           <el-input v-model="his.cname" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="英文藥名" labelWidth="100" v-if="his.nhiCode">
+        <DtxInputGroup prepend="英文藥名" labelWidth="100" v-if="his.medicineId">
           <el-input v-model="his.ename" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品劑型" labelWidth="100" v-if="his.nhiCode">
-          <el-input v-model="his.dosageFormCode" readonly />
+        <DtxInputGroup prepend="藥品學名" labelWidth="100" v-if="his.medicineId">
+          <el-input v-model="his.scientificName" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.nhiCode">
+        <DtxInputGroup prepend="藥品單位" labelWidth="100" v-if="his.medicineId" hidden>
           <el-input v-model="his.medicationUnitName" readonly />
         </DtxInputGroup>
-        <DtxInputGroup prepend="藥商名稱" labelWidth="100" v-if="his.nhiCode">
+        <DtxInputGroup prepend="藥商名稱" labelWidth="100" v-if="his.medicineId" hidden>
           <el-input v-model="his.vendorName" readonly />
         </DtxInputGroup>
       </main>
@@ -69,17 +70,17 @@
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
           <li>採購人員: {{ item.staffId }}</li>
-          <li>院內代碼: {{ item.medicinedId }}</li>
-          <li>健保代碼: {{ item.nhiCode }}</li>
+          <li>院內代碼: {{ item.medicineId }}</li>
+          <li hidden>健保代碼: {{ item.nhiCode }}</li>
           <li class="flex space-x-2 transform translate-y-2">
             <div>採購數量:</div>
-            <InputNumber style="width: 150px" class="transform -translate-y-2" v-model="item.quantity" placeholder="請輸入採購數量" />
+            <InputNumber style="width: 60px; max-height: 30px" class="transform -translate-y-1" v-model="item.quantity" placeholder="請輸入採購數量" />
           </li>
           <li class="flex space-x-2 transform translate-y-2">中文藥名: {{ item.cname }}</li>
           <li class="flex space-x-2 transform translate-y-2">英文藥名: {{ item.ename }}</li>
-          <li>藥品劑型: {{ item.dosageFormCode }}</li>
-          <li>藥品單位: {{ item.medicationUnitName }}</li>
-          <li>藥商名稱: {{ item.vendorName }}</li>
+          <li class="flex space-x-2 transform translate-y-2">藥品學名: {{ item.scientificName || "暫無資料" }}</li>
+          <li hidden>藥品單位: {{ item.medicationUnitName }}</li>
+          <li hidden>藥商名稱: {{ item.vendorName }}</li>
         </nav>
       </div>
       <div style="flex: 1" class="!bg-gray-900 rounded-md overflow-y-auto text-2xl dtc-text grid place-items-center h-full" v-else>
@@ -110,12 +111,12 @@ export default {
       loading: false,
       items: [],
       medIds: [],
+      top20s: [],
     };
   },
   computed: {
     enabledSave() {
-      const keys = ["orderDate", "orderId", "medicinedId", "quantity", "staffId"];
-      return keys.every((s) => this.his[s]);
+      return !!this.his.medicineId;
     },
     totalAdded() {
       let str = "";
@@ -128,19 +129,20 @@ export default {
   methods: {
     async selectedMedId() {
       this.meds = [];
-      const obj = await this.actions.getDrgDetail(this.his.medicinedId);
+      const obj = this.top20s.find((s) => s.display === this.his.name);
+      this.his.medicineId = obj.medicineId;
       this.his.cname = obj.cname;
       this.his.ename = obj.ename;
-      this.his.medicationUnitName = obj.medicationUnitName;
-      this.his.dosageFormCode = obj.dosageFormCode;
-      this.his.nhiCode = obj.nhiCode;
+      this.his.scientificName = obj.scientificName;
       this.his.quantity = 13;
       if (!this.his.staffId) this.his.staffId = "Adam";
     },
-    async getMedIdList(event) {
+    async getDrgNameList(event) {
       if (event?.query?.length) {
-        const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
-        this.medIds = ret.map((s) => s.seq);
+        const ret = await this.actions.getTop20DrgName(event.query);
+        this.top20s = ret?.length ? [...ret] : [];
+        const mySet = new Set(ret.map((s) => s.display));
+        this.medIds = [...mySet];
       } else {
         this.medIds = [];
         this.meds = [];
@@ -182,9 +184,9 @@ export default {
       this.items.splice(idx, 1);
     },
     addItem() {
-      //this.his.medicinedId = this.his.medicinedId.seq;
+      //this.his.medicineId = this.his.medicineId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
+      const keys = ["quantity", "medicineId", "name", "cname", "ename", "scientificName", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
@@ -210,7 +212,7 @@ export default {
           if (eq) this.meds = [];
           return eq;
         }),
-        switchMap(this.getMedIdList),
+        switchMap(this.getDrgNameList),
         catchError((s) => of(""))
       )
       .subscribe();
