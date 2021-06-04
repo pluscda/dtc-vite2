@@ -221,11 +221,6 @@ export const actions = {
     total?.forEach( s => {
       s.display = `${s.cname}(${s.ename})`;
     })
-    // if(total[0]?.cname.toLowerCase().includes(name)){
-    //   total.forEach(s => s.display = s.cname) ;
-    // }else{
-    //   total?.forEach(s => s.display = s.ename) ;
-    // }
     return total?.slice(0,20) || [];
   },
   async getDrgDetail(id){
