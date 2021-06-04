@@ -163,6 +163,7 @@ export default {
       const items = this.items.map((s) =>
         Object.assign(
           {
+            inventoryId: this.actions.getRandomId(),
             medicineId: s.medicineId,
             quantity: +s.quantity,
             inventory: +s.inventory,
@@ -186,7 +187,7 @@ export default {
       keys.forEach((s) => {
         this.his[s] = null;
       });
-      this.his.inventoryDat = dayjs().format("YYYY-MM-DD");
+      this.his.inventoryDate = dayjs().format("YYYY-MM-DD");
     },
   },
   mounted() {
