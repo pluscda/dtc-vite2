@@ -226,6 +226,9 @@ export const actions = {
      const {entry} = await axios.get(`/med/usualMed?medicineId=` + id);
      return entry && entry.length  ? entry[0] : "";
   },
+  async updateDrgInventoryItem(item){
+    return await axios.put("/med/medInventoryItems", item)
+  }
 
 };
 

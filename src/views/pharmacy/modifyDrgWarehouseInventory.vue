@@ -49,10 +49,10 @@
       <div>{{ item.medicationUnitName || "暫無資料" }}</div>
       <div>{{ item.inventory || "暫無資料" }}</div>
       <div>
-        <el-input placeholder="數量" v-model="item.amount" clearable> </el-input>
+        <el-input placeholder="數量" v-model="item.amount" clearable @change="update(item)"> </el-input>
       </div>
       <div>
-        <el-input placeholder="備註內容" v-model="item.note" clearable> </el-input>
+        <el-input placeholder="備註內容" v-model="item.note" clearable @change="update(item)"> </el-input>
       </div>
     </main>
 
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { ElMessage } from "element-plus";
 import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
 import { clone } from "ramda";
@@ -97,6 +98,16 @@ export default {
     };
   },
 
+  methods: {
+    async update(item) {
+      try {
+        await this.actions.updateDrgInventoryItem(item);
+        ElMessage.success("修改成功: " + item.medicineId);
+      } catch (e) {
+        ElMessage.error("修改成功");
+      }
+    },
+  },
   setup() {
     const global = inject("global");
     const router = useRouter();
