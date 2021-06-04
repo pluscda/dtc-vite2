@@ -138,7 +138,7 @@ export default {
       if (!this.his.staffId) this.his.staffId = "Adam";
     },
     async getMedIdList(event) {
-      if (event?.query?.length > 1) {
+      if (event?.query?.length) {
         const ret = await this.actions.getTop20MedIds(event.query, "UsualMed");
         this.medIds = ret.map((s) => s.seq);
       } else {

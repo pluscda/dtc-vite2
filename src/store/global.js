@@ -212,6 +212,13 @@ export const actions = {
   async getTop20MedIds(id, table = 'UsualMed'){
     return await axios.get(`/med/querySeq?table=${table}&limit=20&startWith=1&seqId=${id}`);
   },
+  async getTop20DrgName(name){
+    const t1 =  axios.get(`/med/searchUsualMed?limit=20&startWith=1&name=${name}`);
+    const t2 =  axios.get(`/med/searchUsualMed?limit=20&startWith=0&name=${name}`);
+    const [r1, r2] = await Promise.all([t1, t2]);
+    const total = r1?.length ? r1.concat(r2) : r2;
+    return total?.slice(0,20) || [];
+  },
   async getDrgDetail(id){
      const {entry} = await axios.get(`/med/usualMed?medicineId=` + id);
      return entry && entry.length  ? entry[0] : "";
