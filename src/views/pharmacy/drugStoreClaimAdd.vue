@@ -188,9 +188,9 @@ export default {
       this.items.splice(idx, 1);
     },
     addItem() {
-      //this.his.medicinedId = this.his.medicinedId.seq;
+      //this.his.medicineId = this.his.medicineId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
+      const keys = ["quantity", "medicineId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });

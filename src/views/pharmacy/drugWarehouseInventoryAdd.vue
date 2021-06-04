@@ -22,7 +22,7 @@
             class="inline-block border-transparent transform"
             style="width: clamp(100%, 100%, 100%)"
             placeholder="請輸入院內代碼"
-            v-model="his.medicinedId"
+            v-model="his.medicineId"
             :delay="300"
             :spellcheck="false"
             :suggestions="medIds"
@@ -69,7 +69,7 @@
             <div></div>
             <Button class="p-button-danger self-end" @click="removeItem(i)">移除</Button>
           </header>
-          <li>院內代碼: {{ item.medicinedId }}</li>
+          <li>院內代碼: {{ item.medicineId }}</li>
           <li>盤庫日期: {{ item.inventoryDate }}</li>
 
           <li class="flex space-x-2 transform">中文藥名: {{ item.cname }}</li>
@@ -115,7 +115,7 @@ export default {
   },
   computed: {
     enabledSave() {
-      // const keys = ["inventoryDate", "inventory", "medicinedId", "amount"];
+      // const keys = ["inventoryDate", "inventory", "medicineId", "amount"];
       return this.his.nhiCode ? true : false;
     },
     totalAdded() {
@@ -129,7 +129,7 @@ export default {
   methods: {
     async selectedMedId() {
       this.meds = [];
-      const obj = await this.actions.getDrgDetail(this.his.medicinedId);
+      const obj = await this.actions.getDrgDetail(this.his.medicineId);
       this.his.cname = obj.cname;
       this.his.ename = obj.ename;
       this.his.medicationUnitName = obj.medicationUnitName;
@@ -181,9 +181,9 @@ export default {
       this.items.splice(idx, 1);
     },
     addItem() {
-      //this.his.medicinedId = this.his.medicinedId.seq;
+      //this.his.medicineId = this.his.medicineId.seq;
       this.items.unshift(clone(this.his));
-      const keys = ["quantity", "medicinedId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
+      const keys = ["quantity", "medicineId", "nhiCode", "cname", "ename", "dosageFormCode", "medicationUnitName", "vendorName"];
       keys.forEach((s) => {
         this.his[s] = null;
       });
