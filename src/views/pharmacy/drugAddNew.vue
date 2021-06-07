@@ -172,7 +172,7 @@
         <el-input type="textarea" autosize v-model="his.warning" placeholder="請輸入警語" />
       </DtxInputGroup>
       <DtxInputGroup prepend="用法與用量" labelWidth="144">
-        <el-input type="textarea" autosize v-model="his.dosage" placeholder="請輸入用法與用量" />
+        <el-input type="textarea" autosize v-model="his.dosageForm" placeholder="請輸入用法與用量" />
       </DtxInputGroup>
       <DtxInputGroup prepend="使用禁忌" labelWidth="144">
         <el-input type="textarea" autosize v-model="his.contraindication" placeholder="請輸入使用禁忌" />
@@ -240,8 +240,8 @@ export default {
       this.meds = [];
       const obj = this.top20s.find((s) => s.display === this.his.name);
       this.his = { ...this.his, ...obj };
-      this.his.dosage = this.his.standardDesc = +obj.standardUnit + +obj.standardQuantify;
-      //this.his.standardQuantify = obj.standardQuantify;
+      this.his.standardDesc = +obj.standardUnit + +obj.standardQuantify;
+      this.his.dosageForm = obj.dosageForm;
       this.his.originPrice = obj.refPrice;
       this.his.effectiveDate = obj.effectiveStartDate;
       this.his.expiredDate = obj.effectiveEndDate;
