@@ -5,7 +5,7 @@
       <DtxInputGroup prepend="健保藥品名稱" labelWidth="120" class="transform -translate-y-7">
         <AutoComplete
           class="inline-block transform border-transparent"
-          style="width: clamp(220px, 100%, 100%)"
+          style="width: clamp(620px, 100%, 100%)"
           placeholder="搜尋健保藥品名稱"
           v-model="his.name"
           :delay="300"
@@ -240,16 +240,7 @@ export default {
       this.meds = [];
       const obj = this.top20s.find((s) => s.display === this.his.name);
       this.his = { ...obj };
-
-      // const obj2 = Object.assign({}, ...this.his, ...obj);
-      // alert(JSON.stringify(obj2));
-      // //this.his = { ...obj2 };
-      // // this.his.medicineId = obj.medicineId;
-      // // this.his.cname = obj.cname;
-      // // this.his.ename = obj.ename;
-      // // this.his.scientificName = obj.scientificName;
-      // // this.his.quantity = 13;
-      // //if (!this.his.staffId) this.his.staffId = 'Adam';
+      this.his.dosageFormCode = this.ddl.doges?.find((s) => s.dosageFormName == obj.dosageForm)?.dosageFormCode;
     },
     async getDrgNameList(event) {
       if (event?.query?.length) {
