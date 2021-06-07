@@ -240,6 +240,8 @@ export default {
       this.meds = [];
       const obj = this.top20s.find((s) => s.display === this.his.name);
       this.his = { ...obj };
+      this.his.effectiveDate = obj.effectiveStartDate;
+      this.his.effectiveEndDate = obj.effectiveEndDate;
       this.his.dosageFormCode = this.ddl.doges?.find((s) => s.dosageFormName == obj.dosageForm)?.dosageFormCode;
     },
     async getDrgNameList(event) {
