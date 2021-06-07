@@ -240,8 +240,8 @@ export default {
       this.meds = [];
       const obj = this.top20s.find((s) => s.display === this.his.name);
       this.his = { ...this.his, ...obj };
-      this.his.standardDesc = obj.standardUnit;
-      this.his.standardQuantify = obj.standardQuantify;
+      this.his.dosage = this.his.standardDesc = +obj.standardUnit + +obj.standardQuantify;
+      //this.his.standardQuantify = obj.standardQuantify;
       this.his.originPrice = obj.refPrice;
       this.his.effectiveDate = obj.effectiveStartDate;
       this.his.expiredDate = obj.effectiveEndDate;
