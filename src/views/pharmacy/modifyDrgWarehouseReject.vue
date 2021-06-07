@@ -47,7 +47,7 @@
       <div>{{ item.medCname || '暫無資料' }}</div>
       <div>{{ item.medEname || '暫無資料' }}</div>
       <div>{{ item.medicineId || '暫無資料' }}</div>
-      <div>{{ item.shippingAmount ? '已結案' : '未結案' }}</div>
+      <div><el-input v-model="item.shippingAmount" type="number" placeholder="請輸入" @change="update(item)" /></div>
       <div><el-input v-model="item.quantity" type="number" placeholder="請輸入" @change="update(item)" /></div>
     </main>
     <footer class="mt-10">
@@ -71,7 +71,7 @@ let headers = [
   { name: '中文藥名', key: 'medCname', sortDesc: null },
   { name: '英文藥名', key: 'medEname', sortDesc: null },
   { name: '院內代碼', key: 'medicineId', sortDesc: null },
-  { name: '完成數量]', key: 'shippingAmount', sortDesc: null },
+  { name: '完成數量', key: 'shippingAmount', sortDesc: null },
   { name: '退庫數量', key: 'quantity', sortDesc: null },
 ];
 
