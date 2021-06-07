@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="grid h-40 text-white py-9 dtc-page-header dtc-page-header-grid button-2">
+    <header class="relative grid h-40 text-white py-9 dtc-page-header dtc-page-header-grid2 button-2">
       <div class="transform -translate-y-4">新增藥品資料/藥理資料</div>
       <DtxInputGroup prepend="健保藥品名稱" labelWidth="120" class="transform -translate-y-7">
         <AutoComplete
@@ -15,8 +15,8 @@
           @item-select="selectedMedId()"
         />
       </DtxInputGroup>
-
-      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="transform -translate-y-4 p-button-info" />
+      <div></div>
+      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="!mr-2 transform -translate-y-7 p-button-info" />
     </header>
 
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
@@ -241,6 +241,7 @@ export default {
       const obj = this.top20s.find((s) => s.display === this.his.name);
       this.his = { ...this.his, ...obj };
       this.his.standardDesc = obj.standardUnit;
+      this.his.standardQuantify = obj.standardQuantify;
       this.his.originPrice = obj.refPrice;
       this.his.effectiveDate = obj.effectiveStartDate;
       this.his.expiredDate = obj.effectiveEndDate;
@@ -328,6 +329,10 @@ export default {
 </script>
 
 <style scoped>
+.dtc-page-header-grid2 {
+  display: grid;
+  grid-template-columns: max-content max-content 1fr max-content !important;
+}
 .btn-container {
   text-align: left;
   padding: 0px 10px 20px 0px;
