@@ -27,12 +27,12 @@ export default {
       hooks: path.resolve(__dirname, "src/hooks"),
     },
   },
-  server:{
-    proxy: {
-        // string shorthand
-        [rewiteUrl]: 'http://192.168.22.4/',   
-    }
-  },
+  // server:{
+  //   proxy: {
+  //       // string shorthand
+  //       [rewiteUrl]: 'https://hisvite2.datacom.com.tw/',   
+  //   }
+  // },
   build:{
     assetsDir: "./" ,// at publish root folder, when running prod mode
     chunkSizeWarningLimit: 1024 * 1024 * 50,

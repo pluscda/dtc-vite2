@@ -47,7 +47,7 @@ export const actions = {
    return dayjs().format("HHmmssYYYYMMDD");
   },
   async getIcCardInfo() {
-    return await checkNhiCard("ws://localhost:8888/Chat", "checkNhiCard");
+    //return await checkNhiCard("ws://localhost:8888/Chat", "checkNhiCard");
   },
   getAllDDL(){
     ddlObs.forEach(s => firstValueFrom(s))
