@@ -1,12 +1,22 @@
 <template>
   <div>
-    <header class="grid h-40 text-white py-7 dtc-page-header dtc-page-header-grid button-2">
+    <header class="grid h-40 text-white py-9 dtc-page-header dtc-page-header-grid button-2">
       <div class="transform -translate-y-4">新增藥品資料/藥理資料</div>
-      <DtxInputGroup prepend="健保藥品名稱" labelWidth="120" class="transform -translate-y-5">
-        <el-input v-model="his.nhiCode" placeholder="搜尋健保藥品名稱" />
+      <DtxInputGroup prepend="健保藥品名稱" labelWidth="120" class="transform -translate-y-7">
+        <AutoComplete
+          class="inline-block transform border-transparent"
+          style="width: clamp(100%, 100%, 100%)"
+          placeholder="搜尋健保藥品名稱"
+          v-model="his.name"
+          :delay="300"
+          :spellcheck="false"
+          :suggestions="medIds"
+          @complete="searchMedId($event)"
+          @item-select="selectedMedId()"
+        />
       </DtxInputGroup>
 
-      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
+      <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="transform -translate-y-4 p-button-info" />
     </header>
 
     <h1 class="my-3 drgu-add-title dtc-text">藥品資料</h1>
@@ -198,10 +208,14 @@
 
 <script>
 import { ElMessage } from 'element-plus';
+import { clone } from 'ramda';
+import { Subject, from, of } from 'rxjs';
 import toBase64 from 'utils/base64';
-import { Subject } from 'rxjs';
-import { throttleTime, exhaustMap } from 'rxjs/operators';
+import { exhaustMap, throttleTime, mergeMap, distinctUntilChanged, switchMap, catchError, tap } from 'rxjs/operators';
+import dayjs from 'dayjs';
 let subscribe = '';
+let subscribe2 = '';
+
 export default {
   name: 'drugAddNew',
   inject: ['global', 'actions'],
@@ -212,13 +226,42 @@ export default {
       fileUpload: '',
       showAddNew: false,
       subject: new Subject(),
+      med$: new Subject(),
       loading: false,
       newImg: '',
       filteredHisIds: [],
       ddl: {},
+      medIds: [],
+      top20s: [],
     };
   },
   methods: {
+    async selectedMedId() {
+      this.meds = [];
+      const obj = this.top20s.find((s) => s.display === this.his.name);
+      const obj2 = Object.assign(...this.his, obj);
+      this.his = { ...obj2 };
+      // this.his.medicineId = obj.medicineId;
+      // this.his.cname = obj.cname;
+      // this.his.ename = obj.ename;
+      // this.his.scientificName = obj.scientificName;
+      // this.his.quantity = 13;
+      //if (!this.his.staffId) this.his.staffId = 'Adam';
+    },
+    async getDrgNameList(event) {
+      if (event?.query?.length) {
+        const ret = await this.actions.getTop20Items(event.query);
+        this.top20s = ret?.length ? [...ret] : [];
+        const mySet = new Set(ret.map((s) => s.display));
+        this.medIds = [...mySet];
+      } else {
+        this.medIds = [];
+        this.meds = [];
+      }
+    },
+    searchMedId(event) {
+      this.med$.next(event);
+    },
     async getDDL() {
       this.ddl.unit = await this.actions.getUnitCode();
       this.ddl.cates = await this.actions.getDrgCategoryCode();
@@ -265,10 +308,17 @@ export default {
     this.getDDL();
     this.his = {};
     subscribe = this.subject.pipe(throttleTime(3000), exhaustMap(this.saveItem)).subscribe(() => (this.loading = false));
+    subscribe2 = this.med$
+      .pipe(
+        switchMap(this.getDrgNameList),
+        catchError((s) => of(''))
+      )
+      .subscribe();
   },
 
   beforeUnmount() {
     subscribe.unsubscribe();
+    subscribe2.unsubscribe();
     this.his = {};
 
     /*
