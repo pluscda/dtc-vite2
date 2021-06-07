@@ -213,8 +213,8 @@ export const actions = {
     return await axios.get(`/med/querySeq?table=${table}&limit=20&startWith=1&seqId=${id}`);
   },
   async getTop20DrgName(name){
-    const t1 =  axios.get(`/med/searchUsualMed?limit=10&startWith=1&name=${name}`);
-    const t2 =  axios.get(`/med/searchUsualMed?limit=10&startWith=0&name=${name}`);
+    const t1 =  axios.get(`/med/searchUsualMed?limit=10&returnLimit=10&startWith=1&name=${name}`);
+    const t2 =  axios.get(`/med/searchUsualMed?limit=10&returnLimit=10&startWith=0&name=${name}`);
     const [r1, r2] = await Promise.all([t1, t2]);
     const total = r1?.length ? r1.concat(r2) : r2;
     total?.forEach( s => {
@@ -223,8 +223,8 @@ export const actions = {
     return total?.slice(0,20) || [];
   },
    async getTop20Items(name){
-    const t1 =  axios.get(`/med/searchNhiMed?limit=10&startWith=1&name=${name}`);
-    const t2 =  axios.get(`/med/searchNhiMed?limit=10&startWith=0&name=${name}`);
+    const t1 =  axios.get(`/med/searchNhiMed?limit=10&returnLimit=10&startWith=1&name=${name}`);
+    const t2 =  axios.get(`/med/searchNhiMed?limit=10&returnLimit=10&startWith=0&name=${name}`);
     const [r1, r2] = await Promise.all([t1, t2]);
     const total = r1?.length ? r1.concat(r2) : r2;
     total?.forEach( s => {
