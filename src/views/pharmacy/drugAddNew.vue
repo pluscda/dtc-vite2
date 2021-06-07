@@ -1,7 +1,11 @@
 <template>
   <div>
-    <header class="grid text-white dtc-page-header dtc-page-header-grid button-2">
-      <div>新增藥品資料/藥理資料</div>
+    <header class="grid h-40 text-white py-7 dtc-page-header dtc-page-header-grid button-2">
+      <div class="transform -translate-y-4">新增藥品資料/藥理資料</div>
+      <DtxInputGroup prepend="健保藥品名稱" labelWidth="120" class="transform -translate-y-5">
+        <el-input v-model="his.nhiCode" placeholder="搜尋健保藥品名稱" />
+      </DtxInputGroup>
+
       <Button label="再次新增品資料/藥理資料" style="margin: 4px 0" @click="reset" v-show="showAddNew" class="p-button-info" />
     </header>
 
@@ -70,7 +74,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="生效日期" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="his.effectiveDate" placeholder="請輸入生效日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="w-full h-10" v-model="his.effectiveDate" placeholder="請輸入生效日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="藥品學名" labelWidth="120">
@@ -134,7 +138,7 @@
       </DtxInputGroup>
 
       <DtxInputGroup prepend="保存期限" labelWidth="120">
-        <Calendar class="h-10 w-full" v-model="his.expiredDate" placeholder="請輸入保存期限" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="w-full h-10" v-model="his.expiredDate" placeholder="請輸入保存期限" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
 
       <DtxInputGroup prepend="庫存下限" labelWidth="120">
@@ -193,23 +197,23 @@
 </template>
 
 <script>
-import { ElMessage } from "element-plus";
-import toBase64 from "utils/base64";
-import { Subject } from "rxjs";
-import { throttleTime, exhaustMap } from "rxjs/operators";
-let subscribe = "";
+import { ElMessage } from 'element-plus';
+import toBase64 from 'utils/base64';
+import { Subject } from 'rxjs';
+import { throttleTime, exhaustMap } from 'rxjs/operators';
+let subscribe = '';
 export default {
-  name: "drugAddNew",
-  inject: ["global", "actions"],
+  name: 'drugAddNew',
+  inject: ['global', 'actions'],
   data() {
     return {
       his: {},
-      uploadFileName: "",
-      fileUpload: "",
+      uploadFileName: '',
+      fileUpload: '',
       showAddNew: false,
       subject: new Subject(),
       loading: false,
-      newImg: "",
+      newImg: '',
       filteredHisIds: [],
       ddl: {},
     };
@@ -239,11 +243,11 @@ export default {
         //   !isNaN(+this.his[s]) ? (this.his[s] = +this.his.s) : "";
         // });
         const ret = await this.actions.addDrg(this.his);
-        ElMessage.success("新增藥品成功");
+        ElMessage.success('新增藥品成功');
         this.showAddNew = true;
       } catch (e) {
         alert(e);
-        ElMessage.error("新增藥品失敗!!");
+        ElMessage.error('新增藥品失敗!!');
       }
     },
     async fileChange(e) {
