@@ -134,11 +134,12 @@ export default {
     async selectedMedId() {
       this.meds = [];
       const obj = await this.actions.getDrgDetail(this.his.medicineId);
-      this.his.cname = obj.cname;
-      this.his.ename = obj.ename;
-      this.his.medicationUnitName = obj.medicationUnitName;
-      this.his.dosageFormCode = obj.dosageFormCode;
-      this.his.nhiCode = obj.nhiCode;
+      this.his = { ...obj };
+      // this.his.cname = obj.cname;
+      // this.his.ename = obj.ename;
+      // this.his.medicationUnitName = obj.medicationUnitName;
+      // this.his.dosageFormCode = obj.dosageFormCode;
+      // this.his.nhiCode = obj.nhiCode;
       this.his.quantity = 13;
       if (!this.his.staffId) this.his.staffId = "Adam";
     },

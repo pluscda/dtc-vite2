@@ -24,24 +24,24 @@
 </template>
 
 <script>
-import { inject, ref } from "vue";
-import { useRouter } from "vue-router";
+import { inject, ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   setup() {
-    const actions = inject("actions");
-    const name = ref("14tc_14_16_03");
-    const pwd = ref("654321");
+    const actions = inject('actions');
+    const name = ref('14tc_14_16_03');
+    const pwd = ref('654321');
     const router = useRouter();
     async function login() {
       try {
         // const { jwt, user, message } = await actions.login({ identifier: name.value, password: pwd.value });
         // sessionStorage.token = jwt;
         // jwt ? router.push("/register/list") : alert(JSON.stringify(message));
-        sessionStorage.token = "12";
+        sessionStorage.token = '12';
         actions.getAllDDL();
-        router.push("/register/list");
+        router.push('/register/list');
       } catch (e) {
-        alert("error: " + e);
+        alert('error: ' + e);
       }
     }
 
@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 #dtc-login {
-  background-image: url("//unsplash.it/998/998");
+  background-image: url('//unsplash.it/998/998');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
