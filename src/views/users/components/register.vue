@@ -60,7 +60,7 @@ export default {
     doctors() {
       if (!this.shiftt?.length) return [];
       if (this.sect) {
-        return this.shiftt.filter((s) => s.opdtimeId === this.sect).sort((a, b) => a.localeCompare(b));
+        return this.shiftt.filter((s) => s.opdtimeId === this.sect);
       }
       return this.shiftt.reduce((acc, cur) => {
         return !acc.find((s) => s.doctorId == cur.doctorId) ? acc.concat(cur) : acc;
