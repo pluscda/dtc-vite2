@@ -268,6 +268,14 @@ export const actions = {
   async editOpdPatient(obj){ //18
     return await axios.put("/opd/patient", obj );
   },
+  async getOpdPersonCategory(qs){ //19
+    const str = "limit=40&returnLimit=40&";
+    return await axios.get("/opd/personCategory?" + str + qs );
+  },
+  async getOpdPatientGroup(qs){ //20
+    const str = "limit=40&returnLimit=40&";
+    return await axios.get("/opd/patientGroup?" + str + qs );
+  },
 
 
 };
