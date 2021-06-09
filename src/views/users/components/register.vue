@@ -21,7 +21,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
-        <el-select clearable v-model="shift" placeholder="請選擇" class="border-l-0">
+        <el-select clearable filterable v-model="shift" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in doctors" :key="item.doctorId" :label="item.doctorName" :value="item.doctorId"> </el-option>
         </el-select>
       </DtxInputGroup>
