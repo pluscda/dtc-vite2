@@ -251,7 +251,24 @@ export const actions = {
   async getOptShift(date, specialtyId){
     const str = "limit=40&returnLimit=40&pageStart=0&opdDate=" + date;
     return await axios.get("/opd/opdShift?" + str + "&specialtyId=" + specialtyId);
-  }
+  },
+  async getOpdPatient(qs){ //14
+    const str = "limit=40&returnLimit=40&";
+    return await axios.get("/opd/patient?" + str + qs );
+  },
+  async addOpdPerson(obj){ //15
+    return await axios.post("/opd/person", obj );
+  },
+  async editOpdPerson(obj){ //16
+    return await axios.put("/opd/person", obj );
+  },
+  async addOpdPatient(obj){ //17
+    return await axios.post("/opd/patient", obj );
+  },
+  async editOpdPatient(obj){ //18
+    return await axios.put("/opd/patient", obj );
+  },
+
 
 };
 
