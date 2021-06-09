@@ -58,7 +58,7 @@ export default {
   methods: {
     async getOptShift() {
       // when 項次科別 change.
-      this.cleanAll(["dept", "deptt", "specialtyy", "specialty"]);
+      this.cleanAll(["dept", "deptt", "specialtyy", "specialty", "regTime"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptShift(time, this.specialty);
@@ -69,7 +69,7 @@ export default {
     },
     async getOptSpecialty() {
       // when 看診科別 change.
-      this.cleanAll(["dept", "deptt"]);
+      this.cleanAll(["dept", "deptt", "regTime"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptSpecialty(time, this.dept);
