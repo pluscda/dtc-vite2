@@ -67,6 +67,8 @@ export default {
       }
     },
     async getOptDepartment() {
+      this.specialtyy = [];
+      this.specialty = "";
       try {
         const time = this.regTime + this.global.zeros;
         const { entry } = await this.actions.getOptDepartmentByDate(time);
