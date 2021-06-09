@@ -16,7 +16,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
-        <el-select filterable v-model="specialtyy" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="specialty" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in specialtyy" :key="item.specialtyId" :label="item.specialtyName" :value="item.specialtyId"> </el-option>
         </el-select>
       </DtxInputGroup>
