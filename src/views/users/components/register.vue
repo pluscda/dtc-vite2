@@ -11,13 +11,13 @@
         <Calendar class="h-10 w-full" v-model="regTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="看診科別">
-        <el-select filterable v-model="dept" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="dept" placeholder="請選擇" class="border-l-0" @change="getOptSpecialty">
           <el-option v-for="item in deptt" :key="item.departmentId" :label="item.departmentName" :value="item.departmentId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
-        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="specialtyy" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in specialtyy" :key="item.specialtyId" :label="item.specialtyName" :value="item.specialtyId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
@@ -39,13 +39,6 @@
 
 <script>
 import dayjs from "dayjs";
-import { useRouter } from "vue-router";
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
 
 export default {
   name: "regsiter",
@@ -55,11 +48,23 @@ export default {
     return {
       dept: "",
       deptt: [],
+      specialty: "",
+      specialtyy: [],
       regTime: dayjs().format("YYYY-MM-DD"),
       input1: "J120092876",
       options: [],
       value: "",
     };
+  },
+  methods: {
+    async getOptSpecialty() {
+      try {
+        const { entry } = await this.actions.getOptSpecialty(this.regTime + this.global.zeros, this.dept);
+        this.specialtyy = entry;
+      } catch (e) {
+        alert(e);
+      }
+    },
   },
   async mounted() {
     try {
