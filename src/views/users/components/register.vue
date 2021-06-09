@@ -53,13 +53,12 @@ export default {
       shift: "",
       shiftt: [],
       regTime: dayjs().format("YYYY-MM-DD"),
-      input1: "J120092876",
-      options: [],
-      value: "",
     };
   },
   methods: {
     async getOptShift() {
+      // when 項次科別 change.
+      this.cleanAll(["dept", "deptt", "specialtyy", "specialty"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptShift(time, this.specialty);
@@ -69,6 +68,8 @@ export default {
       }
     },
     async getOptSpecialty() {
+      // when 看診科別 change.
+      this.cleanAll(["dept", "deptt"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptSpecialty(time, this.dept);
@@ -78,8 +79,8 @@ export default {
       }
     },
     async getOptDepartment() {
-      this.specialtyy = [];
-      this.specialty = "";
+      // when 掛號日期 change.
+      this.cleanAll();
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptDepartmentByDate(time);
@@ -87,6 +88,12 @@ export default {
       } catch (e) {
         alert("getOptDepartmentByDate: " + e);
       }
+    },
+    cleanAll(arr = []) {
+      const skips = ["regTime"].concat(arr);
+      Object.keys(this.$data).forEach((s) => {
+        if (!skips.find((key) => key === s)) this.$data[s] = "";
+      });
     },
   },
   async mounted() {
