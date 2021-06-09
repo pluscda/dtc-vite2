@@ -59,7 +59,8 @@ export default {
   methods: {
     async getOptSpecialty() {
       try {
-        const { entry } = await this.actions.getOptSpecialty(this.regTime + this.global.zeros, this.dept);
+        const time = this.regTime + this.global.zeros;
+        const { entry } = await this.actions.getOptSpecialty(time, this.dept);
         this.specialtyy = entry;
       } catch (e) {
         alert(e);
@@ -68,7 +69,8 @@ export default {
   },
   async mounted() {
     try {
-      const { entry } = await this.actions.getOptDepartmentByDate(this.regTime + this.global.zeros);
+      const time = this.regTime + this.global.zeros;
+      const { entry } = await this.actions.getOptDepartmentByDate(time);
       this.deptt = entry;
     } catch (e) {
       alert("getOptDepartmentByDate: " + e);
