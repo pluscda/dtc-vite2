@@ -22,7 +22,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
         <el-select clearable v-model="shift" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in doctors" :key="item.shiftId" :label="item.doctorName" :value="item.shiftId"> </el-option>
+          <el-option v-for="item in doctors" :key="item.doctorId" :label="item.doctorName" :value="item.doctorId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
@@ -69,7 +69,7 @@ export default {
     sections() {
       if (!this.shiftt?.length) return [];
       if (this.shift) {
-        return this.shiftt.filter((s) => s.shiftId == this.shift);
+        return this.shiftt.filter((s) => s.doctorId == this.shift);
       }
       return this.shiftt.reduce((acc, cur) => {
         return !acc.find((s) => s.opdtimeName === cur.opdtimeName) ? acc.concat(cur) : acc;
