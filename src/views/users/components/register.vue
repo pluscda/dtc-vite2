@@ -8,11 +8,11 @@
     </header>
     <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
       <DtxInputGroup prepend="掛號日期">
-        <el-input placeholder="搜尋身份證字號" v-model="input1" readonly class="bg-gray-300" />
+        <Calendar class="h-10 w-full" v-model="regTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="看診科別">
-        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="dept" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in deptt" :key="item.departmentId" :label="item.departmentName" :value="item.departmentId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+import { useRouter } from "vue-router";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -48,30 +50,21 @@ let headers = [
 export default {
   name: "regsiter",
   components: {},
+  inject: ["actions", "global"],
   data() {
     return {
+      dept: "",
+      deptt: [],
+      regTime: dayjs().format("YYYY-MM-DD"),
       input1: "J120092876",
-      options: [
-        {
-          value: "選項1",
-          label: "牙科就診",
-        },
-
-        {
-          value: "選項3",
-          label: "身心障礙",
-        },
-        {
-          value: "選項4",
-          label: "發展遲緩兒童",
-        },
-        {
-          value: "選項5",
-          label: "失能老人",
-        },
-      ],
+      options: [],
       value: "",
     };
+  },
+  async mounted() {
+    const { entry } = await this.actions.getOptDepartmentByDate(this.regTime + this.global.zeros);
+    alert(entry.length);
+    this.deptt = entry;
   },
 };
 </script>

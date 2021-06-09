@@ -130,7 +130,7 @@ export default {
   },
   setup() {
     const router = useRouter();
-    const { state, getList, delItem } = useList();
+    const { state, getList, delItem } = useList("/opd/opdDepartment");
     const actions = inject("actions");
     headers = ref(headers);
     const personBasicInfo = reactive({ name: "", id: "", birthday: "" });

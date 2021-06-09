@@ -107,7 +107,7 @@ export default {
   setup() {
     const router = useRouter();
     headers = ref(headers);
-    const { state, getList, sort, clearFilters } = useList("drgadds");
+    const { state, getList, sort, clearFilters } = useList("/opd/opdDepartment");
 
     function handleEdit({ row }) {
       router.push({

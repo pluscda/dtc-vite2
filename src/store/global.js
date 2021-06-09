@@ -38,7 +38,8 @@ const init = {
   editItem: "",
   answers,
   formulas,
-  closes
+  closes,
+  zeros:'T00:00:00.000Z'
 };
 
 export let global = reactive({ ...init });
@@ -238,6 +239,11 @@ export const actions = {
   },
   async updateDrgInventoryItem(item){
     return await axios.put("/med/medInventoryItems", item)
+  },
+  async getOptDepartmentByDate(date){
+    const str = "limit=20&returnLimit=20&pageStart=0&opdDate=" + date;
+     //const str = "limit=20&returnLimit=20&pageStart=0";
+    return await axios.get("/med/opdDepartment?", str);
   }
 
 };
