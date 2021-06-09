@@ -22,7 +22,7 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
         <el-select filterable v-model="shift" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in shiftt" :key="item.shiftId" :label="item.doctorName" :value="item.shiftId"> </el-option>
+          <el-option v-for="item in doctors" :key="item.shiftId" :label="item.doctorName" :value="item.shiftId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
@@ -52,8 +52,21 @@ export default {
       specialtyy: [],
       shift: "",
       shiftt: [],
+      time: "",
+      times: [],
       regTime: dayjs().format("YYYY-MM-DD"),
     };
+  },
+  computed: {
+    doctors() {
+      if (!this.shiftt.length) return [];
+      if (this.time) {
+        return this.shiftt.filter((s) => s.opdtimeId == this.time);
+      }
+      return this.shiftt.reduce((acc, cur) => {
+        return !acc.find((s) => s.doctorId == cur.doctorId) ? acc.concat(cur) : [...acc];
+      }, []);
+    },
   },
   methods: {
     async getOptShift() {
