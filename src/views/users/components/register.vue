@@ -11,23 +11,23 @@
         <Calendar @date-select="getOptDepartment" class="h-10 w-full" v-model="regTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="看診科別">
-        <el-select filterable v-model="dept" placeholder="請選擇" class="border-l-0" @change="getOptSpecialty">
+        <el-select filterable v-model="dept" clearable placeholder="請選擇" class="border-l-0" @change="getOptSpecialty">
           <el-option v-for="item in deptt" :key="item.departmentId" :label="item.departmentName" :value="item.departmentId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
-        <el-select filterable v-model="specialty" placeholder="請選擇" class="border-l-0" @change="getOptShift">
+        <el-select filterable v-model="specialty" clearable placeholder="請選擇" class="border-l-0" @change="getOptShift">
           <el-option v-for="item in specialtyy" :key="item.specialtyId" :label="item.specialtyName" :value="item.specialtyId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
-        <el-select filterable v-model="shift" placeholder="請選擇" class="border-l-0">
+        <el-select filterable clearable v-model="shift" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in doctors" :key="item.shiftId" :label="item.doctorName" :value="item.shiftId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
-        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable clearable v-model="sect" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in sections" :key="item.opdtimeId" :label="item.opdtimeName" :value="item.opdtimeId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="調閱病歷">
@@ -52,19 +52,27 @@ export default {
       specialtyy: [],
       shift: "",
       shiftt: [],
-      time: "",
-      times: [],
+      sect: "",
       regTime: dayjs().format("YYYY-MM-DD"),
     };
   },
   computed: {
     doctors() {
       if (!this.shiftt.length) return [];
-      if (this.time) {
-        return this.shiftt.filter((s) => s.opdtimeId == this.time);
+      if (this.sect) {
+        return this.shiftt.filter((s) => s.opdtimeId === this.sect);
       }
       return this.shiftt.reduce((acc, cur) => {
         return !acc.find((s) => s.doctorId == cur.doctorId) ? acc.concat(cur) : [...acc];
+      }, []);
+    },
+    sections() {
+      if (!this.shiftt.length) return [];
+      if (this.shift) {
+        return this.shiftt.filter((s) => s.shiftId == this.shift);
+      }
+      return this.shiftt.reduce((acc, cur) => {
+        return !acc.find((s) => s.opdtimeName === cur.opdtimeName) ? acc.concat(cur) : [...acc];
       }, []);
     },
   },
