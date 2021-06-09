@@ -101,13 +101,14 @@
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
-import { useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
+import { toRefs, ref, reactive, inject, computed } from "vue";
 import Pagination from "cps/Pagination.vue";
-
 import { useList } from "/@/hooks/useHis.js";
-//身分證號
+import { isEmpty } from "ramda";
+import queryString from "qs";
+import dayjs from "dayjs";
+import { useRouter } from "vue-router";
+
 let headers = [
   { name: "病歷號碼", key: "id", sortDesc: null },
   { name: "病患姓名", key: "registerTimestamp", sortDesc: null },
@@ -140,45 +141,88 @@ export default {
     Pagination,
   },
   setup() {
-    // 玩家列表數據
+    const global = inject("global");
     const router = useRouter();
-    const { state, getList, sort, clearFilters, removeItem, getItemDetail } = useList("drgadds");
+    const searchOrderId = ref("");
+    const searchOrderPerson = ref("");
+    const searchCatchPerson = ref("");
+    const searchDrgStore = ref("");
+    const searchStatus = ref("全部");
+    const searchDrugStore = ref("");
+    const time1 = ref("");
+    const time2 = ref("");
 
-    // 用戶更新
-    function handleEdit({ row }) {
-      router.push({
-        name: "userEdit",
-        params: { id: row.id },
-      });
-    }
+    headers = ref(headers);
+    const { state, getList, sort, clearFilters, removeItem, getItemDetail, twTime } = useList("/opd/opdDepartment");
 
-    // 刪除玩家
-    function handleDelete({ row }) {
-      delItem(row.id).then(() => {
-        // todo:刪除這一行，或者重新獲取數據
-        // 通知用戶
-        Message.success("刪除成功！");
-      });
-    }
+    const cleanFilter = () => {
+      searchOrderId.value = searchOrderPerson.value = time1.value = time2.value = "";
+      searchStatus.value = "全部";
+      searchDrgStore.value = "";
+      searchCatchPerson.value = "";
+      clearFilters();
+    };
+    const search = () => {
+      let filters = {};
+      let s,
+        e,
+        dateQuery = "";
+      if (time1.value && time2.value) {
+        s = dayjs(time1.value).format("YYYY-MM-DDT00:00:00");
+        e = dayjs(time2.value).format("YYYY-MM-DDT23:59:59");
+        dateQuery = queryString.stringify({
+          _where: [{ orderDate_gte: s }, { orderDate_lt: e }],
+        });
+      }
+      if (searchOrderId.value) {
+        filters.pharmacyOrderId_contains = searchOrderId.value;
+      }
+      if (searchOrderPerson.value) {
+        filters.staffId_contains = searchOrderPerson.value;
+      }
+      if (searchCatchPerson.value) {
+        filters.chDrgCatchPerson_contains = searchCatchPerson;
+      }
 
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
+      if (searchStatus.value != "全部") {
+        filters.isClosed_contains = searchStatus.value;
+      }
+
+      filters = isEmpty(filters) ? "" : "&" + queryString.stringify(filters);
+      state.listQuery.filter = dateQuery + filters;
+      getList();
+    };
+    const editItem = async (item) => {
+      const detail = await getItemDetail(item);
+      global.editItem = { ...detail };
+      router.push("/pharmacy/modifyDrgWarehousePRequest");
     };
 
     return {
       ...toRefs(state),
       getList,
-      handleEdit,
-      handleDelete,
       headers,
-      toggleDetail,
+      searchOrderId,
+      searchOrderPerson,
+      searchDrgStore,
+      searchStatus,
+      searchCatchPerson,
+      searchDrugStore,
+      time1,
+      time2,
       sort,
+      clearFilters,
+      removeItem,
+      getItemDetail,
+      search,
+      twTime,
+      cleanFilter,
+      editItem,
     };
   },
+
   mounted() {
-    this.$primevue.config.locale = this.zh;
+    this.$primevue.config.locale = primeVueDateFormat;
   },
 };
 </script>
