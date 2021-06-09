@@ -63,7 +63,7 @@ export default {
         return this.shiftt.filter((s) => s.opdtimeId === this.sect);
       }
       return this.shiftt.reduce((acc, cur) => {
-        return !acc.find((s) => s.doctorId == cur.doctorId) ? acc.concat(cur) : [...acc];
+        return !acc.find((s) => s.doctorId == cur.doctorId) ? acc.concat(cur) : acc;
       }, []);
     },
     sections() {
@@ -72,7 +72,7 @@ export default {
         return this.shiftt.filter((s) => s.shiftId == this.shift);
       }
       return this.shiftt.reduce((acc, cur) => {
-        return !acc.find((s) => s.opdtimeName === cur.opdtimeName) ? acc.concat(cur) : [...acc];
+        return !acc.find((s) => s.opdtimeName === cur.opdtimeName) ? acc.concat(cur) : acc;
       }, []);
     },
   },
@@ -119,6 +119,14 @@ export default {
   },
   async mounted() {
     this.getOptDepartment();
+  },
+  watch: {
+    sect(v) {
+      if (!v) this.shift = "";
+    },
+    shift(v) {
+      if (!v) this.sect = "";
+    },
   },
 };
 </script>
