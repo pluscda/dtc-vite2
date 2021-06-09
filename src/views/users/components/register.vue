@@ -26,7 +26,7 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
-        <el-select clearable v-model="sect" placeholder="請選擇" class="border-l-0">
+        <el-select clearable filterable v-model="sect" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in sections" :key="item.opdtimeId" :label="item.opdtimeName" :value="item.opdtimeId"> </el-option>
         </el-select>
       </DtxInputGroup>
