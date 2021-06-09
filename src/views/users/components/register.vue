@@ -8,7 +8,7 @@
     </header>
     <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
       <DtxInputGroup prepend="掛號日期">
-        <Calendar @change="getOptDepartment" class="h-10 w-full" v-model="regTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar @date-select="getOptDepartment" class="h-10 w-full" v-model="regTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="看診科別">
         <el-select filterable v-model="dept" placeholder="請選擇" class="border-l-0" @change="getOptSpecialty">
@@ -59,7 +59,7 @@ export default {
   methods: {
     async getOptSpecialty() {
       try {
-        const time = this.regTime + this.global.zeros;
+        const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptSpecialty(time, this.dept);
         this.specialtyy = entry;
       } catch (e) {
@@ -70,7 +70,7 @@ export default {
       this.specialtyy = [];
       this.specialty = "";
       try {
-        const time = this.regTime + this.global.zeros;
+        const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptDepartmentByDate(time);
         this.deptt = entry;
       } catch (e) {
