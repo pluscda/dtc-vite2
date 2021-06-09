@@ -80,7 +80,7 @@ export default {
     },
     async getOptDepartment() {
       // when 掛號日期 change.
-      this.cleanAll();
+      this.cleanAll(["regTime"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
         const { entry } = await this.actions.getOptDepartmentByDate(time);
@@ -89,8 +89,7 @@ export default {
         alert("getOptDepartmentByDate: " + e);
       }
     },
-    cleanAll(arr = []) {
-      const skips = ["regTime"].concat(arr);
+    cleanAll(skips) {
       Object.keys(this.$data).forEach((s) => {
         if (!skips.find((key) => key === s)) this.$data[s] = "";
       });
