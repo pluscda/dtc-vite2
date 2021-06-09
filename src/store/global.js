@@ -241,14 +241,19 @@ export const actions = {
     return await axios.put("/med/medInventoryItems", item)
   },
   async getOptDepartmentByDate(date){
-    const str = "limit=20&returnLimit=20&pageStart=0&opdDate=" + date;
+    const str = "limit=40&returnLimit=40&pageStart=0&opdDate=" + date;
     //const str ="limit=20&pageStart=0";
     return await axios.get("/opd/opdDepartment?" + str);
   },
   async getOptSpecialty(date, depId){
-    const str = "limit=20&returnLimit=20&pageStart=0&opdDate=" + date;
+    const str = "limit=40&returnLimit=40&pageStart=0&opdDate=" + date;
     //const str ="limit=20&pageStart=0";
     return await axios.get("/opd/opdSpecialty?" + str + "&departmentId=" + depId);
+  },
+  async getOptShift(date, specialtyId){
+    const str = "limit=40&returnLimit=40&pageStart=0&opdDate=" + date;
+    //const str ="limit=20&pageStart=0";
+    return await axios.get("/opd/opdShift?" + str + "&specialtyId=" + specialtyId);
   }
 
 };

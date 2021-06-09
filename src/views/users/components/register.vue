@@ -16,13 +16,13 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
-        <el-select filterable v-model="specialty" placeholder="請選擇" class="border-l-0">
+        <el-select filterable v-model="specialty" placeholder="請選擇" class="border-l-0" @change="getOptShift">
           <el-option v-for="item in specialtyy" :key="item.specialtyId" :label="item.specialtyName" :value="item.specialtyId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
-        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="shift" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in shiftt" :key="item.shiftId" :label="item.doctorName" :value="item.shiftId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
@@ -50,6 +50,8 @@ export default {
       deptt: [],
       specialty: "",
       specialtyy: [],
+      shift: "",
+      shiftt: [],
       regTime: dayjs().format("YYYY-MM-DD"),
       input1: "J120092876",
       options: [],
@@ -57,6 +59,15 @@ export default {
     };
   },
   methods: {
+    async getOptShift() {
+      try {
+        const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
+        const { entry } = await this.actions.getOptShift(time, this.specialty);
+        this.shiftt = entry;
+      } catch (e) {
+        alert(e);
+      }
+    },
     async getOptSpecialty() {
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
