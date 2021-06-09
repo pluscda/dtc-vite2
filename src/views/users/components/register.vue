@@ -16,17 +16,17 @@
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="項次科別">
-        <el-select filterable v-model="specialty" clearable placeholder="請選擇" class="border-l-0" @change="getOptShift">
+        <el-select v-model="specialty" clearable placeholder="請選擇" class="border-l-0" @change="getOptShift">
           <el-option v-for="item in specialtyy" :key="item.specialtyId" :label="item.specialtyName" :value="item.specialtyId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診醫師">
-        <el-select filterable clearable v-model="shift" placeholder="請選擇" class="border-l-0">
+        <el-select clearable v-model="shift" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in doctors" :key="item.shiftId" :label="item.doctorName" :value="item.shiftId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="看診時段">
-        <el-select filterable clearable v-model="sect" placeholder="請選擇" class="border-l-0">
+        <el-select clearable v-model="sect" placeholder="請選擇" class="border-l-0">
           <el-option v-for="item in sections" :key="item.opdtimeId" :label="item.opdtimeName" :value="item.opdtimeId"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     doctors() {
-      if (!this.shiftt.length) return [];
+      if (!this.shiftt?.length) return [];
       if (this.sect) {
         return this.shiftt.filter((s) => s.opdtimeId === this.sect);
       }
@@ -67,7 +67,7 @@ export default {
       }, []);
     },
     sections() {
-      if (!this.shiftt.length) return [];
+      if (!this.shiftt?.length) return [];
       if (this.shift) {
         return this.shiftt.filter((s) => s.shiftId == this.shift);
       }
