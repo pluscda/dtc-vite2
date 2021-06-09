@@ -241,9 +241,9 @@ export const actions = {
     return await axios.put("/med/medInventoryItems", item)
   },
   async getOptDepartmentByDate(date){
-    const str = "limit=20&returnLimit=20&pageStart=0&opdDate=" + date;
-     //const str = "limit=20&returnLimit=20&pageStart=0";
-    return await axios.get("/med/opdDepartment?", str);
+    //const str = "limit=20&returnLimit=20&pageStart=0&opdDate=" + date;
+    const str ="limit=20&pageStart=0";
+    return await axios.get("/opd/opdDepartment?" + str);
   }
 
 };

@@ -62,9 +62,12 @@ export default {
     };
   },
   async mounted() {
-    const { entry } = await this.actions.getOptDepartmentByDate(this.regTime + this.global.zeros);
-    alert(entry.length);
-    this.deptt = entry;
+    try {
+      const { entry } = await this.actions.getOptDepartmentByDate(this.regTime + this.global.zeros);
+      this.deptt = entry;
+    } catch (e) {
+      alert("getOptDepartmentByDate: " + e);
+    }
   },
 };
 </script>
