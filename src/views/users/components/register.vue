@@ -80,6 +80,7 @@ export default {
     },
     async getOptDepartment() {
       // when 掛號日期 change.
+      if (!this.regTime) return;
       this.cleanAll(["regTime"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
