@@ -29,7 +29,14 @@ const contries$ =  delyAjax("/med/ISO3166_1_countryCode");
 //藥房清單
 const drgStoreList$ =  delyAjax("/med/pharmacyStoreList");
 
-const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,controlls$,antiCodes$,contries$,drgStoreList$];
+// Genders
+const genders$ =  delyAjax("/opd/genderCode");
+//就診身份
+const personCates$ =  delyAjax("/opd/personCategory");
+
+const ddlObs = [unit$, cates$,feqCodes$,routeCodes$,dogses$,parhCodes$,
+                controlls$,antiCodes$,contries$,drgStoreList$,genders$,
+                personCates$];
 
 const answers = [ {value:1, label:'是'},{value:0, label:'否'},]
 const formulas = [{value:'單方', label:'單方'},{value:'複方', label:'複方'}]
@@ -192,6 +199,12 @@ export const actions = {
   async getDosageFormCode(){//48
      return firstValueFrom(dogses$);
   },
+  async getOpdGender(){ //21
+    return firstValueFrom(genders$);
+  },
+  async getPersonCates(){
+     return firstValueFrom(personCates$);
+  },
   async getISO3166Code(){//49
      return firstValueFrom(contries$);
   },
@@ -276,6 +289,9 @@ export const actions = {
     const str = "limit=40&returnLimit=40&";
     return await axios.get("/opd/patientGroup?" + str + qs );
   },
+ 
+
+  
 
 
 };

@@ -19,29 +19,57 @@
     </header>
     <div class="grid gap-1 mb-3 ml-1 dtc-autoflow-grid">
       <DtxInputGroup prepend="身份證號">
-        <el-input v-model="personBasicInfo.id" readonly class="bg-gray-300" />
+        <AutoComplete
+          class="transform -translate-y-1 border-transparent"
+          placeholder="請輸入"
+          v-model="item.personId"
+          :delay="300"
+          :suggestions="item.personIds"
+          @complete="searchItems('personId', $event)"
+          field="personId"
+          @item-select="selectedPersonItem(item)"
+        />
       </DtxInputGroup>
       <DtxInputGroup prepend="病患姓名">
-        <el-input v-model="personBasicInfo.name" readonly class="bg-gray-300" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期">
-        <el-input v-model="personBasicInfo.birthday" readonly class="bg-gray-300" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="病歷號碼">
-        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+        <AutoComplete
+          class="transform -translate-y-1 border-transparent"
+          placeholder="請輸入"
+          v-model="item.cname"
+          :delay="300"
+          :suggestions="item.cnames"
+          @complete="searchItems('cname', $event)"
+          field="cname"
+          @item-select="selectedPersonItem(item)"
+        />
       </DtxInputGroup>
       <DtxInputGroup prepend="手機號碼">
-        <el-input placeholder="搜尋檢查狀態" v-model="input1" />
+        <AutoComplete
+          class="transform -translate-y-1 border-transparent"
+          placeholder="請輸入"
+          v-model="item.phone"
+          :delay="300"
+          :suggestions="item.phones"
+          @complete="searchItems('phone', $event)"
+          field="phone"
+          @item-select="selectedPersonItem(item)"
+        />
       </DtxInputGroup>
+      <DtxInputGroup prepend="出生日期">
+        <Calendar class="w-full h-10" v-model="item.birthDate" placeholder="請輸入出生日期" :showIcon="true" dateFormat="yy-mm-dd" />
+      </DtxInputGroup>
+      <DtxInputGroup prepend="病歷號碼">
+        <el-input placeholder="請輸入病歷號碼" v-model="item.patientId" />
+      </DtxInputGroup>
+
       <DtxInputGroup prepend="病患性別">
-        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="item.genderCode" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in genders" :key="item.genderCode" :label="item.genderName" :value="item.genderCode"> </el-option>
         </el-select>
       </DtxInputGroup>
 
       <DtxInputGroup prepend="就診身份">
-        <el-select filterable v-model="value" placeholder="請選擇" class="border-l-0">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="item.categoryId" placeholder="請選擇" class="border-l-0">
+          <el-option v-for="item in personCates" :key="item.categoryId" :label="item.categoryName" :value="item.categoryId"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="折扣身份">
@@ -82,62 +110,87 @@
 </template>
 
 <script>
-import { inject, toRefs, ref, reactive } from "vue";
-import { useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
-import { useList } from "/@/hooks/useHis.js";
-import Regsiter from "./components/register.vue";
-import Pay from "./components/hisPay.vue";
-import InqueryList from "./components/inqueryList.vue";
+import { inject, toRefs, ref, reactive } from 'vue';
+import { Subject, of } from 'rxjs';
+import { distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
+import { useList } from '/@/hooks/useHis.js';
+import Regsiter from './components/register.vue';
+import Pay from './components/hisPay.vue';
+import InqueryList from './components/inqueryList.vue';
 let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
+  { name: 'ID', key: 'id', sortDesc: null },
+  { name: '建立者', key: 'name', sortDesc: null },
+  { name: '年齡', key: 'age', sortDesc: null },
 ];
 
 export default {
-  name: "UserListHIS",
+  name: 'UserListHIS',
   components: {
     Regsiter,
     Pay,
     InqueryList,
   },
+  inject: ['actions'],
   data() {
     return {
       takeCard: true,
-      input1: "J120092876",
-      options: [
-        {
-          value: "選項1",
-          label: "牙科就診",
-        },
-
-        {
-          value: "選項3",
-          label: "身心障礙",
-        },
-        {
-          value: "選項4",
-          label: "發展遲緩兒童",
-        },
-        {
-          value: "選項5",
-          label: "失能老人",
-        },
-      ],
-      value: "",
+      input1: 'J120092876',
+      value: '',
+      autoCompe$: new Subject(),
+      item: {},
+      genders: [],
+      personCates: [],
     };
+  },
+  methods: {
+    async getDLL() {
+      this.genders = await this.actions.getOpdGender();
+      this.personCates = await this.actions.getPersonCates();
+    },
+    selectedPersonItem(item) {
+      const key = Object.keys(item)[0];
+      this.item = item[key];
+      console.log(JSON.stringify(item, null, 2));
+    },
+    async getAutoCompeItems({ item, event }) {
+      if (event?.query?.length) {
+        const qs = `${item}=` + event.query;
+        const ret = await this.actions.getOpdPatient(qs);
+        this.item[`${item}s`] = ret;
+      } else {
+        this.item[`${item}s`] = [];
+      }
+      return '';
+    },
+    searchItems(item, event) {
+      this.autoCompe$.next({ item, event });
+    },
+  },
+  beforeUnmount() {
+    this.autoCompe$.unsubscribe();
+  },
+
+  mounted() {
+    this.getDLL();
+    this.autoCompe$
+      .pipe(
+        switchMap(this.getAutoCompeItems),
+        catchError((s) => of(''))
+      )
+      .subscribe();
   },
   setup() {
     const router = useRouter();
-    const { state, getList, delItem } = useList("/opd/opdDepartment");
-    const actions = inject("actions");
+    const { state, getList, delItem } = useList('/opd/opdDepartment');
+    const actions = inject('actions');
     headers = ref(headers);
-    const personBasicInfo = reactive({ name: "", id: "", birthday: "" });
+    const info = reactive({ name: '', id: '', birthday: '' });
 
     function handleEdit({ row }) {
       router.push({
-        name: "userEdit",
+        name: 'userEdit',
         params: { id: row.id },
       });
     }
@@ -147,19 +200,19 @@ export default {
       delItem(row.id).then(() => {
         // todo:刪除這一行，或者重新獲取數據
         // 通知用戶
-        Message.success("刪除成功！");
+        Message.success('刪除成功！');
       });
     }
 
     //讀取健保卡
     async function readHealthCard() {
       const data = await actions.getIcCardInfo();
-      let patientInfo = data.message.split(" ");
-      patientInfo = patientInfo.filter((s) => Boolean(s));
+      let patientInfo = data.message.split(' ');
+      patientInfo = patientitem.filter((s) => Boolean(s));
 
-      personBasicInfo.name = patientInfo[0].replace(/\d/g, "");
-      personBasicInfo.id = patientInfo[1].slice(0, 9);
-      personBasicInfo.birthday = patientInfo[1].slice(10, -1);
+      item.name = patientInfo[0].replace(/\d/g, '');
+      item.id = patientInfo[1].slice(0, 9);
+      item.birthday = patientInfo[1].slice(10, -1);
     }
 
     return {
@@ -169,7 +222,7 @@ export default {
       handleDelete,
       headers,
       readHealthCard,
-      personBasicInfo,
+      info,
     };
   },
 };
