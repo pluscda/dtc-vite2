@@ -9,21 +9,12 @@
       </DtxInputGroup>
       <div class="flex relative my-flex">
         <div class="grid max-content" style="grid-template-columns: 104px">
-          <span
-            class="flex dtc-label px-3 items-center rounded rounded-r-none text-base"
-            >初診日期</span
-          >
+          <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-base">初診日期</span>
         </div>
-        <Calendar
-          class="h-10"
-          v-model="basicCard.firstVisit"
-          placeholder="請輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10" v-model="basicCard.firstVisit" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </div>
       <DtxInputGroup prepend="姓名" labelWidth="104">
-        <el-input v-model="basicCard.name" />
+        <el-input v-model="basicCard.cname" />
       </DtxInputGroup>
       <DtxInputGroup prepend="身分證號" labelWidth="104">
         <el-input v-model="basicCard.personId" />
@@ -31,38 +22,19 @@
 
       <div class="flex relative my-flex">
         <div class="grid max-content" style="grid-template-columns: 104px">
-          <span
-            class="flex dtc-label px-3 items-center rounded rounded-r-none text-base"
-            >出生日期</span
-          >
+          <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-base">出生日期</span>
         </div>
-        <Calendar
-          class="h-10"
-          v-model="basicCard.birthday"
-          placeholder="請輸入日期"
-          :showIcon="true"
-          dateFormat="yy-mm-dd"
-        />
+        <Calendar class="h-10" v-model="basicCard.birthDate" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </div>
       <DtxInputGroup prepend="性別" labelWidth="104">
-        <el-select filterable v-model="basicCard.sex" class="border-l-0">
-          <el-option
-            v-for="item in genderOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+        <el-select filterable v-model="basicCard.genderCode" class="border-l-0">
+          <el-option v-for="item in genders" :key="item.genderCode" :label="item.genderName" :value="item.genderCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="手機號碼" labelWidth="104">
-        <el-input v-model="basicCard.mobile" />
+        <el-input v-model="basicCard.phone" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="電話號碼"
-        labelWidth="104"
-        style="grid-column: span 3"
-      >
+      <DtxInputGroup prepend="電話號碼" labelWidth="104" style="grid-column: span 3">
         <div class="flex gap-3">
           <el-input v-model="basicCard.phone1" placeholder="區號" />
           <el-input v-model="basicCard.phone1_1" placeholder="號碼" />
@@ -77,29 +49,13 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="血型" labelWidth="104">
         <el-select filterable v-model="basicCard.blood" class="border-l-0">
-          <el-option
-            v-for="item in bloodTypeOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
+          <el-option v-for="item in bloodTypeOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="藥物過敏史"
-        labelWidth="104"
-        style="grid-column: span 2"
-      >
+      <DtxInputGroup prepend="藥物過敏史" labelWidth="104" style="grid-column: span 2">
         <div class="flex gap-2">
           <el-select filterable v-model="basicCard.allergy" class="border-l-0">
-            <el-option
-              v-for="item in medicalHistoryOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+            <el-option v-for="item in medicalHistoryOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
           <el-input v-model="basicCard.allergyTxt" />
         </div>
@@ -107,63 +63,27 @@
       <DtxInputGroup prepend="國籍" labelWidth="104">
         <el-input v-model="basicCard.nationality" />
       </DtxInputGroup>
-      <DtxInputGroup
-        prepend="通訊地址"
-        labelWidth="104"
-        style="grid-column: span 4"
-      >
+      <DtxInputGroup prepend="通訊地址" labelWidth="104" style="grid-column: span 4">
         <div class="flex gap-2">
           <el-input v-model="basicCard.address1" placeholder="郵遞區號" />
           <el-input v-model="basicCard.address2" placeholder="請輸入地址" />
         </div>
       </DtxInputGroup>
 
-      <DtxInputGroup
-        labelWidth="104"
-        prepend="訂閱健康報"
-        style="grid-column: span 2"
-      >
+      <DtxInputGroup labelWidth="104" prepend="訂閱健康報" style="grid-column: span 2">
         <div class="flex gap-2">
-          <el-radio
-            v-model="basicCard.bookPaper"
-            value="true"
-            label="願意"
-            style="margin: 13px 35px 0px 50px"
-            >願意</el-radio
-          >
-          <el-radio
-            v-model="basicCard.bookPaper"
-            value="false"
-            label="不願意"
-            style="margin-top: 13px; margin-left: 5px"
-            >不願意</el-radio
-          >
+          <el-radio v-model="basicCard.bookPaper" value="true" label="願意" style="margin: 13px 35px 0px 50px">願意</el-radio>
+          <el-radio v-model="basicCard.bookPaper" value="false" label="不願意" style="margin-top: 13px; margin-left: 5px">不願意</el-radio>
         </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="是否同意收到本院簡訊" style="grid-column: span 2">
         <div class="flex gap-2">
-          <el-radio
-            v-model="basicCard.sms"
-            value="true"
-            label="願意"
-            style="margin: 9px 35px 0px 50px"
-            >願意</el-radio
-          >
-          <el-radio
-            v-model="basicCard.sms"
-            value="false"
-            label="不願意"
-            style="margin-top: 9px; margin-left: 5px"
-            >不願意</el-radio
-          >
+          <el-radio v-model="basicCard.sms" value="true" label="願意" style="margin: 9px 35px 0px 50px">願意</el-radio>
+          <el-radio v-model="basicCard.sms" value="false" label="不願意" style="margin-top: 9px; margin-left: 5px">不願意</el-radio>
         </div>
       </DtxInputGroup>
 
-      <DtxInputGroup
-        prepend="電子信箱"
-        labelWidth="104"
-        style="grid-column: span 2"
-      >
+      <DtxInputGroup prepend="電子信箱" labelWidth="104" style="grid-column: span 2">
         <el-input v-model="basicCard.email" />
       </DtxInputGroup>
       <DtxInputGroup prepend="緊急聯絡人" labelWidth="104">
@@ -202,44 +122,17 @@
         <DtxInputGroup prepend="脈搏" labelWidth="104" append="次/分">
           <el-input v-model="selfFillForm.pulse" />
         </DtxInputGroup>
-        <DtxInputGroup
-          prepend="體重"
-          labelWidth="104"
-          style="grid-column: 2/-1"
-        >
+        <DtxInputGroup prepend="體重" labelWidth="104" style="grid-column: 2/-1">
           <div class="flex gap-2">
-            <el-select
-              filterable
-              v-model="selfFillForm.weightGain.answer1"
-              class="border-l-0"
-            >
-              <el-option
-                v-for="item in weightGainOptions1"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select filterable v-model="selfFillForm.weightGain.answer1" class="border-l-0">
+              <el-option v-for="item in weightGainOptions1" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
-            <el-select
-              filterable
-              v-model="selfFillForm.weightGain.answer2"
-              class="border-l-0"
-            >
-              <el-option
-                v-for="item in weightGainOptions2"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select filterable v-model="selfFillForm.weightGain.answer2" class="border-l-0">
+              <el-option v-for="item in weightGainOptions2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
             <el-input v-model="selfFillForm.weightGain.answer3" />
             <div style="padding-top: 8px; min-width: 100px">kg，期間:</div>
-            <el-input
-              v-model="selfFillForm.weightGain.answer4"
-              placeholder="請請輸入日期"
-            />
+            <el-input v-model="selfFillForm.weightGain.answer4" placeholder="請請輸入日期" />
           </div>
         </DtxInputGroup>
       </div>
@@ -247,13 +140,7 @@
       <div class="basic-info basic-info-secion3">
         <DtxInputGroup prepend="菸" labelWidth="104">
           <el-select filterable v-model="selfFillForm.smoke" class="border-l-0">
-            <el-option
-              v-for="item in smokeOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+            <el-option v-for="item in smokeOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
         <DtxInputGroup prepend="量" labelWidth="104" append="支/天">
@@ -266,56 +153,22 @@
           <el-input v-model="selfFillForm.quitSmokingDays" />
         </DtxInputGroup>
         <DtxInputGroup prepend="接觸二手菸" labelWidth="104">
-          <el-select
-            filterable
-            v-model="selfFillForm.exposureSecondHandSmoke"
-            class="border-l-0"
-          >
-            <el-option
-              v-for="item in yesNoOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+          <el-select filterable v-model="selfFillForm.exposureSecondHandSmoke" class="border-l-0">
+            <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
       </div>
       <div class="basic-info">
-        <DtxInputGroup
-          prepend="檳榔"
-          labelWidth="104"
-          style="grid-column: span 5"
-        >
-          <el-select
-            filterable
-            v-model="selfFillForm.betelNut"
-            class="border-l-0"
-          >
-            <el-option
-              v-for="item in yesNoOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+        <DtxInputGroup prepend="檳榔" labelWidth="104" style="grid-column: span 5">
+          <el-select filterable v-model="selfFillForm.betelNut" class="border-l-0">
+            <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
       </div>
       <div class="basic-info basic-info-secion4">
         <DtxInputGroup prepend="酒" labelWidth="104">
-          <el-select
-            filterable
-            v-model="selfFillForm.liqueur"
-            class="border-l-0"
-          >
-            <el-option
-              v-for="item in yesNoOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+          <el-select filterable v-model="selfFillForm.liqueur" class="border-l-0">
+            <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
         <DtxInputGroup prepend="量" labelWidth="104" append="ml/天">
@@ -330,18 +183,8 @@
       </div>
       <div class="basic-info basic-info-secion5">
         <DtxInputGroup prepend="運動" labelWidth="104">
-          <el-select
-            filterable
-            v-model="selfFillForm.exercise"
-            class="border-l-0"
-          >
-            <el-option
-              v-for="item in yesNoOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+          <el-select filterable v-model="selfFillForm.exercise" class="border-l-0">
+            <el-option v-for="item in yesNoOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
         </DtxInputGroup>
         <DtxInputGroup prepend="運動時間約" labelWidth="104" append="分鐘/天">
@@ -356,28 +199,16 @@
       <div>健康追蹤項目 (專業人員填寫)</div>
     </header>
     <main class="grid gap-2 grid-cols-2">
-      <div
-        class="flex relative my-flex health-tracking health-tracking-secion1"
-      >
+      <div class="flex relative my-flex health-tracking health-tracking-secion1">
         <div class="grid max-content">
-          <span
-            class="flex dtc-label px-3 items-center rounded rounded-r-none text-sm"
-            >醫師</span
-          >
+          <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-sm">醫師</span>
         </div>
         <div class="question-for-doctor">
           <div class="grid" style="grid-template-columns: 130px 1fr">
             <div class="mr-1 w-28 text-right dtc-text">健康促進需求:</div>
             <div>
-              <el-radio
-                v-model="doctorQA1"
-                label="無"
-                style="margin-right: 10px"
-                >無</el-radio
-              >
-              <el-radio v-model="doctorQA1" label="有"
-                >有，但尚無須轉介(提供手冊-成人預防、銀髮族、疾病飲食)</el-radio
-              >
+              <el-radio v-model="doctorQA1" label="無" style="margin-right: 10px">無</el-radio>
+              <el-radio v-model="doctorQA1" label="有">有，但尚無須轉介(提供手冊-成人預防、銀髮族、疾病飲食)</el-radio>
             </div>
           </div>
           <div class="grid mt-2" style="grid-template-columns: 130px 1fr">
@@ -411,23 +242,15 @@
             <el-input v-model="medicalNumber" style="background-color: #fff" />
           </div>
           <div class="mt-2 dtc-text">(提供手冊-成人預防、銀髮族、疾病飲食)</div>
-          <div
-            class="mt-4 text-right flex flex-row pr-10"
-            style="justify-content: flex-end"
-          >
+          <div class="mt-4 text-right flex flex-row pr-10" style="justify-content: flex-end">
             <div class="mr-3 dtc-text">醫師:</div>
             <div style="color: #888">請蓋章</div>
           </div>
         </div>
       </div>
-      <div
-        class="flex relative my-flex health-tracking health-tracking-secion2"
-      >
+      <div class="flex relative my-flex health-tracking health-tracking-secion2">
         <div class="grid max-content">
-          <span
-            class="flex dtc-label px-3 items-center rounded rounded-r-none text-sm"
-            >衛教師</span
-          >
+          <span class="flex dtc-label px-3 items-center rounded rounded-r-none text-sm">衛教師</span>
         </div>
         <div class="question-for-doctor">
           <div class="grid mt-2" style="grid-template-columns: 130px 530px">
@@ -447,100 +270,31 @@
               </el-checkbox-group>
             </div>
           </div>
-          <div
-            class="mt-4 text-right flex flex-row pr-10"
-            style="justify-content: flex-end"
-          >
+          <div class="mt-4 text-right flex flex-row pr-10" style="justify-content: flex-end">
             <div class="mr-3 dtc-text">衛教師:</div>
             <div style="color: #888">請蓋章</div>
           </div>
           <hr class="mt-8 mb-3" size="8px" align="center" width="100%" />
           <div class="dtc-text">
             本院配合國建署推動全民健康生活政策，協助您關心及記錄自己的健康狀況與您該知道的健康訊息及相關資源，讓您的自我健康管理可以做得更好!
-            以上衛教說明，如果您了解，請幫我們簽名:<span
-              class="inline-block px-10 pt-2 pb-2"
-              style="color: #888; border-bottom: 1px solid #cbcbcb"
-              >請蓋章</span
-            >謝謝!
+            以上衛教說明，如果您了解，請幫我們簽名:<span class="inline-block px-10 pt-2 pb-2" style="color: #888; border-bottom: 1px solid #cbcbcb">請蓋章</span>謝謝!
           </div>
         </div>
       </div>
     </main>
     <footer class="mt-5 mb-10">
-      <Button class="p-button-info" style="margin: 4px 0" @click="createItem"
-        >建立初診資料</Button
-      >
+      <Button class="p-button-info" style="margin: 4px 0" @click="createItem">建立初診資料</Button>
     </footer>
   </div>
 </template>
 
-<script lang="ts">
-//健康追蹤項目專業人員
-let hisId,
-  sex = "male",
-  carrer,
-  nationality,
-  bookPaper = true,
-  email,
-  mobile,
-  firstVisit,
-  married,
-  address1,
-  address2,
-  name,
-  phone1,
-  phone1_1,
-  phone1_1_1,
-  blood,
-  allergy,
-  allergyTxt,
-  personId,
-  birthday,
-  sms = true,
-  contactName,
-  relationship,
-  contactPhone,
-  contactMobile;
-
+<script>
+import { ElMessage } from "element-plus";
 const selfFillForm = {
   weightGain: {},
   weightGainOptions1: {},
   weightGainOptions2: {},
 };
-let basicCard = {
-  hisId,
-  sex,
-  carrer,
-  nationality,
-  bookPaper,
-  email,
-  mobile,
-  firstVisit,
-  married,
-  address1,
-  address2,
-  name,
-  phone1,
-  phone1_1,
-  phone1_1_1,
-  blood,
-  allergy,
-  allergyTxt,
-  personId,
-  birthday,
-  sms,
-  contactName,
-  relationship,
-  contactPhone,
-  contactMobile,
-};
-
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
 
 export default {
   name: "firstvisit",
@@ -548,7 +302,7 @@ export default {
   inject: ["actions"],
   data() {
     return {
-      basicCard,
+      basicCard: {},
       selfFillForm,
       input1: "J120092876",
       options: [
@@ -715,16 +469,27 @@ export default {
       doctorQA3: [],
       doctorQA4: [],
       healthTeacherQA: [],
+      genders: [],
     };
   },
   methods: {
-    async createItem() {
-      const _selfFillForm = JSON.stringify(this.selfFillForm);
-      await this.actions.addOpdPerson({
-        ...this.basicCard,
-        selfFillForm: _selfFillForm,
-      });
+    async getDDL() {
+      this.genders = await this.actions.getOpdGender();
+      //this.personCates = await this.actions.getPersonCates();
     },
+    async createItem() {
+      try {
+        await this.actions.addOpdPerson({
+          ...this.basicCard,
+        });
+        ElMessage.success("新增初診單成功");
+      } catch (e) {
+        ElMessage.error("新增初診單 fail");
+      }
+    },
+  },
+  mounted() {
+    this.getDDL();
   },
 };
 </script>
@@ -821,9 +586,7 @@ main {
   flex-direction: column;
 }
 .dtc-label {
-  background: transparent
-    linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0%
-    no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #e2e5fd 0%, #e8eaff 47%, #c0c7f5 100%) 0% 0% no-repeat padding-box;
   color: black;
 }
 </style>
