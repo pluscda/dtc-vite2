@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      cps: FirstVisit,
+      cps: BasicInfo,
       activeTab: 0,
       takeCard: true,
     };

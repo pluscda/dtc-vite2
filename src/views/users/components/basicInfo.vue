@@ -5,12 +5,12 @@
     </header>
     <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
       <DtxInputGroup prepend="身分證字號" labelWidth="120">
-        <el-input v-model="nativeIdNumber" />
+        <el-input v-model="nativeIdNumber" placeholder="必填" />
       </DtxInputGroup>
       <DtxInputGroup prepend="姓名" labelWidth="120">
-        <el-input v-model="nativeName" />
+        <el-input v-model="nativeName" placeholder="必填" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 155">
+      <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 100">
         <Calendar class="h-10" v-model="nativeBirthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
