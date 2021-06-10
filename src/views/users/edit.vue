@@ -20,8 +20,8 @@
     </header>
     <Button @click="printImg('dtc-form')" style="display: none" note="demo has to print img">Print</Button>
     <nav class="m-3 dtc-tabs">
-      <div @click="activeTab = 0" :class="!activeTab ? 'active' : ''">初診單</div>
-      <div @click="activeTab = 1" :class="1 == activeTab ? 'active' : ''">基本資料</div>
+      <div @click="activeTab = 0" :class="!activeTab ? 'active' : ''">基本資料</div>
+      <div @click="activeTab = 1" :class="1 == activeTab ? 'active' : ''">初診單</div>
       <div @click="activeTab = 2" :class="2 == activeTab ? 'active' : ''">疾病史</div>
     </nav>
 

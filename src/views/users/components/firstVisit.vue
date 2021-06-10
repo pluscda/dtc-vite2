@@ -482,6 +482,7 @@ export default {
         await this.actions.addOpdPerson({
           ...this.basicCard,
         });
+        //addOpdPatient
         ElMessage.success("新增初診單成功");
       } catch (e) {
         ElMessage.error("新增初診單 fail");
