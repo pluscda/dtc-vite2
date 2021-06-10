@@ -34,12 +34,6 @@ import domtoimage from "dom-to-image";
 import FirstVisit from "./components/firstVisit.vue";
 import BasicInfo from "./components/basicInfo.vue";
 import SickHistory from "./components/sickHistory.vue";
-//初診單基本資料疾病史
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
 
 const CPS = [FirstVisit, BasicInfo, SickHistory];
 export default {
