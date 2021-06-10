@@ -35,7 +35,7 @@ import FirstVisit from "./components/firstVisit.vue";
 import BasicInfo from "./components/basicInfo.vue";
 import SickHistory from "./components/sickHistory.vue";
 
-const CPS = [FirstVisit, BasicInfo, SickHistory];
+const CPS = [BasicInfo, FirstVisit, SickHistory];
 export default {
   name: "editUser",
   components: {
