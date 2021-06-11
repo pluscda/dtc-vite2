@@ -101,7 +101,7 @@
         <el-input v-model="foreignMarriage" />
       </DtxInputGroup>
       <DtxInputGroup prepend="手機號碼" labelWidth="120">
-        <el-input v-model="foreignMobilePhone" />
+        <el-input v-model="his.phone" />
       </DtxInputGroup>
       <DtxInputGroup prepend="電話號碼" labelWidth="120" style="grid-column: span 3">
         <div class="flex gap-2">
@@ -111,12 +111,12 @@
         </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
-        <el-select filterable v-model="foreignAboBlood" class="border-l-0">
+        <el-select filterable v-model="his.booldType" class="border-l-0">
           <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
-        <el-select filterable v-model="foreignRhBlood" class="border-l-0">
+        <el-select filterable v-model="his.rhType" class="border-l-0">
           <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
