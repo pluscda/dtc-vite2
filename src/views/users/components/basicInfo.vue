@@ -73,7 +73,7 @@
       <DtxInputGroup prepend="姓名" labelWidth="120">
         <el-input v-model="foreignName" />
       </DtxInputGroup>
-      <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 155">
+      <DtxInputGroup prepend="出生日期" :labelWidth="120">
         <Calendar class="h-10" v-model="foreignBirthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
