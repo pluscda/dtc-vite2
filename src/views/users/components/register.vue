@@ -88,6 +88,7 @@ export default {
       const doctorId = this.shift;
       const shiftId = this.shiftt.find((s) => s.doctorId == doctorId && s.specialtyId == this.specialty)?.shiftId;
       const obj = { patientId, opdDate, shiftId };
+      alert(JSON.stringify(obj, null, 2));
       try {
         await this.actions.addOpdRegistration(obj);
         ElMessage.success("掛號作業成功");
