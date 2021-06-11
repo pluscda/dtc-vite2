@@ -218,11 +218,11 @@ export default {
       rhBlood: "negative",
       rhBloodOptions: [
         {
-          value: "positive",
+          value: "Rh+",
           label: "Rh+",
         },
         {
-          value: "negative",
+          value: "Rh-",
           label: "Rh-",
         },
       ],
