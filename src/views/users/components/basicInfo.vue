@@ -77,8 +77,8 @@
         <Calendar class="h-10" v-model="foreignBirthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
-        <el-select filterable v-model="foreignGender" class="border-l-0">
-          <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="out.genderCode" class="border-l-0">
+          <el-option v-for="item in genders" :key="item.genderCode" :label="item.genderName" :value="item.genderCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="學歷" labelWidth="120">
@@ -162,6 +162,7 @@ export default {
   data() {
     return {
       his: {},
+      out: {},
       genders: [],
       nativeIdNumber: "",
       nativeName: "",
