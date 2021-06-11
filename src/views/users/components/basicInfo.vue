@@ -173,7 +173,6 @@ export default {
           value: "male",
           label: "男",
         },
-
         {
           value: "female",
           label: "女",
