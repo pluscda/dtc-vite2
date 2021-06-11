@@ -54,12 +54,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
         <el-select filterable v-model="his.bloodType" class="border-l-0">
-          <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in aboBloodOptions" :key="item.label" :label="item.label" :value="item.label"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
         <el-select filterable v-model="his.rhType" class="border-l-0">
-          <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in rhBloodOptions" :key="item.label" :label="item.label" :value="item.label"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
@@ -112,12 +112,12 @@
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
         <el-select filterable v-model="his.booldType" class="border-l-0">
-          <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in aboBloodOptions" :key="item.label" :label="item.label" :value="item.label"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
         <el-select filterable v-model="his.rhType" class="border-l-0">
-          <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+          <el-option v-for="item in rhBloodOptions" :key="item.label" :label="item.label" :value="item.label"> </el-option>
         </el-select>
       </DtxInputGroup>
     </main>
