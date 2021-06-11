@@ -53,9 +53,6 @@
             </span>
           </div>
         </header>
-
-        <!-- <label v-for="(row, rowId) in item.rows" :key="rowId">
-          -->
         <label v-for="(row, rowId) in 2" :key="rowId">
           <div :title="item.opdDate">{{ item.id || "暫無資料" }}</div>
           <div :title="item.name">{{ item.name || "暫無資料" }}</div>
@@ -79,14 +76,14 @@
 </template>
 
 <script>
-import { toRefs, ref } from "vue";
+import { toRefs, ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 import dayjs from "dayjs";
 import { opdDate$ } from "/@/store";
-
+import { forkJoin, timer } from "rxjs";
 import { useList } from "/@/hooks/useHis.js";
 //查閱清單
 let headers = [
@@ -118,10 +115,12 @@ let subHeaders = [
   { name: "診間", key: "age", sortDesc: null },
 ];
 
-let subscribe = "";
+let subscribe = "",
+  subscribe2 = "";
 export default {
   name: "inquerylist",
   components: {},
+  inject: ["actions"],
   data() {
     return {
       input1: "J120092876",
@@ -142,6 +141,9 @@ export default {
       regDate.value = t.split("T")[0];
       getList();
     });
+    const updateCount = ([p, c]) => {};
+    const actions = inject("actions");
+    //subscribe2 = timer(0, 5000).pipe(zip(actions.getOpdProgress(), actions.getOpdRegCount())).subscribe(updateCount);
 
     return {
       ...toRefs(state),
@@ -154,6 +156,7 @@ export default {
   },
   beforeUnmount() {
     subscribe.unsubscribe();
+    subscribe2.unsubscribe();
   },
 };
 </script>
