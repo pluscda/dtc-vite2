@@ -67,7 +67,7 @@
       <div>外國國人基本資料</div>
     </header>
     <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
-      <DtxInputGroup prepend="護照/身分證/居留證號碼" class="col-span-2">
+      <DtxInputGroup prepend="身分證號" labelWidth="120">
         <el-input v-model="foreignIdNumber" />
       </DtxInputGroup>
       <DtxInputGroup prepend="姓名" labelWidth="120">
