@@ -5,7 +5,7 @@
       <div>序號</div>
       <div v-for="(item, i) in headers" :key="i" @click="sort(headers, item)">
         {{ item.name }}
-        <span v-show="item.sortDesc === null">
+        <!-- <span v-show="item.sortDesc === null">
           <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
         </span>
         <span v-show="item.sortDesc === false">
@@ -13,7 +13,7 @@
         </span>
         <span v-show="item.sortDesc">
           <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-        </span>
+        </span> -->
       </div>
     </header>
     <main
@@ -27,17 +27,17 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
-      <div>{{ "暫無資料" }}</div>
-      <div>{{ item.registerSection || "暫無資料" }}</div>
-      <div>{{ item.registerNo || "暫無資料" }}</div>
-      <div>{{ item.registerName || "暫無資料" }}</div>
-      <div>{{ item.registerAlias || "暫無資料" }}</div>
-      <div>{{ item.category || "暫無資料" }}</div>
-      <div>{{ item.doctorNo || "暫無資料" }}</div>
+      <div>{{ item.opdDate || "暫無資料" }}</div>
+      <div>{{ item.opdtimeName || "暫無資料" }}</div>
+      <div>{{ item.roomId || "暫無資料" }}</div>
+      <div>{{ item.roomName || "暫無資料" }}</div>
+      <div>{{ item.departmentName || "暫無資料" }}</div>
+      <div>{{ item.specialtyName || "暫無資料" }}</div>
+      <div>{{ item.unkown || "暫無資料" }}</div>
       <div>{{ item.doctorName || "暫無資料" }}</div>
-      <div>{{ item.totalRegisterNum || "暫無資料" }}</div>
-      <div>{{ item.totalCheckedNum || "暫無資料" }}</div>
-      <div>{{ item.totalWaitNum || "暫無資料" }}</div>
+      <div>{{ item.regCount || "暫無資料" }}</div>
+      <div>{{ item.doneCount || "暫無資料" }}</div>
+      <div>{{ item.totalWaitNum }}</div>
       <div class="view-details" v-if="item.review">
         <header class="dtc-grid-header">
           <div v-for="(item, i) in subHeaders" :key="i" @click.stop="sort(item)">
@@ -57,7 +57,7 @@
         <!-- <label v-for="(row, rowId) in item.rows" :key="rowId">
           -->
         <label v-for="(row, rowId) in 2" :key="rowId">
-          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
+          <div :title="item.opdDate">{{ item.id || "暫無資料" }}</div>
           <div :title="item.name">{{ item.name || "暫無資料" }}</div>
           <div :title="item.age">{{ item.age || "暫無資料" }}</div>
           <div :title="item.id">{{ item.id || "暫無資料" }}</div>
@@ -88,12 +88,12 @@ import queryString from "qs";
 import { useList } from "/@/hooks/useHis.js";
 //查閱清單
 let headers = [
-  { name: "掛號日期", key: "registerTimestamp", sortDesc: null },
-  { name: "看診時段", key: "registerSection", sortDesc: null },
-  { name: "診間號碼", key: "registerNo", sortDesc: null },
-  { name: "診間名稱", key: "registerName", sortDesc: null },
-  { name: "診間別名", key: "registerAlias", sortDesc: null },
-  { name: "科別", key: "category", sortDesc: null },
+  { name: "掛號日期", key: "opdDate", sortDesc: null },
+  { name: "看診時段", key: "opdtimeName", sortDesc: null },
+  { name: "診間號碼", key: "roomId", sortDesc: null },
+  { name: "診間名稱", key: "roomName", sortDesc: null },
+  { name: "診間別名", key: "departmentName", sortDesc: null },
+  { name: "科別", key: "specialtyName", sortDesc: null },
   { name: "醫師代號", key: "doctorNo", sortDesc: null },
   { name: "醫師姓名", key: "doctorName", sortDesc: null },
   { name: "掛號人數", key: "totalRegisterNum", sortDesc: null },
@@ -133,35 +133,13 @@ export default {
     const router = useRouter();
     headers = ref(headers);
     subHeaders = ref(subHeaders);
-    const { state, getList, sort, clearFilters } = useList("/opd/opdDepartment");
-
-    function handleEdit({ row }) {
-      router.push({
-        name: "userEdit",
-        params: { id: row.id },
-      });
-    }
-
-    function handleDelete({ row }) {
-      // delItem(row.id).then(() => {
-      //   Message.success("刪除成功！");
-      // });
-    }
-
-    const toggleDetail = (item) => {
-      const review = item.review;
-      state.list.forEach((s) => (s.review = false));
-      item.review = !review;
-    };
+    const { state, getList, sort } = useList("/opd/opdShiftList");
 
     return {
       ...toRefs(state),
       getList,
-      handleEdit,
-      handleDelete,
       headers,
       subHeaders,
-      toggleDetail,
       sort,
     };
   },
