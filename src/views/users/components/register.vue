@@ -86,9 +86,8 @@ export default {
       const patientId = item.patientId;
       const opdDate = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
       const doctorId = this.shift;
-      const shiftId = this.shiftt.find((s) => s.doctorId == doctorId && s.specialtyId == this.specialty)?.shiftId;
+      const shiftId = this.shiftt.find((s) => s.opdtimeId == this.sect && s.doctorId == doctorId && s.specialtyId == this.specialty)?.shiftId;
       const obj = { patientId, opdDate, shiftId };
-      alert(JSON.stringify(obj, null, 2));
       try {
         await this.actions.addOpdRegistration(obj);
         ElMessage.success("掛號作業成功");

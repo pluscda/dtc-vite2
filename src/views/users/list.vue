@@ -119,7 +119,7 @@ import { useList } from "/@/hooks/useHis.js";
 import Regsiter from "./components/register.vue";
 import Pay from "./components/hisPay.vue";
 import InqueryList from "./components/inqueryList.vue";
-import { opdAddPerson$ } from "/@/store";
+import { opdAddPerson$, opdRegister$ } from "/@/store";
 let headers = [
   { name: "ID", key: "id", sortDesc: null },
   { name: "建立者", key: "name", sortDesc: null },
@@ -147,7 +147,6 @@ export default {
   },
   methods: {
     async confirmRegi() {
-      //await this.actions.addOpdRegistration();
       opdRegister$.next(this.item);
     },
     async checkExistPerson() {
