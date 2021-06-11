@@ -34,9 +34,9 @@
       <div>{{ item.departmentName || "暫無資料" }}</div>
       <div>{{ item.specialtyName || "暫無資料" }}</div>
       <div>{{ item.unkown || "暫無資料" }}</div>
-      <div>{{ item.doctorName || "暫無資料" }}</div>
-      <div>{{ item.regCount || "暫無資料" }}</div>
-      <div>{{ item.doneCount || "暫無資料" }}</div>
+      <div>{{ item.doctorName }}</div>
+      <div>{{ item.regCount }}</div>
+      <div>{{ item.doneCount }}</div>
       <div>{{ item.totalWaitNum }}</div>
       <div class="view-details" v-if="item.review">
         <header class="dtc-grid-header">
@@ -146,7 +146,10 @@ export default {
       let qs = "shiftId=" + item.shiftId;
       regDate.value.includes("T") ? (qs += "&opdDate=" + regDate.value) : "";
       const { doneCount, regCount } = await actions.getOpdProgress(qs);
-      return { doneCount, regCount };
+      item.doneCount = doneCount;
+      item.regCount = regCount;
+      item.totalWaitNum = regCount - doneCount;
+      return { item, doneCount, regCount };
     };
     const actions = inject("actions");
 
