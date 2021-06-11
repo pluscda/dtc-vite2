@@ -155,6 +155,7 @@
 
 <script>
 import { ElMessage } from "element-plus";
+import { opdAddPerson$ } from "/@/store";
 export default {
   name: "basicinfo",
   inject: ["actions"],
@@ -285,12 +286,14 @@ export default {
           ...this.his,
         });
         ElMessage.success("新增基本資料成功");
+        opdAddPerson$.next({ ...this.his });
       } catch (e) {
         ElMessage.error("新增基本資料 fail");
       }
     },
   },
   mounted() {
+    opdAddPerson$.next("");
     this.getDDL();
   },
 };

@@ -110,34 +110,35 @@
 </template>
 
 <script>
-import { inject, toRefs, ref, reactive } from 'vue';
-import { Subject, of } from 'rxjs';
-import { distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
-import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
-import { useList } from '/@/hooks/useHis.js';
-import Regsiter from './components/register.vue';
-import Pay from './components/hisPay.vue';
-import InqueryList from './components/inqueryList.vue';
+import { inject, toRefs, ref, reactive } from "vue";
+import { Subject, of } from "rxjs";
+import { distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+import { useList } from "/@/hooks/useHis.js";
+import Regsiter from "./components/register.vue";
+import Pay from "./components/hisPay.vue";
+import InqueryList from "./components/inqueryList.vue";
+import { opdAddPerson$ } from "/@/store";
 let headers = [
-  { name: 'ID', key: 'id', sortDesc: null },
-  { name: '建立者', key: 'name', sortDesc: null },
-  { name: '年齡', key: 'age', sortDesc: null },
+  { name: "ID", key: "id", sortDesc: null },
+  { name: "建立者", key: "name", sortDesc: null },
+  { name: "年齡", key: "age", sortDesc: null },
 ];
 
 export default {
-  name: 'UserListHIS',
+  name: "UserListHIS",
   components: {
     Regsiter,
     Pay,
     InqueryList,
   },
-  inject: ['actions'],
+  inject: ["actions"],
   data() {
     return {
       takeCard: true,
-      input1: 'J120092876',
-      value: '',
+      input1: "J120092876",
+      value: "",
       autoCompe$: new Subject(),
       item: {},
       genders: [],
@@ -145,6 +146,13 @@ export default {
     };
   },
   methods: {
+    async checkExistPerson() {
+      const his = opdAddPerson$.getValue();
+      opdAddPerson$.next("");
+      if (!his) return;
+      const qs = "personId=" + his.personId;
+      this.item = await this.actions.getOpdPatient(qs)[0];
+    },
     async getDLL() {
       this.genders = await this.actions.getOpdGender();
       this.personCates = await this.actions.getPersonCates();
@@ -162,7 +170,7 @@ export default {
       } else {
         this.item[`${item}s`] = [];
       }
-      return '';
+      return "";
     },
     searchItems(item, event) {
       this.autoCompe$.next({ item, event });
@@ -177,20 +185,21 @@ export default {
     this.autoCompe$
       .pipe(
         switchMap(this.getAutoCompeItems),
-        catchError((s) => of(''))
+        catchError((s) => of(""))
       )
       .subscribe();
+    // this.checkExistPerson();
   },
   setup() {
     const router = useRouter();
-    const { state, getList, delItem } = useList('/opd/opdDepartment');
-    const actions = inject('actions');
+    const { state, getList, delItem } = useList("/opd/opdDepartment");
+    const actions = inject("actions");
     headers = ref(headers);
-    const info = reactive({ name: '', id: '', birthday: '' });
+    const info = reactive({ name: "", id: "", birthday: "" });
 
     function handleEdit({ row }) {
       router.push({
-        name: 'userEdit',
+        name: "userEdit",
         params: { id: row.id },
       });
     }
@@ -200,17 +209,17 @@ export default {
       delItem(row.id).then(() => {
         // todo:刪除這一行，或者重新獲取數據
         // 通知用戶
-        Message.success('刪除成功！');
+        Message.success("刪除成功！");
       });
     }
 
     //讀取健保卡
     async function readHealthCard() {
       const data = await actions.getIcCardInfo();
-      let patientInfo = data.message.split(' ');
+      let patientInfo = data.message.split(" ");
       patientInfo = patientitem.filter((s) => Boolean(s));
 
-      item.name = patientInfo[0].replace(/\d/g, '');
+      item.name = patientInfo[0].replace(/\d/g, "");
       item.id = patientInfo[1].slice(0, 9);
       item.birthday = patientInfo[1].slice(10, -1);
     }
