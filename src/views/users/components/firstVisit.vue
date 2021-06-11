@@ -479,7 +479,7 @@ export default {
     },
     async createItem() {
       try {
-        await this.actions.addOpdPerson({
+        await this.actions.addOpdPatient({
           ...this.basicCard,
         });
         //addOpdPatient
