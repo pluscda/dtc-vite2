@@ -265,7 +265,7 @@ export default {
   },
   methods: {
     async getDDL() {
-      this.genders = await this.actions.addOpdPatient();
+      this.genders = await this.actions.getOpdGender();
       //this.personCates = await this.actions.getPersonCates();
     },
     async createItem() {
