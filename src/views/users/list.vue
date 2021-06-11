@@ -151,7 +151,8 @@ export default {
       opdAddPerson$.next("");
       if (!his) return;
       const qs = "personId=" + his.personId;
-      this.item = await this.actions.getOpdPatient(qs)[0];
+      const [ret] = await this.actions.getOpdPatient(qs);
+      this.item = { ...ret };
     },
     async getDLL() {
       this.genders = await this.actions.getOpdGender();
@@ -188,7 +189,7 @@ export default {
         catchError((s) => of(""))
       )
       .subscribe();
-    // this.checkExistPerson();
+    this.checkExistPerson();
   },
   setup() {
     const router = useRouter();
