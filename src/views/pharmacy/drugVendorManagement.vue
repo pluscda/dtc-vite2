@@ -62,7 +62,7 @@ import Pagination from "cps/Pagination.vue";
 import { useList } from "/@/hooks/useHis.js";
 import { isEmpty } from "ramda";
 import { useRouter } from "vue-router";
-//身分證號
+
 let headers = [
   { name: "廠商編號", key: "vendorId", sortDesc: null },
   { name: "廠商名稱", key: "name", sortDesc: null },
