@@ -5,17 +5,17 @@
     </header>
     <main class="grid gap-3 lg:grid-cols-5 grid-cols-2">
       <DtxInputGroup prepend="身分證字號" labelWidth="120">
-        <el-input v-model="nativeIdNumber" placeholder="必填" />
+        <el-input v-model="his.personId" placeholder="必填" />
       </DtxInputGroup>
       <DtxInputGroup prepend="姓名" labelWidth="120">
-        <el-input v-model="nativeName" placeholder="必填" />
+        <el-input v-model="his.cname" placeholder="必填" />
       </DtxInputGroup>
       <DtxInputGroup prepend="出生日期" :labelWidth="pageWidth ? 100 : 100">
-        <Calendar class="h-10" v-model="nativeBirthday" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar class="h-10" v-model="his.birthDate" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
       </DtxInputGroup>
       <DtxInputGroup prepend="性別" labelWidth="120">
-        <el-select filterable v-model="nativeGender" class="border-l-0">
-          <el-option v-for="item in genderOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+        <el-select filterable v-model="his.generCode" class="border-l-0">
+          <el-option v-for="item in genders" :key="item.genderCode" :label="item.genderName" :value="item.genderCode"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="學歷" labelWidth="120">
@@ -43,7 +43,7 @@
         <el-input v-model="nativeMarriage" />
       </DtxInputGroup>
       <DtxInputGroup prepend="手機號碼" labelWidth="120">
-        <el-input v-model="nativeMobilePhone" />
+        <el-input v-model="his.phone" />
       </DtxInputGroup>
       <DtxInputGroup prepend="電話號碼" labelWidth="120" style="grid-column: span 3">
         <div class="flex gap-2">
@@ -53,12 +53,12 @@
         </div>
       </DtxInputGroup>
       <DtxInputGroup prepend="ABO血型" labelWidth="120">
-        <el-select filterable v-model="aboBlood" class="border-l-0">
+        <el-select filterable v-model="his.bloodType" class="border-l-0">
           <el-option v-for="item in aboBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
       <DtxInputGroup prepend="RH血型" labelWidth="120">
-        <el-select filterable v-model="rhBlood" class="border-l-0">
+        <el-select filterable v-model="his.rhType" class="border-l-0">
           <el-option v-for="item in rhBloodOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
         </el-select>
       </DtxInputGroup>
@@ -154,18 +154,14 @@
 </template>
 
 <script>
-let headers = [
-  { name: "ID", key: "id", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "建立者", key: "name", sortDesc: null },
-  { name: "年齡", key: "age", sortDesc: null },
-];
-
+import { ElMessage } from "element-plus";
 export default {
   name: "basicinfo",
   components: {},
   data() {
     return {
+      his: {},
+      genders: [],
       nativeIdNumber: "",
       nativeName: "",
       nativeBirthday: "",
@@ -266,6 +262,25 @@ export default {
     pageWidth() {
       return Boolean(window.innerWidth <= 1280);
     },
+  },
+  methods: {
+    async getDDL() {
+      this.genders = await this.actions.addOpdPatient();
+      //this.personCates = await this.actions.getPersonCates();
+    },
+    async createItem() {
+      try {
+        await this.actions.addOpdPerson({
+          ...this.his,
+        });
+        ElMessage.success("新增基本資料成功");
+      } catch (e) {
+        ElMessage.error("新增基本資料 fail");
+      }
+    },
+  },
+  mounted() {
+    this.getDDL();
   },
 };
 </script>
