@@ -39,8 +39,10 @@
 
 <script>
 import dayjs from "dayjs";
-import { opdRegsiter$ } from "/@/store";
+import { opdRegister$ } from "/@/store";
 import { exhaustMap, throttle } from "rxjs/operators";
+
+let subscribe1 = "";
 export default {
   name: "regsiter",
   components: {},
@@ -80,9 +82,9 @@ export default {
   methods: {
     async registerPerson(item) {
       //TODO the data format is unknow
-      const obj = { opdDate: this.regTime, departmentId: dept, specialtyId: specialty };
-      const obj = Object.assign({ ...item }, { ...this.item });
-      await this.actions.addOpdRegistration(obj);
+      // const obj = { opdDate: this.regTime, departmentId: dept, specialtyId: specialty };
+      // //const obj = Object.assign({ ...item }, { ...this.item });
+      // await this.actions.addOpdRegistration(obj);
     },
     async getOptShift() {
       // when 項次科別 change.
@@ -125,11 +127,11 @@ export default {
     },
   },
   beforeUnmount() {
-    opdRegsiter$.unsubscribe();
+    subscribe1.unsubscribe();
   },
   async mounted() {
     this.getOptDepartment();
-    opdRegsiter$.pipe(throttle(2000), exhaustMap(this.registerPerson)).subscribe();
+    subscribe1 = opdRegister$.pipe(throttle(2000), exhaustMap(this.registerPerson)).subscribe();
   },
   watch: {
     sect(v) {
