@@ -148,7 +148,7 @@
       </DtxInputGroup>
     </main>
     <footer class="mt-5 mb-10">
-      <Button class="p-button-info" style="margin: 4px 0">儲存基本資料</Button>
+      <Button class="p-button-info" style="margin: 4px 0" @click="createItem">儲存基本資料</Button>
     </footer>
   </div>
 </template>
@@ -262,17 +262,19 @@ export default {
   },
   computed: {
     pageWidth() {
-      return Boolean(window.innerWidth <= 1280);
+      return !!(window.innerWidth <= 1280);
     },
   },
   methods: {
     async getDDL() {
       this.genders = await this.actions.getOpdGender();
-      //this.personCates = await this.actions.getPersonCates();
     },
     async createItem() {
       try {
         await this.actions.addOpdPerson({
+          ...this.his,
+        });
+        await this.actions.addOpdPatient({
           ...this.his,
         });
         ElMessage.success("新增基本資料成功");

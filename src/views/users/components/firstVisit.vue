@@ -479,9 +479,9 @@ export default {
     },
     async createItem() {
       try {
-        await this.actions.addOpdPatient({
-          ...this.basicCard,
-        });
+        // await this.actions.addOpdPatient({
+        //   ...this.basicCard,
+        // });
         //addOpdPatient
         ElMessage.success("新增初診單成功");
       } catch (e) {
