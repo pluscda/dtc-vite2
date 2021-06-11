@@ -15,7 +15,7 @@
       <Button class="p-button-rounded" style="margin: 4px 0">補卡取號</Button>
       <Button class="p-button-rounded p-button-success" style="margin: 4px 0" @click="readHealthCard">讀取健保卡</Button>
       <Button class="p-button-rounded p-button-info" style="margin: 4px 0">清除/重整</Button>
-      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0">確認掛號</Button>
+      <Button class="p-button-rounded p-button-warning" style="margin: 4px 0" @click="confirmRegi">確認掛號</Button>
     </header>
     <div class="grid gap-1 mb-3 ml-1 dtc-autoflow-grid">
       <DtxInputGroup prepend="身份證號">
@@ -146,6 +146,10 @@ export default {
     };
   },
   methods: {
+    async confirmRegi() {
+      //await this.actions.addOpdRegistration();
+      opdRegister$.next(this.item);
+    },
     async checkExistPerson() {
       const his = opdAddPerson$.getValue();
       opdAddPerson$.next("");

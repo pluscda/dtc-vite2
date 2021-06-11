@@ -289,6 +289,19 @@ export const actions = {
     const str = "limit=40&returnLimit=40&";
     return await axios.get("/opd/patientGroup?" + str + qs );
   },
+  async addOpdRegistration(obj){ // 8
+     return await axios.post("/opd/registration", obj );
+  },
+  async getOpdProgress(qs){ //23
+     return await axios.get("/opd/opdProgress?" + qs);
+  },
+  async getOpdRegCount(qs){ //12
+     return await axios.get("/opd/regCount?" + qs);
+  },
+  async getOpdShiftList(qs){ //22
+     return await axios.get("/opd/podShiftList?" + qs);
+  },
+
  
 
   
