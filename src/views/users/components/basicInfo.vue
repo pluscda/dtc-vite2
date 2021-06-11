@@ -148,7 +148,7 @@
       </DtxInputGroup>
     </main>
     <footer class="mt-5 mb-10">
-      <Button class="p-button-info" style="margin: 4px 0" @click="createItem">儲存基本資料</Button>
+      <Button class="p-button-info" style="margin: 4px 0" @click="createItem" :disabled="!canSave">儲存基本資料</Button>
     </footer>
   </div>
 </template>
@@ -263,6 +263,14 @@ export default {
   computed: {
     pageWidth() {
       return !!(window.innerWidth <= 1280);
+    },
+    canSave() {
+      const mustHave = ["his.personId", "his.cname"];
+      return mustHave.every((s) => {
+        const [k, v] = s.split(".");
+        if (!this[k] || !this[k][v]) return false;
+        return true;
+      });
     },
   },
   methods: {
