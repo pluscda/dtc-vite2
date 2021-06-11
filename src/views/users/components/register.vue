@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { ElMessage } from "element-plus";
 import dayjs from "dayjs";
 import { opdRegister$ } from "/@/store";
 import { exhaustMap, throttle } from "rxjs/operators";
@@ -81,10 +82,18 @@ export default {
   },
   methods: {
     async registerPerson(item) {
-      //TODO the data format is unknow
-      // const obj = { opdDate: this.regTime, departmentId: dept, specialtyId: specialty };
-      // //const obj = Object.assign({ ...item }, { ...this.item });
-      // await this.actions.addOpdRegistration(obj);
+      if (!this.regTime || !this.shift || !item?.patientId) return;
+      const patientId = item.patientId;
+      const opdDate = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
+      const doctorId = this.shift;
+      const shiftId = this.shiftt.find((s) => s.doctorId == doctorId && s.specialtyId == this.specialty)?.shiftId;
+      const obj = { patientId, opdDate, shiftId };
+      try {
+        await this.actions.addOpdRegistration(obj);
+        ElMessage.success("掛號作業成功");
+      } catch (e) {
+        ElMessage.error("掛號作業 Fail");
+      }
     },
     async getOptShift() {
       // when 項次科別 change.
