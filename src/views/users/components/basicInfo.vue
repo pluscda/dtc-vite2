@@ -157,6 +157,7 @@
 import { ElMessage } from "element-plus";
 export default {
   name: "basicinfo",
+  inject: ["actions"],
   components: {},
   data() {
     return {
