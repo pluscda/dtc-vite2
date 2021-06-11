@@ -27,7 +27,7 @@
         <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
-      <div>{{ item.opdDate || "暫無資料" }}</div>
+      <div>{{ regDate || "暫無資料" }}</div>
       <div>{{ item.opdtimeName || "暫無資料" }}</div>
       <div>{{ item.roomId || "暫無資料" }}</div>
       <div>{{ item.roomName || "暫無資料" }}</div>
@@ -84,6 +84,8 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
+import dayjs from "dayjs";
+import { opdDate$ } from "/@/store";
 
 import { useList } from "/@/hooks/useHis.js";
 //查閱清單
@@ -116,6 +118,7 @@ let subHeaders = [
   { name: "診間", key: "age", sortDesc: null },
 ];
 
+let subscribe = "";
 export default {
   name: "inquerylist",
   components: {},
@@ -130,10 +133,15 @@ export default {
   },
 
   setup() {
-    const router = useRouter();
     headers = ref(headers);
     subHeaders = ref(subHeaders);
     const { state, getList, sort } = useList("/opd/opdShiftList");
+    const regDate = ref(dayjs().format("YYYY-MM-DD"));
+    subscribe = opdDate$.subscribe((t) => {
+      state.listQuery.filter = "opdDate=" + t;
+      regDate.value = t.split("T")[0];
+      getList();
+    });
 
     return {
       ...toRefs(state),
@@ -141,7 +149,11 @@ export default {
       headers,
       subHeaders,
       sort,
+      regDate,
     };
+  },
+  beforeUnmount() {
+    subscribe.unsubscribe();
   },
 };
 </script>

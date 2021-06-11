@@ -40,7 +40,7 @@
 <script>
 import { ElMessage } from "element-plus";
 import dayjs from "dayjs";
-import { opdRegister$ } from "/@/store";
+import { opdRegister$, opdDate$ } from "/@/store";
 import { exhaustMap, throttle } from "rxjs/operators";
 
 let subscribe1 = "";
@@ -123,6 +123,7 @@ export default {
       this.cleanAll(["regTime"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
+        opdDate$.next(time);
         const { entry } = await this.actions.getOptDepartmentByDate(time);
         this.deptt = entry;
       } catch (e) {
