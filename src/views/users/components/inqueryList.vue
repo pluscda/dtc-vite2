@@ -83,8 +83,9 @@ import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 import dayjs from "dayjs";
 import { opdDate$ } from "/@/store";
-import { forkJoin, timer } from "rxjs";
+import { from, interval, timer } from "rxjs";
 import { useList } from "/@/hooks/useHis.js";
+import { delay, exhaustMap, mergeMap, repeat, switchMap, concatMap } from "rxjs/operators";
 //查閱清單
 let headers = [
   { name: "掛號日期", key: "opdDate", sortDesc: null },
@@ -141,9 +142,21 @@ export default {
       regDate.value = t.split("T")[0];
       getList();
     });
-    const updateCount = ([p, c]) => {};
+    const getItem = async (item) => {
+      let qs = "shiftId=" + item.shiftId;
+      regDate.value.includes("T") ? (qs += "&opdDate=" + regDate.value) : "";
+      const { doneCount, regCount } = await actions.getOpdProgress(qs);
+      return { doneCount, regCount };
+    };
     const actions = inject("actions");
-    //subscribe2 = timer(0, 5000).pipe(zip(actions.getOpdProgress(), actions.getOpdRegCount())).subscribe(updateCount);
+
+    interval(5000)
+      .pipe(
+        switchMap((_) => {
+          return from(state.list).pipe(mergeMap(getItem));
+        })
+      )
+      .subscribe(console.log);
 
     return {
       ...toRefs(state),
@@ -156,7 +169,7 @@ export default {
   },
   beforeUnmount() {
     subscribe.unsubscribe();
-    subscribe2.unsubscribe();
+    //subscribe2.unsubscribe();
   },
 };
 </script>
