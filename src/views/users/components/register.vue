@@ -97,7 +97,7 @@ export default {
       const obj = { podDate: time };
       const qs = queryString.stringify(obj);
       opdList$.next({ qs, myDate: time });
-      this.shift = this.specialty = this.dept = this.sec = "";
+      this.shift = this.specialty = this.dept = this.sect = "";
     },
     async queryList() {
       const a = [];
@@ -111,6 +111,9 @@ export default {
       }
       if (this.dept) {
         obj.departmentName = this.deptt.find((s) => this.dept == s.departmentId)?.departmentName;
+      }
+      if (this.sect) {
+        obj.opdtimeId = this.sect;
       }
       const qs = queryString.stringify(obj);
       opdList$.next({ qs, myDate: time });
