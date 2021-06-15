@@ -153,7 +153,7 @@ export default {
     };
     const actions = inject("actions");
 
-    interval(5000)
+    timer(500, 5000)
       .pipe(
         switchMap((_) => {
           return from(state.list).pipe(mergeMap(getItem));
