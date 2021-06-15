@@ -141,7 +141,8 @@ export default {
       item.review = !review;
       if (item.review) {
         const qs = "shiftId=" + item.shiftId;
-        details.value = await actions.getOpdRegiList(qs);
+        const { entry } = await actions.getOpdRegiList(qs);
+        details.value = entry;
       }
     };
 
@@ -161,7 +162,7 @@ export default {
           return from(state.list).pipe(mergeMap(getItem));
         })
       )
-      .subscribe(console.log);
+      .subscribe();
 
     return {
       ...toRefs(state),
