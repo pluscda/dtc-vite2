@@ -3,7 +3,7 @@
     <header class="dtc-page-header dtc-page-header-grid grid text-white relative">
       <div>掛號作業</div>
       <div></div>
-      <Button label="進行查詢" icon="pi pi-search" class="p-button-small" style="margin: 4px" />
+      <Button label="進行查詢" icon="pi pi-search" class="p-button-small" style="margin: 4px" @click="queryList" />
       <Button label="清除查詢" class="p-button-warning p-button-small" style="margin: 4px" icon="pi pi-undo" />
     </header>
     <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
@@ -40,8 +40,9 @@
 <script>
 import { ElMessage } from "element-plus";
 import dayjs from "dayjs";
-import { opdRegister$, opdDate$ } from "/@/store";
+import { opdRegister$, opdDate$, opdList$ } from "/@/store";
 import { exhaustMap, throttle } from "rxjs/operators";
+import queryString from "qs";
 
 let subscribe1 = "";
 export default {
@@ -81,6 +82,22 @@ export default {
     },
   },
   methods: {
+    async queryList() {
+      const a = [];
+      const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
+      const obj = { podDate: time };
+      if (this.shift) {
+        obj.doctorName = this.shiftt.find((s) => this.shift == s.doctorId)?.doctorName;
+      }
+      if (this.specialty) {
+        obj.specialtyName = this.specialtyy.find((s) => this.specialty == s.specialtyId)?.specialtyName;
+      }
+      if (this.dept) {
+        obj.departmentName = this.deptt.find((s) => this.dept == s.departmentId)?.departmentName;
+      }
+      const qs = queryString.stringify(obj);
+      opdList$.next({ qs, myDate: time });
+    },
     async registerPerson(item) {
       if (!this.regTime || !this.shift || !item?.patientId) return;
       const patientId = item.patientId;
@@ -123,7 +140,7 @@ export default {
       this.cleanAll(["regTime"]);
       try {
         const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
-        opdDate$.next(time);
+        //opdDate$.next(time);
         const { entry } = await this.actions.getOptDepartmentByDate(time);
         this.deptt = entry;
       } catch (e) {

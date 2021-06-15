@@ -72,7 +72,7 @@ import { ElMessage } from "element-plus";
 import Pagination from "cps/Pagination.vue";
 import queryString from "qs";
 import dayjs from "dayjs";
-import { opdDate$ } from "/@/store";
+import { opdList$ } from "/@/store";
 import { from, interval, timer } from "rxjs";
 import { useList } from "/@/hooks/useHis.js";
 import { delay, exhaustMap, mergeMap, repeat, switchMap, concatMap } from "rxjs/operators";
@@ -128,9 +128,9 @@ export default {
     const actions = inject("actions");
     const { state, getList, sort } = useList("/opd/opdShiftList");
     const regDate = ref(dayjs().format("YYYY-MM-DD"));
-    subscribe = opdDate$.subscribe((t) => {
-      state.listQuery.filter = "opdDate=" + t;
-      regDate.value = t.split("T")[0];
+    subscribe = opdList$.subscribe(({ qs, myDate }) => {
+      state.listQuery.filter = qs;
+      regDate.value = myDate.split("T")[0];
       getList();
     });
 
@@ -157,13 +157,13 @@ export default {
       return { item, doneCount, regCount };
     };
 
-    timer(500, 5000)
-      .pipe(
-        switchMap((_) => {
-          return from(state.list).pipe(mergeMap(getItem));
-        })
-      )
-      .subscribe();
+    // timer(500, 5000)
+    //   .pipe(
+    //     switchMap((_) => {
+    //       return from(state.list).pipe(mergeMap(getItem));
+    //     })
+    //   )
+    //   .subscribe();
 
     return {
       ...toRefs(state),

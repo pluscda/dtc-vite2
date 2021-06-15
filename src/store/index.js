@@ -5,3 +5,4 @@ export const leftSideBar$ =  new BehaviorSubject(1);
 export const opdAddPerson$ =  new BehaviorSubject('');
 export const opdRegister$ = new Subject();
 export const opdDate$ = new Subject();
+export const opdList$ = new Subject();
