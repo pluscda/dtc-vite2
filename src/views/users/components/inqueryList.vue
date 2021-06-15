@@ -39,12 +39,12 @@
       <div>{{ item.doneCount }}</div>
       <div>{{ item.totalWaitNum }}</div>
       <div class="view-details" v-if="item.review">
-        <header>
+        <header class="dtc-11-cols">
           <div v-for="(item2, i2) in subHeaders" :key="i2">
             {{ item2.name }}
           </div>
         </header>
-        <label v-for="(row, rowId) in details" :key="rowId">
+        <label v-for="(row, rowId) in details" :key="rowId" class="dtc-11-cols">
           <div :title="row.opdDate">{{ row.opdDate?.split("T")[0] || "暫無資料" }}</div>
           <div :title="row.opdtimeName">{{ row.opdtimeName || "暫無資料" }}</div>
           <div :title="row.roomName">{{ row.roomName || "暫無資料" }}</div>
@@ -189,5 +189,8 @@ export default {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   line-height: 50px;
+}
+.dtc-11-cols {
+  grid-template-columns: repeat(10, minmax(90px, 140px)) 1fr;
 }
 </style>
