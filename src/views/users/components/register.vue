@@ -4,7 +4,7 @@
       <div>掛號作業</div>
       <div></div>
       <Button label="進行查詢" icon="pi pi-search" class="p-button-small" style="margin: 4px" @click="queryList" />
-      <Button label="清除查詢" class="p-button-warning p-button-small" style="margin: 4px" icon="pi pi-undo" />
+      <Button label="清除查詢" class="p-button-warning p-button-small" style="margin: 4px" icon="pi pi-undo" @click="clearFilters" />
     </header>
     <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
       <DtxInputGroup prepend="掛號日期">
@@ -82,6 +82,14 @@ export default {
     },
   },
   methods: {
+    async clearFilters() {
+      const time = dayjs().format("YYYY-MM-DD") + this.global.zeros;
+      this.regTime = dayjs().format("YYYY-MM-DD");
+      const obj = { podDate: time };
+      const qs = queryString.stringify(obj);
+      opdList$.next({ qs, myDate: time });
+      this.shift = this.specialty = this.dept = this.sec = "";
+    },
     async queryList() {
       const a = [];
       const time = dayjs(this.regTime).format("YYYY-MM-DD") + this.global.zeros;
