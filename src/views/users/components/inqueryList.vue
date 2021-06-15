@@ -39,13 +39,12 @@
       <div>{{ item.doneCount }}</div>
       <div>{{ item.totalWaitNum }}</div>
       <div class="view-details" v-if="item.review">
-        <header class="dtc-grid-header">
+        <header>
           <div v-for="(item2, i2) in subHeaders" :key="i2">
             {{ item2.name }}
           </div>
         </header>
         <label v-for="(row, rowId) in details" :key="rowId">
-          <div>{{ rowId + 1 }}</div>
           <div :title="row.opdDate">{{ row.opdDate?.split("T")[0] || "暫無資料" }}</div>
           <div :title="row.opdtimeName">{{ row.opdtimeName || "暫無資料" }}</div>
           <div :title="row.roomName">{{ row.roomName || "暫無資料" }}</div>
@@ -93,7 +92,7 @@ let headers = [
 ];
 
 let subHeaders = [
-  { name: "掛號清單", key: "name", sortDesc: null },
+  // { name: "序號", key: "name", sortDesc: null },
   { name: "掛號日期", key: "name", sortDesc: null },
   { name: "看診時段", key: "name", sortDesc: null },
   { name: "診間名稱", key: "age", sortDesc: null },
@@ -112,7 +111,6 @@ let subscribe = "",
 export default {
   name: "inquerylist",
   components: {},
-  inject: ["actions"],
   data() {
     return {
       input1: "J120092876",
@@ -156,7 +154,6 @@ export default {
       item.totalWaitNum = regCount - doneCount;
       return { item, doneCount, regCount };
     };
-    const actions = inject("actions");
 
     timer(500, 5000)
       .pipe(
