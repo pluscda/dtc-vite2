@@ -156,14 +156,15 @@ export default {
       item.totalWaitNum = regCount - doneCount;
       return { item, doneCount, regCount };
     };
-
-    // timer(500, 5000)
-    //   .pipe(
-    //     switchMap((_) => {
-    //       return from(state.list).pipe(mergeMap(getItem));
-    //     })
-    //   )
-    //   .subscribe();
+    if (!location.href.includes(":300")) {
+      timer(500, 5000)
+        .pipe(
+          switchMap((_) => {
+            return from(state.list).pipe(mergeMap(getItem));
+          })
+        )
+        .subscribe();
+    }
 
     return {
       ...toRefs(state),

@@ -8,7 +8,15 @@
     </header>
     <main class="grid gap-2 grid-cols-2" style="grid-template-rows: 40px">
       <DtxInputGroup prepend="掛號日期">
-        <Calendar @date-select="getOptDepartment" class="h-10 w-full" v-model="regTime" placeholder="請輸入日期" :showIcon="true" dateFormat="yy-mm-dd" />
+        <Calendar
+          @date-select="getOptDepartment"
+          :minDate="minDate"
+          class="h-10 w-full"
+          v-model="regTime"
+          placeholder="請輸入日期"
+          :showIcon="true"
+          dateFormat="yy-mm-dd"
+        />
       </DtxInputGroup>
       <DtxInputGroup prepend="看診科別">
         <el-select filterable v-model="dept" clearable placeholder="請選擇" class="border-l-0" @change="getOptSpecialty">
@@ -53,6 +61,7 @@ export default {
     return {
       dept: "",
       deptt: [],
+      minDate: dayjs().format("YYYY-MM-DD"),
       specialty: "",
       specialtyy: [],
       shift: "",
@@ -174,6 +183,16 @@ export default {
     },
     shift(v) {
       if (!v) this.sect = "";
+    },
+    doctors(v) {
+      if (v?.length == 1) {
+        this.shift = v[0].doctorId;
+      }
+    },
+    sections(v) {
+      if (v?.length == 1) {
+        this.sect = v[0].opdtimeId;
+      }
     },
   },
 };
