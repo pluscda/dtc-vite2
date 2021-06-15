@@ -301,6 +301,9 @@ export const actions = {
   async getOpdShiftList(qs){ //22
      return await axios.get("/opd/podShiftList?" + qs);
   },
+  async getOpdTimeCode(qs){ //25
+     return await axios.get("/opd/podtimeCode?" + qs);
+  },
   async getOpdRegiList(qs){//13
     try{
      return await axios.get("/opd/registration?" + qs); 
