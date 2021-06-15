@@ -24,7 +24,7 @@
       @click.stop="toggleDetail(item)"
     >
       <div>
-        <InputSwitch class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
+        <InputSwitch :disabled="!item.regCount" class="transform translate-y-1.5" v-model="item.review" size="small" @click.stop="toggleDetail(item)"></InputSwitch>
       </div>
       <div>{{ i + 1 }}</div>
       <div>{{ regDate || "暫無資料" }}</div>
@@ -135,6 +135,7 @@ export default {
     });
 
     const toggleDetail = async (item) => {
+      if (!item.regCount) return;
       details.value = [];
       const review = item.review;
       state.list.forEach((s) => (s.review = false));
