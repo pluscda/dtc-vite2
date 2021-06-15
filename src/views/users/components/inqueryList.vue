@@ -40,32 +40,23 @@
       <div>{{ item.totalWaitNum }}</div>
       <div class="view-details" v-if="item.review">
         <header class="dtc-grid-header">
-          <div v-for="(item, i) in subHeaders" :key="i" @click.stop="sort(item)">
-            {{ item.name }}
-            <span v-show="item.sortDesc === null" style="display: inline-block; transform: translateY(4px)">
-              <i-typcn:arrow-unsorted></i-typcn:arrow-unsorted>
-            </span>
-            <span v-show="item.sortDesc === false" style="display: inline-block; transform: translateY(4px)">
-              <i-typcn:arrow-sorted-down></i-typcn:arrow-sorted-down>
-            </span>
-            <span v-show="item.sortDesc" style="display: inline-block; transform: translateY(4px)">
-              <i-typcn:arrow-sorted-up></i-typcn:arrow-sorted-up>
-            </span>
+          <div v-for="(item2, i2) in subHeaders" :key="i2">
+            {{ item2.name }}
           </div>
         </header>
-        <label v-for="(row, rowId) in 2" :key="rowId">
-          <div :title="item.opdDate">{{ item.id || "暫無資料" }}</div>
-          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
-          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
-          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
-          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
-          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
-          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
-          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
-          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
-          <div :title="item.id">{{ item.id || "暫無資料" }}</div>
-          <div :title="item.name">{{ item.name || "暫無資料" }}</div>
-          <div :title="item.age">{{ item.age || "暫無資料" }}</div>
+        <label v-for="(row, rowId) in details" :key="rowId">
+          <div>{{ rowId + 1 }}</div>
+          <div :title="row.opdDate">{{ row.opdDate?.split("T")[0] || "暫無資料" }}</div>
+          <div :title="row.opdtimeName">{{ row.opdtimeName || "暫無資料" }}</div>
+          <div :title="row.roomName">{{ row.roomName || "暫無資料" }}</div>
+          <div :title="row.doctorName">{{ row.doctorName || "暫無資料" }}</div>
+          <div :title="row.opdNo">{{ row.opdNo || "暫無資料" }}</div>
+          <div :title="row.personName">{{ row.personName || "暫無資料" }}</div>
+          <div :title="row.genderName">{{ row.genderName || "暫無資料" }}</div>
+          <div :title="row.phone">{{ item.phone || "暫無資料" }}</div>
+          <div :title="row.opdStatusName">{{ row.opdStatusName || "暫無資料" }}</div>
+          <div :title="row.patientGroupName">{{ row.patientGroupName || "暫無資料" }}</div>
+          <div :title="row.personCategoryName">{{ row.personCategoryName || "暫無資料" }}</div>
         </label>
       </div>
     </main>
@@ -103,17 +94,17 @@ let headers = [
 
 let subHeaders = [
   { name: "掛號清單", key: "name", sortDesc: null },
-  { name: "掛號/預約日期", key: "name", sortDesc: null },
+  { name: "掛號日期", key: "name", sortDesc: null },
   { name: "看診時段", key: "name", sortDesc: null },
-  { name: "看診號", key: "age", sortDesc: null },
+  { name: "診間名稱", key: "age", sortDesc: null },
+  { name: "醫生", key: "age", sortDesc: null },
+  { name: "看診序號", key: "age", sortDesc: null },
+  { name: "姓名", key: "age", sortDesc: null },
+  { name: "性別", key: "age", sortDesc: null },
+  { name: "電話", key: "age", sortDesc: null },
   { name: "看診狀態", key: "age", sortDesc: null },
   { name: "就醫類別", key: "age", sortDesc: null },
-  { name: "科別", key: "age", sortDesc: null },
-  { name: "病歷號碼", key: "age", sortDesc: null },
-  { name: "病患姓名", key: "age", sortDesc: null },
-  { name: "身分證號", key: "age", sortDesc: null },
-  { name: "醫師姓名", key: "age", sortDesc: null },
-  { name: "診間", key: "age", sortDesc: null },
+  { name: "身分別", key: "age", sortDesc: null },
 ];
 
 let subscribe = "",
@@ -135,6 +126,8 @@ export default {
   setup() {
     headers = ref(headers);
     subHeaders = ref(subHeaders);
+    const details = ref([]);
+    const actions = inject("actions");
     const { state, getList, sort } = useList("/opd/opdShiftList");
     const regDate = ref(dayjs().format("YYYY-MM-DD"));
     subscribe = opdDate$.subscribe((t) => {
@@ -142,6 +135,18 @@ export default {
       regDate.value = t.split("T")[0];
       getList();
     });
+
+    const toggleDetail = async (item) => {
+      details.value = [];
+      const review = item.review;
+      state.list.forEach((s) => (s.review = false));
+      item.review = !review;
+      if (item.review) {
+        const qs = "shiftId=" + item.shiftId;
+        details.value = await actions.getOpdRegiList(qs);
+      }
+    };
+
     const getItem = async (item) => {
       let qs = "shiftId=" + item.shiftId;
       regDate.value.includes("T") ? (qs += "&opdDate=" + regDate.value) : "";
@@ -168,6 +173,8 @@ export default {
       subHeaders,
       sort,
       regDate,
+      toggleDetail,
+      details,
     };
   },
   beforeUnmount() {
