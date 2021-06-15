@@ -7,7 +7,7 @@ import { share } from "rxjs/operators";
 import dayjs from "dayjs";
 
 const delyAjax = (url) => defer( _ => axios.get(url)).pipe( share({connector: () => new ReplaySubject(1)}) );
-//DTC API DOC : https://drive.google.com/drive/folders/1LcbHvvxXy9AuJ6RiZ3rEqMVATtMWf-gy
+//DTC UI : https://xd.adobe.com/view/ad9e8ea2-8b31-408d-5602-7ae0986dd2e0-dbaf/     pass: Dtcdevt3135
 //用藥單位
 const unit$ = delyAjax("/med/unitCode");
 //藥品類別
