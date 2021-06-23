@@ -4,7 +4,7 @@
       <div style="background: none !important" class="dtc-text cursor-auto">E 檢查治療</div>
       <div>組套</div>
       <div>設為組套</div>
-      <div>列印</div>
+      <div>治療處置代碼搜尋</div>
     </header>
 
     <Set6List></Set6List>

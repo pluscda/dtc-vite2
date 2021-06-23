@@ -4,6 +4,7 @@
       <div style="background: none !important" class="dtc-text cursor-auto">M 用藥</div>
       <div>組套</div>
       <div>設為組套</div>
+      <div>藥品代碼搜尋</div>
     </header>
 
     <Set5List></Set5List>

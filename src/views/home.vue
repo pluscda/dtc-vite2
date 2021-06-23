@@ -1,7 +1,7 @@
 <template>
   <section class="w-screen">
     <header class="flex pr-2 dtc-page-header space-x-6 transform -translate-y-0.5">
-      <div>目前診號: 02</div>
+      <div>目前診號: 01</div>
       <div>病歷號: 322324</div>
       <div>姓名: 立證明</div>
       <div>性別: 8</div>
