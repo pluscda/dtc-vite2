@@ -9,7 +9,7 @@ import "styles/index.scss";
 import ElementPlus from "element-plus";
 import "dayjs/locale/zh-tw";
 import locale from "element-plus/lib/locale/lang/zh-tw";
-import "element-plus/lib/theme-chalk/index.css";
+//import "element-plus/lib/theme-chalk/index.css";
 import router from "/@/router";
 import DtxInputGroup from "cps/DtxInputGroup.vue";
 import PrimeVue from "primevue/config";
