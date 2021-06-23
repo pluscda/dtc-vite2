@@ -4,11 +4,21 @@
       <div>門診</div>
       <Button>預約掛號</Button>
       <Button class="p-button-success">預約住院</Button>
-      <Button class="p-button-info">慢病紀錄</Button>
-      <Button class="p-button-warning">開立證明</Button>
-      <Button class="p-button-help">跨院調閱</Button>
-      <Button class="p-button-danger">手術排程</Button>
-      <Button>檢驗報告</Button>
+      <Button class="p-button-info">開立證明</Button>
+      <Button class="p-button-warning">雲端藥歷</Button>
+      <Button class="p-button-help">手術排程</Button>
+      <Button class="p-button-danger">檢驗報告</Button>
+      <Button>檢查報告</Button>
+      <Button class="p-button-success">病史紀錄</Button>
+    </header>
+    <header class="grid pr-2 dtc-page-header dtc-page-header__grid w-screen" style="margin: 0">
+      <div class="w-9"></div>
+      <Button class="p-button-info">遠端視訊</Button>
+      <Button class="p-button-warning">過敏紀錄</Button>
+      <Button class="p-button-danger">檢查治療列印</Button>
+      <Button class="p-button-success">DITTO</Button>
+      <Button class="p-button-info">科常用組套</Button>
+      <Button class="p-button-warning">開立轉診單</Button>
     </header>
     <main class="grid pb-2 pl-1 pt-1 section1-grid w-screen">
       <DtxInputGroup prepend="診間號碼">
@@ -55,12 +65,8 @@
       </nav>
     </main>
     <header class="grid pr-2 dtc-page-header dtc-page-header__grid relative" style="margin: 0; padding-left: 2px">
-      <Button class="p-button-success">遠端視訊</Button>
-      <Button class="p-button-info">過敏疾病紀錄</Button>
-      <Button class="p-button-warning">DITTO</Button>
-      <Button class="p-button-help">完成醫囑</Button>
-      <Button class="p-button-danger">科常用組套</Button>
       <div class="absolute right-6 top-0 space-x-4">
+        <Button style="height: 34px" class="p-button-help">完成醫囑</Button>
         <Button style="height: 34px">暫存</Button>
         <Button class="p-button-success" style="height: 34px">回門診清單</Button>
       </div>
