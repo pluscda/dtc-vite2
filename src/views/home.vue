@@ -44,8 +44,14 @@
     <main class="grid grid-cols-12 mt-2">
       <Set5></Set5>
     </main>
-    <main class="grid grid-cols-12 mt-2 mb-11">
+    <main class="grid grid-cols-12 mt-2 mb-11 relative">
       <Set6></Set6>
+      <main class="grid grid-cols-[1fr,repeat(3,max-content)] space-x-3 mt-4 mb-4 w-screen pr-5">
+        <div></div>
+        <Button class="p-button-help">完成醫囑</Button>
+        <Button>暫存</Button>
+        <Button class="p-button-success">回門診清單</Button>
+      </main>
     </main>
   </section>
 </template>
