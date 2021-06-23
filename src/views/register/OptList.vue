@@ -11,7 +11,7 @@
       <Button>檢驗報告</Button>
       <div style="flex: 1"></div>
       <div class="justify-end flex space-x-4 pr-2">
-        <div>掛號: 2</div>
+        <div>掛號: 3</div>
         <div>已看: 4</div>
         <div>未看: 6</div>
         <div>保留: 8</div>
@@ -125,11 +125,13 @@ let headers = [
 let tabs = ["預約掛號", "預約住院", "慢行紀錄", "開立證明", "跨院調閱", "醫療影像", "手術排程", "檢驗報告"];
 
 export default {
+  name: "inquerylist3938",
   data() {
     return {
       input1: "J120092876",
       value: "",
       value2: "",
+      input2: "",
       tabs,
       headers,
       checked: false,

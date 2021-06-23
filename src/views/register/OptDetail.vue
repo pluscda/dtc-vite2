@@ -63,6 +63,7 @@ import Set4 from "/@/components/set4.vue";
 import Set5 from "/@/components/set5.vue";
 import Set6 from "/@/components/set6.vue";
 export default {
+  name: "inquerylist_383",
   data() {
     return {
       value: "",
