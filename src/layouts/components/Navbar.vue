@@ -5,7 +5,7 @@
     <section class="flex items-center gap-8 -mt-3 cursor-pointer">
       <div @click="$router.push('/home')">門診</div>
       <el-dropdown class="" :show-timeout="1">
-        <span class="text-blue-200">門急診掛號<i class="el-icon-arrow-down el-icon--right"></i></span>
+        <span class="text-blue-200">門急診掛號 <i-uim:angle-down class="inline"></i-uim:angle-down></span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="$router.push('/users/list')">掛號</el-dropdown-item>
@@ -15,7 +15,7 @@
       </el-dropdown>
 
       <el-dropdown class="" :show-timeout="1">
-        <span class="text-blue-200">藥局<i class="el-icon-arrow-down el-icon--right"></i> </span>
+        <span class="text-blue-200">藥局<i-uim:angle-down class="inline"></i-uim:angle-down></span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="updatePharmacyRouter('/pharmacy/drugmanagement', 1)">基本資料設定</el-dropdown-item>
