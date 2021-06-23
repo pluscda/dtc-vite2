@@ -54,7 +54,7 @@ import { Subject, of } from "rxjs";
 import axios from "utils/request";
 import { distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
 let headers = [
-  { name: "ICD10", key: "chDrgId", sortDesc: null },
+  { name: "ICD10 / ICD9", key: "chDrgId", sortDesc: null },
   { name: "診斷內容", key: "chHospitalId", sortDesc: null },
 ];
 const items = [{}, {}, {}, {}];
