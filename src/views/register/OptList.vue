@@ -125,8 +125,6 @@ let headers = [
 let tabs = ["預約掛號", "預約住院", "慢行紀錄", "開立證明", "跨院調閱", "醫療影像", "手術排程", "檢驗報告"];
 
 export default {
-  name: "inquerylist",
-
   data() {
     return {
       input1: "J120092876",
@@ -139,6 +137,12 @@ export default {
   },
   components: {
     Pagination,
+  },
+  methods: {
+    editItem(item) {
+      alert();
+      this.$router.push("/home");
+    },
   },
   setup() {
     const global = inject("global");
