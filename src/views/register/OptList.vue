@@ -140,8 +140,7 @@ export default {
   },
   methods: {
     editItem(item) {
-      alert();
-      this.$router.push("/home");
+      this.$router.push("/optdetail");
     },
   },
   setup() {
@@ -196,11 +195,6 @@ export default {
       state.listQuery.filter = dateQuery + filters;
       getList();
     };
-    const editItem = async (item) => {
-      const detail = await getItemDetail(item);
-      global.editItem = { ...detail };
-      router.push("/pharmacy/modifyDrgWarehousePRequest");
-    };
 
     return {
       ...toRefs(state),
@@ -221,7 +215,6 @@ export default {
       search,
       twTime,
       cleanFilter,
-      editItem,
     };
   },
 
