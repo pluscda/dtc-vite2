@@ -1,76 +1,40 @@
 <template>
   <section class="w-screen">
+    <header class="flex pr-2 dtc-page-header space-x-6 transform -translate-y-0.5">
+      <div>目前診號: 02</div>
+      <div>病歷號: 322324</div>
+      <div>姓名: 立證明</div>
+      <div>性別: 8</div>
+      <div>年齡: 37</div>
+      <div>生日: 20/20/20</div>
+      <div>身分證號: A128873654</div>
+      <div>身份別: XXX</div>
+      <div>過敏: X</div>
+    </header>
     <header class="grid pr-2 dtc-page-header dtc-page-header__grid w-screen" style="margin: 0">
-      <div>門診</div>
       <Button>預約掛號</Button>
-      <Button class="p-button-success">預約住院</Button>
-      <Button class="p-button-info">開立證明</Button>
-      <Button class="p-button-warning">雲端藥歷</Button>
-      <Button class="p-button-help">手術排程</Button>
-      <Button class="p-button-danger">檢驗報告</Button>
+      <Button>預約住院</Button>
+      <Button>開立證明</Button>
+      <Button>雲端藥歷</Button>
+      <Button>手術排程</Button>
+      <Button>檢驗報告</Button>
       <Button>檢查報告</Button>
-      <Button class="p-button-success">病史紀錄</Button>
+      <Button>病史紀錄</Button>
     </header>
-    <header class="grid pr-2 dtc-page-header dtc-page-header__grid w-screen" style="margin: 0">
-      <div class="w-9"></div>
-      <Button class="p-button-info">遠端視訊</Button>
-      <Button class="p-button-warning">過敏紀錄</Button>
-      <Button class="p-button-danger">檢查治療列印</Button>
-      <Button class="p-button-success">DITTO</Button>
-      <Button class="p-button-info">科常用組套</Button>
-      <Button class="p-button-warning">開立轉診單</Button>
-    </header>
-    <main class="grid pb-2 pl-1 pt-1 section1-grid w-screen">
-      <DtxInputGroup prepend="診間號碼">
-        <el-input v-model="dd" style="width: 130px" readonly />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="病歷號碼">
-        <el-input v-model="dd" readonly style="width: 130px" />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="病患姓名">
-        <el-input v-model="dd" style="width: 130px" readonly />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="病患年齡">
-        <el-input v-model="dd" style="width: 130px" readonly />
-      </DtxInputGroup>
-      <DtxInputGroup prepend="病患生日">
-        <el-input v-model="dd" readonly style="width: 130px" />
-      </DtxInputGroup>
-
-      <nav style="grid-column: 1/-1" class="section1-grid grid dtc-text space-x-5">
-        <DtxInputGroup prepend="身分證號">
-          <el-input v-model="dd" readonly style="width: 130px" />
-        </DtxInputGroup>
-        <div class="p-field-checkbox text-black mt-2">
-          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block" />
-          <label for="binary" class="inline-block tran dtc-text">過敏</label>
-        </div>
-        <el-input v-model="dd"></el-input>
-        <div class="p-field-checkbox text-black mt-2 dtc-text">
-          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block ml-5" />
-          <label for="binary" class="inline-block tran">IBR</label>
-        </div>
-        <div class="p-field-checkbox text-black mt-2 dtc-text">
-          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block" />
-          <label for="binary" class="inline-block tran">DNR</label>
-        </div>
-        <div class="p-field-checkbox text-black mt-2 dtc-text">
-          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block" />
-          <label for="binary" class="inline-block tran">器捐</label>
-        </div>
-        <div class="p-field-checkbox text-black mt-2 dtc-text">
-          <Checkbox v-model="checked" :binary="true" class="-mt-2 inline-block" />
-          <label for="binary" class="inline-block tran">重大</label>
-        </div>
-      </nav>
-    </main>
-    <header class="grid pr-2 dtc-page-header dtc-page-header__grid relative" style="margin: 0; padding-left: 2px">
+    <header class="grid pr-2 dtc-page-header dtc-page-header__grid w-screen relative" style="margin: 0">
+      <Button>遠端視訊</Button>
+      <Button>過敏紀錄</Button>
+      <Button>檢查治療列印</Button>
+      <Button>DITTO</Button>
+      <Button>科常用組套</Button>
+      <Button>開立轉診單</Button>
       <div class="absolute right-6 top-0 space-x-4">
         <Button style="height: 34px" class="p-button-help">完成醫囑</Button>
         <Button style="height: 34px">暫存</Button>
         <Button class="p-button-success" style="height: 34px">回門診清單</Button>
       </div>
     </header>
+
     <main class="grid grid-of-2 mt-2 pl-1" style="width: 99vw">
       <Set1></Set1>
       <Set2></Set2>
