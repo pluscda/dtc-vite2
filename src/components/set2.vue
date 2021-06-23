@@ -7,7 +7,23 @@
       <div hidden>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
-    <Textarea class="w-full" style="height: 250px" spellcheck="false" placeholder="請輸入客觀檢查..."></Textarea>
+    <footer class="grid grid-rows-[1fr,40px] h-[250px]">
+      <Textarea class="w-full" spellcheck="false" placeholder="請輸入客觀檢查..."></Textarea>
+      <div class="grid grid-cols-[repeat(200,max-content)] dtc-text py-0.5">
+        <span class="px-2 leading-[40px]">血壓</span>
+        <input class="w-20" />
+        <span class="px-2 leading-[40px]">/</span>
+        <input class="w-20" />
+        <span class="px-2 leading-[40px]">脈搏</span>
+        <input class="w-20" />
+        <span class="px-2 leading-[40px]">身高</span>
+        <input class="w-20" />
+        <span class="px-2 leading-[40px]">體重</span>
+        <input class="w-20" />
+        <span class="px-2 leading-[40px]">疼痛評估</span>
+        <input class="w-20" />
+      </div>
+    </footer>
   </section>
 </template>
 
