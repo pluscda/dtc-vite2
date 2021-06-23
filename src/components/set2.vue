@@ -4,7 +4,7 @@
       <section style="background: none !important" class="dtc-text cursor-auto">O 客觀檢查</section>
       <div>組套</div>
       <div>設為組套</div>
-      <div>清除</div>
+      <div hidden>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
     <Textarea class="w-full" style="height: 250px" spellcheck="false" placeholder="請輸入客觀檢查..."></Textarea>

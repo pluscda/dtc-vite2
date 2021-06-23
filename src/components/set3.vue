@@ -5,7 +5,7 @@
       <div>組套</div>
       <div>設為組套</div>
       <div @click="$router.push('/diagnosis/diseasecodemanagement')">診斷碼搜尋</div>
-      <div>清除</div>
+      <div hidden>清除</div>
     </header>
     <nav class="w-full border-b-4" style="border-color: #646b74 !important"></nav>
     <header class="my-title relative dtc-grid-header dtc-grid-header__divs dtc-template-columns">
