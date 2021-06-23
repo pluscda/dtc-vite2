@@ -67,6 +67,11 @@ export const routes = [
     ],
   },
   {
+    path: "/optlist",
+    name: "optlist",
+    component: () => import("/@/views/register/optList.vue"),
+  },
+  {
     path: "/register",
     redirect: "/register/list",
     component: Layout,

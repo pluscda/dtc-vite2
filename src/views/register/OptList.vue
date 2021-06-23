@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="my-opt-list">
     <header class="flex pr-2 dtc-page-header space-x-3 py-1">
-      <div class="transform -translate-y-1">掛號總覽清單</div>
+      <div class="transform -translate-y-1">門診總覽清單</div>
       <Button>預約掛號</Button>
       <Button class="p-button-success">預約住院</Button>
       <Button class="p-button-info">慢病紀錄</Button>
@@ -228,6 +228,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.my-opt-list {
+  height: calc(100vh) !important;
+  min-height: calc(100vh) !important;
+  background: var(--dark);
+}
 .dtc-template-columns {
   grid-template-columns: 60px repeat(9, 120px) 1fr 120px;
 }

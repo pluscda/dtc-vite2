@@ -3,7 +3,7 @@
     <span> <i-uim:layer-group class="pt-2 text-5xl"></i-uim:layer-group></span>
     <div class="pt-5 text-xl transform -translate-x-4 cursor-pointer" @click="$router.push('/home')">陽明交通大學醫療服務</div>
     <section class="flex items-center gap-8 -mt-3 cursor-pointer">
-      <div @click="$router.push('/home')">門診</div>
+      <div @click="$router.push('/optlist')">門診</div>
       <el-dropdown class="" :show-timeout="1">
         <span class="text-blue-200">門急診掛號 <i-uim:angle-down class="inline"></i-uim:angle-down></span>
         <template #dropdown>
