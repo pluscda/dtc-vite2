@@ -40,33 +40,6 @@ export const routes = [
     component: () => import("/@/views/DtcResetPwdEx.vue"),
   },
   {
-    path: "/",
-    redirect: "/home",
-    component: Layout,
-    meta: { title: "導航", icon: "el-icon-s-home" },
-    children: [
-      {
-        path: "home",
-        component: () => import("views/home.vue"),
-        name: "Home",
-        meta: { title: "首頁", icon: "el-icon-s-home" },
-        children: [
-          {
-            path: ":id",
-            component: () => import("views/detail.vue"),
-            name: "Detail",
-            hidden: true,
-            meta: {
-              title: "詳情",
-              icon: "el-icon-s-home",
-              activeMenu: "/home",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  {
     path: "/optlist",
     name: "optlist",
     component: () => import("/@/views/register/optList.vue"),

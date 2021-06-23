@@ -226,8 +226,8 @@ export default {
 
 <style lang="scss" scoped>
 .my-opt-list {
-  height: calc(100vh) !important;
-  min-height: calc(100vh) !important;
+  height: calc(100vh - 70px) !important;
+  min-height: calc(100vh - 70px) !important;
   background: var(--dark);
 }
 .dtc-template-columns {
